@@ -39,6 +39,51 @@ longjmp_address = 0x82AE2A60
 0x82B04F18 = {name = "GetFileAttributesA"}
 0x82B04380 = {name = "GetLastError"}
 0x82B0B5F8 = {name = "RtlSetLastNTError"}
+0x82213A88 = {name = "fsOpenFile"}
+
+#memory Functions
+0x82B0A290 = {name = "glMemClear1"}
 
 #Bundle Functions
 0x82240ED8 = {name = "locMainGetBundlesPath"}
+0x821CE210 = {name = "assetDbPackageManagerInit"}
+0x8220BCA8 = {name = "dsList2ConstructX"}
+0x821D0460 = {name = "assetDbInsertX"}
+0x821D0130 = {name = "meGetPackageTimestamp"}
+0x821D0290 = {name = "meLoadAssetFromPackage"}
+0x821D0358 = {name = "meFreeAssetFromPackage"}
+0x821D03D8 = {name = "meFindFromPackage"}
+0x821D0208 = {name = "meFindBundleWithAid"}
+0x821D16E8 = {name = "assetIdArraySearchAidHash"}
+0x82930960 = {name = "sectionRetrieveAssetByIndex"}
+0x829309B0 = {name = "sectionRetrieveAssetInformationByIndex"}
+0x821D2E68 = {name = "assetSectionLoadFromDisk"}
+0x82930A90 = {name = "sectionGetAllocationBlockSize"}
+0x82931A30 = {name = "sectionSyncIOLoad"}
+0x821D3088 = {name = "mePostLoadCallback"}
+0x821D35D8 = {name = "assetPackedDebug"}
+0x82932660 = {name = "GetSectionTypeFromName"}
+0x829308C8 = {name = "GetDataSectionFromAssetIndex"}
+0x821D0A58 = {name = "assetDbGetUserData"}
+0x821CD2D8 = {name = "meDemandLoad"}
+
+#debug Functions
+0x821C4D28 = {name = "meDrawMessage"}
+0x82200AC8 = {name = "debugTvTextPrintf"}
+0x822008C8 = {name = "debugTvTextBegin"}
+0x821C4C48 = {name = "appErrorReportDirtyDisk"}
+
+#Tick Functions
+0x82B04F08 = {name = "GetTickCount"}
+0x8229B828 = {name = "videoMainUpdateUILoadingScreen"}
+0x826582B8 = {name = "IDirect3DDevice9_SetRenderTarget"}
+
+#audio Functions
+0x821DA050 = {name = "audioMainTick"}
+0x82A49850 = {name = "audioListenerCreate"}
+0x82A50788 = {name = "AudioListenerManager_c__GetManager"}
+0x82A4CBF0 = {name = "AudioSystem_c__AudioSystemError"}
+0x82A50468 = {name = "AudioWorkspaceManager_c__Instance"}
+0x82A4FCD8 = {name = "AudioWorkspaceManager_c__FindWorkspace"}
+0x82A4D078 = {name = "AudioSystem_c__OutOfMemory"}
+0x82A4DC98 = {name = "AudioSystem_c__Instance"}
