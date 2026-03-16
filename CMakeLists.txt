@@ -14,6 +14,8 @@ include(generated/rexglue.cmake)
 # Sources
 set(RETIP_SOURCES
     src/main.cpp
+    src/tip_engine/hooks.cpp
+    src/tip_engine/rex_macros.h
 )
 
 if(WIN32)

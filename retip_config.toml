@@ -27,97 +27,125 @@ longjmp_address = 0x82AE2A60
 0x827d4320 = {}
 
 #special functions (Hold very significant value
-0x821F02C0 = {name = "baseAssetInit"} # registers all the call back fucntions for each type of asset, Init, Destruct etc.
-0x821FC308 = {name = "dbTextureInitTexture"} # Initializes the textures, this is what i hook on the pc port for texturepacks
+0x821F02C0 = {name = "rex_baseAssetInit"} # registers all the call back fucntions for each type of asset, Init, Destruct etc.
+0x821FC308 = {name = "rex_dbTextureInitTexture"} # Initializes the textures, this is what i hook on the pc port for texturepacks
 
 #System Functions
-#0x82AFCCC0 = {name = "SleepEx"}
-#0x82B0C0E0 = {name = "RtlSleep"}
-0x821C8268 = {name = "appMainInit"}
+#0x82AFCCC0 = {name = "rex_SleepEx"}
+#0x82B0C0E0 = {name = "rex_RtlSleep"}
+0x821C8268 = {name = "rex_appMainInit"}
 
 #Language Functions
-0x82240B20 = {name = "meSetLanguage"}
-0x82240B78 = {name = "locMainSetLanguage"}
+0x82240B20 = {name = "rex_meSetLanguage"}
+0x82240B78 = {name = "rex_locMainSetLanguage"}
 
 #String Functions
-0x82ADE598 = {name = "TIP_sprintf_s"}
-0x82ADE340 = {name = "TIP_strncpy_s"}
+0x82ADE598 = {name = "rex_TIP_sprintf_s"}
+0x82ADE340 = {name = "rex_TIP_strncpy_s"}
 
 #FileSystem Functions
-0x82214368 = {name = "fsCheckFileExists"}
-#0x82B04F18 = {name = "GetFileAttributesA"}
-#0x82B04380 = {name = "GetLastError"}
-#0x82B0B5F8 = {name = "RtlSetLastNTError"}
-0x82213A88 = {name = "fsOpenFile"}
+0x82214368 = {name = "rex_fsCheckFileExists"}
+#0x82B04F18 = {name = "rex_GetFileAttributesA"}
+#0x82B04380 = {name = "rex_GetLastError"}
+#0x82B0B5F8 = {name = "rex_RtlSetLastNTError"}
+0x82213A88 = {name = "rex_fsOpenFile"}
 
 #memory Functions
-0x82B0A290 = {name = "glMemClear1"}
+0x82B0A290 = {name = "rex_glMemClear1"}
 
 #Bundle Functions
-0x82240ED8 = {name = "locMainGetBundlesPath"}
-0x821CE210 = {name = "assetDbPackageManagerInit"}
-0x8220BCA8 = {name = "dsList2ConstructX"}
-0x821D0460 = {name = "assetDbInsertX"}
-0x821D0130 = {name = "meGetPackageTimestamp"}
-0x821D0290 = {name = "meLoadAssetFromPackage"}
-0x821D0358 = {name = "meFreeAssetFromPackage"}
-0x821D03D8 = {name = "meFindFromPackage"}
-0x821D0208 = {name = "meFindBundleWithAid"}
-0x821D16E8 = {name = "assetIdArraySearchAidHash"}
-0x82930960 = {name = "sectionRetrieveAssetByIndex"}
-0x829309B0 = {name = "sectionRetrieveAssetInformationByIndex"}
-0x821D2E68 = {name = "assetSectionLoadFromDisk"}
-0x82930A90 = {name = "sectionGetAllocationBlockSize"}
-0x82931A30 = {name = "sectionSyncIOLoad"}
-0x821D3088 = {name = "mePostLoadCallback"}
-0x821D35D8 = {name = "assetPackedDebug"}
-0x82932660 = {name = "GetSectionTypeFromName"}
-0x829308C8 = {name = "GetDataSectionFromAssetIndex"}
-0x821D0A58 = {name = "assetDbGetUserData"}
-0x821CD2D8 = {name = "meDemandLoad"}
-0x821D17F0 = {name = "assetIdPrintf"}
-0x821D2368 = {name = "meFindUnitByHash"}
+0x82240ED8 = {name = "rex_locMainGetBundlesPath"}
+0x821CE210 = {name = "rex_assetDbPackageManagerInit"}
+0x8220BCA8 = {name = "rex_dsList2ConstructX"}
+0x821D0460 = {name = "rex_assetDbInsertX"}
+0x821D0130 = {name = "rex_meGetPackageTimestamp"}
+0x821D0290 = {name = "rex_meLoadAssetFromPackage"}
+0x821D0358 = {name = "rex_meFreeAssetFromPackage"}
+0x821D03D8 = {name = "rex_meFindFromPackage"}
+0x821D0208 = {name = "rex_meFindBundleWithAid"}
+0x821D16E8 = {name = "rex_assetIdArraySearchAidHash"}
+0x82930960 = {name = "rex_sectionRetrieveAssetByIndex"}
+0x829309B0 = {name = "rex_sectionRetrieveAssetInformationByIndex"}
+0x821D2E68 = {name = "rex_assetSectionLoadFromDisk"}
+0x82930A90 = {name = "rex_sectionGetAllocationBlockSize"}
+0x82931A30 = {name = "rex_sectionSyncIOLoad"}
+0x821D3088 = {name = "rex_mePostLoadCallback"}
+0x821D35D8 = {name = "rex_assetPackedDebug"}
+0x82932660 = {name = "rex_GetSectionTypeFromName"}
+0x829308C8 = {name = "rex_GetDataSectionFromAssetIndex"}
+0x821D0A58 = {name = "rex_assetDbGetUserData"}
+0x821CD2D8 = {name = "rex_meDemandLoad"}
+0x821D17F0 = {name = "rex_assetIdPrintf"}
+0x821D2368 = {name = "rex_meFindUnitByHash"}
 
 #debug Functions
-0x821C4D28 = {name = "meDrawMessage"}
-0x82200AC8 = {name = "debugTvTextPrintf"}
-0x822008C8 = {name = "debugTvTextBegin"}
-0x821C4C48 = {name = "appErrorReportDirtyDisk"}
+0x821C4D28 = {name = "rex_meDrawMessage"}
+0x82200AC8 = {name = "rex_debugTvTextPrintf"}
+0x822008C8 = {name = "rex_debugTvTextBegin"}
+0x821C4C48 = {name = "rex_appErrorReportDirtyDisk"}
+0x822009C8 = {name = "rex_sub_822009C8"}
 
 #Tick Functions
-#0x82B04F08 = {name = "GetTickCount"}
-0x8229B828 = {name = "videoMainUpdateUILoadingScreen"}
-
+#0x82B04F08 = {name = "rex_GetTickCount"}
+0x8229B828 = {name = "rex_videoMainUpdateUILoadingScreen"}
+0x8229B080 = {name = "rex_sub_8229B080"}
 #audio Functions
-0x821DA050 = {name = "audioMainTick"}
-0x82A49850 = {name = "audioListenerCreate"}
-0x82A50788 = {name = "AudioListenerManager_c__GetManager"}
-0x82A4CBF0 = {name = "AudioSystem_c__AudioSystemError"}
-0x82A50468 = {name = "AudioWorkspaceManager_c__Instance"}
-0x82A4FCD8 = {name = "AudioWorkspaceManager_c__FindWorkspace"}
-0x82A4D078 = {name = "AudioSystem_c__OutOfMemory"}
-0x82A4DC98 = {name = "AudioSystem_c__Instance"}
+0x821DA050 = {name = "rex_audioMainTick"}
+0x82A49850 = {name = "rex_audioListenerCreate"}
+0x82A50788 = {name = "rex_AudioListenerManager_c__GetManager"}
+0x82A4CBF0 = {name = "rex_AudioSystem_c__AudioSystemError"}
+0x82A50468 = {name = "rex_AudioWorkspaceManager_c__Instance"}
+0x82A4FCD8 = {name = "rex_AudioWorkspaceManager_c__FindWorkspace"}
+0x82A4D078 = {name = "rex_AudioSystem_c__OutOfMemory"}
+0x82A4DC98 = {name = "rex_AudioSystem_c__Instance"}
 
 #font Functions
-0x82AD2000 = {name = "CFontCache__UpdateCache"}
-0x82AD1608 = {name = "CResourceLoader__DoResourceProcess"}
+0x82AD2000 = {name = "rex_CFontCache__UpdateCache"}
+0x82AD1608 = {name = "rex_CResourceLoader__DoResourceProcess"}
 
 #camera Functions
-0x821F0690 = {name = "camMainDisableMode"}
-0x821F0D18 = {name = "meSetViewport"} #Resolution
-0x826582B8 = {name = "IDirect3DDevice9_SetRenderTarget"}
-0x82658000 = {name = "IDirect3DDevice9_SetViewport"}
-0x821F0858 = {name = "camMainUpdate"}
-0x821F0F30 = {name = "meUpdateOutputViewport"}
-0x821F0730 = {name = "camMainGetAspectRatio"}
-0x821F0ED8 = {name = "meConstructClippingFrustum"}
-0x82274AF8 = {name = "scenegraphDrawSetProjectionMtx"}
-0x821F0B18 = {name = "meCalculateView"}
-0x82666118 = {name = "IDirect3DDevice9_Resolve"}
-0x8266FBB0 = {name = "IDirect3DDevice9_Swap"}
+0x821F0690 = {name = "rex_sub_821F0690"}
+0x821F0D18 = {name = "rex_meSetViewport"} #Resolution
+0x826582B8 = {name = "rex_IDirect3DDevice9_SetRenderTarget"}
+0x82658000 = {name = "rex_IDirect3DDevice9_SetViewport"}
+0x821F0858 = {name = "rex_camMainUpdate"}
+0x821F0F30 = {name = "rex_meUpdateOutputViewport"}
+0x821F0730 = {name = "rex_camMainGetAspectRatio"}
+0x821F0ED8 = {name = "rex_meConstructClippingFrustum"}
+0x82274AF8 = {name = "rex_scenegraphDrawSetProjectionMtx"}
+0x821F0B18 = {name = "rex_meCalculateView"}
+0x82666118 = {name = "rex_IDirect3DDevice9_Resolve"}
+0x8266FBB0 = {name = "rex_IDirect3DDevice9_Swap"}
+0x8229C020 = {name = "rex_sub_8229C020"}
+0x821F0A00 = {name = "rex_meCreatePresentParams"}
 
 #UI Functions
-0x822992E8 = {name = "XuiSystem_c__Draw"}
-0x82299290 = {name = "XuiSystem_c__RunAnims"}
-0x826B8AC8 = {name = "XuiAnimRun"}
-0x826B8400 = {name = "XUITimeline_Run"}
+#0x822992E8 = {name = "rex_XuiSystem_c__Draw"}
+#0x82299290 = {name = "rex_XuiSystem_c__RunAnims"}
+#0x826B8AC8 = {name = "rex_XuiAnimRun"}
+#0x826B8400 = {name = "rex_XUITimeline_Run"}
+
+[[midasm_hook]]
+address = 0x8229B0C8
+name = "fps_hook"
+registers = []
+after_instruction = true
+
+[[midasm_hook]]
+address = 0x8229C000
+name = "PresentParams_hook"
+registers = ["r31"]
+after_instruction = true
+jump_address_on_true = 0x8229C018
+
+[[midasm_hook]]
+address = 0x8229BA90
+name = "PresentParams2_hook"
+registers = ["r3"]
+after_instruction = true
+
+[[midasm_hook]]
+address = 0x8229B71C
+name = "vsync_hook"
+registers = ["r10"]
+after_instruction = true

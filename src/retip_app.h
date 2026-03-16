@@ -6,8 +6,9 @@
 #pragma once
 
 #include <rex/rex_app.h>
-
+#include "tip_engine/hooks.h"
 #include <rex/ppc/function.h>
+#include "tip_engine/Log.h"
 
 class RetipApp : public rex::ReXApp {
  public:
@@ -25,6 +26,10 @@ class RetipApp : public rex::ReXApp {
   // void OnCreateDialogs(rex::ui::ImGuiDrawer* drawer) override {}
   // void OnShutdown() override {}
   // void OnConfigurePaths(rex::PathConfig& paths) override {}
+  void OnCreateDialogs(rex::ui::ImGuiDrawer* drawer) override {
+        drawer->AddDialog(new FpsOverlayDialog(drawer));
+        drawer->AddDialog(new LogOverlayDialog(drawer));
+    }
 };
 
 PPC_STUB(__imp__XUsbcamSetView)
