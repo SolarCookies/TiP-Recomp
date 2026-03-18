@@ -18,3 +18,6 @@ git clone https://github.com/SolarCookies/TiP-Recomp.git
 
 - 4 Run ```RegenAndRebuild.bat``` to run the recompile process and build
 - 5 Run ```Play.bat``` to move the exe to the root and run it with the default arguments
+
+## Credits
+- [Franksy32](https://https://github.com/Franksy32) For providing the unlimited garden space patches
