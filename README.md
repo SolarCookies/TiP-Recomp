@@ -1,7 +1,7 @@
 # Viva Piñata: Trouble in Paradise Recompiled
 
 ## Setup
-- 1 Clone and Build the Rexglue SDK
+- 1 Clone and Build the Rexglue SDK https://github.com/rexglue/rexglue-sdk/
 
 ```
 git clone --recursive https://github.com/rexglue/rexglue-sdk.git
