@@ -27,4 +27,3 @@ namespace renut::log {
 
 REX_DEFINE_APP(retip, RetipApp::Create)
 
-

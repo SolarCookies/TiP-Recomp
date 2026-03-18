@@ -9,6 +9,36 @@ out_directory_path = "generated"
 setjmp_address = 0x82AE2EA0
 longjmp_address = 0x82AE2A60
 
+[rexcrt]
+
+#Heap Functions (Hangs)
+#RtlFreeHeap = 0x82AE2F00
+#RtlAllocateHeap = 0x82B089F0
+#RtlReAllocateHeap = 0x82B095D0
+#RtlSizeHeap = 0x82B07C90
+
+#file io
+CreateFileA = 0x82B04388
+ReadFile = 0x82B046C8
+WriteFile = 0x82B04DB0
+SetFilePointer = 0x82B04B98
+GetFileSize = 0x82B04580
+GetFileSizeEx = 0x82B05118
+SetEndOfFile = 0x82B04D08
+FlushFileBuffers = 0x82B0BCE8
+DeleteFileA = 0x82B0B248
+CloseHandle = 0x82B04680
+CreateDirectoryA = 0x82B04F80 #might be wrong
+SetFileAttributesA = 0x82B14FE8
+GetFileAttributesA = 0x82B04F18
+GetFileAttributesExA = 0x82B0B658
+SetFilePointerEx = 0x82B05010
+
+#XMemAlloc = 0x82223AB0
+#XMemFree = 0x82223B70
+memcpy = 0x82AE1C70
+
+
 [functions]
 0x826878C0 = {}
 0x825F3008 = {}
@@ -29,6 +59,10 @@ longjmp_address = 0x82AE2A60
 #special functions (Hold very significant value
 0x821F02C0 = {name = "rex_baseAssetInit"} # registers all the call back fucntions for each type of asset, Init, Destruct etc.
 0x821FC308 = {name = "rex_dbTextureInitTexture"} # Initializes the textures, this is what i hook on the pc port for texturepacks
+
+#bugdet functions
+0x824DBE80 = {name = "rex_sub_824DBE80"}
+
 
 #System Functions
 #0x82AFCCC0 = {name = "rex_SleepEx"}
@@ -149,3 +183,56 @@ address = 0x8229B71C
 name = "vsync_hook"
 registers = ["r10"]
 after_instruction = true
+
+#824DC3AC beq cr6, loc_824DC830 ->b loc_824DC830
+[[midasm_hook]]
+address = 0x824DC3AC
+name = "Space1_hook"
+registers = []
+after_instruction = false
+jump_address_on_true = 0x824DC830
+
+#824DD5BC bge cr6, loc_824DD5C4 -> b loc_824DD5C0
+[[midasm_hook]]
+address = 0x824DD5BC
+name = "Space2_hook"
+registers = []
+after_instruction = false
+jump_address_on_true = 0x824DD5C0
+
+#823DA320 r3 = 0 -> r3 = 1
+[[midasm_hook]]
+address = 0x823DA320
+name = "Space3_hook"
+registers = ["r3"]
+after_instruction = true
+
+#823DA3C0 r6 = 0 -> r6 = 1
+[[midasm_hook]]
+address = 0x823DA3C0
+name = "Space4_hook"
+registers = ["r6"]
+after_instruction = true
+
+#824DD4E0 r3 = flt_83A61624 > 0.94999999 -> r3 = 0
+[[midasm_hook]]
+address = 0x824DD4E0
+name = "Space5_hook"
+registers = ["r3"]
+after_instruction = true
+
+#824DDA80 bge cr6, loc_824DDEFC -> skip to 824DDA84
+[[midasm_hook]]
+address = 0x824DDA80
+name = "Space6_hook"
+registers = []
+after_instruction = false
+jump_address_on_true = 0x824DDA84
+
+#824DDEF8 blt cr6, loc_824DDA84 -> skip to 824DDA84
+[[midasm_hook]]
+address = 0x824DDEF8
+name = "Space7_hook"
+registers = []
+after_instruction = false
+jump_address_on_true = 0x824DDA84

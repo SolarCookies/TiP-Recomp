@@ -9,6 +9,7 @@
 #include "tip_engine/hooks.h"
 #include <rex/ppc/function.h>
 #include "tip_engine/Log.h"
+#include "tip_engine/Overlays/Fps.h"
 
 class RetipApp : public rex::ReXApp {
  public:
