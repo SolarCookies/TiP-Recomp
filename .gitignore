@@ -32,4 +32,11 @@ assets/xextool.exe
 assets/XexTool.txt
 /generated
 assets/settingssave.png
-*.bat
+assets/default.xex.i64
+assets/default.xex.id0
+assets/default.xex.id1
+assets/default.xex.nam
+assets/default.xex.til
+assets/default.xex_20260315230351.i64
+assets/default.xex_functions.csv
+out/build/win-amd64-relwithdebinfo/retip.pdb
