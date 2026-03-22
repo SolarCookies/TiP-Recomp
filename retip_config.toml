@@ -332,27 +332,6 @@ name = "CursorColor_hook"
 registers = ["r31", "r27"]
 after_instruction = true
 
-#824DBEF8 
-[[midasm_hook]]
-address = 0x824DBEF8
-name = "tagUnitsBudget_hook"
-registers = []
-after_instruction = true
-
-#824DBF04
-[[midasm_hook]]
-address = 0x824DBF04
-name = "tagClassUnitsBudget_hook"
-registers = ["r3"]
-after_instruction = true
-
-#824DD108
-[[midasm_hook]]
-address = 0x824DD224
-name = "meUpdateOccupancyLevels_hook"
-registers = ["fp0"]
-after_instruction = false
-jump_address_on_true = 0x824DD228
 
 #8235DEDC
 [[midasm_hook]]
