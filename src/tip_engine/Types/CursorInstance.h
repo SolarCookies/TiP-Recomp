@@ -61,6 +61,8 @@ inline std::string GetCursorModeString(cursorMarkerMode_e mode) {
   case cursorMarkerMode_SelectAccessoryAnimal: return "Select Accessory Animal";
   case cursorMarkerMode_Frontend: return "Frontend";
   case cursorMarkerMode_ShuttingDown: return "Shutting Down";
+  case cursorMarkerMode_MAX: return "Max";
+  default: return "Unknown";
   }
   return "Unknown";
 };
@@ -236,6 +238,7 @@ inline std::string GetCursorModeString(cursorMode_e mode) {
   case cursorMode_Garden_Boundary_Crossing: return "Garden Boundary Crossing";
   case cursorMode_Garden_Boundary_Crossed: return "Garden Boundary Crossed";
   case cursorMode_Garden_Boundary_Crossed_BirdsEyeView: return "Garden Boundary Crossed BirdsEyeView";
+  case cursorMode_MAX: return "Max";
   default: return "Unknown";
     }
     return "Unknown";

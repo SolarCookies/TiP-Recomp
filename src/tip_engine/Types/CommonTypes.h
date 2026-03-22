@@ -867,7 +867,7 @@ struct objInst_s
 };
 
 /* 11711 */
-const struct mlVec
+struct mlVec
 {
 	float x;
 	float y;

@@ -90,6 +90,8 @@ inline std::string GetReqAnimalString(requirementsAnimal_e req) {
 	case reqAnimal_LocalPlayerHasCredits: return "Local Player Has Credits";
 	case reqAnimal_LocalGamePlayTimeReached: return "Local Game Play Time Reached";
 	case reqAnimal_CurrentGardenIsOfType: return "Current Garden Is Of Type";
+	case reqAnimal_Max: return "Max";
+	default: return "Unknown";
 	}
 };
 
@@ -116,5 +118,7 @@ inline std::string GetReqInstWhenString(requirementsInstWhen_e req) {
 	case requirementsInstWhen_Always: return "Always";
 	case requirementsInstWhen_Prompted: return "Prompted";
 	case requirementsInstWhen_Fought: return "Fought";
+	case requirementsInstWhen_MAX: return "Max";
+	default: return "Unknown";
 	}
 };

@@ -90,7 +90,7 @@ struct dbModelClimbPoleUnit_s
 };
 
 /* 11772 */
-const struct dbModelClimbPole_s
+struct dbModelClimbPole_s
 {
 	int numClimbPoles;
 	dbModelClimbPoleUnit_s* pathList;
@@ -103,7 +103,7 @@ struct dbExtent_s_unnamed_tag
 };
 
 /* 11774 */
-const struct dbExtent_s
+struct dbExtent_s
 {
 	dbExtent_s_unnamed_tag proximitySphere;
 	char boundingSphere[16];
@@ -112,13 +112,13 @@ const struct dbExtent_s
 };
 
 /* 11775 */
-const struct dbModelJoint_s
+struct dbModelJoint_s
 {
 	unsigned __int8 lookupTable[76];
 };
 
 /* 11776 */
-const struct dbLight_s
+struct dbLight_s
 {
 	unsigned int no;
 };
@@ -145,7 +145,7 @@ struct dbLightVolumeUnit_s
 };
 
 /* 11778 */
-const struct dbLightVolume_s
+struct dbLightVolume_s
 {
 	dbLightVolumeUnit_s* lightVolumeList;
 	int lightVolumeListSize;
@@ -153,20 +153,20 @@ const struct dbLightVolume_s
 };
 
 /* 11779 */
-const struct dbLocator_s
+struct dbLocator_s
 {
 	unsigned int numLocators;
 };
 
 /* 11783 */
-const struct dbVolume_s
+struct dbVolume_s
 {
 	unsigned int numVolumes;
 	float cullRadius;
 };
 
 /* 11784 */
-const struct dbModelSwitch_s
+struct dbModelSwitch_s
 {
 	unsigned __int8 numSwitches;
 	unsigned __int8 numStatesPerSwitch;
@@ -176,7 +176,7 @@ const struct dbModelSwitch_s
 
 
 /* 11782 */
-const struct dbScenegraph_s
+struct dbScenegraph_s
 {
 	_ndGroup_s* sgRoot;
 	_ndVisGroup_s* visRoot;
@@ -279,7 +279,7 @@ struct dbModelUnit_s
 
 
 /* 11786 */
-const struct dbModel_s
+struct dbModel_s
 {
 	dbModelUnit_s* units;
 	unsigned int numUnits;
