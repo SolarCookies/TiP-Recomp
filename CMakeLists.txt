@@ -20,6 +20,7 @@ set(RETIP_SOURCES
 )
 
 if(WIN32)
+    list(APPEND RETIP_SOURCES icon/app.rc)
     add_executable(retip WIN32 ${RETIP_SOURCES})
 else()
     add_executable(retip ${RETIP_SOURCES})
