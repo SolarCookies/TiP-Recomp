@@ -36,3 +36,18 @@ int gardenBudgetGetIsTagAvailable_824DC840_Hook(unsigned int tag, int *tagClass)
 }
 
 REX_PPC_HOOK(gardenBudgetGetIsTagAvailable_824DC840);
+
+
+int Sleep_82AFCCF8_Hook(unsigned int ms) {
+  //Use thread sleep instead of busy waiting to reduce CPU usage
+  //std::this_thread::sleep_for(std::chrono::milliseconds(ms));
+  return 0;
+}
+PPC_HOOK(sub_82AFCCF8, Sleep_82AFCCF8_Hook);
+
+int rex_WaitForSingleObjectEx_Hook(uint32_t handle, uint32_t milliseconds, bool alertable) {
+  //Use thread sleep instead of busy waiting to reduce CPU usage
+  //std::this_thread::sleep_for(std::chrono::milliseconds(milliseconds));
+  return 0;
+}
+PPC_HOOK(rex_WaitForSingleObjectEx, rex_WaitForSingleObjectEx_Hook);

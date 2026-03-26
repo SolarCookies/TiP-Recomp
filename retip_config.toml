@@ -56,7 +56,9 @@ memcpy = 0x82AE1C70
 0x825383b8 = {}
 0x827d4320 = {}
 0x826051f0 = {}
-0x824985f8 = {}
+0x824985f8 = {} #Weed crash fix
+0x8248dc60 = {} #Ruffian crash fix
+0x82365f98 = {} #Accessory pinata select crash fix
 
 #sub_82330B40
 0x82330B40 = {name = "rex_sub_82330B40"}
@@ -83,6 +85,9 @@ memcpy = 0x82AE1C70
 #0x82AFCCC0 = {name = "rex_SleepEx"}
 #0x82B0C0E0 = {name = "rex_RtlSleep"}
 0x821C8268 = {name = "rex_appMainInit"}
+0x82B12A58 = {name = "rex_WaitForSingleObjectEx"}
+0x82B0A890 = {name = "rex_WaitForSingleObject"}
+
 
 #Language Functions
 0x82240B20 = {name = "rex_meSetLanguage"}
