@@ -2,6 +2,8 @@
 
 Created with [Rexglue-SDK](https://github.com/rexglue/rexglue-sdk)
 
+Showcase Video: https://youtu.be/Kih42KlocII?si=WeSh2FvBYrwQuNB-
+
 ## Setup
 - 1 Download the latest Launcher (Depending on your system you might need to disable the antivirus to download or extract)
 - 2 Obtain a legal copy of TiP's Iso (World) (I dont support piracy)
