@@ -1,5 +1,6 @@
 <img width="3347" height="2198" alt="image" src="https://github.com/user-attachments/assets/8841c75d-1d5b-43f5-b19e-050b05fb7d08" />
 
+Created with [Rexglue-SDK](https://github.com/rexglue/rexglue-sdk)
 
 ## Setup
 - 1 Download the latest Launcher (Depending on your system you might need to disable the antivirus to download or extract)
