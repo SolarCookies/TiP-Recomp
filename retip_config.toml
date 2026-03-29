@@ -347,3 +347,17 @@ name = "skip_entityAvatarPinataSeedBigBrotherSaysYes_hook"
 registers = []
 after_instruction = false
 jump_address_on_true = 0x8235DEEC
+
+#822E7F7C
+[[midasm_hook]]
+address = 0x822E7F7C
+name = "one_hook"
+registers = []
+after_instruction = false
+
+#822E83D4
+[[midasm_hook]]
+address = 0x822E83D4
+name = "two_hook"
+registers = []
+after_instruction = true

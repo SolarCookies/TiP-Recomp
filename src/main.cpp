@@ -17,6 +17,13 @@
 #include <rex/logging.h>
 #include <iostream>
 #include "tip_engine/Overlays/DebugInfo.h"
+#include <chrono>
+
+#include <mutex>
+#include <thread>
+#include <immintrin.h>
+#include <timeapi.h>
+#pragma comment(lib, "winmm.lib")
 
 namespace renut::log {
   inline const rex::LogCategoryId Input = rex::RegisterLogCategory("retip");
@@ -37,13 +44,16 @@ int gardenBudgetGetIsTagAvailable_824DC840_Hook(unsigned int tag, int *tagClass)
 
 REX_PPC_HOOK(gardenBudgetGetIsTagAvailable_824DC840);
 
+static std::once_flag g_timer_init;
 
-int Sleep_82AFCCF8_Hook(unsigned int ms) {
-  //Use thread sleep instead of busy waiting to reduce CPU usage
-  //std::this_thread::sleep_for(std::chrono::milliseconds(ms));
-  return 0;
+void EnableHighResTimer() {
+    std::call_once(g_timer_init, [] {
+        timeBeginPeriod(1);
+        RENUT_INFO("[threading] high-res timer enabled");
+    });
 }
-PPC_HOOK(sub_82AFCCF8, Sleep_82AFCCF8_Hook);
+
+//PPC_STUB(sub_82AFCCF8);
 
 int rex_WaitForSingleObjectEx_Hook(uint32_t handle, uint32_t milliseconds, bool alertable) {
   //Use thread sleep instead of busy waiting to reduce CPU usage

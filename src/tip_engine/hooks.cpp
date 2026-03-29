@@ -7,6 +7,7 @@
 #include "imgui.h"
 
 #include <rex/cvar.h>
+#include <rex/graphics/flags.h>
 #include <rex/ppc/types.h>
 #include <rex/system/kernel_state.h>
 #include "tip_engine/Log.h"
@@ -335,4 +336,13 @@ bool meUpdateOccupancyLevels_hook(PPCRegister& fp0){
 
 bool skip_entityAvatarPinataSeedBigBrotherSaysYes_hook() {
   return true; // Always branch to loc_824DDA84
+}
+
+void one_hook(){
+  REXCVAR_SET(d3d12_readback_resolve, true);
+  DebugLogString("d3d12_readback_resolve", "true");
+}
+
+void two_hook(){
+  REXCVAR_SET(d3d12_readback_resolve, false);
 }

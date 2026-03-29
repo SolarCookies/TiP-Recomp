@@ -12,6 +12,8 @@
 #include "tip_engine/Overlays/Fps.h"
 #include "tip_engine/Overlays/DebugInfo.h"
 
+
+
 class RetipApp : public rex::ReXApp {
  public:
   using rex::ReXApp::ReXApp;
@@ -30,7 +32,6 @@ class RetipApp : public rex::ReXApp {
   // void OnConfigurePaths(rex::PathConfig& paths) override {}
   void OnCreateDialogs(rex::ui::ImGuiDrawer* drawer) override {
         drawer->AddDialog(new FpsOverlayDialog(drawer));
-        //drawer->AddDialog(new LogOverlayDialog(drawer));
         //drawer->AddDialog(new DebugOverlayDialog(drawer));
     }
 };
