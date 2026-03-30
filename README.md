@@ -2,6 +2,8 @@
 
 Created with [Rexglue-SDK](https://github.com/rexglue/rexglue-sdk)
 
+This Recomp has a strict no AI rule, No Vibe Coding, No AI generated Assets, No AI assisted Disassembly/Analysis
+
 Showcase Video: https://youtu.be/Kih42KlocII?si=WeSh2FvBYrwQuNB-
 
 ## Setup
