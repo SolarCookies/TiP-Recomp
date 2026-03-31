@@ -3,7 +3,7 @@
 #include <string>
 
 /* 1073 */
-enum requirementsAnimal_e : __int32
+enum requirementsAnimal_e : uint32_t
 {
 	reqAnimal_Null = 0x0,
 	reqAnimal_TimeIsBetween = 0x1,

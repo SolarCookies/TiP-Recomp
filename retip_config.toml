@@ -361,3 +361,19 @@ address = 0x822E83D4
 name = "two_hook"
 registers = []
 after_instruction = true
+
+#skipSecondDraw
+[[midasm_hook]]
+address = 0x821C8E14
+name = "skipSecondDraw_hook"
+registers = []
+after_instruction = true
+jump_address_on_true = 0x821C8E68
+
+#SkipFirstDraw
+[[midasm_hook]]
+address = 0x821C8D84
+name = "skipFirstDraw_hook"
+registers = []
+after_instruction = true
+jump_address_on_true = 0x821C8D98

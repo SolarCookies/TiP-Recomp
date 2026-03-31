@@ -1048,8 +1048,8 @@ struct statsActorMovement_s_statsActorMovementDirectionVariation_s
 /* 12587 */
 struct statsActorMovementVariation_s_unnamed_tag
 {
-    unsigned __int16 percentMin;
-    unsigned __int16 percentMax;
+    uint16_t percentMin;
+    uint16_t percentMax;
 };
 
 /* 12588 */
@@ -1064,7 +1064,7 @@ struct statsActorMovementVariation_s
 };
 
 /* 1149 */
-enum statsActorMovementSurfacePreference_e : __int32
+enum statsActorMovementSurfacePreference_e : uint32_t
 {
     statsActorMovementSurfacePreference_Preferred = 0x0,
     statsActorMovementSurfacePreference_Reluctant = 0x1,
@@ -1217,7 +1217,7 @@ struct statsActorCommon_Attributes_s
     float walkIntoHomeSize;
     float walkIntoHomeScale;
     int canTalkToPlayer;
-    unsigned __int16 requiredFreeNodes;
+    uint16_t requiredFreeNodes;
     float eggReactionDistance;
     float bodyWidthScale;
     unsigned char  _bodyRadius[8];
@@ -1305,7 +1305,7 @@ struct statsAvatarCommon_AssetFilters_s
     assetId_s objParamsFilter;
 };
 /* 1312 */
-enum statsAvatarAccessory_BonusType_e : __int32
+enum statsAvatarAccessory_BonusType_e : uint32_t
 {
     statsAvatarAccessory_BonusType_Plus = 0x0,
     statsAvatarAccessory_BonusType_Minus = 0x1,

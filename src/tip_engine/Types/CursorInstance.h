@@ -81,7 +81,7 @@ struct cursorMarker_s_unnamed_tag
 };
 
 /* 57 */
-enum actionInterfaceId_e : __int32
+enum actionInterfaceId_e : uint32_t
 {
   actionInterfaceId_Buy = 0x0,
   actionInterfaceId_Crate = 0x1,
@@ -212,7 +212,7 @@ struct cursorSurfaceMonitorInst_s;
 struct cursorCookieCutterInst_s;
 
 /* 1012 */
-enum cursorMode_e : __int32
+enum cursorMode_e : uint32_t
 {
   cursorMode_Idle = 0x0,
   cursorMode_Tool_Using = 0x1,
@@ -260,7 +260,7 @@ struct cursorArea_s
 };
 
 /* 1013 */
-enum cursorLock_e : __int32
+enum cursorLock_e : uint32_t
 {
   cursorLock_None = 0x0,
   cursorLock_Position = 0x1,
@@ -337,7 +337,7 @@ struct objNetSyncParams_s
 /* 11897 */
 struct objParams_s
 {
-  unsigned __int16 size;
+  uint16_t size;
   objTagDb_s tag;
   char classId[64];
   sceneMainWorkspace_s *scene;
@@ -364,7 +364,7 @@ struct sceneControlObjParams_s
 };
 
 /* 990 */
-enum cursorControlsType_e : __int32
+enum cursorControlsType_e : uint32_t
 {
   cursorControlsType_Advanced = 0x0,
   cursorControlsType_Basic = 0x1,

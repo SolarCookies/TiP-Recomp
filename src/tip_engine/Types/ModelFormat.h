@@ -4,10 +4,10 @@
 /* 11760 */
 struct dbTriHitPosArray_s
 {
-	unsigned __int8 type;
-	unsigned __int8 fp;
-	unsigned __int8 stride;
-	unsigned __int8 __UNUSED;
+	unsigned char type;
+	unsigned char fp;
+	unsigned char stride;
+	unsigned char __UNUSED;
 	unsigned int numPositions;
 	void* positions;
 };
@@ -22,17 +22,17 @@ struct dbTriHit_s
 /* 11762 */
 struct dbMirrorUnit_s
 {
-	unsigned __int16 numTriangles;
-	unsigned __int16 startTriangle;
+	uint16_t numTriangles;
+	uint16_t startTriangle;
 };
 
 /* 11763 */
 struct dbMirror_s
 {
-	unsigned __int16 numMirrors;
+	uint16_t numMirrors;
 	dbMirrorUnit_s* mirrorList;
 	mlVec* vertexList;
-	unsigned __int16* triangleList;
+	uint16_t* triangleList;
 };
 
 /* 11765 */
@@ -114,7 +114,7 @@ struct dbExtent_s
 /* 11775 */
 struct dbModelJoint_s
 {
-	unsigned __int8 lookupTable[76];
+	unsigned char lookupTable[76];
 };
 
 /* 11776 */
@@ -168,10 +168,10 @@ struct dbVolume_s
 /* 11784 */
 struct dbModelSwitch_s
 {
-	unsigned __int8 numSwitches;
-	unsigned __int8 numStatesPerSwitch;
-	unsigned __int8 pad_1;
-	unsigned __int8 pad_2;
+	unsigned char numSwitches;
+	unsigned char numStatesPerSwitch;
+	unsigned char pad_1;
+	unsigned char pad_2;
 };
 
 
@@ -238,7 +238,7 @@ struct dbModelRuntime_s
 };
 
 /* 1581 */
-enum dbModelUnitId_e : __int32
+enum dbModelUnitId_e : uint32_t
 {
 	dbModelUnitId_Scenegraph = 0x0,
 	dbModelUnitId_UNUSED_1 = 0x1,
@@ -291,8 +291,8 @@ struct dbModel_s
 /* 11692 */
 struct animPose_s
 {
-	__int32 numExtendedJoints : 16;
-	__int32 numJoints : 16;
+	uint32_t numExtendedJoints : 16;
+	uint32_t numJoints : 16;
 	int valid;
 	int noMtxBuffer;
 	unsigned int __pad[1];
@@ -380,10 +380,10 @@ struct scenegraphInst_s
 	int numExtendedJoints;
 	int numJoints;
 	int vsConstBase;
-	unsigned __int8 enableReflectedColour;
-	unsigned __int8 solidColourEnabled;
-	unsigned __int8 useOpaqueDithering;
-	unsigned __int8 __pad3;
+	unsigned char enableReflectedColour;
+	unsigned char solidColourEnabled;
+	unsigned char useOpaqueDithering;
+	unsigned char __pad3;
 	mlColour_s solidColour;
 	mlColour_s ambientOverride;
 	int isAmbientOverrideEnabled;
@@ -398,14 +398,14 @@ struct scenegraphInst_s
 	int colourDisplacementTableSize;
 	void* dynamicVertexBuffer[2];
 	int* dynamicVertexBufferNodeOffsetArray;
-	unsigned __int8 parallaxScaleAndBiasPSConst;
-	unsigned __int8 perturbationScalePSConst;
-	unsigned __int8 grayScaleSolidCutoffPSConst;
-	unsigned __int8 defaultColourIndex;
-	unsigned __int8 specialAbilityColourIndex;
-	unsigned __int8 curVariantColourIndex;
-	unsigned __int8 __pad1;
-	unsigned __int8 __pad2;
+	unsigned char parallaxScaleAndBiasPSConst;
+	unsigned char perturbationScalePSConst;
+	unsigned char grayScaleSolidCutoffPSConst;
+	unsigned char defaultColourIndex;
+	unsigned char specialAbilityColourIndex;
+	unsigned char curVariantColourIndex;
+	unsigned char __pad1;
+	unsigned char __pad2;
 	float grayscaleRemappingValue;
 	int** exportVertexBufferArray[2];
 	int curVertexBufferExportTargetIdx;
@@ -428,8 +428,8 @@ struct glModel_s
 	unsigned char solidColour[12];
 	dbLight_s* lightObj;
 	int disableJointWeighting;
-	unsigned __int8 switchStateArray[1][16];
-	unsigned __int8 switchHitsStateArray[16];
+	unsigned char switchStateArray[1][16];
+	unsigned char switchHitsStateArray[16];
 	mlV4 textureBlend;
 	int volumeLightList[8];
 	int volumeLightListSize;

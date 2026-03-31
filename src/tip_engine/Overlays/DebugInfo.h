@@ -4,6 +4,14 @@
 #include <vector>
 #include "imgui.h"
 
+//Probably overkill but eh..
+inline void strncpy_s_MultiPlatform(char* dest, size_t destSize, const char* src, size_t count) {
+#if defined(_WIN32)
+    strncpy_s(dest, destSize, src, count);
+#else
+    snprintf(dest, destSize, "%.*s", static_cast<int>(count), src);
+#endif
+}
 
 
 enum DebugInfoType_e : __int32
@@ -40,7 +48,7 @@ inline void DebugLogBool(const std::string& name, bool value) {
     }
     DebugInfo_s info;
     info.type = DebugInfoType_e::Bool;
-    strncpy_s(info.name, sizeof(info.name), name.c_str(), sizeof(info.name) - 1);
+    strncpy_s_MultiPlatform(info.name, sizeof(info.name), name.c_str(), sizeof(info.name) - 1);
     *reinterpret_cast<bool*>(info.valueBuffer) = value;
     g_debugInfoList.push_back(info);
 }
@@ -52,7 +60,7 @@ inline void DebugLogInt(const std::string& name, int value) {
     }
     DebugInfo_s info;
     info.type = DebugInfoType_e::Int;
-    strncpy_s(info.name, sizeof(info.name), name.c_str(), sizeof(info.name) - 1);
+    strncpy_s_MultiPlatform(info.name, sizeof(info.name), name.c_str(), sizeof(info.name) - 1);
     *reinterpret_cast<int*>(info.valueBuffer) = value;
     g_debugInfoList.push_back(info);
 }
@@ -64,7 +72,7 @@ inline void DebugLogInt32(const std::string& name, uint32_t value) {
     }
     DebugInfo_s info;
     info.type = DebugInfoType_e::Int32;
-    strncpy_s(info.name, sizeof(info.name), name.c_str(), sizeof(info.name) - 1);
+    strncpy_s_MultiPlatform(info.name, sizeof(info.name), name.c_str(), sizeof(info.name) - 1);
     *reinterpret_cast<uint32_t*>(info.valueBuffer) = value;
     g_debugInfoList.push_back(info);
 }
@@ -76,7 +84,7 @@ inline void DebugLogInt64(const std::string& name, uint64_t value) {
     }
     DebugInfo_s info;
     info.type = DebugInfoType_e::Int64;
-    strncpy_s(info.name, sizeof(info.name), name.c_str(), sizeof(info.name) - 1);
+    strncpy_s_MultiPlatform(info.name, sizeof(info.name), name.c_str(), sizeof(info.name) - 1);
     *reinterpret_cast<uint64_t*>(info.valueBuffer) = value;
     g_debugInfoList.push_back(info);
 }
@@ -88,20 +96,20 @@ inline void DebugLogFloat(const std::string& name, float value) {
     }
     DebugInfo_s info;
     info.type = DebugInfoType_e::Float;
-    strncpy_s(info.name, sizeof(info.name), name.c_str(), sizeof(info.name) - 1);
+    strncpy_s_MultiPlatform(info.name, sizeof(info.name), name.c_str(), sizeof(info.name) - 1);
     *reinterpret_cast<float*>(info.valueBuffer) = value;
     g_debugInfoList.push_back(info);
 }
 
 inline void DebugLogString(const std::string& name, const std::string& value) {
     if (auto* existing = FindDebugInfo(name)) {
-        strncpy_s(reinterpret_cast<char*>(existing->valueBuffer), sizeof(existing->valueBuffer), value.c_str(), sizeof(existing->valueBuffer) - 1);
+        strncpy_s_MultiPlatform(reinterpret_cast<char*>(existing->valueBuffer), sizeof(existing->valueBuffer), value.c_str(), sizeof(existing->valueBuffer) - 1);
         return;
     }
     DebugInfo_s info;
     info.type = DebugInfoType_e::String;
-    strncpy_s(info.name, sizeof(info.name), name.c_str(), sizeof(info.name) - 1);
-    strncpy_s(reinterpret_cast<char*>(info.valueBuffer), sizeof(info.valueBuffer), value.c_str(), sizeof(info.valueBuffer) - 1);
+    strncpy_s_MultiPlatform(info.name, sizeof(info.name), name.c_str(), sizeof(info.name) - 1);
+    strncpy_s_MultiPlatform(reinterpret_cast<char*>(info.valueBuffer), sizeof(info.valueBuffer), value.c_str(), sizeof(info.valueBuffer) - 1);
     g_debugInfoList.push_back(info);
 }
 

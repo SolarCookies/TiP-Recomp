@@ -14,7 +14,7 @@ struct assetFile;
 struct tablesInfo
 {
 	unsigned int size;
-	unsigned __int8* base;
+	unsigned char* base;
 	unsigned int overlap;
 	unsigned int loadSize;
 	unsigned int compressedSize;
@@ -38,10 +38,10 @@ struct assetFileHeader
 	unsigned int numMappedRelocationGroups;
 	unsigned int numMappedRelocations;
 	unsigned int numPoolItems;
-	unsigned __int8 byteswapFlags;
-	unsigned __int8 numSectionTypes;
-	unsigned __int8 compression;
-	unsigned __int8 numPools;
+	unsigned char byteswapFlags;
+	unsigned char numSectionTypes;
+	unsigned char compression;
+	unsigned char numPools;
 	unsigned int sectionTypeNamesBufferLen;
 	tablesInfo tables[2];
 };
@@ -96,9 +96,9 @@ struct mtx44
 /* 11780 */
 struct _ndGroup_s
 {
-	unsigned __int8 type;
-	unsigned __int8 passMask;
-	unsigned __int16 id;
+	unsigned char type;
+	unsigned char passMask;
+	uint16_t id;
 	_ndGroup_s* child;
 	_ndGroup_s* sibling;
 	_ndGroup_s* parent;
@@ -107,10 +107,10 @@ struct _ndGroup_s
 /* 11781 */
 struct _ndVisGroup_s
 {
-	unsigned __int8 type;
-	unsigned __int8 __pad;
-	unsigned __int16 targetNodeIdListSize;
-	unsigned __int16* targetNodeIdList;
+	unsigned char type;
+	unsigned char __pad;
+	uint16_t targetNodeIdListSize;
+	uint16_t* targetNodeIdList;
 	_ndVisGroup_s* child;
 	_ndVisGroup_s* sibling;
 	_ndVisGroup_s* parent;
@@ -127,21 +127,21 @@ struct __declspec(align(1)) DiffFileHeader
 	unsigned int numDiffs;
 	unsigned int stringTableLen;
 	unsigned int diffDataLen;
-	unsigned __int8 numSrcSectionTypes;
-	unsigned __int8 bigEndian;
-	unsigned __int8 compressed;
+	unsigned char numSrcSectionTypes;
+	unsigned char bigEndian;
+	unsigned char compressed;
 };
 
 /* 638 */
 struct DiffBlock
 {
-	unsigned __int8 type;
+	unsigned char type;
 	char* name;
 	unsigned int sourceSize;
 	unsigned int targetSize;
 	unsigned int diffSize;
 	unsigned int diffMargin;
-	unsigned __int8* data;
+	unsigned char* data;
 };
 
 /* 639 */
@@ -163,11 +163,11 @@ struct DiffFile
 	DiffFileHeader* header;
 	assetFile* asset;
 	const char* filename;
-	unsigned __int8* sectionTypeMap;
-	unsigned __int8** diffSourceData;
+	unsigned char* sectionTypeMap;
+	unsigned char** diffSourceData;
 	DiffBlock* diffs;
 	char* stringTable;
-	unsigned __int8* diffData;
+	unsigned char* diffData;
 	unsigned int diffDataOverlap;
 };
 
@@ -175,10 +175,10 @@ struct DiffFile
 struct __declspec(align(1)) blockInfo
 {
 	unsigned int nameOffset;
-	unsigned __int8 alignment;
+	unsigned char alignment;
 	unsigned int poolSection;
 	unsigned int size;
-	unsigned __int8* base;
+	unsigned char* base;
 	unsigned int offset;
 	unsigned int overlap;
 	unsigned int loadSize;
@@ -189,10 +189,10 @@ struct __declspec(align(1)) blockInfo
 struct __declspec(align(2)) _section
 {
 	unsigned int asset;
-	unsigned __int8* start;
+	unsigned char* start;
 	unsigned int size;
-	unsigned __int8 sectionType;
-	unsigned __int8 startAlignment;
+	unsigned char sectionType;
+	unsigned char startAlignment;
 };
 
 /* 643 */
@@ -208,7 +208,7 @@ struct _byteswapGroup
 /* 644 */
 struct _byteswap
 {
-	unsigned __int8* address;
+	unsigned char* address;
 };
 
 /* 645 */
@@ -222,7 +222,7 @@ struct _relocationGroup
 /* 646 */
 struct _relocation
 {
-	unsigned __int8* offsetFromSectionStart;
+	unsigned char* offsetFromSectionStart;
 };
 
 /* 602 */
@@ -252,12 +252,12 @@ struct __declspec(align(4)) assetFile
 	unsigned int numUnprocessedTables;
 	int iteratorPosition;
 	unsigned int poolAssetIndex;
-	unsigned __int8 dataSectionType;
-	unsigned __int8 lastUsedTable;
-	unsigned __int8 rawByteswapped;
-	unsigned __int8 mapByteswapped;
-	unsigned __int8 rawRelocated;
-	unsigned __int8 mapRelocated;
+	unsigned char dataSectionType;
+	unsigned char lastUsedTable;
+	unsigned char rawByteswapped;
+	unsigned char mapByteswapped;
+	unsigned char rawRelocated;
+	unsigned char mapRelocated;
 };
 
 /* 592 */
@@ -268,7 +268,7 @@ struct dsLinkedListNode_s
 };
 
 /* 647 */
-enum FS_IOMode : __int32
+enum FS_IOMode : uint32_t
 {
 	FS_IDLE = 0x0,
 	FS_BUSY = 0x1,
@@ -303,9 +303,9 @@ struct __declspec(align(4)) dsList2_s
 	char* base;
 	char* top;
 	char* max;
-	unsigned __int16 blockSize;
-	unsigned __int16 allocSize;
-	unsigned __int16 listSize;
+	uint16_t blockSize;
+	uint16_t allocSize;
+	uint16_t listSize;
 };
 
 /* 603 */
@@ -349,8 +349,8 @@ struct dsBinaryTreeNode_s
 	dsBinaryTreeNode_s* lower;
 	dsBinaryTreeNode_s* higher;
 	unsigned int comparisonValue;
-	unsigned __int32 colour : 1;
-	unsigned __int32 dataValue : 31;
+	uint32_t colour : 1;
+	uint32_t dataValue : 31;
 };
 
 /* 593 */
@@ -487,7 +487,7 @@ struct camVirt_s;
 struct sceneRegion_s;
 
 /* 1173 */
-enum objDefId_e : __int32
+enum objDefId_e : uint32_t
 {
 	objDefId_null = 0x0,
 	objDefId_obj = 0x1,
@@ -668,7 +668,7 @@ enum objDefId_e : __int32
 };
 
 /* 1157 */
-enum objTag_e : __int32
+enum objTag_e : uint32_t
 {
 	objTag_Null = 0x0,
 	objTag_Actor = 0x1,
@@ -800,9 +800,9 @@ enum objTag_e : __int32
 /* 11879 */
 struct gameIdComplete_s
 {
-	unsigned __int16 id;
+	uint16_t id;
 	char key;
-	unsigned __int8 save;
+	unsigned char save;
 };
 
 /* 11889 */
@@ -814,7 +814,7 @@ struct gameIdInst_s
 };
 
 /* 1579 */
-enum objNetSyncOwnershipStatus_e : __int32
+enum objNetSyncOwnershipStatus_e : uint32_t
 {
 	objNetSyncOwnershipStatus_Error = 0x0,
 	objNetSyncOwnershipStatus_Failed = 0x1,
@@ -928,7 +928,7 @@ struct avatarAnim_s
 	int tableIsAsset;
 	animMixer_s* mixer;
 	animJointMap_s* jointMap;
-	void(__fastcall* eventHandler)(const animEventUnit_s*, unsigned int, float, void*, int);
+	void(*eventHandler)(const animEventUnit_s*, unsigned int, float, void*, int);
 	animJointTweak_s jointTweak;
 	int forceKeepCycle;
 	int forceNoTween;
@@ -945,7 +945,7 @@ struct avatarCallout_s
 };
 
 /* 1084 */
-enum SurfaceMask_e : __int32
+enum SurfaceMask_e : uint32_t
 {
 	SurfaceMask_Attack = 0x1,
 	SurfaceMask_Vulnerable = 0x2,
@@ -974,7 +974,7 @@ enum SurfaceMask_e : __int32
 };
 
 /* 1386 */
-enum avatarDeflect_Priority_e : __int32
+enum avatarDeflect_Priority_e : uint32_t
 {
 	avatarDeflect_Priority_Min = 0x0,
 	avatarDeflect_Priority_Low = 0x19,
@@ -1004,17 +1004,17 @@ struct avatarDrawCamera_s
 /* 11794 */
 struct mlColour_s
 {
-	unsigned __int8 r;
-	unsigned __int8 g;
-	unsigned __int8 b;
-	unsigned __int8 a;
+	unsigned char r;
+	unsigned char g;
+	unsigned char b;
+	unsigned char a;
 };
 
 /* 11915 */
 struct avatarDraw_s_unnamed_tag
 {
-	void(__fastcall* preDraw)(avatarInst_s*, const sceneObjDrawParams_s*, void*);
-	void(__fastcall* postDraw)(avatarInst_s*, const sceneObjDrawParams_s*, void*);
+	void(*preDraw)(avatarInst_s*, const sceneObjDrawParams_s*, void*);
+	void(*postDraw)(avatarInst_s*, const sceneObjDrawParams_s*, void*);
 	void* data;
 };
 
@@ -1022,7 +1022,7 @@ struct avatarDraw_s_unnamed_tag
 struct avatarDraw_s
 {
 	avatarDrawCamera_s camera[3][1];
-	unsigned __int8 cullPlaneIndex[3][1];
+	unsigned char cullPlaneIndex[3][1];
 	unsigned int visibilityFlags;
 	unsigned int flags;
 	int hide;
@@ -1037,8 +1037,8 @@ struct avatarEmitter_s
 {
 	dsLinkedListNode_s activeList;
 	dsLinkedListNode_s insertList;
-	unsigned __int16 uniqueId;
-	unsigned __int16 PAD;
+	uint16_t uniqueId;
+	uint16_t PAD;
 };
 
 /* 11918 */
@@ -1046,7 +1046,7 @@ struct __declspec(align(4)) avatarExtent_s_unnamed_tag_unnamed_tag
 {
 	mlVec base;
 	int isValid;
-	unsigned __int8 loadBalanceKey;
+	unsigned char loadBalanceKey;
 };
 
 /* 11919 */
@@ -1092,8 +1092,8 @@ struct avatarLookAt_s
 /* 11924 */
 struct avatarMarker_s
 {
-	unsigned __int16 uniqueId;
-	unsigned __int16 childId;
+	uint16_t uniqueId;
+	uint16_t childId;
 };
 
 /* 11925 */
@@ -1135,7 +1135,7 @@ struct avatarMtx_s
 };
 
 /* 1623 */
-enum avatarNetSyncUpdateType_e : __int32
+enum avatarNetSyncUpdateType_e : uint32_t
 {
 	avatarNetSyncUpdateType_None = 0x0,
 	avatarNetSyncUpdateType_Simple = 0x1,
@@ -1157,10 +1157,10 @@ struct avatarNetSync_s
 /* 11754 */
 struct PrimUnit_s
 {
-	unsigned __int8 type;
-	unsigned __int8 size;
-	unsigned __int8 valid;
-	unsigned __int8 __UNUSED;
+	unsigned char type;
+	unsigned char size;
+	unsigned char valid;
+	unsigned char __UNUSED;
 };
 
 /* 11755 */
@@ -1233,7 +1233,7 @@ struct sceneSfxUnit_s
 	unsigned int sfxRef;
 	avatarInst_s* avatar;
 	audioCueHash_s cue;
-	__int16 channel;
+	uint16_t channel;
 	int isFirstFrame;
 	int is3D;
 	mlVec position;
@@ -1249,7 +1249,7 @@ struct avatarSfxChannel_s
 	sceneSfxUnit_s sfxUnit;
 	char updatePosition;
 	char updateDirection;
-	__int16 jointIndex;
+	uint16_t jointIndex;
 	const dbLocatorUnit_s* locator;
 };
 
@@ -1281,7 +1281,7 @@ struct avatarVolume_s
 };
 
 /* 1120 */
-enum dbSkeletonEffect_e : __int32
+enum dbSkeletonEffect_e : uint32_t
 {
 	dbSkeletonEffect_None = 0x0,
 	dbSkeletonEffect_LookAt1 = 0x1,
@@ -1326,7 +1326,7 @@ struct skeletonBuild_s
 };
 
 /* 1535 */
-enum avatarSkeletonLookAtPriority_e : __int32
+enum avatarSkeletonLookAtPriority_e : uint32_t
 {
 	avatarSkeletonLookAtPriority_None = 0x0,
 	avatarSkeletonLookAtPriority_Lowest = 0x1,
@@ -1566,7 +1566,7 @@ struct actorInst_s
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /* 997 */
-enum sceneMode_e : __int32
+enum sceneMode_e : uint32_t
 {
 	sceneModeStop = 0x0,
 	sceneModePlay = 0x1,
@@ -1597,17 +1597,17 @@ struct aStarDataGetNodeSuccessorContextIn_s;
 /* 11717 */
 struct aStarDataVirtualFuncs_s
 {
-	void(__fastcall* freeFn)(aStarData_s*);
-	void(__fastcall* setNodePositionFn)(aStarData_s*, int, const mlVec* const);
-	void(__fastcall* setNodeRadiusFn)(aStarData_s*, int, float);
-	const aStarNodeData_s* (__fastcall* nodeSuccessorFn)(const aStarDataGetNodeSuccessorContextIn_s* const, float* const, int* const, int* const);
-	float(__fastcall* pathCostEstimateFn)(aStarData_s*, int, int);
-	float(__fastcall* pathCostEstimateFromPosFn)(aStarData_s*, const mlVec*, int);
-	int(__fastcall* nodesConnectedFn)(const aStarData_s*, int, int);
-	int(__fastcall* closestNodeToPosFn)(const aStarData_s*, const mlVec* const, int*);
-	void(__fastcall* donutIteratorFn)(aStarData_s*, const mlVec*, float, float, void(__fastcall*)(aStarData_s*, int, const mlVec* const, void*), void*);
-	void(__fastcall* xzBoxIteratorFn)(aStarData_s*, const mlVec*, const mlVec*, void(__fastcall*)(aStarData_s*, int, const mlVec* const, void*), void*);
-	void(__fastcall* lineIteratorFn)(aStarData_s*, const mlVec*, const mlVec*, void(__fastcall*)(aStarData_s*, int, const mlVec* const, void*), void*);
+	void(*freeFn)(aStarData_s*);
+	void(*setNodePositionFn)(aStarData_s*, int, const mlVec* const);
+	void(*setNodeRadiusFn)(aStarData_s*, int, float);
+	const aStarNodeData_s* (*nodeSuccessorFn)(const aStarDataGetNodeSuccessorContextIn_s* const, float* const, int* const, int* const);
+	float(*pathCostEstimateFn)(aStarData_s*, int, int);
+	float(*pathCostEstimateFromPosFn)(aStarData_s*, const mlVec*, int);
+	int(*nodesConnectedFn)(const aStarData_s*, int, int);
+	int(*closestNodeToPosFn)(const aStarData_s*, const mlVec* const, int*);
+	void(*donutIteratorFn)(aStarData_s*, const mlVec*, float, float, void(__fastcall*)(aStarData_s*, int, const mlVec* const, void*), void*);
+	void(*xzBoxIteratorFn)(aStarData_s*, const mlVec*, const mlVec*, void(__fastcall*)(aStarData_s*, int, const mlVec* const, void*), void*);
+	void(*lineIteratorFn)(aStarData_s*, const mlVec*, const mlVec*, void(__fastcall*)(aStarData_s*, int, const mlVec* const, void*), void*);
 };
 
 /* 11710 */
@@ -1618,8 +1618,8 @@ struct aStarData_s
 	unsigned int nodeStride;
 	unsigned int dataStride;
 	float heuristicScalar;
-	unsigned __int8* nodes;
-	unsigned __int16 uniqueLinkIdCounter;
+	unsigned char* nodes;
+	uint16_t uniqueLinkIdCounter;
 	aStarDataVirtualFuncs_s virtualFns;
 };
 
@@ -1627,12 +1627,12 @@ struct aStarData_s
 struct __declspec(align(4)) aStarNodeInst_s
 {
 	dsLinkedListNode_s openNode;
-	__int16 parent;
-	__int16 node;
+	uint16_t parent;
+	uint16_t node;
 	float costFromStart;
 	float costToGoal;
 	float totalCost;
-	unsigned __int16 closed;
+	uint16_t closed;
 };
 
 struct sceneMainWorkspace_s;
@@ -1642,7 +1642,7 @@ struct sceneAStarWorkspace_s
 {
 	aStarData_s* data;
 	aStarNodeInst_s* nodes;
-	unsigned __int8 doorStatus[12];
+	unsigned char doorStatus[12];
 	sceneMainWorkspace_s* scene;
 };
 
@@ -1672,8 +1672,8 @@ struct sceneMainWorkspace_s;
 /* 11724 */
 struct sceneExtentWorkspace_s_unnamed_tag
 {
-	unsigned __int8 isValid;
-	unsigned __int8 hitsValid;
+	unsigned char isValid;
+	unsigned char hitsValid;
 	mlVec min;
 	mlVec max;
 	mlVec corner[8];
@@ -1686,7 +1686,7 @@ struct sceneExtentWorkspace_s
 {
 	sceneMainWorkspace_s* scene;
 	sceneExtentWorkspace_s_unnamed_tag bgBound;
-	unsigned __int8 walls[4];
+	unsigned char walls[4];
 };
 
 /* 11726 */
@@ -1709,7 +1709,7 @@ struct sceneLightWorkspace_s_unnamed_tag
 };
 
 /* 1335 */
-enum sceneLightShadowType_e : __int32
+enum sceneLightShadowType_e : uint32_t
 {
 	sceneLightShadowType_None = 0x0,
 	sceneLightShadowType_ShadowBuffering = 0x1,
@@ -2037,7 +2037,7 @@ struct cutsceneEventsNode_s
 /* 11848 */
 struct cutsceneStackNode_s_unnamed_tag
 {
-	void(__fastcall* func)(cutsceneStackNode_s*, void*, int);
+	void(*func)(cutsceneStackNode_s*, void*, int);
 	void* ptr;
 };
 
@@ -2230,14 +2230,14 @@ struct sceneStreamUnit_s
 	float fadeEndVolume;
 	float fadeElapsedTime;
 	float fadeDuration;
-	unsigned __int8 used;
-	unsigned __int8 isActive;
-	unsigned __int8 muteAmbient;
-	unsigned __int8 muteTune;
+	unsigned char used;
+	unsigned char isActive;
+	unsigned char muteAmbient;
+	unsigned char muteTune;
 	char muteReferenceCount;
-	unsigned __int8 pad;
-	unsigned __int8 paused;
-	unsigned __int8 isSceneIndependant;
+	unsigned char pad;
+	unsigned char paused;
+	unsigned char isSceneIndependant;
 };
 
 /* 11863 */
@@ -2338,7 +2338,7 @@ union $3F5BD159CB39977520C06306145A6051
 struct rendermanagerSystemCommonInst_s
 {
 	rendermanagerSystemCommonInst_s_unnamed_tag view[1];
-	void(__fastcall* mainPassSetupFunc)(sceneMainWorkspace_s*, int*);
+	void(*mainPassSetupFunc)(sceneMainWorkspace_s*, int*);
 	int haveInitialised;
 	int cs;
 };
@@ -2407,7 +2407,7 @@ struct sceneMainWorkspace_s
 	assetDbPackageManagerLoadUnit_s loadUnit;
 };
 
-enum dbTextureFormat_e : __int32
+enum dbTextureFormat_e : uint32_t
 {
 	dbTextureFormat_UNKNOWN = 0x0,
 	dbTextureFormat_DXT1 = 0x1,
@@ -2431,16 +2431,16 @@ struct dbTexture_s
 {
 	dbTextureFormat_e format;
 	int* d3dHeader;
-	unsigned __int16 width;
-	unsigned __int16 height;
-	unsigned __int8 type;
-	unsigned __int8 flags;
-	unsigned __int8 userDefined;
-	unsigned __int8 maxLOD;
-	unsigned __int8 framesPerSecond;
-	unsigned __int8 numFrames;
-	unsigned __int8 currentFrameLoaded;
-	unsigned __int8 requiredFrame;
+	uint16_t width;
+	uint16_t height;
+	unsigned char type;
+	unsigned char flags;
+	unsigned char userDefined;
+	unsigned char maxLOD;
+	unsigned char framesPerSecond;
+	unsigned char numFrames;
+	unsigned char currentFrameLoaded;
+	unsigned char requiredFrame;
 	void* imageDataStart;
 	unsigned int sizeOfOneFrame;
 };
@@ -2497,7 +2497,7 @@ struct gardenMainWorkspace_s_unnamed_tag
 struct dsLinkedListNode_s;
 
 /* 918 */
-enum supportPinataAvatarEatMode_e : __int32
+enum supportPinataAvatarEatMode_e : uint32_t
 {
 	modeNone = 0x0,
 	modeBreakingUp = 0x1,
@@ -2626,7 +2626,7 @@ struct gardenBudgetUnit_s
 };
 
 /* 905 */
-enum supportPinataTag_e : __int32
+enum supportPinataTag_e : uint32_t
 {
 	aRTrigger,
 	aNull_0,
@@ -4625,7 +4625,7 @@ struct entitySceneControlPinataDastardosObstruction_s
 };
 
 /* 1049 */
-enum dastardosPathState_e : __int32
+enum dastardosPathState_e : uint32_t
 {
 	dastardosPathMode_Fail = 0x0,
 	dastardosPathMode_Generate = 0x1,
@@ -4637,7 +4637,7 @@ enum dastardosPathState_e : __int32
 };
 
 /* 1011 */
-enum actorStrategyId_e : __int32
+enum actorStrategyId_e : uint32_t
 {
 	__actorStrategyId_MIN = 0x3E7,
 	actorStrategyId_Null = 0x3E8,
@@ -5150,7 +5150,7 @@ struct sceneControlObjInst_s
 };
 
 /* 1694 */
-enum storeSceneControllerState_e : __int32
+enum storeSceneControllerState_e : uint32_t
 {
 	store_Normal = 0x0,
 	store_MAX = 0x1,
@@ -5186,7 +5186,7 @@ struct assetManUnit_s // sizeof=0xA0
      assetDbAsset_s* dbAsset;
      int releaseOnTick;
      dsLinkedListNode_s dumpNode;
-	 unsigned __int16 suppressWarning : 1;
-     unsigned __int16 refCount : 15;
+	 uint16_t suppressWarning : 1;
+     uint16_t refCount : 15;
      int assetComesFromBundle;
  };

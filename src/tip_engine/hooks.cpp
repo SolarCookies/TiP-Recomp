@@ -56,8 +56,8 @@ bool PresentParams_hook(PPCRegister& r11) {
   _D3DPRESENT_PARAMETERS_* params = reinterpret_cast<_D3DPRESENT_PARAMETERS_*>(0x100000000ull + r11.u32);
 
   
-  auto bs = [](uint32_t v) { return _byteswap_ulong(v); };
-  auto bsi = [](int v) { return static_cast<int>(_byteswap_ulong(static_cast<uint32_t>(v))); };
+  auto bs = [](uint32_t v) { return std::byteswap(v); };
+  auto bsi = [](int v) { return static_cast<int>(std::byteswap(static_cast<uint32_t>(v))); };
 
   params->FullScreen_RefreshRateInHz = bs(164);
   params->PresentationInterval = bs(0); // D3DPRESENT_INTERVAL_ONE
@@ -72,8 +72,8 @@ bool PresentParams_hook(PPCRegister& r11) {
 
 void PresentParams2_hook(PPCRegister& r3){
    // Guest memory is big-endian (PPC), byte-swap each 32-bit field for host (x86)
-  auto bs = [](uint32_t v) { return _byteswap_ulong(v); };
-  auto bsi = [](int v) { return static_cast<int>(_byteswap_ulong(static_cast<uint32_t>(v))); };
+  auto bs = [](uint32_t v) { return std::byteswap(v); };
+  auto bsi = [](int v) { return static_cast<int>(std::byteswap(static_cast<uint32_t>(v))); };
 
   //r3 is a * to video parameters struct
   if(r3.u32 == 0) {
@@ -169,7 +169,7 @@ void CursorColor_hook(PPCRegister& r31, PPCRegister& r27)
 
     // Resolve color pointer (guest memory is big-endian)
     uint32_t* colorPtr = reinterpret_cast<uint32_t*>(0x100000000ull + r31.u32 + 24);
-    uint32_t rawColor = _byteswap_ulong(*colorPtr); // host-endian RGBA
+    uint32_t rawColor = std::byteswap(*colorPtr); // host-endian RGBA
 
     // Read a stable field (offset 0) for sanity checking — we never modify this
     uint32_t baseValue = *reinterpret_cast<uint32_t*>(0x100000000ull + r31.u32);
@@ -257,7 +257,7 @@ void CursorColor_hook(PPCRegister& r31, PPCRegister& r27)
     uint32_t rgba = (ri << 24) | (gi << 16) | (bi << 8) | 0xFF;
 
     // Apply cycling color, byte-swapped for PPC
-    *colorPtr = _byteswap_ulong(rgba);
+    *colorPtr = std::byteswap(rgba);
 }
 
 /* 12001 */
@@ -286,11 +286,11 @@ void tagUnitsBudget_hook() {
   uint32_t& limit2 = *reinterpret_cast<uint32_t*>(0x100000000 + 0x83A5A8EC + 56 + 4);
   //83A5A8A8
 
-  limit = _byteswap_ulong(999999);
-  limit2 = _byteswap_ulong(999999);
+  limit = std::byteswap(999999);
+  limit2 = std::byteswap(999999);
 
   for (int i = 0; i < 2; i++) {
-    //*reinterpret_cast<uint32_t*>(classLimitPtr + i * 4) = _byteswap_ulong(0);
+    //*reinterpret_cast<uint32_t*>(classLimitPtr + i * 4) = std::byteswap(0);
   }
   DebugLogInt32("BudgetHook", limit);
 
@@ -304,7 +304,7 @@ void tagClassUnitsBudget_hook(PPCRegister& r3) {
   }
   uint32_t* budgetPtr = reinterpret_cast<uint32_t*>(0x100000000 + r3.u32);
   for (int i = 0; i < 2260; i++) {
-    budgetPtr[i] = _byteswap_ulong(999);
+    budgetPtr[i] = std::byteswap(999);
   }
 }
 
@@ -314,21 +314,21 @@ bool meUpdateOccupancyLevels_hook(PPCRegister& fp0){
   uint32_t& limit3 = *reinterpret_cast<uint32_t*>(0x100000000 + 0x83A5A8A8 + 132);
   uint32_t& limit4 = *reinterpret_cast<uint32_t*>(0x100000000 + 0x83A5A8A8 + 100);
   
-  limit1 = _byteswap_ulong(999999);
-  limit2 = _byteswap_ulong(999999);
-  limit3 = _byteswap_ulong(999999);
-  limit4 = _byteswap_ulong(999999);
+  limit1 = std::byteswap(999999);
+  limit2 = std::byteswap(999999);
+  limit3 = std::byteswap(999999);
+  limit4 = std::byteswap(999999);
 
   gardenBudgetUnit_sl* limits1 = reinterpret_cast<gardenBudgetUnit_sl*>(0x100000000 + 0x83A5A8A8 + 0);
-  limits1->virtualMemory = _byteswap_ulong(1282527612);
-  limits1->physicalMemory = _byteswap_ulong(1282527612);
+  limits1->virtualMemory = std::byteswap(1282527612);
+  limits1->physicalMemory = std::byteswap(1282527612);
   gardenBudgetUnit_sl* limits2 = reinterpret_cast<gardenBudgetUnit_sl*>(0x100000000 + 0x83A5A8A8 + 32);
-  limits2->virtualMemory = _byteswap_ulong(1282527612);
-  limits2->physicalMemory = _byteswap_ulong(1282527612);
+  limits2->virtualMemory = std::byteswap(1282527612);
+  limits2->physicalMemory = std::byteswap(1282527612);
   gardenBudgetUnit_sl* limits3 = reinterpret_cast<gardenBudgetUnit_sl*>(0x100000000 + 0x83A5A8A8 + 64);
   gardenBudgetUnit_sl* limits4 = reinterpret_cast<gardenBudgetUnit_sl*>(0x100000000 + 0x83A5A8A8 + 128);
-  limits4->virtualMemory = _byteswap_ulong(1282527612);
-  limits4->physicalMemory = _byteswap_ulong(1282527612);
+  limits4->virtualMemory = std::byteswap(1282527612);
+  limits4->physicalMemory = std::byteswap(1282527612);
   uint32_t& limit7 = *reinterpret_cast<uint32_t*>(0x100000000ull + 0x83A5A8A8ull + 28028);
   limit7 = 0x0000803F;
   return true;
@@ -345,4 +345,12 @@ void one_hook(){
 
 void two_hook(){
   REXCVAR_SET(d3d12_readback_resolve, false);
+}
+
+bool skipFirstDraw_hook(){
+  return false; // Always branch to loc_821C8D98
+}
+
+bool skipSecondDraw_hook(){
+  return false; // Always branch to loc_821C8D98
 }

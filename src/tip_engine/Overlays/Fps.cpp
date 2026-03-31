@@ -25,7 +25,7 @@ static ImVec4 GetFpsColor(float fps) {
                       a.z + (b.z - a.z) * t, 1.0f);
     };
 
-    for (int i = 0; i < _countof(fpsRanges); i++) {
+    for (int i = 0; i < rex::countof(fpsRanges); i++) {
         const auto& range = fpsRanges[i];
         if (fps >= range.Min) {
             float t = (fps - range.Min) / (range.Max - range.Min);
@@ -34,7 +34,7 @@ static ImVec4 GetFpsColor(float fps) {
             return lerp(range.Color, nextColor, t);
         }
     }
-    return fpsRanges[_countof(fpsRanges) - 1].Color;
+    return fpsRanges[rex::countof(fpsRanges) - 1].Color;
 }
 
 void FpsOverlayDialog::OnDraw(ImGuiIO& io) {
