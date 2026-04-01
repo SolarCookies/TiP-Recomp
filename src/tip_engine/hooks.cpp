@@ -35,35 +35,8 @@ REXCVAR_DEFINE_BOOL(lock_fps, false, "_Trouble in Paradise", "Lock to 30 FPS");
 REXCVAR_DEFINE_BOOL(DisableMainDraw, false, "_Trouble in Paradise", "Disables the Main Draw Pass");
 REXCVAR_DEFINE_BOOL(DisableUIDraw, false, "_Trouble in Paradise", "Disables the UI Draw Pass");
 
-//REXCVAR_DEFINE_BOOL(SkipShadowPass_One, false, "_Trouble in Paradise", "Disables the Shadow Pass");
-//REXCVAR_DEFINE_BOOL(SkipShadowPass_Two, false, "_Trouble in Paradise", "Disables the Shadow Pass");
-//REXCVAR_DEFINE_BOOL(SkipShadowPass_Three, false, "_Trouble in Paradise", "Disables the Shadow Pass");
-
-
-//REXCVAR_DEFINE_BOOL(SkipOpaquePass, false, "_Trouble in Paradise", "Disables the Opaque Pass");
-//REXCVAR_DEFINE_BOOL(SkipAlphaPass, false, "_Trouble in Paradise", "Disables the Alpha Pass");
-
-//REXCVAR_DEFINE_BOOL(SkipPostProcessPass, false, "_Trouble in Paradise", "Disables the PostProcess Pass");
-
-
-
-//REXCVAR_DEFINE_BOOL(Freecam, false, "_Trouble in Paradise", "Turns on freecam");
-//REXCVAR_DEFINE_DOUBLE(Freecam_X, 0.0f, "_Trouble in Paradise", "Freecam X");
-//REXCVAR_DEFINE_DOUBLE(Freecam_Y, 0.0f, "_Trouble in Paradise", "Freecam Y");
-//REXCVAR_DEFINE_DOUBLE(Freecam_Z, 0.0f, "_Trouble in Paradise", "Freecam Z");
-
 REXCVAR_DEFINE_BOOL(UseAspectRatioFromConfig, false, "_Trouble in Paradise", "Use Aspect Ratio from config");
 REXCVAR_DEFINE_DOUBLE(AspectRatio, 1.7777778f, "_Trouble in Paradise", "Aspect Ratio");
-
-
-//REXCVAR_DEFINE_COLOR(ambientColor, 0x000000FF, "_Trouble in Paradise", "Controls the ambient color of the scene");
-//REXCVAR_DEFINE_COLOR(ambientModelColor, 0x000000FF, "_Trouble in Paradise", "Controls the ambient color of the models in the scene");
-//REXCVAR_DEFINE_COLOR(directionalColor, 0xFFFFFFFF, "_Trouble in Paradise", "Controls the color of the directional light in the scene");
-//REXCVAR_DEFINE_COLOR(fogColor, 0x000000FF, "_Trouble in Paradise", "Controls the color of the fog in the scene");
-//REXCVAR_DEFINE_DOUBLE(fogOpacity, 1.0f, "_Trouble in Paradise", "Controls the opacity of the fog in the scene");
-//REXCVAR_DEFINE_DOUBLE(blueShiftScalar, 0.0f, "_Trouble in Paradise", "Controls the intensity of the blue shift effect in the scene");
-//REXCVAR_DEFINE_BOOL(cubeFogEnabled, false, "_Trouble in Paradise", "Enables cube fog in the scene");
-
 
 
 REX_PPC_EXTERN_IMPORT(camMainGetPos_821F07E0);
