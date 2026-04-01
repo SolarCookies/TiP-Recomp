@@ -21,6 +21,8 @@
 REXCVAR_DEFINE_BOOL(show_fps_overlay, false, "_Trouble in Paradise", "Show FPS overlay");
 REXCVAR_DEFINE_BOOL(rgb_cursor, false, "_Trouble in Paradise", "Enables the Gursor");
 REXCVAR_DEFINE_BOOL(lock_fps, false, "_Trouble in Paradise", "Lock to 30 FPS");
+REXCVAR_DEFINE_BOOL(DisableMainDraw, false, "_Trouble in Paradise", "Disables the Main Draw Pass");
+REXCVAR_DEFINE_BOOL(DisableUIDraw, false, "_Trouble in Paradise", "Disables the UI Draw Pass");
 
 
 auto frameTime=std::chrono::system_clock::now();
@@ -347,9 +349,9 @@ void two_hook(){
 }
 
 bool skipFirstDraw_hook(){
-  return false; // Always branch to loc_821C8D98
+  return REXCVAR_GET(DisableMainDraw);
 }
 
 bool skipSecondDraw_hook(){
-  return false; // Always branch to loc_821C8D98
+  return REXCVAR_GET(DisableUIDraw);
 }
