@@ -59,6 +59,7 @@ memcpy = 0x82AE1C70
 0x824985f8 = {} #Weed crash fix
 0x8248dc60 = {} #Ruffian crash fix
 0x82365f98 = {} #Accessory pinata select crash fix
+0x82352120 = {} #Storing medicine in store building crash fix
 
 #sub_82330B40
 0x82330B40 = {name = "rex_sub_82330B40"}
@@ -175,7 +176,6 @@ memcpy = 0x82AE1C70
 0x82658000 = {name = "rex_IDirect3DDevice9_SetViewport"}
 0x821F0858 = {name = "rex_camMainUpdate"}
 0x821F0F30 = {name = "rex_meUpdateOutputViewport"}
-0x821F0730 = {name = "rex_camMainGetAspectRatio"}
 0x821F0ED8 = {name = "rex_meConstructClippingFrustum"}
 0x82274AF8 = {name = "rex_scenegraphDrawSetProjectionMtx"}
 0x821F0B18 = {name = "rex_meCalculateView"}
@@ -253,6 +253,8 @@ memcpy = 0x82AE1C70
 0x82296398 = {name = "rex_meCachePackage_82296398"}
 #0x826b96b8 = {name = "rex_XuiResourceOpen_826B96B8"}
 #0x82ae0e70 = {name = "rex_snwprintf_s_82AE0E70"}
+0x821F07E0 = {name = "rex_camMainGetPos_821F07E0"}
+0x821F0730 = {name = "rex_camMainGetAspectRatio_821F0730"}
 
 [[midasm_hook]]
 address = 0x8229B0C8
@@ -377,3 +379,63 @@ name = "skipFirstDraw_hook"
 registers = []
 after_instruction = true
 jump_address_on_true = 0x821C8D98
+
+
+#skip RenderState 0 822A5440 (ShadowDualPass)
+[[midasm_hook]]
+address = 0x8225639C
+name = "skipRenderState0_hook"
+registers = ["r10"]
+after_instruction = true
+
+#skip RenderState 1 822A5440 (ShadowCubePass)
+[[midasm_hook]]
+address = 0x82256418
+name = "skipRenderState1_hook"
+registers = ["r9"]
+after_instruction = true
+
+#skip RenderState 2 822A5440 (ShadowRegularPass)
+[[midasm_hook]]
+address = 0x822564A0
+name = "skipRenderState2_hook"
+registers = ["r9"]
+after_instruction = true
+
+#skip RenderState 3 822A5440 (MainPassOpaque)
+[[midasm_hook]]
+address = 0x82256518
+name = "skipRenderState3_hook"
+registers = ["r9"]
+after_instruction = true
+
+#skip RenderState 4 822A5440 (MainPassTransparent)
+[[midasm_hook]]
+address = 0x822565A0
+name = "skipRenderState4_hook"
+registers = ["r9"]
+after_instruction = true
+
+#skip RenderState 5 822A5440 (PostProcessPass)
+[[midasm_hook]]
+address = 0x82256628
+name = "skipRenderState5_hook"
+registers = ["r9"]
+after_instruction = true
+
+
+#82261DD4
+[[midasm_hook]]
+address = 0x82261DD4
+name = "skiplighting_hook"
+registers = []
+after_instruction = true
+jump_address_on_true = 0x82261EA4
+
+#825B99B8
+[[midasm_hook]]
+address = 0x825B99B8
+name = "skiplightingTwo_hook"
+registers = []
+after_instruction = true
+jump_address_on_true = 0x825B9A58

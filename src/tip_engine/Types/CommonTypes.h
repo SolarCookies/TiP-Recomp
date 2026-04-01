@@ -5196,3 +5196,26 @@ struct assetManUnit_s // sizeof=0xA0
      uint16_t refCount : 15;
      int assetComesFromBundle;
  };
+
+ /* 17291 */
+struct lightMainDirectionalLight_s
+{
+  mlVec dir;
+  mlV4 col;
+};
+
+/* 17292 */
+struct lightMainWorkspace_s
+{
+  mlV4 ambientCol;
+  mlV4 modelAmbientCol;
+  lightMainDirectionalLight_s dirLight;
+  dsList_s *_pointLightListRef;
+  int _mainPointLightRef;
+  mlV4 fogCol;
+  float fogOpacity;
+  float fogNearDist;
+  float fogFarDist;
+  float blueShiftScalar;
+  int cubeFogEnabled;
+};

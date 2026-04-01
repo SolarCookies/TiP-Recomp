@@ -7,6 +7,7 @@
 #include "imgui.h"
 
 #include <rex/cvar.h>
+#include "tip_engine/rex_macros.h"
 #include <rex/graphics/flags.h>
 #include <rex/ppc/types.h>
 #include <rex/system/kernel_state.h>
@@ -16,13 +17,125 @@
 
 #include "rex_macros.h"
 #include <fstream>
+#include "tip_engine/Types/CommonTypes.h"
 
+inline float to_byteswapped_float(float f) {
+    uint32_t i = std::byteswap(*reinterpret_cast<uint32_t*>(&f));
+    return *reinterpret_cast<float*>(&i);
+}
+
+inline double to_byteswapped_double(double d) {
+    uint64_t i = std::byteswap(*reinterpret_cast<uint64_t*>(&d));
+    return *reinterpret_cast<double*>(&i);
+}
 
 REXCVAR_DEFINE_BOOL(show_fps_overlay, false, "_Trouble in Paradise", "Show FPS overlay");
 REXCVAR_DEFINE_BOOL(rgb_cursor, false, "_Trouble in Paradise", "Enables the Gursor");
 REXCVAR_DEFINE_BOOL(lock_fps, false, "_Trouble in Paradise", "Lock to 30 FPS");
 REXCVAR_DEFINE_BOOL(DisableMainDraw, false, "_Trouble in Paradise", "Disables the Main Draw Pass");
 REXCVAR_DEFINE_BOOL(DisableUIDraw, false, "_Trouble in Paradise", "Disables the UI Draw Pass");
+
+//REXCVAR_DEFINE_BOOL(SkipShadowPass_One, false, "_Trouble in Paradise", "Disables the Shadow Pass");
+//REXCVAR_DEFINE_BOOL(SkipShadowPass_Two, false, "_Trouble in Paradise", "Disables the Shadow Pass");
+//REXCVAR_DEFINE_BOOL(SkipShadowPass_Three, false, "_Trouble in Paradise", "Disables the Shadow Pass");
+
+
+//REXCVAR_DEFINE_BOOL(SkipOpaquePass, false, "_Trouble in Paradise", "Disables the Opaque Pass");
+//REXCVAR_DEFINE_BOOL(SkipAlphaPass, false, "_Trouble in Paradise", "Disables the Alpha Pass");
+
+//REXCVAR_DEFINE_BOOL(SkipPostProcessPass, false, "_Trouble in Paradise", "Disables the PostProcess Pass");
+
+
+
+//REXCVAR_DEFINE_BOOL(Freecam, false, "_Trouble in Paradise", "Turns on freecam");
+//REXCVAR_DEFINE_DOUBLE(Freecam_X, 0.0f, "_Trouble in Paradise", "Freecam X");
+//REXCVAR_DEFINE_DOUBLE(Freecam_Y, 0.0f, "_Trouble in Paradise", "Freecam Y");
+//REXCVAR_DEFINE_DOUBLE(Freecam_Z, 0.0f, "_Trouble in Paradise", "Freecam Z");
+
+REXCVAR_DEFINE_BOOL(UseAspectRatioFromConfig, false, "_Trouble in Paradise", "Use Aspect Ratio from config");
+REXCVAR_DEFINE_DOUBLE(AspectRatio, 1.7777778f, "_Trouble in Paradise", "Aspect Ratio");
+
+
+//REXCVAR_DEFINE_COLOR(ambientColor, 0x000000FF, "_Trouble in Paradise", "Controls the ambient color of the scene");
+//REXCVAR_DEFINE_COLOR(ambientModelColor, 0x000000FF, "_Trouble in Paradise", "Controls the ambient color of the models in the scene");
+//REXCVAR_DEFINE_COLOR(directionalColor, 0xFFFFFFFF, "_Trouble in Paradise", "Controls the color of the directional light in the scene");
+//REXCVAR_DEFINE_COLOR(fogColor, 0x000000FF, "_Trouble in Paradise", "Controls the color of the fog in the scene");
+//REXCVAR_DEFINE_DOUBLE(fogOpacity, 1.0f, "_Trouble in Paradise", "Controls the opacity of the fog in the scene");
+//REXCVAR_DEFINE_DOUBLE(blueShiftScalar, 0.0f, "_Trouble in Paradise", "Controls the intensity of the blue shift effect in the scene");
+//REXCVAR_DEFINE_BOOL(cubeFogEnabled, false, "_Trouble in Paradise", "Enables cube fog in the scene");
+
+
+
+REX_PPC_EXTERN_IMPORT(camMainGetPos_821F07E0);
+
+float * camMainGetPos_821F07E0_Hook(float *result){
+  /*
+  if(REXCVAR_GET(Freecam)) {
+    result[0] = to_byteswapped_float(static_cast<float>(REXCVAR_GET(Freecam_X)));
+    result[1] = to_byteswapped_float(static_cast<float>(REXCVAR_GET(Freecam_Y)));
+    result[2] = to_byteswapped_float(static_cast<float>(REXCVAR_GET(Freecam_Z)));
+
+    //.data:82C34E98 Me_36.virtCam
+    uintptr_t virtCam = reinterpret_cast<uintptr_t>(0x100000000ull + 0x82C34E98);
+    *(float *)(virtCam + 8) = result[0];
+    *(float *)(virtCam + 12) = result[1];
+    *(float *)(virtCam + 16) = result[2];
+    DebugLogFloat("Freecam X", static_cast<float>(REXCVAR_GET(Freecam_X)));
+    DebugLogFloat("Freecam Y", static_cast<float>(REXCVAR_GET(Freecam_Y)));
+    DebugLogFloat("Freecam Z", static_cast<float>(REXCVAR_GET(Freecam_Z)));
+
+    if((float *)(virtCam + 8) != nullptr) {
+        DebugLogFloat("CamMainGetPos X", *(float *)(virtCam + 8));
+    }
+    if((float *)(virtCam + 12) != nullptr) {
+        DebugLogFloat("CamMainGetPos Y", *(float *)(virtCam + 12));
+    }
+    if((float *)(virtCam + 16) != nullptr) {
+        DebugLogFloat("CamMainGetPos Z", *(float *)(virtCam + 16));
+    }
+
+    return result;
+  }else{
+    //.data:82C34E98 Me_36.virtCam
+    uintptr_t virtCam = reinterpret_cast<uintptr_t>(0x100000000ull + 0x82C34E98);
+    //*(float *)(virtCam + 8) = result[0];
+    //*(float *)(virtCam + 12) = result[1];
+    //*(float *)(virtCam + 16) = result[2];
+    DebugLogFloat("Freecam X", static_cast<float>(REXCVAR_GET(Freecam_X)));
+    DebugLogFloat("Freecam Y", static_cast<float>(REXCVAR_GET(Freecam_Y)));
+    DebugLogFloat("Freecam Z", static_cast<float>(REXCVAR_GET(Freecam_Z)));
+    if((float *)(virtCam + 8) != nullptr) {
+        DebugLogFloat("CamMainGetPos X", *(float *)(virtCam + 8));
+    }
+    if((float *)(virtCam + 12) != nullptr) {
+        DebugLogFloat("CamMainGetPos Y", *(float *)(virtCam + 12));
+    }
+    if((float *)(virtCam + 16) != nullptr) {
+        DebugLogFloat("CamMainGetPos Z", *(float *)(virtCam + 16));
+    }
+    return rex ::GuestToHostFunction<float *>(__imp__rex_camMainGetPos_821F07E0, result);
+  }
+    */
+  return rex ::GuestToHostFunction<float *>(__imp__rex_camMainGetPos_821F07E0, result);
+}
+
+REX_PPC_HOOK(camMainGetPos_821F07E0);
+
+//double rex_camMainGetAspectRatio_821F0730()
+REX_PPC_EXTERN_IMPORT(camMainGetAspectRatio_821F0730);
+
+float camMainGetAspectRatio_821F0730_Hook() {
+  if(REXCVAR_GET(UseAspectRatioFromConfig)) {
+    float aspectRatio = static_cast<float>(REXCVAR_GET(AspectRatio));
+    DebugLogFloat("Aspect Ratio", aspectRatio);
+    return aspectRatio;
+  }
+  float aspectRatio = rex::GuestToHostFunction<float>(__imp__rex_camMainGetAspectRatio_821F0730);
+  DebugLogFloat("Aspect Ratio", static_cast<float>(aspectRatio));
+  return aspectRatio;
+}
+
+REX_PPC_HOOK(camMainGetAspectRatio_821F0730);
 
 
 auto frameTime=std::chrono::system_clock::now();
@@ -47,7 +160,40 @@ void fps_hook() {
     for (int i = 0; i < fpsHistoryCount; i++) sum += fpsHistory[i];
     fpsCount = sum / fpsHistoryCount;
   }
+
   showfps = REXCVAR_GET(show_fps_overlay);
+
+  /*
+  lightMainWorkspace_s* workspace = reinterpret_cast<lightMainWorkspace_s*>(0x100000000ull + 0x82C3C010);
+  workspace->dirLight.col = {
+      to_byteswapped_float(static_cast<float>((REXCVAR_GET(directionalColor) >> 24) & 0xFF) / 255.0f),
+      to_byteswapped_float(static_cast<float>((REXCVAR_GET(directionalColor) >> 16) & 0xFF) / 255.0f),
+      to_byteswapped_float(static_cast<float>((REXCVAR_GET(directionalColor) >> 8) & 0xFF) / 255.0f),
+      to_byteswapped_float(static_cast<float>((REXCVAR_GET(directionalColor)) & 0xFF) / 255.0f)
+  };
+   workspace->ambientCol = {
+      to_byteswapped_float(static_cast<float>((REXCVAR_GET(ambientColor) >> 24) & 0xFF) / 255.0f),
+      to_byteswapped_float(static_cast<float>((REXCVAR_GET(ambientColor) >> 16) & 0xFF) / 255.0f),
+      to_byteswapped_float(static_cast<float>((REXCVAR_GET(ambientColor) >> 8) & 0xFF) / 255.0f),
+      to_byteswapped_float(static_cast<float>((REXCVAR_GET(ambientColor)) & 0xFF) / 255.0f)
+  };
+   workspace->modelAmbientCol = {
+      to_byteswapped_float(static_cast<float>((REXCVAR_GET(ambientModelColor) >> 24) & 0xFF) / 255.0f),
+      to_byteswapped_float(static_cast<float>((REXCVAR_GET(ambientModelColor) >> 16) & 0xFF) / 255.0f),
+      to_byteswapped_float(static_cast<float>((REXCVAR_GET(ambientModelColor) >> 8) & 0xFF) / 255.0f),
+      to_byteswapped_float(static_cast<float>((REXCVAR_GET(ambientModelColor)) & 0xFF) / 255.0f)
+  };
+
+  workspace->fogCol = {
+      to_byteswapped_float(static_cast<float>((REXCVAR_GET(fogColor) >> 24) & 0xFF) / 255.0f),
+      to_byteswapped_float(static_cast<float>((REXCVAR_GET(fogColor) >> 16) & 0xFF) / 255.0f),
+      to_byteswapped_float(static_cast<float>((REXCVAR_GET(fogColor) >> 8) & 0xFF) / 255.0f),
+      to_byteswapped_float(static_cast<float>((REXCVAR_GET(fogColor)) & 0xFF) / 255.0f)
+  };
+  workspace->fogOpacity = to_byteswapped_float(static_cast<float>(REXCVAR_GET(fogOpacity)));
+  workspace->blueShiftScalar = to_byteswapped_float(static_cast<float>(REXCVAR_GET(blueShiftScalar)));
+  workspace->cubeFogEnabled = REXCVAR_GET(cubeFogEnabled) ? 1 : 0;
+  */
 }
 
 bool PresentParams_hook(PPCRegister& r11) {
@@ -98,6 +244,8 @@ void vsync_hook(PPCRegister& r10) {
   if(!REXCVAR_GET(lock_fps)) {
     r10.u32 = 0; // Force vsync off
   }
+
+  
 }
 
 bool Space1_hook() {
@@ -354,4 +502,78 @@ bool skipFirstDraw_hook(){
 
 bool skipSecondDraw_hook(){
   return REXCVAR_GET(DisableUIDraw);
+}
+
+void skipRenderState0_hook(PPCRegister& r10){
+  return;
+  /*
+  if(REXCVAR_GET(SkipShadowPass_One)){
+    r10.u32 = 0; // Set shadow count to 0 to skip shadow pass
+  }else{
+    r10.u32 = 1;
+  }
+    */
+}
+
+void skipRenderState1_hook(PPCRegister& r9){
+  return;
+  /*
+  if(REXCVAR_GET(SkipShadowPass_Two)){
+    r9.u32 = 0; // Set shadow count to 0 to skip shadow pass
+  }else{
+    r9.u32 = 1;
+  }
+    */
+}
+
+void skipRenderState2_hook(PPCRegister& r9){
+  return;
+  /*
+  if(REXCVAR_GET(SkipShadowPass_Three)){
+    r9.u32 = 0; // Set shadow count to 0 to skip shadow pass
+  }else{
+    r9.u32 = 1;
+  }
+    */
+}
+
+void skipRenderState3_hook(PPCRegister& r9){
+  return;
+  /*
+  if(REXCVAR_GET(SkipOpaquePass)){
+    r9.u32 = 0; // Set shadow count to 0 to skip shadow pass
+  }else{
+    r9.u32 = 1;
+  }
+    */
+}
+
+void skipRenderState4_hook(PPCRegister& r9){
+  return;
+  /*
+  if(REXCVAR_GET(SkipAlphaPass)){
+    r9.u32 = 0; // Set shadow count to 0 to skip shadow pass
+  }else{
+    r9.u32 = 1;
+  }
+    */
+}
+
+void skipRenderState5_hook(PPCRegister& r9){
+  return;
+  /*
+  if(REXCVAR_GET(SkipPostProcessPass)){
+    r9.u32 = 0; // Set shadow count to 0 to skip shadow pass
+  }else{
+    r9.u32 = 1;
+  }
+    */
+}
+
+bool skiplighting_hook() {
+  return false; // Always branch to loc_824DDA84
+}
+
+bool skiplightingTwo_hook() {
+  return false; // Always branch to loc_824DDA84
 }

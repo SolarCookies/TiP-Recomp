@@ -1,5 +1,5 @@
 // Yoinked from https://github.com/twist84/halo3_cache_release_recomp/blob/06c7f0740d9bee47e2c0be047a5c7562fe9e1fa5/halo3/source/rex_macros.h
-
+#pragma once
 #include <rex/rex_app.h>
 #include <rex/ppc/function.h>
 #include <rex/runtime.h>

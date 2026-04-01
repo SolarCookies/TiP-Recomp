@@ -5,6 +5,7 @@
 #include "generated/retip_config.h"
 #include "generated/retip_init.h"
 
+#include <rex/cvar.h>
 #include "tip_engine/rex_macros.h"
 #include "tip_engine/Log.h"
 #include "tip_engine/Types/CursorInstance.h"
