@@ -6,6 +6,8 @@ This Recomp has a strict no AI rule, No Vibe Coding, No AI generated Assets, No 
 
 Showcase Video: https://youtu.be/Kih42KlocII?si=WeSh2FvBYrwQuNB-
 
+Currently only supports windows, Linux is planned though. This project is still very early on so you will run into issues, if you do please report them in the github issues tab, Just make sure before you do no one else as made that same issue.
+
 ## Setup
 - 1 Download the latest Launcher (Depending on your system you might need to disable the antivirus to download or extract)
 - 2 Obtain a legal copy of TiP's Iso (World) (I dont support piracy)
