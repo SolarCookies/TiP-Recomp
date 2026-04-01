@@ -26,3 +26,5 @@ If applicable, add screenshots to help explain your problem.
  - OS: [e.g. Windows 10/11]
  - GPU [e.g. RTX 3060]
  - CPU [e.g. AMD Ryzen 7 3700X]
+
+**If this bug results in a crash please provide your documents/retip folder as a zip**
