@@ -1,24 +1,8 @@
 ## Ignore Recomp files, Build results, and Assets
 
-# Whitelist renut.exe for launcher updates
-!out/build/win-amd64-relwithdebinfo/renut.exe
-
 .vs/
 
-/out/build/win-amd64-debug
-/out/build/win-amd64-release
-/out/build/win-amd64-relwithdebinfo/.cmake
-out/build/win-amd64-relwithdebinfo/.ninja_deps
-out/build/win-amd64-relwithdebinfo/.ninja_log
-out/build/win-amd64-relwithdebinfo/build.ninja
-out/build/win-amd64-relwithdebinfo/cmake_install.cmake
-out/build/win-amd64-relwithdebinfo/CMakeCache.txt
-/out/build/win-amd64-relwithdebinfo/CMakeFiles
-out/build/win-amd64-relwithdebinfo/renut.lib
-out/build/win-amd64-relwithdebinfo/Testing/
-out/build/win-amd64-relwithdebinfo/VSInheritEnvironments.txt
-out/build/win-amd64-relwithdebinfo/isenseconfig/
-/out/build/win-amd64-relwithdebinfo/logs
+/out/
 /assets/$SystemUpdate
 /assets/Beta
 assets/buildVersion.ver
@@ -30,7 +14,6 @@ assets/photosave.png
 assets/x360_imports.idc
 assets/xextool.exe
 assets/XexTool.txt
-/generated
 assets/settingssave.png
 assets/default.xex.i64
 assets/default.xex.id0
