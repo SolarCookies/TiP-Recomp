@@ -4,6 +4,8 @@ Created with [Rexglue-SDK](https://github.com/rexglue/rexglue-sdk)
 
 This Recomp has a strict no AI rule, No Vibe Coding, No AI generated Assets, No AI assisted Disassembly/Analysis
 
+The goal of this project is to move away from emulating the game on xenia, with this the game is now moddable the same way the PC Port of the first game is with function hooking. While right now the renderer is the same as Xenia's we plan on replacing it in the near future. If you have any issues with this Recomp please submit a bug report on the Issues page
+
 Showcase Video: https://youtu.be/Kih42KlocII?si=WeSh2FvBYrwQuNB-
 
 Currently only supports windows, Linux is planned though. This project is still very early on so you will run into issues, if you do please report them in the github issues tab, Just make sure before you do no one else as made that same issue.
