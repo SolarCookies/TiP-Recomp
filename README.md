@@ -39,3 +39,4 @@ git clone https://github.com/SolarCookies/TiP-Recomp.git
 ## Credits
 - [Franksy32](https://https://github.com/Franksy32) For providing the unlimited garden space patches
 - [Smash-chu](https://smash-chu.carrd.co/) For the Title Artwork
+- [birabittoh](https://github.com/birabittoh) For the Github Building Workflows
