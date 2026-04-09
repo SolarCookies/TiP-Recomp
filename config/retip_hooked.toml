@@ -1,0 +1,8 @@
+#Contains all the functions that have working hooks
+
+[functions]
+0x824DC840 = {name = "rex_gardenBudgetGetIsTagAvailable_824DC840"}
+0x821F0730 = {name = "rex_camMainGetAspectRatio_821F0730"}
+0x821F07E0 = {name = "rex_camMainGetPos_821F07E0"}
+0x821C8E78 = {name = "rex_appMainDraw_821C8E78"}
+0x821C91C0 = {name = "rex_appMainTickPreDraw_821C91C0"}

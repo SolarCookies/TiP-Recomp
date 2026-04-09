@@ -1,0 +1,30 @@
+[rexcrt]
+#Heap Functions (Hangs)
+#RtlFreeHeap = 0x82AE2F00
+#RtlAllocateHeap = 0x82B089F0
+#RtlReAllocateHeap = 0x82B095D0
+#RtlSizeHeap = 0x82B07C90
+
+#file io
+CreateFileA = 0x82B04388
+ReadFile = 0x82B046C8
+WriteFile = 0x82B04DB0
+SetFilePointer = 0x82B04B98
+GetFileSize = 0x82B04580
+GetFileSizeEx = 0x82B05118
+SetEndOfFile = 0x82B04D08
+FlushFileBuffers = 0x82B0BCE8
+DeleteFileA = 0x82B0B248
+CloseHandle = 0x82B04680
+CreateDirectoryA = 0x82B04F80 #might be wrong
+SetFileAttributesA = 0x82B14FE8
+GetFileAttributesA = 0x82B04F18
+GetFileAttributesExA = 0x82B0B658
+SetFilePointerEx = 0x82B05010
+
+#XMemAlloc = 0x82223AB0
+#XMemFree = 0x82223B70
+#XMemCpy = 0x82B09FB0
+memcpy = 0x82AE1C70
+#memmove = 0x82AE0060
+#memset = 0x82AE22A0

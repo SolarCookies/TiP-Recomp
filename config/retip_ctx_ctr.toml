@@ -1,0 +1,22 @@
+[functions]
+0x826878C0 = {}
+0x825F3008 = {}
+0x82A78878 = {}
+0x82AB5234 = {}
+0x82ABB414 = {}
+0x82915e88 = {}
+0x828d0040 = {}
+0x82688540 = {}
+0x826e4110 = {}
+0x82547290 = {}
+0x8268e990 = {}
+0x8268e948 = {}
+0x8268dd48 = {}
+0x825383b8 = {}
+0x827d4320 = {}
+0x826051f0 = {}
+0x824985f8 = {} #Weed crash fix
+0x8248dc60 = {} #Ruffian crash fix
+0x82365f98 = {} #Accessory pinata select crash fix
+0x82352120 = {} #Storing medicine in store building crash fix
+0x825d13f8 = {} #Deliver Trap crash Fix
