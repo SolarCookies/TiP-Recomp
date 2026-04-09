@@ -1,0 +1,10 @@
+# Auto-generated cvar configuration
+video_mode_refresh_rate = 164.000000
+enable_console = false
+log_level = "off"
+scribble_heap = true
+fullscreen = true
+vsync = false
+readback_memexport = false
+readback_memexport_fast = false
+gpu_allow_invalid_fetch_constants = true

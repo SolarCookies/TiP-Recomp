@@ -2650,7 +2650,7 @@ loc_8267AA08:
 	PPC_STORE_U32(ctx.r30.u32 + 364, ctx.r25.u32);
 	// bl 0x82b0a7f0
 	ctx.lr = 0x8267AA58;
-	sub_82B0A7F0(ctx, base);
+	rex_CreateEventA_82B0A7F0(ctx, base);
 	// cmplwi r3,0
 	ctx.cr0.compare<uint32_t>(ctx.r3.u32, 0, ctx.xer);
 	// stw r3,364(r30)
@@ -2689,7 +2689,7 @@ loc_8267AA08:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r30.u32 + 364);
 	// bl 0x82b0a890
 	ctx.lr = 0x8267AAA0;
-	rex_WaitForSingleObject(ctx, base);
+	rex_WaitForSingleObject_82B0A890(ctx, base);
 	// addi r3,r1,416
 	ctx.r3.s64 = ctx.r1.s64 + 416;
 	// bl 0x82b1ce44
@@ -2784,7 +2784,7 @@ PPC_FUNC_IMPL(__imp__sub_8267AAF0) {
 	ctx.r4.u64 = ctx.r28.u64;
 	// bl 0x82b0a890
 	ctx.lr = 0x8267AB3C;
-	rex_WaitForSingleObject(ctx, base);
+	rex_WaitForSingleObject_82B0A890(ctx, base);
 loc_8267AB3C:
 	// lwz r4,588(r31)
 	ctx.r4.u64 = PPC_LOAD_U32(ctx.r31.u32 + 588);
@@ -2939,7 +2939,7 @@ loc_8267ABB4:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 364);
 	// bl 0x82b0a890
 	ctx.lr = 0x8267AC3C;
-	rex_WaitForSingleObject(ctx, base);
+	rex_WaitForSingleObject_82B0A890(ctx, base);
 	// b 0x8267ac48
 	goto loc_8267AC48;
 loc_8267AC40:
@@ -2947,7 +2947,7 @@ loc_8267AC40:
 	ctx.r3.s64 = 6;
 	// bl 0x82afccf8
 	ctx.lr = 0x8267AC48;
-	sub_82AFCCF8(ctx, base);
+	rex_Sleep_82AFCCF8(ctx, base);
 loc_8267AC48:
 	// lwz r11,0(r30)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r30.u32 + 0);
@@ -3255,7 +3255,7 @@ loc_8267AE30:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 364);
 	// bl 0x82b0a890
 	ctx.lr = 0x8267AE60;
-	rex_WaitForSingleObject(ctx, base);
+	rex_WaitForSingleObject_82B0A890(ctx, base);
 	// lwz r3,364(r31)
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 364);
 	// bl 0x82b04680
@@ -4167,7 +4167,7 @@ loc_8267B428:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r30.u32 + 364);
 	// bl 0x82b0a890
 	ctx.lr = 0x8267B474;
-	rex_WaitForSingleObject(ctx, base);
+	rex_WaitForSingleObject_82B0A890(ctx, base);
 loc_8267B474:
 	// lhz r11,14(r30)
 	ctx.r11.u64 = PPC_LOAD_U16(ctx.r30.u32 + 14);
@@ -9003,7 +9003,7 @@ loc_8267D454:
 	ctx.r4.s64 = 0;
 	// bl 0x82b0a290
 	ctx.lr = 0x8267D46C;
-	rex_glMemClear1(ctx, base);
+	rex_glMemClear1_82B0A290(ctx, base);
 loc_8267D46C:
 	// lbz r11,16(r24)
 	ctx.r11.u64 = PPC_LOAD_U8(ctx.r24.u32 + 16);
@@ -9143,7 +9143,7 @@ loc_8267D544:
 	ctx.r4.s64 = 0;
 	// bl 0x82b0a290
 	ctx.lr = 0x8267D558;
-	rex_glMemClear1(ctx, base);
+	rex_glMemClear1_82B0A290(ctx, base);
 loc_8267D558:
 	// addi r31,r31,1024
 	ctx.r31.s64 = ctx.r31.s64 + 1024;
@@ -21519,7 +21519,7 @@ loc_82682738:
 	ctx.r4.u64 = ctx.r29.u64;
 	// bl 0x82b0a890
 	ctx.lr = 0x8268274C;
-	rex_WaitForSingleObject(ctx, base);
+	rex_WaitForSingleObject_82B0A890(ctx, base);
 	// lwz r3,0(r31)
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
 	// bl 0x82b04680

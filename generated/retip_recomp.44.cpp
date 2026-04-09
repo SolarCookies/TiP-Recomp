@@ -3918,8 +3918,8 @@ loc_827296D4:
 	return;
 }
 
-__attribute__((alias("__imp__sub_827296E0"))) PPC_WEAK_FUNC(sub_827296E0);
-PPC_FUNC_IMPL(__imp__sub_827296E0) {
+__attribute__((alias("__imp__rex_D3DXShader_CAssembler_Assemble_827296E0"))) PPC_WEAK_FUNC(rex_D3DXShader_CAssembler_Assemble_827296E0);
+PPC_FUNC_IMPL(__imp__rex_D3DXShader_CAssembler_Assemble_827296E0) {
 	PPC_FUNC_PROLOGUE();
 	uint32_t ea{};
 	// mflr r12
@@ -3985,7 +3985,7 @@ loc_82729720:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82725080
 	ctx.lr = 0x82729750;
-	sub_82725080(ctx, base);
+	rex_D3DXShader_CFragmentInfo_Destruct_CFragmentInfo_82725080(ctx, base);
 	// lis r4,9345
 	ctx.r4.s64 = 612433920;
 	// mr r3,r29
@@ -48364,7 +48364,7 @@ loc_8273CB98:
 	ctx.r3.u64 = ctx.r28.u64;
 	// bl 0x82712e18
 	ctx.lr = 0x8273CBE4;
-	sub_82712E18(ctx, base);
+	rex_StringCbPrintfA_82712E18(ctx, base);
 	// lwz r11,20(r25)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r25.u32 + 20);
 	// stw r28,24(r11)
@@ -53674,7 +53674,7 @@ PPC_FUNC_IMPL(__imp__sub_8273EFD8) {
 	ctx.r24.u64 = ctx.r10.u64;
 	// bl 0x82755f00
 	ctx.lr = 0x8273F020;
-	sub_82755F00(ctx, base);
+	rex_D3DXCore_CAlloc_CAlloc_82755F00(ctx, base);
 	// li r26,0
 	ctx.r26.s64 = 0;
 	// li r4,0
@@ -67819,7 +67819,7 @@ loc_8274533C:
 	ctx.r3.s64 = ctx.r1.s64 + 96;
 	// bl 0x82712e18
 	ctx.lr = 0x82745370;
-	sub_82712E18(ctx, base);
+	rex_StringCbPrintfA_82712E18(ctx, base);
 	// addi r11,r1,96
 	ctx.r11.s64 = ctx.r1.s64 + 96;
 	// mr r10,r11
@@ -68201,7 +68201,7 @@ loc_827455A0:
 	ctx.r3.s64 = ctx.r1.s64 + 112;
 	// bl 0x82712e18
 	ctx.lr = 0x82745610;
-	sub_82712E18(ctx, base);
+	rex_StringCbPrintfA_82712E18(ctx, base);
 	// addi r11,r1,112
 	ctx.r11.s64 = ctx.r1.s64 + 112;
 	// mr r10,r11
@@ -70057,8 +70057,8 @@ loc_82746284:
 	return;
 }
 
-__attribute__((alias("__imp__sub_82746290"))) PPC_WEAK_FUNC(sub_82746290);
-PPC_FUNC_IMPL(__imp__sub_82746290) {
+__attribute__((alias("__imp__rex_D3DXCheckNewDelete_82746290"))) PPC_WEAK_FUNC(rex_D3DXCheckNewDelete_82746290);
+PPC_FUNC_IMPL(__imp__rex_D3DXCheckNewDelete_82746290) {
 	PPC_FUNC_PROLOGUE();
 	uint32_t ea{};
 	// mflr r12
@@ -70273,7 +70273,7 @@ loc_827463C8:
 	if (!ctx.cr6.eq) goto loc_82746400;
 	// bl 0x82b04380
 	ctx.lr = 0x827463F4;
-	sub_82B04380(ctx, base);
+	rex_GetLastError_82B04380(ctx, base);
 	// lis r3,-30602
 	ctx.r3.s64 = -2005532672;
 	// ori r3,r3,2905
@@ -70415,7 +70415,7 @@ loc_827464C0:
 loc_827464E4:
 	// bl 0x82b04380
 	ctx.lr = 0x827464E8;
-	sub_82B04380(ctx, base);
+	rex_GetLastError_82B04380(ctx, base);
 	// lis r3,-30602
 	ctx.r3.s64 = -2005532672;
 	// ori r3,r3,2905

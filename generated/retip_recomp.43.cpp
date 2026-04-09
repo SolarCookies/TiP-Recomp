@@ -5935,7 +5935,7 @@ PPC_FUNC_IMPL(__imp__sub_8270BC28) {
 	ctx.r26.u64 = ctx.r11.u64;
 	// bl 0x82ade0b0
 	ctx.lr = 0x8270BC70;
-	sub_82ADE0B0(ctx, base);
+	rex_operator_new_82ADE0B0(ctx, base);
 	// mr r28,r3
 	ctx.r28.u64 = ctx.r3.u64;
 	// cmplwi cr6,r28,0
@@ -17472,7 +17472,7 @@ PPC_FUNC_IMPL(__imp__sub_82710A98) {
 	ctx.r24.s64 = 0;
 	// bl 0x82aded60
 	ctx.lr = 0x82710AD4;
-	sub_82ADED60(ctx, base);
+	rex_strncmp_82ADED60(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x82710cd0
@@ -17647,7 +17647,7 @@ loc_82710BD4:
 	if (!ctx.cr6.lt) goto loc_82710C68;
 	// bl 0x82b0b5f8
 	ctx.lr = 0x82710C14;
-	sub_82B0B5F8(ctx, base);
+	rex_RtlSetLastNTError_82B0B5F8(ctx, base);
 	// lis r11,-16384
 	ctx.r11.s64 = -1073741824;
 	// ori r10,r11,53
@@ -17747,7 +17747,7 @@ loc_82710CB8:
 	ctx.r3.u64 = ctx.r3.u64 | 13;
 	// bl 0x82b0b5f8
 	ctx.lr = 0x82710CC4;
-	sub_82B0B5F8(ctx, base);
+	rex_RtlSetLastNTError_82B0B5F8(ctx, base);
 loc_82710CC4:
 	// li r11,-1
 	ctx.r11.s64 = -1;
@@ -17784,7 +17784,7 @@ loc_82710CF4:
 	if (!ctx.cr6.eq) goto loc_82710D1C;
 	// bl 0x82b04380
 	ctx.lr = 0x82710D04;
-	sub_82B04380(ctx, base);
+	rex_GetLastError_82B04380(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// ble cr6,0x82710d20
@@ -17895,7 +17895,7 @@ PPC_FUNC_IMPL(__imp__sub_82710D70) {
 	if (!ctx.cr6.eq) goto loc_82710DD0;
 	// bl 0x82b04380
 	ctx.lr = 0x82710DB0;
-	sub_82B04380(ctx, base);
+	rex_GetLastError_82B04380(ctx, base);
 	// cmplwi cr6,r3,997
 	ctx.cr6.compare<uint32_t>(ctx.r3.u32, 997, ctx.xer);
 	// bne cr6,0x82710dec
@@ -18045,7 +18045,7 @@ PPC_FUNC_IMPL(__imp__sub_82710E78) {
 	if (!ctx.cr6.eq) goto loc_82710ED0;
 	// bl 0x82b04380
 	ctx.lr = 0x82710EB0;
-	sub_82B04380(ctx, base);
+	rex_GetLastError_82B04380(ctx, base);
 	// cmplwi cr6,r3,997
 	ctx.cr6.compare<uint32_t>(ctx.r3.u32, 997, ctx.xer);
 	// bne cr6,0x82710eec
@@ -18140,7 +18140,7 @@ PPC_FUNC_IMPL(__imp__sub_82710F18) {
 	if (!ctx.cr6.eq) goto loc_82710F6C;
 	// bl 0x82b04380
 	ctx.lr = 0x82710F4C;
-	sub_82B04380(ctx, base);
+	rex_GetLastError_82B04380(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bgt cr6,0x82710f5c
@@ -18211,7 +18211,7 @@ PPC_FUNC_IMPL(__imp__sub_82710F90) {
 	if (!ctx.cr6.eq) goto loc_82710FDC;
 	// bl 0x82b04380
 	ctx.lr = 0x82710FB8;
-	sub_82B04380(ctx, base);
+	rex_GetLastError_82B04380(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// ble cr6,0x82710fe0
@@ -18281,7 +18281,7 @@ PPC_FUNC_IMPL(__imp__sub_82710FF8) {
 	if (!ctx.cr6.eq) goto loc_82711044;
 	// bl 0x82b04380
 	ctx.lr = 0x82711030;
-	sub_82B04380(ctx, base);
+	rex_GetLastError_82B04380(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// ble cr6,0x82711048
@@ -18948,8 +18948,8 @@ PPC_FUNC_IMPL(__imp__sub_82711340) {
 	return;
 }
 
-__attribute__((alias("__imp__sub_827113F0"))) PPC_WEAK_FUNC(sub_827113F0);
-PPC_FUNC_IMPL(__imp__sub_827113F0) {
+__attribute__((alias("__imp__rex_D3DXMatrixMultiply_827113F0"))) PPC_WEAK_FUNC(rex_D3DXMatrixMultiply_827113F0);
+PPC_FUNC_IMPL(__imp__rex_D3DXMatrixMultiply_827113F0) {
 	PPC_FUNC_PROLOGUE();
 	PPCRegister temp{};
 	uint32_t ea{};
@@ -19177,8 +19177,8 @@ PPC_FUNC_IMPL(__imp__sub_827113F0) {
 	return;
 }
 
-__attribute__((alias("__imp__sub_82711570"))) PPC_WEAK_FUNC(sub_82711570);
-PPC_FUNC_IMPL(__imp__sub_82711570) {
+__attribute__((alias("__imp__rex_D3DXMatrixTranspose_82711570"))) PPC_WEAK_FUNC(rex_D3DXMatrixTranspose_82711570);
+PPC_FUNC_IMPL(__imp__rex_D3DXMatrixTranspose_82711570) {
 	PPC_FUNC_PROLOGUE();
 	PPCRegister temp{};
 	uint32_t ea{};
@@ -22393,7 +22393,7 @@ loc_82712968:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82aded60
 	ctx.lr = 0x827129AC;
-	sub_82ADED60(ctx, base);
+	rex_strncmp_82ADED60(ctx, base);
 	// cmpwi r3,0
 	ctx.cr0.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq 0x827129d0
@@ -22408,7 +22408,7 @@ loc_82712968:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82aded60
 	ctx.lr = 0x827129C8;
-	sub_82ADED60(ctx, base);
+	rex_strncmp_82ADED60(ctx, base);
 	// cmpwi r3,0
 	ctx.cr0.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne 0x827129d8
@@ -22494,7 +22494,7 @@ loc_82712A14:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82aded60
 	ctx.lr = 0x82712A58;
-	sub_82ADED60(ctx, base);
+	rex_strncmp_82ADED60(ctx, base);
 	// cmpwi r3,0
 	ctx.cr0.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne 0x82712a6c
@@ -22516,7 +22516,7 @@ loc_82712A6C:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82aded60
 	ctx.lr = 0x82712A80;
-	sub_82ADED60(ctx, base);
+	rex_strncmp_82ADED60(ctx, base);
 	// cmpwi r3,0
 	ctx.cr0.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne 0x82712a94
@@ -23071,8 +23071,8 @@ PPC_FUNC_IMPL(__imp__sub_82712E10) {
 	return;
 }
 
-__attribute__((alias("__imp__sub_82712E18"))) PPC_WEAK_FUNC(sub_82712E18);
-PPC_FUNC_IMPL(__imp__sub_82712E18) {
+__attribute__((alias("__imp__rex_StringCbPrintfA_82712E18"))) PPC_WEAK_FUNC(rex_StringCbPrintfA_82712E18);
+PPC_FUNC_IMPL(__imp__rex_StringCbPrintfA_82712E18) {
 	PPC_FUNC_PROLOGUE();
 	uint32_t ea{};
 	// mflr r12
@@ -23130,8 +23130,8 @@ loc_82712E68:
 	return;
 }
 
-__attribute__((alias("__imp__sub_82712E78"))) PPC_WEAK_FUNC(sub_82712E78);
-PPC_FUNC_IMPL(__imp__sub_82712E78) {
+__attribute__((alias("__imp__rex_D3DXAssembleShader_Common_82712E78"))) PPC_WEAK_FUNC(rex_D3DXAssembleShader_Common_82712E78);
+PPC_FUNC_IMPL(__imp__rex_D3DXAssembleShader_Common_82712E78) {
 	PPC_FUNC_PROLOGUE();
 	uint32_t ea{};
 	// mflr r12
@@ -23161,7 +23161,7 @@ PPC_FUNC_IMPL(__imp__sub_82712E78) {
 	ctx.r27.u64 = ctx.r7.u64;
 	// bl 0x82718bf8
 	ctx.lr = 0x82712EA8;
-	sub_82718BF8(ctx, base);
+	rex_D3DXShader_CPreProcessor_CPreProcessor_82718BF8(ctx, base);
 	// cmplwi cr6,r25,0
 	ctx.cr6.compare<uint32_t>(ctx.r25.u32, 0, ctx.xer);
 	// beq cr6,0x82712eb4
@@ -23242,7 +23242,7 @@ loc_82712F24:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x827ff818
 	ctx.lr = 0x82712F38;
-	sub_827FF818(ctx, base);
+	rex_XShaderPDBBuilder_Initialize_827FF818(ctx, base);
 	// lwz r11,0(r26)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r26.u32 + 0);
 	// mr r3,r26
@@ -23280,7 +23280,7 @@ loc_82712F70:
 	ctx.r5.u64 = PPC_LOAD_U32(ctx.r30.u32 + 4);
 	// bl 0x82801fc0
 	ctx.lr = 0x82712F7C;
-	sub_82801FC0(ctx, base);
+	rex_XShaderPDBBuilder_AddDefine_82801FC0(ctx, base);
 	// addi r30,r30,8
 	ctx.r30.s64 = ctx.r30.s64 + 8;
 loc_82712F80:
@@ -23317,7 +23317,7 @@ loc_82712FAC:
 	ctx.r4.s64 = ctx.r11.s64 + 3948;
 	// bl 0x828016b8
 	ctx.lr = 0x82712FBC;
-	sub_828016B8(ctx, base);
+	rex_XShaderPDBBuilder_AddArgument_828016B8(ctx, base);
 	// rlwinm. r11,r28,0,30,30
 	ctx.r11.u64 = __builtin_rotateleft64(ctx.r28.u32 | (ctx.r28.u64 << 32), 0) & 0x2;
 	ctx.cr0.compare<int32_t>(ctx.r11.s32, 0, ctx.xer);
@@ -23336,7 +23336,7 @@ loc_82712FCC:
 	ctx.r4.s64 = ctx.r11.s64 + 3944;
 	// bl 0x828016b8
 	ctx.lr = 0x82712FDC;
-	sub_828016B8(ctx, base);
+	rex_XShaderPDBBuilder_AddArgument_828016B8(ctx, base);
 	// rlwinm. r11,r28,0,11,11
 	ctx.r11.u64 = __builtin_rotateleft64(ctx.r28.u32 | (ctx.r28.u64 << 32), 0) & 0x100000;
 	ctx.cr0.compare<int32_t>(ctx.r11.s32, 0, ctx.xer);
@@ -23355,7 +23355,7 @@ loc_82712FEC:
 	ctx.r4.s64 = ctx.r11.s64 + 3928;
 	// bl 0x828016b8
 	ctx.lr = 0x82712FFC;
-	sub_828016B8(ctx, base);
+	rex_XShaderPDBBuilder_AddArgument_828016B8(ctx, base);
 	// rlwinm. r11,r28,0,14,14
 	ctx.r11.u64 = __builtin_rotateleft64(ctx.r28.u32 | (ctx.r28.u64 << 32), 0) & 0x20000;
 	ctx.cr0.compare<int32_t>(ctx.r11.s32, 0, ctx.xer);
@@ -23374,7 +23374,7 @@ loc_8271300C:
 	ctx.r4.s64 = ctx.r11.s64 + 3912;
 	// bl 0x828016b8
 	ctx.lr = 0x8271301C;
-	sub_828016B8(ctx, base);
+	rex_XShaderPDBBuilder_AddArgument_828016B8(ctx, base);
 	// lwz r11,0(r27)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r27.u32 + 0);
 	// mr r5,r30
@@ -23395,7 +23395,7 @@ loc_82713030:
 	ctx.r4.s64 = ctx.r11.s64 + 3904;
 	// bl 0x828016b8
 	ctx.lr = 0x82713040;
-	sub_828016B8(ctx, base);
+	rex_XShaderPDBBuilder_AddArgument_828016B8(ctx, base);
 	// lwz r11,0(r27)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r27.u32 + 0);
 	// mr r5,r30
@@ -23416,7 +23416,7 @@ loc_82713054:
 	ctx.r4.s64 = ctx.r11.s64 + 3896;
 	// bl 0x828016b8
 	ctx.lr = 0x82713064;
-	sub_828016B8(ctx, base);
+	rex_XShaderPDBBuilder_AddArgument_828016B8(ctx, base);
 	// lis r11,-32239
 	ctx.r11.s64 = -2112815104;
 	// li r4,16
@@ -23431,7 +23431,7 @@ loc_82713054:
 	ctx.r5.u64 = ctx.r30.u64;
 	// bl 0x82712e18
 	ctx.lr = 0x82713080;
-	sub_82712E18(ctx, base);
+	rex_StringCbPrintfA_82712E18(ctx, base);
 	// lis r11,-32256
 	ctx.r11.s64 = -2113929216;
 	// addi r5,r1,96
@@ -23442,7 +23442,7 @@ loc_82713054:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x828016b8
 	ctx.lr = 0x82713094;
-	sub_828016B8(ctx, base);
+	rex_XShaderPDBBuilder_AddArgument_828016B8(ctx, base);
 	// mr r5,r30
 	ctx.r5.u64 = ctx.r30.u64;
 	// li r4,16
@@ -23453,7 +23453,7 @@ loc_82713054:
 	ctx.r3.s64 = ctx.r1.s64 + 96;
 	// bl 0x82712e18
 	ctx.lr = 0x827130A8;
-	sub_82712E18(ctx, base);
+	rex_StringCbPrintfA_82712E18(ctx, base);
 	// lis r11,-32256
 	ctx.r11.s64 = -2113929216;
 	// addi r5,r1,96
@@ -23464,7 +23464,7 @@ loc_82713054:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x828016b8
 	ctx.lr = 0x827130BC;
-	sub_828016B8(ctx, base);
+	rex_XShaderPDBBuilder_AddArgument_828016B8(ctx, base);
 	// mr r5,r30
 	ctx.r5.u64 = ctx.r30.u64;
 	// li r4,16
@@ -23475,7 +23475,7 @@ loc_82713054:
 	ctx.r3.s64 = ctx.r1.s64 + 96;
 	// bl 0x82712e18
 	ctx.lr = 0x827130D0;
-	sub_82712E18(ctx, base);
+	rex_StringCbPrintfA_82712E18(ctx, base);
 	// lis r11,-32256
 	ctx.r11.s64 = -2113929216;
 	// addi r5,r1,96
@@ -23486,7 +23486,7 @@ loc_82713054:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x828016b8
 	ctx.lr = 0x827130E4;
-	sub_828016B8(ctx, base);
+	rex_XShaderPDBBuilder_AddArgument_828016B8(ctx, base);
 	// mr r5,r30
 	ctx.r5.u64 = ctx.r30.u64;
 	// li r4,16
@@ -23497,7 +23497,7 @@ loc_82713054:
 	ctx.r3.s64 = ctx.r1.s64 + 96;
 	// bl 0x82712e18
 	ctx.lr = 0x827130F8;
-	sub_82712E18(ctx, base);
+	rex_StringCbPrintfA_82712E18(ctx, base);
 	// lis r11,-32256
 	ctx.r11.s64 = -2113929216;
 	// addi r5,r1,96
@@ -23508,7 +23508,7 @@ loc_82713054:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x828016b8
 	ctx.lr = 0x8271310C;
-	sub_828016B8(ctx, base);
+	rex_XShaderPDBBuilder_AddArgument_828016B8(ctx, base);
 	// mr r5,r30
 	ctx.r5.u64 = ctx.r30.u64;
 	// li r4,16
@@ -23519,7 +23519,7 @@ loc_82713054:
 	ctx.r3.s64 = ctx.r1.s64 + 96;
 	// bl 0x82712e18
 	ctx.lr = 0x82713120;
-	sub_82712E18(ctx, base);
+	rex_StringCbPrintfA_82712E18(ctx, base);
 	// lis r11,-32256
 	ctx.r11.s64 = -2113929216;
 	// addi r5,r1,96
@@ -23530,7 +23530,7 @@ loc_82713054:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x828016b8
 	ctx.lr = 0x82713134;
-	sub_828016B8(ctx, base);
+	rex_XShaderPDBBuilder_AddArgument_828016B8(ctx, base);
 	// mr r5,r30
 	ctx.r5.u64 = ctx.r30.u64;
 	// li r4,16
@@ -23541,7 +23541,7 @@ loc_82713054:
 	ctx.r3.s64 = ctx.r1.s64 + 96;
 	// bl 0x82712e18
 	ctx.lr = 0x82713148;
-	sub_82712E18(ctx, base);
+	rex_StringCbPrintfA_82712E18(ctx, base);
 	// lis r11,-32256
 	ctx.r11.s64 = -2113929216;
 	// addi r5,r1,96
@@ -23552,7 +23552,7 @@ loc_82713054:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x828016b8
 	ctx.lr = 0x8271315C;
-	sub_828016B8(ctx, base);
+	rex_XShaderPDBBuilder_AddArgument_828016B8(ctx, base);
 	// mr r5,r30
 	ctx.r5.u64 = ctx.r30.u64;
 	// li r4,16
@@ -23563,7 +23563,7 @@ loc_82713054:
 	ctx.r3.s64 = ctx.r1.s64 + 96;
 	// bl 0x82712e18
 	ctx.lr = 0x82713170;
-	sub_82712E18(ctx, base);
+	rex_StringCbPrintfA_82712E18(ctx, base);
 	// lis r11,-32256
 	ctx.r11.s64 = -2113929216;
 	// addi r5,r1,96
@@ -23574,7 +23574,7 @@ loc_82713054:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x828016b8
 	ctx.lr = 0x82713184;
-	sub_828016B8(ctx, base);
+	rex_XShaderPDBBuilder_AddArgument_828016B8(ctx, base);
 loc_82713184:
 	// lwz r11,0(r26)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r26.u32 + 0);
@@ -23604,7 +23604,7 @@ loc_82713184:
 	ctx.r4.s64 = ctx.r11.s64 + 3760;
 	// bl 0x82719d98
 	ctx.lr = 0x827131B8;
-	sub_82719D98(ctx, base);
+	rex_D3DXShader_CPreProcessor_AddDefine_82719D98(ctx, base);
 	// mr. r30,r3
 	ctx.r30.u64 = ctx.r3.u64;
 	ctx.cr0.compare<int32_t>(ctx.r30.s32, 0, ctx.xer);
@@ -23616,7 +23616,7 @@ loc_82713184:
 	ctx.r3.s64 = ctx.r1.s64 + 128;
 	// bl 0x82724660
 	ctx.lr = 0x827131CC;
-	sub_82724660(ctx, base);
+	rex_D3DXShader_CAssembler_CAssembler_82724660(ctx, base);
 	// mr r8,r27
 	ctx.r8.u64 = ctx.r27.u64;
 	// addi r7,r1,80
@@ -23631,7 +23631,7 @@ loc_82713184:
 	ctx.r3.s64 = ctx.r1.s64 + 128;
 	// bl 0x827296e0
 	ctx.lr = 0x827131E8;
-	sub_827296E0(ctx, base);
+	rex_D3DXShader_CAssembler_Assemble_827296E0(ctx, base);
 	// mr. r30,r3
 	ctx.r30.u64 = ctx.r3.u64;
 	ctx.cr0.compare<int32_t>(ctx.r30.s32, 0, ctx.xer);
@@ -23783,8 +23783,8 @@ loc_827132D4:
 	return;
 }
 
-__attribute__((alias("__imp__sub_827132E8"))) PPC_WEAK_FUNC(sub_827132E8);
-PPC_FUNC_IMPL(__imp__sub_827132E8) {
+__attribute__((alias("__imp__rex_D3DXAssembleShader_Imp_827132E8"))) PPC_WEAK_FUNC(rex_D3DXAssembleShader_Imp_827132E8);
+PPC_FUNC_IMPL(__imp__rex_D3DXAssembleShader_Imp_827132E8) {
 	PPC_FUNC_PROLOGUE();
 	uint32_t ea{};
 	// mflr r12
@@ -23807,7 +23807,7 @@ PPC_FUNC_IMPL(__imp__sub_827132E8) {
 	if (ctx.cr0.eq) goto loc_8271330C;
 	// bl 0x82712e78
 	ctx.lr = 0x82713308;
-	sub_82712E78(ctx, base);
+	rex_D3DXAssembleShader_Common_82712E78(ctx, base);
 	// b 0x827133a4
 	goto loc_827133A4;
 loc_8271330C:
@@ -23823,7 +23823,7 @@ loc_8271330C:
 	PPC_STORE_U32(ctx.r1.u32 + 84, ctx.r30.u32);
 	// bl 0x82712e78
 	ctx.lr = 0x82713324;
-	sub_82712E78(ctx, base);
+	rex_D3DXAssembleShader_Common_82712E78(ctx, base);
 	// mr. r27,r3
 	ctx.r27.u64 = ctx.r3.u64;
 	ctx.cr0.compare<int32_t>(ctx.r27.s32, 0, ctx.xer);
@@ -23905,8 +23905,8 @@ loc_827133A4:
 	return;
 }
 
-__attribute__((alias("__imp__sub_827133B0"))) PPC_WEAK_FUNC(sub_827133B0);
-PPC_FUNC_IMPL(__imp__sub_827133B0) {
+__attribute__((alias("__imp__rex_D3DXAssembleShader_827133B0"))) PPC_WEAK_FUNC(rex_D3DXAssembleShader_827133B0);
+PPC_FUNC_IMPL(__imp__rex_D3DXAssembleShader_827133B0) {
 	PPC_FUNC_PROLOGUE();
 	uint32_t ea{};
 	// mflr r12
@@ -23945,7 +23945,7 @@ PPC_FUNC_IMPL(__imp__sub_827133B0) {
 	ctx.r3.s64 = ctx.r1.s64 + 80;
 	// bl 0x827132e8
 	ctx.lr = 0x827133F4;
-	sub_827132E8(ctx, base);
+	rex_D3DXAssembleShader_Imp_827132E8(ctx, base);
 	// addi r1,r1,112
 	ctx.r1.s64 = ctx.r1.s64 + 112;
 	// lwz r12,-8(r1)
@@ -23995,7 +23995,7 @@ PPC_FUNC_IMPL(__imp__sub_82713408) {
 	ctx.r27.u64 = ctx.r10.u64;
 	// bl 0x82718bf8
 	ctx.lr = 0x82713448;
-	sub_82718BF8(ctx, base);
+	rex_D3DXShader_CPreProcessor_CPreProcessor_82718BF8(ctx, base);
 	// cmplwi cr6,r23,0
 	ctx.cr6.compare<uint32_t>(ctx.r23.u32, 0, ctx.xer);
 	// beq cr6,0x82713454
@@ -24090,7 +24090,7 @@ loc_827134DC:
 	ctx.r3.u64 = ctx.r28.u64;
 	// bl 0x827ff818
 	ctx.lr = 0x827134F0;
-	sub_827FF818(ctx, base);
+	rex_XShaderPDBBuilder_Initialize_827FF818(ctx, base);
 	// lwz r11,0(r26)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r26.u32 + 0);
 	// mr r3,r26
@@ -24128,7 +24128,7 @@ loc_82713528:
 	ctx.r5.u64 = PPC_LOAD_U32(ctx.r31.u32 + 4);
 	// bl 0x82801fc0
 	ctx.lr = 0x82713534;
-	sub_82801FC0(ctx, base);
+	rex_XShaderPDBBuilder_AddDefine_82801FC0(ctx, base);
 	// addi r31,r31,8
 	ctx.r31.s64 = ctx.r31.s64 + 8;
 loc_82713538:
@@ -24165,7 +24165,7 @@ loc_82713564:
 	ctx.r4.s64 = ctx.r11.s64 + 3948;
 	// bl 0x828016b8
 	ctx.lr = 0x82713574;
-	sub_828016B8(ctx, base);
+	rex_XShaderPDBBuilder_AddArgument_828016B8(ctx, base);
 	// rlwinm. r11,r30,0,30,30
 	ctx.r11.u64 = __builtin_rotateleft64(ctx.r30.u32 | (ctx.r30.u64 << 32), 0) & 0x2;
 	ctx.cr0.compare<int32_t>(ctx.r11.s32, 0, ctx.xer);
@@ -24184,7 +24184,7 @@ loc_82713584:
 	ctx.r4.s64 = ctx.r11.s64 + 3944;
 	// bl 0x828016b8
 	ctx.lr = 0x82713594;
-	sub_828016B8(ctx, base);
+	rex_XShaderPDBBuilder_AddArgument_828016B8(ctx, base);
 	// rlwinm. r11,r30,0,11,11
 	ctx.r11.u64 = __builtin_rotateleft64(ctx.r30.u32 | (ctx.r30.u64 << 32), 0) & 0x100000;
 	ctx.cr0.compare<int32_t>(ctx.r11.s32, 0, ctx.xer);
@@ -24203,7 +24203,7 @@ loc_827135A4:
 	ctx.r4.s64 = ctx.r11.s64 + 3928;
 	// bl 0x828016b8
 	ctx.lr = 0x827135B4;
-	sub_828016B8(ctx, base);
+	rex_XShaderPDBBuilder_AddArgument_828016B8(ctx, base);
 	// rlwinm. r11,r30,0,14,14
 	ctx.r11.u64 = __builtin_rotateleft64(ctx.r30.u32 | (ctx.r30.u64 << 32), 0) & 0x20000;
 	ctx.cr0.compare<int32_t>(ctx.r11.s32, 0, ctx.xer);
@@ -24222,7 +24222,7 @@ loc_827135C4:
 	ctx.r4.s64 = ctx.r11.s64 + 3912;
 	// bl 0x828016b8
 	ctx.lr = 0x827135D4;
-	sub_828016B8(ctx, base);
+	rex_XShaderPDBBuilder_AddArgument_828016B8(ctx, base);
 	// lwz r11,0(r27)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r27.u32 + 0);
 	// mr r5,r31
@@ -24243,7 +24243,7 @@ loc_827135E8:
 	ctx.r4.s64 = ctx.r11.s64 + 3904;
 	// bl 0x828016b8
 	ctx.lr = 0x827135F8;
-	sub_828016B8(ctx, base);
+	rex_XShaderPDBBuilder_AddArgument_828016B8(ctx, base);
 	// lwz r11,0(r27)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r27.u32 + 0);
 	// mr r5,r31
@@ -24264,7 +24264,7 @@ loc_8271360C:
 	ctx.r4.s64 = ctx.r11.s64 + 3896;
 	// bl 0x828016b8
 	ctx.lr = 0x8271361C;
-	sub_828016B8(ctx, base);
+	rex_XShaderPDBBuilder_AddArgument_828016B8(ctx, base);
 	// lis r11,-32239
 	ctx.r11.s64 = -2112815104;
 	// li r4,16
@@ -24279,7 +24279,7 @@ loc_8271360C:
 	ctx.r5.u64 = ctx.r19.u64;
 	// bl 0x82712e18
 	ctx.lr = 0x82713638;
-	sub_82712E18(ctx, base);
+	rex_StringCbPrintfA_82712E18(ctx, base);
 	// lis r11,-32256
 	ctx.r11.s64 = -2113929216;
 	// addi r5,r1,112
@@ -24290,7 +24290,7 @@ loc_8271360C:
 	ctx.r3.u64 = ctx.r28.u64;
 	// bl 0x828016b8
 	ctx.lr = 0x8271364C;
-	sub_828016B8(ctx, base);
+	rex_XShaderPDBBuilder_AddArgument_828016B8(ctx, base);
 	// mr r5,r19
 	ctx.r5.u64 = ctx.r19.u64;
 	// li r4,16
@@ -24301,7 +24301,7 @@ loc_8271360C:
 	ctx.r3.s64 = ctx.r1.s64 + 112;
 	// bl 0x82712e18
 	ctx.lr = 0x82713660;
-	sub_82712E18(ctx, base);
+	rex_StringCbPrintfA_82712E18(ctx, base);
 	// lis r11,-32256
 	ctx.r11.s64 = -2113929216;
 	// addi r5,r1,112
@@ -24312,7 +24312,7 @@ loc_8271360C:
 	ctx.r3.u64 = ctx.r28.u64;
 	// bl 0x828016b8
 	ctx.lr = 0x82713674;
-	sub_828016B8(ctx, base);
+	rex_XShaderPDBBuilder_AddArgument_828016B8(ctx, base);
 	// mr r5,r19
 	ctx.r5.u64 = ctx.r19.u64;
 	// li r4,16
@@ -24323,7 +24323,7 @@ loc_8271360C:
 	ctx.r3.s64 = ctx.r1.s64 + 112;
 	// bl 0x82712e18
 	ctx.lr = 0x82713688;
-	sub_82712E18(ctx, base);
+	rex_StringCbPrintfA_82712E18(ctx, base);
 	// lis r11,-32256
 	ctx.r11.s64 = -2113929216;
 	// addi r5,r1,112
@@ -24334,7 +24334,7 @@ loc_8271360C:
 	ctx.r3.u64 = ctx.r28.u64;
 	// bl 0x828016b8
 	ctx.lr = 0x8271369C;
-	sub_828016B8(ctx, base);
+	rex_XShaderPDBBuilder_AddArgument_828016B8(ctx, base);
 	// mr r5,r19
 	ctx.r5.u64 = ctx.r19.u64;
 	// li r4,16
@@ -24345,7 +24345,7 @@ loc_8271360C:
 	ctx.r3.s64 = ctx.r1.s64 + 112;
 	// bl 0x82712e18
 	ctx.lr = 0x827136B0;
-	sub_82712E18(ctx, base);
+	rex_StringCbPrintfA_82712E18(ctx, base);
 	// lis r11,-32256
 	ctx.r11.s64 = -2113929216;
 	// addi r5,r1,112
@@ -24356,7 +24356,7 @@ loc_8271360C:
 	ctx.r3.u64 = ctx.r28.u64;
 	// bl 0x828016b8
 	ctx.lr = 0x827136C4;
-	sub_828016B8(ctx, base);
+	rex_XShaderPDBBuilder_AddArgument_828016B8(ctx, base);
 	// mr r5,r19
 	ctx.r5.u64 = ctx.r19.u64;
 	// li r4,16
@@ -24367,7 +24367,7 @@ loc_8271360C:
 	ctx.r3.s64 = ctx.r1.s64 + 112;
 	// bl 0x82712e18
 	ctx.lr = 0x827136D8;
-	sub_82712E18(ctx, base);
+	rex_StringCbPrintfA_82712E18(ctx, base);
 	// lis r11,-32256
 	ctx.r11.s64 = -2113929216;
 	// addi r5,r1,112
@@ -24378,7 +24378,7 @@ loc_8271360C:
 	ctx.r3.u64 = ctx.r28.u64;
 	// bl 0x828016b8
 	ctx.lr = 0x827136EC;
-	sub_828016B8(ctx, base);
+	rex_XShaderPDBBuilder_AddArgument_828016B8(ctx, base);
 	// mr r5,r19
 	ctx.r5.u64 = ctx.r19.u64;
 	// li r4,16
@@ -24389,7 +24389,7 @@ loc_8271360C:
 	ctx.r3.s64 = ctx.r1.s64 + 112;
 	// bl 0x82712e18
 	ctx.lr = 0x82713700;
-	sub_82712E18(ctx, base);
+	rex_StringCbPrintfA_82712E18(ctx, base);
 	// lis r11,-32256
 	ctx.r11.s64 = -2113929216;
 	// addi r5,r1,112
@@ -24400,7 +24400,7 @@ loc_8271360C:
 	ctx.r3.u64 = ctx.r28.u64;
 	// bl 0x828016b8
 	ctx.lr = 0x82713714;
-	sub_828016B8(ctx, base);
+	rex_XShaderPDBBuilder_AddArgument_828016B8(ctx, base);
 	// mr r5,r19
 	ctx.r5.u64 = ctx.r19.u64;
 	// li r4,16
@@ -24411,7 +24411,7 @@ loc_8271360C:
 	ctx.r3.s64 = ctx.r1.s64 + 112;
 	// bl 0x82712e18
 	ctx.lr = 0x82713728;
-	sub_82712E18(ctx, base);
+	rex_StringCbPrintfA_82712E18(ctx, base);
 	// lis r11,-32256
 	ctx.r11.s64 = -2113929216;
 	// addi r5,r1,112
@@ -24422,7 +24422,7 @@ loc_8271360C:
 	ctx.r3.u64 = ctx.r28.u64;
 	// bl 0x828016b8
 	ctx.lr = 0x8271373C;
-	sub_828016B8(ctx, base);
+	rex_XShaderPDBBuilder_AddArgument_828016B8(ctx, base);
 	// rlwinm. r11,r30,0,29,29
 	ctx.r11.u64 = __builtin_rotateleft64(ctx.r30.u32 | (ctx.r30.u64 << 32), 0) & 0x4;
 	ctx.cr0.compare<int32_t>(ctx.r11.s32, 0, ctx.xer);
@@ -24441,7 +24441,7 @@ loc_8271374C:
 	ctx.r4.s64 = ctx.r11.s64 + 4080;
 	// bl 0x828016b8
 	ctx.lr = 0x8271375C;
-	sub_828016B8(ctx, base);
+	rex_XShaderPDBBuilder_AddArgument_828016B8(ctx, base);
 	// rlwinm. r11,r30,0,28,28
 	ctx.r11.u64 = __builtin_rotateleft64(ctx.r30.u32 | (ctx.r30.u64 << 32), 0) & 0x8;
 	ctx.cr0.compare<int32_t>(ctx.r11.s32, 0, ctx.xer);
@@ -24460,7 +24460,7 @@ loc_8271376C:
 	ctx.r4.s64 = ctx.r11.s64 + 4072;
 	// bl 0x828016b8
 	ctx.lr = 0x8271377C;
-	sub_828016B8(ctx, base);
+	rex_XShaderPDBBuilder_AddArgument_828016B8(ctx, base);
 	// rlwinm. r11,r30,0,27,27
 	ctx.r11.u64 = __builtin_rotateleft64(ctx.r30.u32 | (ctx.r30.u64 << 32), 0) & 0x10;
 	ctx.cr0.compare<int32_t>(ctx.r11.s32, 0, ctx.xer);
@@ -24479,7 +24479,7 @@ loc_8271378C:
 	ctx.r4.s64 = ctx.r11.s64 + 4064;
 	// bl 0x828016b8
 	ctx.lr = 0x8271379C;
-	sub_828016B8(ctx, base);
+	rex_XShaderPDBBuilder_AddArgument_828016B8(ctx, base);
 	// rlwinm. r11,r30,0,26,26
 	ctx.r11.u64 = __builtin_rotateleft64(ctx.r30.u32 | (ctx.r30.u64 << 32), 0) & 0x20;
 	ctx.cr0.compare<int32_t>(ctx.r11.s32, 0, ctx.xer);
@@ -24498,7 +24498,7 @@ loc_827137AC:
 	ctx.r4.s64 = ctx.r11.s64 + 4056;
 	// bl 0x828016b8
 	ctx.lr = 0x827137BC;
-	sub_828016B8(ctx, base);
+	rex_XShaderPDBBuilder_AddArgument_828016B8(ctx, base);
 	// rlwinm. r11,r30,0,23,23
 	ctx.r11.u64 = __builtin_rotateleft64(ctx.r30.u32 | (ctx.r30.u64 << 32), 0) & 0x100;
 	ctx.cr0.compare<int32_t>(ctx.r11.s32, 0, ctx.xer);
@@ -24517,7 +24517,7 @@ loc_827137CC:
 	ctx.r4.s64 = ctx.r11.s64 + 4052;
 	// bl 0x828016b8
 	ctx.lr = 0x827137DC;
-	sub_828016B8(ctx, base);
+	rex_XShaderPDBBuilder_AddArgument_828016B8(ctx, base);
 	// rlwinm. r11,r30,0,22,22
 	ctx.r11.u64 = __builtin_rotateleft64(ctx.r30.u32 | (ctx.r30.u64 << 32), 0) & 0x200;
 	ctx.cr0.compare<int32_t>(ctx.r11.s32, 0, ctx.xer);
@@ -24536,7 +24536,7 @@ loc_827137EC:
 	ctx.r4.s64 = ctx.r11.s64 + 4044;
 	// bl 0x828016b8
 	ctx.lr = 0x827137FC;
-	sub_828016B8(ctx, base);
+	rex_XShaderPDBBuilder_AddArgument_828016B8(ctx, base);
 	// rlwinm. r11,r30,0,21,21
 	ctx.r11.u64 = __builtin_rotateleft64(ctx.r30.u32 | (ctx.r30.u64 << 32), 0) & 0x400;
 	ctx.cr0.compare<int32_t>(ctx.r11.s32, 0, ctx.xer);
@@ -24555,7 +24555,7 @@ loc_8271380C:
 	ctx.r4.s64 = ctx.r11.s64 + 4036;
 	// bl 0x828016b8
 	ctx.lr = 0x8271381C;
-	sub_828016B8(ctx, base);
+	rex_XShaderPDBBuilder_AddArgument_828016B8(ctx, base);
 	// rlwinm. r11,r30,0,13,13
 	ctx.r11.u64 = __builtin_rotateleft64(ctx.r30.u32 | (ctx.r30.u64 << 32), 0) & 0x40000;
 	ctx.cr0.compare<int32_t>(ctx.r11.s32, 0, ctx.xer);
@@ -24574,7 +24574,7 @@ loc_8271382C:
 	ctx.r4.s64 = ctx.r11.s64 + 4020;
 	// bl 0x828016b8
 	ctx.lr = 0x8271383C;
-	sub_828016B8(ctx, base);
+	rex_XShaderPDBBuilder_AddArgument_828016B8(ctx, base);
 	// rlwinm. r11,r30,0,9,9
 	ctx.r11.u64 = __builtin_rotateleft64(ctx.r30.u32 | (ctx.r30.u64 << 32), 0) & 0x400000;
 	ctx.cr0.compare<int32_t>(ctx.r11.s32, 0, ctx.xer);
@@ -24593,7 +24593,7 @@ loc_8271384C:
 	ctx.r4.s64 = ctx.r11.s64 + 4012;
 	// bl 0x828016b8
 	ctx.lr = 0x8271385C;
-	sub_828016B8(ctx, base);
+	rex_XShaderPDBBuilder_AddArgument_828016B8(ctx, base);
 	// rlwinm. r11,r30,0,6,6
 	ctx.r11.u64 = __builtin_rotateleft64(ctx.r30.u32 | (ctx.r30.u64 << 32), 0) & 0x2000000;
 	ctx.cr0.compare<int32_t>(ctx.r11.s32, 0, ctx.xer);
@@ -24612,7 +24612,7 @@ loc_8271386C:
 	ctx.r4.s64 = ctx.r11.s64 + 4004;
 	// bl 0x828016b8
 	ctx.lr = 0x8271387C;
-	sub_828016B8(ctx, base);
+	rex_XShaderPDBBuilder_AddArgument_828016B8(ctx, base);
 	// rlwinm. r11,r30,0,7,7
 	ctx.r11.u64 = __builtin_rotateleft64(ctx.r30.u32 | (ctx.r30.u64 << 32), 0) & 0x1000000;
 	ctx.cr0.compare<int32_t>(ctx.r11.s32, 0, ctx.xer);
@@ -24631,7 +24631,7 @@ loc_8271388C:
 	ctx.r4.s64 = ctx.r11.s64 + 3996;
 	// bl 0x828016b8
 	ctx.lr = 0x8271389C;
-	sub_828016B8(ctx, base);
+	rex_XShaderPDBBuilder_AddArgument_828016B8(ctx, base);
 	// lwz r11,0(r27)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r27.u32 + 0);
 	// mr r5,r31
@@ -24652,7 +24652,7 @@ loc_827138B0:
 	ctx.r4.s64 = ctx.r11.s64 + 3976;
 	// bl 0x828016b8
 	ctx.lr = 0x827138C0;
-	sub_828016B8(ctx, base);
+	rex_XShaderPDBBuilder_AddArgument_828016B8(ctx, base);
 	// lwz r11,0(r27)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r27.u32 + 0);
 	// mr r5,r31
@@ -24673,7 +24673,7 @@ loc_827138D4:
 	ctx.r4.s64 = ctx.r11.s64 + 3964;
 	// bl 0x828016b8
 	ctx.lr = 0x827138E4;
-	sub_828016B8(ctx, base);
+	rex_XShaderPDBBuilder_AddArgument_828016B8(ctx, base);
 loc_827138E4:
 	// mr r4,r30
 	ctx.r4.u64 = ctx.r30.u64;
@@ -24729,7 +24729,7 @@ loc_82713938:
 loc_82713940:
 	// bl 0x82719d98
 	ctx.lr = 0x82713944;
-	sub_82719D98(ctx, base);
+	rex_D3DXShader_CPreProcessor_AddDefine_82719D98(ctx, base);
 	// li r4,0
 	ctx.r4.s64 = 0;
 	// addi r3,r1,144
@@ -25919,8 +25919,8 @@ loc_82714168:
 	return;
 }
 
-__attribute__((alias("__imp__sub_82714170"))) PPC_WEAK_FUNC(sub_82714170);
-PPC_FUNC_IMPL(__imp__sub_82714170) {
+__attribute__((alias("__imp__rex_D3DXCompileShader_82714170"))) PPC_WEAK_FUNC(rex_D3DXCompileShader_82714170);
+PPC_FUNC_IMPL(__imp__rex_D3DXCompileShader_82714170) {
 	PPC_FUNC_PROLOGUE();
 	uint32_t ea{};
 	// mflr r12
@@ -33948,8 +33948,8 @@ loc_8271788C:
 	return;
 }
 
-__attribute__((alias("__imp__sub_82717898"))) PPC_WEAK_FUNC(sub_82717898);
-PPC_FUNC_IMPL(__imp__sub_82717898) {
+__attribute__((alias("__imp__rex_D3DXShader_CPreProcessor_RtlEnterCriticalSection_82717898"))) PPC_WEAK_FUNC(rex_D3DXShader_CPreProcessor_RtlEnterCriticalSection_82717898);
+PPC_FUNC_IMPL(__imp__rex_D3DXShader_CPreProcessor_RtlEnterCriticalSection_82717898) {
 	PPC_FUNC_PROLOGUE();
 	uint32_t ea{};
 	// mflr r12
@@ -33968,7 +33968,7 @@ PPC_FUNC_IMPL(__imp__sub_82717898) {
 	ctx.r31.u64 = ctx.r3.u64;
 	// bl 0x82759e48
 	ctx.lr = 0x827178B4;
-	sub_82759E48(ctx, base);
+	rex_D3DXShader_ThreadLocalDataBegin_82759E48(ctx, base);
 	// mr. r30,r3
 	ctx.r30.u64 = ctx.r3.u64;
 	ctx.cr0.compare<int32_t>(ctx.r30.s32, 0, ctx.xer);
@@ -33982,7 +33982,7 @@ PPC_FUNC_IMPL(__imp__sub_82717898) {
 	PPC_STORE_U32(ctx.r31.u32 + 680, ctx.r11.u32);
 	// bl 0x82756060
 	ctx.lr = 0x827178CC;
-	sub_82756060(ctx, base);
+	rex_D3DXShader_CNode_SetAlloc_82756060(ctx, base);
 	// stw r3,684(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 684, ctx.r3.u32);
 loc_827178D0:
@@ -34028,7 +34028,7 @@ PPC_FUNC_IMPL(__imp__sub_827178F0) {
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 684);
 	// bl 0x82756060
 	ctx.lr = 0x82717918;
-	sub_82756060(ctx, base);
+	rex_D3DXShader_CNode_SetAlloc_82756060(ctx, base);
 	// bl 0x82759fa0
 	ctx.lr = 0x8271791C;
 	sub_82759FA0(ctx, base);
@@ -35269,7 +35269,7 @@ loc_82718194:
 loc_827181A4:
 	// bl 0x82ade0b0
 	ctx.lr = 0x827181A8;
-	sub_82ADE0B0(ctx, base);
+	rex_operator_new_82ADE0B0(ctx, base);
 	// mr. r31,r3
 	ctx.r31.u64 = ctx.r3.u64;
 	ctx.cr0.compare<int32_t>(ctx.r31.s32, 0, ctx.xer);
@@ -35313,7 +35313,7 @@ loc_827181E0:
 loc_827181F0:
 	// bl 0x82ade0b0
 	ctx.lr = 0x827181F4;
-	sub_82ADE0B0(ctx, base);
+	rex_operator_new_82ADE0B0(ctx, base);
 	// mr. r31,r3
 	ctx.r31.u64 = ctx.r3.u64;
 	ctx.cr0.compare<int32_t>(ctx.r31.s32, 0, ctx.xer);
@@ -36844,8 +36844,8 @@ loc_82718BDC:
 	return;
 }
 
-__attribute__((alias("__imp__sub_82718BF8"))) PPC_WEAK_FUNC(sub_82718BF8);
-PPC_FUNC_IMPL(__imp__sub_82718BF8) {
+__attribute__((alias("__imp__rex_D3DXShader_CPreProcessor_CPreProcessor_82718BF8"))) PPC_WEAK_FUNC(rex_D3DXShader_CPreProcessor_CPreProcessor_82718BF8);
+PPC_FUNC_IMPL(__imp__rex_D3DXShader_CPreProcessor_CPreProcessor_82718BF8) {
 	PPC_FUNC_PROLOGUE();
 	uint32_t ea{};
 	// mflr r12
@@ -36865,12 +36865,12 @@ PPC_FUNC_IMPL(__imp__sub_82718BF8) {
 	ctx.r31.u64 = ctx.r3.u64;
 	// bl 0x82755f00
 	ctx.lr = 0x82718C14;
-	sub_82755F00(ctx, base);
+	rex_D3DXCore_CAlloc_CAlloc_82755F00(ctx, base);
 	// addi r3,r31,24
 	ctx.r3.s64 = ctx.r31.s64 + 24;
 	// bl 0x82721dc8
 	ctx.lr = 0x82718C1C;
-	sub_82721DC8(ctx, base);
+	rex_D3DXShader_CTErrors_CTErrors_82721DC8(ctx, base);
 	// li r30,0
 	ctx.r30.s64 = 0;
 	// mr r3,r31
@@ -36879,7 +36879,7 @@ PPC_FUNC_IMPL(__imp__sub_82718BF8) {
 	PPC_STORE_U32(ctx.r31.u32 + 680, ctx.r30.u32);
 	// bl 0x82717898
 	ctx.lr = 0x82718C2C;
-	sub_82717898(ctx, base);
+	rex_D3DXShader_CPreProcessor_RtlEnterCriticalSection_82717898(ctx, base);
 	// li r29,1
 	ctx.r29.s64 = 1;
 	// addi r3,r31,120
@@ -36939,7 +36939,7 @@ PPC_FUNC_IMPL(__imp__sub_82718BF8) {
 	PPC_STORE_U32(ctx.r31.u32 + 688, ctx.r30.u32);
 	// bl 0x82746290
 	ctx.lr = 0x82718CA0;
-	sub_82746290(ctx, base);
+	rex_D3DXCheckNewDelete_82746290(ctx, base);
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// addi r1,r1,112
@@ -39382,8 +39382,8 @@ loc_82719D80:
 	return;
 }
 
-__attribute__((alias("__imp__sub_82719D98"))) PPC_WEAK_FUNC(sub_82719D98);
-PPC_FUNC_IMPL(__imp__sub_82719D98) {
+__attribute__((alias("__imp__rex_D3DXShader_CPreProcessor_AddDefine_82719D98"))) PPC_WEAK_FUNC(rex_D3DXShader_CPreProcessor_AddDefine_82719D98);
+PPC_FUNC_IMPL(__imp__rex_D3DXShader_CPreProcessor_AddDefine_82719D98) {
 	PPC_FUNC_PROLOGUE();
 	uint32_t ea{};
 	// mflr r12
@@ -41140,7 +41140,7 @@ loc_8271A970:
 	ctx.r30.u64 = ctx.r29.u64;
 	// bl 0x82719d98
 	ctx.lr = 0x8271A998;
-	sub_82719D98(ctx, base);
+	rex_D3DXShader_CPreProcessor_AddDefine_82719D98(ctx, base);
 	// mr. r31,r3
 	ctx.r31.u64 = ctx.r3.u64;
 	ctx.cr0.compare<int32_t>(ctx.r31.s32, 0, ctx.xer);
@@ -41513,7 +41513,7 @@ loc_8271ABFC:
 	ctx.r6.u64 = PPC_LOAD_U32(ctx.r11.u32 + 80);
 	// bl 0x82712e18
 	ctx.lr = 0x8271AC1C;
-	sub_82712E18(ctx, base);
+	rex_StringCbPrintfA_82712E18(ctx, base);
 	// addi r28,r1,96
 	ctx.r28.s64 = ctx.r1.s64 + 96;
 loc_8271AC20:
@@ -58530,8 +58530,8 @@ loc_82721DB4:
 	return;
 }
 
-__attribute__((alias("__imp__sub_82721DC8"))) PPC_WEAK_FUNC(sub_82721DC8);
-PPC_FUNC_IMPL(__imp__sub_82721DC8) {
+__attribute__((alias("__imp__rex_D3DXShader_CTErrors_CTErrors_82721DC8"))) PPC_WEAK_FUNC(rex_D3DXShader_CTErrors_CTErrors_82721DC8);
+PPC_FUNC_IMPL(__imp__rex_D3DXShader_CTErrors_CTErrors_82721DC8) {
 	PPC_FUNC_PROLOGUE();
 	// li r11,0
 	ctx.r11.s64 = 0;
@@ -59107,7 +59107,7 @@ loc_82722168:
 	ctx.r3.u64 = ctx.r26.u64;
 	// bl 0x82aded60
 	ctx.lr = 0x827221A0;
-	sub_82ADED60(ctx, base);
+	rex_strncmp_82ADED60(ctx, base);
 	// cmpwi r3,0
 	ctx.cr0.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq 0x82722214
@@ -60426,7 +60426,7 @@ PPC_FUNC_IMPL(__imp__sub_82722A20) {
 	ctx.r3.s64 = ctx.r1.s64 + 96;
 	// bl 0x82712e18
 	ctx.lr = 0x82722A80;
-	sub_82712E18(ctx, base);
+	rex_StringCbPrintfA_82712E18(ctx, base);
 	// cmpwi r3,0
 	ctx.cr0.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// blt 0x82722be0
@@ -60483,7 +60483,7 @@ loc_82722AD0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82712e18
 	ctx.lr = 0x82722AE4;
-	sub_82712E18(ctx, base);
+	rex_StringCbPrintfA_82712E18(ctx, base);
 	// cmpwi r3,0
 	ctx.cr0.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// blt 0x82722be0
@@ -60532,7 +60532,7 @@ loc_82722B1C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82712e18
 	ctx.lr = 0x82722B3C;
-	sub_82712E18(ctx, base);
+	rex_StringCbPrintfA_82712E18(ctx, base);
 	// cmpwi r3,0
 	ctx.cr0.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// blt 0x82722be0
@@ -60813,7 +60813,7 @@ loc_82722D08:
 	ctx.r3.s64 = ctx.r1.s64 + 96;
 	// bl 0x82712e18
 	ctx.lr = 0x82722D30;
-	sub_82712E18(ctx, base);
+	rex_StringCbPrintfA_82712E18(ctx, base);
 	// cmpwi r3,0
 	ctx.cr0.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// blt 0x82722e98
@@ -60870,7 +60870,7 @@ loc_82722D80:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82712e18
 	ctx.lr = 0x82722D94;
-	sub_82712E18(ctx, base);
+	rex_StringCbPrintfA_82712E18(ctx, base);
 	// cmpwi r3,0
 	ctx.cr0.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// blt 0x82722e98
@@ -60921,7 +60921,7 @@ loc_82722DCC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82712e18
 	ctx.lr = 0x82722DF0;
-	sub_82712E18(ctx, base);
+	rex_StringCbPrintfA_82712E18(ctx, base);
 	// cmpwi r3,0
 	ctx.cr0.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// blt 0x82722e98
@@ -61178,7 +61178,7 @@ loc_82722F6C:
 	ctx.r3.s64 = ctx.r1.s64 + 128;
 	// bl 0x82712e18
 	ctx.lr = 0x82722F78;
-	sub_82712E18(ctx, base);
+	rex_StringCbPrintfA_82712E18(ctx, base);
 	// b 0x8272307c
 	goto loc_8272307C;
 loc_82722F7C:
@@ -61226,7 +61226,7 @@ loc_82722FAC:
 	ctx.r3.s64 = ctx.r1.s64 + 128;
 	// bl 0x82712e18
 	ctx.lr = 0x82722FCC;
-	sub_82712E18(ctx, base);
+	rex_StringCbPrintfA_82712E18(ctx, base);
 	// b 0x8272307c
 	goto loc_8272307C;
 loc_82722FD0:
@@ -61247,7 +61247,7 @@ loc_82722FD0:
 	ctx.r3.s64 = ctx.r1.s64 + 128;
 	// bl 0x82712e18
 	ctx.lr = 0x82722FF0;
-	sub_82712E18(ctx, base);
+	rex_StringCbPrintfA_82712E18(ctx, base);
 	// b 0x8272307c
 	goto loc_8272307C;
 loc_82722FF4:
@@ -61268,7 +61268,7 @@ loc_82722FF4:
 	ctx.r6.u64 = PPC_LOAD_U64(ctx.r1.u32 + 40);
 	// bl 0x82712e18
 	ctx.lr = 0x82723014;
-	sub_82712E18(ctx, base);
+	rex_StringCbPrintfA_82712E18(ctx, base);
 	// b 0x8272307c
 	goto loc_8272307C;
 loc_82723018:
@@ -61289,7 +61289,7 @@ loc_82723018:
 	ctx.r6.u64 = PPC_LOAD_U64(ctx.r1.u32 + 40);
 	// bl 0x82712e18
 	ctx.lr = 0x82723038;
-	sub_82712E18(ctx, base);
+	rex_StringCbPrintfA_82712E18(ctx, base);
 	// b 0x8272307c
 	goto loc_8272307C;
 loc_8272303C:
@@ -61330,7 +61330,7 @@ loc_82723070:
 	ctx.r3.s64 = ctx.r1.s64 + 128;
 	// bl 0x82712e18
 	ctx.lr = 0x8272307C;
-	sub_82712E18(ctx, base);
+	rex_StringCbPrintfA_82712E18(ctx, base);
 loc_8272307C:
 	// lis r11,-32256
 	ctx.r11.s64 = -2113929216;
@@ -64525,8 +64525,8 @@ loc_8272464C:
 	return;
 }
 
-__attribute__((alias("__imp__sub_82724660"))) PPC_WEAK_FUNC(sub_82724660);
-PPC_FUNC_IMPL(__imp__sub_82724660) {
+__attribute__((alias("__imp__rex_D3DXShader_CAssembler_CAssembler_82724660"))) PPC_WEAK_FUNC(rex_D3DXShader_CAssembler_CAssembler_82724660);
+PPC_FUNC_IMPL(__imp__rex_D3DXShader_CAssembler_CAssembler_82724660) {
 	PPC_FUNC_PROLOGUE();
 	// li r11,0
 	ctx.r11.s64 = 0;
@@ -66013,8 +66013,8 @@ loc_82725060:
 	return;
 }
 
-__attribute__((alias("__imp__sub_82725080"))) PPC_WEAK_FUNC(sub_82725080);
-PPC_FUNC_IMPL(__imp__sub_82725080) {
+__attribute__((alias("__imp__rex_D3DXShader_CFragmentInfo_Destruct_CFragmentInfo_82725080"))) PPC_WEAK_FUNC(rex_D3DXShader_CFragmentInfo_Destruct_CFragmentInfo_82725080);
+PPC_FUNC_IMPL(__imp__rex_D3DXShader_CFragmentInfo_Destruct_CFragmentInfo_82725080) {
 	PPC_FUNC_PROLOGUE();
 	uint32_t ea{};
 	// mflr r12
@@ -70003,7 +70003,7 @@ loc_82726C60:
 	ctx.r4.u64 = ctx.r29.u64;
 	// bl 0x82adfb18
 	ctx.lr = 0x82726C90;
-	sub_82ADFB18(ctx, base);
+	rex_qsort_82ADFB18(ctx, base);
 	// mulli r28,r29,20
 	ctx.r28.s64 = static_cast<int64_t>(ctx.r29.u64 * static_cast<uint64_t>(20));
 	// lis r4,9345
@@ -71090,7 +71090,7 @@ loc_827273E8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82725080
 	ctx.lr = 0x82727408;
-	sub_82725080(ctx, base);
+	rex_D3DXShader_CFragmentInfo_Destruct_CFragmentInfo_82725080(ctx, base);
 	// lis r4,9345
 	ctx.r4.s64 = 612433920;
 	// mr r3,r31

@@ -18,6 +18,10 @@ set(RETIP_SOURCES
     src/tip_engine/hooks.cpp
     src/tip_engine/Overlays/Fps.cpp
     src/tip_engine/rex_macros.h
+    src/ImPlot/implot.cpp
+    src/ImPlot/implot_items.cpp
+    src/ImPlot/implot.h
+    src/ImPlot/implot_internal.h
 )
 
 if(WIN32)

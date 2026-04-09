@@ -4,6 +4,7 @@
 #include <cmath>
 #include <cstring>
 #include <rex/ui/imgui_dialog.h>
+#include "Overlays/Fps.h"
 #include "imgui.h"
 
 #include <rex/cvar.h>
@@ -32,11 +33,25 @@ inline double to_byteswapped_double(double d) {
 REXCVAR_DEFINE_BOOL(show_fps_overlay, false, "_Trouble in Paradise", "Show FPS overlay");
 REXCVAR_DEFINE_BOOL(rgb_cursor, false, "_Trouble in Paradise", "Enables the Gursor");
 REXCVAR_DEFINE_BOOL(lock_fps, false, "_Trouble in Paradise", "Lock to 30 FPS");
+REXCVAR_DEFINE_BOOL(show_fps, false, "_Trouble in Paradise", "Show FPS Overlay");
 REXCVAR_DEFINE_BOOL(DisableMainDraw, false, "_Trouble in Paradise", "Disables the Main Draw Pass");
 REXCVAR_DEFINE_BOOL(DisableUIDraw, false, "_Trouble in Paradise", "Disables the UI Draw Pass");
 
 REXCVAR_DEFINE_BOOL(UseAspectRatioFromConfig, false, "_Trouble in Paradise", "Use Aspect Ratio from config");
 REXCVAR_DEFINE_DOUBLE(AspectRatio, 1.7777778f, "_Trouble in Paradise", "Aspect Ratio");
+
+
+//REXCVAR_DEFINE_COLOR(ambientColor, 0x000000FF, "_Trouble in Paradise", "Controls the ambient color of the scene");
+//REXCVAR_DEFINE_COLOR(ambientModelColor, 0x000000FF, "_Trouble in Paradise", "Controls the ambient color of the models in the scene");
+//REXCVAR_DEFINE_COLOR(directionalColor, 0xFFFFFFFF, "_Trouble in Paradise", "Controls the color of the directional light in the scene");
+//REXCVAR_DEFINE_COLOR(fogColor, 0x000000FF, "_Trouble in Paradise", "Controls the color of the fog in the scene");
+//REXCVAR_DEFINE_DOUBLE(fogOpacity, 1.0f, "_Trouble in Paradise", "Controls the opacity of the fog in the scene");
+//REXCVAR_DEFINE_DOUBLE(blueShiftScalar, 0.0f, "_Trouble in Paradise", "Controls the intensity of the blue shift effect in the scene");
+//REXCVAR_DEFINE_BOOL(cubeFogEnabled, false, "_Trouble in Paradise", "Enables cube fog in the scene");
+
+//REXCVAR_DEFINE_INT32(maxCPU, 60, "_Trouble in Paradise", "Limits the cpu FPS to the specified value (0 for unlimited)");
+//REXCVAR_DEFINE_INT32(maxGPU, 60, "_Trouble in Paradise", "Limits the gpu FPS to the specified value (0 for unlimited)");
+
 
 
 REX_PPC_EXTERN_IMPORT(camMainGetPos_821F07E0);
@@ -111,107 +126,72 @@ float camMainGetAspectRatio_821F0730_Hook() {
 REX_PPC_HOOK(camMainGetAspectRatio_821F0730);
 
 
-auto frameTime=std::chrono::system_clock::now();
-int frame = 0;
-double fpsHistory[10] = {};
-int fpsHistoryIndex = 0;
-int fpsHistoryCount = 0;
-
-void fps_hook() {
-  frame++;
-  auto Time = std::chrono::system_clock::now();
-  std::chrono::duration<double, std::milli> delta = Time - frameTime;
-  frameTime = Time;
-  double fpsfromMS = 1000 / delta.count();
-  if (frame >= 2) {
-    frame = 0;
-    fpsHistory[fpsHistoryIndex] = fpsfromMS;
-    fpsHistoryIndex = (fpsHistoryIndex + 1) % 10;
-    if (fpsHistoryCount < 10) fpsHistoryCount++;
-
-    double sum = 0.0;
-    for (int i = 0; i < fpsHistoryCount; i++) sum += fpsHistory[i];
-    fpsCount = sum / fpsHistoryCount;
-  }
-
-  showfps = REXCVAR_GET(show_fps_overlay);
-
-  /*
-  lightMainWorkspace_s* workspace = reinterpret_cast<lightMainWorkspace_s*>(0x100000000ull + 0x82C3C010);
-  workspace->dirLight.col = {
-      to_byteswapped_float(static_cast<float>((REXCVAR_GET(directionalColor) >> 24) & 0xFF) / 255.0f),
-      to_byteswapped_float(static_cast<float>((REXCVAR_GET(directionalColor) >> 16) & 0xFF) / 255.0f),
-      to_byteswapped_float(static_cast<float>((REXCVAR_GET(directionalColor) >> 8) & 0xFF) / 255.0f),
-      to_byteswapped_float(static_cast<float>((REXCVAR_GET(directionalColor)) & 0xFF) / 255.0f)
-  };
-   workspace->ambientCol = {
-      to_byteswapped_float(static_cast<float>((REXCVAR_GET(ambientColor) >> 24) & 0xFF) / 255.0f),
-      to_byteswapped_float(static_cast<float>((REXCVAR_GET(ambientColor) >> 16) & 0xFF) / 255.0f),
-      to_byteswapped_float(static_cast<float>((REXCVAR_GET(ambientColor) >> 8) & 0xFF) / 255.0f),
-      to_byteswapped_float(static_cast<float>((REXCVAR_GET(ambientColor)) & 0xFF) / 255.0f)
-  };
-   workspace->modelAmbientCol = {
-      to_byteswapped_float(static_cast<float>((REXCVAR_GET(ambientModelColor) >> 24) & 0xFF) / 255.0f),
-      to_byteswapped_float(static_cast<float>((REXCVAR_GET(ambientModelColor) >> 16) & 0xFF) / 255.0f),
-      to_byteswapped_float(static_cast<float>((REXCVAR_GET(ambientModelColor) >> 8) & 0xFF) / 255.0f),
-      to_byteswapped_float(static_cast<float>((REXCVAR_GET(ambientModelColor)) & 0xFF) / 255.0f)
-  };
-
-  workspace->fogCol = {
-      to_byteswapped_float(static_cast<float>((REXCVAR_GET(fogColor) >> 24) & 0xFF) / 255.0f),
-      to_byteswapped_float(static_cast<float>((REXCVAR_GET(fogColor) >> 16) & 0xFF) / 255.0f),
-      to_byteswapped_float(static_cast<float>((REXCVAR_GET(fogColor) >> 8) & 0xFF) / 255.0f),
-      to_byteswapped_float(static_cast<float>((REXCVAR_GET(fogColor)) & 0xFF) / 255.0f)
-  };
-  workspace->fogOpacity = to_byteswapped_float(static_cast<float>(REXCVAR_GET(fogOpacity)));
-  workspace->blueShiftScalar = to_byteswapped_float(static_cast<float>(REXCVAR_GET(blueShiftScalar)));
-  workspace->cubeFogEnabled = REXCVAR_GET(cubeFogEnabled) ? 1 : 0;
-  */
+void CPU_fps_hook() {
+  fpsManager.showFPS = REXCVAR_GET(show_fps);
+  auto fpshook = fpsManager.GetCreateCounter("CPU");
+  fpshook->Tick();
 }
 
-bool PresentParams_hook(PPCRegister& r11) {
-  //r11.u32 is a * to a _D3DPRESENT_PARAMETERS_ struct
-  if(r11.u32 == 0) {
-    return false;
-  }
-  _D3DPRESENT_PARAMETERS_* params = reinterpret_cast<_D3DPRESENT_PARAMETERS_*>(0x100000000ull + r11.u32);
-
-  
-  auto bs = [](uint32_t v) { return std::byteswap(v); };
-  auto bsi = [](int v) { return static_cast<int>(std::byteswap(static_cast<uint32_t>(v))); };
-
-  params->FullScreen_RefreshRateInHz = bs(164);
-  params->PresentationInterval = bs(0); // D3DPRESENT_INTERVAL_ONE
-  if(REXCVAR_GET(lock_fps)) {
-    params->PresentationInterval = bs(2); // D3DPRESENT_INTERVAL_TWO
-  }
-
-  //params->BackBufferHeight = bs(1080);
-  //params->BackBufferWidth = bs(1920);
-  return false;
+void GPU_fps_hook() {
+  auto fpshook = fpsManager.GetCreateCounter("GPU");
+  fpshook->Tick();
 }
 
-void PresentParams2_hook(PPCRegister& r3){
-   // Guest memory is big-endian (PPC), byte-swap each 32-bit field for host (x86)
-  auto bs = [](uint32_t v) { return std::byteswap(v); };
-  auto bsi = [](int v) { return static_cast<int>(std::byteswap(static_cast<uint32_t>(v))); };
+/*
+PPC_EXTERN_IMPORT(__imp__rex_appMainTickPreDraw_821C91C0);
+PPC_EXTERN_IMPORT(__imp__rex_appMainDraw_821C8E78);
+void MainLoop_hook() {
+  using clock = std::chrono::steady_clock;
 
-  //r3 is a * to video parameters struct
-  if(r3.u32 == 0) {
-    return;
+  auto last_cpu_tick = clock::now();
+  auto last_gpu_draw = clock::now();
+  auto cpu_accumulator = clock::duration::zero();
+
+  int Run = 1;
+  while (Run) {
+    auto now = clock::now();
+
+    // CPU tick rate from cvar (0 = unlimited)
+    int32_t cpuLimit = REXCVAR_GET(maxCPU);
+    if (cpuLimit > 0) {
+      auto cpu_interval = std::chrono::duration_cast<clock::duration>(
+          std::chrono::duration<double>(1.0 / cpuLimit));
+      cpu_accumulator += now - last_cpu_tick;
+      last_cpu_tick = now;
+
+      while (cpu_accumulator >= cpu_interval) {
+        Run = rex ::GuestToHostFunction<int>(__imp__rex_appMainTickPreDraw_821C91C0);
+        TriggerReadCallback();
+        cpu_accumulator -= cpu_interval;
+        if (!Run) break;
+      }
+    } else {
+      Run = rex ::GuestToHostFunction<int>(__imp__rex_appMainTickPreDraw_821C91C0);
+      TriggerReadCallback();
+    }
+
+    // GPU draw rate from cvar (0 = unlimited)
+    if (Run) {
+      int32_t gpuLimit = REXCVAR_GET(maxGPU);
+      if (gpuLimit > 0) {
+        auto gpu_interval = std::chrono::duration_cast<clock::duration>(
+            std::chrono::duration<double>(1.0 / gpuLimit));
+        auto gpu_elapsed = now - last_gpu_draw;
+        if (gpu_elapsed >= gpu_interval) {
+          rex ::GuestToHostFunction<void>(__imp__rex_appMainDraw_821C8E78);
+          last_gpu_draw = now;
+        }
+      } else {
+        rex ::GuestToHostFunction<void>(__imp__rex_appMainDraw_821C8E78);
+      }
+    }
+
+    if (cpuLimit > 0 || REXCVAR_GET(maxGPU) > 0) {
+      std::this_thread::yield();
+    }
   }
-  videoParams_s* params = reinterpret_cast<videoParams_s*>(0x100000000ull + r3.u32);
-  params->resolutionType = bs(2);
-  //params->width = bs(1920);
-  //params->height = bs(1080);
-  params->refreshRateHZ = bs(164);
-  params->presentInterval = bs(0); // D3DPRESENT_INTERVAL_ONE
-  if(REXCVAR_GET(lock_fps)) {
-    params->presentInterval = bs(2); // D3DPRESENT_INTERVAL_TWO
-  }
-  params->presentImmediately = bs(1); // TRUE
 }
-
+*/
 
 void vsync_hook(PPCRegister& r10) {
   if(!REXCVAR_GET(lock_fps)) {

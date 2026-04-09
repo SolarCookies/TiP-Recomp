@@ -4954,7 +4954,7 @@ PPC_FUNC_IMPL(__imp__sub_826EC4F8) {
 	ctx.r31.u64 = ctx.r10.u64;
 	// bl 0x8265c288
 	ctx.lr = 0x826EC524;
-	sub_8265C288(ctx, base);
+	rex_D3DDevice_CreateTexture_8265C288(ctx, base);
 	// stw r3,0(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 0, ctx.r3.u32);
 	// cmplwi r3,0
@@ -5009,7 +5009,7 @@ PPC_FUNC_IMPL(__imp__sub_826EC558) {
 	PPC_STORE_U32(ctx.r1.u32 + 92, ctx.r31.u32);
 	// bl 0x82666118
 	ctx.lr = 0x826EC580;
-	rex_IDirect3DDevice9_Resolve(ctx, base);
+	rex_IDirect3DDevice9_Resolve_82666118(ctx, base);
 	// li r3,0
 	ctx.r3.s64 = 0;
 	// addi r1,r1,128
@@ -5121,7 +5121,7 @@ PPC_FUNC_IMPL(__imp__sub_826EC610) {
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r3.u32 + 12);
 	// bl 0x826582b8
 	ctx.lr = 0x826EC624;
-	rex_IDirect3DDevice9_SetRenderTarget(ctx, base);
+	rex_IDirect3DDevice9_SetRenderTarget_826582B8(ctx, base);
 	// li r3,0
 	ctx.r3.s64 = 0;
 	// addi r1,r1,96
@@ -5239,7 +5239,7 @@ PPC_FUNC_IMPL(__imp__sub_826EC6B8) {
 	ctx.r31.u64 = ctx.r5.u64;
 	// bl 0x8265e578
 	ctx.lr = 0x826EC6D4;
-	sub_8265E578(ctx, base);
+	rex_D3DDevice_CreateVertexShader_8265E578(ctx, base);
 	// stw r3,0(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 0, ctx.r3.u32);
 	// cmplwi r3,0
@@ -5288,7 +5288,7 @@ PPC_FUNC_IMPL(__imp__sub_826EC708) {
 	ctx.r31.u64 = ctx.r5.u64;
 	// bl 0x8265e1b0
 	ctx.lr = 0x826EC724;
-	sub_8265E1B0(ctx, base);
+	rex_D3DDevice_CreatePixelShader_8265E1B0(ctx, base);
 	// stw r3,0(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 0, ctx.r3.u32);
 	// cmplwi r3,0
@@ -17265,7 +17265,7 @@ loc_826F160C:
 	ctx.f1.f64 = double(float(ctx.f0.f64 / ctx.f13.f64));
 	// bl 0x82ae3518
 	ctx.lr = 0x826F161C;
-	sub_82AE3518(ctx, base);
+	rex_tan_82AE3518(ctx, base);
 	// frsp f12,f1
 	ctx.fpscr.disableFlushMode();
 	ctx.f12.f64 = double(float(ctx.f1.f64));
@@ -17958,7 +17958,7 @@ loc_826F1A6C:
 	ctx.f1.f64 = double(float(ctx.f7.f64 / ctx.f8.f64));
 	// bl 0x82ae3518
 	ctx.lr = 0x826F1AAC;
-	sub_82AE3518(ctx, base);
+	rex_tan_82AE3518(ctx, base);
 	// frsp f30,f1
 	ctx.fpscr.disableFlushMode();
 	ctx.f30.f64 = double(float(ctx.f1.f64));
@@ -18705,7 +18705,7 @@ PPC_FUNC_IMPL(__imp__sub_826F1F50) {
 	ctx.r31.u64 = ctx.r4.u64;
 	// bl 0x82ade0b0
 	ctx.lr = 0x826F1F6C;
-	sub_82ADE0B0(ctx, base);
+	rex_operator_new_82ADE0B0(ctx, base);
 	// cmplwi cr6,r3,0
 	ctx.cr6.compare<uint32_t>(ctx.r3.u32, 0, ctx.xer);
 	// beq cr6,0x826f1fa0
@@ -18969,7 +18969,7 @@ PPC_FUNC_IMPL(__imp__sub_826F20C0) {
 loc_826F2128:
 	// bl 0x82b04f08
 	ctx.lr = 0x826F212C;
-	sub_82B04F08(ctx, base);
+	rex_GetTickCount(ctx, base);
 	// addi r1,r1,96
 	ctx.r1.s64 = ctx.r1.s64 + 96;
 	// lwz r12,-8(r1)
@@ -18998,7 +18998,7 @@ PPC_FUNC_IMPL(__imp__sub_826F2140) {
 	ctx.r31.u64 = ctx.r3.u64;
 	// bl 0x82b0a910
 	ctx.lr = 0x826F2158;
-	sub_82B0A910(ctx, base);
+	rex_GetCurrentThreadId_82B0A910(ctx, base);
 	// lwz r11,72(r31)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 72);
 	// addi r8,r1,80
@@ -24727,7 +24727,7 @@ loc_826F483C:
 	if (ctx.cr6.eq) goto loc_826F489C;
 	// bl 0x82b0a910
 	ctx.lr = 0x826F4854;
-	sub_82B0A910(ctx, base);
+	rex_GetCurrentThreadId_82B0A910(ctx, base);
 	// addi r30,r31,72
 	ctx.r30.s64 = ctx.r31.s64 + 72;
 loc_826F4858:
@@ -42672,7 +42672,7 @@ loc_826FBFE0:
 	ctx.r3.s64 = 44;
 	// bl 0x82ade0b0
 	ctx.lr = 0x826FBFF4;
-	sub_82ADE0B0(ctx, base);
+	rex_operator_new_82ADE0B0(ctx, base);
 	// mr r31,r3
 	ctx.r31.u64 = ctx.r3.u64;
 	// cmplwi cr6,r31,0
@@ -46179,7 +46179,7 @@ loc_826FD730:
 	ctx.r3.s64 = 60;
 	// bl 0x82ade0b0
 	ctx.lr = 0x826FD744;
-	sub_82ADE0B0(ctx, base);
+	rex_operator_new_82ADE0B0(ctx, base);
 	// mr r31,r3
 	ctx.r31.u64 = ctx.r3.u64;
 	// cmplwi cr6,r31,0
@@ -49719,7 +49719,7 @@ PPC_FUNC_IMPL(__imp__sub_826FEE90) {
 	ctx.r3.s64 = 4;
 	// bl 0x82ade0b0
 	ctx.lr = 0x826FEEDC;
-	sub_82ADE0B0(ctx, base);
+	rex_operator_new_82ADE0B0(ctx, base);
 	// b 0x826fef1c
 	goto loc_826FEF1C;
 loc_826FEEE0:
@@ -52609,7 +52609,7 @@ PPC_FUNC_IMPL(__imp__sub_827001F0) {
 	ctx.r3.s64 = 4;
 	// bl 0x82ade0b0
 	ctx.lr = 0x8270023C;
-	sub_82ADE0B0(ctx, base);
+	rex_operator_new_82ADE0B0(ctx, base);
 	// b 0x8270027c
 	goto loc_8270027C;
 loc_82700240:
@@ -56013,7 +56013,7 @@ PPC_FUNC_IMPL(__imp__sub_82701910) {
 	if (!ctx.cr6.eq) goto loc_82701980;
 	// bl 0x82b04380
 	ctx.lr = 0x82701954;
-	sub_82B04380(ctx, base);
+	rex_GetLastError_82B04380(ctx, base);
 	// cmpwi cr6,r3,997
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 997, ctx.xer);
 	// beq cr6,0x82701980
