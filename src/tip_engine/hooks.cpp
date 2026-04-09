@@ -442,11 +442,15 @@ bool skip_entityAvatarPinataSeedBigBrotherSaysYes_hook() {
 }
 
 void one_hook(){
+#ifndef __linux__
   REXCVAR_SET(d3d12_readback_resolve, true);
+#endif
 }
 
 void two_hook(){
+#ifndef __linux__
   REXCVAR_SET(d3d12_readback_resolve, false);
+#endif
 }
 
 bool skipFirstDraw_hook(){
