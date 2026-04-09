@@ -14,7 +14,7 @@ inline void strncpy_s_MultiPlatform(char* dest, size_t destSize, const char* src
 }
 
 
-enum DebugInfoType_e : __int32
+enum DebugInfoType_e : uint32_t
 {
     Bool = 0x0,
     Int = 0x1,
