@@ -5,6 +5,7 @@ on:
     branches: ["**"]
     tags:
       - "[0-9]*.[0-9]*"
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -24,9 +25,33 @@ jobs:
             binary: out\build\win-amd64-relwithdebinfo\retip.exe
             artifact: retip-windows-x64.exe
 
+          - platform: linux
+            arch: x64
+            runner: ubuntu-latest
+            preset: linux-amd64-relwithdebinfo
+            binary: out/build/linux-amd64-relwithdebinfo/retip
+            artifact: retip-linux-x64
+
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+
+      # ── Linux x64 ──────────────────────────────────────────────────────────
+      - name: Install dependencies (Linux)
+        if: matrix.platform == 'linux'
+        run: |
+          wget -qO- https://apt.llvm.org/llvm.sh | sudo bash -s -- 20
+          sudo apt-get install -y ninja-build libgtk-3-dev libx11-xcb-dev
+
+      - name: Download rexglue SDK (Linux x64)
+        if: matrix.platform == 'linux' && matrix.arch == 'x64'
+        run: |
+          curl -L "https://github.com/rexglue/rexglue-sdk/releases/download/v0.7.2/rexglue-sdk-linux-amd64.zip" -o rexglue-sdk.zip
+          unzip rexglue-sdk.zip -d rexglue-install
+
+      - name: Configure CMake (Linux)
+        if: matrix.platform == 'linux'
+        run: cmake --preset ${{ matrix.preset }} -DCMAKE_PREFIX_PATH="${{ github.workspace }}/rexglue-install/linux-amd64"
 
       # ── Windows x64 ────────────────────────────────────────────────────────
       - name: Install Ninja (Windows)
@@ -48,11 +73,15 @@ jobs:
       - name: Build
         run: cmake --build --preset ${{ matrix.preset }}
 
+      - name: Rename binary
+        run: cp "${{ matrix.binary }}" "${{ matrix.artifact }}"
+        shell: bash
+
       - name: Upload binary
         uses: actions/upload-artifact@v7
         with:
           name: ${{ matrix.artifact }}
-          path: ${{ matrix.binary }}
+          path: ${{ matrix.artifact }}
 
   release:
     name: Create Release
@@ -77,7 +106,7 @@ jobs:
         run: |
           shopt -s globstar
           gh release create "${{ github.ref_name }}" \
-            --title "ReTiP Launcher ${{ github.ref_name }}" \
-            --generate-notes \
+            --title "ReTiP ${{ github.ref_name }}" \
+            --notes "Download and install through the https://goopie.xyz Launcher" \
             artifacts/**/* \
             retip.toml
