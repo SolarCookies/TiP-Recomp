@@ -20,3 +20,4 @@
 0x82365f98 = {} #Accessory pinata select crash fix
 0x82352120 = {} #Storing medicine in store building crash fix
 0x825d13f8 = {} #Deliver Trap crash Fix
+0x823331c8 = {} #Packing Eggs crash fix

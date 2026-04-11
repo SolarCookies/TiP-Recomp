@@ -25,3 +25,5 @@ assets/default.xex_functions.csv
 out/build/win-amd64-relwithdebinfo/retip.pdb
 /Shaders
 TiP-Recomp.code-workspace
+retip.exe
+retip.pdb

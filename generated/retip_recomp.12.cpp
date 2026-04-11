@@ -67305,6 +67305,25 @@ loc_823331C0:
 	goto loc_82333164;
 }
 
+__attribute__((alias("__imp__sub_823331C8"))) PPC_WEAK_FUNC(sub_823331C8);
+PPC_FUNC_IMPL(__imp__sub_823331C8) {
+	PPC_FUNC_PROLOGUE();
+	// lis r11,-31780
+	ctx.r11.s64 = -2082734080;
+	// addi r10,r11,-7312
+	ctx.r10.s64 = ctx.r11.s64 + -7312;
+	// lwz r11,280(r10)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r10.u32 + 280);
+	// lwz r10,-2968(r10)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r10.u32 + -2968);
+	// add r11,r11,r10
+	ctx.r11.u64 = ctx.r11.u64 + ctx.r10.u64;
+	// addi r3,r11,5
+	ctx.r3.s64 = ctx.r11.s64 + 5;
+	// blr 
+	return;
+}
+
 __attribute__((alias("__imp__sub_823331E8"))) PPC_WEAK_FUNC(sub_823331E8);
 PPC_FUNC_IMPL(__imp__sub_823331E8) {
 	PPC_FUNC_PROLOGUE();
