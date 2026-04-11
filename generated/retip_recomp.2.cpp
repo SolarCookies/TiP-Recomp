@@ -38633,7 +38633,7 @@ PPC_FUNC_IMPL(__imp__rex_meConstructClippingFrustum_821F0ED8) {
 	ctx.f1.f64 = ctx.f0.f64;
 	// bl 0x8228be08
 	ctx.lr = 0x821F0F20;
-	sub_8228BE08(ctx, base);
+	rex_supportFrustumConstructClippingFrustum_8228BE08(ctx, base);
 loc_821F0F20:
 	// addi r1,r1,96
 	ctx.r1.s64 = ctx.r1.s64 + 96;
@@ -70537,10 +70537,12 @@ loc_821FE068:
 	// blt cr6,0x821fe260
 	if (ctx.cr6.lt) goto loc_821FE260;
 	// vslw128 v38,v62,v62
-	ctx.v38.u32[0] = ctx.v62.u32[0] << (ctx.v62.u8[0] & 0x1F);
-	ctx.v38.u32[1] = ctx.v62.u32[1] << (ctx.v62.u8[4] & 0x1F);
-	ctx.v38.u32[2] = ctx.v62.u32[2] << (ctx.v62.u8[8] & 0x1F);
-	ctx.v38.u32[3] = ctx.v62.u32[3] << (ctx.v62.u8[12] & 0x1F);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v62.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v62.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi32(0x1F));
+		simde_mm_store_si128((simde__m128i*)ctx.v38.u8, simde_mm_sllv_epi32(a, shift));
+	}
 	// vpermwi128 v37,v13,135
 	simde_mm_store_si128((simde__m128i*)ctx.v37.u32, simde_mm_shuffle_epi32(simde_mm_load_si128((simde__m128i*)ctx.v13.u32), 0x78));
 	// vpermwi128 v8,v13,99

@@ -15,7 +15,6 @@
 #include "Webcam.h"
 
 
-
 class RetipApp : public rex::ReXApp {
  public:
   using rex::ReXApp::ReXApp;

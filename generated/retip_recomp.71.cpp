@@ -547,34 +547,28 @@ loc_82A3B238:
 	ea = (ctx.r22.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)ctx.v0.u8, simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)PPC_RAW_ADDR(ea)), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
 	// vsrah v28,v26,v9
-	ctx.v28.s16[0] = ctx.v26.s16[0] >> (ctx.v9.u16[0] & 0xF);
-	ctx.v28.s16[1] = ctx.v26.s16[1] >> (ctx.v9.u16[1] & 0xF);
-	ctx.v28.s16[2] = ctx.v26.s16[2] >> (ctx.v9.u16[2] & 0xF);
-	ctx.v28.s16[3] = ctx.v26.s16[3] >> (ctx.v9.u16[3] & 0xF);
-	ctx.v28.s16[4] = ctx.v26.s16[4] >> (ctx.v9.u16[4] & 0xF);
-	ctx.v28.s16[5] = ctx.v26.s16[5] >> (ctx.v9.u16[5] & 0xF);
-	ctx.v28.s16[6] = ctx.v26.s16[6] >> (ctx.v9.u16[6] & 0xF);
-	ctx.v28.s16[7] = ctx.v26.s16[7] >> (ctx.v9.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v26.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v28.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v26,v5,v9
-	ctx.v26.s16[0] = ctx.v5.s16[0] >> (ctx.v9.u16[0] & 0xF);
-	ctx.v26.s16[1] = ctx.v5.s16[1] >> (ctx.v9.u16[1] & 0xF);
-	ctx.v26.s16[2] = ctx.v5.s16[2] >> (ctx.v9.u16[2] & 0xF);
-	ctx.v26.s16[3] = ctx.v5.s16[3] >> (ctx.v9.u16[3] & 0xF);
-	ctx.v26.s16[4] = ctx.v5.s16[4] >> (ctx.v9.u16[4] & 0xF);
-	ctx.v26.s16[5] = ctx.v5.s16[5] >> (ctx.v9.u16[5] & 0xF);
-	ctx.v26.s16[6] = ctx.v5.s16[6] >> (ctx.v9.u16[6] & 0xF);
-	ctx.v26.s16[7] = ctx.v5.s16[7] >> (ctx.v9.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v5.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v26.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vaddshs v5,v3,v0
 	simde_mm_store_si128((simde__m128i*)ctx.v5.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v3.s16), simde_mm_load_si128((simde__m128i*)ctx.v0.s16)));
 	// vsrah v3,v2,v9
-	ctx.v3.s16[0] = ctx.v2.s16[0] >> (ctx.v9.u16[0] & 0xF);
-	ctx.v3.s16[1] = ctx.v2.s16[1] >> (ctx.v9.u16[1] & 0xF);
-	ctx.v3.s16[2] = ctx.v2.s16[2] >> (ctx.v9.u16[2] & 0xF);
-	ctx.v3.s16[3] = ctx.v2.s16[3] >> (ctx.v9.u16[3] & 0xF);
-	ctx.v3.s16[4] = ctx.v2.s16[4] >> (ctx.v9.u16[4] & 0xF);
-	ctx.v3.s16[5] = ctx.v2.s16[5] >> (ctx.v9.u16[5] & 0xF);
-	ctx.v3.s16[6] = ctx.v2.s16[6] >> (ctx.v9.u16[6] & 0xF);
-	ctx.v3.s16[7] = ctx.v2.s16[7] >> (ctx.v9.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v2.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v3.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vand128 v41,v28,v63
 	simde_mm_store_si128((simde__m128i*)ctx.v41.u8, simde_mm_and_si128(simde_mm_load_si128((simde__m128i*)ctx.v28.u8), simde_mm_load_si128((simde__m128i*)ctx.v63.u8)));
 	// vand128 v40,v26,v63
@@ -583,14 +577,12 @@ loc_82A3B238:
 	ea = (ctx.r26.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)ctx.v26.u8, simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)PPC_RAW_ADDR(ea)), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
 	// vsrah v2,v5,v9
-	ctx.v2.s16[0] = ctx.v5.s16[0] >> (ctx.v9.u16[0] & 0xF);
-	ctx.v2.s16[1] = ctx.v5.s16[1] >> (ctx.v9.u16[1] & 0xF);
-	ctx.v2.s16[2] = ctx.v5.s16[2] >> (ctx.v9.u16[2] & 0xF);
-	ctx.v2.s16[3] = ctx.v5.s16[3] >> (ctx.v9.u16[3] & 0xF);
-	ctx.v2.s16[4] = ctx.v5.s16[4] >> (ctx.v9.u16[4] & 0xF);
-	ctx.v2.s16[5] = ctx.v5.s16[5] >> (ctx.v9.u16[5] & 0xF);
-	ctx.v2.s16[6] = ctx.v5.s16[6] >> (ctx.v9.u16[6] & 0xF);
-	ctx.v2.s16[7] = ctx.v5.s16[7] >> (ctx.v9.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v5.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v2.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vand128 v39,v3,v63
 	simde_mm_store_si128((simde__m128i*)ctx.v39.u8, simde_mm_and_si128(simde_mm_load_si128((simde__m128i*)ctx.v3.u8), simde_mm_load_si128((simde__m128i*)ctx.v63.u8)));
 	// vaddshs v28,v4,v4
@@ -616,36 +608,30 @@ loc_82A3B238:
 	// vaddshs v30,v28,v26
 	simde_mm_store_si128((simde__m128i*)ctx.v30.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v28.s16), simde_mm_load_si128((simde__m128i*)ctx.v26.s16)));
 	// vsrah v29,v3,v9
-	ctx.v29.s16[0] = ctx.v3.s16[0] >> (ctx.v9.u16[0] & 0xF);
-	ctx.v29.s16[1] = ctx.v3.s16[1] >> (ctx.v9.u16[1] & 0xF);
-	ctx.v29.s16[2] = ctx.v3.s16[2] >> (ctx.v9.u16[2] & 0xF);
-	ctx.v29.s16[3] = ctx.v3.s16[3] >> (ctx.v9.u16[3] & 0xF);
-	ctx.v29.s16[4] = ctx.v3.s16[4] >> (ctx.v9.u16[4] & 0xF);
-	ctx.v29.s16[5] = ctx.v3.s16[5] >> (ctx.v9.u16[5] & 0xF);
-	ctx.v29.s16[6] = ctx.v3.s16[6] >> (ctx.v9.u16[6] & 0xF);
-	ctx.v29.s16[7] = ctx.v3.s16[7] >> (ctx.v9.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v3.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v29.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vxor128 v37,v40,v44
 	simde_mm_store_si128((simde__m128i*)ctx.v37.u8, simde_mm_xor_si128(simde_mm_load_si128((simde__m128i*)ctx.v40.u8), simde_mm_load_si128((simde__m128i*)ctx.v44.u8)));
 	// vsrah v28,v2,v9
-	ctx.v28.s16[0] = ctx.v2.s16[0] >> (ctx.v9.u16[0] & 0xF);
-	ctx.v28.s16[1] = ctx.v2.s16[1] >> (ctx.v9.u16[1] & 0xF);
-	ctx.v28.s16[2] = ctx.v2.s16[2] >> (ctx.v9.u16[2] & 0xF);
-	ctx.v28.s16[3] = ctx.v2.s16[3] >> (ctx.v9.u16[3] & 0xF);
-	ctx.v28.s16[4] = ctx.v2.s16[4] >> (ctx.v9.u16[4] & 0xF);
-	ctx.v28.s16[5] = ctx.v2.s16[5] >> (ctx.v9.u16[5] & 0xF);
-	ctx.v28.s16[6] = ctx.v2.s16[6] >> (ctx.v9.u16[6] & 0xF);
-	ctx.v28.s16[7] = ctx.v2.s16[7] >> (ctx.v9.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v2.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v28.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vxor128 v32,v36,v47
 	simde_mm_store_si128((simde__m128i*)ctx.v32.u8, simde_mm_xor_si128(simde_mm_load_si128((simde__m128i*)ctx.v36.u8), simde_mm_load_si128((simde__m128i*)ctx.v47.u8)));
 	// vsrah v25,v30,v9
-	ctx.v25.s16[0] = ctx.v30.s16[0] >> (ctx.v9.u16[0] & 0xF);
-	ctx.v25.s16[1] = ctx.v30.s16[1] >> (ctx.v9.u16[1] & 0xF);
-	ctx.v25.s16[2] = ctx.v30.s16[2] >> (ctx.v9.u16[2] & 0xF);
-	ctx.v25.s16[3] = ctx.v30.s16[3] >> (ctx.v9.u16[3] & 0xF);
-	ctx.v25.s16[4] = ctx.v30.s16[4] >> (ctx.v9.u16[4] & 0xF);
-	ctx.v25.s16[5] = ctx.v30.s16[5] >> (ctx.v9.u16[5] & 0xF);
-	ctx.v25.s16[6] = ctx.v30.s16[6] >> (ctx.v9.u16[6] & 0xF);
-	ctx.v25.s16[7] = ctx.v30.s16[7] >> (ctx.v9.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v30.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v25.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vandc128 v33,v12,v63
 	simde_mm_store_si128((simde__m128i*)ctx.v33.u8, simde_mm_andnot_si128(simde_mm_load_si128((simde__m128i*)ctx.v63.u8), simde_mm_load_si128((simde__m128i*)ctx.v12.u8)));
 	// vpkshus128 v34,v37,v37
@@ -657,14 +643,12 @@ loc_82A3B238:
 	// vpkshus128 v60,v32,v32
 	simde_mm_store_si128((simde__m128i*)ctx.v60.u8, simde_mm_packus_epi16(simde_mm_load_si128((simde__m128i*)ctx.v32.s16), simde_mm_load_si128((simde__m128i*)ctx.v32.s16)));
 	// vsrah v26,v31,v9
-	ctx.v26.s16[0] = ctx.v31.s16[0] >> (ctx.v9.u16[0] & 0xF);
-	ctx.v26.s16[1] = ctx.v31.s16[1] >> (ctx.v9.u16[1] & 0xF);
-	ctx.v26.s16[2] = ctx.v31.s16[2] >> (ctx.v9.u16[2] & 0xF);
-	ctx.v26.s16[3] = ctx.v31.s16[3] >> (ctx.v9.u16[3] & 0xF);
-	ctx.v26.s16[4] = ctx.v31.s16[4] >> (ctx.v9.u16[4] & 0xF);
-	ctx.v26.s16[5] = ctx.v31.s16[5] >> (ctx.v9.u16[5] & 0xF);
-	ctx.v26.s16[6] = ctx.v31.s16[6] >> (ctx.v9.u16[6] & 0xF);
-	ctx.v26.s16[7] = ctx.v31.s16[7] >> (ctx.v9.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v31.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v26.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vandc128 v61,v10,v63
 	simde_mm_store_si128((simde__m128i*)ctx.v61.u8, simde_mm_andnot_si128(simde_mm_load_si128((simde__m128i*)ctx.v63.u8), simde_mm_load_si128((simde__m128i*)ctx.v10.u8)));
 	// vand128 v58,v28,v63
@@ -776,23 +760,19 @@ loc_82A3B49C:
 	// vsubshs v6,v12,v6
 	simde_mm_store_si128((simde__m128i*)ctx.v6.s16, simde_mm_subs_epi16(simde_mm_load_si128((simde__m128i*)ctx.v12.s16), simde_mm_load_si128((simde__m128i*)ctx.v6.s16)));
 	// vslh v3,v23,v21
-	ctx.v3.u16[0] = ctx.v23.u16[0] << (ctx.v21.u16[0] & 0xF);
-	ctx.v3.u16[1] = ctx.v23.u16[1] << (ctx.v21.u16[1] & 0xF);
-	ctx.v3.u16[2] = ctx.v23.u16[2] << (ctx.v21.u16[2] & 0xF);
-	ctx.v3.u16[3] = ctx.v23.u16[3] << (ctx.v21.u16[3] & 0xF);
-	ctx.v3.u16[4] = ctx.v23.u16[4] << (ctx.v21.u16[4] & 0xF);
-	ctx.v3.u16[5] = ctx.v23.u16[5] << (ctx.v21.u16[5] & 0xF);
-	ctx.v3.u16[6] = ctx.v23.u16[6] << (ctx.v21.u16[6] & 0xF);
-	ctx.v3.u16[7] = ctx.v23.u16[7] << (ctx.v21.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v23.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v21.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v3.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v2,v24,v21
-	ctx.v2.u16[0] = ctx.v24.u16[0] << (ctx.v21.u16[0] & 0xF);
-	ctx.v2.u16[1] = ctx.v24.u16[1] << (ctx.v21.u16[1] & 0xF);
-	ctx.v2.u16[2] = ctx.v24.u16[2] << (ctx.v21.u16[2] & 0xF);
-	ctx.v2.u16[3] = ctx.v24.u16[3] << (ctx.v21.u16[3] & 0xF);
-	ctx.v2.u16[4] = ctx.v24.u16[4] << (ctx.v21.u16[4] & 0xF);
-	ctx.v2.u16[5] = ctx.v24.u16[5] << (ctx.v21.u16[5] & 0xF);
-	ctx.v2.u16[6] = ctx.v24.u16[6] << (ctx.v21.u16[6] & 0xF);
-	ctx.v2.u16[7] = ctx.v24.u16[7] << (ctx.v21.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v24.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v21.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v2.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vsubshs v11,v11,v10
 	simde_mm_store_si128((simde__m128i*)ctx.v11.s16, simde_mm_subs_epi16(simde_mm_load_si128((simde__m128i*)ctx.v11.s16), simde_mm_load_si128((simde__m128i*)ctx.v10.s16)));
 	// vaddshs v31,v8,v8
@@ -804,14 +784,12 @@ loc_82A3B49C:
 	// vaddshs v30,v6,v6
 	simde_mm_store_si128((simde__m128i*)ctx.v30.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v6.s16), simde_mm_load_si128((simde__m128i*)ctx.v6.s16)));
 	// vslh v26,v27,v21
-	ctx.v26.u16[0] = ctx.v27.u16[0] << (ctx.v21.u16[0] & 0xF);
-	ctx.v26.u16[1] = ctx.v27.u16[1] << (ctx.v21.u16[1] & 0xF);
-	ctx.v26.u16[2] = ctx.v27.u16[2] << (ctx.v21.u16[2] & 0xF);
-	ctx.v26.u16[3] = ctx.v27.u16[3] << (ctx.v21.u16[3] & 0xF);
-	ctx.v26.u16[4] = ctx.v27.u16[4] << (ctx.v21.u16[4] & 0xF);
-	ctx.v26.u16[5] = ctx.v27.u16[5] << (ctx.v21.u16[5] & 0xF);
-	ctx.v26.u16[6] = ctx.v27.u16[6] << (ctx.v21.u16[6] & 0xF);
-	ctx.v26.u16[7] = ctx.v27.u16[7] << (ctx.v21.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v27.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v21.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v26.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vaddshs v25,v11,v11
 	simde_mm_store_si128((simde__m128i*)ctx.v25.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v11.s16), simde_mm_load_si128((simde__m128i*)ctx.v11.s16)));
 	// vsubshs v24,v31,v29
@@ -837,14 +815,12 @@ loc_82A3B49C:
 	// vaddshs v10,v2,v9
 	simde_mm_store_si128((simde__m128i*)ctx.v10.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v2.s16), simde_mm_load_si128((simde__m128i*)ctx.v9.s16)));
 	// vsrah v11,v27,v18
-	ctx.v11.s16[0] = ctx.v27.s16[0] >> (ctx.v18.u16[0] & 0xF);
-	ctx.v11.s16[1] = ctx.v27.s16[1] >> (ctx.v18.u16[1] & 0xF);
-	ctx.v11.s16[2] = ctx.v27.s16[2] >> (ctx.v18.u16[2] & 0xF);
-	ctx.v11.s16[3] = ctx.v27.s16[3] >> (ctx.v18.u16[3] & 0xF);
-	ctx.v11.s16[4] = ctx.v27.s16[4] >> (ctx.v18.u16[4] & 0xF);
-	ctx.v11.s16[5] = ctx.v27.s16[5] >> (ctx.v18.u16[5] & 0xF);
-	ctx.v11.s16[6] = ctx.v27.s16[6] >> (ctx.v18.u16[6] & 0xF);
-	ctx.v11.s16[7] = ctx.v27.s16[7] >> (ctx.v18.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v27.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v18.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v11.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vmaxsh v28,v8,v31
 	simde_mm_store_si128((simde__m128i*)ctx.v28.s16, simde_mm_max_epi16(simde_mm_load_si128((simde__m128i*)ctx.v8.s16), simde_mm_load_si128((simde__m128i*)ctx.v31.s16)));
 	// vmaxsh v27,v6,v30
@@ -852,56 +828,46 @@ loc_82A3B49C:
 	// vsubshs v26,v0,v10
 	simde_mm_store_si128((simde__m128i*)ctx.v26.s16, simde_mm_subs_epi16(simde_mm_load_si128((simde__m128i*)ctx.v0.s16), simde_mm_load_si128((simde__m128i*)ctx.v10.s16)));
 	// vsrah v25,v10,v18
-	ctx.v25.s16[0] = ctx.v10.s16[0] >> (ctx.v18.u16[0] & 0xF);
-	ctx.v25.s16[1] = ctx.v10.s16[1] >> (ctx.v18.u16[1] & 0xF);
-	ctx.v25.s16[2] = ctx.v10.s16[2] >> (ctx.v18.u16[2] & 0xF);
-	ctx.v25.s16[3] = ctx.v10.s16[3] >> (ctx.v18.u16[3] & 0xF);
-	ctx.v25.s16[4] = ctx.v10.s16[4] >> (ctx.v18.u16[4] & 0xF);
-	ctx.v25.s16[5] = ctx.v10.s16[5] >> (ctx.v18.u16[5] & 0xF);
-	ctx.v25.s16[6] = ctx.v10.s16[6] >> (ctx.v18.u16[6] & 0xF);
-	ctx.v25.s16[7] = ctx.v10.s16[7] >> (ctx.v18.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v10.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v18.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v25.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v24,v28,v7
-	ctx.v24.s16[0] = ctx.v28.s16[0] >> (ctx.v7.u16[0] & 0xF);
-	ctx.v24.s16[1] = ctx.v28.s16[1] >> (ctx.v7.u16[1] & 0xF);
-	ctx.v24.s16[2] = ctx.v28.s16[2] >> (ctx.v7.u16[2] & 0xF);
-	ctx.v24.s16[3] = ctx.v28.s16[3] >> (ctx.v7.u16[3] & 0xF);
-	ctx.v24.s16[4] = ctx.v28.s16[4] >> (ctx.v7.u16[4] & 0xF);
-	ctx.v24.s16[5] = ctx.v28.s16[5] >> (ctx.v7.u16[5] & 0xF);
-	ctx.v24.s16[6] = ctx.v28.s16[6] >> (ctx.v7.u16[6] & 0xF);
-	ctx.v24.s16[7] = ctx.v28.s16[7] >> (ctx.v7.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v28.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v7.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v24.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v23,v27,v7
-	ctx.v23.s16[0] = ctx.v27.s16[0] >> (ctx.v7.u16[0] & 0xF);
-	ctx.v23.s16[1] = ctx.v27.s16[1] >> (ctx.v7.u16[1] & 0xF);
-	ctx.v23.s16[2] = ctx.v27.s16[2] >> (ctx.v7.u16[2] & 0xF);
-	ctx.v23.s16[3] = ctx.v27.s16[3] >> (ctx.v7.u16[3] & 0xF);
-	ctx.v23.s16[4] = ctx.v27.s16[4] >> (ctx.v7.u16[4] & 0xF);
-	ctx.v23.s16[5] = ctx.v27.s16[5] >> (ctx.v7.u16[5] & 0xF);
-	ctx.v23.s16[6] = ctx.v27.s16[6] >> (ctx.v7.u16[6] & 0xF);
-	ctx.v23.s16[7] = ctx.v27.s16[7] >> (ctx.v7.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v27.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v7.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v23.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vmaxsh v13,v10,v26
 	simde_mm_store_si128((simde__m128i*)ctx.v13.s16, simde_mm_max_epi16(simde_mm_load_si128((simde__m128i*)ctx.v10.s16), simde_mm_load_si128((simde__m128i*)ctx.v26.s16)));
 	// vxor128 v42,v25,v11
 	simde_mm_store_si128((simde__m128i*)ctx.v42.u8, simde_mm_xor_si128(simde_mm_load_si128((simde__m128i*)ctx.v25.u8), simde_mm_load_si128((simde__m128i*)ctx.v11.u8)));
 	// vsrah v8,v29,v17
-	ctx.v8.s16[0] = ctx.v29.s16[0] >> (ctx.v17.u16[0] & 0xF);
-	ctx.v8.s16[1] = ctx.v29.s16[1] >> (ctx.v17.u16[1] & 0xF);
-	ctx.v8.s16[2] = ctx.v29.s16[2] >> (ctx.v17.u16[2] & 0xF);
-	ctx.v8.s16[3] = ctx.v29.s16[3] >> (ctx.v17.u16[3] & 0xF);
-	ctx.v8.s16[4] = ctx.v29.s16[4] >> (ctx.v17.u16[4] & 0xF);
-	ctx.v8.s16[5] = ctx.v29.s16[5] >> (ctx.v17.u16[5] & 0xF);
-	ctx.v8.s16[6] = ctx.v29.s16[6] >> (ctx.v17.u16[6] & 0xF);
-	ctx.v8.s16[7] = ctx.v29.s16[7] >> (ctx.v17.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v29.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v17.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v8.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vminsh v12,v24,v23
 	simde_mm_store_si128((simde__m128i*)ctx.v12.s16, simde_mm_min_epi16(simde_mm_load_si128((simde__m128i*)ctx.v24.s16), simde_mm_load_si128((simde__m128i*)ctx.v23.s16)));
 	// vsrah v13,v13,v7
-	ctx.v13.s16[0] = ctx.v13.s16[0] >> (ctx.v7.u16[0] & 0xF);
-	ctx.v13.s16[1] = ctx.v13.s16[1] >> (ctx.v7.u16[1] & 0xF);
-	ctx.v13.s16[2] = ctx.v13.s16[2] >> (ctx.v7.u16[2] & 0xF);
-	ctx.v13.s16[3] = ctx.v13.s16[3] >> (ctx.v7.u16[3] & 0xF);
-	ctx.v13.s16[4] = ctx.v13.s16[4] >> (ctx.v7.u16[4] & 0xF);
-	ctx.v13.s16[5] = ctx.v13.s16[5] >> (ctx.v7.u16[5] & 0xF);
-	ctx.v13.s16[6] = ctx.v13.s16[6] >> (ctx.v7.u16[6] & 0xF);
-	ctx.v13.s16[7] = ctx.v13.s16[7] >> (ctx.v7.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v7.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v13.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vandc128 v41,v42,v20
 	simde_mm_store_si128((simde__m128i*)ctx.v41.u8, simde_mm_andnot_si128(simde_mm_load_si128((simde__m128i*)ctx.v20.u8), simde_mm_load_si128((simde__m128i*)ctx.v42.u8)));
 	// vsubshs v10,v13,v12
@@ -911,27 +877,23 @@ loc_82A3B49C:
 	// vcmpgtsh v3,v13,v12
 	simde_mm_store_si128((simde__m128i*)ctx.v3.u8, simde_mm_cmpgt_epi16(simde_mm_load_si128((simde__m128i*)ctx.v13.u16), simde_mm_load_si128((simde__m128i*)ctx.v12.u16)));
 	// vslh v2,v10,v21
-	ctx.v2.u16[0] = ctx.v10.u16[0] << (ctx.v21.u16[0] & 0xF);
-	ctx.v2.u16[1] = ctx.v10.u16[1] << (ctx.v21.u16[1] & 0xF);
-	ctx.v2.u16[2] = ctx.v10.u16[2] << (ctx.v21.u16[2] & 0xF);
-	ctx.v2.u16[3] = ctx.v10.u16[3] << (ctx.v21.u16[3] & 0xF);
-	ctx.v2.u16[4] = ctx.v10.u16[4] << (ctx.v21.u16[4] & 0xF);
-	ctx.v2.u16[5] = ctx.v10.u16[5] << (ctx.v21.u16[5] & 0xF);
-	ctx.v2.u16[6] = ctx.v10.u16[6] << (ctx.v21.u16[6] & 0xF);
-	ctx.v2.u16[7] = ctx.v10.u16[7] << (ctx.v21.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v10.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v21.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v2.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vand128 v40,v6,v3
 	simde_mm_store_si128((simde__m128i*)ctx.v40.u8, simde_mm_and_si128(simde_mm_load_si128((simde__m128i*)ctx.v6.u8), simde_mm_load_si128((simde__m128i*)ctx.v3.u8)));
 	// vaddshs v31,v2,v10
 	simde_mm_store_si128((simde__m128i*)ctx.v31.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v2.s16), simde_mm_load_si128((simde__m128i*)ctx.v10.s16)));
 	// vsrah v30,v31,v7
-	ctx.v30.s16[0] = ctx.v31.s16[0] >> (ctx.v7.u16[0] & 0xF);
-	ctx.v30.s16[1] = ctx.v31.s16[1] >> (ctx.v7.u16[1] & 0xF);
-	ctx.v30.s16[2] = ctx.v31.s16[2] >> (ctx.v7.u16[2] & 0xF);
-	ctx.v30.s16[3] = ctx.v31.s16[3] >> (ctx.v7.u16[3] & 0xF);
-	ctx.v30.s16[4] = ctx.v31.s16[4] >> (ctx.v7.u16[4] & 0xF);
-	ctx.v30.s16[5] = ctx.v31.s16[5] >> (ctx.v7.u16[5] & 0xF);
-	ctx.v30.s16[6] = ctx.v31.s16[6] >> (ctx.v7.u16[6] & 0xF);
-	ctx.v30.s16[7] = ctx.v31.s16[7] >> (ctx.v7.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v31.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v7.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v30.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vand128 v39,v30,v40
 	simde_mm_store_si128((simde__m128i*)ctx.v39.u8, simde_mm_and_si128(simde_mm_load_si128((simde__m128i*)ctx.v30.u8), simde_mm_load_si128((simde__m128i*)ctx.v40.u8)));
 	// vand128 v38,v39,v40
@@ -1503,34 +1465,28 @@ loc_82A3B828:
 	ea = (ctx.r20.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)ctx.v0.u8, simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)PPC_RAW_ADDR(ea)), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
 	// vsrah v28,v26,v8
-	ctx.v28.s16[0] = ctx.v26.s16[0] >> (ctx.v8.u16[0] & 0xF);
-	ctx.v28.s16[1] = ctx.v26.s16[1] >> (ctx.v8.u16[1] & 0xF);
-	ctx.v28.s16[2] = ctx.v26.s16[2] >> (ctx.v8.u16[2] & 0xF);
-	ctx.v28.s16[3] = ctx.v26.s16[3] >> (ctx.v8.u16[3] & 0xF);
-	ctx.v28.s16[4] = ctx.v26.s16[4] >> (ctx.v8.u16[4] & 0xF);
-	ctx.v28.s16[5] = ctx.v26.s16[5] >> (ctx.v8.u16[5] & 0xF);
-	ctx.v28.s16[6] = ctx.v26.s16[6] >> (ctx.v8.u16[6] & 0xF);
-	ctx.v28.s16[7] = ctx.v26.s16[7] >> (ctx.v8.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v26.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v28.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v26,v5,v8
-	ctx.v26.s16[0] = ctx.v5.s16[0] >> (ctx.v8.u16[0] & 0xF);
-	ctx.v26.s16[1] = ctx.v5.s16[1] >> (ctx.v8.u16[1] & 0xF);
-	ctx.v26.s16[2] = ctx.v5.s16[2] >> (ctx.v8.u16[2] & 0xF);
-	ctx.v26.s16[3] = ctx.v5.s16[3] >> (ctx.v8.u16[3] & 0xF);
-	ctx.v26.s16[4] = ctx.v5.s16[4] >> (ctx.v8.u16[4] & 0xF);
-	ctx.v26.s16[5] = ctx.v5.s16[5] >> (ctx.v8.u16[5] & 0xF);
-	ctx.v26.s16[6] = ctx.v5.s16[6] >> (ctx.v8.u16[6] & 0xF);
-	ctx.v26.s16[7] = ctx.v5.s16[7] >> (ctx.v8.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v5.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v26.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vaddshs v5,v3,v0
 	simde_mm_store_si128((simde__m128i*)ctx.v5.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v3.s16), simde_mm_load_si128((simde__m128i*)ctx.v0.s16)));
 	// vsrah v3,v2,v8
-	ctx.v3.s16[0] = ctx.v2.s16[0] >> (ctx.v8.u16[0] & 0xF);
-	ctx.v3.s16[1] = ctx.v2.s16[1] >> (ctx.v8.u16[1] & 0xF);
-	ctx.v3.s16[2] = ctx.v2.s16[2] >> (ctx.v8.u16[2] & 0xF);
-	ctx.v3.s16[3] = ctx.v2.s16[3] >> (ctx.v8.u16[3] & 0xF);
-	ctx.v3.s16[4] = ctx.v2.s16[4] >> (ctx.v8.u16[4] & 0xF);
-	ctx.v3.s16[5] = ctx.v2.s16[5] >> (ctx.v8.u16[5] & 0xF);
-	ctx.v3.s16[6] = ctx.v2.s16[6] >> (ctx.v8.u16[6] & 0xF);
-	ctx.v3.s16[7] = ctx.v2.s16[7] >> (ctx.v8.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v2.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v3.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vand128 v44,v28,v63
 	simde_mm_store_si128((simde__m128i*)ctx.v44.u8, simde_mm_and_si128(simde_mm_load_si128((simde__m128i*)ctx.v28.u8), simde_mm_load_si128((simde__m128i*)ctx.v63.u8)));
 	// vand128 v43,v26,v63
@@ -1539,14 +1495,12 @@ loc_82A3B828:
 	ea = (ctx.r25.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)ctx.v26.u8, simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)PPC_RAW_ADDR(ea)), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
 	// vsrah v2,v5,v8
-	ctx.v2.s16[0] = ctx.v5.s16[0] >> (ctx.v8.u16[0] & 0xF);
-	ctx.v2.s16[1] = ctx.v5.s16[1] >> (ctx.v8.u16[1] & 0xF);
-	ctx.v2.s16[2] = ctx.v5.s16[2] >> (ctx.v8.u16[2] & 0xF);
-	ctx.v2.s16[3] = ctx.v5.s16[3] >> (ctx.v8.u16[3] & 0xF);
-	ctx.v2.s16[4] = ctx.v5.s16[4] >> (ctx.v8.u16[4] & 0xF);
-	ctx.v2.s16[5] = ctx.v5.s16[5] >> (ctx.v8.u16[5] & 0xF);
-	ctx.v2.s16[6] = ctx.v5.s16[6] >> (ctx.v8.u16[6] & 0xF);
-	ctx.v2.s16[7] = ctx.v5.s16[7] >> (ctx.v8.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v5.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v2.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vand128 v42,v3,v63
 	simde_mm_store_si128((simde__m128i*)ctx.v42.u8, simde_mm_and_si128(simde_mm_load_si128((simde__m128i*)ctx.v3.u8), simde_mm_load_si128((simde__m128i*)ctx.v63.u8)));
 	// vaddshs v28,v4,v4
@@ -1572,36 +1526,30 @@ loc_82A3B828:
 	// vaddshs v30,v28,v26
 	simde_mm_store_si128((simde__m128i*)ctx.v30.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v28.s16), simde_mm_load_si128((simde__m128i*)ctx.v26.s16)));
 	// vsrah v29,v3,v8
-	ctx.v29.s16[0] = ctx.v3.s16[0] >> (ctx.v8.u16[0] & 0xF);
-	ctx.v29.s16[1] = ctx.v3.s16[1] >> (ctx.v8.u16[1] & 0xF);
-	ctx.v29.s16[2] = ctx.v3.s16[2] >> (ctx.v8.u16[2] & 0xF);
-	ctx.v29.s16[3] = ctx.v3.s16[3] >> (ctx.v8.u16[3] & 0xF);
-	ctx.v29.s16[4] = ctx.v3.s16[4] >> (ctx.v8.u16[4] & 0xF);
-	ctx.v29.s16[5] = ctx.v3.s16[5] >> (ctx.v8.u16[5] & 0xF);
-	ctx.v29.s16[6] = ctx.v3.s16[6] >> (ctx.v8.u16[6] & 0xF);
-	ctx.v29.s16[7] = ctx.v3.s16[7] >> (ctx.v8.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v3.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v29.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vxor128 v40,v43,v47
 	simde_mm_store_si128((simde__m128i*)ctx.v40.u8, simde_mm_xor_si128(simde_mm_load_si128((simde__m128i*)ctx.v43.u8), simde_mm_load_si128((simde__m128i*)ctx.v47.u8)));
 	// vsrah v28,v2,v8
-	ctx.v28.s16[0] = ctx.v2.s16[0] >> (ctx.v8.u16[0] & 0xF);
-	ctx.v28.s16[1] = ctx.v2.s16[1] >> (ctx.v8.u16[1] & 0xF);
-	ctx.v28.s16[2] = ctx.v2.s16[2] >> (ctx.v8.u16[2] & 0xF);
-	ctx.v28.s16[3] = ctx.v2.s16[3] >> (ctx.v8.u16[3] & 0xF);
-	ctx.v28.s16[4] = ctx.v2.s16[4] >> (ctx.v8.u16[4] & 0xF);
-	ctx.v28.s16[5] = ctx.v2.s16[5] >> (ctx.v8.u16[5] & 0xF);
-	ctx.v28.s16[6] = ctx.v2.s16[6] >> (ctx.v8.u16[6] & 0xF);
-	ctx.v28.s16[7] = ctx.v2.s16[7] >> (ctx.v8.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v2.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v28.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vxor128 v35,v39,v50
 	simde_mm_store_si128((simde__m128i*)ctx.v35.u8, simde_mm_xor_si128(simde_mm_load_si128((simde__m128i*)ctx.v39.u8), simde_mm_load_si128((simde__m128i*)ctx.v50.u8)));
 	// vsrah v25,v30,v8
-	ctx.v25.s16[0] = ctx.v30.s16[0] >> (ctx.v8.u16[0] & 0xF);
-	ctx.v25.s16[1] = ctx.v30.s16[1] >> (ctx.v8.u16[1] & 0xF);
-	ctx.v25.s16[2] = ctx.v30.s16[2] >> (ctx.v8.u16[2] & 0xF);
-	ctx.v25.s16[3] = ctx.v30.s16[3] >> (ctx.v8.u16[3] & 0xF);
-	ctx.v25.s16[4] = ctx.v30.s16[4] >> (ctx.v8.u16[4] & 0xF);
-	ctx.v25.s16[5] = ctx.v30.s16[5] >> (ctx.v8.u16[5] & 0xF);
-	ctx.v25.s16[6] = ctx.v30.s16[6] >> (ctx.v8.u16[6] & 0xF);
-	ctx.v25.s16[7] = ctx.v30.s16[7] >> (ctx.v8.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v30.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v25.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vandc128 v36,v12,v63
 	simde_mm_store_si128((simde__m128i*)ctx.v36.u8, simde_mm_andnot_si128(simde_mm_load_si128((simde__m128i*)ctx.v63.u8), simde_mm_load_si128((simde__m128i*)ctx.v12.u8)));
 	// vpkshus128 v37,v40,v40
@@ -1613,14 +1561,12 @@ loc_82A3B828:
 	// vpkshus128 v32,v35,v35
 	simde_mm_store_si128((simde__m128i*)ctx.v32.u8, simde_mm_packus_epi16(simde_mm_load_si128((simde__m128i*)ctx.v35.s16), simde_mm_load_si128((simde__m128i*)ctx.v35.s16)));
 	// vsrah v26,v31,v8
-	ctx.v26.s16[0] = ctx.v31.s16[0] >> (ctx.v8.u16[0] & 0xF);
-	ctx.v26.s16[1] = ctx.v31.s16[1] >> (ctx.v8.u16[1] & 0xF);
-	ctx.v26.s16[2] = ctx.v31.s16[2] >> (ctx.v8.u16[2] & 0xF);
-	ctx.v26.s16[3] = ctx.v31.s16[3] >> (ctx.v8.u16[3] & 0xF);
-	ctx.v26.s16[4] = ctx.v31.s16[4] >> (ctx.v8.u16[4] & 0xF);
-	ctx.v26.s16[5] = ctx.v31.s16[5] >> (ctx.v8.u16[5] & 0xF);
-	ctx.v26.s16[6] = ctx.v31.s16[6] >> (ctx.v8.u16[6] & 0xF);
-	ctx.v26.s16[7] = ctx.v31.s16[7] >> (ctx.v8.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v31.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v26.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vandc128 v33,v10,v63
 	simde_mm_store_si128((simde__m128i*)ctx.v33.u8, simde_mm_andnot_si128(simde_mm_load_si128((simde__m128i*)ctx.v63.u8), simde_mm_load_si128((simde__m128i*)ctx.v10.u8)));
 	// vand128 v60,v28,v63
@@ -1732,23 +1678,19 @@ loc_82A3BA8C:
 	// vsubshs v6,v12,v6
 	simde_mm_store_si128((simde__m128i*)ctx.v6.s16, simde_mm_subs_epi16(simde_mm_load_si128((simde__m128i*)ctx.v12.s16), simde_mm_load_si128((simde__m128i*)ctx.v6.s16)));
 	// vslh v3,v22,v21
-	ctx.v3.u16[0] = ctx.v22.u16[0] << (ctx.v21.u16[0] & 0xF);
-	ctx.v3.u16[1] = ctx.v22.u16[1] << (ctx.v21.u16[1] & 0xF);
-	ctx.v3.u16[2] = ctx.v22.u16[2] << (ctx.v21.u16[2] & 0xF);
-	ctx.v3.u16[3] = ctx.v22.u16[3] << (ctx.v21.u16[3] & 0xF);
-	ctx.v3.u16[4] = ctx.v22.u16[4] << (ctx.v21.u16[4] & 0xF);
-	ctx.v3.u16[5] = ctx.v22.u16[5] << (ctx.v21.u16[5] & 0xF);
-	ctx.v3.u16[6] = ctx.v22.u16[6] << (ctx.v21.u16[6] & 0xF);
-	ctx.v3.u16[7] = ctx.v22.u16[7] << (ctx.v21.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v22.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v21.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v3.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v2,v23,v21
-	ctx.v2.u16[0] = ctx.v23.u16[0] << (ctx.v21.u16[0] & 0xF);
-	ctx.v2.u16[1] = ctx.v23.u16[1] << (ctx.v21.u16[1] & 0xF);
-	ctx.v2.u16[2] = ctx.v23.u16[2] << (ctx.v21.u16[2] & 0xF);
-	ctx.v2.u16[3] = ctx.v23.u16[3] << (ctx.v21.u16[3] & 0xF);
-	ctx.v2.u16[4] = ctx.v23.u16[4] << (ctx.v21.u16[4] & 0xF);
-	ctx.v2.u16[5] = ctx.v23.u16[5] << (ctx.v21.u16[5] & 0xF);
-	ctx.v2.u16[6] = ctx.v23.u16[6] << (ctx.v21.u16[6] & 0xF);
-	ctx.v2.u16[7] = ctx.v23.u16[7] << (ctx.v21.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v23.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v21.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v2.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vsubshs v11,v11,v10
 	simde_mm_store_si128((simde__m128i*)ctx.v11.s16, simde_mm_subs_epi16(simde_mm_load_si128((simde__m128i*)ctx.v11.s16), simde_mm_load_si128((simde__m128i*)ctx.v10.s16)));
 	// vaddshs v31,v7,v7
@@ -1760,14 +1702,12 @@ loc_82A3BA8C:
 	// vaddshs v30,v6,v6
 	simde_mm_store_si128((simde__m128i*)ctx.v30.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v6.s16), simde_mm_load_si128((simde__m128i*)ctx.v6.s16)));
 	// vslh v26,v27,v21
-	ctx.v26.u16[0] = ctx.v27.u16[0] << (ctx.v21.u16[0] & 0xF);
-	ctx.v26.u16[1] = ctx.v27.u16[1] << (ctx.v21.u16[1] & 0xF);
-	ctx.v26.u16[2] = ctx.v27.u16[2] << (ctx.v21.u16[2] & 0xF);
-	ctx.v26.u16[3] = ctx.v27.u16[3] << (ctx.v21.u16[3] & 0xF);
-	ctx.v26.u16[4] = ctx.v27.u16[4] << (ctx.v21.u16[4] & 0xF);
-	ctx.v26.u16[5] = ctx.v27.u16[5] << (ctx.v21.u16[5] & 0xF);
-	ctx.v26.u16[6] = ctx.v27.u16[6] << (ctx.v21.u16[6] & 0xF);
-	ctx.v26.u16[7] = ctx.v27.u16[7] << (ctx.v21.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v27.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v21.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v26.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vaddshs v25,v11,v11
 	simde_mm_store_si128((simde__m128i*)ctx.v25.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v11.s16), simde_mm_load_si128((simde__m128i*)ctx.v11.s16)));
 	// vsubshs v23,v31,v29
@@ -1793,14 +1733,12 @@ loc_82A3BA8C:
 	// vaddshs v10,v2,v8
 	simde_mm_store_si128((simde__m128i*)ctx.v10.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v2.s16), simde_mm_load_si128((simde__m128i*)ctx.v8.s16)));
 	// vsrah v11,v27,v18
-	ctx.v11.s16[0] = ctx.v27.s16[0] >> (ctx.v18.u16[0] & 0xF);
-	ctx.v11.s16[1] = ctx.v27.s16[1] >> (ctx.v18.u16[1] & 0xF);
-	ctx.v11.s16[2] = ctx.v27.s16[2] >> (ctx.v18.u16[2] & 0xF);
-	ctx.v11.s16[3] = ctx.v27.s16[3] >> (ctx.v18.u16[3] & 0xF);
-	ctx.v11.s16[4] = ctx.v27.s16[4] >> (ctx.v18.u16[4] & 0xF);
-	ctx.v11.s16[5] = ctx.v27.s16[5] >> (ctx.v18.u16[5] & 0xF);
-	ctx.v11.s16[6] = ctx.v27.s16[6] >> (ctx.v18.u16[6] & 0xF);
-	ctx.v11.s16[7] = ctx.v27.s16[7] >> (ctx.v18.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v27.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v18.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v11.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vmaxsh v28,v7,v31
 	simde_mm_store_si128((simde__m128i*)ctx.v28.s16, simde_mm_max_epi16(simde_mm_load_si128((simde__m128i*)ctx.v7.s16), simde_mm_load_si128((simde__m128i*)ctx.v31.s16)));
 	// vmaxsh v27,v6,v30
@@ -1808,56 +1746,46 @@ loc_82A3BA8C:
 	// vsubshs v26,v0,v10
 	simde_mm_store_si128((simde__m128i*)ctx.v26.s16, simde_mm_subs_epi16(simde_mm_load_si128((simde__m128i*)ctx.v0.s16), simde_mm_load_si128((simde__m128i*)ctx.v10.s16)));
 	// vsrah v25,v10,v18
-	ctx.v25.s16[0] = ctx.v10.s16[0] >> (ctx.v18.u16[0] & 0xF);
-	ctx.v25.s16[1] = ctx.v10.s16[1] >> (ctx.v18.u16[1] & 0xF);
-	ctx.v25.s16[2] = ctx.v10.s16[2] >> (ctx.v18.u16[2] & 0xF);
-	ctx.v25.s16[3] = ctx.v10.s16[3] >> (ctx.v18.u16[3] & 0xF);
-	ctx.v25.s16[4] = ctx.v10.s16[4] >> (ctx.v18.u16[4] & 0xF);
-	ctx.v25.s16[5] = ctx.v10.s16[5] >> (ctx.v18.u16[5] & 0xF);
-	ctx.v25.s16[6] = ctx.v10.s16[6] >> (ctx.v18.u16[6] & 0xF);
-	ctx.v25.s16[7] = ctx.v10.s16[7] >> (ctx.v18.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v10.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v18.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v25.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v23,v28,v9
-	ctx.v23.s16[0] = ctx.v28.s16[0] >> (ctx.v9.u16[0] & 0xF);
-	ctx.v23.s16[1] = ctx.v28.s16[1] >> (ctx.v9.u16[1] & 0xF);
-	ctx.v23.s16[2] = ctx.v28.s16[2] >> (ctx.v9.u16[2] & 0xF);
-	ctx.v23.s16[3] = ctx.v28.s16[3] >> (ctx.v9.u16[3] & 0xF);
-	ctx.v23.s16[4] = ctx.v28.s16[4] >> (ctx.v9.u16[4] & 0xF);
-	ctx.v23.s16[5] = ctx.v28.s16[5] >> (ctx.v9.u16[5] & 0xF);
-	ctx.v23.s16[6] = ctx.v28.s16[6] >> (ctx.v9.u16[6] & 0xF);
-	ctx.v23.s16[7] = ctx.v28.s16[7] >> (ctx.v9.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v28.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v23.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v22,v27,v9
-	ctx.v22.s16[0] = ctx.v27.s16[0] >> (ctx.v9.u16[0] & 0xF);
-	ctx.v22.s16[1] = ctx.v27.s16[1] >> (ctx.v9.u16[1] & 0xF);
-	ctx.v22.s16[2] = ctx.v27.s16[2] >> (ctx.v9.u16[2] & 0xF);
-	ctx.v22.s16[3] = ctx.v27.s16[3] >> (ctx.v9.u16[3] & 0xF);
-	ctx.v22.s16[4] = ctx.v27.s16[4] >> (ctx.v9.u16[4] & 0xF);
-	ctx.v22.s16[5] = ctx.v27.s16[5] >> (ctx.v9.u16[5] & 0xF);
-	ctx.v22.s16[6] = ctx.v27.s16[6] >> (ctx.v9.u16[6] & 0xF);
-	ctx.v22.s16[7] = ctx.v27.s16[7] >> (ctx.v9.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v27.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v22.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vmaxsh v13,v10,v26
 	simde_mm_store_si128((simde__m128i*)ctx.v13.s16, simde_mm_max_epi16(simde_mm_load_si128((simde__m128i*)ctx.v10.s16), simde_mm_load_si128((simde__m128i*)ctx.v26.s16)));
 	// vxor128 v44,v25,v11
 	simde_mm_store_si128((simde__m128i*)ctx.v44.u8, simde_mm_xor_si128(simde_mm_load_si128((simde__m128i*)ctx.v25.u8), simde_mm_load_si128((simde__m128i*)ctx.v11.u8)));
 	// vsrah v7,v29,v17
-	ctx.v7.s16[0] = ctx.v29.s16[0] >> (ctx.v17.u16[0] & 0xF);
-	ctx.v7.s16[1] = ctx.v29.s16[1] >> (ctx.v17.u16[1] & 0xF);
-	ctx.v7.s16[2] = ctx.v29.s16[2] >> (ctx.v17.u16[2] & 0xF);
-	ctx.v7.s16[3] = ctx.v29.s16[3] >> (ctx.v17.u16[3] & 0xF);
-	ctx.v7.s16[4] = ctx.v29.s16[4] >> (ctx.v17.u16[4] & 0xF);
-	ctx.v7.s16[5] = ctx.v29.s16[5] >> (ctx.v17.u16[5] & 0xF);
-	ctx.v7.s16[6] = ctx.v29.s16[6] >> (ctx.v17.u16[6] & 0xF);
-	ctx.v7.s16[7] = ctx.v29.s16[7] >> (ctx.v17.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v29.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v17.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v7.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vminsh v12,v23,v22
 	simde_mm_store_si128((simde__m128i*)ctx.v12.s16, simde_mm_min_epi16(simde_mm_load_si128((simde__m128i*)ctx.v23.s16), simde_mm_load_si128((simde__m128i*)ctx.v22.s16)));
 	// vsrah v13,v13,v9
-	ctx.v13.s16[0] = ctx.v13.s16[0] >> (ctx.v9.u16[0] & 0xF);
-	ctx.v13.s16[1] = ctx.v13.s16[1] >> (ctx.v9.u16[1] & 0xF);
-	ctx.v13.s16[2] = ctx.v13.s16[2] >> (ctx.v9.u16[2] & 0xF);
-	ctx.v13.s16[3] = ctx.v13.s16[3] >> (ctx.v9.u16[3] & 0xF);
-	ctx.v13.s16[4] = ctx.v13.s16[4] >> (ctx.v9.u16[4] & 0xF);
-	ctx.v13.s16[5] = ctx.v13.s16[5] >> (ctx.v9.u16[5] & 0xF);
-	ctx.v13.s16[6] = ctx.v13.s16[6] >> (ctx.v9.u16[6] & 0xF);
-	ctx.v13.s16[7] = ctx.v13.s16[7] >> (ctx.v9.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v13.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vandc128 v43,v44,v20
 	simde_mm_store_si128((simde__m128i*)ctx.v43.u8, simde_mm_andnot_si128(simde_mm_load_si128((simde__m128i*)ctx.v20.u8), simde_mm_load_si128((simde__m128i*)ctx.v44.u8)));
 	// vsubshs v10,v13,v12
@@ -1867,27 +1795,23 @@ loc_82A3BA8C:
 	// vcmpgtsh v3,v13,v12
 	simde_mm_store_si128((simde__m128i*)ctx.v3.u8, simde_mm_cmpgt_epi16(simde_mm_load_si128((simde__m128i*)ctx.v13.u16), simde_mm_load_si128((simde__m128i*)ctx.v12.u16)));
 	// vslh v2,v10,v21
-	ctx.v2.u16[0] = ctx.v10.u16[0] << (ctx.v21.u16[0] & 0xF);
-	ctx.v2.u16[1] = ctx.v10.u16[1] << (ctx.v21.u16[1] & 0xF);
-	ctx.v2.u16[2] = ctx.v10.u16[2] << (ctx.v21.u16[2] & 0xF);
-	ctx.v2.u16[3] = ctx.v10.u16[3] << (ctx.v21.u16[3] & 0xF);
-	ctx.v2.u16[4] = ctx.v10.u16[4] << (ctx.v21.u16[4] & 0xF);
-	ctx.v2.u16[5] = ctx.v10.u16[5] << (ctx.v21.u16[5] & 0xF);
-	ctx.v2.u16[6] = ctx.v10.u16[6] << (ctx.v21.u16[6] & 0xF);
-	ctx.v2.u16[7] = ctx.v10.u16[7] << (ctx.v21.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v10.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v21.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v2.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vand128 v42,v6,v3
 	simde_mm_store_si128((simde__m128i*)ctx.v42.u8, simde_mm_and_si128(simde_mm_load_si128((simde__m128i*)ctx.v6.u8), simde_mm_load_si128((simde__m128i*)ctx.v3.u8)));
 	// vaddshs v31,v2,v10
 	simde_mm_store_si128((simde__m128i*)ctx.v31.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v2.s16), simde_mm_load_si128((simde__m128i*)ctx.v10.s16)));
 	// vsrah v30,v31,v9
-	ctx.v30.s16[0] = ctx.v31.s16[0] >> (ctx.v9.u16[0] & 0xF);
-	ctx.v30.s16[1] = ctx.v31.s16[1] >> (ctx.v9.u16[1] & 0xF);
-	ctx.v30.s16[2] = ctx.v31.s16[2] >> (ctx.v9.u16[2] & 0xF);
-	ctx.v30.s16[3] = ctx.v31.s16[3] >> (ctx.v9.u16[3] & 0xF);
-	ctx.v30.s16[4] = ctx.v31.s16[4] >> (ctx.v9.u16[4] & 0xF);
-	ctx.v30.s16[5] = ctx.v31.s16[5] >> (ctx.v9.u16[5] & 0xF);
-	ctx.v30.s16[6] = ctx.v31.s16[6] >> (ctx.v9.u16[6] & 0xF);
-	ctx.v30.s16[7] = ctx.v31.s16[7] >> (ctx.v9.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v31.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v30.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vand128 v41,v30,v42
 	simde_mm_store_si128((simde__m128i*)ctx.v41.u8, simde_mm_and_si128(simde_mm_load_si128((simde__m128i*)ctx.v30.u8), simde_mm_load_si128((simde__m128i*)ctx.v42.u8)));
 	// vand128 v40,v41,v42
@@ -2542,32 +2466,26 @@ loc_82A3BEF0:
 	// vaddshs v2,v5,v5
 	simde_mm_store_si128((simde__m128i*)ctx.v2.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v5.s16), simde_mm_load_si128((simde__m128i*)ctx.v5.s16)));
 	// vsrah v31,v28,v8
-	ctx.v31.s16[0] = ctx.v28.s16[0] >> (ctx.v8.u16[0] & 0xF);
-	ctx.v31.s16[1] = ctx.v28.s16[1] >> (ctx.v8.u16[1] & 0xF);
-	ctx.v31.s16[2] = ctx.v28.s16[2] >> (ctx.v8.u16[2] & 0xF);
-	ctx.v31.s16[3] = ctx.v28.s16[3] >> (ctx.v8.u16[3] & 0xF);
-	ctx.v31.s16[4] = ctx.v28.s16[4] >> (ctx.v8.u16[4] & 0xF);
-	ctx.v31.s16[5] = ctx.v28.s16[5] >> (ctx.v8.u16[5] & 0xF);
-	ctx.v31.s16[6] = ctx.v28.s16[6] >> (ctx.v8.u16[6] & 0xF);
-	ctx.v31.s16[7] = ctx.v28.s16[7] >> (ctx.v8.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v28.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v31.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v28,v21,v8
-	ctx.v28.s16[0] = ctx.v21.s16[0] >> (ctx.v8.u16[0] & 0xF);
-	ctx.v28.s16[1] = ctx.v21.s16[1] >> (ctx.v8.u16[1] & 0xF);
-	ctx.v28.s16[2] = ctx.v21.s16[2] >> (ctx.v8.u16[2] & 0xF);
-	ctx.v28.s16[3] = ctx.v21.s16[3] >> (ctx.v8.u16[3] & 0xF);
-	ctx.v28.s16[4] = ctx.v21.s16[4] >> (ctx.v8.u16[4] & 0xF);
-	ctx.v28.s16[5] = ctx.v21.s16[5] >> (ctx.v8.u16[5] & 0xF);
-	ctx.v28.s16[6] = ctx.v21.s16[6] >> (ctx.v8.u16[6] & 0xF);
-	ctx.v28.s16[7] = ctx.v21.s16[7] >> (ctx.v8.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v21.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v28.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v21,v20,v8
-	ctx.v21.s16[0] = ctx.v20.s16[0] >> (ctx.v8.u16[0] & 0xF);
-	ctx.v21.s16[1] = ctx.v20.s16[1] >> (ctx.v8.u16[1] & 0xF);
-	ctx.v21.s16[2] = ctx.v20.s16[2] >> (ctx.v8.u16[2] & 0xF);
-	ctx.v21.s16[3] = ctx.v20.s16[3] >> (ctx.v8.u16[3] & 0xF);
-	ctx.v21.s16[4] = ctx.v20.s16[4] >> (ctx.v8.u16[4] & 0xF);
-	ctx.v21.s16[5] = ctx.v20.s16[5] >> (ctx.v8.u16[5] & 0xF);
-	ctx.v21.s16[6] = ctx.v20.s16[6] >> (ctx.v8.u16[6] & 0xF);
-	ctx.v21.s16[7] = ctx.v20.s16[7] >> (ctx.v8.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v20.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v21.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vaddshs v29,v29,v2
 	simde_mm_store_si128((simde__m128i*)ctx.v29.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v29.s16), simde_mm_load_si128((simde__m128i*)ctx.v2.s16)));
 	// vand128 v61,v31,v63
@@ -2614,41 +2532,33 @@ loc_82A3BEF0:
 	// vaddshs v23,v26,v30
 	simde_mm_store_si128((simde__m128i*)ctx.v23.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v26.s16), simde_mm_load_si128((simde__m128i*)ctx.v30.s16)));
 	// vsrah v3,v3,v8
-	ctx.v3.s16[0] = ctx.v3.s16[0] >> (ctx.v8.u16[0] & 0xF);
-	ctx.v3.s16[1] = ctx.v3.s16[1] >> (ctx.v8.u16[1] & 0xF);
-	ctx.v3.s16[2] = ctx.v3.s16[2] >> (ctx.v8.u16[2] & 0xF);
-	ctx.v3.s16[3] = ctx.v3.s16[3] >> (ctx.v8.u16[3] & 0xF);
-	ctx.v3.s16[4] = ctx.v3.s16[4] >> (ctx.v8.u16[4] & 0xF);
-	ctx.v3.s16[5] = ctx.v3.s16[5] >> (ctx.v8.u16[5] & 0xF);
-	ctx.v3.s16[6] = ctx.v3.s16[6] >> (ctx.v8.u16[6] & 0xF);
-	ctx.v3.s16[7] = ctx.v3.s16[7] >> (ctx.v8.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v3.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v3.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v30,v28,v8
-	ctx.v30.s16[0] = ctx.v28.s16[0] >> (ctx.v8.u16[0] & 0xF);
-	ctx.v30.s16[1] = ctx.v28.s16[1] >> (ctx.v8.u16[1] & 0xF);
-	ctx.v30.s16[2] = ctx.v28.s16[2] >> (ctx.v8.u16[2] & 0xF);
-	ctx.v30.s16[3] = ctx.v28.s16[3] >> (ctx.v8.u16[3] & 0xF);
-	ctx.v30.s16[4] = ctx.v28.s16[4] >> (ctx.v8.u16[4] & 0xF);
-	ctx.v30.s16[5] = ctx.v28.s16[5] >> (ctx.v8.u16[5] & 0xF);
-	ctx.v30.s16[6] = ctx.v28.s16[6] >> (ctx.v8.u16[6] & 0xF);
-	ctx.v30.s16[7] = ctx.v28.s16[7] >> (ctx.v8.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v28.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v30.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v26,v25,v8
-	ctx.v26.s16[0] = ctx.v25.s16[0] >> (ctx.v8.u16[0] & 0xF);
-	ctx.v26.s16[1] = ctx.v25.s16[1] >> (ctx.v8.u16[1] & 0xF);
-	ctx.v26.s16[2] = ctx.v25.s16[2] >> (ctx.v8.u16[2] & 0xF);
-	ctx.v26.s16[3] = ctx.v25.s16[3] >> (ctx.v8.u16[3] & 0xF);
-	ctx.v26.s16[4] = ctx.v25.s16[4] >> (ctx.v8.u16[4] & 0xF);
-	ctx.v26.s16[5] = ctx.v25.s16[5] >> (ctx.v8.u16[5] & 0xF);
-	ctx.v26.s16[6] = ctx.v25.s16[6] >> (ctx.v8.u16[6] & 0xF);
-	ctx.v26.s16[7] = ctx.v25.s16[7] >> (ctx.v8.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v25.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v26.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v25,v23,v8
-	ctx.v25.s16[0] = ctx.v23.s16[0] >> (ctx.v8.u16[0] & 0xF);
-	ctx.v25.s16[1] = ctx.v23.s16[1] >> (ctx.v8.u16[1] & 0xF);
-	ctx.v25.s16[2] = ctx.v23.s16[2] >> (ctx.v8.u16[2] & 0xF);
-	ctx.v25.s16[3] = ctx.v23.s16[3] >> (ctx.v8.u16[3] & 0xF);
-	ctx.v25.s16[4] = ctx.v23.s16[4] >> (ctx.v8.u16[4] & 0xF);
-	ctx.v25.s16[5] = ctx.v23.s16[5] >> (ctx.v8.u16[5] & 0xF);
-	ctx.v25.s16[6] = ctx.v23.s16[6] >> (ctx.v8.u16[6] & 0xF);
-	ctx.v25.s16[7] = ctx.v23.s16[7] >> (ctx.v8.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v23.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v25.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vandc128 v57,v5,v63
 	simde_mm_store_si128((simde__m128i*)ctx.v57.u8, simde_mm_andnot_si128(simde_mm_load_si128((simde__m128i*)ctx.v63.u8), simde_mm_load_si128((simde__m128i*)ctx.v5.u8)));
 	// vandc128 v56,v4,v63
@@ -2683,14 +2593,12 @@ loc_82A3BEF0:
 	// vxor128 v42,v48,v49
 	simde_mm_store_si128((simde__m128i*)ctx.v42.u8, simde_mm_xor_si128(simde_mm_load_si128((simde__m128i*)ctx.v48.u8), simde_mm_load_si128((simde__m128i*)ctx.v49.u8)));
 	// vsrah v28,v0,v8
-	ctx.v28.s16[0] = ctx.v0.s16[0] >> (ctx.v8.u16[0] & 0xF);
-	ctx.v28.s16[1] = ctx.v0.s16[1] >> (ctx.v8.u16[1] & 0xF);
-	ctx.v28.s16[2] = ctx.v0.s16[2] >> (ctx.v8.u16[2] & 0xF);
-	ctx.v28.s16[3] = ctx.v0.s16[3] >> (ctx.v8.u16[3] & 0xF);
-	ctx.v28.s16[4] = ctx.v0.s16[4] >> (ctx.v8.u16[4] & 0xF);
-	ctx.v28.s16[5] = ctx.v0.s16[5] >> (ctx.v8.u16[5] & 0xF);
-	ctx.v28.s16[6] = ctx.v0.s16[6] >> (ctx.v8.u16[6] & 0xF);
-	ctx.v28.s16[7] = ctx.v0.s16[7] >> (ctx.v8.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v28.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vpkshus128 v5,v46,v47
 	simde_mm_store_si128((simde__m128i*)ctx.v5.u8, simde_mm_packus_epi16(simde_mm_load_si128((simde__m128i*)ctx.v47.s16), simde_mm_load_si128((simde__m128i*)ctx.v46.s16)));
 	// vpkshus128 v3,v42,v43
@@ -2856,25 +2764,21 @@ loc_82A3C1A0:
 	// addi r3,r1,-528
 	ctx.r3.s64 = ctx.r1.s64 + -528;
 	// vslh v4,v19,v14
-	ctx.v4.u16[0] = ctx.v19.u16[0] << (ctx.v14.u16[0] & 0xF);
-	ctx.v4.u16[1] = ctx.v19.u16[1] << (ctx.v14.u16[1] & 0xF);
-	ctx.v4.u16[2] = ctx.v19.u16[2] << (ctx.v14.u16[2] & 0xF);
-	ctx.v4.u16[3] = ctx.v19.u16[3] << (ctx.v14.u16[3] & 0xF);
-	ctx.v4.u16[4] = ctx.v19.u16[4] << (ctx.v14.u16[4] & 0xF);
-	ctx.v4.u16[5] = ctx.v19.u16[5] << (ctx.v14.u16[5] & 0xF);
-	ctx.v4.u16[6] = ctx.v19.u16[6] << (ctx.v14.u16[6] & 0xF);
-	ctx.v4.u16[7] = ctx.v19.u16[7] << (ctx.v14.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v19.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v14.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v4.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// addi r31,r1,-544
 	ctx.r31.s64 = ctx.r1.s64 + -544;
 	// vslh v3,v18,v14
-	ctx.v3.u16[0] = ctx.v18.u16[0] << (ctx.v14.u16[0] & 0xF);
-	ctx.v3.u16[1] = ctx.v18.u16[1] << (ctx.v14.u16[1] & 0xF);
-	ctx.v3.u16[2] = ctx.v18.u16[2] << (ctx.v14.u16[2] & 0xF);
-	ctx.v3.u16[3] = ctx.v18.u16[3] << (ctx.v14.u16[3] & 0xF);
-	ctx.v3.u16[4] = ctx.v18.u16[4] << (ctx.v14.u16[4] & 0xF);
-	ctx.v3.u16[5] = ctx.v18.u16[5] << (ctx.v14.u16[5] & 0xF);
-	ctx.v3.u16[6] = ctx.v18.u16[6] << (ctx.v14.u16[6] & 0xF);
-	ctx.v3.u16[7] = ctx.v18.u16[7] << (ctx.v14.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v18.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v14.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v3.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// addi r30,r1,-560
 	ctx.r30.s64 = ctx.r1.s64 + -560;
 	// vsubshs v13,v13,v12
@@ -2896,14 +2800,12 @@ loc_82A3C1A0:
 	// vaddshs v31,v6,v6
 	simde_mm_store_si128((simde__m128i*)ctx.v31.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v6.s16), simde_mm_load_si128((simde__m128i*)ctx.v6.s16)));
 	// vslh v26,v27,v14
-	ctx.v26.u16[0] = ctx.v27.u16[0] << (ctx.v14.u16[0] & 0xF);
-	ctx.v26.u16[1] = ctx.v27.u16[1] << (ctx.v14.u16[1] & 0xF);
-	ctx.v26.u16[2] = ctx.v27.u16[2] << (ctx.v14.u16[2] & 0xF);
-	ctx.v26.u16[3] = ctx.v27.u16[3] << (ctx.v14.u16[3] & 0xF);
-	ctx.v26.u16[4] = ctx.v27.u16[4] << (ctx.v14.u16[4] & 0xF);
-	ctx.v26.u16[5] = ctx.v27.u16[5] << (ctx.v14.u16[5] & 0xF);
-	ctx.v26.u16[6] = ctx.v27.u16[6] << (ctx.v14.u16[6] & 0xF);
-	ctx.v26.u16[7] = ctx.v27.u16[7] << (ctx.v14.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v27.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v14.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v26.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vaddshs v25,v13,v13
 	simde_mm_store_si128((simde__m128i*)ctx.v25.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v13.s16), simde_mm_load_si128((simde__m128i*)ctx.v13.s16)));
 	// vsubshs v24,v2,v29
@@ -2921,14 +2823,12 @@ loc_82A3C1A0:
 	// vsubshs v18,v25,v22
 	simde_mm_store_si128((simde__m128i*)ctx.v18.s16, simde_mm_subs_epi16(simde_mm_load_si128((simde__m128i*)ctx.v25.s16), simde_mm_load_si128((simde__m128i*)ctx.v22.s16)));
 	// vsrah v13,v27,v5
-	ctx.v13.s16[0] = ctx.v27.s16[0] >> (ctx.v5.u16[0] & 0xF);
-	ctx.v13.s16[1] = ctx.v27.s16[1] >> (ctx.v5.u16[1] & 0xF);
-	ctx.v13.s16[2] = ctx.v27.s16[2] >> (ctx.v5.u16[2] & 0xF);
-	ctx.v13.s16[3] = ctx.v27.s16[3] >> (ctx.v5.u16[3] & 0xF);
-	ctx.v13.s16[4] = ctx.v27.s16[4] >> (ctx.v5.u16[4] & 0xF);
-	ctx.v13.s16[5] = ctx.v27.s16[5] >> (ctx.v5.u16[5] & 0xF);
-	ctx.v13.s16[6] = ctx.v27.s16[6] >> (ctx.v5.u16[6] & 0xF);
-	ctx.v13.s16[7] = ctx.v27.s16[7] >> (ctx.v5.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v27.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v5.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v13.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsubshs v11,v0,v7
 	simde_mm_store_si128((simde__m128i*)ctx.v11.s16, simde_mm_subs_epi16(simde_mm_load_si128((simde__m128i*)ctx.v0.s16), simde_mm_load_si128((simde__m128i*)ctx.v7.s16)));
 	// vsubshs v10,v0,v6
@@ -2944,56 +2844,46 @@ loc_82A3C1A0:
 	// vsubshs v31,v0,v12
 	simde_mm_store_si128((simde__m128i*)ctx.v31.s16, simde_mm_subs_epi16(simde_mm_load_si128((simde__m128i*)ctx.v0.s16), simde_mm_load_si128((simde__m128i*)ctx.v12.s16)));
 	// vsrah v29,v12,v5
-	ctx.v29.s16[0] = ctx.v12.s16[0] >> (ctx.v5.u16[0] & 0xF);
-	ctx.v29.s16[1] = ctx.v12.s16[1] >> (ctx.v5.u16[1] & 0xF);
-	ctx.v29.s16[2] = ctx.v12.s16[2] >> (ctx.v5.u16[2] & 0xF);
-	ctx.v29.s16[3] = ctx.v12.s16[3] >> (ctx.v5.u16[3] & 0xF);
-	ctx.v29.s16[4] = ctx.v12.s16[4] >> (ctx.v5.u16[4] & 0xF);
-	ctx.v29.s16[5] = ctx.v12.s16[5] >> (ctx.v5.u16[5] & 0xF);
-	ctx.v29.s16[6] = ctx.v12.s16[6] >> (ctx.v5.u16[6] & 0xF);
-	ctx.v29.s16[7] = ctx.v12.s16[7] >> (ctx.v5.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v5.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v29.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v28,v3,v9
-	ctx.v28.s16[0] = ctx.v3.s16[0] >> (ctx.v9.u16[0] & 0xF);
-	ctx.v28.s16[1] = ctx.v3.s16[1] >> (ctx.v9.u16[1] & 0xF);
-	ctx.v28.s16[2] = ctx.v3.s16[2] >> (ctx.v9.u16[2] & 0xF);
-	ctx.v28.s16[3] = ctx.v3.s16[3] >> (ctx.v9.u16[3] & 0xF);
-	ctx.v28.s16[4] = ctx.v3.s16[4] >> (ctx.v9.u16[4] & 0xF);
-	ctx.v28.s16[5] = ctx.v3.s16[5] >> (ctx.v9.u16[5] & 0xF);
-	ctx.v28.s16[6] = ctx.v3.s16[6] >> (ctx.v9.u16[6] & 0xF);
-	ctx.v28.s16[7] = ctx.v3.s16[7] >> (ctx.v9.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v3.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v28.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v27,v2,v9
-	ctx.v27.s16[0] = ctx.v2.s16[0] >> (ctx.v9.u16[0] & 0xF);
-	ctx.v27.s16[1] = ctx.v2.s16[1] >> (ctx.v9.u16[1] & 0xF);
-	ctx.v27.s16[2] = ctx.v2.s16[2] >> (ctx.v9.u16[2] & 0xF);
-	ctx.v27.s16[3] = ctx.v2.s16[3] >> (ctx.v9.u16[3] & 0xF);
-	ctx.v27.s16[4] = ctx.v2.s16[4] >> (ctx.v9.u16[4] & 0xF);
-	ctx.v27.s16[5] = ctx.v2.s16[5] >> (ctx.v9.u16[5] & 0xF);
-	ctx.v27.s16[6] = ctx.v2.s16[6] >> (ctx.v9.u16[6] & 0xF);
-	ctx.v27.s16[7] = ctx.v2.s16[7] >> (ctx.v9.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v2.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v27.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vmaxsh v26,v12,v31
 	simde_mm_store_si128((simde__m128i*)ctx.v26.s16, simde_mm_max_epi16(simde_mm_load_si128((simde__m128i*)ctx.v12.s16), simde_mm_load_si128((simde__m128i*)ctx.v31.s16)));
 	// vxor128 v41,v29,v13
 	simde_mm_store_si128((simde__m128i*)ctx.v41.u8, simde_mm_xor_si128(simde_mm_load_si128((simde__m128i*)ctx.v29.u8), simde_mm_load_si128((simde__m128i*)ctx.v13.u8)));
 	// vsrah v25,v4,v30
-	ctx.v25.s16[0] = ctx.v4.s16[0] >> (ctx.v30.u16[0] & 0xF);
-	ctx.v25.s16[1] = ctx.v4.s16[1] >> (ctx.v30.u16[1] & 0xF);
-	ctx.v25.s16[2] = ctx.v4.s16[2] >> (ctx.v30.u16[2] & 0xF);
-	ctx.v25.s16[3] = ctx.v4.s16[3] >> (ctx.v30.u16[3] & 0xF);
-	ctx.v25.s16[4] = ctx.v4.s16[4] >> (ctx.v30.u16[4] & 0xF);
-	ctx.v25.s16[5] = ctx.v4.s16[5] >> (ctx.v30.u16[5] & 0xF);
-	ctx.v25.s16[6] = ctx.v4.s16[6] >> (ctx.v30.u16[6] & 0xF);
-	ctx.v25.s16[7] = ctx.v4.s16[7] >> (ctx.v30.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v4.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v30.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v25.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vminsh v11,v28,v27
 	simde_mm_store_si128((simde__m128i*)ctx.v11.s16, simde_mm_min_epi16(simde_mm_load_si128((simde__m128i*)ctx.v28.s16), simde_mm_load_si128((simde__m128i*)ctx.v27.s16)));
 	// vsrah v12,v26,v9
-	ctx.v12.s16[0] = ctx.v26.s16[0] >> (ctx.v9.u16[0] & 0xF);
-	ctx.v12.s16[1] = ctx.v26.s16[1] >> (ctx.v9.u16[1] & 0xF);
-	ctx.v12.s16[2] = ctx.v26.s16[2] >> (ctx.v9.u16[2] & 0xF);
-	ctx.v12.s16[3] = ctx.v26.s16[3] >> (ctx.v9.u16[3] & 0xF);
-	ctx.v12.s16[4] = ctx.v26.s16[4] >> (ctx.v9.u16[4] & 0xF);
-	ctx.v12.s16[5] = ctx.v26.s16[5] >> (ctx.v9.u16[5] & 0xF);
-	ctx.v12.s16[6] = ctx.v26.s16[6] >> (ctx.v9.u16[6] & 0xF);
-	ctx.v12.s16[7] = ctx.v26.s16[7] >> (ctx.v9.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v26.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v12.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vandc128 v40,v41,v15
 	simde_mm_store_si128((simde__m128i*)ctx.v40.u8, simde_mm_andnot_si128(simde_mm_load_si128((simde__m128i*)ctx.v15.u8), simde_mm_load_si128((simde__m128i*)ctx.v41.u8)));
 	// vsubshs v10,v12,v11
@@ -3003,27 +2893,23 @@ loc_82A3C1A0:
 	// vcmpgtsh v23,v17,v12
 	simde_mm_store_si128((simde__m128i*)ctx.v23.u8, simde_mm_cmpgt_epi16(simde_mm_load_si128((simde__m128i*)ctx.v17.u16), simde_mm_load_si128((simde__m128i*)ctx.v12.u16)));
 	// vslh v22,v10,v14
-	ctx.v22.u16[0] = ctx.v10.u16[0] << (ctx.v14.u16[0] & 0xF);
-	ctx.v22.u16[1] = ctx.v10.u16[1] << (ctx.v14.u16[1] & 0xF);
-	ctx.v22.u16[2] = ctx.v10.u16[2] << (ctx.v14.u16[2] & 0xF);
-	ctx.v22.u16[3] = ctx.v10.u16[3] << (ctx.v14.u16[3] & 0xF);
-	ctx.v22.u16[4] = ctx.v10.u16[4] << (ctx.v14.u16[4] & 0xF);
-	ctx.v22.u16[5] = ctx.v10.u16[5] << (ctx.v14.u16[5] & 0xF);
-	ctx.v22.u16[6] = ctx.v10.u16[6] << (ctx.v14.u16[6] & 0xF);
-	ctx.v22.u16[7] = ctx.v10.u16[7] << (ctx.v14.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v10.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v14.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v22.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vand128 v39,v23,v24
 	simde_mm_store_si128((simde__m128i*)ctx.v39.u8, simde_mm_and_si128(simde_mm_load_si128((simde__m128i*)ctx.v23.u8), simde_mm_load_si128((simde__m128i*)ctx.v24.u8)));
 	// vaddshs v19,v22,v10
 	simde_mm_store_si128((simde__m128i*)ctx.v19.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v22.s16), simde_mm_load_si128((simde__m128i*)ctx.v10.s16)));
 	// vsrah v18,v19,v9
-	ctx.v18.s16[0] = ctx.v19.s16[0] >> (ctx.v9.u16[0] & 0xF);
-	ctx.v18.s16[1] = ctx.v19.s16[1] >> (ctx.v9.u16[1] & 0xF);
-	ctx.v18.s16[2] = ctx.v19.s16[2] >> (ctx.v9.u16[2] & 0xF);
-	ctx.v18.s16[3] = ctx.v19.s16[3] >> (ctx.v9.u16[3] & 0xF);
-	ctx.v18.s16[4] = ctx.v19.s16[4] >> (ctx.v9.u16[4] & 0xF);
-	ctx.v18.s16[5] = ctx.v19.s16[5] >> (ctx.v9.u16[5] & 0xF);
-	ctx.v18.s16[6] = ctx.v19.s16[6] >> (ctx.v9.u16[6] & 0xF);
-	ctx.v18.s16[7] = ctx.v19.s16[7] >> (ctx.v9.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v19.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v18.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vand128 v38,v18,v39
 	simde_mm_store_si128((simde__m128i*)ctx.v38.u8, simde_mm_and_si128(simde_mm_load_si128((simde__m128i*)ctx.v18.u8), simde_mm_load_si128((simde__m128i*)ctx.v39.u8)));
 	// vand128 v37,v38,v39
@@ -3740,32 +3626,26 @@ loc_82A3C694:
 	// vaddshs v2,v5,v5
 	simde_mm_store_si128((simde__m128i*)ctx.v2.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v5.s16), simde_mm_load_si128((simde__m128i*)ctx.v5.s16)));
 	// vsrah v31,v28,v8
-	ctx.v31.s16[0] = ctx.v28.s16[0] >> (ctx.v8.u16[0] & 0xF);
-	ctx.v31.s16[1] = ctx.v28.s16[1] >> (ctx.v8.u16[1] & 0xF);
-	ctx.v31.s16[2] = ctx.v28.s16[2] >> (ctx.v8.u16[2] & 0xF);
-	ctx.v31.s16[3] = ctx.v28.s16[3] >> (ctx.v8.u16[3] & 0xF);
-	ctx.v31.s16[4] = ctx.v28.s16[4] >> (ctx.v8.u16[4] & 0xF);
-	ctx.v31.s16[5] = ctx.v28.s16[5] >> (ctx.v8.u16[5] & 0xF);
-	ctx.v31.s16[6] = ctx.v28.s16[6] >> (ctx.v8.u16[6] & 0xF);
-	ctx.v31.s16[7] = ctx.v28.s16[7] >> (ctx.v8.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v28.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v31.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v28,v21,v8
-	ctx.v28.s16[0] = ctx.v21.s16[0] >> (ctx.v8.u16[0] & 0xF);
-	ctx.v28.s16[1] = ctx.v21.s16[1] >> (ctx.v8.u16[1] & 0xF);
-	ctx.v28.s16[2] = ctx.v21.s16[2] >> (ctx.v8.u16[2] & 0xF);
-	ctx.v28.s16[3] = ctx.v21.s16[3] >> (ctx.v8.u16[3] & 0xF);
-	ctx.v28.s16[4] = ctx.v21.s16[4] >> (ctx.v8.u16[4] & 0xF);
-	ctx.v28.s16[5] = ctx.v21.s16[5] >> (ctx.v8.u16[5] & 0xF);
-	ctx.v28.s16[6] = ctx.v21.s16[6] >> (ctx.v8.u16[6] & 0xF);
-	ctx.v28.s16[7] = ctx.v21.s16[7] >> (ctx.v8.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v21.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v28.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v21,v20,v8
-	ctx.v21.s16[0] = ctx.v20.s16[0] >> (ctx.v8.u16[0] & 0xF);
-	ctx.v21.s16[1] = ctx.v20.s16[1] >> (ctx.v8.u16[1] & 0xF);
-	ctx.v21.s16[2] = ctx.v20.s16[2] >> (ctx.v8.u16[2] & 0xF);
-	ctx.v21.s16[3] = ctx.v20.s16[3] >> (ctx.v8.u16[3] & 0xF);
-	ctx.v21.s16[4] = ctx.v20.s16[4] >> (ctx.v8.u16[4] & 0xF);
-	ctx.v21.s16[5] = ctx.v20.s16[5] >> (ctx.v8.u16[5] & 0xF);
-	ctx.v21.s16[6] = ctx.v20.s16[6] >> (ctx.v8.u16[6] & 0xF);
-	ctx.v21.s16[7] = ctx.v20.s16[7] >> (ctx.v8.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v20.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v21.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vaddshs v29,v29,v2
 	simde_mm_store_si128((simde__m128i*)ctx.v29.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v29.s16), simde_mm_load_si128((simde__m128i*)ctx.v2.s16)));
 	// vand128 v60,v31,v63
@@ -3810,41 +3690,33 @@ loc_82A3C694:
 	// vaddshs v23,v26,v30
 	simde_mm_store_si128((simde__m128i*)ctx.v23.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v26.s16), simde_mm_load_si128((simde__m128i*)ctx.v30.s16)));
 	// vsrah v3,v3,v8
-	ctx.v3.s16[0] = ctx.v3.s16[0] >> (ctx.v8.u16[0] & 0xF);
-	ctx.v3.s16[1] = ctx.v3.s16[1] >> (ctx.v8.u16[1] & 0xF);
-	ctx.v3.s16[2] = ctx.v3.s16[2] >> (ctx.v8.u16[2] & 0xF);
-	ctx.v3.s16[3] = ctx.v3.s16[3] >> (ctx.v8.u16[3] & 0xF);
-	ctx.v3.s16[4] = ctx.v3.s16[4] >> (ctx.v8.u16[4] & 0xF);
-	ctx.v3.s16[5] = ctx.v3.s16[5] >> (ctx.v8.u16[5] & 0xF);
-	ctx.v3.s16[6] = ctx.v3.s16[6] >> (ctx.v8.u16[6] & 0xF);
-	ctx.v3.s16[7] = ctx.v3.s16[7] >> (ctx.v8.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v3.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v3.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v30,v28,v8
-	ctx.v30.s16[0] = ctx.v28.s16[0] >> (ctx.v8.u16[0] & 0xF);
-	ctx.v30.s16[1] = ctx.v28.s16[1] >> (ctx.v8.u16[1] & 0xF);
-	ctx.v30.s16[2] = ctx.v28.s16[2] >> (ctx.v8.u16[2] & 0xF);
-	ctx.v30.s16[3] = ctx.v28.s16[3] >> (ctx.v8.u16[3] & 0xF);
-	ctx.v30.s16[4] = ctx.v28.s16[4] >> (ctx.v8.u16[4] & 0xF);
-	ctx.v30.s16[5] = ctx.v28.s16[5] >> (ctx.v8.u16[5] & 0xF);
-	ctx.v30.s16[6] = ctx.v28.s16[6] >> (ctx.v8.u16[6] & 0xF);
-	ctx.v30.s16[7] = ctx.v28.s16[7] >> (ctx.v8.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v28.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v30.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v26,v25,v8
-	ctx.v26.s16[0] = ctx.v25.s16[0] >> (ctx.v8.u16[0] & 0xF);
-	ctx.v26.s16[1] = ctx.v25.s16[1] >> (ctx.v8.u16[1] & 0xF);
-	ctx.v26.s16[2] = ctx.v25.s16[2] >> (ctx.v8.u16[2] & 0xF);
-	ctx.v26.s16[3] = ctx.v25.s16[3] >> (ctx.v8.u16[3] & 0xF);
-	ctx.v26.s16[4] = ctx.v25.s16[4] >> (ctx.v8.u16[4] & 0xF);
-	ctx.v26.s16[5] = ctx.v25.s16[5] >> (ctx.v8.u16[5] & 0xF);
-	ctx.v26.s16[6] = ctx.v25.s16[6] >> (ctx.v8.u16[6] & 0xF);
-	ctx.v26.s16[7] = ctx.v25.s16[7] >> (ctx.v8.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v25.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v26.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v25,v23,v8
-	ctx.v25.s16[0] = ctx.v23.s16[0] >> (ctx.v8.u16[0] & 0xF);
-	ctx.v25.s16[1] = ctx.v23.s16[1] >> (ctx.v8.u16[1] & 0xF);
-	ctx.v25.s16[2] = ctx.v23.s16[2] >> (ctx.v8.u16[2] & 0xF);
-	ctx.v25.s16[3] = ctx.v23.s16[3] >> (ctx.v8.u16[3] & 0xF);
-	ctx.v25.s16[4] = ctx.v23.s16[4] >> (ctx.v8.u16[4] & 0xF);
-	ctx.v25.s16[5] = ctx.v23.s16[5] >> (ctx.v8.u16[5] & 0xF);
-	ctx.v25.s16[6] = ctx.v23.s16[6] >> (ctx.v8.u16[6] & 0xF);
-	ctx.v25.s16[7] = ctx.v23.s16[7] >> (ctx.v8.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v23.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v25.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vandc128 v56,v5,v63
 	simde_mm_store_si128((simde__m128i*)ctx.v56.u8, simde_mm_andnot_si128(simde_mm_load_si128((simde__m128i*)ctx.v63.u8), simde_mm_load_si128((simde__m128i*)ctx.v5.u8)));
 	// vandc128 v55,v4,v63
@@ -3877,14 +3749,12 @@ loc_82A3C694:
 	// vxor128 v42,v47,v48
 	simde_mm_store_si128((simde__m128i*)ctx.v42.u8, simde_mm_xor_si128(simde_mm_load_si128((simde__m128i*)ctx.v47.u8), simde_mm_load_si128((simde__m128i*)ctx.v48.u8)));
 	// vsrah v28,v0,v8
-	ctx.v28.s16[0] = ctx.v0.s16[0] >> (ctx.v8.u16[0] & 0xF);
-	ctx.v28.s16[1] = ctx.v0.s16[1] >> (ctx.v8.u16[1] & 0xF);
-	ctx.v28.s16[2] = ctx.v0.s16[2] >> (ctx.v8.u16[2] & 0xF);
-	ctx.v28.s16[3] = ctx.v0.s16[3] >> (ctx.v8.u16[3] & 0xF);
-	ctx.v28.s16[4] = ctx.v0.s16[4] >> (ctx.v8.u16[4] & 0xF);
-	ctx.v28.s16[5] = ctx.v0.s16[5] >> (ctx.v8.u16[5] & 0xF);
-	ctx.v28.s16[6] = ctx.v0.s16[6] >> (ctx.v8.u16[6] & 0xF);
-	ctx.v28.s16[7] = ctx.v0.s16[7] >> (ctx.v8.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v28.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vpkshus128 v5,v45,v46
 	simde_mm_store_si128((simde__m128i*)ctx.v5.u8, simde_mm_packus_epi16(simde_mm_load_si128((simde__m128i*)ctx.v46.s16), simde_mm_load_si128((simde__m128i*)ctx.v45.s16)));
 	// vpkshus128 v3,v42,v41
@@ -4050,25 +3920,21 @@ loc_82A3C93C:
 	// addi r7,r1,-464
 	ctx.r7.s64 = ctx.r1.s64 + -464;
 	// vslh v4,v19,v14
-	ctx.v4.u16[0] = ctx.v19.u16[0] << (ctx.v14.u16[0] & 0xF);
-	ctx.v4.u16[1] = ctx.v19.u16[1] << (ctx.v14.u16[1] & 0xF);
-	ctx.v4.u16[2] = ctx.v19.u16[2] << (ctx.v14.u16[2] & 0xF);
-	ctx.v4.u16[3] = ctx.v19.u16[3] << (ctx.v14.u16[3] & 0xF);
-	ctx.v4.u16[4] = ctx.v19.u16[4] << (ctx.v14.u16[4] & 0xF);
-	ctx.v4.u16[5] = ctx.v19.u16[5] << (ctx.v14.u16[5] & 0xF);
-	ctx.v4.u16[6] = ctx.v19.u16[6] << (ctx.v14.u16[6] & 0xF);
-	ctx.v4.u16[7] = ctx.v19.u16[7] << (ctx.v14.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v19.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v14.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v4.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// addi r6,r1,-560
 	ctx.r6.s64 = ctx.r1.s64 + -560;
 	// vslh v3,v18,v14
-	ctx.v3.u16[0] = ctx.v18.u16[0] << (ctx.v14.u16[0] & 0xF);
-	ctx.v3.u16[1] = ctx.v18.u16[1] << (ctx.v14.u16[1] & 0xF);
-	ctx.v3.u16[2] = ctx.v18.u16[2] << (ctx.v14.u16[2] & 0xF);
-	ctx.v3.u16[3] = ctx.v18.u16[3] << (ctx.v14.u16[3] & 0xF);
-	ctx.v3.u16[4] = ctx.v18.u16[4] << (ctx.v14.u16[4] & 0xF);
-	ctx.v3.u16[5] = ctx.v18.u16[5] << (ctx.v14.u16[5] & 0xF);
-	ctx.v3.u16[6] = ctx.v18.u16[6] << (ctx.v14.u16[6] & 0xF);
-	ctx.v3.u16[7] = ctx.v18.u16[7] << (ctx.v14.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v18.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v14.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v3.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// addi r5,r1,-544
 	ctx.r5.s64 = ctx.r1.s64 + -544;
 	// vsubshs v13,v13,v12
@@ -4090,14 +3956,12 @@ loc_82A3C93C:
 	// vaddshs v31,v6,v6
 	simde_mm_store_si128((simde__m128i*)ctx.v31.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v6.s16), simde_mm_load_si128((simde__m128i*)ctx.v6.s16)));
 	// vslh v26,v27,v14
-	ctx.v26.u16[0] = ctx.v27.u16[0] << (ctx.v14.u16[0] & 0xF);
-	ctx.v26.u16[1] = ctx.v27.u16[1] << (ctx.v14.u16[1] & 0xF);
-	ctx.v26.u16[2] = ctx.v27.u16[2] << (ctx.v14.u16[2] & 0xF);
-	ctx.v26.u16[3] = ctx.v27.u16[3] << (ctx.v14.u16[3] & 0xF);
-	ctx.v26.u16[4] = ctx.v27.u16[4] << (ctx.v14.u16[4] & 0xF);
-	ctx.v26.u16[5] = ctx.v27.u16[5] << (ctx.v14.u16[5] & 0xF);
-	ctx.v26.u16[6] = ctx.v27.u16[6] << (ctx.v14.u16[6] & 0xF);
-	ctx.v26.u16[7] = ctx.v27.u16[7] << (ctx.v14.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v27.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v14.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v26.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vaddshs v25,v13,v13
 	simde_mm_store_si128((simde__m128i*)ctx.v25.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v13.s16), simde_mm_load_si128((simde__m128i*)ctx.v13.s16)));
 	// vsubshs v24,v2,v29
@@ -4115,14 +3979,12 @@ loc_82A3C93C:
 	// vsubshs v18,v25,v22
 	simde_mm_store_si128((simde__m128i*)ctx.v18.s16, simde_mm_subs_epi16(simde_mm_load_si128((simde__m128i*)ctx.v25.s16), simde_mm_load_si128((simde__m128i*)ctx.v22.s16)));
 	// vsrah v13,v27,v5
-	ctx.v13.s16[0] = ctx.v27.s16[0] >> (ctx.v5.u16[0] & 0xF);
-	ctx.v13.s16[1] = ctx.v27.s16[1] >> (ctx.v5.u16[1] & 0xF);
-	ctx.v13.s16[2] = ctx.v27.s16[2] >> (ctx.v5.u16[2] & 0xF);
-	ctx.v13.s16[3] = ctx.v27.s16[3] >> (ctx.v5.u16[3] & 0xF);
-	ctx.v13.s16[4] = ctx.v27.s16[4] >> (ctx.v5.u16[4] & 0xF);
-	ctx.v13.s16[5] = ctx.v27.s16[5] >> (ctx.v5.u16[5] & 0xF);
-	ctx.v13.s16[6] = ctx.v27.s16[6] >> (ctx.v5.u16[6] & 0xF);
-	ctx.v13.s16[7] = ctx.v27.s16[7] >> (ctx.v5.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v27.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v5.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v13.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsubshs v11,v0,v7
 	simde_mm_store_si128((simde__m128i*)ctx.v11.s16, simde_mm_subs_epi16(simde_mm_load_si128((simde__m128i*)ctx.v0.s16), simde_mm_load_si128((simde__m128i*)ctx.v7.s16)));
 	// vsubshs v10,v0,v6
@@ -4138,56 +4000,46 @@ loc_82A3C93C:
 	// vsubshs v31,v0,v12
 	simde_mm_store_si128((simde__m128i*)ctx.v31.s16, simde_mm_subs_epi16(simde_mm_load_si128((simde__m128i*)ctx.v0.s16), simde_mm_load_si128((simde__m128i*)ctx.v12.s16)));
 	// vsrah v29,v12,v5
-	ctx.v29.s16[0] = ctx.v12.s16[0] >> (ctx.v5.u16[0] & 0xF);
-	ctx.v29.s16[1] = ctx.v12.s16[1] >> (ctx.v5.u16[1] & 0xF);
-	ctx.v29.s16[2] = ctx.v12.s16[2] >> (ctx.v5.u16[2] & 0xF);
-	ctx.v29.s16[3] = ctx.v12.s16[3] >> (ctx.v5.u16[3] & 0xF);
-	ctx.v29.s16[4] = ctx.v12.s16[4] >> (ctx.v5.u16[4] & 0xF);
-	ctx.v29.s16[5] = ctx.v12.s16[5] >> (ctx.v5.u16[5] & 0xF);
-	ctx.v29.s16[6] = ctx.v12.s16[6] >> (ctx.v5.u16[6] & 0xF);
-	ctx.v29.s16[7] = ctx.v12.s16[7] >> (ctx.v5.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v5.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v29.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v28,v3,v9
-	ctx.v28.s16[0] = ctx.v3.s16[0] >> (ctx.v9.u16[0] & 0xF);
-	ctx.v28.s16[1] = ctx.v3.s16[1] >> (ctx.v9.u16[1] & 0xF);
-	ctx.v28.s16[2] = ctx.v3.s16[2] >> (ctx.v9.u16[2] & 0xF);
-	ctx.v28.s16[3] = ctx.v3.s16[3] >> (ctx.v9.u16[3] & 0xF);
-	ctx.v28.s16[4] = ctx.v3.s16[4] >> (ctx.v9.u16[4] & 0xF);
-	ctx.v28.s16[5] = ctx.v3.s16[5] >> (ctx.v9.u16[5] & 0xF);
-	ctx.v28.s16[6] = ctx.v3.s16[6] >> (ctx.v9.u16[6] & 0xF);
-	ctx.v28.s16[7] = ctx.v3.s16[7] >> (ctx.v9.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v3.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v28.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v27,v2,v9
-	ctx.v27.s16[0] = ctx.v2.s16[0] >> (ctx.v9.u16[0] & 0xF);
-	ctx.v27.s16[1] = ctx.v2.s16[1] >> (ctx.v9.u16[1] & 0xF);
-	ctx.v27.s16[2] = ctx.v2.s16[2] >> (ctx.v9.u16[2] & 0xF);
-	ctx.v27.s16[3] = ctx.v2.s16[3] >> (ctx.v9.u16[3] & 0xF);
-	ctx.v27.s16[4] = ctx.v2.s16[4] >> (ctx.v9.u16[4] & 0xF);
-	ctx.v27.s16[5] = ctx.v2.s16[5] >> (ctx.v9.u16[5] & 0xF);
-	ctx.v27.s16[6] = ctx.v2.s16[6] >> (ctx.v9.u16[6] & 0xF);
-	ctx.v27.s16[7] = ctx.v2.s16[7] >> (ctx.v9.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v2.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v27.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vmaxsh v26,v12,v31
 	simde_mm_store_si128((simde__m128i*)ctx.v26.s16, simde_mm_max_epi16(simde_mm_load_si128((simde__m128i*)ctx.v12.s16), simde_mm_load_si128((simde__m128i*)ctx.v31.s16)));
 	// vxor128 v41,v29,v13
 	simde_mm_store_si128((simde__m128i*)ctx.v41.u8, simde_mm_xor_si128(simde_mm_load_si128((simde__m128i*)ctx.v29.u8), simde_mm_load_si128((simde__m128i*)ctx.v13.u8)));
 	// vsrah v25,v4,v30
-	ctx.v25.s16[0] = ctx.v4.s16[0] >> (ctx.v30.u16[0] & 0xF);
-	ctx.v25.s16[1] = ctx.v4.s16[1] >> (ctx.v30.u16[1] & 0xF);
-	ctx.v25.s16[2] = ctx.v4.s16[2] >> (ctx.v30.u16[2] & 0xF);
-	ctx.v25.s16[3] = ctx.v4.s16[3] >> (ctx.v30.u16[3] & 0xF);
-	ctx.v25.s16[4] = ctx.v4.s16[4] >> (ctx.v30.u16[4] & 0xF);
-	ctx.v25.s16[5] = ctx.v4.s16[5] >> (ctx.v30.u16[5] & 0xF);
-	ctx.v25.s16[6] = ctx.v4.s16[6] >> (ctx.v30.u16[6] & 0xF);
-	ctx.v25.s16[7] = ctx.v4.s16[7] >> (ctx.v30.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v4.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v30.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v25.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vminsh v11,v28,v27
 	simde_mm_store_si128((simde__m128i*)ctx.v11.s16, simde_mm_min_epi16(simde_mm_load_si128((simde__m128i*)ctx.v28.s16), simde_mm_load_si128((simde__m128i*)ctx.v27.s16)));
 	// vsrah v12,v26,v9
-	ctx.v12.s16[0] = ctx.v26.s16[0] >> (ctx.v9.u16[0] & 0xF);
-	ctx.v12.s16[1] = ctx.v26.s16[1] >> (ctx.v9.u16[1] & 0xF);
-	ctx.v12.s16[2] = ctx.v26.s16[2] >> (ctx.v9.u16[2] & 0xF);
-	ctx.v12.s16[3] = ctx.v26.s16[3] >> (ctx.v9.u16[3] & 0xF);
-	ctx.v12.s16[4] = ctx.v26.s16[4] >> (ctx.v9.u16[4] & 0xF);
-	ctx.v12.s16[5] = ctx.v26.s16[5] >> (ctx.v9.u16[5] & 0xF);
-	ctx.v12.s16[6] = ctx.v26.s16[6] >> (ctx.v9.u16[6] & 0xF);
-	ctx.v12.s16[7] = ctx.v26.s16[7] >> (ctx.v9.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v26.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v12.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vandc128 v40,v41,v15
 	simde_mm_store_si128((simde__m128i*)ctx.v40.u8, simde_mm_andnot_si128(simde_mm_load_si128((simde__m128i*)ctx.v15.u8), simde_mm_load_si128((simde__m128i*)ctx.v41.u8)));
 	// vsubshs v10,v12,v11
@@ -4197,27 +4049,23 @@ loc_82A3C93C:
 	// vcmpgtsh v23,v17,v12
 	simde_mm_store_si128((simde__m128i*)ctx.v23.u8, simde_mm_cmpgt_epi16(simde_mm_load_si128((simde__m128i*)ctx.v17.u16), simde_mm_load_si128((simde__m128i*)ctx.v12.u16)));
 	// vslh v22,v10,v14
-	ctx.v22.u16[0] = ctx.v10.u16[0] << (ctx.v14.u16[0] & 0xF);
-	ctx.v22.u16[1] = ctx.v10.u16[1] << (ctx.v14.u16[1] & 0xF);
-	ctx.v22.u16[2] = ctx.v10.u16[2] << (ctx.v14.u16[2] & 0xF);
-	ctx.v22.u16[3] = ctx.v10.u16[3] << (ctx.v14.u16[3] & 0xF);
-	ctx.v22.u16[4] = ctx.v10.u16[4] << (ctx.v14.u16[4] & 0xF);
-	ctx.v22.u16[5] = ctx.v10.u16[5] << (ctx.v14.u16[5] & 0xF);
-	ctx.v22.u16[6] = ctx.v10.u16[6] << (ctx.v14.u16[6] & 0xF);
-	ctx.v22.u16[7] = ctx.v10.u16[7] << (ctx.v14.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v10.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v14.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v22.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vand128 v39,v23,v24
 	simde_mm_store_si128((simde__m128i*)ctx.v39.u8, simde_mm_and_si128(simde_mm_load_si128((simde__m128i*)ctx.v23.u8), simde_mm_load_si128((simde__m128i*)ctx.v24.u8)));
 	// vaddshs v19,v22,v10
 	simde_mm_store_si128((simde__m128i*)ctx.v19.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v22.s16), simde_mm_load_si128((simde__m128i*)ctx.v10.s16)));
 	// vsrah v18,v19,v9
-	ctx.v18.s16[0] = ctx.v19.s16[0] >> (ctx.v9.u16[0] & 0xF);
-	ctx.v18.s16[1] = ctx.v19.s16[1] >> (ctx.v9.u16[1] & 0xF);
-	ctx.v18.s16[2] = ctx.v19.s16[2] >> (ctx.v9.u16[2] & 0xF);
-	ctx.v18.s16[3] = ctx.v19.s16[3] >> (ctx.v9.u16[3] & 0xF);
-	ctx.v18.s16[4] = ctx.v19.s16[4] >> (ctx.v9.u16[4] & 0xF);
-	ctx.v18.s16[5] = ctx.v19.s16[5] >> (ctx.v9.u16[5] & 0xF);
-	ctx.v18.s16[6] = ctx.v19.s16[6] >> (ctx.v9.u16[6] & 0xF);
-	ctx.v18.s16[7] = ctx.v19.s16[7] >> (ctx.v9.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v19.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v18.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vand128 v38,v18,v39
 	simde_mm_store_si128((simde__m128i*)ctx.v38.u8, simde_mm_and_si128(simde_mm_load_si128((simde__m128i*)ctx.v18.u8), simde_mm_load_si128((simde__m128i*)ctx.v39.u8)));
 	// vand128 v37,v38,v39
@@ -4806,49 +4654,41 @@ loc_82A3CD44:
 	// vaddshs v4,v31,v4
 	simde_mm_store_si128((simde__m128i*)ctx.v4.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v31.s16), simde_mm_load_si128((simde__m128i*)ctx.v4.s16)));
 	// vsrah v31,v14,v12
-	ctx.v31.s16[0] = ctx.v14.s16[0] >> (ctx.v12.u16[0] & 0xF);
-	ctx.v31.s16[1] = ctx.v14.s16[1] >> (ctx.v12.u16[1] & 0xF);
-	ctx.v31.s16[2] = ctx.v14.s16[2] >> (ctx.v12.u16[2] & 0xF);
-	ctx.v31.s16[3] = ctx.v14.s16[3] >> (ctx.v12.u16[3] & 0xF);
-	ctx.v31.s16[4] = ctx.v14.s16[4] >> (ctx.v12.u16[4] & 0xF);
-	ctx.v31.s16[5] = ctx.v14.s16[5] >> (ctx.v12.u16[5] & 0xF);
-	ctx.v31.s16[6] = ctx.v14.s16[6] >> (ctx.v12.u16[6] & 0xF);
-	ctx.v31.s16[7] = ctx.v14.s16[7] >> (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v14.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v31.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vaddshs v2,v27,v2
 	simde_mm_store_si128((simde__m128i*)ctx.v2.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v27.s16), simde_mm_load_si128((simde__m128i*)ctx.v2.s16)));
 	// vsrah v27,v17,v12
-	ctx.v27.s16[0] = ctx.v17.s16[0] >> (ctx.v12.u16[0] & 0xF);
-	ctx.v27.s16[1] = ctx.v17.s16[1] >> (ctx.v12.u16[1] & 0xF);
-	ctx.v27.s16[2] = ctx.v17.s16[2] >> (ctx.v12.u16[2] & 0xF);
-	ctx.v27.s16[3] = ctx.v17.s16[3] >> (ctx.v12.u16[3] & 0xF);
-	ctx.v27.s16[4] = ctx.v17.s16[4] >> (ctx.v12.u16[4] & 0xF);
-	ctx.v27.s16[5] = ctx.v17.s16[5] >> (ctx.v12.u16[5] & 0xF);
-	ctx.v27.s16[6] = ctx.v17.s16[6] >> (ctx.v12.u16[6] & 0xF);
-	ctx.v27.s16[7] = ctx.v17.s16[7] >> (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v17.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v27.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vaddshs v24,v4,v24
 	simde_mm_store_si128((simde__m128i*)ctx.v24.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v4.s16), simde_mm_load_si128((simde__m128i*)ctx.v24.s16)));
 	// vsrah v17,v2,v12
-	ctx.v17.s16[0] = ctx.v2.s16[0] >> (ctx.v12.u16[0] & 0xF);
-	ctx.v17.s16[1] = ctx.v2.s16[1] >> (ctx.v12.u16[1] & 0xF);
-	ctx.v17.s16[2] = ctx.v2.s16[2] >> (ctx.v12.u16[2] & 0xF);
-	ctx.v17.s16[3] = ctx.v2.s16[3] >> (ctx.v12.u16[3] & 0xF);
-	ctx.v17.s16[4] = ctx.v2.s16[4] >> (ctx.v12.u16[4] & 0xF);
-	ctx.v17.s16[5] = ctx.v2.s16[5] >> (ctx.v12.u16[5] & 0xF);
-	ctx.v17.s16[6] = ctx.v2.s16[6] >> (ctx.v12.u16[6] & 0xF);
-	ctx.v17.s16[7] = ctx.v2.s16[7] >> (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v2.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v17.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vand128 v46,v31,v63
 	simde_mm_store_si128((simde__m128i*)ctx.v46.u8, simde_mm_and_si128(simde_mm_load_si128((simde__m128i*)ctx.v31.u8), simde_mm_load_si128((simde__m128i*)ctx.v63.u8)));
 	// vand128 v45,v27,v63
 	simde_mm_store_si128((simde__m128i*)ctx.v45.u8, simde_mm_and_si128(simde_mm_load_si128((simde__m128i*)ctx.v27.u8), simde_mm_load_si128((simde__m128i*)ctx.v63.u8)));
 	// vsrah v14,v24,v12
-	ctx.v14.s16[0] = ctx.v24.s16[0] >> (ctx.v12.u16[0] & 0xF);
-	ctx.v14.s16[1] = ctx.v24.s16[1] >> (ctx.v12.u16[1] & 0xF);
-	ctx.v14.s16[2] = ctx.v24.s16[2] >> (ctx.v12.u16[2] & 0xF);
-	ctx.v14.s16[3] = ctx.v24.s16[3] >> (ctx.v12.u16[3] & 0xF);
-	ctx.v14.s16[4] = ctx.v24.s16[4] >> (ctx.v12.u16[4] & 0xF);
-	ctx.v14.s16[5] = ctx.v24.s16[5] >> (ctx.v12.u16[5] & 0xF);
-	ctx.v14.s16[6] = ctx.v24.s16[6] >> (ctx.v12.u16[6] & 0xF);
-	ctx.v14.s16[7] = ctx.v24.s16[7] >> (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v24.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v14.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vand128 v44,v17,v63
 	simde_mm_store_si128((simde__m128i*)ctx.v44.u8, simde_mm_and_si128(simde_mm_load_si128((simde__m128i*)ctx.v17.u8), simde_mm_load_si128((simde__m128i*)ctx.v63.u8)));
 	// vxor128 v43,v46,v48
@@ -4890,49 +4730,41 @@ loc_82A3CD44:
 	// vaddshs v17,v29,v23
 	simde_mm_store_si128((simde__m128i*)ctx.v17.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v29.s16), simde_mm_load_si128((simde__m128i*)ctx.v23.s16)));
 	// vsrah v18,v28,v12
-	ctx.v18.s16[0] = ctx.v28.s16[0] >> (ctx.v12.u16[0] & 0xF);
-	ctx.v18.s16[1] = ctx.v28.s16[1] >> (ctx.v12.u16[1] & 0xF);
-	ctx.v18.s16[2] = ctx.v28.s16[2] >> (ctx.v12.u16[2] & 0xF);
-	ctx.v18.s16[3] = ctx.v28.s16[3] >> (ctx.v12.u16[3] & 0xF);
-	ctx.v18.s16[4] = ctx.v28.s16[4] >> (ctx.v12.u16[4] & 0xF);
-	ctx.v18.s16[5] = ctx.v28.s16[5] >> (ctx.v12.u16[5] & 0xF);
-	ctx.v18.s16[6] = ctx.v28.s16[6] >> (ctx.v12.u16[6] & 0xF);
-	ctx.v18.s16[7] = ctx.v28.s16[7] >> (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v28.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v18.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vaddshs v14,v21,v24
 	simde_mm_store_si128((simde__m128i*)ctx.v14.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v21.s16), simde_mm_load_si128((simde__m128i*)ctx.v24.s16)));
 	// vsrah v2,v20,v12
-	ctx.v2.s16[0] = ctx.v20.s16[0] >> (ctx.v12.u16[0] & 0xF);
-	ctx.v2.s16[1] = ctx.v20.s16[1] >> (ctx.v12.u16[1] & 0xF);
-	ctx.v2.s16[2] = ctx.v20.s16[2] >> (ctx.v12.u16[2] & 0xF);
-	ctx.v2.s16[3] = ctx.v20.s16[3] >> (ctx.v12.u16[3] & 0xF);
-	ctx.v2.s16[4] = ctx.v20.s16[4] >> (ctx.v12.u16[4] & 0xF);
-	ctx.v2.s16[5] = ctx.v20.s16[5] >> (ctx.v12.u16[5] & 0xF);
-	ctx.v2.s16[6] = ctx.v20.s16[6] >> (ctx.v12.u16[6] & 0xF);
-	ctx.v2.s16[7] = ctx.v20.s16[7] >> (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v20.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v2.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vxor128 v38,v41,v52
 	simde_mm_store_si128((simde__m128i*)ctx.v38.u8, simde_mm_xor_si128(simde_mm_load_si128((simde__m128i*)ctx.v41.u8), simde_mm_load_si128((simde__m128i*)ctx.v52.u8)));
 	// vandc128 v37,v11,v63
 	simde_mm_store_si128((simde__m128i*)ctx.v37.u8, simde_mm_andnot_si128(simde_mm_load_si128((simde__m128i*)ctx.v63.u8), simde_mm_load_si128((simde__m128i*)ctx.v11.u8)));
 	// vsrah v30,v14,v12
-	ctx.v30.s16[0] = ctx.v14.s16[0] >> (ctx.v12.u16[0] & 0xF);
-	ctx.v30.s16[1] = ctx.v14.s16[1] >> (ctx.v12.u16[1] & 0xF);
-	ctx.v30.s16[2] = ctx.v14.s16[2] >> (ctx.v12.u16[2] & 0xF);
-	ctx.v30.s16[3] = ctx.v14.s16[3] >> (ctx.v12.u16[3] & 0xF);
-	ctx.v30.s16[4] = ctx.v14.s16[4] >> (ctx.v12.u16[4] & 0xF);
-	ctx.v30.s16[5] = ctx.v14.s16[5] >> (ctx.v12.u16[5] & 0xF);
-	ctx.v30.s16[6] = ctx.v14.s16[6] >> (ctx.v12.u16[6] & 0xF);
-	ctx.v30.s16[7] = ctx.v14.s16[7] >> (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v14.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v30.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vand128 v33,v18,v63
 	simde_mm_store_si128((simde__m128i*)ctx.v33.u8, simde_mm_and_si128(simde_mm_load_si128((simde__m128i*)ctx.v18.u8), simde_mm_load_si128((simde__m128i*)ctx.v63.u8)));
 	// vsrah v31,v17,v12
-	ctx.v31.s16[0] = ctx.v17.s16[0] >> (ctx.v12.u16[0] & 0xF);
-	ctx.v31.s16[1] = ctx.v17.s16[1] >> (ctx.v12.u16[1] & 0xF);
-	ctx.v31.s16[2] = ctx.v17.s16[2] >> (ctx.v12.u16[2] & 0xF);
-	ctx.v31.s16[3] = ctx.v17.s16[3] >> (ctx.v12.u16[3] & 0xF);
-	ctx.v31.s16[4] = ctx.v17.s16[4] >> (ctx.v12.u16[4] & 0xF);
-	ctx.v31.s16[5] = ctx.v17.s16[5] >> (ctx.v12.u16[5] & 0xF);
-	ctx.v31.s16[6] = ctx.v17.s16[6] >> (ctx.v12.u16[6] & 0xF);
-	ctx.v31.s16[7] = ctx.v17.s16[7] >> (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v17.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v31.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vpkshus128 v34,v38,v38
 	simde_mm_store_si128((simde__m128i*)ctx.v34.u8, simde_mm_packus_epi16(simde_mm_load_si128((simde__m128i*)ctx.v38.s16), simde_mm_load_si128((simde__m128i*)ctx.v38.s16)));
 	// vandc128 v35,v9,v63
@@ -5020,25 +4852,21 @@ loc_82A3CF54:
 	// beq cr6,0x82a3d040
 	if (ctx.cr6.eq) goto loc_82A3D040;
 	// vslh v2,v25,v22
-	ctx.v2.u16[0] = ctx.v25.u16[0] << (ctx.v22.u16[0] & 0xF);
-	ctx.v2.u16[1] = ctx.v25.u16[1] << (ctx.v22.u16[1] & 0xF);
-	ctx.v2.u16[2] = ctx.v25.u16[2] << (ctx.v22.u16[2] & 0xF);
-	ctx.v2.u16[3] = ctx.v25.u16[3] << (ctx.v22.u16[3] & 0xF);
-	ctx.v2.u16[4] = ctx.v25.u16[4] << (ctx.v22.u16[4] & 0xF);
-	ctx.v2.u16[5] = ctx.v25.u16[5] << (ctx.v22.u16[5] & 0xF);
-	ctx.v2.u16[6] = ctx.v25.u16[6] << (ctx.v22.u16[6] & 0xF);
-	ctx.v2.u16[7] = ctx.v25.u16[7] << (ctx.v22.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v25.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v22.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v2.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vsubshs v7,v7,v10
 	simde_mm_store_si128((simde__m128i*)ctx.v7.s16, simde_mm_subs_epi16(simde_mm_load_si128((simde__m128i*)ctx.v7.s16), simde_mm_load_si128((simde__m128i*)ctx.v10.s16)));
 	// vslh v31,v26,v22
-	ctx.v31.u16[0] = ctx.v26.u16[0] << (ctx.v22.u16[0] & 0xF);
-	ctx.v31.u16[1] = ctx.v26.u16[1] << (ctx.v22.u16[1] & 0xF);
-	ctx.v31.u16[2] = ctx.v26.u16[2] << (ctx.v22.u16[2] & 0xF);
-	ctx.v31.u16[3] = ctx.v26.u16[3] << (ctx.v22.u16[3] & 0xF);
-	ctx.v31.u16[4] = ctx.v26.u16[4] << (ctx.v22.u16[4] & 0xF);
-	ctx.v31.u16[5] = ctx.v26.u16[5] << (ctx.v22.u16[5] & 0xF);
-	ctx.v31.u16[6] = ctx.v26.u16[6] << (ctx.v22.u16[6] & 0xF);
-	ctx.v31.u16[7] = ctx.v26.u16[7] << (ctx.v22.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v26.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v22.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v31.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vsubshs v6,v11,v6
 	simde_mm_store_si128((simde__m128i*)ctx.v6.s16, simde_mm_subs_epi16(simde_mm_load_si128((simde__m128i*)ctx.v11.s16), simde_mm_load_si128((simde__m128i*)ctx.v6.s16)));
 	// vaddshs v29,v2,v25
@@ -5052,14 +4880,12 @@ loc_82A3CF54:
 	// vsubshs v9,v8,v9
 	simde_mm_store_si128((simde__m128i*)ctx.v9.s16, simde_mm_subs_epi16(simde_mm_load_si128((simde__m128i*)ctx.v8.s16), simde_mm_load_si128((simde__m128i*)ctx.v9.s16)));
 	// vslh v26,v3,v22
-	ctx.v26.u16[0] = ctx.v3.u16[0] << (ctx.v22.u16[0] & 0xF);
-	ctx.v26.u16[1] = ctx.v3.u16[1] << (ctx.v22.u16[1] & 0xF);
-	ctx.v26.u16[2] = ctx.v3.u16[2] << (ctx.v22.u16[2] & 0xF);
-	ctx.v26.u16[3] = ctx.v3.u16[3] << (ctx.v22.u16[3] & 0xF);
-	ctx.v26.u16[4] = ctx.v3.u16[4] << (ctx.v22.u16[4] & 0xF);
-	ctx.v26.u16[5] = ctx.v3.u16[5] << (ctx.v22.u16[5] & 0xF);
-	ctx.v26.u16[6] = ctx.v3.u16[6] << (ctx.v22.u16[6] & 0xF);
-	ctx.v26.u16[7] = ctx.v3.u16[7] << (ctx.v22.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v3.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v22.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v26.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vsubshs v24,v30,v29
 	simde_mm_store_si128((simde__m128i*)ctx.v24.s16, simde_mm_subs_epi16(simde_mm_load_si128((simde__m128i*)ctx.v30.s16), simde_mm_load_si128((simde__m128i*)ctx.v29.s16)));
 	// vsubshs v23,v27,v28
@@ -5081,14 +4907,12 @@ loc_82A3CF54:
 	// vsubshs v14,v0,v7
 	simde_mm_store_si128((simde__m128i*)ctx.v14.s16, simde_mm_subs_epi16(simde_mm_load_si128((simde__m128i*)ctx.v0.s16), simde_mm_load_si128((simde__m128i*)ctx.v7.s16)));
 	// vsrah v9,v3,v16
-	ctx.v9.s16[0] = ctx.v3.s16[0] >> (ctx.v16.u16[0] & 0xF);
-	ctx.v9.s16[1] = ctx.v3.s16[1] >> (ctx.v16.u16[1] & 0xF);
-	ctx.v9.s16[2] = ctx.v3.s16[2] >> (ctx.v16.u16[2] & 0xF);
-	ctx.v9.s16[3] = ctx.v3.s16[3] >> (ctx.v16.u16[3] & 0xF);
-	ctx.v9.s16[4] = ctx.v3.s16[4] >> (ctx.v16.u16[4] & 0xF);
-	ctx.v9.s16[5] = ctx.v3.s16[5] >> (ctx.v16.u16[5] & 0xF);
-	ctx.v9.s16[6] = ctx.v3.s16[6] >> (ctx.v16.u16[6] & 0xF);
-	ctx.v9.s16[7] = ctx.v3.s16[7] >> (ctx.v16.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v3.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v16.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v9.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vaddshs v12,v18,v12
 	simde_mm_store_si128((simde__m128i*)ctx.v12.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v18.s16), simde_mm_load_si128((simde__m128i*)ctx.v12.s16)));
 	// vmaxsh v10,v8,v17
@@ -5100,56 +4924,46 @@ loc_82A3CF54:
 	// vsubshs v7,v0,v12
 	simde_mm_store_si128((simde__m128i*)ctx.v7.s16, simde_mm_subs_epi16(simde_mm_load_si128((simde__m128i*)ctx.v0.s16), simde_mm_load_si128((simde__m128i*)ctx.v12.s16)));
 	// vsrah v3,v10,v13
-	ctx.v3.s16[0] = ctx.v10.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v3.s16[1] = ctx.v10.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v3.s16[2] = ctx.v10.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v3.s16[3] = ctx.v10.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v3.s16[4] = ctx.v10.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v3.s16[5] = ctx.v10.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v3.s16[6] = ctx.v10.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v3.s16[7] = ctx.v10.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v10.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v3.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v2,v8,v13
-	ctx.v2.s16[0] = ctx.v8.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v2.s16[1] = ctx.v8.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v2.s16[2] = ctx.v8.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v2.s16[3] = ctx.v8.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v2.s16[4] = ctx.v8.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v2.s16[5] = ctx.v8.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v2.s16[6] = ctx.v8.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v2.s16[7] = ctx.v8.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v2.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v6,v12,v16
-	ctx.v6.s16[0] = ctx.v12.s16[0] >> (ctx.v16.u16[0] & 0xF);
-	ctx.v6.s16[1] = ctx.v12.s16[1] >> (ctx.v16.u16[1] & 0xF);
-	ctx.v6.s16[2] = ctx.v12.s16[2] >> (ctx.v16.u16[2] & 0xF);
-	ctx.v6.s16[3] = ctx.v12.s16[3] >> (ctx.v16.u16[3] & 0xF);
-	ctx.v6.s16[4] = ctx.v12.s16[4] >> (ctx.v16.u16[4] & 0xF);
-	ctx.v6.s16[5] = ctx.v12.s16[5] >> (ctx.v16.u16[5] & 0xF);
-	ctx.v6.s16[6] = ctx.v12.s16[6] >> (ctx.v16.u16[6] & 0xF);
-	ctx.v6.s16[7] = ctx.v12.s16[7] >> (ctx.v16.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v16.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v6.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vmaxsh v31,v12,v7
 	simde_mm_store_si128((simde__m128i*)ctx.v31.s16, simde_mm_max_epi16(simde_mm_load_si128((simde__m128i*)ctx.v12.s16), simde_mm_load_si128((simde__m128i*)ctx.v7.s16)));
 	// vsrah v30,v11,v15
-	ctx.v30.s16[0] = ctx.v11.s16[0] >> (ctx.v15.u16[0] & 0xF);
-	ctx.v30.s16[1] = ctx.v11.s16[1] >> (ctx.v15.u16[1] & 0xF);
-	ctx.v30.s16[2] = ctx.v11.s16[2] >> (ctx.v15.u16[2] & 0xF);
-	ctx.v30.s16[3] = ctx.v11.s16[3] >> (ctx.v15.u16[3] & 0xF);
-	ctx.v30.s16[4] = ctx.v11.s16[4] >> (ctx.v15.u16[4] & 0xF);
-	ctx.v30.s16[5] = ctx.v11.s16[5] >> (ctx.v15.u16[5] & 0xF);
-	ctx.v30.s16[6] = ctx.v11.s16[6] >> (ctx.v15.u16[6] & 0xF);
-	ctx.v30.s16[7] = ctx.v11.s16[7] >> (ctx.v15.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v11.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v15.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v30.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vminsh v12,v3,v2
 	simde_mm_store_si128((simde__m128i*)ctx.v12.s16, simde_mm_min_epi16(simde_mm_load_si128((simde__m128i*)ctx.v3.s16), simde_mm_load_si128((simde__m128i*)ctx.v2.s16)));
 	// vxor128 v51,v6,v9
 	simde_mm_store_si128((simde__m128i*)ctx.v51.u8, simde_mm_xor_si128(simde_mm_load_si128((simde__m128i*)ctx.v6.u8), simde_mm_load_si128((simde__m128i*)ctx.v9.u8)));
 	// vsrah v0,v31,v13
-	ctx.v0.s16[0] = ctx.v31.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v0.s16[1] = ctx.v31.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v0.s16[2] = ctx.v31.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v0.s16[3] = ctx.v31.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v0.s16[4] = ctx.v31.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v0.s16[5] = ctx.v31.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v0.s16[6] = ctx.v31.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v0.s16[7] = ctx.v31.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v31.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v0.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vandc128 v50,v51,v19
 	simde_mm_store_si128((simde__m128i*)ctx.v50.u8, simde_mm_andnot_si128(simde_mm_load_si128((simde__m128i*)ctx.v19.u8), simde_mm_load_si128((simde__m128i*)ctx.v51.u8)));
 	// vsubshs v11,v0,v12
@@ -5159,27 +4973,23 @@ loc_82A3CF54:
 	// vcmpgtsh v28,v0,v12
 	simde_mm_store_si128((simde__m128i*)ctx.v28.u8, simde_mm_cmpgt_epi16(simde_mm_load_si128((simde__m128i*)ctx.v0.u16), simde_mm_load_si128((simde__m128i*)ctx.v12.u16)));
 	// vslh v27,v11,v22
-	ctx.v27.u16[0] = ctx.v11.u16[0] << (ctx.v22.u16[0] & 0xF);
-	ctx.v27.u16[1] = ctx.v11.u16[1] << (ctx.v22.u16[1] & 0xF);
-	ctx.v27.u16[2] = ctx.v11.u16[2] << (ctx.v22.u16[2] & 0xF);
-	ctx.v27.u16[3] = ctx.v11.u16[3] << (ctx.v22.u16[3] & 0xF);
-	ctx.v27.u16[4] = ctx.v11.u16[4] << (ctx.v22.u16[4] & 0xF);
-	ctx.v27.u16[5] = ctx.v11.u16[5] << (ctx.v22.u16[5] & 0xF);
-	ctx.v27.u16[6] = ctx.v11.u16[6] << (ctx.v22.u16[6] & 0xF);
-	ctx.v27.u16[7] = ctx.v11.u16[7] << (ctx.v22.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v11.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v22.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v27.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vand128 v49,v29,v28
 	simde_mm_store_si128((simde__m128i*)ctx.v49.u8, simde_mm_and_si128(simde_mm_load_si128((simde__m128i*)ctx.v29.u8), simde_mm_load_si128((simde__m128i*)ctx.v28.u8)));
 	// vaddshs v26,v27,v11
 	simde_mm_store_si128((simde__m128i*)ctx.v26.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v27.s16), simde_mm_load_si128((simde__m128i*)ctx.v11.s16)));
 	// vsrah v25,v26,v13
-	ctx.v25.s16[0] = ctx.v26.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v25.s16[1] = ctx.v26.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v25.s16[2] = ctx.v26.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v25.s16[3] = ctx.v26.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v25.s16[4] = ctx.v26.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v25.s16[5] = ctx.v26.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v25.s16[6] = ctx.v26.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v25.s16[7] = ctx.v26.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v26.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v25.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vand128 v48,v25,v49
 	simde_mm_store_si128((simde__m128i*)ctx.v48.u8, simde_mm_and_si128(simde_mm_load_si128((simde__m128i*)ctx.v25.u8), simde_mm_load_si128((simde__m128i*)ctx.v49.u8)));
 	// vand128 v47,v48,v49
@@ -5809,34 +5619,28 @@ loc_82A3D390:
 	// vaddshs v19,v1,v28
 	simde_mm_store_si128((simde__m128i*)ctx.v19.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v1.s16), simde_mm_load_si128((simde__m128i*)ctx.v28.s16)));
 	// vsrah v1,v27,v12
-	ctx.v1.s16[0] = ctx.v27.s16[0] >> (ctx.v12.u16[0] & 0xF);
-	ctx.v1.s16[1] = ctx.v27.s16[1] >> (ctx.v12.u16[1] & 0xF);
-	ctx.v1.s16[2] = ctx.v27.s16[2] >> (ctx.v12.u16[2] & 0xF);
-	ctx.v1.s16[3] = ctx.v27.s16[3] >> (ctx.v12.u16[3] & 0xF);
-	ctx.v1.s16[4] = ctx.v27.s16[4] >> (ctx.v12.u16[4] & 0xF);
-	ctx.v1.s16[5] = ctx.v27.s16[5] >> (ctx.v12.u16[5] & 0xF);
-	ctx.v1.s16[6] = ctx.v27.s16[6] >> (ctx.v12.u16[6] & 0xF);
-	ctx.v1.s16[7] = ctx.v27.s16[7] >> (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v27.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v1.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vaddshs v16,v28,v16
 	simde_mm_store_si128((simde__m128i*)ctx.v16.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v28.s16), simde_mm_load_si128((simde__m128i*)ctx.v16.s16)));
 	// vsrah v27,v18,v12
-	ctx.v27.s16[0] = ctx.v18.s16[0] >> (ctx.v12.u16[0] & 0xF);
-	ctx.v27.s16[1] = ctx.v18.s16[1] >> (ctx.v12.u16[1] & 0xF);
-	ctx.v27.s16[2] = ctx.v18.s16[2] >> (ctx.v12.u16[2] & 0xF);
-	ctx.v27.s16[3] = ctx.v18.s16[3] >> (ctx.v12.u16[3] & 0xF);
-	ctx.v27.s16[4] = ctx.v18.s16[4] >> (ctx.v12.u16[4] & 0xF);
-	ctx.v27.s16[5] = ctx.v18.s16[5] >> (ctx.v12.u16[5] & 0xF);
-	ctx.v27.s16[6] = ctx.v18.s16[6] >> (ctx.v12.u16[6] & 0xF);
-	ctx.v27.s16[7] = ctx.v18.s16[7] >> (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v18.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v27.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v30,v19,v12
-	ctx.v30.s16[0] = ctx.v19.s16[0] >> (ctx.v12.u16[0] & 0xF);
-	ctx.v30.s16[1] = ctx.v19.s16[1] >> (ctx.v12.u16[1] & 0xF);
-	ctx.v30.s16[2] = ctx.v19.s16[2] >> (ctx.v12.u16[2] & 0xF);
-	ctx.v30.s16[3] = ctx.v19.s16[3] >> (ctx.v12.u16[3] & 0xF);
-	ctx.v30.s16[4] = ctx.v19.s16[4] >> (ctx.v12.u16[4] & 0xF);
-	ctx.v30.s16[5] = ctx.v19.s16[5] >> (ctx.v12.u16[5] & 0xF);
-	ctx.v30.s16[6] = ctx.v19.s16[6] >> (ctx.v12.u16[6] & 0xF);
-	ctx.v30.s16[7] = ctx.v19.s16[7] >> (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v19.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v30.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vand128 v35,v1,v63
 	simde_mm_store_si128((simde__m128i*)ctx.v35.u8, simde_mm_and_si128(simde_mm_load_si128((simde__m128i*)ctx.v1.u8), simde_mm_load_si128((simde__m128i*)ctx.v63.u8)));
 	// vaddshs v0,v4,v4
@@ -5878,50 +5682,40 @@ loc_82A3D390:
 	// vaddshs v16,v0,v13
 	simde_mm_store_si128((simde__m128i*)ctx.v16.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v0.s16), simde_mm_load_si128((simde__m128i*)ctx.v13.s16)));
 	// vsrah v29,v27,v12
-	ctx.v29.s16[0] = ctx.v27.s16[0] >> (ctx.v12.u16[0] & 0xF);
-	ctx.v29.s16[1] = ctx.v27.s16[1] >> (ctx.v12.u16[1] & 0xF);
-	ctx.v29.s16[2] = ctx.v27.s16[2] >> (ctx.v12.u16[2] & 0xF);
-	ctx.v29.s16[3] = ctx.v27.s16[3] >> (ctx.v12.u16[3] & 0xF);
-	ctx.v29.s16[4] = ctx.v27.s16[4] >> (ctx.v12.u16[4] & 0xF);
-	ctx.v29.s16[5] = ctx.v27.s16[5] >> (ctx.v12.u16[5] & 0xF);
-	ctx.v29.s16[6] = ctx.v27.s16[6] >> (ctx.v12.u16[6] & 0xF);
-	ctx.v29.s16[7] = ctx.v27.s16[7] >> (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v27.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v29.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v24,v23,v12
-	ctx.v24.s16[0] = ctx.v23.s16[0] >> (ctx.v12.u16[0] & 0xF);
-	ctx.v24.s16[1] = ctx.v23.s16[1] >> (ctx.v12.u16[1] & 0xF);
-	ctx.v24.s16[2] = ctx.v23.s16[2] >> (ctx.v12.u16[2] & 0xF);
-	ctx.v24.s16[3] = ctx.v23.s16[3] >> (ctx.v12.u16[3] & 0xF);
-	ctx.v24.s16[4] = ctx.v23.s16[4] >> (ctx.v12.u16[4] & 0xF);
-	ctx.v24.s16[5] = ctx.v23.s16[5] >> (ctx.v12.u16[5] & 0xF);
-	ctx.v24.s16[6] = ctx.v23.s16[6] >> (ctx.v12.u16[6] & 0xF);
-	ctx.v24.s16[7] = ctx.v23.s16[7] >> (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v23.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v24.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v2,v2,v12
-	ctx.v2.s16[0] = ctx.v2.s16[0] >> (ctx.v12.u16[0] & 0xF);
-	ctx.v2.s16[1] = ctx.v2.s16[1] >> (ctx.v12.u16[1] & 0xF);
-	ctx.v2.s16[2] = ctx.v2.s16[2] >> (ctx.v12.u16[2] & 0xF);
-	ctx.v2.s16[3] = ctx.v2.s16[3] >> (ctx.v12.u16[3] & 0xF);
-	ctx.v2.s16[4] = ctx.v2.s16[4] >> (ctx.v12.u16[4] & 0xF);
-	ctx.v2.s16[5] = ctx.v2.s16[5] >> (ctx.v12.u16[5] & 0xF);
-	ctx.v2.s16[6] = ctx.v2.s16[6] >> (ctx.v12.u16[6] & 0xF);
-	ctx.v2.s16[7] = ctx.v2.s16[7] >> (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v2.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v2.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v27,v16,v12
-	ctx.v27.s16[0] = ctx.v16.s16[0] >> (ctx.v12.u16[0] & 0xF);
-	ctx.v27.s16[1] = ctx.v16.s16[1] >> (ctx.v12.u16[1] & 0xF);
-	ctx.v27.s16[2] = ctx.v16.s16[2] >> (ctx.v12.u16[2] & 0xF);
-	ctx.v27.s16[3] = ctx.v16.s16[3] >> (ctx.v12.u16[3] & 0xF);
-	ctx.v27.s16[4] = ctx.v16.s16[4] >> (ctx.v12.u16[4] & 0xF);
-	ctx.v27.s16[5] = ctx.v16.s16[5] >> (ctx.v12.u16[5] & 0xF);
-	ctx.v27.s16[6] = ctx.v16.s16[6] >> (ctx.v12.u16[6] & 0xF);
-	ctx.v27.s16[7] = ctx.v16.s16[7] >> (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v16.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v27.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v23,v21,v12
-	ctx.v23.s16[0] = ctx.v21.s16[0] >> (ctx.v12.u16[0] & 0xF);
-	ctx.v23.s16[1] = ctx.v21.s16[1] >> (ctx.v12.u16[1] & 0xF);
-	ctx.v23.s16[2] = ctx.v21.s16[2] >> (ctx.v12.u16[2] & 0xF);
-	ctx.v23.s16[3] = ctx.v21.s16[3] >> (ctx.v12.u16[3] & 0xF);
-	ctx.v23.s16[4] = ctx.v21.s16[4] >> (ctx.v12.u16[4] & 0xF);
-	ctx.v23.s16[5] = ctx.v21.s16[5] >> (ctx.v12.u16[5] & 0xF);
-	ctx.v23.s16[6] = ctx.v21.s16[6] >> (ctx.v12.u16[6] & 0xF);
-	ctx.v23.s16[7] = ctx.v21.s16[7] >> (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v21.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v23.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vandc128 v62,v5,v63
 	simde_mm_store_si128((simde__m128i*)ctx.v62.u8, simde_mm_andnot_si128(simde_mm_load_si128((simde__m128i*)ctx.v63.u8), simde_mm_load_si128((simde__m128i*)ctx.v5.u8)));
 	// vandc128 v61,v4,v63
@@ -6109,25 +5903,21 @@ loc_82A3D62C:
 	// addi r11,r1,-144
 	ctx.r11.s64 = ctx.r1.s64 + -144;
 	// vslh v5,v26,v17
-	ctx.v5.u16[0] = ctx.v26.u16[0] << (ctx.v17.u16[0] & 0xF);
-	ctx.v5.u16[1] = ctx.v26.u16[1] << (ctx.v17.u16[1] & 0xF);
-	ctx.v5.u16[2] = ctx.v26.u16[2] << (ctx.v17.u16[2] & 0xF);
-	ctx.v5.u16[3] = ctx.v26.u16[3] << (ctx.v17.u16[3] & 0xF);
-	ctx.v5.u16[4] = ctx.v26.u16[4] << (ctx.v17.u16[4] & 0xF);
-	ctx.v5.u16[5] = ctx.v26.u16[5] << (ctx.v17.u16[5] & 0xF);
-	ctx.v5.u16[6] = ctx.v26.u16[6] << (ctx.v17.u16[6] & 0xF);
-	ctx.v5.u16[7] = ctx.v26.u16[7] << (ctx.v17.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v26.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v17.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v5.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// addi r31,r1,-160
 	ctx.r31.s64 = ctx.r1.s64 + -160;
 	// vslh v4,v25,v17
-	ctx.v4.u16[0] = ctx.v25.u16[0] << (ctx.v17.u16[0] & 0xF);
-	ctx.v4.u16[1] = ctx.v25.u16[1] << (ctx.v17.u16[1] & 0xF);
-	ctx.v4.u16[2] = ctx.v25.u16[2] << (ctx.v17.u16[2] & 0xF);
-	ctx.v4.u16[3] = ctx.v25.u16[3] << (ctx.v17.u16[3] & 0xF);
-	ctx.v4.u16[4] = ctx.v25.u16[4] << (ctx.v17.u16[4] & 0xF);
-	ctx.v4.u16[5] = ctx.v25.u16[5] << (ctx.v17.u16[5] & 0xF);
-	ctx.v4.u16[6] = ctx.v25.u16[6] << (ctx.v17.u16[6] & 0xF);
-	ctx.v4.u16[7] = ctx.v25.u16[7] << (ctx.v17.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v25.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v17.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v4.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// addi r30,r1,-144
 	ctx.r30.s64 = ctx.r1.s64 + -144;
 	// vsubshs v6,v8,v6
@@ -6146,14 +5936,12 @@ loc_82A3D62C:
 	// vaddshs v28,v6,v6
 	simde_mm_store_si128((simde__m128i*)ctx.v28.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v6.s16), simde_mm_load_si128((simde__m128i*)ctx.v6.s16)));
 	// vslh v27,v31,v17
-	ctx.v27.u16[0] = ctx.v31.u16[0] << (ctx.v17.u16[0] & 0xF);
-	ctx.v27.u16[1] = ctx.v31.u16[1] << (ctx.v17.u16[1] & 0xF);
-	ctx.v27.u16[2] = ctx.v31.u16[2] << (ctx.v17.u16[2] & 0xF);
-	ctx.v27.u16[3] = ctx.v31.u16[3] << (ctx.v17.u16[3] & 0xF);
-	ctx.v27.u16[4] = ctx.v31.u16[4] << (ctx.v17.u16[4] & 0xF);
-	ctx.v27.u16[5] = ctx.v31.u16[5] << (ctx.v17.u16[5] & 0xF);
-	ctx.v27.u16[6] = ctx.v31.u16[6] << (ctx.v17.u16[6] & 0xF);
-	ctx.v27.u16[7] = ctx.v31.u16[7] << (ctx.v17.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v31.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v17.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v27.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vaddshs v26,v11,v11
 	simde_mm_store_si128((simde__m128i*)ctx.v26.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v11.s16), simde_mm_load_si128((simde__m128i*)ctx.v11.s16)));
 	// vsubshs v25,v2,v30
@@ -6171,14 +5959,12 @@ loc_82A3D62C:
 	// vsubshs v21,v26,v23
 	simde_mm_store_si128((simde__m128i*)ctx.v21.s16, simde_mm_subs_epi16(simde_mm_load_si128((simde__m128i*)ctx.v26.s16), simde_mm_load_si128((simde__m128i*)ctx.v23.s16)));
 	// vsrah v11,v31,v15
-	ctx.v11.s16[0] = ctx.v31.s16[0] >> (ctx.v15.u16[0] & 0xF);
-	ctx.v11.s16[1] = ctx.v31.s16[1] >> (ctx.v15.u16[1] & 0xF);
-	ctx.v11.s16[2] = ctx.v31.s16[2] >> (ctx.v15.u16[2] & 0xF);
-	ctx.v11.s16[3] = ctx.v31.s16[3] >> (ctx.v15.u16[3] & 0xF);
-	ctx.v11.s16[4] = ctx.v31.s16[4] >> (ctx.v15.u16[4] & 0xF);
-	ctx.v11.s16[5] = ctx.v31.s16[5] >> (ctx.v15.u16[5] & 0xF);
-	ctx.v11.s16[6] = ctx.v31.s16[6] >> (ctx.v15.u16[6] & 0xF);
-	ctx.v11.s16[7] = ctx.v31.s16[7] >> (ctx.v15.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v31.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v15.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v11.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsubshs v20,v0,v10
 	simde_mm_store_si128((simde__m128i*)ctx.v20.s16, simde_mm_subs_epi16(simde_mm_load_si128((simde__m128i*)ctx.v0.s16), simde_mm_load_si128((simde__m128i*)ctx.v10.s16)));
 	// vsubshs v16,v0,v7
@@ -6194,56 +5980,46 @@ loc_82A3D62C:
 	// vsubshs v6,v0,v12
 	simde_mm_store_si128((simde__m128i*)ctx.v6.s16, simde_mm_subs_epi16(simde_mm_load_si128((simde__m128i*)ctx.v0.s16), simde_mm_load_si128((simde__m128i*)ctx.v12.s16)));
 	// vsrah v5,v12,v15
-	ctx.v5.s16[0] = ctx.v12.s16[0] >> (ctx.v15.u16[0] & 0xF);
-	ctx.v5.s16[1] = ctx.v12.s16[1] >> (ctx.v15.u16[1] & 0xF);
-	ctx.v5.s16[2] = ctx.v12.s16[2] >> (ctx.v15.u16[2] & 0xF);
-	ctx.v5.s16[3] = ctx.v12.s16[3] >> (ctx.v15.u16[3] & 0xF);
-	ctx.v5.s16[4] = ctx.v12.s16[4] >> (ctx.v15.u16[4] & 0xF);
-	ctx.v5.s16[5] = ctx.v12.s16[5] >> (ctx.v15.u16[5] & 0xF);
-	ctx.v5.s16[6] = ctx.v12.s16[6] >> (ctx.v15.u16[6] & 0xF);
-	ctx.v5.s16[7] = ctx.v12.s16[7] >> (ctx.v15.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v15.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v5.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v4,v8,v13
-	ctx.v4.s16[0] = ctx.v8.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v4.s16[1] = ctx.v8.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v4.s16[2] = ctx.v8.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v4.s16[3] = ctx.v8.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v4.s16[4] = ctx.v8.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v4.s16[5] = ctx.v8.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v4.s16[6] = ctx.v8.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v4.s16[7] = ctx.v8.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v4.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v2,v7,v13
-	ctx.v2.s16[0] = ctx.v7.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v2.s16[1] = ctx.v7.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v2.s16[2] = ctx.v7.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v2.s16[3] = ctx.v7.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v2.s16[4] = ctx.v7.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v2.s16[5] = ctx.v7.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v2.s16[6] = ctx.v7.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v2.s16[7] = ctx.v7.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v7.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v2.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vmaxsh v31,v12,v6
 	simde_mm_store_si128((simde__m128i*)ctx.v31.s16, simde_mm_max_epi16(simde_mm_load_si128((simde__m128i*)ctx.v12.s16), simde_mm_load_si128((simde__m128i*)ctx.v6.s16)));
 	// vsrah v30,v9,v1
-	ctx.v30.s16[0] = ctx.v9.s16[0] >> (ctx.v1.u16[0] & 0xF);
-	ctx.v30.s16[1] = ctx.v9.s16[1] >> (ctx.v1.u16[1] & 0xF);
-	ctx.v30.s16[2] = ctx.v9.s16[2] >> (ctx.v1.u16[2] & 0xF);
-	ctx.v30.s16[3] = ctx.v9.s16[3] >> (ctx.v1.u16[3] & 0xF);
-	ctx.v30.s16[4] = ctx.v9.s16[4] >> (ctx.v1.u16[4] & 0xF);
-	ctx.v30.s16[5] = ctx.v9.s16[5] >> (ctx.v1.u16[5] & 0xF);
-	ctx.v30.s16[6] = ctx.v9.s16[6] >> (ctx.v1.u16[6] & 0xF);
-	ctx.v30.s16[7] = ctx.v9.s16[7] >> (ctx.v1.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v1.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v30.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vxor128 v47,v5,v11
 	simde_mm_store_si128((simde__m128i*)ctx.v47.u8, simde_mm_xor_si128(simde_mm_load_si128((simde__m128i*)ctx.v5.u8), simde_mm_load_si128((simde__m128i*)ctx.v11.u8)));
 	// vminsh v10,v4,v2
 	simde_mm_store_si128((simde__m128i*)ctx.v10.s16, simde_mm_min_epi16(simde_mm_load_si128((simde__m128i*)ctx.v4.s16), simde_mm_load_si128((simde__m128i*)ctx.v2.s16)));
 	// vsrah v12,v31,v13
-	ctx.v12.s16[0] = ctx.v31.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v12.s16[1] = ctx.v31.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v12.s16[2] = ctx.v31.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v12.s16[3] = ctx.v31.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v12.s16[4] = ctx.v31.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v12.s16[5] = ctx.v31.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v12.s16[6] = ctx.v31.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v12.s16[7] = ctx.v31.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v31.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v12.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vandc128 v46,v47,v14
 	simde_mm_store_si128((simde__m128i*)ctx.v46.u8, simde_mm_andnot_si128(simde_mm_load_si128((simde__m128i*)ctx.v14.u8), simde_mm_load_si128((simde__m128i*)ctx.v47.u8)));
 	// vsubshs v9,v12,v10
@@ -6253,27 +6029,23 @@ loc_82A3D62C:
 	// vcmpgtsh v28,v3,v12
 	simde_mm_store_si128((simde__m128i*)ctx.v28.u8, simde_mm_cmpgt_epi16(simde_mm_load_si128((simde__m128i*)ctx.v3.u16), simde_mm_load_si128((simde__m128i*)ctx.v12.u16)));
 	// vslh v27,v9,v17
-	ctx.v27.u16[0] = ctx.v9.u16[0] << (ctx.v17.u16[0] & 0xF);
-	ctx.v27.u16[1] = ctx.v9.u16[1] << (ctx.v17.u16[1] & 0xF);
-	ctx.v27.u16[2] = ctx.v9.u16[2] << (ctx.v17.u16[2] & 0xF);
-	ctx.v27.u16[3] = ctx.v9.u16[3] << (ctx.v17.u16[3] & 0xF);
-	ctx.v27.u16[4] = ctx.v9.u16[4] << (ctx.v17.u16[4] & 0xF);
-	ctx.v27.u16[5] = ctx.v9.u16[5] << (ctx.v17.u16[5] & 0xF);
-	ctx.v27.u16[6] = ctx.v9.u16[6] << (ctx.v17.u16[6] & 0xF);
-	ctx.v27.u16[7] = ctx.v9.u16[7] << (ctx.v17.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v17.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v27.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vand128 v45,v28,v29
 	simde_mm_store_si128((simde__m128i*)ctx.v45.u8, simde_mm_and_si128(simde_mm_load_si128((simde__m128i*)ctx.v28.u8), simde_mm_load_si128((simde__m128i*)ctx.v29.u8)));
 	// vaddshs v26,v27,v9
 	simde_mm_store_si128((simde__m128i*)ctx.v26.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v27.s16), simde_mm_load_si128((simde__m128i*)ctx.v9.s16)));
 	// vsrah v25,v26,v13
-	ctx.v25.s16[0] = ctx.v26.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v25.s16[1] = ctx.v26.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v25.s16[2] = ctx.v26.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v25.s16[3] = ctx.v26.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v25.s16[4] = ctx.v26.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v25.s16[5] = ctx.v26.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v25.s16[6] = ctx.v26.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v25.s16[7] = ctx.v26.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v26.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v25.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vand128 v44,v25,v45
 	simde_mm_store_si128((simde__m128i*)ctx.v44.u8, simde_mm_and_si128(simde_mm_load_si128((simde__m128i*)ctx.v25.u8), simde_mm_load_si128((simde__m128i*)ctx.v45.u8)));
 	// vand128 v43,v44,v45
@@ -6815,26 +6587,22 @@ loc_82A3D9F8:
 	// vaddshs v0,v0,v4
 	simde_mm_store_si128((simde__m128i*)ctx.v0.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v0.s16), simde_mm_load_si128((simde__m128i*)ctx.v4.s16)));
 	// vsrah v31,v31,v13
-	ctx.v31.s16[0] = ctx.v31.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v31.s16[1] = ctx.v31.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v31.s16[2] = ctx.v31.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v31.s16[3] = ctx.v31.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v31.s16[4] = ctx.v31.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v31.s16[5] = ctx.v31.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v31.s16[6] = ctx.v31.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v31.s16[7] = ctx.v31.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v31.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v31.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// lvx128 v12,r0,r24
 	ea = (ctx.r24.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)ctx.v12.u8, simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)PPC_RAW_ADDR(ea)), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
 	// vsrah v30,v30,v13
-	ctx.v30.s16[0] = ctx.v30.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v30.s16[1] = ctx.v30.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v30.s16[2] = ctx.v30.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v30.s16[3] = ctx.v30.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v30.s16[4] = ctx.v30.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v30.s16[5] = ctx.v30.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v30.s16[6] = ctx.v30.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v30.s16[7] = ctx.v30.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v30.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v30.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vaddshs v28,v28,v3
 	simde_mm_store_si128((simde__m128i*)ctx.v28.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v28.s16), simde_mm_load_si128((simde__m128i*)ctx.v3.s16)));
 	// vaddshs v4,v12,v4
@@ -6844,41 +6612,33 @@ loc_82A3D9F8:
 	// vand128 v57,v30,v63
 	simde_mm_store_si128((simde__m128i*)ctx.v57.u8, simde_mm_and_si128(simde_mm_load_si128((simde__m128i*)ctx.v30.u8), simde_mm_load_si128((simde__m128i*)ctx.v63.u8)));
 	// vsrah v3,v2,v13
-	ctx.v3.s16[0] = ctx.v2.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v3.s16[1] = ctx.v2.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v3.s16[2] = ctx.v2.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v3.s16[3] = ctx.v2.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v3.s16[4] = ctx.v2.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v3.s16[5] = ctx.v2.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v3.s16[6] = ctx.v2.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v3.s16[7] = ctx.v2.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v2.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v3.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v31,v4,v13
-	ctx.v31.s16[0] = ctx.v4.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v31.s16[1] = ctx.v4.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v31.s16[2] = ctx.v4.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v31.s16[3] = ctx.v4.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v31.s16[4] = ctx.v4.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v31.s16[5] = ctx.v4.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v31.s16[6] = ctx.v4.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v31.s16[7] = ctx.v4.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v4.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v31.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v2,v0,v13
-	ctx.v2.s16[0] = ctx.v0.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v2.s16[1] = ctx.v0.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v2.s16[2] = ctx.v0.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v2.s16[3] = ctx.v0.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v2.s16[4] = ctx.v0.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v2.s16[5] = ctx.v0.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v2.s16[6] = ctx.v0.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v2.s16[7] = ctx.v0.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v2.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v30,v28,v13
-	ctx.v30.s16[0] = ctx.v28.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v30.s16[1] = ctx.v28.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v30.s16[2] = ctx.v28.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v30.s16[3] = ctx.v28.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v30.s16[4] = ctx.v28.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v30.s16[5] = ctx.v28.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v30.s16[6] = ctx.v28.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v30.s16[7] = ctx.v28.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v28.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v30.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vxor128 v56,v58,v40
 	simde_mm_store_si128((simde__m128i*)ctx.v56.u8, simde_mm_xor_si128(simde_mm_load_si128((simde__m128i*)ctx.v58.u8), simde_mm_load_si128((simde__m128i*)ctx.v40.u8)));
 	// vxor128 v55,v57,v39
@@ -7010,23 +6770,19 @@ loc_82A3DBB4:
 	// vspltish v28,15
 	simde_mm_store_si128((simde__m128i*)ctx.v28.s16, simde_mm_set1_epi16(short(0xF)));
 	// vsrah v31,v31,v29
-	ctx.v31.s16[0] = ctx.v31.s16[0] >> (ctx.v29.u16[0] & 0xF);
-	ctx.v31.s16[1] = ctx.v31.s16[1] >> (ctx.v29.u16[1] & 0xF);
-	ctx.v31.s16[2] = ctx.v31.s16[2] >> (ctx.v29.u16[2] & 0xF);
-	ctx.v31.s16[3] = ctx.v31.s16[3] >> (ctx.v29.u16[3] & 0xF);
-	ctx.v31.s16[4] = ctx.v31.s16[4] >> (ctx.v29.u16[4] & 0xF);
-	ctx.v31.s16[5] = ctx.v31.s16[5] >> (ctx.v29.u16[5] & 0xF);
-	ctx.v31.s16[6] = ctx.v31.s16[6] >> (ctx.v29.u16[6] & 0xF);
-	ctx.v31.s16[7] = ctx.v31.s16[7] >> (ctx.v29.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v31.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v29.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v31.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v2,v2,v28
-	ctx.v2.s16[0] = ctx.v2.s16[0] >> (ctx.v28.u16[0] & 0xF);
-	ctx.v2.s16[1] = ctx.v2.s16[1] >> (ctx.v28.u16[1] & 0xF);
-	ctx.v2.s16[2] = ctx.v2.s16[2] >> (ctx.v28.u16[2] & 0xF);
-	ctx.v2.s16[3] = ctx.v2.s16[3] >> (ctx.v28.u16[3] & 0xF);
-	ctx.v2.s16[4] = ctx.v2.s16[4] >> (ctx.v28.u16[4] & 0xF);
-	ctx.v2.s16[5] = ctx.v2.s16[5] >> (ctx.v28.u16[5] & 0xF);
-	ctx.v2.s16[6] = ctx.v2.s16[6] >> (ctx.v28.u16[6] & 0xF);
-	ctx.v2.s16[7] = ctx.v2.s16[7] >> (ctx.v28.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v2.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v28.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v2.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vaddshs v29,v31,v31
 	simde_mm_store_si128((simde__m128i*)ctx.v29.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v31.s16), simde_mm_load_si128((simde__m128i*)ctx.v31.s16)));
 	// vand v28,v2,v29
@@ -7525,34 +7281,28 @@ loc_82A3DED8:
 	// vaddshs v31,v12,v3
 	simde_mm_store_si128((simde__m128i*)ctx.v31.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v12.s16), simde_mm_load_si128((simde__m128i*)ctx.v3.s16)));
 	// vsrah v2,v2,v13
-	ctx.v2.s16[0] = ctx.v2.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v2.s16[1] = ctx.v2.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v2.s16[2] = ctx.v2.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v2.s16[3] = ctx.v2.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v2.s16[4] = ctx.v2.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v2.s16[5] = ctx.v2.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v2.s16[6] = ctx.v2.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v2.s16[7] = ctx.v2.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v2.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v2.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vandc128 v49,v7,v63
 	simde_mm_store_si128((simde__m128i*)ctx.v49.u8, simde_mm_andnot_si128(simde_mm_load_si128((simde__m128i*)ctx.v63.u8), simde_mm_load_si128((simde__m128i*)ctx.v7.u8)));
 	// vsrah v28,v28,v13
-	ctx.v28.s16[0] = ctx.v28.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v28.s16[1] = ctx.v28.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v28.s16[2] = ctx.v28.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v28.s16[3] = ctx.v28.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v28.s16[4] = ctx.v28.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v28.s16[5] = ctx.v28.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v28.s16[6] = ctx.v28.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v28.s16[7] = ctx.v28.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v28.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v28.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v31,v31,v13
-	ctx.v31.s16[0] = ctx.v31.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v31.s16[1] = ctx.v31.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v31.s16[2] = ctx.v31.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v31.s16[3] = ctx.v31.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v31.s16[4] = ctx.v31.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v31.s16[5] = ctx.v31.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v31.s16[6] = ctx.v31.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v31.s16[7] = ctx.v31.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v31.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v31.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// lvx128 v0,r0,r24
 	ea = (ctx.r24.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)ctx.v0.u8, simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)PPC_RAW_ADDR(ea)), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
@@ -7567,14 +7317,12 @@ loc_82A3DED8:
 	// vand128 v37,v2,v63
 	simde_mm_store_si128((simde__m128i*)ctx.v37.u8, simde_mm_and_si128(simde_mm_load_si128((simde__m128i*)ctx.v2.u8), simde_mm_load_si128((simde__m128i*)ctx.v63.u8)));
 	// vsrah v0,v0,v13
-	ctx.v0.s16[0] = ctx.v0.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v0.s16[1] = ctx.v0.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v0.s16[2] = ctx.v0.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v0.s16[3] = ctx.v0.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v0.s16[4] = ctx.v0.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v0.s16[5] = ctx.v0.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v0.s16[6] = ctx.v0.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v0.s16[7] = ctx.v0.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v0.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vaddshs v4,v29,v4
 	simde_mm_store_si128((simde__m128i*)ctx.v4.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v29.s16), simde_mm_load_si128((simde__m128i*)ctx.v4.s16)));
 	// lvx128 v29,r0,r27
@@ -7593,25 +7341,21 @@ loc_82A3DED8:
 	// vpkshus128 v60,v62,v32
 	simde_mm_store_si128((simde__m128i*)ctx.v60.u8, simde_mm_packus_epi16(simde_mm_load_si128((simde__m128i*)ctx.v32.s16), simde_mm_load_si128((simde__m128i*)ctx.v62.s16)));
 	// vsrah v4,v4,v13
-	ctx.v4.s16[0] = ctx.v4.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v4.s16[1] = ctx.v4.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v4.s16[2] = ctx.v4.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v4.s16[3] = ctx.v4.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v4.s16[4] = ctx.v4.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v4.s16[5] = ctx.v4.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v4.s16[6] = ctx.v4.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v4.s16[7] = ctx.v4.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v4.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v4.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vxor128 v61,v34,v48
 	simde_mm_store_si128((simde__m128i*)ctx.v61.u8, simde_mm_xor_si128(simde_mm_load_si128((simde__m128i*)ctx.v34.u8), simde_mm_load_si128((simde__m128i*)ctx.v48.u8)));
 	// vsrah v3,v28,v13
-	ctx.v3.s16[0] = ctx.v28.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v3.s16[1] = ctx.v28.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v3.s16[2] = ctx.v28.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v3.s16[3] = ctx.v28.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v3.s16[4] = ctx.v28.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v3.s16[5] = ctx.v28.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v3.s16[6] = ctx.v28.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v3.s16[7] = ctx.v28.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v28.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v3.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vand128 v58,v4,v63
 	simde_mm_store_si128((simde__m128i*)ctx.v58.u8, simde_mm_and_si128(simde_mm_load_si128((simde__m128i*)ctx.v4.u8), simde_mm_load_si128((simde__m128i*)ctx.v63.u8)));
 	// vpkshus128 v59,v61,v33
@@ -7731,23 +7475,19 @@ loc_82A3E090:
 	// vspltish v28,15
 	simde_mm_store_si128((simde__m128i*)ctx.v28.s16, simde_mm_set1_epi16(short(0xF)));
 	// vsrah v31,v31,v29
-	ctx.v31.s16[0] = ctx.v31.s16[0] >> (ctx.v29.u16[0] & 0xF);
-	ctx.v31.s16[1] = ctx.v31.s16[1] >> (ctx.v29.u16[1] & 0xF);
-	ctx.v31.s16[2] = ctx.v31.s16[2] >> (ctx.v29.u16[2] & 0xF);
-	ctx.v31.s16[3] = ctx.v31.s16[3] >> (ctx.v29.u16[3] & 0xF);
-	ctx.v31.s16[4] = ctx.v31.s16[4] >> (ctx.v29.u16[4] & 0xF);
-	ctx.v31.s16[5] = ctx.v31.s16[5] >> (ctx.v29.u16[5] & 0xF);
-	ctx.v31.s16[6] = ctx.v31.s16[6] >> (ctx.v29.u16[6] & 0xF);
-	ctx.v31.s16[7] = ctx.v31.s16[7] >> (ctx.v29.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v31.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v29.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v31.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v2,v2,v28
-	ctx.v2.s16[0] = ctx.v2.s16[0] >> (ctx.v28.u16[0] & 0xF);
-	ctx.v2.s16[1] = ctx.v2.s16[1] >> (ctx.v28.u16[1] & 0xF);
-	ctx.v2.s16[2] = ctx.v2.s16[2] >> (ctx.v28.u16[2] & 0xF);
-	ctx.v2.s16[3] = ctx.v2.s16[3] >> (ctx.v28.u16[3] & 0xF);
-	ctx.v2.s16[4] = ctx.v2.s16[4] >> (ctx.v28.u16[4] & 0xF);
-	ctx.v2.s16[5] = ctx.v2.s16[5] >> (ctx.v28.u16[5] & 0xF);
-	ctx.v2.s16[6] = ctx.v2.s16[6] >> (ctx.v28.u16[6] & 0xF);
-	ctx.v2.s16[7] = ctx.v2.s16[7] >> (ctx.v28.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v2.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v28.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v2.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vaddshs v29,v31,v31
 	simde_mm_store_si128((simde__m128i*)ctx.v29.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v31.s16), simde_mm_load_si128((simde__m128i*)ctx.v31.s16)));
 	// vand v28,v2,v29
@@ -8243,59 +7983,47 @@ loc_82A3E3C0:
 	// vaddshs v20,v20,v4
 	simde_mm_store_si128((simde__m128i*)ctx.v20.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v20.s16), simde_mm_load_si128((simde__m128i*)ctx.v4.s16)));
 	// vsrah v30,v19,v13
-	ctx.v30.s16[0] = ctx.v19.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v30.s16[1] = ctx.v19.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v30.s16[2] = ctx.v19.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v30.s16[3] = ctx.v19.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v30.s16[4] = ctx.v19.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v30.s16[5] = ctx.v19.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v30.s16[6] = ctx.v19.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v30.s16[7] = ctx.v19.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v19.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v30.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v28,v3,v13
-	ctx.v28.s16[0] = ctx.v3.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v28.s16[1] = ctx.v3.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v28.s16[2] = ctx.v3.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v28.s16[3] = ctx.v3.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v28.s16[4] = ctx.v3.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v28.s16[5] = ctx.v3.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v28.s16[6] = ctx.v3.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v28.s16[7] = ctx.v3.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v3.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v28.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v29,v17,v13
-	ctx.v29.s16[0] = ctx.v17.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v29.s16[1] = ctx.v17.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v29.s16[2] = ctx.v17.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v29.s16[3] = ctx.v17.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v29.s16[4] = ctx.v17.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v29.s16[5] = ctx.v17.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v29.s16[6] = ctx.v17.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v29.s16[7] = ctx.v17.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v17.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v29.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v22,v2,v13
-	ctx.v22.s16[0] = ctx.v2.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v22.s16[1] = ctx.v2.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v22.s16[2] = ctx.v2.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v22.s16[3] = ctx.v2.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v22.s16[4] = ctx.v2.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v22.s16[5] = ctx.v2.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v22.s16[6] = ctx.v2.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v22.s16[7] = ctx.v2.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v2.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v22.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v23,v20,v13
-	ctx.v23.s16[0] = ctx.v20.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v23.s16[1] = ctx.v20.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v23.s16[2] = ctx.v20.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v23.s16[3] = ctx.v20.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v23.s16[4] = ctx.v20.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v23.s16[5] = ctx.v20.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v23.s16[6] = ctx.v20.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v23.s16[7] = ctx.v20.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v20.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v23.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v21,v31,v13
-	ctx.v21.s16[0] = ctx.v31.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v21.s16[1] = ctx.v31.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v21.s16[2] = ctx.v31.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v21.s16[3] = ctx.v31.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v21.s16[4] = ctx.v31.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v21.s16[5] = ctx.v31.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v21.s16[6] = ctx.v31.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v21.s16[7] = ctx.v31.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v31.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v21.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vand128 v55,v30,v63
 	simde_mm_store_si128((simde__m128i*)ctx.v55.u8, simde_mm_and_si128(simde_mm_load_si128((simde__m128i*)ctx.v30.u8), simde_mm_load_si128((simde__m128i*)ctx.v63.u8)));
 	// vand128 v54,v29,v63
@@ -8472,23 +8200,19 @@ loc_82A3E59C:
 	// addi r26,r1,-192
 	ctx.r26.s64 = ctx.r1.s64 + -192;
 	// vsrah v4,v4,v31
-	ctx.v4.s16[0] = ctx.v4.s16[0] >> (ctx.v31.u16[0] & 0xF);
-	ctx.v4.s16[1] = ctx.v4.s16[1] >> (ctx.v31.u16[1] & 0xF);
-	ctx.v4.s16[2] = ctx.v4.s16[2] >> (ctx.v31.u16[2] & 0xF);
-	ctx.v4.s16[3] = ctx.v4.s16[3] >> (ctx.v31.u16[3] & 0xF);
-	ctx.v4.s16[4] = ctx.v4.s16[4] >> (ctx.v31.u16[4] & 0xF);
-	ctx.v4.s16[5] = ctx.v4.s16[5] >> (ctx.v31.u16[5] & 0xF);
-	ctx.v4.s16[6] = ctx.v4.s16[6] >> (ctx.v31.u16[6] & 0xF);
-	ctx.v4.s16[7] = ctx.v4.s16[7] >> (ctx.v31.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v4.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v31.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v4.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v26,v3,v30
-	ctx.v26.s16[0] = ctx.v3.s16[0] >> (ctx.v30.u16[0] & 0xF);
-	ctx.v26.s16[1] = ctx.v3.s16[1] >> (ctx.v30.u16[1] & 0xF);
-	ctx.v26.s16[2] = ctx.v3.s16[2] >> (ctx.v30.u16[2] & 0xF);
-	ctx.v26.s16[3] = ctx.v3.s16[3] >> (ctx.v30.u16[3] & 0xF);
-	ctx.v26.s16[4] = ctx.v3.s16[4] >> (ctx.v30.u16[4] & 0xF);
-	ctx.v26.s16[5] = ctx.v3.s16[5] >> (ctx.v30.u16[5] & 0xF);
-	ctx.v26.s16[6] = ctx.v3.s16[6] >> (ctx.v30.u16[6] & 0xF);
-	ctx.v26.s16[7] = ctx.v3.s16[7] >> (ctx.v30.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v3.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v30.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v26.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vaddshs v23,v4,v4
 	simde_mm_store_si128((simde__m128i*)ctx.v23.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v4.s16), simde_mm_load_si128((simde__m128i*)ctx.v4.s16)));
 	// vand v22,v26,v23
@@ -9133,32 +8857,26 @@ loc_82A3E9DC:
 	// vaddshs v2,v18,v4
 	simde_mm_store_si128((simde__m128i*)ctx.v2.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v18.s16), simde_mm_load_si128((simde__m128i*)ctx.v4.s16)));
 	// vsrah v31,v19,v13
-	ctx.v31.s16[0] = ctx.v19.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v31.s16[1] = ctx.v19.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v31.s16[2] = ctx.v19.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v31.s16[3] = ctx.v19.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v31.s16[4] = ctx.v19.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v31.s16[5] = ctx.v19.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v31.s16[6] = ctx.v19.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v31.s16[7] = ctx.v19.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v19.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v31.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v30,v17,v13
-	ctx.v30.s16[0] = ctx.v17.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v30.s16[1] = ctx.v17.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v30.s16[2] = ctx.v17.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v30.s16[3] = ctx.v17.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v30.s16[4] = ctx.v17.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v30.s16[5] = ctx.v17.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v30.s16[6] = ctx.v17.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v30.s16[7] = ctx.v17.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v17.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v30.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v28,v3,v13
-	ctx.v28.s16[0] = ctx.v3.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v28.s16[1] = ctx.v3.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v28.s16[2] = ctx.v3.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v28.s16[3] = ctx.v3.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v28.s16[4] = ctx.v3.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v28.s16[5] = ctx.v3.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v28.s16[6] = ctx.v3.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v28.s16[7] = ctx.v3.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v3.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v28.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vaddshs v23,v29,v4
 	simde_mm_store_si128((simde__m128i*)ctx.v23.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v29.s16), simde_mm_load_si128((simde__m128i*)ctx.v4.s16)));
 	// vand128 v62,v31,v63
@@ -9168,32 +8886,26 @@ loc_82A3E9DC:
 	// vand128 v60,v28,v63
 	simde_mm_store_si128((simde__m128i*)ctx.v60.u8, simde_mm_and_si128(simde_mm_load_si128((simde__m128i*)ctx.v28.u8), simde_mm_load_si128((simde__m128i*)ctx.v63.u8)));
 	// vsrah v22,v20,v13
-	ctx.v22.s16[0] = ctx.v20.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v22.s16[1] = ctx.v20.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v22.s16[2] = ctx.v20.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v22.s16[3] = ctx.v20.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v22.s16[4] = ctx.v20.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v22.s16[5] = ctx.v20.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v22.s16[6] = ctx.v20.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v22.s16[7] = ctx.v20.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v20.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v22.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v21,v2,v13
-	ctx.v21.s16[0] = ctx.v2.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v21.s16[1] = ctx.v2.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v21.s16[2] = ctx.v2.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v21.s16[3] = ctx.v2.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v21.s16[4] = ctx.v2.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v21.s16[5] = ctx.v2.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v21.s16[6] = ctx.v2.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v21.s16[7] = ctx.v2.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v2.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v21.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v20,v23,v13
-	ctx.v20.s16[0] = ctx.v23.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v20.s16[1] = ctx.v23.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v20.s16[2] = ctx.v23.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v20.s16[3] = ctx.v23.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v20.s16[4] = ctx.v23.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v20.s16[5] = ctx.v23.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v20.s16[6] = ctx.v23.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v20.s16[7] = ctx.v23.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v23.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v20.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vxor128 v29,v62,v41
 	simde_mm_store_si128((simde__m128i*)ctx.v29.u8, simde_mm_xor_si128(simde_mm_load_si128((simde__m128i*)ctx.v62.u8), simde_mm_load_si128((simde__m128i*)ctx.v41.u8)));
 	// vxor128 v59,v61,v38
@@ -9362,23 +9074,19 @@ loc_82A3EBB4:
 	// addi r29,r1,-256
 	ctx.r29.s64 = ctx.r1.s64 + -256;
 	// vsrah v4,v4,v31
-	ctx.v4.s16[0] = ctx.v4.s16[0] >> (ctx.v31.u16[0] & 0xF);
-	ctx.v4.s16[1] = ctx.v4.s16[1] >> (ctx.v31.u16[1] & 0xF);
-	ctx.v4.s16[2] = ctx.v4.s16[2] >> (ctx.v31.u16[2] & 0xF);
-	ctx.v4.s16[3] = ctx.v4.s16[3] >> (ctx.v31.u16[3] & 0xF);
-	ctx.v4.s16[4] = ctx.v4.s16[4] >> (ctx.v31.u16[4] & 0xF);
-	ctx.v4.s16[5] = ctx.v4.s16[5] >> (ctx.v31.u16[5] & 0xF);
-	ctx.v4.s16[6] = ctx.v4.s16[6] >> (ctx.v31.u16[6] & 0xF);
-	ctx.v4.s16[7] = ctx.v4.s16[7] >> (ctx.v31.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v4.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v31.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v4.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v26,v3,v30
-	ctx.v26.s16[0] = ctx.v3.s16[0] >> (ctx.v30.u16[0] & 0xF);
-	ctx.v26.s16[1] = ctx.v3.s16[1] >> (ctx.v30.u16[1] & 0xF);
-	ctx.v26.s16[2] = ctx.v3.s16[2] >> (ctx.v30.u16[2] & 0xF);
-	ctx.v26.s16[3] = ctx.v3.s16[3] >> (ctx.v30.u16[3] & 0xF);
-	ctx.v26.s16[4] = ctx.v3.s16[4] >> (ctx.v30.u16[4] & 0xF);
-	ctx.v26.s16[5] = ctx.v3.s16[5] >> (ctx.v30.u16[5] & 0xF);
-	ctx.v26.s16[6] = ctx.v3.s16[6] >> (ctx.v30.u16[6] & 0xF);
-	ctx.v26.s16[7] = ctx.v3.s16[7] >> (ctx.v30.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v3.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v30.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v26.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vaddshs v23,v4,v4
 	simde_mm_store_si128((simde__m128i*)ctx.v23.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v4.s16), simde_mm_load_si128((simde__m128i*)ctx.v4.s16)));
 	// vand v22,v26,v23
@@ -10070,26 +9778,22 @@ loc_82A3F010:
 	// vaddshs v0,v0,v4
 	simde_mm_store_si128((simde__m128i*)ctx.v0.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v0.s16), simde_mm_load_si128((simde__m128i*)ctx.v4.s16)));
 	// vsrah v31,v31,v13
-	ctx.v31.s16[0] = ctx.v31.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v31.s16[1] = ctx.v31.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v31.s16[2] = ctx.v31.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v31.s16[3] = ctx.v31.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v31.s16[4] = ctx.v31.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v31.s16[5] = ctx.v31.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v31.s16[6] = ctx.v31.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v31.s16[7] = ctx.v31.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v31.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v31.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// lvx128 v12,r0,r22
 	ea = (ctx.r22.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)ctx.v12.u8, simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)PPC_RAW_ADDR(ea)), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
 	// vsrah v30,v30,v13
-	ctx.v30.s16[0] = ctx.v30.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v30.s16[1] = ctx.v30.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v30.s16[2] = ctx.v30.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v30.s16[3] = ctx.v30.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v30.s16[4] = ctx.v30.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v30.s16[5] = ctx.v30.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v30.s16[6] = ctx.v30.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v30.s16[7] = ctx.v30.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v30.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v30.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vaddshs v28,v28,v3
 	simde_mm_store_si128((simde__m128i*)ctx.v28.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v28.s16), simde_mm_load_si128((simde__m128i*)ctx.v3.s16)));
 	// vaddshs v4,v12,v4
@@ -10099,41 +9803,33 @@ loc_82A3F010:
 	// vand128 v57,v30,v63
 	simde_mm_store_si128((simde__m128i*)ctx.v57.u8, simde_mm_and_si128(simde_mm_load_si128((simde__m128i*)ctx.v30.u8), simde_mm_load_si128((simde__m128i*)ctx.v63.u8)));
 	// vsrah v3,v2,v13
-	ctx.v3.s16[0] = ctx.v2.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v3.s16[1] = ctx.v2.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v3.s16[2] = ctx.v2.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v3.s16[3] = ctx.v2.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v3.s16[4] = ctx.v2.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v3.s16[5] = ctx.v2.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v3.s16[6] = ctx.v2.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v3.s16[7] = ctx.v2.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v2.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v3.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v31,v4,v13
-	ctx.v31.s16[0] = ctx.v4.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v31.s16[1] = ctx.v4.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v31.s16[2] = ctx.v4.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v31.s16[3] = ctx.v4.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v31.s16[4] = ctx.v4.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v31.s16[5] = ctx.v4.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v31.s16[6] = ctx.v4.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v31.s16[7] = ctx.v4.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v4.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v31.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v2,v0,v13
-	ctx.v2.s16[0] = ctx.v0.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v2.s16[1] = ctx.v0.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v2.s16[2] = ctx.v0.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v2.s16[3] = ctx.v0.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v2.s16[4] = ctx.v0.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v2.s16[5] = ctx.v0.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v2.s16[6] = ctx.v0.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v2.s16[7] = ctx.v0.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v2.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v30,v28,v13
-	ctx.v30.s16[0] = ctx.v28.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v30.s16[1] = ctx.v28.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v30.s16[2] = ctx.v28.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v30.s16[3] = ctx.v28.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v30.s16[4] = ctx.v28.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v30.s16[5] = ctx.v28.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v30.s16[6] = ctx.v28.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v30.s16[7] = ctx.v28.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v28.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v30.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vxor128 v56,v58,v40
 	simde_mm_store_si128((simde__m128i*)ctx.v56.u8, simde_mm_xor_si128(simde_mm_load_si128((simde__m128i*)ctx.v58.u8), simde_mm_load_si128((simde__m128i*)ctx.v40.u8)));
 	// vxor128 v55,v57,v39
@@ -10265,23 +9961,19 @@ loc_82A3F1CC:
 	// vspltish v28,15
 	simde_mm_store_si128((simde__m128i*)ctx.v28.s16, simde_mm_set1_epi16(short(0xF)));
 	// vsrah v31,v31,v29
-	ctx.v31.s16[0] = ctx.v31.s16[0] >> (ctx.v29.u16[0] & 0xF);
-	ctx.v31.s16[1] = ctx.v31.s16[1] >> (ctx.v29.u16[1] & 0xF);
-	ctx.v31.s16[2] = ctx.v31.s16[2] >> (ctx.v29.u16[2] & 0xF);
-	ctx.v31.s16[3] = ctx.v31.s16[3] >> (ctx.v29.u16[3] & 0xF);
-	ctx.v31.s16[4] = ctx.v31.s16[4] >> (ctx.v29.u16[4] & 0xF);
-	ctx.v31.s16[5] = ctx.v31.s16[5] >> (ctx.v29.u16[5] & 0xF);
-	ctx.v31.s16[6] = ctx.v31.s16[6] >> (ctx.v29.u16[6] & 0xF);
-	ctx.v31.s16[7] = ctx.v31.s16[7] >> (ctx.v29.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v31.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v29.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v31.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v2,v2,v28
-	ctx.v2.s16[0] = ctx.v2.s16[0] >> (ctx.v28.u16[0] & 0xF);
-	ctx.v2.s16[1] = ctx.v2.s16[1] >> (ctx.v28.u16[1] & 0xF);
-	ctx.v2.s16[2] = ctx.v2.s16[2] >> (ctx.v28.u16[2] & 0xF);
-	ctx.v2.s16[3] = ctx.v2.s16[3] >> (ctx.v28.u16[3] & 0xF);
-	ctx.v2.s16[4] = ctx.v2.s16[4] >> (ctx.v28.u16[4] & 0xF);
-	ctx.v2.s16[5] = ctx.v2.s16[5] >> (ctx.v28.u16[5] & 0xF);
-	ctx.v2.s16[6] = ctx.v2.s16[6] >> (ctx.v28.u16[6] & 0xF);
-	ctx.v2.s16[7] = ctx.v2.s16[7] >> (ctx.v28.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v2.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v28.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v2.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vaddshs v29,v31,v31
 	simde_mm_store_si128((simde__m128i*)ctx.v29.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v31.s16), simde_mm_load_si128((simde__m128i*)ctx.v31.s16)));
 	// vand v28,v2,v29
@@ -10794,32 +10486,26 @@ loc_82A3F520:
 	// vaddshs v19,v14,v4
 	simde_mm_store_si128((simde__m128i*)ctx.v19.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v14.s16), simde_mm_load_si128((simde__m128i*)ctx.v4.s16)));
 	// vsrah v18,v31,v13
-	ctx.v18.s16[0] = ctx.v31.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v18.s16[1] = ctx.v31.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v18.s16[2] = ctx.v31.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v18.s16[3] = ctx.v31.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v18.s16[4] = ctx.v31.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v18.s16[5] = ctx.v31.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v18.s16[6] = ctx.v31.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v18.s16[7] = ctx.v31.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v31.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v18.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v17,v30,v13
-	ctx.v17.s16[0] = ctx.v30.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v17.s16[1] = ctx.v30.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v17.s16[2] = ctx.v30.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v17.s16[3] = ctx.v30.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v17.s16[4] = ctx.v30.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v17.s16[5] = ctx.v30.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v17.s16[6] = ctx.v30.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v17.s16[7] = ctx.v30.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v30.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v17.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v16,v29,v13
-	ctx.v16.s16[0] = ctx.v29.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v16.s16[1] = ctx.v29.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v16.s16[2] = ctx.v29.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v16.s16[3] = ctx.v29.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v16.s16[4] = ctx.v29.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v16.s16[5] = ctx.v29.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v16.s16[6] = ctx.v29.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v16.s16[7] = ctx.v29.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v29.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v16.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vaddshs v15,v28,v4
 	simde_mm_store_si128((simde__m128i*)ctx.v15.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v28.s16), simde_mm_load_si128((simde__m128i*)ctx.v4.s16)));
 	// vand128 v46,v18,v63
@@ -10829,32 +10515,26 @@ loc_82A3F520:
 	// vand128 v44,v16,v63
 	simde_mm_store_si128((simde__m128i*)ctx.v44.u8, simde_mm_and_si128(simde_mm_load_si128((simde__m128i*)ctx.v16.u8), simde_mm_load_si128((simde__m128i*)ctx.v63.u8)));
 	// vsrah v14,v2,v13
-	ctx.v14.s16[0] = ctx.v2.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v14.s16[1] = ctx.v2.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v14.s16[2] = ctx.v2.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v14.s16[3] = ctx.v2.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v14.s16[4] = ctx.v2.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v14.s16[5] = ctx.v2.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v14.s16[6] = ctx.v2.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v14.s16[7] = ctx.v2.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v2.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v14.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v4,v19,v13
-	ctx.v4.s16[0] = ctx.v19.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v4.s16[1] = ctx.v19.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v4.s16[2] = ctx.v19.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v4.s16[3] = ctx.v19.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v4.s16[4] = ctx.v19.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v4.s16[5] = ctx.v19.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v4.s16[6] = ctx.v19.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v4.s16[7] = ctx.v19.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v19.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v4.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v3,v15,v13
-	ctx.v3.s16[0] = ctx.v15.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v3.s16[1] = ctx.v15.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v3.s16[2] = ctx.v15.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v3.s16[3] = ctx.v15.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v3.s16[4] = ctx.v15.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v3.s16[5] = ctx.v15.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v3.s16[6] = ctx.v15.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v3.s16[7] = ctx.v15.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v15.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v3.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vxor128 v29,v46,v56
 	simde_mm_store_si128((simde__m128i*)ctx.v29.u8, simde_mm_xor_si128(simde_mm_load_si128((simde__m128i*)ctx.v46.u8), simde_mm_load_si128((simde__m128i*)ctx.v56.u8)));
 	// vxor128 v43,v45,v53
@@ -11015,14 +10695,12 @@ loc_82A3F6F8:
 	// blt cr6,0x82a3f7b4
 	if (ctx.cr6.lt) goto loc_82A3F7B4;
 	// vsrah v4,v4,v20
-	ctx.v4.s16[0] = ctx.v4.s16[0] >> (ctx.v20.u16[0] & 0xF);
-	ctx.v4.s16[1] = ctx.v4.s16[1] >> (ctx.v20.u16[1] & 0xF);
-	ctx.v4.s16[2] = ctx.v4.s16[2] >> (ctx.v20.u16[2] & 0xF);
-	ctx.v4.s16[3] = ctx.v4.s16[3] >> (ctx.v20.u16[3] & 0xF);
-	ctx.v4.s16[4] = ctx.v4.s16[4] >> (ctx.v20.u16[4] & 0xF);
-	ctx.v4.s16[5] = ctx.v4.s16[5] >> (ctx.v20.u16[5] & 0xF);
-	ctx.v4.s16[6] = ctx.v4.s16[6] >> (ctx.v20.u16[6] & 0xF);
-	ctx.v4.s16[7] = ctx.v4.s16[7] >> (ctx.v20.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v4.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v20.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v4.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vspltish v31,15
 	simde_mm_store_si128((simde__m128i*)ctx.v31.s16, simde_mm_set1_epi16(short(0xF)));
 	// addi r7,r1,-192
@@ -11032,14 +10710,12 @@ loc_82A3F6F8:
 	// vaddshs v30,v4,v4
 	simde_mm_store_si128((simde__m128i*)ctx.v30.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v4.s16), simde_mm_load_si128((simde__m128i*)ctx.v4.s16)));
 	// vsrah v26,v3,v31
-	ctx.v26.s16[0] = ctx.v3.s16[0] >> (ctx.v31.u16[0] & 0xF);
-	ctx.v26.s16[1] = ctx.v3.s16[1] >> (ctx.v31.u16[1] & 0xF);
-	ctx.v26.s16[2] = ctx.v3.s16[2] >> (ctx.v31.u16[2] & 0xF);
-	ctx.v26.s16[3] = ctx.v3.s16[3] >> (ctx.v31.u16[3] & 0xF);
-	ctx.v26.s16[4] = ctx.v3.s16[4] >> (ctx.v31.u16[4] & 0xF);
-	ctx.v26.s16[5] = ctx.v3.s16[5] >> (ctx.v31.u16[5] & 0xF);
-	ctx.v26.s16[6] = ctx.v3.s16[6] >> (ctx.v31.u16[6] & 0xF);
-	ctx.v26.s16[7] = ctx.v3.s16[7] >> (ctx.v31.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v3.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v31.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v26.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vand v19,v26,v30
 	simde_mm_store_si128((simde__m128i*)ctx.v19.u8, simde_mm_and_si128(simde_mm_load_si128((simde__m128i*)ctx.v26.u8), simde_mm_load_si128((simde__m128i*)ctx.v30.u8)));
 	// vsubshs v18,v4,v19
@@ -22721,23 +22397,19 @@ loc_82A44840:
 	// vaddshs v5,v7,v9
 	simde_mm_store_si128((simde__m128i*)ctx.v5.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v7.s16), simde_mm_load_si128((simde__m128i*)ctx.v9.s16)));
 	// vsrah v4,v6,v13
-	ctx.v4.s16[0] = ctx.v6.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v4.s16[1] = ctx.v6.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v4.s16[2] = ctx.v6.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v4.s16[3] = ctx.v6.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v4.s16[4] = ctx.v6.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v4.s16[5] = ctx.v6.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v4.s16[6] = ctx.v6.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v4.s16[7] = ctx.v6.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v6.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v4.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v3,v5,v13
-	ctx.v3.s16[0] = ctx.v5.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v3.s16[1] = ctx.v5.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v3.s16[2] = ctx.v5.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v3.s16[3] = ctx.v5.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v3.s16[4] = ctx.v5.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v3.s16[5] = ctx.v5.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v3.s16[6] = ctx.v5.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v3.s16[7] = ctx.v5.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v5.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v3.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vpkshus v11,v3,v4
 	simde_mm_store_si128((simde__m128i*)ctx.v11.u8, simde_mm_packus_epi16(simde_mm_load_si128((simde__m128i*)ctx.v4.s16), simde_mm_load_si128((simde__m128i*)ctx.v3.s16)));
 	// vmrghb v2,v12,v11
@@ -22942,23 +22614,19 @@ loc_82A44978:
 	// vmrghb v31,v0,v11
 	simde_mm_store_si128((simde__m128i*)ctx.v31.u8, simde_mm_unpackhi_epi8(simde_mm_load_si128((simde__m128i*)ctx.v11.u8), simde_mm_load_si128((simde__m128i*)ctx.v0.u8)));
 	// vsrah v30,v4,v13
-	ctx.v30.s16[0] = ctx.v4.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v30.s16[1] = ctx.v4.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v30.s16[2] = ctx.v4.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v30.s16[3] = ctx.v4.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v30.s16[4] = ctx.v4.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v30.s16[5] = ctx.v4.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v30.s16[6] = ctx.v4.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v30.s16[7] = ctx.v4.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v4.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v30.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v29,v2,v13
-	ctx.v29.s16[0] = ctx.v2.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v29.s16[1] = ctx.v2.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v29.s16[2] = ctx.v2.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v29.s16[3] = ctx.v2.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v29.s16[4] = ctx.v2.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v29.s16[5] = ctx.v2.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v29.s16[6] = ctx.v2.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v29.s16[7] = ctx.v2.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v2.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v29.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vpkshus v10,v29,v30
 	simde_mm_store_si128((simde__m128i*)ctx.v10.u8, simde_mm_packus_epi16(simde_mm_load_si128((simde__m128i*)ctx.v30.s16), simde_mm_load_si128((simde__m128i*)ctx.v29.s16)));
 	// vmrghb v11,v12,v10
@@ -22982,41 +22650,33 @@ loc_82A44978:
 	// vaddshs v21,v3,v25
 	simde_mm_store_si128((simde__m128i*)ctx.v21.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v3.s16), simde_mm_load_si128((simde__m128i*)ctx.v25.s16)));
 	// vsrah v20,v24,v13
-	ctx.v20.s16[0] = ctx.v24.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v20.s16[1] = ctx.v24.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v20.s16[2] = ctx.v24.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v20.s16[3] = ctx.v24.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v20.s16[4] = ctx.v24.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v20.s16[5] = ctx.v24.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v20.s16[6] = ctx.v24.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v20.s16[7] = ctx.v24.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v24.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v20.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v19,v23,v13
-	ctx.v19.s16[0] = ctx.v23.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v19.s16[1] = ctx.v23.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v19.s16[2] = ctx.v23.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v19.s16[3] = ctx.v23.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v19.s16[4] = ctx.v23.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v19.s16[5] = ctx.v23.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v19.s16[6] = ctx.v23.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v19.s16[7] = ctx.v23.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v23.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v19.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v18,v22,v13
-	ctx.v18.s16[0] = ctx.v22.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v18.s16[1] = ctx.v22.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v18.s16[2] = ctx.v22.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v18.s16[3] = ctx.v22.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v18.s16[4] = ctx.v22.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v18.s16[5] = ctx.v22.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v18.s16[6] = ctx.v22.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v18.s16[7] = ctx.v22.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v22.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v18.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v17,v21,v13
-	ctx.v17.s16[0] = ctx.v21.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v17.s16[1] = ctx.v21.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v17.s16[2] = ctx.v21.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v17.s16[3] = ctx.v21.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v17.s16[4] = ctx.v21.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v17.s16[5] = ctx.v21.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v17.s16[6] = ctx.v21.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v17.s16[7] = ctx.v21.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v21.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v17.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vpkshus128 v51,v19,v20
 	simde_mm_store_si128((simde__m128i*)ctx.v51.u8, simde_mm_packus_epi16(simde_mm_load_si128((simde__m128i*)ctx.v20.s16), simde_mm_load_si128((simde__m128i*)ctx.v19.s16)));
 	// vpkshus128 v50,v17,v18
@@ -23308,23 +22968,19 @@ loc_82A44BE0:
 	// vaddshs v5,v7,v9
 	simde_mm_store_si128((simde__m128i*)ctx.v5.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v7.s16), simde_mm_load_si128((simde__m128i*)ctx.v9.s16)));
 	// vsrah v3,v6,v4
-	ctx.v3.s16[0] = ctx.v6.s16[0] >> (ctx.v4.u16[0] & 0xF);
-	ctx.v3.s16[1] = ctx.v6.s16[1] >> (ctx.v4.u16[1] & 0xF);
-	ctx.v3.s16[2] = ctx.v6.s16[2] >> (ctx.v4.u16[2] & 0xF);
-	ctx.v3.s16[3] = ctx.v6.s16[3] >> (ctx.v4.u16[3] & 0xF);
-	ctx.v3.s16[4] = ctx.v6.s16[4] >> (ctx.v4.u16[4] & 0xF);
-	ctx.v3.s16[5] = ctx.v6.s16[5] >> (ctx.v4.u16[5] & 0xF);
-	ctx.v3.s16[6] = ctx.v6.s16[6] >> (ctx.v4.u16[6] & 0xF);
-	ctx.v3.s16[7] = ctx.v6.s16[7] >> (ctx.v4.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v6.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v4.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v3.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v2,v5,v4
-	ctx.v2.s16[0] = ctx.v5.s16[0] >> (ctx.v4.u16[0] & 0xF);
-	ctx.v2.s16[1] = ctx.v5.s16[1] >> (ctx.v4.u16[1] & 0xF);
-	ctx.v2.s16[2] = ctx.v5.s16[2] >> (ctx.v4.u16[2] & 0xF);
-	ctx.v2.s16[3] = ctx.v5.s16[3] >> (ctx.v4.u16[3] & 0xF);
-	ctx.v2.s16[4] = ctx.v5.s16[4] >> (ctx.v4.u16[4] & 0xF);
-	ctx.v2.s16[5] = ctx.v5.s16[5] >> (ctx.v4.u16[5] & 0xF);
-	ctx.v2.s16[6] = ctx.v5.s16[6] >> (ctx.v4.u16[6] & 0xF);
-	ctx.v2.s16[7] = ctx.v5.s16[7] >> (ctx.v4.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v5.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v4.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v2.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vpkshus v11,v2,v3
 	simde_mm_store_si128((simde__m128i*)ctx.v11.u8, simde_mm_packus_epi16(simde_mm_load_si128((simde__m128i*)ctx.v3.s16), simde_mm_load_si128((simde__m128i*)ctx.v2.s16)));
 	// vmrghb v1,v12,v11
@@ -23541,23 +23197,19 @@ loc_82A44D28:
 	// vaddshs v1,v11,v11
 	simde_mm_store_si128((simde__m128i*)ctx.v1.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v11.s16), simde_mm_load_si128((simde__m128i*)ctx.v11.s16)));
 	// vsrah v31,v3,v4
-	ctx.v31.s16[0] = ctx.v3.s16[0] >> (ctx.v4.u16[0] & 0xF);
-	ctx.v31.s16[1] = ctx.v3.s16[1] >> (ctx.v4.u16[1] & 0xF);
-	ctx.v31.s16[2] = ctx.v3.s16[2] >> (ctx.v4.u16[2] & 0xF);
-	ctx.v31.s16[3] = ctx.v3.s16[3] >> (ctx.v4.u16[3] & 0xF);
-	ctx.v31.s16[4] = ctx.v3.s16[4] >> (ctx.v4.u16[4] & 0xF);
-	ctx.v31.s16[5] = ctx.v3.s16[5] >> (ctx.v4.u16[5] & 0xF);
-	ctx.v31.s16[6] = ctx.v3.s16[6] >> (ctx.v4.u16[6] & 0xF);
-	ctx.v31.s16[7] = ctx.v3.s16[7] >> (ctx.v4.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v3.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v4.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v31.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v30,v2,v4
-	ctx.v30.s16[0] = ctx.v2.s16[0] >> (ctx.v4.u16[0] & 0xF);
-	ctx.v30.s16[1] = ctx.v2.s16[1] >> (ctx.v4.u16[1] & 0xF);
-	ctx.v30.s16[2] = ctx.v2.s16[2] >> (ctx.v4.u16[2] & 0xF);
-	ctx.v30.s16[3] = ctx.v2.s16[3] >> (ctx.v4.u16[3] & 0xF);
-	ctx.v30.s16[4] = ctx.v2.s16[4] >> (ctx.v4.u16[4] & 0xF);
-	ctx.v30.s16[5] = ctx.v2.s16[5] >> (ctx.v4.u16[5] & 0xF);
-	ctx.v30.s16[6] = ctx.v2.s16[6] >> (ctx.v4.u16[6] & 0xF);
-	ctx.v30.s16[7] = ctx.v2.s16[7] >> (ctx.v4.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v2.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v4.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v30.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vaddshs v29,v10,v10
 	simde_mm_store_si128((simde__m128i*)ctx.v29.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v10.s16), simde_mm_load_si128((simde__m128i*)ctx.v10.s16)));
 	// vaddshs v28,v1,v11
@@ -23625,23 +23277,19 @@ loc_82A44D28:
 	// vaddshs v15,v19,v12
 	simde_mm_store_si128((simde__m128i*)ctx.v15.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v19.s16), simde_mm_load_si128((simde__m128i*)ctx.v12.s16)));
 	// vsrah v14,v18,v13
-	ctx.v14.s16[0] = ctx.v18.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v14.s16[1] = ctx.v18.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v14.s16[2] = ctx.v18.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v14.s16[3] = ctx.v18.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v14.s16[4] = ctx.v18.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v14.s16[5] = ctx.v18.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v14.s16[6] = ctx.v18.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v14.s16[7] = ctx.v18.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v18.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v14.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v12,v17,v13
-	ctx.v12.s16[0] = ctx.v17.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v12.s16[1] = ctx.v17.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v12.s16[2] = ctx.v17.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v12.s16[3] = ctx.v17.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v12.s16[4] = ctx.v17.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v12.s16[5] = ctx.v17.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v12.s16[6] = ctx.v17.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v12.s16[7] = ctx.v17.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v17.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v12.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vaddshs v7,v23,v5
 	simde_mm_store_si128((simde__m128i*)ctx.v7.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v23.s16), simde_mm_load_si128((simde__m128i*)ctx.v5.s16)));
 	// vaddshs v2,v10,v16
@@ -23653,41 +23301,33 @@ loc_82A44D28:
 	// vpkshus128 v51,v12,v14
 	simde_mm_store_si128((simde__m128i*)ctx.v51.u8, simde_mm_packus_epi16(simde_mm_load_si128((simde__m128i*)ctx.v14.s16), simde_mm_load_si128((simde__m128i*)ctx.v12.s16)));
 	// vsrah v31,v7,v13
-	ctx.v31.s16[0] = ctx.v7.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v31.s16[1] = ctx.v7.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v31.s16[2] = ctx.v7.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v31.s16[3] = ctx.v7.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v31.s16[4] = ctx.v7.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v31.s16[5] = ctx.v7.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v31.s16[6] = ctx.v7.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v31.s16[7] = ctx.v7.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v7.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v31.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v30,v3,v13
-	ctx.v30.s16[0] = ctx.v3.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v30.s16[1] = ctx.v3.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v30.s16[2] = ctx.v3.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v30.s16[3] = ctx.v3.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v30.s16[4] = ctx.v3.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v30.s16[5] = ctx.v3.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v30.s16[6] = ctx.v3.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v30.s16[7] = ctx.v3.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v3.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v30.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v29,v2,v13
-	ctx.v29.s16[0] = ctx.v2.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v29.s16[1] = ctx.v2.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v29.s16[2] = ctx.v2.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v29.s16[3] = ctx.v2.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v29.s16[4] = ctx.v2.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v29.s16[5] = ctx.v2.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v29.s16[6] = ctx.v2.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v29.s16[7] = ctx.v2.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v2.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v29.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v28,v1,v13
-	ctx.v28.s16[0] = ctx.v1.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v28.s16[1] = ctx.v1.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v28.s16[2] = ctx.v1.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v28.s16[3] = ctx.v1.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v28.s16[4] = ctx.v1.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v28.s16[5] = ctx.v1.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v28.s16[6] = ctx.v1.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v28.s16[7] = ctx.v1.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v1.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v28.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vaddshs v25,v27,v5
 	simde_mm_store_si128((simde__m128i*)ctx.v25.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v27.s16), simde_mm_load_si128((simde__m128i*)ctx.v5.s16)));
 	// vaddshs v24,v26,v6
@@ -23709,27 +23349,23 @@ loc_82A44D28:
 	// vaddshs v22,v9,v24
 	simde_mm_store_si128((simde__m128i*)ctx.v22.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v9.s16), simde_mm_load_si128((simde__m128i*)ctx.v24.s16)));
 	// vsrah v21,v23,v13
-	ctx.v21.s16[0] = ctx.v23.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v21.s16[1] = ctx.v23.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v21.s16[2] = ctx.v23.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v21.s16[3] = ctx.v23.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v21.s16[4] = ctx.v23.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v21.s16[5] = ctx.v23.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v21.s16[6] = ctx.v23.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v21.s16[7] = ctx.v23.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v23.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v21.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// stvlx128 v50,r28,r11
 	ea = ctx.r28.u32 + ctx.r11.u32;
 	for (size_t i = 0; i < (16 - (ea & 0xF)); i++)
 		PPC_STORE_U8(ea + i, ctx.v50.u8[15 - i]);
 	// vsrah v20,v22,v13
-	ctx.v20.s16[0] = ctx.v22.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v20.s16[1] = ctx.v22.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v20.s16[2] = ctx.v22.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v20.s16[3] = ctx.v22.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v20.s16[4] = ctx.v22.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v20.s16[5] = ctx.v22.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v20.s16[6] = ctx.v22.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v20.s16[7] = ctx.v22.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v22.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v20.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// stvrx128 v50,r4,r6
 	ea = ctx.r4.u32 + ctx.r6.u32;
 	for (size_t i = 0; i < (ea & 0xF); i++)
@@ -24119,59 +23755,47 @@ loc_82A450B8:
 	// vaddshs v25,v30,v8
 	simde_mm_store_si128((simde__m128i*)ctx.v25.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v30.s16), simde_mm_load_si128((simde__m128i*)ctx.v8.s16)));
 	// vsrah v24,v29,v0
-	ctx.v24.s16[0] = ctx.v29.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v24.s16[1] = ctx.v29.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v24.s16[2] = ctx.v29.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v24.s16[3] = ctx.v29.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v24.s16[4] = ctx.v29.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v24.s16[5] = ctx.v29.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v24.s16[6] = ctx.v29.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v24.s16[7] = ctx.v29.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v29.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v24.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v23,v28,v0
-	ctx.v23.s16[0] = ctx.v28.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v23.s16[1] = ctx.v28.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v23.s16[2] = ctx.v28.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v23.s16[3] = ctx.v28.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v23.s16[4] = ctx.v28.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v23.s16[5] = ctx.v28.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v23.s16[6] = ctx.v28.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v23.s16[7] = ctx.v28.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v28.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v23.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v22,v26,v0
-	ctx.v22.s16[0] = ctx.v26.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v22.s16[1] = ctx.v26.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v22.s16[2] = ctx.v26.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v22.s16[3] = ctx.v26.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v22.s16[4] = ctx.v26.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v22.s16[5] = ctx.v26.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v22.s16[6] = ctx.v26.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v22.s16[7] = ctx.v26.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v26.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v22.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v21,v25,v0
-	ctx.v21.s16[0] = ctx.v25.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v21.s16[1] = ctx.v25.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v21.s16[2] = ctx.v25.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v21.s16[3] = ctx.v25.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v21.s16[4] = ctx.v25.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v21.s16[5] = ctx.v25.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v21.s16[6] = ctx.v25.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v21.s16[7] = ctx.v25.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v25.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v21.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v20,v27,v0
-	ctx.v20.s16[0] = ctx.v27.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v20.s16[1] = ctx.v27.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v20.s16[2] = ctx.v27.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v20.s16[3] = ctx.v27.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v20.s16[4] = ctx.v27.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v20.s16[5] = ctx.v27.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v20.s16[6] = ctx.v27.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v20.s16[7] = ctx.v27.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v27.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v20.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v19,v1,v0
-	ctx.v19.s16[0] = ctx.v1.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v19.s16[1] = ctx.v1.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v19.s16[2] = ctx.v1.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v19.s16[3] = ctx.v1.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v19.s16[4] = ctx.v1.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v19.s16[5] = ctx.v1.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v19.s16[6] = ctx.v1.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v19.s16[7] = ctx.v1.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v1.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v19.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vpkshus v10,v23,v24
 	simde_mm_store_si128((simde__m128i*)ctx.v10.u8, simde_mm_packus_epi16(simde_mm_load_si128((simde__m128i*)ctx.v24.s16), simde_mm_load_si128((simde__m128i*)ctx.v23.s16)));
 	// vpkshus v11,v22,v21
@@ -24483,59 +24107,47 @@ loc_82A452CC:
 	// vaddshs v23,v28,v8
 	simde_mm_store_si128((simde__m128i*)ctx.v23.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v28.s16), simde_mm_load_si128((simde__m128i*)ctx.v8.s16)));
 	// vsrah v22,v27,v0
-	ctx.v22.s16[0] = ctx.v27.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v22.s16[1] = ctx.v27.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v22.s16[2] = ctx.v27.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v22.s16[3] = ctx.v27.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v22.s16[4] = ctx.v27.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v22.s16[5] = ctx.v27.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v22.s16[6] = ctx.v27.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v22.s16[7] = ctx.v27.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v27.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v22.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v21,v26,v0
-	ctx.v21.s16[0] = ctx.v26.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v21.s16[1] = ctx.v26.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v21.s16[2] = ctx.v26.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v21.s16[3] = ctx.v26.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v21.s16[4] = ctx.v26.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v21.s16[5] = ctx.v26.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v21.s16[6] = ctx.v26.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v21.s16[7] = ctx.v26.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v26.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v21.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v18,v24,v0
-	ctx.v18.s16[0] = ctx.v24.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v18.s16[1] = ctx.v24.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v18.s16[2] = ctx.v24.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v18.s16[3] = ctx.v24.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v18.s16[4] = ctx.v24.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v18.s16[5] = ctx.v24.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v18.s16[6] = ctx.v24.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v18.s16[7] = ctx.v24.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v24.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v18.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v20,v25,v0
-	ctx.v20.s16[0] = ctx.v25.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v20.s16[1] = ctx.v25.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v20.s16[2] = ctx.v25.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v20.s16[3] = ctx.v25.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v20.s16[4] = ctx.v25.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v20.s16[5] = ctx.v25.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v20.s16[6] = ctx.v25.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v20.s16[7] = ctx.v25.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v25.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v20.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v19,v23,v0
-	ctx.v19.s16[0] = ctx.v23.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v19.s16[1] = ctx.v23.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v19.s16[2] = ctx.v23.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v19.s16[3] = ctx.v23.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v19.s16[4] = ctx.v23.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v19.s16[5] = ctx.v23.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v19.s16[6] = ctx.v23.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v19.s16[7] = ctx.v23.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v23.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v19.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v17,v30,v0
-	ctx.v17.s16[0] = ctx.v30.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v17.s16[1] = ctx.v30.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v17.s16[2] = ctx.v30.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v17.s16[3] = ctx.v30.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v17.s16[4] = ctx.v30.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v17.s16[5] = ctx.v30.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v17.s16[6] = ctx.v30.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v17.s16[7] = ctx.v30.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v30.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v17.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vpkshus v10,v21,v22
 	simde_mm_store_si128((simde__m128i*)ctx.v10.u8, simde_mm_packus_epi16(simde_mm_load_si128((simde__m128i*)ctx.v22.s16), simde_mm_load_si128((simde__m128i*)ctx.v21.s16)));
 	// vor128 v6,v53,v52
@@ -24669,25 +24281,21 @@ loc_82A452CC:
 	// addi r26,r1,-304
 	ctx.r26.s64 = ctx.r1.s64 + -304;
 	// vsrah v15,v15,v0
-	ctx.v15.s16[0] = ctx.v15.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v15.s16[1] = ctx.v15.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v15.s16[2] = ctx.v15.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v15.s16[3] = ctx.v15.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v15.s16[4] = ctx.v15.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v15.s16[5] = ctx.v15.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v15.s16[6] = ctx.v15.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v15.s16[7] = ctx.v15.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v15.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v15.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// std r23,-344(r1)
 	PPC_STORE_U64(ctx.r1.u32 + -344, ctx.r23.u64);
 	// vsrah v16,v16,v0
-	ctx.v16.s16[0] = ctx.v16.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v16.s16[1] = ctx.v16.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v16.s16[2] = ctx.v16.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v16.s16[3] = ctx.v16.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v16.s16[4] = ctx.v16.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v16.s16[5] = ctx.v16.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v16.s16[6] = ctx.v16.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v16.s16[7] = ctx.v16.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v16.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v16.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// addi r29,r1,-256
 	ctx.r29.s64 = ctx.r1.s64 + -256;
 	// vor128 v43,v11,v11
@@ -24789,14 +24397,12 @@ loc_82A452CC:
 	ea = (ctx.r30.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)PPC_RAW_ADDR(ea), simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)ctx.v23.u8), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
 	// vsrah v13,v13,v0
-	ctx.v13.s16[0] = ctx.v13.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v13.s16[1] = ctx.v13.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v13.s16[2] = ctx.v13.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v13.s16[3] = ctx.v13.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v13.s16[4] = ctx.v13.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v13.s16[5] = ctx.v13.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v13.s16[6] = ctx.v13.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v13.s16[7] = ctx.v13.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v13.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// lvx128 v23,r0,r26
 	ea = (ctx.r26.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)ctx.v23.u8, simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)PPC_RAW_ADDR(ea)), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
@@ -24827,14 +24433,12 @@ loc_82A452CC:
 	ea = (ctx.r30.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)ctx.v24.u8, simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)PPC_RAW_ADDR(ea)), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
 	// vsrah v24,v24,v0
-	ctx.v24.s16[0] = ctx.v24.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v24.s16[1] = ctx.v24.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v24.s16[2] = ctx.v24.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v24.s16[3] = ctx.v24.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v24.s16[4] = ctx.v24.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v24.s16[5] = ctx.v24.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v24.s16[6] = ctx.v24.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v24.s16[7] = ctx.v24.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v24.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v24.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// add r30,r24,r10
 	ctx.r30.u64 = ctx.r24.u64 + ctx.r10.u64;
 	// vor128 v39,v2,v2
@@ -24846,23 +24450,19 @@ loc_82A452CC:
 	ea = (ctx.r6.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)PPC_RAW_ADDR(ea), simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)ctx.v22.u8), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
 	// vsrah v12,v12,v0
-	ctx.v12.s16[0] = ctx.v12.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v12.s16[1] = ctx.v12.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v12.s16[2] = ctx.v12.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v12.s16[3] = ctx.v12.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v12.s16[4] = ctx.v12.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v12.s16[5] = ctx.v12.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v12.s16[6] = ctx.v12.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v12.s16[7] = ctx.v12.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v12.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v11,v11,v0
-	ctx.v11.s16[0] = ctx.v11.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v11.s16[1] = ctx.v11.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v11.s16[2] = ctx.v11.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v11.s16[3] = ctx.v11.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v11.s16[4] = ctx.v11.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v11.s16[5] = ctx.v11.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v11.s16[6] = ctx.v11.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v11.s16[7] = ctx.v11.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v11.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v11.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// lvx128 v22,r0,r25
 	ea = (ctx.r25.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)ctx.v22.u8, simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)PPC_RAW_ADDR(ea)), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
@@ -24871,58 +24471,48 @@ loc_82A452CC:
 	// vpkshus128 v37,v24,v13
 	simde_mm_store_si128((simde__m128i*)ctx.v37.u8, simde_mm_packus_epi16(simde_mm_load_si128((simde__m128i*)ctx.v13.s16), simde_mm_load_si128((simde__m128i*)ctx.v24.s16)));
 	// vsrah v2,v2,v0
-	ctx.v2.s16[0] = ctx.v2.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v2.s16[1] = ctx.v2.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v2.s16[2] = ctx.v2.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v2.s16[3] = ctx.v2.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v2.s16[4] = ctx.v2.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v2.s16[5] = ctx.v2.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v2.s16[6] = ctx.v2.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v2.s16[7] = ctx.v2.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v2.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v2.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// addi r26,r1,-288
 	ctx.r26.s64 = ctx.r1.s64 + -288;
 	// vsrah v3,v3,v0
-	ctx.v3.s16[0] = ctx.v3.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v3.s16[1] = ctx.v3.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v3.s16[2] = ctx.v3.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v3.s16[3] = ctx.v3.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v3.s16[4] = ctx.v3.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v3.s16[5] = ctx.v3.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v3.s16[6] = ctx.v3.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v3.s16[7] = ctx.v3.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v3.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v3.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// addi r25,r1,-304
 	ctx.r25.s64 = ctx.r1.s64 + -304;
 	// vpkshus128 v35,v11,v12
 	simde_mm_store_si128((simde__m128i*)ctx.v35.u8, simde_mm_packus_epi16(simde_mm_load_si128((simde__m128i*)ctx.v12.s16), simde_mm_load_si128((simde__m128i*)ctx.v11.s16)));
 	// vsrah v12,v9,v0
-	ctx.v12.s16[0] = ctx.v9.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v12.s16[1] = ctx.v9.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v12.s16[2] = ctx.v9.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v12.s16[3] = ctx.v9.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v12.s16[4] = ctx.v9.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v12.s16[5] = ctx.v9.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v12.s16[6] = ctx.v9.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v12.s16[7] = ctx.v9.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v12.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v11,v21,v0
-	ctx.v11.s16[0] = ctx.v21.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v11.s16[1] = ctx.v21.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v11.s16[2] = ctx.v21.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v11.s16[3] = ctx.v21.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v11.s16[4] = ctx.v21.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v11.s16[5] = ctx.v21.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v11.s16[6] = ctx.v21.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v11.s16[7] = ctx.v21.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v21.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v11.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// add r9,r9,r7
 	ctx.r9.u64 = ctx.r9.u64 + ctx.r7.u64;
 	// vsrah v10,v10,v0
-	ctx.v10.s16[0] = ctx.v10.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v10.s16[1] = ctx.v10.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v10.s16[2] = ctx.v10.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v10.s16[3] = ctx.v10.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v10.s16[4] = ctx.v10.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v10.s16[5] = ctx.v10.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v10.s16[6] = ctx.v10.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v10.s16[7] = ctx.v10.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v10.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v10.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vpkshus128 v36,v3,v2
 	simde_mm_store_si128((simde__m128i*)ctx.v36.u8, simde_mm_packus_epi16(simde_mm_load_si128((simde__m128i*)ctx.v2.s16), simde_mm_load_si128((simde__m128i*)ctx.v3.s16)));
 	// vaddshs v19,v19,v22
@@ -24945,23 +24535,19 @@ loc_82A452CC:
 	ea = (ctx.r25.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)ctx.v12.u8, simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)PPC_RAW_ADDR(ea)), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
 	// vsrah v19,v19,v0
-	ctx.v19.s16[0] = ctx.v19.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v19.s16[1] = ctx.v19.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v19.s16[2] = ctx.v19.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v19.s16[3] = ctx.v19.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v19.s16[4] = ctx.v19.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v19.s16[5] = ctx.v19.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v19.s16[6] = ctx.v19.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v19.s16[7] = ctx.v19.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v19.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v19.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v18,v18,v0
-	ctx.v18.s16[0] = ctx.v18.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v18.s16[1] = ctx.v18.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v18.s16[2] = ctx.v18.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v18.s16[3] = ctx.v18.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v18.s16[4] = ctx.v18.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v18.s16[5] = ctx.v18.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v18.s16[6] = ctx.v18.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v18.s16[7] = ctx.v18.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v18.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v18.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// lwz r23,-404(r1)
 	ctx.r23.u64 = PPC_LOAD_U32(ctx.r1.u32 + -404);
 	// vaddshs v1,v12,v21
@@ -24986,14 +24572,12 @@ loc_82A452CC:
 	// subf r6,r31,r22
 	ctx.r6.u64 = ctx.r22.u64 - ctx.r31.u64;
 	// vsrah v13,v13,v0
-	ctx.v13.s16[0] = ctx.v13.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v13.s16[1] = ctx.v13.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v13.s16[2] = ctx.v13.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v13.s16[3] = ctx.v13.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v13.s16[4] = ctx.v13.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v13.s16[5] = ctx.v13.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v13.s16[6] = ctx.v13.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v13.s16[7] = ctx.v13.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v13.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// stvlx128 v37,r0,r27
 	ea = ctx.r27.u32;
 	for (size_t i = 0; i < (16 - (ea & 0xF)); i++)
@@ -25029,14 +24613,12 @@ loc_82A452CC:
 	// vaddshs v13,v25,v20
 	simde_mm_store_si128((simde__m128i*)ctx.v13.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v25.s16), simde_mm_load_si128((simde__m128i*)ctx.v20.s16)));
 	// vsrah v26,v1,v0
-	ctx.v26.s16[0] = ctx.v1.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v26.s16[1] = ctx.v1.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v26.s16[2] = ctx.v1.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v26.s16[3] = ctx.v1.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v26.s16[4] = ctx.v1.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v26.s16[5] = ctx.v1.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v26.s16[6] = ctx.v1.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v26.s16[7] = ctx.v1.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v1.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v26.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// addi r30,r7,-16
 	ctx.r30.s64 = ctx.r7.s64 + -16;
 	// vor128 v3,v38,v38
@@ -25046,14 +24628,12 @@ loc_82A452CC:
 	// vor128 v2,v39,v39
 	simde_mm_store_si128((simde__m128i*)ctx.v2.u8, simde_mm_load_si128((simde__m128i*)ctx.v39.u8));
 	// vsrah v27,v13,v0
-	ctx.v27.s16[0] = ctx.v13.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v27.s16[1] = ctx.v13.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v27.s16[2] = ctx.v13.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v27.s16[3] = ctx.v13.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v27.s16[4] = ctx.v13.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v27.s16[5] = ctx.v13.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v27.s16[6] = ctx.v13.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v27.s16[7] = ctx.v13.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v27.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vaddshs v31,v7,v8
 	simde_mm_store_si128((simde__m128i*)ctx.v31.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v7.s16), simde_mm_load_si128((simde__m128i*)ctx.v8.s16)));
 	// stvlx128 v34,r6,r5
@@ -25087,14 +24667,12 @@ loc_82A452CC:
 	for (size_t i = 0; i < (ea & 0xF); i++)
 		PPC_STORE_U8(ea - i - 1, ctx.v33.u8[i]);
 	// vsrah v19,v6,v0
-	ctx.v19.s16[0] = ctx.v6.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v19.s16[1] = ctx.v6.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v19.s16[2] = ctx.v6.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v19.s16[3] = ctx.v6.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v19.s16[4] = ctx.v6.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v19.s16[5] = ctx.v6.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v19.s16[6] = ctx.v6.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v19.s16[7] = ctx.v6.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v6.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v19.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// stvlx128 v32,r19,r10
 	ea = ctx.r19.u32 + ctx.r10.u32;
 	for (size_t i = 0; i < (16 - (ea & 0xF)); i++)
@@ -25108,25 +24686,21 @@ loc_82A452CC:
 	// stw r27,-408(r1)
 	PPC_STORE_U32(ctx.r1.u32 + -408, ctx.r27.u32);
 	// vsrah v18,v31,v0
-	ctx.v18.s16[0] = ctx.v31.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v18.s16[1] = ctx.v31.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v18.s16[2] = ctx.v31.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v18.s16[3] = ctx.v31.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v18.s16[4] = ctx.v31.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v18.s16[5] = ctx.v31.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v18.s16[6] = ctx.v31.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v18.s16[7] = ctx.v31.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v31.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v18.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// stw r26,-400(r1)
 	PPC_STORE_U32(ctx.r1.u32 + -400, ctx.r26.u32);
 	// vsrah v15,v23,v0
-	ctx.v15.s16[0] = ctx.v23.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v15.s16[1] = ctx.v23.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v15.s16[2] = ctx.v23.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v15.s16[3] = ctx.v23.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v15.s16[4] = ctx.v23.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v15.s16[5] = ctx.v23.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v15.s16[6] = ctx.v23.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v15.s16[7] = ctx.v23.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v23.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v15.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// stvrx128 v32,r6,r11
 	ea = ctx.r6.u32 + ctx.r11.u32;
 	for (size_t i = 0; i < (ea & 0xF); i++)
@@ -25142,60 +24716,50 @@ loc_82A452CC:
 	for (size_t i = 0; i < (16 - (ea & 0xF)); i++)
 		PPC_STORE_U8(ea + i, ctx.v63.u8[15 - i]);
 	// vsrah v14,v22,v0
-	ctx.v14.s16[0] = ctx.v22.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v14.s16[1] = ctx.v22.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v14.s16[2] = ctx.v22.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v14.s16[3] = ctx.v22.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v14.s16[4] = ctx.v22.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v14.s16[5] = ctx.v22.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v14.s16[6] = ctx.v22.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v14.s16[7] = ctx.v22.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v22.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v14.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vpkshus128 v62,v18,v19
 	simde_mm_store_si128((simde__m128i*)ctx.v62.u8, simde_mm_packus_epi16(simde_mm_load_si128((simde__m128i*)ctx.v19.s16), simde_mm_load_si128((simde__m128i*)ctx.v18.s16)));
 	// vsrah v8,v21,v0
-	ctx.v8.s16[0] = ctx.v21.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v8.s16[1] = ctx.v21.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v8.s16[2] = ctx.v21.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v8.s16[3] = ctx.v21.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v8.s16[4] = ctx.v21.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v8.s16[5] = ctx.v21.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v8.s16[6] = ctx.v21.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v8.s16[7] = ctx.v21.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v21.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v8.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// subf r9,r28,r31
 	ctx.r9.u64 = ctx.r31.u64 - ctx.r28.u64;
 	// vsrah v7,v20,v0
-	ctx.v7.s16[0] = ctx.v20.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v7.s16[1] = ctx.v20.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v7.s16[2] = ctx.v20.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v7.s16[3] = ctx.v20.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v7.s16[4] = ctx.v20.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v7.s16[5] = ctx.v20.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v7.s16[6] = ctx.v20.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v7.s16[7] = ctx.v20.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v20.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v7.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// ld r29,-384(r1)
 	ctx.r29.u64 = PPC_LOAD_U64(ctx.r1.u32 + -384);
 	// vsrah v6,v17,v0
-	ctx.v6.s16[0] = ctx.v17.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v6.s16[1] = ctx.v17.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v6.s16[2] = ctx.v17.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v6.s16[3] = ctx.v17.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v6.s16[4] = ctx.v17.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v6.s16[5] = ctx.v17.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v6.s16[6] = ctx.v17.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v6.s16[7] = ctx.v17.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v17.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v6.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// stvrx128 v63,r6,r11
 	ea = ctx.r6.u32 + ctx.r11.u32;
 	for (size_t i = 0; i < (ea & 0xF); i++)
 		PPC_STORE_U8(ea - i - 1, ctx.v63.u8[i]);
 	// vsrah v5,v16,v0
-	ctx.v5.s16[0] = ctx.v16.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v5.s16[1] = ctx.v16.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v5.s16[2] = ctx.v16.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v5.s16[3] = ctx.v16.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v5.s16[4] = ctx.v16.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v5.s16[5] = ctx.v16.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v5.s16[6] = ctx.v16.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v5.s16[7] = ctx.v16.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v16.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v5.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vpkshus128 v61,v14,v15
 	simde_mm_store_si128((simde__m128i*)ctx.v61.u8, simde_mm_packus_epi16(simde_mm_load_si128((simde__m128i*)ctx.v15.s16), simde_mm_load_si128((simde__m128i*)ctx.v14.s16)));
 	// add r6,r18,r10
@@ -26028,59 +25592,47 @@ loc_82A45C28:
 	// vaddshs v24,v29,v7
 	simde_mm_store_si128((simde__m128i*)ctx.v24.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v29.s16), simde_mm_load_si128((simde__m128i*)ctx.v7.s16)));
 	// vsrah v23,v28,v12
-	ctx.v23.s16[0] = ctx.v28.s16[0] >> (ctx.v12.u16[0] & 0xF);
-	ctx.v23.s16[1] = ctx.v28.s16[1] >> (ctx.v12.u16[1] & 0xF);
-	ctx.v23.s16[2] = ctx.v28.s16[2] >> (ctx.v12.u16[2] & 0xF);
-	ctx.v23.s16[3] = ctx.v28.s16[3] >> (ctx.v12.u16[3] & 0xF);
-	ctx.v23.s16[4] = ctx.v28.s16[4] >> (ctx.v12.u16[4] & 0xF);
-	ctx.v23.s16[5] = ctx.v28.s16[5] >> (ctx.v12.u16[5] & 0xF);
-	ctx.v23.s16[6] = ctx.v28.s16[6] >> (ctx.v12.u16[6] & 0xF);
-	ctx.v23.s16[7] = ctx.v28.s16[7] >> (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v28.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v23.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v22,v27,v12
-	ctx.v22.s16[0] = ctx.v27.s16[0] >> (ctx.v12.u16[0] & 0xF);
-	ctx.v22.s16[1] = ctx.v27.s16[1] >> (ctx.v12.u16[1] & 0xF);
-	ctx.v22.s16[2] = ctx.v27.s16[2] >> (ctx.v12.u16[2] & 0xF);
-	ctx.v22.s16[3] = ctx.v27.s16[3] >> (ctx.v12.u16[3] & 0xF);
-	ctx.v22.s16[4] = ctx.v27.s16[4] >> (ctx.v12.u16[4] & 0xF);
-	ctx.v22.s16[5] = ctx.v27.s16[5] >> (ctx.v12.u16[5] & 0xF);
-	ctx.v22.s16[6] = ctx.v27.s16[6] >> (ctx.v12.u16[6] & 0xF);
-	ctx.v22.s16[7] = ctx.v27.s16[7] >> (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v27.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v22.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v21,v25,v12
-	ctx.v21.s16[0] = ctx.v25.s16[0] >> (ctx.v12.u16[0] & 0xF);
-	ctx.v21.s16[1] = ctx.v25.s16[1] >> (ctx.v12.u16[1] & 0xF);
-	ctx.v21.s16[2] = ctx.v25.s16[2] >> (ctx.v12.u16[2] & 0xF);
-	ctx.v21.s16[3] = ctx.v25.s16[3] >> (ctx.v12.u16[3] & 0xF);
-	ctx.v21.s16[4] = ctx.v25.s16[4] >> (ctx.v12.u16[4] & 0xF);
-	ctx.v21.s16[5] = ctx.v25.s16[5] >> (ctx.v12.u16[5] & 0xF);
-	ctx.v21.s16[6] = ctx.v25.s16[6] >> (ctx.v12.u16[6] & 0xF);
-	ctx.v21.s16[7] = ctx.v25.s16[7] >> (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v25.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v21.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v20,v24,v12
-	ctx.v20.s16[0] = ctx.v24.s16[0] >> (ctx.v12.u16[0] & 0xF);
-	ctx.v20.s16[1] = ctx.v24.s16[1] >> (ctx.v12.u16[1] & 0xF);
-	ctx.v20.s16[2] = ctx.v24.s16[2] >> (ctx.v12.u16[2] & 0xF);
-	ctx.v20.s16[3] = ctx.v24.s16[3] >> (ctx.v12.u16[3] & 0xF);
-	ctx.v20.s16[4] = ctx.v24.s16[4] >> (ctx.v12.u16[4] & 0xF);
-	ctx.v20.s16[5] = ctx.v24.s16[5] >> (ctx.v12.u16[5] & 0xF);
-	ctx.v20.s16[6] = ctx.v24.s16[6] >> (ctx.v12.u16[6] & 0xF);
-	ctx.v20.s16[7] = ctx.v24.s16[7] >> (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v24.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v20.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v19,v26,v12
-	ctx.v19.s16[0] = ctx.v26.s16[0] >> (ctx.v12.u16[0] & 0xF);
-	ctx.v19.s16[1] = ctx.v26.s16[1] >> (ctx.v12.u16[1] & 0xF);
-	ctx.v19.s16[2] = ctx.v26.s16[2] >> (ctx.v12.u16[2] & 0xF);
-	ctx.v19.s16[3] = ctx.v26.s16[3] >> (ctx.v12.u16[3] & 0xF);
-	ctx.v19.s16[4] = ctx.v26.s16[4] >> (ctx.v12.u16[4] & 0xF);
-	ctx.v19.s16[5] = ctx.v26.s16[5] >> (ctx.v12.u16[5] & 0xF);
-	ctx.v19.s16[6] = ctx.v26.s16[6] >> (ctx.v12.u16[6] & 0xF);
-	ctx.v19.s16[7] = ctx.v26.s16[7] >> (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v26.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v19.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v18,v31,v12
-	ctx.v18.s16[0] = ctx.v31.s16[0] >> (ctx.v12.u16[0] & 0xF);
-	ctx.v18.s16[1] = ctx.v31.s16[1] >> (ctx.v12.u16[1] & 0xF);
-	ctx.v18.s16[2] = ctx.v31.s16[2] >> (ctx.v12.u16[2] & 0xF);
-	ctx.v18.s16[3] = ctx.v31.s16[3] >> (ctx.v12.u16[3] & 0xF);
-	ctx.v18.s16[4] = ctx.v31.s16[4] >> (ctx.v12.u16[4] & 0xF);
-	ctx.v18.s16[5] = ctx.v31.s16[5] >> (ctx.v12.u16[5] & 0xF);
-	ctx.v18.s16[6] = ctx.v31.s16[6] >> (ctx.v12.u16[6] & 0xF);
-	ctx.v18.s16[7] = ctx.v31.s16[7] >> (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v31.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v18.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vpkshus v9,v22,v23
 	simde_mm_store_si128((simde__m128i*)ctx.v9.u8, simde_mm_packus_epi16(simde_mm_load_si128((simde__m128i*)ctx.v23.s16), simde_mm_load_si128((simde__m128i*)ctx.v22.s16)));
 	// vpkshus v10,v21,v20
@@ -26422,59 +25974,47 @@ loc_82A45E60:
 	// vaddshs v16,v9,v26
 	simde_mm_store_si128((simde__m128i*)ctx.v16.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v9.s16), simde_mm_load_si128((simde__m128i*)ctx.v26.s16)));
 	// vsrah v10,v19,v12
-	ctx.v10.s16[0] = ctx.v19.s16[0] >> (ctx.v12.u16[0] & 0xF);
-	ctx.v10.s16[1] = ctx.v19.s16[1] >> (ctx.v12.u16[1] & 0xF);
-	ctx.v10.s16[2] = ctx.v19.s16[2] >> (ctx.v12.u16[2] & 0xF);
-	ctx.v10.s16[3] = ctx.v19.s16[3] >> (ctx.v12.u16[3] & 0xF);
-	ctx.v10.s16[4] = ctx.v19.s16[4] >> (ctx.v12.u16[4] & 0xF);
-	ctx.v10.s16[5] = ctx.v19.s16[5] >> (ctx.v12.u16[5] & 0xF);
-	ctx.v10.s16[6] = ctx.v19.s16[6] >> (ctx.v12.u16[6] & 0xF);
-	ctx.v10.s16[7] = ctx.v19.s16[7] >> (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v19.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v10.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v14,v18,v12
-	ctx.v14.s16[0] = ctx.v18.s16[0] >> (ctx.v12.u16[0] & 0xF);
-	ctx.v14.s16[1] = ctx.v18.s16[1] >> (ctx.v12.u16[1] & 0xF);
-	ctx.v14.s16[2] = ctx.v18.s16[2] >> (ctx.v12.u16[2] & 0xF);
-	ctx.v14.s16[3] = ctx.v18.s16[3] >> (ctx.v12.u16[3] & 0xF);
-	ctx.v14.s16[4] = ctx.v18.s16[4] >> (ctx.v12.u16[4] & 0xF);
-	ctx.v14.s16[5] = ctx.v18.s16[5] >> (ctx.v12.u16[5] & 0xF);
-	ctx.v14.s16[6] = ctx.v18.s16[6] >> (ctx.v12.u16[6] & 0xF);
-	ctx.v14.s16[7] = ctx.v18.s16[7] >> (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v18.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v14.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v8,v17,v12
-	ctx.v8.s16[0] = ctx.v17.s16[0] >> (ctx.v12.u16[0] & 0xF);
-	ctx.v8.s16[1] = ctx.v17.s16[1] >> (ctx.v12.u16[1] & 0xF);
-	ctx.v8.s16[2] = ctx.v17.s16[2] >> (ctx.v12.u16[2] & 0xF);
-	ctx.v8.s16[3] = ctx.v17.s16[3] >> (ctx.v12.u16[3] & 0xF);
-	ctx.v8.s16[4] = ctx.v17.s16[4] >> (ctx.v12.u16[4] & 0xF);
-	ctx.v8.s16[5] = ctx.v17.s16[5] >> (ctx.v12.u16[5] & 0xF);
-	ctx.v8.s16[6] = ctx.v17.s16[6] >> (ctx.v12.u16[6] & 0xF);
-	ctx.v8.s16[7] = ctx.v17.s16[7] >> (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v17.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v8.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v7,v15,v12
-	ctx.v7.s16[0] = ctx.v15.s16[0] >> (ctx.v12.u16[0] & 0xF);
-	ctx.v7.s16[1] = ctx.v15.s16[1] >> (ctx.v12.u16[1] & 0xF);
-	ctx.v7.s16[2] = ctx.v15.s16[2] >> (ctx.v12.u16[2] & 0xF);
-	ctx.v7.s16[3] = ctx.v15.s16[3] >> (ctx.v12.u16[3] & 0xF);
-	ctx.v7.s16[4] = ctx.v15.s16[4] >> (ctx.v12.u16[4] & 0xF);
-	ctx.v7.s16[5] = ctx.v15.s16[5] >> (ctx.v12.u16[5] & 0xF);
-	ctx.v7.s16[6] = ctx.v15.s16[6] >> (ctx.v12.u16[6] & 0xF);
-	ctx.v7.s16[7] = ctx.v15.s16[7] >> (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v15.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v7.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v5,v23,v12
-	ctx.v5.s16[0] = ctx.v23.s16[0] >> (ctx.v12.u16[0] & 0xF);
-	ctx.v5.s16[1] = ctx.v23.s16[1] >> (ctx.v12.u16[1] & 0xF);
-	ctx.v5.s16[2] = ctx.v23.s16[2] >> (ctx.v12.u16[2] & 0xF);
-	ctx.v5.s16[3] = ctx.v23.s16[3] >> (ctx.v12.u16[3] & 0xF);
-	ctx.v5.s16[4] = ctx.v23.s16[4] >> (ctx.v12.u16[4] & 0xF);
-	ctx.v5.s16[5] = ctx.v23.s16[5] >> (ctx.v12.u16[5] & 0xF);
-	ctx.v5.s16[6] = ctx.v23.s16[6] >> (ctx.v12.u16[6] & 0xF);
-	ctx.v5.s16[7] = ctx.v23.s16[7] >> (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v23.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v5.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v6,v16,v12
-	ctx.v6.s16[0] = ctx.v16.s16[0] >> (ctx.v12.u16[0] & 0xF);
-	ctx.v6.s16[1] = ctx.v16.s16[1] >> (ctx.v12.u16[1] & 0xF);
-	ctx.v6.s16[2] = ctx.v16.s16[2] >> (ctx.v12.u16[2] & 0xF);
-	ctx.v6.s16[3] = ctx.v16.s16[3] >> (ctx.v12.u16[3] & 0xF);
-	ctx.v6.s16[4] = ctx.v16.s16[4] >> (ctx.v12.u16[4] & 0xF);
-	ctx.v6.s16[5] = ctx.v16.s16[5] >> (ctx.v12.u16[5] & 0xF);
-	ctx.v6.s16[6] = ctx.v16.s16[6] >> (ctx.v12.u16[6] & 0xF);
-	ctx.v6.s16[7] = ctx.v16.s16[7] >> (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v16.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v6.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vpkshus v9,v10,v14
 	simde_mm_store_si128((simde__m128i*)ctx.v9.u8, simde_mm_packus_epi16(simde_mm_load_si128((simde__m128i*)ctx.v14.s16), simde_mm_load_si128((simde__m128i*)ctx.v10.s16)));
 	// vor128 v30,v51,v50
@@ -26949,26 +26489,22 @@ loc_82A45E60:
 	// addi r24,r1,336
 	ctx.r24.s64 = ctx.r1.s64 + 336;
 	// vsrah v4,v6,v0
-	ctx.v4.s16[0] = ctx.v6.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v4.s16[1] = ctx.v6.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v4.s16[2] = ctx.v6.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v4.s16[3] = ctx.v6.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v4.s16[4] = ctx.v6.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v4.s16[5] = ctx.v6.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v4.s16[6] = ctx.v6.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v4.s16[7] = ctx.v6.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v6.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v4.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// lvx128 v14,r0,r30
 	ea = (ctx.r30.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)ctx.v14.u8, simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)PPC_RAW_ADDR(ea)), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
 	// vsrah v3,v18,v0
-	ctx.v3.s16[0] = ctx.v18.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v3.s16[1] = ctx.v18.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v3.s16[2] = ctx.v18.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v3.s16[3] = ctx.v18.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v3.s16[4] = ctx.v18.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v3.s16[5] = ctx.v18.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v3.s16[6] = ctx.v18.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v3.s16[7] = ctx.v18.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v18.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v3.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// addi r30,r1,256
 	ctx.r30.s64 = ctx.r1.s64 + 256;
 	// addi r3,r1,320
@@ -26978,14 +26514,12 @@ loc_82A45E60:
 	// addi r22,r1,416
 	ctx.r22.s64 = ctx.r1.s64 + 416;
 	// vsrah v6,v17,v0
-	ctx.v6.s16[0] = ctx.v17.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v6.s16[1] = ctx.v17.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v6.s16[2] = ctx.v17.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v6.s16[3] = ctx.v17.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v6.s16[4] = ctx.v17.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v6.s16[5] = ctx.v17.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v6.s16[6] = ctx.v17.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v6.s16[7] = ctx.v17.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v17.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v6.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// addi r4,r1,272
 	ctx.r4.s64 = ctx.r1.s64 + 272;
 	// lvx128 v17,r0,r23
@@ -26999,14 +26533,12 @@ loc_82A45E60:
 	// addi r23,r1,224
 	ctx.r23.s64 = ctx.r1.s64 + 224;
 	// vsrah v13,v16,v0
-	ctx.v13.s16[0] = ctx.v16.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v13.s16[1] = ctx.v16.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v13.s16[2] = ctx.v16.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v13.s16[3] = ctx.v16.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v13.s16[4] = ctx.v16.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v13.s16[5] = ctx.v16.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v13.s16[6] = ctx.v16.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v13.s16[7] = ctx.v16.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v16.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v13.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// addi r24,r1,288
 	ctx.r24.s64 = ctx.r1.s64 + 288;
 	// lvx128 v18,r0,r30
@@ -27025,14 +26557,12 @@ loc_82A45E60:
 	// addi r4,r1,256
 	ctx.r4.s64 = ctx.r1.s64 + 256;
 	// vsrah v4,v7,v0
-	ctx.v4.s16[0] = ctx.v7.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v4.s16[1] = ctx.v7.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v4.s16[2] = ctx.v7.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v4.s16[3] = ctx.v7.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v4.s16[4] = ctx.v7.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v4.s16[5] = ctx.v7.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v4.s16[6] = ctx.v7.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v4.s16[7] = ctx.v7.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v7.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v4.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// lvx128 v7,r0,r23
 	ea = (ctx.r23.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)ctx.v7.u8, simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)PPC_RAW_ADDR(ea)), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
@@ -27041,14 +26571,12 @@ loc_82A45E60:
 	// addi r27,r1,672
 	ctx.r27.s64 = ctx.r1.s64 + 672;
 	// vsrah v5,v5,v0
-	ctx.v5.s16[0] = ctx.v5.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v5.s16[1] = ctx.v5.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v5.s16[2] = ctx.v5.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v5.s16[3] = ctx.v5.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v5.s16[4] = ctx.v5.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v5.s16[5] = ctx.v5.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v5.s16[6] = ctx.v5.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v5.s16[7] = ctx.v5.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v5.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v5.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// lvx128 v16,r0,r3
 	ea = (ctx.r3.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)ctx.v16.u8, simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)PPC_RAW_ADDR(ea)), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
@@ -27098,14 +26626,12 @@ loc_82A45E60:
 	// addi r30,r1,656
 	ctx.r30.s64 = ctx.r1.s64 + 656;
 	// vsrah v7,v7,v0
-	ctx.v7.s16[0] = ctx.v7.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v7.s16[1] = ctx.v7.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v7.s16[2] = ctx.v7.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v7.s16[3] = ctx.v7.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v7.s16[4] = ctx.v7.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v7.s16[5] = ctx.v7.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v7.s16[6] = ctx.v7.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v7.s16[7] = ctx.v7.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v7.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v7.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// stw r6,32(r1)
 	PPC_STORE_U32(ctx.r1.u32 + 32, ctx.r6.u32);
 	// vaddshs v1,v30,v1
@@ -27145,26 +26671,22 @@ loc_82A45E60:
 	ea = (ctx.r22.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)ctx.v3.u8, simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)PPC_RAW_ADDR(ea)), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
 	// vsrah v2,v2,v0
-	ctx.v2.s16[0] = ctx.v2.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v2.s16[1] = ctx.v2.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v2.s16[2] = ctx.v2.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v2.s16[3] = ctx.v2.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v2.s16[4] = ctx.v2.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v2.s16[5] = ctx.v2.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v2.s16[6] = ctx.v2.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v2.s16[7] = ctx.v2.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v2.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v2.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// lvx128 v31,r0,r4
 	ea = (ctx.r4.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)ctx.v31.u8, simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)PPC_RAW_ADDR(ea)), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
 	// vsrah v1,v1,v0
-	ctx.v1.s16[0] = ctx.v1.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v1.s16[1] = ctx.v1.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v1.s16[2] = ctx.v1.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v1.s16[3] = ctx.v1.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v1.s16[4] = ctx.v1.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v1.s16[5] = ctx.v1.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v1.s16[6] = ctx.v1.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v1.s16[7] = ctx.v1.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v1.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v1.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vor128 v20,v43,v43
 	simde_mm_store_si128((simde__m128i*)ctx.v20.u8, simde_mm_load_si128((simde__m128i*)ctx.v43.u8));
 	// addi r4,r1,704
@@ -27224,14 +26746,12 @@ loc_82A45E60:
 	// vaddshs v15,v31,v2
 	simde_mm_store_si128((simde__m128i*)ctx.v15.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v31.s16), simde_mm_load_si128((simde__m128i*)ctx.v2.s16)));
 	// vsrah v12,v12,v0
-	ctx.v12.s16[0] = ctx.v12.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v12.s16[1] = ctx.v12.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v12.s16[2] = ctx.v12.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v12.s16[3] = ctx.v12.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v12.s16[4] = ctx.v12.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v12.s16[5] = ctx.v12.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v12.s16[6] = ctx.v12.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v12.s16[7] = ctx.v12.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v12.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// addi r3,r1,480
 	ctx.r3.s64 = ctx.r1.s64 + 480;
 	// vaddshs v17,v8,v17
@@ -27242,14 +26762,12 @@ loc_82A45E60:
 	// addi r29,r1,576
 	ctx.r29.s64 = ctx.r1.s64 + 576;
 	// vsrah v15,v15,v0
-	ctx.v15.s16[0] = ctx.v15.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v15.s16[1] = ctx.v15.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v15.s16[2] = ctx.v15.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v15.s16[3] = ctx.v15.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v15.s16[4] = ctx.v15.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v15.s16[5] = ctx.v15.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v15.s16[6] = ctx.v15.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v15.s16[7] = ctx.v15.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v15.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v15.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// rotlwi r23,r28,0
 	ctx.r23.u64 = __builtin_rotateleft32(ctx.r28.u32, 0);
 	// vaddshs v18,v18,v8
@@ -27260,14 +26778,12 @@ loc_82A45E60:
 	ea = (ctx.r24.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)ctx.v12.u8, simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)PPC_RAW_ADDR(ea)), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
 	// vsrah v17,v17,v0
-	ctx.v17.s16[0] = ctx.v17.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v17.s16[1] = ctx.v17.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v17.s16[2] = ctx.v17.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v17.s16[3] = ctx.v17.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v17.s16[4] = ctx.v17.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v17.s16[5] = ctx.v17.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v17.s16[6] = ctx.v17.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v17.s16[7] = ctx.v17.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v17.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v17.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// addi r28,r1,448
 	ctx.r28.s64 = ctx.r1.s64 + 448;
 	// vaddshs v16,v16,v12
@@ -27279,14 +26795,12 @@ loc_82A45E60:
 	ea = (ctx.r27.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)PPC_RAW_ADDR(ea), simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)ctx.v2.u8), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
 	// vsrah v13,v1,v0
-	ctx.v13.s16[0] = ctx.v1.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v13.s16[1] = ctx.v1.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v13.s16[2] = ctx.v1.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v13.s16[3] = ctx.v1.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v13.s16[4] = ctx.v1.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v13.s16[5] = ctx.v1.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v13.s16[6] = ctx.v1.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v13.s16[7] = ctx.v1.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v1.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v13.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// lvx128 v1,r0,r4
 	ea = (ctx.r4.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)ctx.v1.u8, simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)PPC_RAW_ADDR(ea)), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
@@ -27298,25 +26812,21 @@ loc_82A45E60:
 	ea = (ctx.r29.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)ctx.v2.u8, simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)PPC_RAW_ADDR(ea)), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
 	// vsrah v15,v18,v0
-	ctx.v15.s16[0] = ctx.v18.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v15.s16[1] = ctx.v18.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v15.s16[2] = ctx.v18.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v15.s16[3] = ctx.v18.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v15.s16[4] = ctx.v18.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v15.s16[5] = ctx.v18.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v15.s16[6] = ctx.v18.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v15.s16[7] = ctx.v18.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v18.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v15.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// addi r22,r1,400
 	ctx.r22.s64 = ctx.r1.s64 + 400;
 	// vsrah v16,v16,v0
-	ctx.v16.s16[0] = ctx.v16.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v16.s16[1] = ctx.v16.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v16.s16[2] = ctx.v16.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v16.s16[3] = ctx.v16.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v16.s16[4] = ctx.v16.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v16.s16[5] = ctx.v16.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v16.s16[6] = ctx.v16.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v16.s16[7] = ctx.v16.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v16.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v16.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// addi r4,r1,432
 	ctx.r4.s64 = ctx.r1.s64 + 432;
 	// addi r3,r1,288
@@ -27349,14 +26859,12 @@ loc_82A45E60:
 	// lwz r24,32(r1)
 	ctx.r24.u64 = PPC_LOAD_U32(ctx.r1.u32 + 32);
 	// vsrah v14,v14,v0
-	ctx.v14.s16[0] = ctx.v14.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v14.s16[1] = ctx.v14.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v14.s16[2] = ctx.v14.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v14.s16[3] = ctx.v14.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v14.s16[4] = ctx.v14.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v14.s16[5] = ctx.v14.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v14.s16[6] = ctx.v14.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v14.s16[7] = ctx.v14.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v14.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v14.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vaddshs v17,v31,v2
 	simde_mm_store_si128((simde__m128i*)ctx.v17.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v31.s16), simde_mm_load_si128((simde__m128i*)ctx.v2.s16)));
 	// add r6,r18,r10
@@ -27380,23 +26888,19 @@ loc_82A45E60:
 	ea = (ctx.r4.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)ctx.v15.u8, simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)PPC_RAW_ADDR(ea)), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
 	// vsrah v18,v17,v0
-	ctx.v18.s16[0] = ctx.v17.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v18.s16[1] = ctx.v17.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v18.s16[2] = ctx.v17.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v18.s16[3] = ctx.v17.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v18.s16[4] = ctx.v17.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v18.s16[5] = ctx.v17.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v18.s16[6] = ctx.v17.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v18.s16[7] = ctx.v17.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v17.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v18.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v14,v14,v0
-	ctx.v14.s16[0] = ctx.v14.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v14.s16[1] = ctx.v14.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v14.s16[2] = ctx.v14.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v14.s16[3] = ctx.v14.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v14.s16[4] = ctx.v14.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v14.s16[5] = ctx.v14.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v14.s16[6] = ctx.v14.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v14.s16[7] = ctx.v14.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v14.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v14.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vaddshs v17,v25,v1
 	simde_mm_store_si128((simde__m128i*)ctx.v17.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v25.s16), simde_mm_load_si128((simde__m128i*)ctx.v1.s16)));
 	// vaddshs v25,v16,v7
@@ -27435,27 +26939,23 @@ loc_82A45E60:
 	for (size_t i = 0; i < (16 - (ea & 0xF)); i++)
 		PPC_STORE_U8(ea + i, ctx.v33.u8[15 - i]);
 	// vsrah v25,v25,v0
-	ctx.v25.s16[0] = ctx.v25.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v25.s16[1] = ctx.v25.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v25.s16[2] = ctx.v25.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v25.s16[3] = ctx.v25.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v25.s16[4] = ctx.v25.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v25.s16[5] = ctx.v25.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v25.s16[6] = ctx.v25.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v25.s16[7] = ctx.v25.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v25.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v25.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// stvrx128 v33,r30,r11
 	ea = ctx.r30.u32 + ctx.r11.u32;
 	for (size_t i = 0; i < (ea & 0xF); i++)
 		PPC_STORE_U8(ea - i - 1, ctx.v33.u8[i]);
 	// vsrah v1,v1,v0
-	ctx.v1.s16[0] = ctx.v1.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v1.s16[1] = ctx.v1.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v1.s16[2] = ctx.v1.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v1.s16[3] = ctx.v1.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v1.s16[4] = ctx.v1.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v1.s16[5] = ctx.v1.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v1.s16[6] = ctx.v1.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v1.s16[7] = ctx.v1.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v1.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v1.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// stvlx128 v32,r0,r7
 	ea = ctx.r7.u32;
 	for (size_t i = 0; i < (16 - (ea & 0xF)); i++)
@@ -27489,23 +26989,19 @@ loc_82A45E60:
 	// ld r15,144(r1)
 	ctx.r15.u64 = PPC_LOAD_U64(ctx.r1.u32 + 144);
 	// vsrah v18,v18,v0
-	ctx.v18.s16[0] = ctx.v18.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v18.s16[1] = ctx.v18.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v18.s16[2] = ctx.v18.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v18.s16[3] = ctx.v18.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v18.s16[4] = ctx.v18.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v18.s16[5] = ctx.v18.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v18.s16[6] = ctx.v18.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v18.s16[7] = ctx.v18.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v18.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v18.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v16,v16,v0
-	ctx.v16.s16[0] = ctx.v16.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v16.s16[1] = ctx.v16.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v16.s16[2] = ctx.v16.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v16.s16[3] = ctx.v16.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v16.s16[4] = ctx.v16.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v16.s16[5] = ctx.v16.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v16.s16[6] = ctx.v16.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v16.s16[7] = ctx.v16.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v16.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v16.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// lwz r4,68(r1)
 	ctx.r4.u64 = PPC_LOAD_U32(ctx.r1.u32 + 68);
 	// vor128 v26,v45,v45
@@ -27523,14 +27019,12 @@ loc_82A45E60:
 	for (size_t i = 0; i < (16 - (ea & 0xF)); i++)
 		PPC_STORE_U8(ea + i, ctx.v61.u8[15 - i]);
 	// vsrah v15,v15,v0
-	ctx.v15.s16[0] = ctx.v15.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v15.s16[1] = ctx.v15.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v15.s16[2] = ctx.v15.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v15.s16[3] = ctx.v15.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v15.s16[4] = ctx.v15.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v15.s16[5] = ctx.v15.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v15.s16[6] = ctx.v15.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v15.s16[7] = ctx.v15.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v15.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v15.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// add r30,r6,r7
 	ctx.r30.u64 = ctx.r6.u64 + ctx.r7.u64;
 	// stvrx128 v61,r5,r11
@@ -27538,14 +27032,12 @@ loc_82A45E60:
 	for (size_t i = 0; i < (ea & 0xF); i++)
 		PPC_STORE_U8(ea - i - 1, ctx.v61.u8[i]);
 	// vsrah v14,v14,v0
-	ctx.v14.s16[0] = ctx.v14.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v14.s16[1] = ctx.v14.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v14.s16[2] = ctx.v14.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v14.s16[3] = ctx.v14.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v14.s16[4] = ctx.v14.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v14.s16[5] = ctx.v14.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v14.s16[6] = ctx.v14.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v14.s16[7] = ctx.v14.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v14.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v14.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// add r24,r15,r10
 	ctx.r24.u64 = ctx.r15.u64 + ctx.r10.u64;
 	// stw r30,20(r1)
@@ -27639,25 +27131,21 @@ loc_82A45E60:
 	// vaddshs v16,v30,v24
 	simde_mm_store_si128((simde__m128i*)ctx.v16.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v30.s16), simde_mm_load_si128((simde__m128i*)ctx.v24.s16)));
 	// vsrah v15,v23,v0
-	ctx.v15.s16[0] = ctx.v23.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v15.s16[1] = ctx.v23.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v15.s16[2] = ctx.v23.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v15.s16[3] = ctx.v23.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v15.s16[4] = ctx.v23.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v15.s16[5] = ctx.v23.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v15.s16[6] = ctx.v23.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v15.s16[7] = ctx.v23.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v23.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v15.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// addi r4,r4,16
 	ctx.r4.s64 = ctx.r4.s64 + 16;
 	// vsrah v14,v22,v0
-	ctx.v14.s16[0] = ctx.v22.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v14.s16[1] = ctx.v22.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v14.s16[2] = ctx.v22.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v14.s16[3] = ctx.v22.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v14.s16[4] = ctx.v22.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v14.s16[5] = ctx.v22.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v14.s16[6] = ctx.v22.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v14.s16[7] = ctx.v22.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v22.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v14.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// stvrx128 v60,r24,r11
 	ea = ctx.r24.u32 + ctx.r11.u32;
 	for (size_t i = 0; i < (ea & 0xF); i++)
@@ -27677,25 +27165,21 @@ loc_82A45E60:
 	for (size_t i = 0; i < (16 - (ea & 0xF)); i++)
 		PPC_STORE_U8(ea + i, ctx.v58.u8[15 - i]);
 	// vsrah v9,v19,v0
-	ctx.v9.s16[0] = ctx.v19.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v9.s16[1] = ctx.v19.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v9.s16[2] = ctx.v19.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v9.s16[3] = ctx.v19.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v9.s16[4] = ctx.v19.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v9.s16[5] = ctx.v19.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v9.s16[6] = ctx.v19.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v9.s16[7] = ctx.v19.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v19.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v9.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vpkshus128 v57,v14,v15
 	simde_mm_store_si128((simde__m128i*)ctx.v57.u8, simde_mm_packus_epi16(simde_mm_load_si128((simde__m128i*)ctx.v15.s16), simde_mm_load_si128((simde__m128i*)ctx.v14.s16)));
 	// vsrah v8,v18,v0
-	ctx.v8.s16[0] = ctx.v18.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v8.s16[1] = ctx.v18.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v8.s16[2] = ctx.v18.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v8.s16[3] = ctx.v18.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v8.s16[4] = ctx.v18.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v8.s16[5] = ctx.v18.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v8.s16[6] = ctx.v18.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v8.s16[7] = ctx.v18.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v18.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v8.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// lwz r6,56(r1)
 	ctx.r6.u64 = PPC_LOAD_U32(ctx.r1.u32 + 56);
 	// vaddshs v10,v28,v20
@@ -27703,47 +27187,39 @@ loc_82A45E60:
 	// lwz r30,48(r1)
 	ctx.r30.u64 = PPC_LOAD_U32(ctx.r1.u32 + 48);
 	// vsrah v7,v17,v0
-	ctx.v7.s16[0] = ctx.v17.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v7.s16[1] = ctx.v17.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v7.s16[2] = ctx.v17.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v7.s16[3] = ctx.v17.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v7.s16[4] = ctx.v17.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v7.s16[5] = ctx.v17.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v7.s16[6] = ctx.v17.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v7.s16[7] = ctx.v17.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v17.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v7.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// lwz r24,52(r1)
 	ctx.r24.u64 = PPC_LOAD_U32(ctx.r1.u32 + 52);
 	// vsrah v6,v16,v0
-	ctx.v6.s16[0] = ctx.v16.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v6.s16[1] = ctx.v16.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v6.s16[2] = ctx.v16.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v6.s16[3] = ctx.v16.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v6.s16[4] = ctx.v16.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v6.s16[5] = ctx.v16.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v6.s16[6] = ctx.v16.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v6.s16[7] = ctx.v16.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v16.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v6.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// lwz r28,44(r1)
 	ctx.r28.u64 = PPC_LOAD_U32(ctx.r1.u32 + 44);
 	// vpkshus128 v56,v8,v9
 	simde_mm_store_si128((simde__m128i*)ctx.v56.u8, simde_mm_packus_epi16(simde_mm_load_si128((simde__m128i*)ctx.v9.s16), simde_mm_load_si128((simde__m128i*)ctx.v8.s16)));
 	// vsrah v5,v11,v0
-	ctx.v5.s16[0] = ctx.v11.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v5.s16[1] = ctx.v11.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v5.s16[2] = ctx.v11.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v5.s16[3] = ctx.v11.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v5.s16[4] = ctx.v11.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v5.s16[5] = ctx.v11.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v5.s16[6] = ctx.v11.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v5.s16[7] = ctx.v11.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v11.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v5.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v4,v10,v0
-	ctx.v4.s16[0] = ctx.v10.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v4.s16[1] = ctx.v10.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v4.s16[2] = ctx.v10.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v4.s16[3] = ctx.v10.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v4.s16[4] = ctx.v10.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v4.s16[5] = ctx.v10.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v4.s16[6] = ctx.v10.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v4.s16[7] = ctx.v10.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v10.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v4.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// stvrx128 v58,r6,r11
 	ea = ctx.r6.u32 + ctx.r11.u32;
 	for (size_t i = 0; i < (ea & 0xF); i++)
@@ -28610,59 +28086,47 @@ loc_82A46BD8:
 	// vaddshs v24,v29,v7
 	simde_mm_store_si128((simde__m128i*)ctx.v24.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v29.s16), simde_mm_load_si128((simde__m128i*)ctx.v7.s16)));
 	// vsrah v22,v27,v12
-	ctx.v22.s16[0] = ctx.v27.s16[0] >> (ctx.v12.u16[0] & 0xF);
-	ctx.v22.s16[1] = ctx.v27.s16[1] >> (ctx.v12.u16[1] & 0xF);
-	ctx.v22.s16[2] = ctx.v27.s16[2] >> (ctx.v12.u16[2] & 0xF);
-	ctx.v22.s16[3] = ctx.v27.s16[3] >> (ctx.v12.u16[3] & 0xF);
-	ctx.v22.s16[4] = ctx.v27.s16[4] >> (ctx.v12.u16[4] & 0xF);
-	ctx.v22.s16[5] = ctx.v27.s16[5] >> (ctx.v12.u16[5] & 0xF);
-	ctx.v22.s16[6] = ctx.v27.s16[6] >> (ctx.v12.u16[6] & 0xF);
-	ctx.v22.s16[7] = ctx.v27.s16[7] >> (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v27.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v22.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v23,v28,v12
-	ctx.v23.s16[0] = ctx.v28.s16[0] >> (ctx.v12.u16[0] & 0xF);
-	ctx.v23.s16[1] = ctx.v28.s16[1] >> (ctx.v12.u16[1] & 0xF);
-	ctx.v23.s16[2] = ctx.v28.s16[2] >> (ctx.v12.u16[2] & 0xF);
-	ctx.v23.s16[3] = ctx.v28.s16[3] >> (ctx.v12.u16[3] & 0xF);
-	ctx.v23.s16[4] = ctx.v28.s16[4] >> (ctx.v12.u16[4] & 0xF);
-	ctx.v23.s16[5] = ctx.v28.s16[5] >> (ctx.v12.u16[5] & 0xF);
-	ctx.v23.s16[6] = ctx.v28.s16[6] >> (ctx.v12.u16[6] & 0xF);
-	ctx.v23.s16[7] = ctx.v28.s16[7] >> (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v28.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v23.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v18,v31,v12
-	ctx.v18.s16[0] = ctx.v31.s16[0] >> (ctx.v12.u16[0] & 0xF);
-	ctx.v18.s16[1] = ctx.v31.s16[1] >> (ctx.v12.u16[1] & 0xF);
-	ctx.v18.s16[2] = ctx.v31.s16[2] >> (ctx.v12.u16[2] & 0xF);
-	ctx.v18.s16[3] = ctx.v31.s16[3] >> (ctx.v12.u16[3] & 0xF);
-	ctx.v18.s16[4] = ctx.v31.s16[4] >> (ctx.v12.u16[4] & 0xF);
-	ctx.v18.s16[5] = ctx.v31.s16[5] >> (ctx.v12.u16[5] & 0xF);
-	ctx.v18.s16[6] = ctx.v31.s16[6] >> (ctx.v12.u16[6] & 0xF);
-	ctx.v18.s16[7] = ctx.v31.s16[7] >> (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v31.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v18.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v21,v26,v12
-	ctx.v21.s16[0] = ctx.v26.s16[0] >> (ctx.v12.u16[0] & 0xF);
-	ctx.v21.s16[1] = ctx.v26.s16[1] >> (ctx.v12.u16[1] & 0xF);
-	ctx.v21.s16[2] = ctx.v26.s16[2] >> (ctx.v12.u16[2] & 0xF);
-	ctx.v21.s16[3] = ctx.v26.s16[3] >> (ctx.v12.u16[3] & 0xF);
-	ctx.v21.s16[4] = ctx.v26.s16[4] >> (ctx.v12.u16[4] & 0xF);
-	ctx.v21.s16[5] = ctx.v26.s16[5] >> (ctx.v12.u16[5] & 0xF);
-	ctx.v21.s16[6] = ctx.v26.s16[6] >> (ctx.v12.u16[6] & 0xF);
-	ctx.v21.s16[7] = ctx.v26.s16[7] >> (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v26.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v21.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v20,v24,v12
-	ctx.v20.s16[0] = ctx.v24.s16[0] >> (ctx.v12.u16[0] & 0xF);
-	ctx.v20.s16[1] = ctx.v24.s16[1] >> (ctx.v12.u16[1] & 0xF);
-	ctx.v20.s16[2] = ctx.v24.s16[2] >> (ctx.v12.u16[2] & 0xF);
-	ctx.v20.s16[3] = ctx.v24.s16[3] >> (ctx.v12.u16[3] & 0xF);
-	ctx.v20.s16[4] = ctx.v24.s16[4] >> (ctx.v12.u16[4] & 0xF);
-	ctx.v20.s16[5] = ctx.v24.s16[5] >> (ctx.v12.u16[5] & 0xF);
-	ctx.v20.s16[6] = ctx.v24.s16[6] >> (ctx.v12.u16[6] & 0xF);
-	ctx.v20.s16[7] = ctx.v24.s16[7] >> (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v24.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v20.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v19,v25,v12
-	ctx.v19.s16[0] = ctx.v25.s16[0] >> (ctx.v12.u16[0] & 0xF);
-	ctx.v19.s16[1] = ctx.v25.s16[1] >> (ctx.v12.u16[1] & 0xF);
-	ctx.v19.s16[2] = ctx.v25.s16[2] >> (ctx.v12.u16[2] & 0xF);
-	ctx.v19.s16[3] = ctx.v25.s16[3] >> (ctx.v12.u16[3] & 0xF);
-	ctx.v19.s16[4] = ctx.v25.s16[4] >> (ctx.v12.u16[4] & 0xF);
-	ctx.v19.s16[5] = ctx.v25.s16[5] >> (ctx.v12.u16[5] & 0xF);
-	ctx.v19.s16[6] = ctx.v25.s16[6] >> (ctx.v12.u16[6] & 0xF);
-	ctx.v19.s16[7] = ctx.v25.s16[7] >> (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v25.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v19.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vpkshus v9,v22,v23
 	simde_mm_store_si128((simde__m128i*)ctx.v9.u8, simde_mm_packus_epi16(simde_mm_load_si128((simde__m128i*)ctx.v23.s16), simde_mm_load_si128((simde__m128i*)ctx.v22.s16)));
 	// vor128 v6,v47,v46
@@ -28853,23 +28317,19 @@ loc_82A46BD8:
 	// vaddshs v1,v24,v14
 	simde_mm_store_si128((simde__m128i*)ctx.v1.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v24.s16), simde_mm_load_si128((simde__m128i*)ctx.v14.s16)));
 	// vsrah v26,v30,v0
-	ctx.v26.s16[0] = ctx.v30.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v26.s16[1] = ctx.v30.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v26.s16[2] = ctx.v30.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v26.s16[3] = ctx.v30.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v26.s16[4] = ctx.v30.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v26.s16[5] = ctx.v30.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v26.s16[6] = ctx.v30.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v26.s16[7] = ctx.v30.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v30.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v26.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v25,v15,v0
-	ctx.v25.s16[0] = ctx.v15.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v25.s16[1] = ctx.v15.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v25.s16[2] = ctx.v15.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v25.s16[3] = ctx.v15.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v25.s16[4] = ctx.v15.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v25.s16[5] = ctx.v15.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v25.s16[6] = ctx.v15.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v25.s16[7] = ctx.v15.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v15.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v25.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vaddshs v17,v29,v9
 	simde_mm_store_si128((simde__m128i*)ctx.v17.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v29.s16), simde_mm_load_si128((simde__m128i*)ctx.v9.s16)));
 	// vaddshs v14,v27,v7
@@ -28894,14 +28354,12 @@ loc_82A46BD8:
 	// vaddshs v28,v11,v11
 	simde_mm_store_si128((simde__m128i*)ctx.v28.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v11.s16), simde_mm_load_si128((simde__m128i*)ctx.v11.s16)));
 	// vsrah v24,v17,v0
-	ctx.v24.s16[0] = ctx.v17.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v24.s16[1] = ctx.v17.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v24.s16[2] = ctx.v17.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v24.s16[3] = ctx.v17.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v24.s16[4] = ctx.v17.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v24.s16[5] = ctx.v17.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v24.s16[6] = ctx.v17.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v24.s16[7] = ctx.v17.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v17.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v24.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vaddshs v27,v8,v8
 	simde_mm_store_si128((simde__m128i*)ctx.v27.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v8.s16), simde_mm_load_si128((simde__m128i*)ctx.v8.s16)));
 	// stvlx128 v41,r0,r5
@@ -28909,14 +28367,12 @@ loc_82A46BD8:
 	for (size_t i = 0; i < (16 - (ea & 0xF)); i++)
 		PPC_STORE_U8(ea + i, ctx.v41.u8[15 - i]);
 	// vsrah v17,v14,v0
-	ctx.v17.s16[0] = ctx.v14.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v17.s16[1] = ctx.v14.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v17.s16[2] = ctx.v14.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v17.s16[3] = ctx.v14.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v17.s16[4] = ctx.v14.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v17.s16[5] = ctx.v14.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v17.s16[6] = ctx.v14.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v17.s16[7] = ctx.v14.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v14.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v17.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// stvrx128 v41,r5,r11
 	ea = ctx.r5.u32 + ctx.r11.u32;
 	for (size_t i = 0; i < (ea & 0xF); i++)
@@ -28924,25 +28380,21 @@ loc_82A46BD8:
 	// vaddshs v26,v9,v9
 	simde_mm_store_si128((simde__m128i*)ctx.v26.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v9.s16), simde_mm_load_si128((simde__m128i*)ctx.v9.s16)));
 	// vsrah v25,v18,v0
-	ctx.v25.s16[0] = ctx.v18.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v25.s16[1] = ctx.v18.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v25.s16[2] = ctx.v18.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v25.s16[3] = ctx.v18.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v25.s16[4] = ctx.v18.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v25.s16[5] = ctx.v18.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v25.s16[6] = ctx.v18.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v25.s16[7] = ctx.v18.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v18.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v25.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vaddshs v14,v3,v4
 	simde_mm_store_si128((simde__m128i*)ctx.v14.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v3.s16), simde_mm_load_si128((simde__m128i*)ctx.v4.s16)));
 	// vsrah v18,v15,v0
-	ctx.v18.s16[0] = ctx.v15.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v18.s16[1] = ctx.v15.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v18.s16[2] = ctx.v15.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v18.s16[3] = ctx.v15.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v18.s16[4] = ctx.v15.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v18.s16[5] = ctx.v15.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v18.s16[6] = ctx.v15.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v18.s16[7] = ctx.v15.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v15.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v18.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vaddshs v3,v30,v5
 	simde_mm_store_si128((simde__m128i*)ctx.v3.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v30.s16), simde_mm_load_si128((simde__m128i*)ctx.v5.s16)));
 	// vaddshs v30,v29,v10
@@ -29010,45 +28462,37 @@ loc_82A46BD8:
 	// addi r5,r5,64
 	ctx.r5.s64 = ctx.r5.s64 + 64;
 	// vsrah v7,v3,v0
-	ctx.v7.s16[0] = ctx.v3.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v7.s16[1] = ctx.v3.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v7.s16[2] = ctx.v3.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v7.s16[3] = ctx.v3.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v7.s16[4] = ctx.v3.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v7.s16[5] = ctx.v3.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v7.s16[6] = ctx.v3.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v7.s16[7] = ctx.v3.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v3.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v7.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v8,v14,v0
-	ctx.v8.s16[0] = ctx.v14.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v8.s16[1] = ctx.v14.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v8.s16[2] = ctx.v14.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v8.s16[3] = ctx.v14.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v8.s16[4] = ctx.v14.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v8.s16[5] = ctx.v14.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v8.s16[6] = ctx.v14.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v8.s16[7] = ctx.v14.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v14.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v8.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vaddshs v6,v19,v24
 	simde_mm_store_si128((simde__m128i*)ctx.v6.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v19.s16), simde_mm_load_si128((simde__m128i*)ctx.v24.s16)));
 	// vaddshs v5,v20,v18
 	simde_mm_store_si128((simde__m128i*)ctx.v5.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v20.s16), simde_mm_load_si128((simde__m128i*)ctx.v18.s16)));
 	// vsrah v4,v17,v0
-	ctx.v4.s16[0] = ctx.v17.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v4.s16[1] = ctx.v17.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v4.s16[2] = ctx.v17.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v4.s16[3] = ctx.v17.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v4.s16[4] = ctx.v17.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v4.s16[5] = ctx.v17.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v4.s16[6] = ctx.v17.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v4.s16[7] = ctx.v17.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v17.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v4.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v3,v16,v0
-	ctx.v3.s16[0] = ctx.v16.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v3.s16[1] = ctx.v16.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v3.s16[2] = ctx.v16.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v3.s16[3] = ctx.v16.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v3.s16[4] = ctx.v16.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v3.s16[5] = ctx.v16.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v3.s16[6] = ctx.v16.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v3.s16[7] = ctx.v16.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v16.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v3.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vpkshus128 v37,v7,v8
 	simde_mm_store_si128((simde__m128i*)ctx.v37.u8, simde_mm_packus_epi16(simde_mm_load_si128((simde__m128i*)ctx.v8.s16), simde_mm_load_si128((simde__m128i*)ctx.v7.s16)));
 	// vaddshs v2,v31,v15
@@ -29056,65 +28500,53 @@ loc_82A46BD8:
 	// vaddshs v1,v1,v11
 	simde_mm_store_si128((simde__m128i*)ctx.v1.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v1.s16), simde_mm_load_si128((simde__m128i*)ctx.v11.s16)));
 	// vsrah v31,v10,v0
-	ctx.v31.s16[0] = ctx.v10.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v31.s16[1] = ctx.v10.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v31.s16[2] = ctx.v10.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v31.s16[3] = ctx.v10.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v31.s16[4] = ctx.v10.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v31.s16[5] = ctx.v10.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v31.s16[6] = ctx.v10.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v31.s16[7] = ctx.v10.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v10.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v31.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v30,v9,v0
-	ctx.v30.s16[0] = ctx.v9.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v30.s16[1] = ctx.v9.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v30.s16[2] = ctx.v9.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v30.s16[3] = ctx.v9.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v30.s16[4] = ctx.v9.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v30.s16[5] = ctx.v9.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v30.s16[6] = ctx.v9.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v30.s16[7] = ctx.v9.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v30.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vpkshus128 v36,v3,v4
 	simde_mm_store_si128((simde__m128i*)ctx.v36.u8, simde_mm_packus_epi16(simde_mm_load_si128((simde__m128i*)ctx.v4.s16), simde_mm_load_si128((simde__m128i*)ctx.v3.s16)));
 	// vsrah v29,v6,v0
-	ctx.v29.s16[0] = ctx.v6.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v29.s16[1] = ctx.v6.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v29.s16[2] = ctx.v6.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v29.s16[3] = ctx.v6.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v29.s16[4] = ctx.v6.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v29.s16[5] = ctx.v6.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v29.s16[6] = ctx.v6.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v29.s16[7] = ctx.v6.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v6.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v29.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v28,v5,v0
-	ctx.v28.s16[0] = ctx.v5.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v28.s16[1] = ctx.v5.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v28.s16[2] = ctx.v5.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v28.s16[3] = ctx.v5.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v28.s16[4] = ctx.v5.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v28.s16[5] = ctx.v5.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v28.s16[6] = ctx.v5.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v28.s16[7] = ctx.v5.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v5.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v28.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v27,v2,v0
-	ctx.v27.s16[0] = ctx.v2.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v27.s16[1] = ctx.v2.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v27.s16[2] = ctx.v2.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v27.s16[3] = ctx.v2.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v27.s16[4] = ctx.v2.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v27.s16[5] = ctx.v2.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v27.s16[6] = ctx.v2.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v27.s16[7] = ctx.v2.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v2.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v27.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// stvlx128 v37,r19,r9
 	ea = ctx.r19.u32 + ctx.r9.u32;
 	for (size_t i = 0; i < (16 - (ea & 0xF)); i++)
 		PPC_STORE_U8(ea + i, ctx.v37.u8[15 - i]);
 	// vsrah v26,v1,v0
-	ctx.v26.s16[0] = ctx.v1.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v26.s16[1] = ctx.v1.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v26.s16[2] = ctx.v1.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v26.s16[3] = ctx.v1.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v26.s16[4] = ctx.v1.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v26.s16[5] = ctx.v1.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v26.s16[6] = ctx.v1.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v26.s16[7] = ctx.v1.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v1.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v26.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vpkshus128 v35,v30,v31
 	simde_mm_store_si128((simde__m128i*)ctx.v35.u8, simde_mm_packus_epi16(simde_mm_load_si128((simde__m128i*)ctx.v31.s16), simde_mm_load_si128((simde__m128i*)ctx.v30.s16)));
 	// stvrx128 v37,r30,r11
@@ -29596,81 +29028,65 @@ loc_82A471FC:
 	// vmrglb v9,v0,v9
 	simde_mm_store_si128((simde__m128i*)ctx.v9.u8, simde_mm_unpacklo_epi8(simde_mm_load_si128((simde__m128i*)ctx.v9.u8), simde_mm_load_si128((simde__m128i*)ctx.v0.u8)));
 	// vslh v3,v6,v12
-	ctx.v3.u16[0] = ctx.v6.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v3.u16[1] = ctx.v6.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v3.u16[2] = ctx.v6.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v3.u16[3] = ctx.v6.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v3.u16[4] = ctx.v6.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v3.u16[5] = ctx.v6.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v3.u16[6] = ctx.v6.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v3.u16[7] = ctx.v6.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v6.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v3.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vmrghb v5,v0,v8
 	simde_mm_store_si128((simde__m128i*)ctx.v5.u8, simde_mm_unpackhi_epi8(simde_mm_load_si128((simde__m128i*)ctx.v8.u8), simde_mm_load_si128((simde__m128i*)ctx.v0.u8)));
 	// vslh v2,v6,v13
-	ctx.v2.u16[0] = ctx.v6.u16[0] << (ctx.v13.u16[0] & 0xF);
-	ctx.v2.u16[1] = ctx.v6.u16[1] << (ctx.v13.u16[1] & 0xF);
-	ctx.v2.u16[2] = ctx.v6.u16[2] << (ctx.v13.u16[2] & 0xF);
-	ctx.v2.u16[3] = ctx.v6.u16[3] << (ctx.v13.u16[3] & 0xF);
-	ctx.v2.u16[4] = ctx.v6.u16[4] << (ctx.v13.u16[4] & 0xF);
-	ctx.v2.u16[5] = ctx.v6.u16[5] << (ctx.v13.u16[5] & 0xF);
-	ctx.v2.u16[6] = ctx.v6.u16[6] << (ctx.v13.u16[6] & 0xF);
-	ctx.v2.u16[7] = ctx.v6.u16[7] << (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v6.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v2.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vmrglb v8,v0,v8
 	simde_mm_store_si128((simde__m128i*)ctx.v8.u8, simde_mm_unpacklo_epi8(simde_mm_load_si128((simde__m128i*)ctx.v8.u8), simde_mm_load_si128((simde__m128i*)ctx.v0.u8)));
 	// vslh v1,v9,v12
-	ctx.v1.u16[0] = ctx.v9.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v1.u16[1] = ctx.v9.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v1.u16[2] = ctx.v9.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v1.u16[3] = ctx.v9.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v1.u16[4] = ctx.v9.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v1.u16[5] = ctx.v9.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v1.u16[6] = ctx.v9.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v1.u16[7] = ctx.v9.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v1.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v31,v9,v13
-	ctx.v31.u16[0] = ctx.v9.u16[0] << (ctx.v13.u16[0] & 0xF);
-	ctx.v31.u16[1] = ctx.v9.u16[1] << (ctx.v13.u16[1] & 0xF);
-	ctx.v31.u16[2] = ctx.v9.u16[2] << (ctx.v13.u16[2] & 0xF);
-	ctx.v31.u16[3] = ctx.v9.u16[3] << (ctx.v13.u16[3] & 0xF);
-	ctx.v31.u16[4] = ctx.v9.u16[4] << (ctx.v13.u16[4] & 0xF);
-	ctx.v31.u16[5] = ctx.v9.u16[5] << (ctx.v13.u16[5] & 0xF);
-	ctx.v31.u16[6] = ctx.v9.u16[6] << (ctx.v13.u16[6] & 0xF);
-	ctx.v31.u16[7] = ctx.v9.u16[7] << (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v31.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v30,v5,v10
-	ctx.v30.u16[0] = ctx.v5.u16[0] << (ctx.v10.u16[0] & 0xF);
-	ctx.v30.u16[1] = ctx.v5.u16[1] << (ctx.v10.u16[1] & 0xF);
-	ctx.v30.u16[2] = ctx.v5.u16[2] << (ctx.v10.u16[2] & 0xF);
-	ctx.v30.u16[3] = ctx.v5.u16[3] << (ctx.v10.u16[3] & 0xF);
-	ctx.v30.u16[4] = ctx.v5.u16[4] << (ctx.v10.u16[4] & 0xF);
-	ctx.v30.u16[5] = ctx.v5.u16[5] << (ctx.v10.u16[5] & 0xF);
-	ctx.v30.u16[6] = ctx.v5.u16[6] << (ctx.v10.u16[6] & 0xF);
-	ctx.v30.u16[7] = ctx.v5.u16[7] << (ctx.v10.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v5.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v10.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v30.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v29,v8,v10
-	ctx.v29.u16[0] = ctx.v8.u16[0] << (ctx.v10.u16[0] & 0xF);
-	ctx.v29.u16[1] = ctx.v8.u16[1] << (ctx.v10.u16[1] & 0xF);
-	ctx.v29.u16[2] = ctx.v8.u16[2] << (ctx.v10.u16[2] & 0xF);
-	ctx.v29.u16[3] = ctx.v8.u16[3] << (ctx.v10.u16[3] & 0xF);
-	ctx.v29.u16[4] = ctx.v8.u16[4] << (ctx.v10.u16[4] & 0xF);
-	ctx.v29.u16[5] = ctx.v8.u16[5] << (ctx.v10.u16[5] & 0xF);
-	ctx.v29.u16[6] = ctx.v8.u16[6] << (ctx.v10.u16[6] & 0xF);
-	ctx.v29.u16[7] = ctx.v8.u16[7] << (ctx.v10.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v10.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v29.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v28,v8,v11
-	ctx.v28.u16[0] = ctx.v8.u16[0] << (ctx.v11.u16[0] & 0xF);
-	ctx.v28.u16[1] = ctx.v8.u16[1] << (ctx.v11.u16[1] & 0xF);
-	ctx.v28.u16[2] = ctx.v8.u16[2] << (ctx.v11.u16[2] & 0xF);
-	ctx.v28.u16[3] = ctx.v8.u16[3] << (ctx.v11.u16[3] & 0xF);
-	ctx.v28.u16[4] = ctx.v8.u16[4] << (ctx.v11.u16[4] & 0xF);
-	ctx.v28.u16[5] = ctx.v8.u16[5] << (ctx.v11.u16[5] & 0xF);
-	ctx.v28.u16[6] = ctx.v8.u16[6] << (ctx.v11.u16[6] & 0xF);
-	ctx.v28.u16[7] = ctx.v8.u16[7] << (ctx.v11.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v11.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v28.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v27,v5,v11
-	ctx.v27.u16[0] = ctx.v5.u16[0] << (ctx.v11.u16[0] & 0xF);
-	ctx.v27.u16[1] = ctx.v5.u16[1] << (ctx.v11.u16[1] & 0xF);
-	ctx.v27.u16[2] = ctx.v5.u16[2] << (ctx.v11.u16[2] & 0xF);
-	ctx.v27.u16[3] = ctx.v5.u16[3] << (ctx.v11.u16[3] & 0xF);
-	ctx.v27.u16[4] = ctx.v5.u16[4] << (ctx.v11.u16[4] & 0xF);
-	ctx.v27.u16[5] = ctx.v5.u16[5] << (ctx.v11.u16[5] & 0xF);
-	ctx.v27.u16[6] = ctx.v5.u16[6] << (ctx.v11.u16[6] & 0xF);
-	ctx.v27.u16[7] = ctx.v5.u16[7] << (ctx.v11.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v5.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v11.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v27.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vaddshs v26,v31,v1
 	simde_mm_store_si128((simde__m128i*)ctx.v26.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v31.s16), simde_mm_load_si128((simde__m128i*)ctx.v1.s16)));
 	// vaddshs v25,v2,v3
@@ -29684,23 +29100,19 @@ loc_82A471FC:
 	// vaddshs v21,v25,v23
 	simde_mm_store_si128((simde__m128i*)ctx.v21.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v25.s16), simde_mm_load_si128((simde__m128i*)ctx.v23.s16)));
 	// vsrah v20,v22,v4
-	ctx.v20.s16[0] = ctx.v22.s16[0] >> (ctx.v4.u16[0] & 0xF);
-	ctx.v20.s16[1] = ctx.v22.s16[1] >> (ctx.v4.u16[1] & 0xF);
-	ctx.v20.s16[2] = ctx.v22.s16[2] >> (ctx.v4.u16[2] & 0xF);
-	ctx.v20.s16[3] = ctx.v22.s16[3] >> (ctx.v4.u16[3] & 0xF);
-	ctx.v20.s16[4] = ctx.v22.s16[4] >> (ctx.v4.u16[4] & 0xF);
-	ctx.v20.s16[5] = ctx.v22.s16[5] >> (ctx.v4.u16[5] & 0xF);
-	ctx.v20.s16[6] = ctx.v22.s16[6] >> (ctx.v4.u16[6] & 0xF);
-	ctx.v20.s16[7] = ctx.v22.s16[7] >> (ctx.v4.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v22.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v4.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v20.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v19,v21,v4
-	ctx.v19.s16[0] = ctx.v21.s16[0] >> (ctx.v4.u16[0] & 0xF);
-	ctx.v19.s16[1] = ctx.v21.s16[1] >> (ctx.v4.u16[1] & 0xF);
-	ctx.v19.s16[2] = ctx.v21.s16[2] >> (ctx.v4.u16[2] & 0xF);
-	ctx.v19.s16[3] = ctx.v21.s16[3] >> (ctx.v4.u16[3] & 0xF);
-	ctx.v19.s16[4] = ctx.v21.s16[4] >> (ctx.v4.u16[4] & 0xF);
-	ctx.v19.s16[5] = ctx.v21.s16[5] >> (ctx.v4.u16[5] & 0xF);
-	ctx.v19.s16[6] = ctx.v21.s16[6] >> (ctx.v4.u16[6] & 0xF);
-	ctx.v19.s16[7] = ctx.v21.s16[7] >> (ctx.v4.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v21.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v4.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v19.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vpkshus128 v59,v19,v20
 	simde_mm_store_si128((simde__m128i*)ctx.v59.u8, simde_mm_packus_epi16(simde_mm_load_si128((simde__m128i*)ctx.v20.s16), simde_mm_load_si128((simde__m128i*)ctx.v19.s16)));
 	// stvlx128 v59,r0,r9
@@ -29938,87 +29350,71 @@ loc_82A473B8:
 	// vmrghb v2,v0,v9
 	simde_mm_store_si128((simde__m128i*)ctx.v2.u8, simde_mm_unpackhi_epi8(simde_mm_load_si128((simde__m128i*)ctx.v9.u8), simde_mm_load_si128((simde__m128i*)ctx.v0.u8)));
 	// vslh v1,v5,v12
-	ctx.v1.u16[0] = ctx.v5.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v1.u16[1] = ctx.v5.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v1.u16[2] = ctx.v5.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v1.u16[3] = ctx.v5.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v1.u16[4] = ctx.v5.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v1.u16[5] = ctx.v5.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v1.u16[6] = ctx.v5.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v1.u16[7] = ctx.v5.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v5.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v1.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vmrghb v4,v0,v6
 	simde_mm_store_si128((simde__m128i*)ctx.v4.u8, simde_mm_unpackhi_epi8(simde_mm_load_si128((simde__m128i*)ctx.v6.u8), simde_mm_load_si128((simde__m128i*)ctx.v0.u8)));
 	// vslh v31,v5,v13
-	ctx.v31.u16[0] = ctx.v5.u16[0] << (ctx.v13.u16[0] & 0xF);
-	ctx.v31.u16[1] = ctx.v5.u16[1] << (ctx.v13.u16[1] & 0xF);
-	ctx.v31.u16[2] = ctx.v5.u16[2] << (ctx.v13.u16[2] & 0xF);
-	ctx.v31.u16[3] = ctx.v5.u16[3] << (ctx.v13.u16[3] & 0xF);
-	ctx.v31.u16[4] = ctx.v5.u16[4] << (ctx.v13.u16[4] & 0xF);
-	ctx.v31.u16[5] = ctx.v5.u16[5] << (ctx.v13.u16[5] & 0xF);
-	ctx.v31.u16[6] = ctx.v5.u16[6] << (ctx.v13.u16[6] & 0xF);
-	ctx.v31.u16[7] = ctx.v5.u16[7] << (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v5.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v31.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vmrglb v0,v0,v6
 	simde_mm_store_si128((simde__m128i*)ctx.v0.u8, simde_mm_unpacklo_epi8(simde_mm_load_si128((simde__m128i*)ctx.v6.u8), simde_mm_load_si128((simde__m128i*)ctx.v0.u8)));
 	// vslh v30,v8,v12
-	ctx.v30.u16[0] = ctx.v8.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v30.u16[1] = ctx.v8.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v30.u16[2] = ctx.v8.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v30.u16[3] = ctx.v8.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v30.u16[4] = ctx.v8.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v30.u16[5] = ctx.v8.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v30.u16[6] = ctx.v8.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v30.u16[7] = ctx.v8.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v30.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v29,v8,v13
-	ctx.v29.u16[0] = ctx.v8.u16[0] << (ctx.v13.u16[0] & 0xF);
-	ctx.v29.u16[1] = ctx.v8.u16[1] << (ctx.v13.u16[1] & 0xF);
-	ctx.v29.u16[2] = ctx.v8.u16[2] << (ctx.v13.u16[2] & 0xF);
-	ctx.v29.u16[3] = ctx.v8.u16[3] << (ctx.v13.u16[3] & 0xF);
-	ctx.v29.u16[4] = ctx.v8.u16[4] << (ctx.v13.u16[4] & 0xF);
-	ctx.v29.u16[5] = ctx.v8.u16[5] << (ctx.v13.u16[5] & 0xF);
-	ctx.v29.u16[6] = ctx.v8.u16[6] << (ctx.v13.u16[6] & 0xF);
-	ctx.v29.u16[7] = ctx.v8.u16[7] << (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v29.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vspltish v9,1
 	simde_mm_store_si128((simde__m128i*)ctx.v9.s16, simde_mm_set1_epi16(short(0x1)));
 	// vspltish v5,2
 	simde_mm_store_si128((simde__m128i*)ctx.v5.s16, simde_mm_set1_epi16(short(0x2)));
 	// vslh v28,v4,v10
-	ctx.v28.u16[0] = ctx.v4.u16[0] << (ctx.v10.u16[0] & 0xF);
-	ctx.v28.u16[1] = ctx.v4.u16[1] << (ctx.v10.u16[1] & 0xF);
-	ctx.v28.u16[2] = ctx.v4.u16[2] << (ctx.v10.u16[2] & 0xF);
-	ctx.v28.u16[3] = ctx.v4.u16[3] << (ctx.v10.u16[3] & 0xF);
-	ctx.v28.u16[4] = ctx.v4.u16[4] << (ctx.v10.u16[4] & 0xF);
-	ctx.v28.u16[5] = ctx.v4.u16[5] << (ctx.v10.u16[5] & 0xF);
-	ctx.v28.u16[6] = ctx.v4.u16[6] << (ctx.v10.u16[6] & 0xF);
-	ctx.v28.u16[7] = ctx.v4.u16[7] << (ctx.v10.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v4.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v10.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v28.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v27,v0,v10
-	ctx.v27.u16[0] = ctx.v0.u16[0] << (ctx.v10.u16[0] & 0xF);
-	ctx.v27.u16[1] = ctx.v0.u16[1] << (ctx.v10.u16[1] & 0xF);
-	ctx.v27.u16[2] = ctx.v0.u16[2] << (ctx.v10.u16[2] & 0xF);
-	ctx.v27.u16[3] = ctx.v0.u16[3] << (ctx.v10.u16[3] & 0xF);
-	ctx.v27.u16[4] = ctx.v0.u16[4] << (ctx.v10.u16[4] & 0xF);
-	ctx.v27.u16[5] = ctx.v0.u16[5] << (ctx.v10.u16[5] & 0xF);
-	ctx.v27.u16[6] = ctx.v0.u16[6] << (ctx.v10.u16[6] & 0xF);
-	ctx.v27.u16[7] = ctx.v0.u16[7] << (ctx.v10.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v10.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v27.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v26,v0,v11
-	ctx.v26.u16[0] = ctx.v0.u16[0] << (ctx.v11.u16[0] & 0xF);
-	ctx.v26.u16[1] = ctx.v0.u16[1] << (ctx.v11.u16[1] & 0xF);
-	ctx.v26.u16[2] = ctx.v0.u16[2] << (ctx.v11.u16[2] & 0xF);
-	ctx.v26.u16[3] = ctx.v0.u16[3] << (ctx.v11.u16[3] & 0xF);
-	ctx.v26.u16[4] = ctx.v0.u16[4] << (ctx.v11.u16[4] & 0xF);
-	ctx.v26.u16[5] = ctx.v0.u16[5] << (ctx.v11.u16[5] & 0xF);
-	ctx.v26.u16[6] = ctx.v0.u16[6] << (ctx.v11.u16[6] & 0xF);
-	ctx.v26.u16[7] = ctx.v0.u16[7] << (ctx.v11.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v11.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v26.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vspltish v0,3
 	simde_mm_store_si128((simde__m128i*)ctx.v0.s16, simde_mm_set1_epi16(short(0x3)));
 	// vslh v25,v4,v11
-	ctx.v25.u16[0] = ctx.v4.u16[0] << (ctx.v11.u16[0] & 0xF);
-	ctx.v25.u16[1] = ctx.v4.u16[1] << (ctx.v11.u16[1] & 0xF);
-	ctx.v25.u16[2] = ctx.v4.u16[2] << (ctx.v11.u16[2] & 0xF);
-	ctx.v25.u16[3] = ctx.v4.u16[3] << (ctx.v11.u16[3] & 0xF);
-	ctx.v25.u16[4] = ctx.v4.u16[4] << (ctx.v11.u16[4] & 0xF);
-	ctx.v25.u16[5] = ctx.v4.u16[5] << (ctx.v11.u16[5] & 0xF);
-	ctx.v25.u16[6] = ctx.v4.u16[6] << (ctx.v11.u16[6] & 0xF);
-	ctx.v25.u16[7] = ctx.v4.u16[7] << (ctx.v11.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v4.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v11.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v25.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vaddshs v24,v31,v1
 	simde_mm_store_si128((simde__m128i*)ctx.v24.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v31.s16), simde_mm_load_si128((simde__m128i*)ctx.v1.s16)));
 	// vaddshs v23,v29,v30
@@ -30028,83 +29424,67 @@ loc_82A473B8:
 	// vsubshs v21,v25,v28
 	simde_mm_store_si128((simde__m128i*)ctx.v21.s16, simde_mm_subs_epi16(simde_mm_load_si128((simde__m128i*)ctx.v25.s16), simde_mm_load_si128((simde__m128i*)ctx.v28.s16)));
 	// vslh v20,v3,v9
-	ctx.v20.u16[0] = ctx.v3.u16[0] << (ctx.v9.u16[0] & 0xF);
-	ctx.v20.u16[1] = ctx.v3.u16[1] << (ctx.v9.u16[1] & 0xF);
-	ctx.v20.u16[2] = ctx.v3.u16[2] << (ctx.v9.u16[2] & 0xF);
-	ctx.v20.u16[3] = ctx.v3.u16[3] << (ctx.v9.u16[3] & 0xF);
-	ctx.v20.u16[4] = ctx.v3.u16[4] << (ctx.v9.u16[4] & 0xF);
-	ctx.v20.u16[5] = ctx.v3.u16[5] << (ctx.v9.u16[5] & 0xF);
-	ctx.v20.u16[6] = ctx.v3.u16[6] << (ctx.v9.u16[6] & 0xF);
-	ctx.v20.u16[7] = ctx.v3.u16[7] << (ctx.v9.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v3.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v20.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v19,v2,v9
-	ctx.v19.u16[0] = ctx.v2.u16[0] << (ctx.v9.u16[0] & 0xF);
-	ctx.v19.u16[1] = ctx.v2.u16[1] << (ctx.v9.u16[1] & 0xF);
-	ctx.v19.u16[2] = ctx.v2.u16[2] << (ctx.v9.u16[2] & 0xF);
-	ctx.v19.u16[3] = ctx.v2.u16[3] << (ctx.v9.u16[3] & 0xF);
-	ctx.v19.u16[4] = ctx.v2.u16[4] << (ctx.v9.u16[4] & 0xF);
-	ctx.v19.u16[5] = ctx.v2.u16[5] << (ctx.v9.u16[5] & 0xF);
-	ctx.v19.u16[6] = ctx.v2.u16[6] << (ctx.v9.u16[6] & 0xF);
-	ctx.v19.u16[7] = ctx.v2.u16[7] << (ctx.v9.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v2.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v19.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vaddshs v18,v23,v22
 	simde_mm_store_si128((simde__m128i*)ctx.v18.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v23.s16), simde_mm_load_si128((simde__m128i*)ctx.v22.s16)));
 	// vaddshs v17,v24,v21
 	simde_mm_store_si128((simde__m128i*)ctx.v17.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v24.s16), simde_mm_load_si128((simde__m128i*)ctx.v21.s16)));
 	// vsrah v6,v18,v0
-	ctx.v6.s16[0] = ctx.v18.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v6.s16[1] = ctx.v18.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v6.s16[2] = ctx.v18.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v6.s16[3] = ctx.v18.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v6.s16[4] = ctx.v18.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v6.s16[5] = ctx.v18.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v6.s16[6] = ctx.v18.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v6.s16[7] = ctx.v18.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v18.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v6.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v8,v17,v0
-	ctx.v8.s16[0] = ctx.v17.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v8.s16[1] = ctx.v17.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v8.s16[2] = ctx.v17.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v8.s16[3] = ctx.v17.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v8.s16[4] = ctx.v17.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v8.s16[5] = ctx.v17.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v8.s16[6] = ctx.v17.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v8.s16[7] = ctx.v17.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v17.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v8.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vslh v16,v6,v9
-	ctx.v16.u16[0] = ctx.v6.u16[0] << (ctx.v9.u16[0] & 0xF);
-	ctx.v16.u16[1] = ctx.v6.u16[1] << (ctx.v9.u16[1] & 0xF);
-	ctx.v16.u16[2] = ctx.v6.u16[2] << (ctx.v9.u16[2] & 0xF);
-	ctx.v16.u16[3] = ctx.v6.u16[3] << (ctx.v9.u16[3] & 0xF);
-	ctx.v16.u16[4] = ctx.v6.u16[4] << (ctx.v9.u16[4] & 0xF);
-	ctx.v16.u16[5] = ctx.v6.u16[5] << (ctx.v9.u16[5] & 0xF);
-	ctx.v16.u16[6] = ctx.v6.u16[6] << (ctx.v9.u16[6] & 0xF);
-	ctx.v16.u16[7] = ctx.v6.u16[7] << (ctx.v9.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v6.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v16.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v15,v8,v9
-	ctx.v15.u16[0] = ctx.v8.u16[0] << (ctx.v9.u16[0] & 0xF);
-	ctx.v15.u16[1] = ctx.v8.u16[1] << (ctx.v9.u16[1] & 0xF);
-	ctx.v15.u16[2] = ctx.v8.u16[2] << (ctx.v9.u16[2] & 0xF);
-	ctx.v15.u16[3] = ctx.v8.u16[3] << (ctx.v9.u16[3] & 0xF);
-	ctx.v15.u16[4] = ctx.v8.u16[4] << (ctx.v9.u16[4] & 0xF);
-	ctx.v15.u16[5] = ctx.v8.u16[5] << (ctx.v9.u16[5] & 0xF);
-	ctx.v15.u16[6] = ctx.v8.u16[6] << (ctx.v9.u16[6] & 0xF);
-	ctx.v15.u16[7] = ctx.v8.u16[7] << (ctx.v9.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v15.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vpkshus128 v52,v8,v6
 	simde_mm_store_si128((simde__m128i*)ctx.v52.u8, simde_mm_packus_epi16(simde_mm_load_si128((simde__m128i*)ctx.v6.s16), simde_mm_load_si128((simde__m128i*)ctx.v8.s16)));
 	// vslh v14,v8,v5
-	ctx.v14.u16[0] = ctx.v8.u16[0] << (ctx.v5.u16[0] & 0xF);
-	ctx.v14.u16[1] = ctx.v8.u16[1] << (ctx.v5.u16[1] & 0xF);
-	ctx.v14.u16[2] = ctx.v8.u16[2] << (ctx.v5.u16[2] & 0xF);
-	ctx.v14.u16[3] = ctx.v8.u16[3] << (ctx.v5.u16[3] & 0xF);
-	ctx.v14.u16[4] = ctx.v8.u16[4] << (ctx.v5.u16[4] & 0xF);
-	ctx.v14.u16[5] = ctx.v8.u16[5] << (ctx.v5.u16[5] & 0xF);
-	ctx.v14.u16[6] = ctx.v8.u16[6] << (ctx.v5.u16[6] & 0xF);
-	ctx.v14.u16[7] = ctx.v8.u16[7] << (ctx.v5.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v5.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v14.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v9,v6,v5
-	ctx.v9.u16[0] = ctx.v6.u16[0] << (ctx.v5.u16[0] & 0xF);
-	ctx.v9.u16[1] = ctx.v6.u16[1] << (ctx.v5.u16[1] & 0xF);
-	ctx.v9.u16[2] = ctx.v6.u16[2] << (ctx.v5.u16[2] & 0xF);
-	ctx.v9.u16[3] = ctx.v6.u16[3] << (ctx.v5.u16[3] & 0xF);
-	ctx.v9.u16[4] = ctx.v6.u16[4] << (ctx.v5.u16[4] & 0xF);
-	ctx.v9.u16[5] = ctx.v6.u16[5] << (ctx.v5.u16[5] & 0xF);
-	ctx.v9.u16[6] = ctx.v6.u16[6] << (ctx.v5.u16[6] & 0xF);
-	ctx.v9.u16[7] = ctx.v6.u16[7] << (ctx.v5.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v6.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v5.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v9.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vaddshs v8,v14,v15
 	simde_mm_store_si128((simde__m128i*)ctx.v8.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v14.s16), simde_mm_load_si128((simde__m128i*)ctx.v15.s16)));
 	// vaddshs v6,v9,v16
@@ -30122,23 +29502,19 @@ loc_82A473B8:
 	// vaddshs v4,v6,v20
 	simde_mm_store_si128((simde__m128i*)ctx.v4.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v6.s16), simde_mm_load_si128((simde__m128i*)ctx.v20.s16)));
 	// vsrah v3,v5,v0
-	ctx.v3.s16[0] = ctx.v5.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v3.s16[1] = ctx.v5.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v3.s16[2] = ctx.v5.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v3.s16[3] = ctx.v5.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v3.s16[4] = ctx.v5.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v3.s16[5] = ctx.v5.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v3.s16[6] = ctx.v5.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v3.s16[7] = ctx.v5.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v5.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v3.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v2,v4,v0
-	ctx.v2.s16[0] = ctx.v4.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v2.s16[1] = ctx.v4.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v2.s16[2] = ctx.v4.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v2.s16[3] = ctx.v4.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v2.s16[4] = ctx.v4.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v2.s16[5] = ctx.v4.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v2.s16[6] = ctx.v4.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v2.s16[7] = ctx.v4.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v4.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v2.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vpkshus128 v51,v3,v2
 	simde_mm_store_si128((simde__m128i*)ctx.v51.u8, simde_mm_packus_epi16(simde_mm_load_si128((simde__m128i*)ctx.v2.s16), simde_mm_load_si128((simde__m128i*)ctx.v3.s16)));
 	// stvlx128 v51,r5,r11
@@ -30337,85 +29713,69 @@ loc_82A4759C:
 	// vmrghb v2,v0,v9
 	simde_mm_store_si128((simde__m128i*)ctx.v2.u8, simde_mm_unpackhi_epi8(simde_mm_load_si128((simde__m128i*)ctx.v9.u8), simde_mm_load_si128((simde__m128i*)ctx.v0.u8)));
 	// vslh v1,v5,v12
-	ctx.v1.u16[0] = ctx.v5.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v1.u16[1] = ctx.v5.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v1.u16[2] = ctx.v5.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v1.u16[3] = ctx.v5.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v1.u16[4] = ctx.v5.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v1.u16[5] = ctx.v5.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v1.u16[6] = ctx.v5.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v1.u16[7] = ctx.v5.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v5.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v1.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vmrghb v4,v0,v6
 	simde_mm_store_si128((simde__m128i*)ctx.v4.u8, simde_mm_unpackhi_epi8(simde_mm_load_si128((simde__m128i*)ctx.v6.u8), simde_mm_load_si128((simde__m128i*)ctx.v0.u8)));
 	// vslh v31,v5,v13
-	ctx.v31.u16[0] = ctx.v5.u16[0] << (ctx.v13.u16[0] & 0xF);
-	ctx.v31.u16[1] = ctx.v5.u16[1] << (ctx.v13.u16[1] & 0xF);
-	ctx.v31.u16[2] = ctx.v5.u16[2] << (ctx.v13.u16[2] & 0xF);
-	ctx.v31.u16[3] = ctx.v5.u16[3] << (ctx.v13.u16[3] & 0xF);
-	ctx.v31.u16[4] = ctx.v5.u16[4] << (ctx.v13.u16[4] & 0xF);
-	ctx.v31.u16[5] = ctx.v5.u16[5] << (ctx.v13.u16[5] & 0xF);
-	ctx.v31.u16[6] = ctx.v5.u16[6] << (ctx.v13.u16[6] & 0xF);
-	ctx.v31.u16[7] = ctx.v5.u16[7] << (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v5.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v31.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vmrglb v0,v0,v6
 	simde_mm_store_si128((simde__m128i*)ctx.v0.u8, simde_mm_unpacklo_epi8(simde_mm_load_si128((simde__m128i*)ctx.v6.u8), simde_mm_load_si128((simde__m128i*)ctx.v0.u8)));
 	// vslh v30,v8,v12
-	ctx.v30.u16[0] = ctx.v8.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v30.u16[1] = ctx.v8.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v30.u16[2] = ctx.v8.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v30.u16[3] = ctx.v8.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v30.u16[4] = ctx.v8.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v30.u16[5] = ctx.v8.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v30.u16[6] = ctx.v8.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v30.u16[7] = ctx.v8.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v30.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v29,v8,v13
-	ctx.v29.u16[0] = ctx.v8.u16[0] << (ctx.v13.u16[0] & 0xF);
-	ctx.v29.u16[1] = ctx.v8.u16[1] << (ctx.v13.u16[1] & 0xF);
-	ctx.v29.u16[2] = ctx.v8.u16[2] << (ctx.v13.u16[2] & 0xF);
-	ctx.v29.u16[3] = ctx.v8.u16[3] << (ctx.v13.u16[3] & 0xF);
-	ctx.v29.u16[4] = ctx.v8.u16[4] << (ctx.v13.u16[4] & 0xF);
-	ctx.v29.u16[5] = ctx.v8.u16[5] << (ctx.v13.u16[5] & 0xF);
-	ctx.v29.u16[6] = ctx.v8.u16[6] << (ctx.v13.u16[6] & 0xF);
-	ctx.v29.u16[7] = ctx.v8.u16[7] << (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v29.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vspltish v9,2
 	simde_mm_store_si128((simde__m128i*)ctx.v9.s16, simde_mm_set1_epi16(short(0x2)));
 	// vslh v28,v4,v10
-	ctx.v28.u16[0] = ctx.v4.u16[0] << (ctx.v10.u16[0] & 0xF);
-	ctx.v28.u16[1] = ctx.v4.u16[1] << (ctx.v10.u16[1] & 0xF);
-	ctx.v28.u16[2] = ctx.v4.u16[2] << (ctx.v10.u16[2] & 0xF);
-	ctx.v28.u16[3] = ctx.v4.u16[3] << (ctx.v10.u16[3] & 0xF);
-	ctx.v28.u16[4] = ctx.v4.u16[4] << (ctx.v10.u16[4] & 0xF);
-	ctx.v28.u16[5] = ctx.v4.u16[5] << (ctx.v10.u16[5] & 0xF);
-	ctx.v28.u16[6] = ctx.v4.u16[6] << (ctx.v10.u16[6] & 0xF);
-	ctx.v28.u16[7] = ctx.v4.u16[7] << (ctx.v10.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v4.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v10.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v28.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v27,v0,v10
-	ctx.v27.u16[0] = ctx.v0.u16[0] << (ctx.v10.u16[0] & 0xF);
-	ctx.v27.u16[1] = ctx.v0.u16[1] << (ctx.v10.u16[1] & 0xF);
-	ctx.v27.u16[2] = ctx.v0.u16[2] << (ctx.v10.u16[2] & 0xF);
-	ctx.v27.u16[3] = ctx.v0.u16[3] << (ctx.v10.u16[3] & 0xF);
-	ctx.v27.u16[4] = ctx.v0.u16[4] << (ctx.v10.u16[4] & 0xF);
-	ctx.v27.u16[5] = ctx.v0.u16[5] << (ctx.v10.u16[5] & 0xF);
-	ctx.v27.u16[6] = ctx.v0.u16[6] << (ctx.v10.u16[6] & 0xF);
-	ctx.v27.u16[7] = ctx.v0.u16[7] << (ctx.v10.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v10.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v27.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v26,v0,v11
-	ctx.v26.u16[0] = ctx.v0.u16[0] << (ctx.v11.u16[0] & 0xF);
-	ctx.v26.u16[1] = ctx.v0.u16[1] << (ctx.v11.u16[1] & 0xF);
-	ctx.v26.u16[2] = ctx.v0.u16[2] << (ctx.v11.u16[2] & 0xF);
-	ctx.v26.u16[3] = ctx.v0.u16[3] << (ctx.v11.u16[3] & 0xF);
-	ctx.v26.u16[4] = ctx.v0.u16[4] << (ctx.v11.u16[4] & 0xF);
-	ctx.v26.u16[5] = ctx.v0.u16[5] << (ctx.v11.u16[5] & 0xF);
-	ctx.v26.u16[6] = ctx.v0.u16[6] << (ctx.v11.u16[6] & 0xF);
-	ctx.v26.u16[7] = ctx.v0.u16[7] << (ctx.v11.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v11.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v26.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vspltish v0,3
 	simde_mm_store_si128((simde__m128i*)ctx.v0.s16, simde_mm_set1_epi16(short(0x3)));
 	// vslh v25,v4,v11
-	ctx.v25.u16[0] = ctx.v4.u16[0] << (ctx.v11.u16[0] & 0xF);
-	ctx.v25.u16[1] = ctx.v4.u16[1] << (ctx.v11.u16[1] & 0xF);
-	ctx.v25.u16[2] = ctx.v4.u16[2] << (ctx.v11.u16[2] & 0xF);
-	ctx.v25.u16[3] = ctx.v4.u16[3] << (ctx.v11.u16[3] & 0xF);
-	ctx.v25.u16[4] = ctx.v4.u16[4] << (ctx.v11.u16[4] & 0xF);
-	ctx.v25.u16[5] = ctx.v4.u16[5] << (ctx.v11.u16[5] & 0xF);
-	ctx.v25.u16[6] = ctx.v4.u16[6] << (ctx.v11.u16[6] & 0xF);
-	ctx.v25.u16[7] = ctx.v4.u16[7] << (ctx.v11.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v4.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v11.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v25.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vaddshs v24,v31,v1
 	simde_mm_store_si128((simde__m128i*)ctx.v24.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v31.s16), simde_mm_load_si128((simde__m128i*)ctx.v1.s16)));
 	// vaddshs v23,v29,v30
@@ -30425,63 +29785,51 @@ loc_82A4759C:
 	// vsubshs v21,v25,v28
 	simde_mm_store_si128((simde__m128i*)ctx.v21.s16, simde_mm_subs_epi16(simde_mm_load_si128((simde__m128i*)ctx.v25.s16), simde_mm_load_si128((simde__m128i*)ctx.v28.s16)));
 	// vslh v20,v3,v9
-	ctx.v20.u16[0] = ctx.v3.u16[0] << (ctx.v9.u16[0] & 0xF);
-	ctx.v20.u16[1] = ctx.v3.u16[1] << (ctx.v9.u16[1] & 0xF);
-	ctx.v20.u16[2] = ctx.v3.u16[2] << (ctx.v9.u16[2] & 0xF);
-	ctx.v20.u16[3] = ctx.v3.u16[3] << (ctx.v9.u16[3] & 0xF);
-	ctx.v20.u16[4] = ctx.v3.u16[4] << (ctx.v9.u16[4] & 0xF);
-	ctx.v20.u16[5] = ctx.v3.u16[5] << (ctx.v9.u16[5] & 0xF);
-	ctx.v20.u16[6] = ctx.v3.u16[6] << (ctx.v9.u16[6] & 0xF);
-	ctx.v20.u16[7] = ctx.v3.u16[7] << (ctx.v9.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v3.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v20.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v19,v2,v9
-	ctx.v19.u16[0] = ctx.v2.u16[0] << (ctx.v9.u16[0] & 0xF);
-	ctx.v19.u16[1] = ctx.v2.u16[1] << (ctx.v9.u16[1] & 0xF);
-	ctx.v19.u16[2] = ctx.v2.u16[2] << (ctx.v9.u16[2] & 0xF);
-	ctx.v19.u16[3] = ctx.v2.u16[3] << (ctx.v9.u16[3] & 0xF);
-	ctx.v19.u16[4] = ctx.v2.u16[4] << (ctx.v9.u16[4] & 0xF);
-	ctx.v19.u16[5] = ctx.v2.u16[5] << (ctx.v9.u16[5] & 0xF);
-	ctx.v19.u16[6] = ctx.v2.u16[6] << (ctx.v9.u16[6] & 0xF);
-	ctx.v19.u16[7] = ctx.v2.u16[7] << (ctx.v9.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v2.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v19.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vaddshs v18,v23,v22
 	simde_mm_store_si128((simde__m128i*)ctx.v18.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v23.s16), simde_mm_load_si128((simde__m128i*)ctx.v22.s16)));
 	// vaddshs v17,v24,v21
 	simde_mm_store_si128((simde__m128i*)ctx.v17.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v24.s16), simde_mm_load_si128((simde__m128i*)ctx.v21.s16)));
 	// vsrah v6,v18,v0
-	ctx.v6.s16[0] = ctx.v18.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v6.s16[1] = ctx.v18.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v6.s16[2] = ctx.v18.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v6.s16[3] = ctx.v18.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v6.s16[4] = ctx.v18.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v6.s16[5] = ctx.v18.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v6.s16[6] = ctx.v18.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v6.s16[7] = ctx.v18.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v18.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v6.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v8,v17,v0
-	ctx.v8.s16[0] = ctx.v17.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v8.s16[1] = ctx.v17.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v8.s16[2] = ctx.v17.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v8.s16[3] = ctx.v17.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v8.s16[4] = ctx.v17.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v8.s16[5] = ctx.v17.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v8.s16[6] = ctx.v17.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v8.s16[7] = ctx.v17.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v17.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v8.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vslh v16,v6,v9
-	ctx.v16.u16[0] = ctx.v6.u16[0] << (ctx.v9.u16[0] & 0xF);
-	ctx.v16.u16[1] = ctx.v6.u16[1] << (ctx.v9.u16[1] & 0xF);
-	ctx.v16.u16[2] = ctx.v6.u16[2] << (ctx.v9.u16[2] & 0xF);
-	ctx.v16.u16[3] = ctx.v6.u16[3] << (ctx.v9.u16[3] & 0xF);
-	ctx.v16.u16[4] = ctx.v6.u16[4] << (ctx.v9.u16[4] & 0xF);
-	ctx.v16.u16[5] = ctx.v6.u16[5] << (ctx.v9.u16[5] & 0xF);
-	ctx.v16.u16[6] = ctx.v6.u16[6] << (ctx.v9.u16[6] & 0xF);
-	ctx.v16.u16[7] = ctx.v6.u16[7] << (ctx.v9.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v6.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v16.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v15,v8,v9
-	ctx.v15.u16[0] = ctx.v8.u16[0] << (ctx.v9.u16[0] & 0xF);
-	ctx.v15.u16[1] = ctx.v8.u16[1] << (ctx.v9.u16[1] & 0xF);
-	ctx.v15.u16[2] = ctx.v8.u16[2] << (ctx.v9.u16[2] & 0xF);
-	ctx.v15.u16[3] = ctx.v8.u16[3] << (ctx.v9.u16[3] & 0xF);
-	ctx.v15.u16[4] = ctx.v8.u16[4] << (ctx.v9.u16[4] & 0xF);
-	ctx.v15.u16[5] = ctx.v8.u16[5] << (ctx.v9.u16[5] & 0xF);
-	ctx.v15.u16[6] = ctx.v8.u16[6] << (ctx.v9.u16[6] & 0xF);
-	ctx.v15.u16[7] = ctx.v8.u16[7] << (ctx.v9.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v15.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vpkshus128 v44,v8,v6
 	simde_mm_store_si128((simde__m128i*)ctx.v44.u8, simde_mm_packus_epi16(simde_mm_load_si128((simde__m128i*)ctx.v6.s16), simde_mm_load_si128((simde__m128i*)ctx.v8.s16)));
 	// vaddshs v14,v20,v16
@@ -30489,27 +29837,23 @@ loc_82A4759C:
 	// vaddshs v9,v19,v15
 	simde_mm_store_si128((simde__m128i*)ctx.v9.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v19.s16), simde_mm_load_si128((simde__m128i*)ctx.v15.s16)));
 	// vsrah v8,v14,v0
-	ctx.v8.s16[0] = ctx.v14.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v8.s16[1] = ctx.v14.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v8.s16[2] = ctx.v14.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v8.s16[3] = ctx.v14.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v8.s16[4] = ctx.v14.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v8.s16[5] = ctx.v14.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v8.s16[6] = ctx.v14.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v8.s16[7] = ctx.v14.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v14.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v8.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// stvlx128 v44,r0,r11
 	ea = ctx.r11.u32;
 	for (size_t i = 0; i < (16 - (ea & 0xF)); i++)
 		PPC_STORE_U8(ea + i, ctx.v44.u8[15 - i]);
 	// vsrah v6,v9,v0
-	ctx.v6.s16[0] = ctx.v9.s16[0] >> (ctx.v0.u16[0] & 0xF);
-	ctx.v6.s16[1] = ctx.v9.s16[1] >> (ctx.v0.u16[1] & 0xF);
-	ctx.v6.s16[2] = ctx.v9.s16[2] >> (ctx.v0.u16[2] & 0xF);
-	ctx.v6.s16[3] = ctx.v9.s16[3] >> (ctx.v0.u16[3] & 0xF);
-	ctx.v6.s16[4] = ctx.v9.s16[4] >> (ctx.v0.u16[4] & 0xF);
-	ctx.v6.s16[5] = ctx.v9.s16[5] >> (ctx.v0.u16[5] & 0xF);
-	ctx.v6.s16[6] = ctx.v9.s16[6] >> (ctx.v0.u16[6] & 0xF);
-	ctx.v6.s16[7] = ctx.v9.s16[7] >> (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v6.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// stvrx128 v44,r11,r29
 	ea = ctx.r11.u32 + ctx.r29.u32;
 	for (size_t i = 0; i < (ea & 0xF); i++)
@@ -30706,87 +30050,71 @@ loc_82A47764:
 	// vmrghb v5,v0,v9
 	simde_mm_store_si128((simde__m128i*)ctx.v5.u8, simde_mm_unpackhi_epi8(simde_mm_load_si128((simde__m128i*)ctx.v9.u8), simde_mm_load_si128((simde__m128i*)ctx.v0.u8)));
 	// vslh v2,v4,v12
-	ctx.v2.u16[0] = ctx.v4.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v2.u16[1] = ctx.v4.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v2.u16[2] = ctx.v4.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v2.u16[3] = ctx.v4.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v2.u16[4] = ctx.v4.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v2.u16[5] = ctx.v4.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v2.u16[6] = ctx.v4.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v2.u16[7] = ctx.v4.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v4.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v2.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vmrglb v9,v0,v9
 	simde_mm_store_si128((simde__m128i*)ctx.v9.u8, simde_mm_unpacklo_epi8(simde_mm_load_si128((simde__m128i*)ctx.v9.u8), simde_mm_load_si128((simde__m128i*)ctx.v0.u8)));
 	// vmrghb v3,v0,v6
 	simde_mm_store_si128((simde__m128i*)ctx.v3.u8, simde_mm_unpackhi_epi8(simde_mm_load_si128((simde__m128i*)ctx.v6.u8), simde_mm_load_si128((simde__m128i*)ctx.v0.u8)));
 	// vslh v1,v4,v13
-	ctx.v1.u16[0] = ctx.v4.u16[0] << (ctx.v13.u16[0] & 0xF);
-	ctx.v1.u16[1] = ctx.v4.u16[1] << (ctx.v13.u16[1] & 0xF);
-	ctx.v1.u16[2] = ctx.v4.u16[2] << (ctx.v13.u16[2] & 0xF);
-	ctx.v1.u16[3] = ctx.v4.u16[3] << (ctx.v13.u16[3] & 0xF);
-	ctx.v1.u16[4] = ctx.v4.u16[4] << (ctx.v13.u16[4] & 0xF);
-	ctx.v1.u16[5] = ctx.v4.u16[5] << (ctx.v13.u16[5] & 0xF);
-	ctx.v1.u16[6] = ctx.v4.u16[6] << (ctx.v13.u16[6] & 0xF);
-	ctx.v1.u16[7] = ctx.v4.u16[7] << (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v4.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v1.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vmrglb v6,v0,v6
 	simde_mm_store_si128((simde__m128i*)ctx.v6.u8, simde_mm_unpacklo_epi8(simde_mm_load_si128((simde__m128i*)ctx.v6.u8), simde_mm_load_si128((simde__m128i*)ctx.v0.u8)));
 	// vslh v31,v8,v12
-	ctx.v31.u16[0] = ctx.v8.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v31.u16[1] = ctx.v8.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v31.u16[2] = ctx.v8.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v31.u16[3] = ctx.v8.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v31.u16[4] = ctx.v8.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v31.u16[5] = ctx.v8.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v31.u16[6] = ctx.v8.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v31.u16[7] = ctx.v8.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v31.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v30,v8,v13
-	ctx.v30.u16[0] = ctx.v8.u16[0] << (ctx.v13.u16[0] & 0xF);
-	ctx.v30.u16[1] = ctx.v8.u16[1] << (ctx.v13.u16[1] & 0xF);
-	ctx.v30.u16[2] = ctx.v8.u16[2] << (ctx.v13.u16[2] & 0xF);
-	ctx.v30.u16[3] = ctx.v8.u16[3] << (ctx.v13.u16[3] & 0xF);
-	ctx.v30.u16[4] = ctx.v8.u16[4] << (ctx.v13.u16[4] & 0xF);
-	ctx.v30.u16[5] = ctx.v8.u16[5] << (ctx.v13.u16[5] & 0xF);
-	ctx.v30.u16[6] = ctx.v8.u16[6] << (ctx.v13.u16[6] & 0xF);
-	ctx.v30.u16[7] = ctx.v8.u16[7] << (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v30.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vspltish v0,1
 	simde_mm_store_si128((simde__m128i*)ctx.v0.s16, simde_mm_set1_epi16(short(0x1)));
 	// vspltish v8,2
 	simde_mm_store_si128((simde__m128i*)ctx.v8.s16, simde_mm_set1_epi16(short(0x2)));
 	// vslh v29,v3,v10
-	ctx.v29.u16[0] = ctx.v3.u16[0] << (ctx.v10.u16[0] & 0xF);
-	ctx.v29.u16[1] = ctx.v3.u16[1] << (ctx.v10.u16[1] & 0xF);
-	ctx.v29.u16[2] = ctx.v3.u16[2] << (ctx.v10.u16[2] & 0xF);
-	ctx.v29.u16[3] = ctx.v3.u16[3] << (ctx.v10.u16[3] & 0xF);
-	ctx.v29.u16[4] = ctx.v3.u16[4] << (ctx.v10.u16[4] & 0xF);
-	ctx.v29.u16[5] = ctx.v3.u16[5] << (ctx.v10.u16[5] & 0xF);
-	ctx.v29.u16[6] = ctx.v3.u16[6] << (ctx.v10.u16[6] & 0xF);
-	ctx.v29.u16[7] = ctx.v3.u16[7] << (ctx.v10.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v3.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v10.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v29.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v28,v6,v10
-	ctx.v28.u16[0] = ctx.v6.u16[0] << (ctx.v10.u16[0] & 0xF);
-	ctx.v28.u16[1] = ctx.v6.u16[1] << (ctx.v10.u16[1] & 0xF);
-	ctx.v28.u16[2] = ctx.v6.u16[2] << (ctx.v10.u16[2] & 0xF);
-	ctx.v28.u16[3] = ctx.v6.u16[3] << (ctx.v10.u16[3] & 0xF);
-	ctx.v28.u16[4] = ctx.v6.u16[4] << (ctx.v10.u16[4] & 0xF);
-	ctx.v28.u16[5] = ctx.v6.u16[5] << (ctx.v10.u16[5] & 0xF);
-	ctx.v28.u16[6] = ctx.v6.u16[6] << (ctx.v10.u16[6] & 0xF);
-	ctx.v28.u16[7] = ctx.v6.u16[7] << (ctx.v10.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v6.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v10.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v28.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v27,v6,v11
-	ctx.v27.u16[0] = ctx.v6.u16[0] << (ctx.v11.u16[0] & 0xF);
-	ctx.v27.u16[1] = ctx.v6.u16[1] << (ctx.v11.u16[1] & 0xF);
-	ctx.v27.u16[2] = ctx.v6.u16[2] << (ctx.v11.u16[2] & 0xF);
-	ctx.v27.u16[3] = ctx.v6.u16[3] << (ctx.v11.u16[3] & 0xF);
-	ctx.v27.u16[4] = ctx.v6.u16[4] << (ctx.v11.u16[4] & 0xF);
-	ctx.v27.u16[5] = ctx.v6.u16[5] << (ctx.v11.u16[5] & 0xF);
-	ctx.v27.u16[6] = ctx.v6.u16[6] << (ctx.v11.u16[6] & 0xF);
-	ctx.v27.u16[7] = ctx.v6.u16[7] << (ctx.v11.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v6.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v11.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v27.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v26,v3,v11
-	ctx.v26.u16[0] = ctx.v3.u16[0] << (ctx.v11.u16[0] & 0xF);
-	ctx.v26.u16[1] = ctx.v3.u16[1] << (ctx.v11.u16[1] & 0xF);
-	ctx.v26.u16[2] = ctx.v3.u16[2] << (ctx.v11.u16[2] & 0xF);
-	ctx.v26.u16[3] = ctx.v3.u16[3] << (ctx.v11.u16[3] & 0xF);
-	ctx.v26.u16[4] = ctx.v3.u16[4] << (ctx.v11.u16[4] & 0xF);
-	ctx.v26.u16[5] = ctx.v3.u16[5] << (ctx.v11.u16[5] & 0xF);
-	ctx.v26.u16[6] = ctx.v3.u16[6] << (ctx.v11.u16[6] & 0xF);
-	ctx.v26.u16[7] = ctx.v3.u16[7] << (ctx.v11.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v3.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v11.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v26.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vaddshs v25,v1,v2
 	simde_mm_store_si128((simde__m128i*)ctx.v25.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v1.s16), simde_mm_load_si128((simde__m128i*)ctx.v2.s16)));
 	// vaddshs v24,v30,v31
@@ -30796,23 +30124,19 @@ loc_82A47764:
 	// vsubshs v22,v26,v29
 	simde_mm_store_si128((simde__m128i*)ctx.v22.s16, simde_mm_subs_epi16(simde_mm_load_si128((simde__m128i*)ctx.v26.s16), simde_mm_load_si128((simde__m128i*)ctx.v29.s16)));
 	// vslh v21,v9,v8
-	ctx.v21.u16[0] = ctx.v9.u16[0] << (ctx.v8.u16[0] & 0xF);
-	ctx.v21.u16[1] = ctx.v9.u16[1] << (ctx.v8.u16[1] & 0xF);
-	ctx.v21.u16[2] = ctx.v9.u16[2] << (ctx.v8.u16[2] & 0xF);
-	ctx.v21.u16[3] = ctx.v9.u16[3] << (ctx.v8.u16[3] & 0xF);
-	ctx.v21.u16[4] = ctx.v9.u16[4] << (ctx.v8.u16[4] & 0xF);
-	ctx.v21.u16[5] = ctx.v9.u16[5] << (ctx.v8.u16[5] & 0xF);
-	ctx.v21.u16[6] = ctx.v9.u16[6] << (ctx.v8.u16[6] & 0xF);
-	ctx.v21.u16[7] = ctx.v9.u16[7] << (ctx.v8.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v21.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v20,v9,v0
-	ctx.v20.u16[0] = ctx.v9.u16[0] << (ctx.v0.u16[0] & 0xF);
-	ctx.v20.u16[1] = ctx.v9.u16[1] << (ctx.v0.u16[1] & 0xF);
-	ctx.v20.u16[2] = ctx.v9.u16[2] << (ctx.v0.u16[2] & 0xF);
-	ctx.v20.u16[3] = ctx.v9.u16[3] << (ctx.v0.u16[3] & 0xF);
-	ctx.v20.u16[4] = ctx.v9.u16[4] << (ctx.v0.u16[4] & 0xF);
-	ctx.v20.u16[5] = ctx.v9.u16[5] << (ctx.v0.u16[5] & 0xF);
-	ctx.v20.u16[6] = ctx.v9.u16[6] << (ctx.v0.u16[6] & 0xF);
-	ctx.v20.u16[7] = ctx.v9.u16[7] << (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v20.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vspltish v9,3
 	simde_mm_store_si128((simde__m128i*)ctx.v9.s16, simde_mm_set1_epi16(short(0x3)));
 	// vaddshs v19,v24,v23
@@ -30820,63 +30144,51 @@ loc_82A47764:
 	// vaddshs v18,v25,v22
 	simde_mm_store_si128((simde__m128i*)ctx.v18.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v25.s16), simde_mm_load_si128((simde__m128i*)ctx.v22.s16)));
 	// vslh v17,v5,v8
-	ctx.v17.u16[0] = ctx.v5.u16[0] << (ctx.v8.u16[0] & 0xF);
-	ctx.v17.u16[1] = ctx.v5.u16[1] << (ctx.v8.u16[1] & 0xF);
-	ctx.v17.u16[2] = ctx.v5.u16[2] << (ctx.v8.u16[2] & 0xF);
-	ctx.v17.u16[3] = ctx.v5.u16[3] << (ctx.v8.u16[3] & 0xF);
-	ctx.v17.u16[4] = ctx.v5.u16[4] << (ctx.v8.u16[4] & 0xF);
-	ctx.v17.u16[5] = ctx.v5.u16[5] << (ctx.v8.u16[5] & 0xF);
-	ctx.v17.u16[6] = ctx.v5.u16[6] << (ctx.v8.u16[6] & 0xF);
-	ctx.v17.u16[7] = ctx.v5.u16[7] << (ctx.v8.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v5.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v17.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v16,v5,v0
-	ctx.v16.u16[0] = ctx.v5.u16[0] << (ctx.v0.u16[0] & 0xF);
-	ctx.v16.u16[1] = ctx.v5.u16[1] << (ctx.v0.u16[1] & 0xF);
-	ctx.v16.u16[2] = ctx.v5.u16[2] << (ctx.v0.u16[2] & 0xF);
-	ctx.v16.u16[3] = ctx.v5.u16[3] << (ctx.v0.u16[3] & 0xF);
-	ctx.v16.u16[4] = ctx.v5.u16[4] << (ctx.v0.u16[4] & 0xF);
-	ctx.v16.u16[5] = ctx.v5.u16[5] << (ctx.v0.u16[5] & 0xF);
-	ctx.v16.u16[6] = ctx.v5.u16[6] << (ctx.v0.u16[6] & 0xF);
-	ctx.v16.u16[7] = ctx.v5.u16[7] << (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v5.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v16.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vsrah v6,v19,v9
-	ctx.v6.s16[0] = ctx.v19.s16[0] >> (ctx.v9.u16[0] & 0xF);
-	ctx.v6.s16[1] = ctx.v19.s16[1] >> (ctx.v9.u16[1] & 0xF);
-	ctx.v6.s16[2] = ctx.v19.s16[2] >> (ctx.v9.u16[2] & 0xF);
-	ctx.v6.s16[3] = ctx.v19.s16[3] >> (ctx.v9.u16[3] & 0xF);
-	ctx.v6.s16[4] = ctx.v19.s16[4] >> (ctx.v9.u16[4] & 0xF);
-	ctx.v6.s16[5] = ctx.v19.s16[5] >> (ctx.v9.u16[5] & 0xF);
-	ctx.v6.s16[6] = ctx.v19.s16[6] >> (ctx.v9.u16[6] & 0xF);
-	ctx.v6.s16[7] = ctx.v19.s16[7] >> (ctx.v9.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v19.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v6.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v8,v18,v9
-	ctx.v8.s16[0] = ctx.v18.s16[0] >> (ctx.v9.u16[0] & 0xF);
-	ctx.v8.s16[1] = ctx.v18.s16[1] >> (ctx.v9.u16[1] & 0xF);
-	ctx.v8.s16[2] = ctx.v18.s16[2] >> (ctx.v9.u16[2] & 0xF);
-	ctx.v8.s16[3] = ctx.v18.s16[3] >> (ctx.v9.u16[3] & 0xF);
-	ctx.v8.s16[4] = ctx.v18.s16[4] >> (ctx.v9.u16[4] & 0xF);
-	ctx.v8.s16[5] = ctx.v18.s16[5] >> (ctx.v9.u16[5] & 0xF);
-	ctx.v8.s16[6] = ctx.v18.s16[6] >> (ctx.v9.u16[6] & 0xF);
-	ctx.v8.s16[7] = ctx.v18.s16[7] >> (ctx.v9.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v18.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v8.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vaddshs v15,v21,v20
 	simde_mm_store_si128((simde__m128i*)ctx.v15.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v21.s16), simde_mm_load_si128((simde__m128i*)ctx.v20.s16)));
 	// vaddshs v14,v17,v16
 	simde_mm_store_si128((simde__m128i*)ctx.v14.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v17.s16), simde_mm_load_si128((simde__m128i*)ctx.v16.s16)));
 	// vslh v5,v6,v0
-	ctx.v5.u16[0] = ctx.v6.u16[0] << (ctx.v0.u16[0] & 0xF);
-	ctx.v5.u16[1] = ctx.v6.u16[1] << (ctx.v0.u16[1] & 0xF);
-	ctx.v5.u16[2] = ctx.v6.u16[2] << (ctx.v0.u16[2] & 0xF);
-	ctx.v5.u16[3] = ctx.v6.u16[3] << (ctx.v0.u16[3] & 0xF);
-	ctx.v5.u16[4] = ctx.v6.u16[4] << (ctx.v0.u16[4] & 0xF);
-	ctx.v5.u16[5] = ctx.v6.u16[5] << (ctx.v0.u16[5] & 0xF);
-	ctx.v5.u16[6] = ctx.v6.u16[6] << (ctx.v0.u16[6] & 0xF);
-	ctx.v5.u16[7] = ctx.v6.u16[7] << (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v6.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v5.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v4,v8,v0
-	ctx.v4.u16[0] = ctx.v8.u16[0] << (ctx.v0.u16[0] & 0xF);
-	ctx.v4.u16[1] = ctx.v8.u16[1] << (ctx.v0.u16[1] & 0xF);
-	ctx.v4.u16[2] = ctx.v8.u16[2] << (ctx.v0.u16[2] & 0xF);
-	ctx.v4.u16[3] = ctx.v8.u16[3] << (ctx.v0.u16[3] & 0xF);
-	ctx.v4.u16[4] = ctx.v8.u16[4] << (ctx.v0.u16[4] & 0xF);
-	ctx.v4.u16[5] = ctx.v8.u16[5] << (ctx.v0.u16[5] & 0xF);
-	ctx.v4.u16[6] = ctx.v8.u16[6] << (ctx.v0.u16[6] & 0xF);
-	ctx.v4.u16[7] = ctx.v8.u16[7] << (ctx.v0.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v4.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vpkshus128 v36,v8,v6
 	simde_mm_store_si128((simde__m128i*)ctx.v36.u8, simde_mm_packus_epi16(simde_mm_load_si128((simde__m128i*)ctx.v6.s16), simde_mm_load_si128((simde__m128i*)ctx.v8.s16)));
 	// vaddshs v3,v15,v5
@@ -30884,27 +30196,23 @@ loc_82A47764:
 	// vaddshs v2,v14,v4
 	simde_mm_store_si128((simde__m128i*)ctx.v2.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v14.s16), simde_mm_load_si128((simde__m128i*)ctx.v4.s16)));
 	// vsrah v1,v3,v9
-	ctx.v1.s16[0] = ctx.v3.s16[0] >> (ctx.v9.u16[0] & 0xF);
-	ctx.v1.s16[1] = ctx.v3.s16[1] >> (ctx.v9.u16[1] & 0xF);
-	ctx.v1.s16[2] = ctx.v3.s16[2] >> (ctx.v9.u16[2] & 0xF);
-	ctx.v1.s16[3] = ctx.v3.s16[3] >> (ctx.v9.u16[3] & 0xF);
-	ctx.v1.s16[4] = ctx.v3.s16[4] >> (ctx.v9.u16[4] & 0xF);
-	ctx.v1.s16[5] = ctx.v3.s16[5] >> (ctx.v9.u16[5] & 0xF);
-	ctx.v1.s16[6] = ctx.v3.s16[6] >> (ctx.v9.u16[6] & 0xF);
-	ctx.v1.s16[7] = ctx.v3.s16[7] >> (ctx.v9.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v3.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v1.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// stvlx128 v36,r0,r11
 	ea = ctx.r11.u32;
 	for (size_t i = 0; i < (16 - (ea & 0xF)); i++)
 		PPC_STORE_U8(ea + i, ctx.v36.u8[15 - i]);
 	// vsrah v31,v2,v9
-	ctx.v31.s16[0] = ctx.v2.s16[0] >> (ctx.v9.u16[0] & 0xF);
-	ctx.v31.s16[1] = ctx.v2.s16[1] >> (ctx.v9.u16[1] & 0xF);
-	ctx.v31.s16[2] = ctx.v2.s16[2] >> (ctx.v9.u16[2] & 0xF);
-	ctx.v31.s16[3] = ctx.v2.s16[3] >> (ctx.v9.u16[3] & 0xF);
-	ctx.v31.s16[4] = ctx.v2.s16[4] >> (ctx.v9.u16[4] & 0xF);
-	ctx.v31.s16[5] = ctx.v2.s16[5] >> (ctx.v9.u16[5] & 0xF);
-	ctx.v31.s16[6] = ctx.v2.s16[6] >> (ctx.v9.u16[6] & 0xF);
-	ctx.v31.s16[7] = ctx.v2.s16[7] >> (ctx.v9.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v2.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v31.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// stvrx128 v36,r11,r29
 	ea = ctx.r11.u32 + ctx.r29.u32;
 	for (size_t i = 0; i < (ea & 0xF); i++)
@@ -31174,81 +30482,65 @@ loc_82A479D4:
 	// vmrglb v5,v0,v5
 	simde_mm_store_si128((simde__m128i*)ctx.v5.u8, simde_mm_unpacklo_epi8(simde_mm_load_si128((simde__m128i*)ctx.v5.u8), simde_mm_load_si128((simde__m128i*)ctx.v0.u8)));
 	// vslh v1,v3,v9
-	ctx.v1.u16[0] = ctx.v3.u16[0] << (ctx.v9.u16[0] & 0xF);
-	ctx.v1.u16[1] = ctx.v3.u16[1] << (ctx.v9.u16[1] & 0xF);
-	ctx.v1.u16[2] = ctx.v3.u16[2] << (ctx.v9.u16[2] & 0xF);
-	ctx.v1.u16[3] = ctx.v3.u16[3] << (ctx.v9.u16[3] & 0xF);
-	ctx.v1.u16[4] = ctx.v3.u16[4] << (ctx.v9.u16[4] & 0xF);
-	ctx.v1.u16[5] = ctx.v3.u16[5] << (ctx.v9.u16[5] & 0xF);
-	ctx.v1.u16[6] = ctx.v3.u16[6] << (ctx.v9.u16[6] & 0xF);
-	ctx.v1.u16[7] = ctx.v3.u16[7] << (ctx.v9.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v3.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v1.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vmrghb v2,v0,v4
 	simde_mm_store_si128((simde__m128i*)ctx.v2.u8, simde_mm_unpackhi_epi8(simde_mm_load_si128((simde__m128i*)ctx.v4.u8), simde_mm_load_si128((simde__m128i*)ctx.v0.u8)));
 	// vslh v31,v3,v10
-	ctx.v31.u16[0] = ctx.v3.u16[0] << (ctx.v10.u16[0] & 0xF);
-	ctx.v31.u16[1] = ctx.v3.u16[1] << (ctx.v10.u16[1] & 0xF);
-	ctx.v31.u16[2] = ctx.v3.u16[2] << (ctx.v10.u16[2] & 0xF);
-	ctx.v31.u16[3] = ctx.v3.u16[3] << (ctx.v10.u16[3] & 0xF);
-	ctx.v31.u16[4] = ctx.v3.u16[4] << (ctx.v10.u16[4] & 0xF);
-	ctx.v31.u16[5] = ctx.v3.u16[5] << (ctx.v10.u16[5] & 0xF);
-	ctx.v31.u16[6] = ctx.v3.u16[6] << (ctx.v10.u16[6] & 0xF);
-	ctx.v31.u16[7] = ctx.v3.u16[7] << (ctx.v10.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v3.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v10.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v31.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vmrglb v4,v0,v4
 	simde_mm_store_si128((simde__m128i*)ctx.v4.u8, simde_mm_unpacklo_epi8(simde_mm_load_si128((simde__m128i*)ctx.v4.u8), simde_mm_load_si128((simde__m128i*)ctx.v0.u8)));
 	// vslh v30,v5,v9
-	ctx.v30.u16[0] = ctx.v5.u16[0] << (ctx.v9.u16[0] & 0xF);
-	ctx.v30.u16[1] = ctx.v5.u16[1] << (ctx.v9.u16[1] & 0xF);
-	ctx.v30.u16[2] = ctx.v5.u16[2] << (ctx.v9.u16[2] & 0xF);
-	ctx.v30.u16[3] = ctx.v5.u16[3] << (ctx.v9.u16[3] & 0xF);
-	ctx.v30.u16[4] = ctx.v5.u16[4] << (ctx.v9.u16[4] & 0xF);
-	ctx.v30.u16[5] = ctx.v5.u16[5] << (ctx.v9.u16[5] & 0xF);
-	ctx.v30.u16[6] = ctx.v5.u16[6] << (ctx.v9.u16[6] & 0xF);
-	ctx.v30.u16[7] = ctx.v5.u16[7] << (ctx.v9.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v5.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v30.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v29,v5,v10
-	ctx.v29.u16[0] = ctx.v5.u16[0] << (ctx.v10.u16[0] & 0xF);
-	ctx.v29.u16[1] = ctx.v5.u16[1] << (ctx.v10.u16[1] & 0xF);
-	ctx.v29.u16[2] = ctx.v5.u16[2] << (ctx.v10.u16[2] & 0xF);
-	ctx.v29.u16[3] = ctx.v5.u16[3] << (ctx.v10.u16[3] & 0xF);
-	ctx.v29.u16[4] = ctx.v5.u16[4] << (ctx.v10.u16[4] & 0xF);
-	ctx.v29.u16[5] = ctx.v5.u16[5] << (ctx.v10.u16[5] & 0xF);
-	ctx.v29.u16[6] = ctx.v5.u16[6] << (ctx.v10.u16[6] & 0xF);
-	ctx.v29.u16[7] = ctx.v5.u16[7] << (ctx.v10.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v5.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v10.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v29.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v28,v2,v6
-	ctx.v28.u16[0] = ctx.v2.u16[0] << (ctx.v6.u16[0] & 0xF);
-	ctx.v28.u16[1] = ctx.v2.u16[1] << (ctx.v6.u16[1] & 0xF);
-	ctx.v28.u16[2] = ctx.v2.u16[2] << (ctx.v6.u16[2] & 0xF);
-	ctx.v28.u16[3] = ctx.v2.u16[3] << (ctx.v6.u16[3] & 0xF);
-	ctx.v28.u16[4] = ctx.v2.u16[4] << (ctx.v6.u16[4] & 0xF);
-	ctx.v28.u16[5] = ctx.v2.u16[5] << (ctx.v6.u16[5] & 0xF);
-	ctx.v28.u16[6] = ctx.v2.u16[6] << (ctx.v6.u16[6] & 0xF);
-	ctx.v28.u16[7] = ctx.v2.u16[7] << (ctx.v6.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v2.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v6.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v28.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v27,v4,v6
-	ctx.v27.u16[0] = ctx.v4.u16[0] << (ctx.v6.u16[0] & 0xF);
-	ctx.v27.u16[1] = ctx.v4.u16[1] << (ctx.v6.u16[1] & 0xF);
-	ctx.v27.u16[2] = ctx.v4.u16[2] << (ctx.v6.u16[2] & 0xF);
-	ctx.v27.u16[3] = ctx.v4.u16[3] << (ctx.v6.u16[3] & 0xF);
-	ctx.v27.u16[4] = ctx.v4.u16[4] << (ctx.v6.u16[4] & 0xF);
-	ctx.v27.u16[5] = ctx.v4.u16[5] << (ctx.v6.u16[5] & 0xF);
-	ctx.v27.u16[6] = ctx.v4.u16[6] << (ctx.v6.u16[6] & 0xF);
-	ctx.v27.u16[7] = ctx.v4.u16[7] << (ctx.v6.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v4.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v6.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v27.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v26,v4,v8
-	ctx.v26.u16[0] = ctx.v4.u16[0] << (ctx.v8.u16[0] & 0xF);
-	ctx.v26.u16[1] = ctx.v4.u16[1] << (ctx.v8.u16[1] & 0xF);
-	ctx.v26.u16[2] = ctx.v4.u16[2] << (ctx.v8.u16[2] & 0xF);
-	ctx.v26.u16[3] = ctx.v4.u16[3] << (ctx.v8.u16[3] & 0xF);
-	ctx.v26.u16[4] = ctx.v4.u16[4] << (ctx.v8.u16[4] & 0xF);
-	ctx.v26.u16[5] = ctx.v4.u16[5] << (ctx.v8.u16[5] & 0xF);
-	ctx.v26.u16[6] = ctx.v4.u16[6] << (ctx.v8.u16[6] & 0xF);
-	ctx.v26.u16[7] = ctx.v4.u16[7] << (ctx.v8.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v4.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v26.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v25,v2,v8
-	ctx.v25.u16[0] = ctx.v2.u16[0] << (ctx.v8.u16[0] & 0xF);
-	ctx.v25.u16[1] = ctx.v2.u16[1] << (ctx.v8.u16[1] & 0xF);
-	ctx.v25.u16[2] = ctx.v2.u16[2] << (ctx.v8.u16[2] & 0xF);
-	ctx.v25.u16[3] = ctx.v2.u16[3] << (ctx.v8.u16[3] & 0xF);
-	ctx.v25.u16[4] = ctx.v2.u16[4] << (ctx.v8.u16[4] & 0xF);
-	ctx.v25.u16[5] = ctx.v2.u16[5] << (ctx.v8.u16[5] & 0xF);
-	ctx.v25.u16[6] = ctx.v2.u16[6] << (ctx.v8.u16[6] & 0xF);
-	ctx.v25.u16[7] = ctx.v2.u16[7] << (ctx.v8.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v2.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v25.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vaddshs v24,v29,v30
 	simde_mm_store_si128((simde__m128i*)ctx.v24.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v29.s16), simde_mm_load_si128((simde__m128i*)ctx.v30.s16)));
 	// vaddshs v23,v31,v1
@@ -31262,23 +30554,19 @@ loc_82A479D4:
 	// vaddshs v19,v23,v21
 	simde_mm_store_si128((simde__m128i*)ctx.v19.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v23.s16), simde_mm_load_si128((simde__m128i*)ctx.v21.s16)));
 	// vsrah v18,v20,v13
-	ctx.v18.s16[0] = ctx.v20.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v18.s16[1] = ctx.v20.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v18.s16[2] = ctx.v20.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v18.s16[3] = ctx.v20.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v18.s16[4] = ctx.v20.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v18.s16[5] = ctx.v20.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v18.s16[6] = ctx.v20.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v18.s16[7] = ctx.v20.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v20.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v18.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v17,v19,v13
-	ctx.v17.s16[0] = ctx.v19.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v17.s16[1] = ctx.v19.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v17.s16[2] = ctx.v19.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v17.s16[3] = ctx.v19.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v17.s16[4] = ctx.v19.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v17.s16[5] = ctx.v19.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v17.s16[6] = ctx.v19.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v17.s16[7] = ctx.v19.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v19.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v17.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vpkshus128 v59,v17,v18
 	simde_mm_store_si128((simde__m128i*)ctx.v59.u8, simde_mm_packus_epi16(simde_mm_load_si128((simde__m128i*)ctx.v18.s16), simde_mm_load_si128((simde__m128i*)ctx.v17.s16)));
 	// stvlx128 v59,r0,r31
@@ -31477,92 +30765,74 @@ loc_82A47B58:
 	// vmrghb v2,v0,v5
 	simde_mm_store_si128((simde__m128i*)ctx.v2.u8, simde_mm_unpackhi_epi8(simde_mm_load_si128((simde__m128i*)ctx.v5.u8), simde_mm_load_si128((simde__m128i*)ctx.v0.u8)));
 	// vslh v30,v1,v9
-	ctx.v30.u16[0] = ctx.v1.u16[0] << (ctx.v9.u16[0] & 0xF);
-	ctx.v30.u16[1] = ctx.v1.u16[1] << (ctx.v9.u16[1] & 0xF);
-	ctx.v30.u16[2] = ctx.v1.u16[2] << (ctx.v9.u16[2] & 0xF);
-	ctx.v30.u16[3] = ctx.v1.u16[3] << (ctx.v9.u16[3] & 0xF);
-	ctx.v30.u16[4] = ctx.v1.u16[4] << (ctx.v9.u16[4] & 0xF);
-	ctx.v30.u16[5] = ctx.v1.u16[5] << (ctx.v9.u16[5] & 0xF);
-	ctx.v30.u16[6] = ctx.v1.u16[6] << (ctx.v9.u16[6] & 0xF);
-	ctx.v30.u16[7] = ctx.v1.u16[7] << (ctx.v9.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v1.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v30.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vmrglb v5,v0,v5
 	simde_mm_store_si128((simde__m128i*)ctx.v5.u8, simde_mm_unpacklo_epi8(simde_mm_load_si128((simde__m128i*)ctx.v5.u8), simde_mm_load_si128((simde__m128i*)ctx.v0.u8)));
 	// vmrghb v31,v0,v3
 	simde_mm_store_si128((simde__m128i*)ctx.v31.u8, simde_mm_unpackhi_epi8(simde_mm_load_si128((simde__m128i*)ctx.v3.u8), simde_mm_load_si128((simde__m128i*)ctx.v0.u8)));
 	// vslh v29,v1,v10
-	ctx.v29.u16[0] = ctx.v1.u16[0] << (ctx.v10.u16[0] & 0xF);
-	ctx.v29.u16[1] = ctx.v1.u16[1] << (ctx.v10.u16[1] & 0xF);
-	ctx.v29.u16[2] = ctx.v1.u16[2] << (ctx.v10.u16[2] & 0xF);
-	ctx.v29.u16[3] = ctx.v1.u16[3] << (ctx.v10.u16[3] & 0xF);
-	ctx.v29.u16[4] = ctx.v1.u16[4] << (ctx.v10.u16[4] & 0xF);
-	ctx.v29.u16[5] = ctx.v1.u16[5] << (ctx.v10.u16[5] & 0xF);
-	ctx.v29.u16[6] = ctx.v1.u16[6] << (ctx.v10.u16[6] & 0xF);
-	ctx.v29.u16[7] = ctx.v1.u16[7] << (ctx.v10.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v1.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v10.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v29.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vmrglb v3,v0,v3
 	simde_mm_store_si128((simde__m128i*)ctx.v3.u8, simde_mm_unpacklo_epi8(simde_mm_load_si128((simde__m128i*)ctx.v3.u8), simde_mm_load_si128((simde__m128i*)ctx.v0.u8)));
 	// vslh v28,v4,v9
-	ctx.v28.u16[0] = ctx.v4.u16[0] << (ctx.v9.u16[0] & 0xF);
-	ctx.v28.u16[1] = ctx.v4.u16[1] << (ctx.v9.u16[1] & 0xF);
-	ctx.v28.u16[2] = ctx.v4.u16[2] << (ctx.v9.u16[2] & 0xF);
-	ctx.v28.u16[3] = ctx.v4.u16[3] << (ctx.v9.u16[3] & 0xF);
-	ctx.v28.u16[4] = ctx.v4.u16[4] << (ctx.v9.u16[4] & 0xF);
-	ctx.v28.u16[5] = ctx.v4.u16[5] << (ctx.v9.u16[5] & 0xF);
-	ctx.v28.u16[6] = ctx.v4.u16[6] << (ctx.v9.u16[6] & 0xF);
-	ctx.v28.u16[7] = ctx.v4.u16[7] << (ctx.v9.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v4.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v28.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v27,v4,v10
-	ctx.v27.u16[0] = ctx.v4.u16[0] << (ctx.v10.u16[0] & 0xF);
-	ctx.v27.u16[1] = ctx.v4.u16[1] << (ctx.v10.u16[1] & 0xF);
-	ctx.v27.u16[2] = ctx.v4.u16[2] << (ctx.v10.u16[2] & 0xF);
-	ctx.v27.u16[3] = ctx.v4.u16[3] << (ctx.v10.u16[3] & 0xF);
-	ctx.v27.u16[4] = ctx.v4.u16[4] << (ctx.v10.u16[4] & 0xF);
-	ctx.v27.u16[5] = ctx.v4.u16[5] << (ctx.v10.u16[5] & 0xF);
-	ctx.v27.u16[6] = ctx.v4.u16[6] << (ctx.v10.u16[6] & 0xF);
-	ctx.v27.u16[7] = ctx.v4.u16[7] << (ctx.v10.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v4.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v10.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v27.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v26,v5,v12
-	ctx.v26.u16[0] = ctx.v5.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v26.u16[1] = ctx.v5.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v26.u16[2] = ctx.v5.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v26.u16[3] = ctx.v5.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v26.u16[4] = ctx.v5.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v26.u16[5] = ctx.v5.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v26.u16[6] = ctx.v5.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v26.u16[7] = ctx.v5.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v5.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v26.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v25,v31,v6
-	ctx.v25.u16[0] = ctx.v31.u16[0] << (ctx.v6.u16[0] & 0xF);
-	ctx.v25.u16[1] = ctx.v31.u16[1] << (ctx.v6.u16[1] & 0xF);
-	ctx.v25.u16[2] = ctx.v31.u16[2] << (ctx.v6.u16[2] & 0xF);
-	ctx.v25.u16[3] = ctx.v31.u16[3] << (ctx.v6.u16[3] & 0xF);
-	ctx.v25.u16[4] = ctx.v31.u16[4] << (ctx.v6.u16[4] & 0xF);
-	ctx.v25.u16[5] = ctx.v31.u16[5] << (ctx.v6.u16[5] & 0xF);
-	ctx.v25.u16[6] = ctx.v31.u16[6] << (ctx.v6.u16[6] & 0xF);
-	ctx.v25.u16[7] = ctx.v31.u16[7] << (ctx.v6.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v31.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v6.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v25.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v24,v31,v8
-	ctx.v24.u16[0] = ctx.v31.u16[0] << (ctx.v8.u16[0] & 0xF);
-	ctx.v24.u16[1] = ctx.v31.u16[1] << (ctx.v8.u16[1] & 0xF);
-	ctx.v24.u16[2] = ctx.v31.u16[2] << (ctx.v8.u16[2] & 0xF);
-	ctx.v24.u16[3] = ctx.v31.u16[3] << (ctx.v8.u16[3] & 0xF);
-	ctx.v24.u16[4] = ctx.v31.u16[4] << (ctx.v8.u16[4] & 0xF);
-	ctx.v24.u16[5] = ctx.v31.u16[5] << (ctx.v8.u16[5] & 0xF);
-	ctx.v24.u16[6] = ctx.v31.u16[6] << (ctx.v8.u16[6] & 0xF);
-	ctx.v24.u16[7] = ctx.v31.u16[7] << (ctx.v8.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v31.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v24.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v23,v3,v6
-	ctx.v23.u16[0] = ctx.v3.u16[0] << (ctx.v6.u16[0] & 0xF);
-	ctx.v23.u16[1] = ctx.v3.u16[1] << (ctx.v6.u16[1] & 0xF);
-	ctx.v23.u16[2] = ctx.v3.u16[2] << (ctx.v6.u16[2] & 0xF);
-	ctx.v23.u16[3] = ctx.v3.u16[3] << (ctx.v6.u16[3] & 0xF);
-	ctx.v23.u16[4] = ctx.v3.u16[4] << (ctx.v6.u16[4] & 0xF);
-	ctx.v23.u16[5] = ctx.v3.u16[5] << (ctx.v6.u16[5] & 0xF);
-	ctx.v23.u16[6] = ctx.v3.u16[6] << (ctx.v6.u16[6] & 0xF);
-	ctx.v23.u16[7] = ctx.v3.u16[7] << (ctx.v6.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v3.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v6.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v23.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v22,v3,v8
-	ctx.v22.u16[0] = ctx.v3.u16[0] << (ctx.v8.u16[0] & 0xF);
-	ctx.v22.u16[1] = ctx.v3.u16[1] << (ctx.v8.u16[1] & 0xF);
-	ctx.v22.u16[2] = ctx.v3.u16[2] << (ctx.v8.u16[2] & 0xF);
-	ctx.v22.u16[3] = ctx.v3.u16[3] << (ctx.v8.u16[3] & 0xF);
-	ctx.v22.u16[4] = ctx.v3.u16[4] << (ctx.v8.u16[4] & 0xF);
-	ctx.v22.u16[5] = ctx.v3.u16[5] << (ctx.v8.u16[5] & 0xF);
-	ctx.v22.u16[6] = ctx.v3.u16[6] << (ctx.v8.u16[6] & 0xF);
-	ctx.v22.u16[7] = ctx.v3.u16[7] << (ctx.v8.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v3.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v22.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vaddshs v21,v29,v30
 	simde_mm_store_si128((simde__m128i*)ctx.v21.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v29.s16), simde_mm_load_si128((simde__m128i*)ctx.v30.s16)));
 	// vaddshs v19,v27,v28
@@ -31574,14 +30844,12 @@ loc_82A47B58:
 	// vaddshs v17,v26,v5
 	simde_mm_store_si128((simde__m128i*)ctx.v17.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v26.s16), simde_mm_load_si128((simde__m128i*)ctx.v5.s16)));
 	// vslh v15,v2,v12
-	ctx.v15.u16[0] = ctx.v2.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v15.u16[1] = ctx.v2.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v15.u16[2] = ctx.v2.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v15.u16[3] = ctx.v2.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v15.u16[4] = ctx.v2.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v15.u16[5] = ctx.v2.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v15.u16[6] = ctx.v2.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v15.u16[7] = ctx.v2.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v2.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v15.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vaddshs v16,v21,v20
 	simde_mm_store_si128((simde__m128i*)ctx.v16.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v21.s16), simde_mm_load_si128((simde__m128i*)ctx.v20.s16)));
 	// vaddshs v14,v19,v18
@@ -31589,41 +30857,33 @@ loc_82A47B58:
 	// vaddshs v3,v15,v2
 	simde_mm_store_si128((simde__m128i*)ctx.v3.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v15.s16), simde_mm_load_si128((simde__m128i*)ctx.v2.s16)));
 	// vsrah v5,v16,v13
-	ctx.v5.s16[0] = ctx.v16.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v5.s16[1] = ctx.v16.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v5.s16[2] = ctx.v16.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v5.s16[3] = ctx.v16.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v5.s16[4] = ctx.v16.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v5.s16[5] = ctx.v16.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v5.s16[6] = ctx.v16.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v5.s16[7] = ctx.v16.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v16.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v5.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v4,v14,v13
-	ctx.v4.s16[0] = ctx.v14.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v4.s16[1] = ctx.v14.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v4.s16[2] = ctx.v14.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v4.s16[3] = ctx.v14.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v4.s16[4] = ctx.v14.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v4.s16[5] = ctx.v14.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v4.s16[6] = ctx.v14.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v4.s16[7] = ctx.v14.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v14.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v4.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vslh v2,v5,v11
-	ctx.v2.u16[0] = ctx.v5.u16[0] << (ctx.v11.u16[0] & 0xF);
-	ctx.v2.u16[1] = ctx.v5.u16[1] << (ctx.v11.u16[1] & 0xF);
-	ctx.v2.u16[2] = ctx.v5.u16[2] << (ctx.v11.u16[2] & 0xF);
-	ctx.v2.u16[3] = ctx.v5.u16[3] << (ctx.v11.u16[3] & 0xF);
-	ctx.v2.u16[4] = ctx.v5.u16[4] << (ctx.v11.u16[4] & 0xF);
-	ctx.v2.u16[5] = ctx.v5.u16[5] << (ctx.v11.u16[5] & 0xF);
-	ctx.v2.u16[6] = ctx.v5.u16[6] << (ctx.v11.u16[6] & 0xF);
-	ctx.v2.u16[7] = ctx.v5.u16[7] << (ctx.v11.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v5.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v11.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v2.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v1,v4,v11
-	ctx.v1.u16[0] = ctx.v4.u16[0] << (ctx.v11.u16[0] & 0xF);
-	ctx.v1.u16[1] = ctx.v4.u16[1] << (ctx.v11.u16[1] & 0xF);
-	ctx.v1.u16[2] = ctx.v4.u16[2] << (ctx.v11.u16[2] & 0xF);
-	ctx.v1.u16[3] = ctx.v4.u16[3] << (ctx.v11.u16[3] & 0xF);
-	ctx.v1.u16[4] = ctx.v4.u16[4] << (ctx.v11.u16[4] & 0xF);
-	ctx.v1.u16[5] = ctx.v4.u16[5] << (ctx.v11.u16[5] & 0xF);
-	ctx.v1.u16[6] = ctx.v4.u16[6] << (ctx.v11.u16[6] & 0xF);
-	ctx.v1.u16[7] = ctx.v4.u16[7] << (ctx.v11.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v4.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v11.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v1.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vpkshus128 v52,v5,v4
 	simde_mm_store_si128((simde__m128i*)ctx.v52.u8, simde_mm_packus_epi16(simde_mm_load_si128((simde__m128i*)ctx.v4.s16), simde_mm_load_si128((simde__m128i*)ctx.v5.s16)));
 	// vaddshs v31,v2,v5
@@ -31643,23 +30903,19 @@ loc_82A47B58:
 	for (size_t i = 0; i < (ea & 0xF); i++)
 		PPC_STORE_U8(ea - i - 1, ctx.v52.u8[i]);
 	// vsrah v27,v29,v13
-	ctx.v27.s16[0] = ctx.v29.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v27.s16[1] = ctx.v29.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v27.s16[2] = ctx.v29.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v27.s16[3] = ctx.v29.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v27.s16[4] = ctx.v29.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v27.s16[5] = ctx.v29.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v27.s16[6] = ctx.v29.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v27.s16[7] = ctx.v29.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v29.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v27.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v26,v28,v13
-	ctx.v26.s16[0] = ctx.v28.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v26.s16[1] = ctx.v28.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v26.s16[2] = ctx.v28.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v26.s16[3] = ctx.v28.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v26.s16[4] = ctx.v28.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v26.s16[5] = ctx.v28.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v26.s16[6] = ctx.v28.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v26.s16[7] = ctx.v28.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v28.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v26.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vpkshus128 v51,v27,v26
 	simde_mm_store_si128((simde__m128i*)ctx.v51.u8, simde_mm_packus_epi16(simde_mm_load_si128((simde__m128i*)ctx.v26.s16), simde_mm_load_si128((simde__m128i*)ctx.v27.s16)));
 	// stvlx128 v51,r28,r11
@@ -31858,92 +31114,74 @@ loc_82A47D34:
 	// vmrghb v2,v0,v5
 	simde_mm_store_si128((simde__m128i*)ctx.v2.u8, simde_mm_unpackhi_epi8(simde_mm_load_si128((simde__m128i*)ctx.v5.u8), simde_mm_load_si128((simde__m128i*)ctx.v0.u8)));
 	// vslh v30,v1,v9
-	ctx.v30.u16[0] = ctx.v1.u16[0] << (ctx.v9.u16[0] & 0xF);
-	ctx.v30.u16[1] = ctx.v1.u16[1] << (ctx.v9.u16[1] & 0xF);
-	ctx.v30.u16[2] = ctx.v1.u16[2] << (ctx.v9.u16[2] & 0xF);
-	ctx.v30.u16[3] = ctx.v1.u16[3] << (ctx.v9.u16[3] & 0xF);
-	ctx.v30.u16[4] = ctx.v1.u16[4] << (ctx.v9.u16[4] & 0xF);
-	ctx.v30.u16[5] = ctx.v1.u16[5] << (ctx.v9.u16[5] & 0xF);
-	ctx.v30.u16[6] = ctx.v1.u16[6] << (ctx.v9.u16[6] & 0xF);
-	ctx.v30.u16[7] = ctx.v1.u16[7] << (ctx.v9.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v1.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v30.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vmrglb v5,v0,v5
 	simde_mm_store_si128((simde__m128i*)ctx.v5.u8, simde_mm_unpacklo_epi8(simde_mm_load_si128((simde__m128i*)ctx.v5.u8), simde_mm_load_si128((simde__m128i*)ctx.v0.u8)));
 	// vmrghb v31,v0,v3
 	simde_mm_store_si128((simde__m128i*)ctx.v31.u8, simde_mm_unpackhi_epi8(simde_mm_load_si128((simde__m128i*)ctx.v3.u8), simde_mm_load_si128((simde__m128i*)ctx.v0.u8)));
 	// vslh v29,v1,v10
-	ctx.v29.u16[0] = ctx.v1.u16[0] << (ctx.v10.u16[0] & 0xF);
-	ctx.v29.u16[1] = ctx.v1.u16[1] << (ctx.v10.u16[1] & 0xF);
-	ctx.v29.u16[2] = ctx.v1.u16[2] << (ctx.v10.u16[2] & 0xF);
-	ctx.v29.u16[3] = ctx.v1.u16[3] << (ctx.v10.u16[3] & 0xF);
-	ctx.v29.u16[4] = ctx.v1.u16[4] << (ctx.v10.u16[4] & 0xF);
-	ctx.v29.u16[5] = ctx.v1.u16[5] << (ctx.v10.u16[5] & 0xF);
-	ctx.v29.u16[6] = ctx.v1.u16[6] << (ctx.v10.u16[6] & 0xF);
-	ctx.v29.u16[7] = ctx.v1.u16[7] << (ctx.v10.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v1.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v10.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v29.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vmrglb v3,v0,v3
 	simde_mm_store_si128((simde__m128i*)ctx.v3.u8, simde_mm_unpacklo_epi8(simde_mm_load_si128((simde__m128i*)ctx.v3.u8), simde_mm_load_si128((simde__m128i*)ctx.v0.u8)));
 	// vslh v28,v4,v9
-	ctx.v28.u16[0] = ctx.v4.u16[0] << (ctx.v9.u16[0] & 0xF);
-	ctx.v28.u16[1] = ctx.v4.u16[1] << (ctx.v9.u16[1] & 0xF);
-	ctx.v28.u16[2] = ctx.v4.u16[2] << (ctx.v9.u16[2] & 0xF);
-	ctx.v28.u16[3] = ctx.v4.u16[3] << (ctx.v9.u16[3] & 0xF);
-	ctx.v28.u16[4] = ctx.v4.u16[4] << (ctx.v9.u16[4] & 0xF);
-	ctx.v28.u16[5] = ctx.v4.u16[5] << (ctx.v9.u16[5] & 0xF);
-	ctx.v28.u16[6] = ctx.v4.u16[6] << (ctx.v9.u16[6] & 0xF);
-	ctx.v28.u16[7] = ctx.v4.u16[7] << (ctx.v9.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v4.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v28.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v27,v4,v10
-	ctx.v27.u16[0] = ctx.v4.u16[0] << (ctx.v10.u16[0] & 0xF);
-	ctx.v27.u16[1] = ctx.v4.u16[1] << (ctx.v10.u16[1] & 0xF);
-	ctx.v27.u16[2] = ctx.v4.u16[2] << (ctx.v10.u16[2] & 0xF);
-	ctx.v27.u16[3] = ctx.v4.u16[3] << (ctx.v10.u16[3] & 0xF);
-	ctx.v27.u16[4] = ctx.v4.u16[4] << (ctx.v10.u16[4] & 0xF);
-	ctx.v27.u16[5] = ctx.v4.u16[5] << (ctx.v10.u16[5] & 0xF);
-	ctx.v27.u16[6] = ctx.v4.u16[6] << (ctx.v10.u16[6] & 0xF);
-	ctx.v27.u16[7] = ctx.v4.u16[7] << (ctx.v10.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v4.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v10.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v27.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v26,v5,v11
-	ctx.v26.u16[0] = ctx.v5.u16[0] << (ctx.v11.u16[0] & 0xF);
-	ctx.v26.u16[1] = ctx.v5.u16[1] << (ctx.v11.u16[1] & 0xF);
-	ctx.v26.u16[2] = ctx.v5.u16[2] << (ctx.v11.u16[2] & 0xF);
-	ctx.v26.u16[3] = ctx.v5.u16[3] << (ctx.v11.u16[3] & 0xF);
-	ctx.v26.u16[4] = ctx.v5.u16[4] << (ctx.v11.u16[4] & 0xF);
-	ctx.v26.u16[5] = ctx.v5.u16[5] << (ctx.v11.u16[5] & 0xF);
-	ctx.v26.u16[6] = ctx.v5.u16[6] << (ctx.v11.u16[6] & 0xF);
-	ctx.v26.u16[7] = ctx.v5.u16[7] << (ctx.v11.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v5.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v11.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v26.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v25,v31,v6
-	ctx.v25.u16[0] = ctx.v31.u16[0] << (ctx.v6.u16[0] & 0xF);
-	ctx.v25.u16[1] = ctx.v31.u16[1] << (ctx.v6.u16[1] & 0xF);
-	ctx.v25.u16[2] = ctx.v31.u16[2] << (ctx.v6.u16[2] & 0xF);
-	ctx.v25.u16[3] = ctx.v31.u16[3] << (ctx.v6.u16[3] & 0xF);
-	ctx.v25.u16[4] = ctx.v31.u16[4] << (ctx.v6.u16[4] & 0xF);
-	ctx.v25.u16[5] = ctx.v31.u16[5] << (ctx.v6.u16[5] & 0xF);
-	ctx.v25.u16[6] = ctx.v31.u16[6] << (ctx.v6.u16[6] & 0xF);
-	ctx.v25.u16[7] = ctx.v31.u16[7] << (ctx.v6.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v31.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v6.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v25.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v24,v31,v8
-	ctx.v24.u16[0] = ctx.v31.u16[0] << (ctx.v8.u16[0] & 0xF);
-	ctx.v24.u16[1] = ctx.v31.u16[1] << (ctx.v8.u16[1] & 0xF);
-	ctx.v24.u16[2] = ctx.v31.u16[2] << (ctx.v8.u16[2] & 0xF);
-	ctx.v24.u16[3] = ctx.v31.u16[3] << (ctx.v8.u16[3] & 0xF);
-	ctx.v24.u16[4] = ctx.v31.u16[4] << (ctx.v8.u16[4] & 0xF);
-	ctx.v24.u16[5] = ctx.v31.u16[5] << (ctx.v8.u16[5] & 0xF);
-	ctx.v24.u16[6] = ctx.v31.u16[6] << (ctx.v8.u16[6] & 0xF);
-	ctx.v24.u16[7] = ctx.v31.u16[7] << (ctx.v8.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v31.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v24.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v23,v3,v6
-	ctx.v23.u16[0] = ctx.v3.u16[0] << (ctx.v6.u16[0] & 0xF);
-	ctx.v23.u16[1] = ctx.v3.u16[1] << (ctx.v6.u16[1] & 0xF);
-	ctx.v23.u16[2] = ctx.v3.u16[2] << (ctx.v6.u16[2] & 0xF);
-	ctx.v23.u16[3] = ctx.v3.u16[3] << (ctx.v6.u16[3] & 0xF);
-	ctx.v23.u16[4] = ctx.v3.u16[4] << (ctx.v6.u16[4] & 0xF);
-	ctx.v23.u16[5] = ctx.v3.u16[5] << (ctx.v6.u16[5] & 0xF);
-	ctx.v23.u16[6] = ctx.v3.u16[6] << (ctx.v6.u16[6] & 0xF);
-	ctx.v23.u16[7] = ctx.v3.u16[7] << (ctx.v6.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v3.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v6.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v23.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v22,v3,v8
-	ctx.v22.u16[0] = ctx.v3.u16[0] << (ctx.v8.u16[0] & 0xF);
-	ctx.v22.u16[1] = ctx.v3.u16[1] << (ctx.v8.u16[1] & 0xF);
-	ctx.v22.u16[2] = ctx.v3.u16[2] << (ctx.v8.u16[2] & 0xF);
-	ctx.v22.u16[3] = ctx.v3.u16[3] << (ctx.v8.u16[3] & 0xF);
-	ctx.v22.u16[4] = ctx.v3.u16[4] << (ctx.v8.u16[4] & 0xF);
-	ctx.v22.u16[5] = ctx.v3.u16[5] << (ctx.v8.u16[5] & 0xF);
-	ctx.v22.u16[6] = ctx.v3.u16[6] << (ctx.v8.u16[6] & 0xF);
-	ctx.v22.u16[7] = ctx.v3.u16[7] << (ctx.v8.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v3.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v22.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vaddshs v21,v29,v30
 	simde_mm_store_si128((simde__m128i*)ctx.v21.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v29.s16), simde_mm_load_si128((simde__m128i*)ctx.v30.s16)));
 	// vaddshs v19,v27,v28
@@ -31955,14 +31193,12 @@ loc_82A47D34:
 	// vaddshs v17,v26,v5
 	simde_mm_store_si128((simde__m128i*)ctx.v17.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v26.s16), simde_mm_load_si128((simde__m128i*)ctx.v5.s16)));
 	// vslh v15,v2,v11
-	ctx.v15.u16[0] = ctx.v2.u16[0] << (ctx.v11.u16[0] & 0xF);
-	ctx.v15.u16[1] = ctx.v2.u16[1] << (ctx.v11.u16[1] & 0xF);
-	ctx.v15.u16[2] = ctx.v2.u16[2] << (ctx.v11.u16[2] & 0xF);
-	ctx.v15.u16[3] = ctx.v2.u16[3] << (ctx.v11.u16[3] & 0xF);
-	ctx.v15.u16[4] = ctx.v2.u16[4] << (ctx.v11.u16[4] & 0xF);
-	ctx.v15.u16[5] = ctx.v2.u16[5] << (ctx.v11.u16[5] & 0xF);
-	ctx.v15.u16[6] = ctx.v2.u16[6] << (ctx.v11.u16[6] & 0xF);
-	ctx.v15.u16[7] = ctx.v2.u16[7] << (ctx.v11.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v2.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v11.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v15.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vaddshs v16,v21,v20
 	simde_mm_store_si128((simde__m128i*)ctx.v16.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v21.s16), simde_mm_load_si128((simde__m128i*)ctx.v20.s16)));
 	// vaddshs v14,v19,v18
@@ -31970,41 +31206,33 @@ loc_82A47D34:
 	// vaddshs v3,v15,v2
 	simde_mm_store_si128((simde__m128i*)ctx.v3.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v15.s16), simde_mm_load_si128((simde__m128i*)ctx.v2.s16)));
 	// vsrah v5,v16,v13
-	ctx.v5.s16[0] = ctx.v16.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v5.s16[1] = ctx.v16.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v5.s16[2] = ctx.v16.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v5.s16[3] = ctx.v16.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v5.s16[4] = ctx.v16.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v5.s16[5] = ctx.v16.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v5.s16[6] = ctx.v16.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v5.s16[7] = ctx.v16.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v16.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v5.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v4,v14,v13
-	ctx.v4.s16[0] = ctx.v14.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v4.s16[1] = ctx.v14.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v4.s16[2] = ctx.v14.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v4.s16[3] = ctx.v14.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v4.s16[4] = ctx.v14.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v4.s16[5] = ctx.v14.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v4.s16[6] = ctx.v14.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v4.s16[7] = ctx.v14.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v14.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v4.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vslh v2,v5,v12
-	ctx.v2.u16[0] = ctx.v5.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v2.u16[1] = ctx.v5.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v2.u16[2] = ctx.v5.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v2.u16[3] = ctx.v5.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v2.u16[4] = ctx.v5.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v2.u16[5] = ctx.v5.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v2.u16[6] = ctx.v5.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v2.u16[7] = ctx.v5.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v5.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v2.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v1,v4,v12
-	ctx.v1.u16[0] = ctx.v4.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v1.u16[1] = ctx.v4.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v1.u16[2] = ctx.v4.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v1.u16[3] = ctx.v4.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v1.u16[4] = ctx.v4.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v1.u16[5] = ctx.v4.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v1.u16[6] = ctx.v4.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v1.u16[7] = ctx.v4.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v4.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v1.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vpkshus128 v44,v5,v4
 	simde_mm_store_si128((simde__m128i*)ctx.v44.u8, simde_mm_packus_epi16(simde_mm_load_si128((simde__m128i*)ctx.v4.s16), simde_mm_load_si128((simde__m128i*)ctx.v5.s16)));
 	// vaddshs v31,v2,v5
@@ -32024,23 +31252,19 @@ loc_82A47D34:
 	for (size_t i = 0; i < (ea & 0xF); i++)
 		PPC_STORE_U8(ea - i - 1, ctx.v44.u8[i]);
 	// vsrah v27,v29,v13
-	ctx.v27.s16[0] = ctx.v29.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v27.s16[1] = ctx.v29.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v27.s16[2] = ctx.v29.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v27.s16[3] = ctx.v29.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v27.s16[4] = ctx.v29.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v27.s16[5] = ctx.v29.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v27.s16[6] = ctx.v29.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v27.s16[7] = ctx.v29.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v29.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v27.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v26,v28,v13
-	ctx.v26.s16[0] = ctx.v28.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v26.s16[1] = ctx.v28.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v26.s16[2] = ctx.v28.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v26.s16[3] = ctx.v28.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v26.s16[4] = ctx.v28.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v26.s16[5] = ctx.v28.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v26.s16[6] = ctx.v28.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v26.s16[7] = ctx.v28.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v28.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v26.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vpkshus128 v43,v27,v26
 	simde_mm_store_si128((simde__m128i*)ctx.v43.u8, simde_mm_packus_epi16(simde_mm_load_si128((simde__m128i*)ctx.v26.s16), simde_mm_load_si128((simde__m128i*)ctx.v27.s16)));
 	// stvlx128 v43,r11,r28
@@ -32241,90 +31465,72 @@ loc_82A47F10:
 	// vmrglb v4,v0,v4
 	simde_mm_store_si128((simde__m128i*)ctx.v4.u8, simde_mm_unpacklo_epi8(simde_mm_load_si128((simde__m128i*)ctx.v4.u8), simde_mm_load_si128((simde__m128i*)ctx.v0.u8)));
 	// vslh v30,v1,v9
-	ctx.v30.u16[0] = ctx.v1.u16[0] << (ctx.v9.u16[0] & 0xF);
-	ctx.v30.u16[1] = ctx.v1.u16[1] << (ctx.v9.u16[1] & 0xF);
-	ctx.v30.u16[2] = ctx.v1.u16[2] << (ctx.v9.u16[2] & 0xF);
-	ctx.v30.u16[3] = ctx.v1.u16[3] << (ctx.v9.u16[3] & 0xF);
-	ctx.v30.u16[4] = ctx.v1.u16[4] << (ctx.v9.u16[4] & 0xF);
-	ctx.v30.u16[5] = ctx.v1.u16[5] << (ctx.v9.u16[5] & 0xF);
-	ctx.v30.u16[6] = ctx.v1.u16[6] << (ctx.v9.u16[6] & 0xF);
-	ctx.v30.u16[7] = ctx.v1.u16[7] << (ctx.v9.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v1.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v30.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vmrghb v31,v0,v2
 	simde_mm_store_si128((simde__m128i*)ctx.v31.u8, simde_mm_unpackhi_epi8(simde_mm_load_si128((simde__m128i*)ctx.v2.u8), simde_mm_load_si128((simde__m128i*)ctx.v0.u8)));
 	// vslh v29,v1,v10
-	ctx.v29.u16[0] = ctx.v1.u16[0] << (ctx.v10.u16[0] & 0xF);
-	ctx.v29.u16[1] = ctx.v1.u16[1] << (ctx.v10.u16[1] & 0xF);
-	ctx.v29.u16[2] = ctx.v1.u16[2] << (ctx.v10.u16[2] & 0xF);
-	ctx.v29.u16[3] = ctx.v1.u16[3] << (ctx.v10.u16[3] & 0xF);
-	ctx.v29.u16[4] = ctx.v1.u16[4] << (ctx.v10.u16[4] & 0xF);
-	ctx.v29.u16[5] = ctx.v1.u16[5] << (ctx.v10.u16[5] & 0xF);
-	ctx.v29.u16[6] = ctx.v1.u16[6] << (ctx.v10.u16[6] & 0xF);
-	ctx.v29.u16[7] = ctx.v1.u16[7] << (ctx.v10.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v1.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v10.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v29.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vmrglb v2,v0,v2
 	simde_mm_store_si128((simde__m128i*)ctx.v2.u8, simde_mm_unpacklo_epi8(simde_mm_load_si128((simde__m128i*)ctx.v2.u8), simde_mm_load_si128((simde__m128i*)ctx.v0.u8)));
 	// vslh v28,v3,v9
-	ctx.v28.u16[0] = ctx.v3.u16[0] << (ctx.v9.u16[0] & 0xF);
-	ctx.v28.u16[1] = ctx.v3.u16[1] << (ctx.v9.u16[1] & 0xF);
-	ctx.v28.u16[2] = ctx.v3.u16[2] << (ctx.v9.u16[2] & 0xF);
-	ctx.v28.u16[3] = ctx.v3.u16[3] << (ctx.v9.u16[3] & 0xF);
-	ctx.v28.u16[4] = ctx.v3.u16[4] << (ctx.v9.u16[4] & 0xF);
-	ctx.v28.u16[5] = ctx.v3.u16[5] << (ctx.v9.u16[5] & 0xF);
-	ctx.v28.u16[6] = ctx.v3.u16[6] << (ctx.v9.u16[6] & 0xF);
-	ctx.v28.u16[7] = ctx.v3.u16[7] << (ctx.v9.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v3.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v28.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v27,v3,v10
-	ctx.v27.u16[0] = ctx.v3.u16[0] << (ctx.v10.u16[0] & 0xF);
-	ctx.v27.u16[1] = ctx.v3.u16[1] << (ctx.v10.u16[1] & 0xF);
-	ctx.v27.u16[2] = ctx.v3.u16[2] << (ctx.v10.u16[2] & 0xF);
-	ctx.v27.u16[3] = ctx.v3.u16[3] << (ctx.v10.u16[3] & 0xF);
-	ctx.v27.u16[4] = ctx.v3.u16[4] << (ctx.v10.u16[4] & 0xF);
-	ctx.v27.u16[5] = ctx.v3.u16[5] << (ctx.v10.u16[5] & 0xF);
-	ctx.v27.u16[6] = ctx.v3.u16[6] << (ctx.v10.u16[6] & 0xF);
-	ctx.v27.u16[7] = ctx.v3.u16[7] << (ctx.v10.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v3.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v10.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v27.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v26,v5,v12
-	ctx.v26.u16[0] = ctx.v5.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v26.u16[1] = ctx.v5.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v26.u16[2] = ctx.v5.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v26.u16[3] = ctx.v5.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v26.u16[4] = ctx.v5.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v26.u16[5] = ctx.v5.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v26.u16[6] = ctx.v5.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v26.u16[7] = ctx.v5.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v5.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v26.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v25,v31,v6
-	ctx.v25.u16[0] = ctx.v31.u16[0] << (ctx.v6.u16[0] & 0xF);
-	ctx.v25.u16[1] = ctx.v31.u16[1] << (ctx.v6.u16[1] & 0xF);
-	ctx.v25.u16[2] = ctx.v31.u16[2] << (ctx.v6.u16[2] & 0xF);
-	ctx.v25.u16[3] = ctx.v31.u16[3] << (ctx.v6.u16[3] & 0xF);
-	ctx.v25.u16[4] = ctx.v31.u16[4] << (ctx.v6.u16[4] & 0xF);
-	ctx.v25.u16[5] = ctx.v31.u16[5] << (ctx.v6.u16[5] & 0xF);
-	ctx.v25.u16[6] = ctx.v31.u16[6] << (ctx.v6.u16[6] & 0xF);
-	ctx.v25.u16[7] = ctx.v31.u16[7] << (ctx.v6.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v31.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v6.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v25.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v24,v2,v6
-	ctx.v24.u16[0] = ctx.v2.u16[0] << (ctx.v6.u16[0] & 0xF);
-	ctx.v24.u16[1] = ctx.v2.u16[1] << (ctx.v6.u16[1] & 0xF);
-	ctx.v24.u16[2] = ctx.v2.u16[2] << (ctx.v6.u16[2] & 0xF);
-	ctx.v24.u16[3] = ctx.v2.u16[3] << (ctx.v6.u16[3] & 0xF);
-	ctx.v24.u16[4] = ctx.v2.u16[4] << (ctx.v6.u16[4] & 0xF);
-	ctx.v24.u16[5] = ctx.v2.u16[5] << (ctx.v6.u16[5] & 0xF);
-	ctx.v24.u16[6] = ctx.v2.u16[6] << (ctx.v6.u16[6] & 0xF);
-	ctx.v24.u16[7] = ctx.v2.u16[7] << (ctx.v6.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v2.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v6.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v24.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v23,v2,v8
-	ctx.v23.u16[0] = ctx.v2.u16[0] << (ctx.v8.u16[0] & 0xF);
-	ctx.v23.u16[1] = ctx.v2.u16[1] << (ctx.v8.u16[1] & 0xF);
-	ctx.v23.u16[2] = ctx.v2.u16[2] << (ctx.v8.u16[2] & 0xF);
-	ctx.v23.u16[3] = ctx.v2.u16[3] << (ctx.v8.u16[3] & 0xF);
-	ctx.v23.u16[4] = ctx.v2.u16[4] << (ctx.v8.u16[4] & 0xF);
-	ctx.v23.u16[5] = ctx.v2.u16[5] << (ctx.v8.u16[5] & 0xF);
-	ctx.v23.u16[6] = ctx.v2.u16[6] << (ctx.v8.u16[6] & 0xF);
-	ctx.v23.u16[7] = ctx.v2.u16[7] << (ctx.v8.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v2.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v23.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v22,v31,v8
-	ctx.v22.u16[0] = ctx.v31.u16[0] << (ctx.v8.u16[0] & 0xF);
-	ctx.v22.u16[1] = ctx.v31.u16[1] << (ctx.v8.u16[1] & 0xF);
-	ctx.v22.u16[2] = ctx.v31.u16[2] << (ctx.v8.u16[2] & 0xF);
-	ctx.v22.u16[3] = ctx.v31.u16[3] << (ctx.v8.u16[3] & 0xF);
-	ctx.v22.u16[4] = ctx.v31.u16[4] << (ctx.v8.u16[4] & 0xF);
-	ctx.v22.u16[5] = ctx.v31.u16[5] << (ctx.v8.u16[5] & 0xF);
-	ctx.v22.u16[6] = ctx.v31.u16[6] << (ctx.v8.u16[6] & 0xF);
-	ctx.v22.u16[7] = ctx.v31.u16[7] << (ctx.v8.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v31.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v22.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vaddshs v21,v29,v30
 	simde_mm_store_si128((simde__m128i*)ctx.v21.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v29.s16), simde_mm_load_si128((simde__m128i*)ctx.v30.s16)));
 	// vaddshs v20,v27,v28
@@ -32334,32 +31540,26 @@ loc_82A47F10:
 	// vsubshs v18,v22,v25
 	simde_mm_store_si128((simde__m128i*)ctx.v18.s16, simde_mm_subs_epi16(simde_mm_load_si128((simde__m128i*)ctx.v22.s16), simde_mm_load_si128((simde__m128i*)ctx.v25.s16)));
 	// vslh v17,v4,v12
-	ctx.v17.u16[0] = ctx.v4.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v17.u16[1] = ctx.v4.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v17.u16[2] = ctx.v4.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v17.u16[3] = ctx.v4.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v17.u16[4] = ctx.v4.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v17.u16[5] = ctx.v4.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v17.u16[6] = ctx.v4.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v17.u16[7] = ctx.v4.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v4.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v17.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v16,v4,v11
-	ctx.v16.u16[0] = ctx.v4.u16[0] << (ctx.v11.u16[0] & 0xF);
-	ctx.v16.u16[1] = ctx.v4.u16[1] << (ctx.v11.u16[1] & 0xF);
-	ctx.v16.u16[2] = ctx.v4.u16[2] << (ctx.v11.u16[2] & 0xF);
-	ctx.v16.u16[3] = ctx.v4.u16[3] << (ctx.v11.u16[3] & 0xF);
-	ctx.v16.u16[4] = ctx.v4.u16[4] << (ctx.v11.u16[4] & 0xF);
-	ctx.v16.u16[5] = ctx.v4.u16[5] << (ctx.v11.u16[5] & 0xF);
-	ctx.v16.u16[6] = ctx.v4.u16[6] << (ctx.v11.u16[6] & 0xF);
-	ctx.v16.u16[7] = ctx.v4.u16[7] << (ctx.v11.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v4.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v11.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v16.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v15,v5,v11
-	ctx.v15.u16[0] = ctx.v5.u16[0] << (ctx.v11.u16[0] & 0xF);
-	ctx.v15.u16[1] = ctx.v5.u16[1] << (ctx.v11.u16[1] & 0xF);
-	ctx.v15.u16[2] = ctx.v5.u16[2] << (ctx.v11.u16[2] & 0xF);
-	ctx.v15.u16[3] = ctx.v5.u16[3] << (ctx.v11.u16[3] & 0xF);
-	ctx.v15.u16[4] = ctx.v5.u16[4] << (ctx.v11.u16[4] & 0xF);
-	ctx.v15.u16[5] = ctx.v5.u16[5] << (ctx.v11.u16[5] & 0xF);
-	ctx.v15.u16[6] = ctx.v5.u16[6] << (ctx.v11.u16[6] & 0xF);
-	ctx.v15.u16[7] = ctx.v5.u16[7] << (ctx.v11.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v5.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v11.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v15.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vaddshs v14,v21,v18
 	simde_mm_store_si128((simde__m128i*)ctx.v14.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v21.s16), simde_mm_load_si128((simde__m128i*)ctx.v18.s16)));
 	// vaddshs v2,v20,v19
@@ -32369,23 +31569,19 @@ loc_82A47F10:
 	// vaddshs v31,v15,v26
 	simde_mm_store_si128((simde__m128i*)ctx.v31.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v15.s16), simde_mm_load_si128((simde__m128i*)ctx.v26.s16)));
 	// vsrah v3,v14,v13
-	ctx.v3.s16[0] = ctx.v14.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v3.s16[1] = ctx.v14.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v3.s16[2] = ctx.v14.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v3.s16[3] = ctx.v14.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v3.s16[4] = ctx.v14.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v3.s16[5] = ctx.v14.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v3.s16[6] = ctx.v14.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v3.s16[7] = ctx.v14.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v14.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v3.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v2,v2,v13
-	ctx.v2.s16[0] = ctx.v2.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v2.s16[1] = ctx.v2.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v2.s16[2] = ctx.v2.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v2.s16[3] = ctx.v2.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v2.s16[4] = ctx.v2.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v2.s16[5] = ctx.v2.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v2.s16[6] = ctx.v2.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v2.s16[7] = ctx.v2.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v2.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v2.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vaddshs v30,v1,v4
 	simde_mm_store_si128((simde__m128i*)ctx.v30.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v1.s16), simde_mm_load_si128((simde__m128i*)ctx.v4.s16)));
 	// vaddshs v29,v31,v5
@@ -32397,23 +31593,19 @@ loc_82A47F10:
 	// vaddshs v27,v29,v3
 	simde_mm_store_si128((simde__m128i*)ctx.v27.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v29.s16), simde_mm_load_si128((simde__m128i*)ctx.v3.s16)));
 	// vsrah v26,v28,v13
-	ctx.v26.s16[0] = ctx.v28.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v26.s16[1] = ctx.v28.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v26.s16[2] = ctx.v28.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v26.s16[3] = ctx.v28.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v26.s16[4] = ctx.v28.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v26.s16[5] = ctx.v28.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v26.s16[6] = ctx.v28.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v26.s16[7] = ctx.v28.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v28.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v26.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v25,v27,v13
-	ctx.v25.s16[0] = ctx.v27.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v25.s16[1] = ctx.v27.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v25.s16[2] = ctx.v27.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v25.s16[3] = ctx.v27.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v25.s16[4] = ctx.v27.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v25.s16[5] = ctx.v27.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v25.s16[6] = ctx.v27.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v25.s16[7] = ctx.v27.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v27.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v25.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// stvlx128 v36,r0,r11
 	ea = ctx.r11.u32;
 	for (size_t i = 0; i < (16 - (ea & 0xF)); i++)
@@ -32592,45 +31784,37 @@ loc_82A480D8:
 	// vor128 v3,v32,v63
 	simde_mm_store_si128((simde__m128i*)ctx.v3.u8, simde_mm_or_si128(simde_mm_load_si128((simde__m128i*)ctx.v32.u8), simde_mm_load_si128((simde__m128i*)ctx.v63.u8)));
 	// vslh v2,v5,v11
-	ctx.v2.u16[0] = ctx.v5.u16[0] << (ctx.v11.u16[0] & 0xF);
-	ctx.v2.u16[1] = ctx.v5.u16[1] << (ctx.v11.u16[1] & 0xF);
-	ctx.v2.u16[2] = ctx.v5.u16[2] << (ctx.v11.u16[2] & 0xF);
-	ctx.v2.u16[3] = ctx.v5.u16[3] << (ctx.v11.u16[3] & 0xF);
-	ctx.v2.u16[4] = ctx.v5.u16[4] << (ctx.v11.u16[4] & 0xF);
-	ctx.v2.u16[5] = ctx.v5.u16[5] << (ctx.v11.u16[5] & 0xF);
-	ctx.v2.u16[6] = ctx.v5.u16[6] << (ctx.v11.u16[6] & 0xF);
-	ctx.v2.u16[7] = ctx.v5.u16[7] << (ctx.v11.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v5.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v11.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v2.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v1,v4,v11
-	ctx.v1.u16[0] = ctx.v4.u16[0] << (ctx.v11.u16[0] & 0xF);
-	ctx.v1.u16[1] = ctx.v4.u16[1] << (ctx.v11.u16[1] & 0xF);
-	ctx.v1.u16[2] = ctx.v4.u16[2] << (ctx.v11.u16[2] & 0xF);
-	ctx.v1.u16[3] = ctx.v4.u16[3] << (ctx.v11.u16[3] & 0xF);
-	ctx.v1.u16[4] = ctx.v4.u16[4] << (ctx.v11.u16[4] & 0xF);
-	ctx.v1.u16[5] = ctx.v4.u16[5] << (ctx.v11.u16[5] & 0xF);
-	ctx.v1.u16[6] = ctx.v4.u16[6] << (ctx.v11.u16[6] & 0xF);
-	ctx.v1.u16[7] = ctx.v4.u16[7] << (ctx.v11.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v4.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v11.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v1.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vmrglb v31,v0,v3
 	simde_mm_store_si128((simde__m128i*)ctx.v31.u8, simde_mm_unpacklo_epi8(simde_mm_load_si128((simde__m128i*)ctx.v3.u8), simde_mm_load_si128((simde__m128i*)ctx.v0.u8)));
 	// vslh v30,v4,v12
-	ctx.v30.u16[0] = ctx.v4.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v30.u16[1] = ctx.v4.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v30.u16[2] = ctx.v4.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v30.u16[3] = ctx.v4.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v30.u16[4] = ctx.v4.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v30.u16[5] = ctx.v4.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v30.u16[6] = ctx.v4.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v30.u16[7] = ctx.v4.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v4.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v30.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vmrghb v29,v0,v3
 	simde_mm_store_si128((simde__m128i*)ctx.v29.u8, simde_mm_unpackhi_epi8(simde_mm_load_si128((simde__m128i*)ctx.v3.u8), simde_mm_load_si128((simde__m128i*)ctx.v0.u8)));
 	// vslh v28,v5,v12
-	ctx.v28.u16[0] = ctx.v5.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v28.u16[1] = ctx.v5.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v28.u16[2] = ctx.v5.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v28.u16[3] = ctx.v5.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v28.u16[4] = ctx.v5.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v28.u16[5] = ctx.v5.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v28.u16[6] = ctx.v5.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v28.u16[7] = ctx.v5.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v5.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v28.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vaddshs v27,v2,v5
 	simde_mm_store_si128((simde__m128i*)ctx.v27.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v2.s16), simde_mm_load_si128((simde__m128i*)ctx.v5.s16)));
 	// vaddshs v26,v1,v4
@@ -32644,23 +31828,19 @@ loc_82A480D8:
 	// vaddshs v22,v31,v24
 	simde_mm_store_si128((simde__m128i*)ctx.v22.s16, simde_mm_adds_epi16(simde_mm_load_si128((simde__m128i*)ctx.v31.s16), simde_mm_load_si128((simde__m128i*)ctx.v24.s16)));
 	// vsrah v21,v23,v13
-	ctx.v21.s16[0] = ctx.v23.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v21.s16[1] = ctx.v23.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v21.s16[2] = ctx.v23.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v21.s16[3] = ctx.v23.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v21.s16[4] = ctx.v23.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v21.s16[5] = ctx.v23.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v21.s16[6] = ctx.v23.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v21.s16[7] = ctx.v23.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v23.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v21.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v20,v22,v13
-	ctx.v20.s16[0] = ctx.v22.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v20.s16[1] = ctx.v22.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v20.s16[2] = ctx.v22.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v20.s16[3] = ctx.v22.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v20.s16[4] = ctx.v22.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v20.s16[5] = ctx.v22.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v20.s16[6] = ctx.v22.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v20.s16[7] = ctx.v22.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v22.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v20.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vpkshus128 v62,v21,v20
 	simde_mm_store_si128((simde__m128i*)ctx.v62.u8, simde_mm_packus_epi16(simde_mm_load_si128((simde__m128i*)ctx.v20.s16), simde_mm_load_si128((simde__m128i*)ctx.v21.s16)));
 	// stvlx128 v62,r31,r11
@@ -33108,41 +32288,21 @@ PPC_FUNC_IMPL(__imp__sub_82A48418) {
 	// vspltish v7,3
 	simde_mm_store_si128((simde__m128i*)ctx.v7.s16, simde_mm_set1_epi16(short(0x3)));
 	// vslb v9,v8,v8
-	ctx.v9.u8[0] = ctx.v8.u8[0] << (ctx.v8.u8[0] & 0x7);
-	ctx.v9.u8[1] = ctx.v8.u8[1] << (ctx.v8.u8[1] & 0x7);
-	ctx.v9.u8[2] = ctx.v8.u8[2] << (ctx.v8.u8[2] & 0x7);
-	ctx.v9.u8[3] = ctx.v8.u8[3] << (ctx.v8.u8[3] & 0x7);
-	ctx.v9.u8[4] = ctx.v8.u8[4] << (ctx.v8.u8[4] & 0x7);
-	ctx.v9.u8[5] = ctx.v8.u8[5] << (ctx.v8.u8[5] & 0x7);
-	ctx.v9.u8[6] = ctx.v8.u8[6] << (ctx.v8.u8[6] & 0x7);
-	ctx.v9.u8[7] = ctx.v8.u8[7] << (ctx.v8.u8[7] & 0x7);
-	ctx.v9.u8[8] = ctx.v8.u8[8] << (ctx.v8.u8[8] & 0x7);
-	ctx.v9.u8[9] = ctx.v8.u8[9] << (ctx.v8.u8[9] & 0x7);
-	ctx.v9.u8[10] = ctx.v8.u8[10] << (ctx.v8.u8[10] & 0x7);
-	ctx.v9.u8[11] = ctx.v8.u8[11] << (ctx.v8.u8[11] & 0x7);
-	ctx.v9.u8[12] = ctx.v8.u8[12] << (ctx.v8.u8[12] & 0x7);
-	ctx.v9.u8[13] = ctx.v8.u8[13] << (ctx.v8.u8[13] & 0x7);
-	ctx.v9.u8[14] = ctx.v8.u8[14] << (ctx.v8.u8[14] & 0x7);
-	ctx.v9.u8[15] = ctx.v8.u8[15] << (ctx.v8.u8[15] & 0x7);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi8(0x7));
+		simde_mm_store_si128((simde__m128i*)ctx.v9.u8, rex::simde_mm_sllv_epi8(a, shift));
+	}
 	// vspltish v12,2
 	simde_mm_store_si128((simde__m128i*)ctx.v12.s16, simde_mm_set1_epi16(short(0x2)));
 	// vslb v29,v10,v10
-	ctx.v29.u8[0] = ctx.v10.u8[0] << (ctx.v10.u8[0] & 0x7);
-	ctx.v29.u8[1] = ctx.v10.u8[1] << (ctx.v10.u8[1] & 0x7);
-	ctx.v29.u8[2] = ctx.v10.u8[2] << (ctx.v10.u8[2] & 0x7);
-	ctx.v29.u8[3] = ctx.v10.u8[3] << (ctx.v10.u8[3] & 0x7);
-	ctx.v29.u8[4] = ctx.v10.u8[4] << (ctx.v10.u8[4] & 0x7);
-	ctx.v29.u8[5] = ctx.v10.u8[5] << (ctx.v10.u8[5] & 0x7);
-	ctx.v29.u8[6] = ctx.v10.u8[6] << (ctx.v10.u8[6] & 0x7);
-	ctx.v29.u8[7] = ctx.v10.u8[7] << (ctx.v10.u8[7] & 0x7);
-	ctx.v29.u8[8] = ctx.v10.u8[8] << (ctx.v10.u8[8] & 0x7);
-	ctx.v29.u8[9] = ctx.v10.u8[9] << (ctx.v10.u8[9] & 0x7);
-	ctx.v29.u8[10] = ctx.v10.u8[10] << (ctx.v10.u8[10] & 0x7);
-	ctx.v29.u8[11] = ctx.v10.u8[11] << (ctx.v10.u8[11] & 0x7);
-	ctx.v29.u8[12] = ctx.v10.u8[12] << (ctx.v10.u8[12] & 0x7);
-	ctx.v29.u8[13] = ctx.v10.u8[13] << (ctx.v10.u8[13] & 0x7);
-	ctx.v29.u8[14] = ctx.v10.u8[14] << (ctx.v10.u8[14] & 0x7);
-	ctx.v29.u8[15] = ctx.v10.u8[15] << (ctx.v10.u8[15] & 0x7);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v10.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v10.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi8(0x7));
+		simde_mm_store_si128((simde__m128i*)ctx.v29.u8, rex::simde_mm_sllv_epi8(a, shift));
+	}
 	// vspltish v13,4
 	simde_mm_store_si128((simde__m128i*)ctx.v13.s16, simde_mm_set1_epi16(short(0x4)));
 	// vspltisb v0,0
@@ -33229,28 +32389,24 @@ loc_82A484B8:
 	// vspltish v9,8
 	simde_mm_store_si128((simde__m128i*)ctx.v9.s16, simde_mm_set1_epi16(short(0x8)));
 	// vslh v1,v9,v12
-	ctx.v1.u16[0] = ctx.v9.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v1.u16[1] = ctx.v9.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v1.u16[2] = ctx.v9.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v1.u16[3] = ctx.v9.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v1.u16[4] = ctx.v9.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v1.u16[5] = ctx.v9.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v1.u16[6] = ctx.v9.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v1.u16[7] = ctx.v9.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v1.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// b 0x82a484f0
 	goto loc_82A484F0;
 loc_82A484E8:
 	// vspltish v9,-5
 	simde_mm_store_si128((simde__m128i*)ctx.v9.s16, simde_mm_set1_epi16(short(0xFFFB)));
 	// vsrh v1,v9,v9
-	ctx.v1.u16[0] = ctx.v9.u16[0] >> (ctx.v9.u16[0] & 0xF);
-	ctx.v1.u16[1] = ctx.v9.u16[1] >> (ctx.v9.u16[1] & 0xF);
-	ctx.v1.u16[2] = ctx.v9.u16[2] >> (ctx.v9.u16[2] & 0xF);
-	ctx.v1.u16[3] = ctx.v9.u16[3] >> (ctx.v9.u16[3] & 0xF);
-	ctx.v1.u16[4] = ctx.v9.u16[4] >> (ctx.v9.u16[4] & 0xF);
-	ctx.v1.u16[5] = ctx.v9.u16[5] >> (ctx.v9.u16[5] & 0xF);
-	ctx.v1.u16[6] = ctx.v9.u16[6] >> (ctx.v9.u16[6] & 0xF);
-	ctx.v1.u16[7] = ctx.v9.u16[7] >> (ctx.v9.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v1.u8, rex::simde_mm_srlv_epi16(a, shift));
+	}
 loc_82A484F0:
 	// subf r9,r5,r4
 	ctx.r9.u64 = ctx.r4.u64 - ctx.r5.u64;
@@ -33364,23 +32520,19 @@ loc_82A48580:
 	ea = (ctx.r10.u32 + ctx.r3.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)ctx.v7.u8, simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)PPC_RAW_ADDR(ea)), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
 	// vslh v2,v9,v12
-	ctx.v2.u16[0] = ctx.v9.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v2.u16[1] = ctx.v9.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v2.u16[2] = ctx.v9.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v2.u16[3] = ctx.v9.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v2.u16[4] = ctx.v9.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v2.u16[5] = ctx.v9.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v2.u16[6] = ctx.v9.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v2.u16[7] = ctx.v9.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v2.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v31,v7,v12
-	ctx.v31.u16[0] = ctx.v7.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v31.u16[1] = ctx.v7.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v31.u16[2] = ctx.v7.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v31.u16[3] = ctx.v7.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v31.u16[4] = ctx.v7.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v31.u16[5] = ctx.v7.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v31.u16[6] = ctx.v7.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v31.u16[7] = ctx.v7.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v7.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v31.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// lvx128 v6,r10,r31
 	ea = (ctx.r10.u32 + ctx.r31.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)ctx.v6.u8, simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)PPC_RAW_ADDR(ea)), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
@@ -33388,23 +32540,19 @@ loc_82A48580:
 	ea = (ctx.r10.u32 + ctx.r30.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)ctx.v5.u8, simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)PPC_RAW_ADDR(ea)), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
 	// vslh v26,v9,v10
-	ctx.v26.u16[0] = ctx.v9.u16[0] << (ctx.v10.u16[0] & 0xF);
-	ctx.v26.u16[1] = ctx.v9.u16[1] << (ctx.v10.u16[1] & 0xF);
-	ctx.v26.u16[2] = ctx.v9.u16[2] << (ctx.v10.u16[2] & 0xF);
-	ctx.v26.u16[3] = ctx.v9.u16[3] << (ctx.v10.u16[3] & 0xF);
-	ctx.v26.u16[4] = ctx.v9.u16[4] << (ctx.v10.u16[4] & 0xF);
-	ctx.v26.u16[5] = ctx.v9.u16[5] << (ctx.v10.u16[5] & 0xF);
-	ctx.v26.u16[6] = ctx.v9.u16[6] << (ctx.v10.u16[6] & 0xF);
-	ctx.v26.u16[7] = ctx.v9.u16[7] << (ctx.v10.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v10.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v26.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v25,v9,v13
-	ctx.v25.u16[0] = ctx.v9.u16[0] << (ctx.v13.u16[0] & 0xF);
-	ctx.v25.u16[1] = ctx.v9.u16[1] << (ctx.v13.u16[1] & 0xF);
-	ctx.v25.u16[2] = ctx.v9.u16[2] << (ctx.v13.u16[2] & 0xF);
-	ctx.v25.u16[3] = ctx.v9.u16[3] << (ctx.v13.u16[3] & 0xF);
-	ctx.v25.u16[4] = ctx.v9.u16[4] << (ctx.v13.u16[4] & 0xF);
-	ctx.v25.u16[5] = ctx.v9.u16[5] << (ctx.v13.u16[5] & 0xF);
-	ctx.v25.u16[6] = ctx.v9.u16[6] << (ctx.v13.u16[6] & 0xF);
-	ctx.v25.u16[7] = ctx.v9.u16[7] << (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v25.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// lvx128 v3,r10,r29
 	ea = (ctx.r10.u32 + ctx.r29.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)ctx.v3.u8, simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)PPC_RAW_ADDR(ea)), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
@@ -33417,48 +32565,40 @@ loc_82A48580:
 	// vmrghb v2,v0,v4
 	simde_mm_store_si128((simde__m128i*)ctx.v2.u8, simde_mm_unpackhi_epi8(simde_mm_load_si128((simde__m128i*)ctx.v4.u8), simde_mm_load_si128((simde__m128i*)ctx.v0.u8)));
 	// vslh v30,v7,v10
-	ctx.v30.u16[0] = ctx.v7.u16[0] << (ctx.v10.u16[0] & 0xF);
-	ctx.v30.u16[1] = ctx.v7.u16[1] << (ctx.v10.u16[1] & 0xF);
-	ctx.v30.u16[2] = ctx.v7.u16[2] << (ctx.v10.u16[2] & 0xF);
-	ctx.v30.u16[3] = ctx.v7.u16[3] << (ctx.v10.u16[3] & 0xF);
-	ctx.v30.u16[4] = ctx.v7.u16[4] << (ctx.v10.u16[4] & 0xF);
-	ctx.v30.u16[5] = ctx.v7.u16[5] << (ctx.v10.u16[5] & 0xF);
-	ctx.v30.u16[6] = ctx.v7.u16[6] << (ctx.v10.u16[6] & 0xF);
-	ctx.v30.u16[7] = ctx.v7.u16[7] << (ctx.v10.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v7.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v10.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v30.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// addi r3,r1,368
 	ctx.r3.s64 = ctx.r1.s64 + 368;
 	// vslh v29,v7,v13
-	ctx.v29.u16[0] = ctx.v7.u16[0] << (ctx.v13.u16[0] & 0xF);
-	ctx.v29.u16[1] = ctx.v7.u16[1] << (ctx.v13.u16[1] & 0xF);
-	ctx.v29.u16[2] = ctx.v7.u16[2] << (ctx.v13.u16[2] & 0xF);
-	ctx.v29.u16[3] = ctx.v7.u16[3] << (ctx.v13.u16[3] & 0xF);
-	ctx.v29.u16[4] = ctx.v7.u16[4] << (ctx.v13.u16[4] & 0xF);
-	ctx.v29.u16[5] = ctx.v7.u16[5] << (ctx.v13.u16[5] & 0xF);
-	ctx.v29.u16[6] = ctx.v7.u16[6] << (ctx.v13.u16[6] & 0xF);
-	ctx.v29.u16[7] = ctx.v7.u16[7] << (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v7.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v29.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// lvx128 v7,r10,r4
 	ea = (ctx.r10.u32 + ctx.r4.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)ctx.v7.u8, simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)PPC_RAW_ADDR(ea)), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
 	// vslh v24,v6,v13
-	ctx.v24.u16[0] = ctx.v6.u16[0] << (ctx.v13.u16[0] & 0xF);
-	ctx.v24.u16[1] = ctx.v6.u16[1] << (ctx.v13.u16[1] & 0xF);
-	ctx.v24.u16[2] = ctx.v6.u16[2] << (ctx.v13.u16[2] & 0xF);
-	ctx.v24.u16[3] = ctx.v6.u16[3] << (ctx.v13.u16[3] & 0xF);
-	ctx.v24.u16[4] = ctx.v6.u16[4] << (ctx.v13.u16[4] & 0xF);
-	ctx.v24.u16[5] = ctx.v6.u16[5] << (ctx.v13.u16[5] & 0xF);
-	ctx.v24.u16[6] = ctx.v6.u16[6] << (ctx.v13.u16[6] & 0xF);
-	ctx.v24.u16[7] = ctx.v6.u16[7] << (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v6.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v24.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// addi r4,r1,64
 	ctx.r4.s64 = ctx.r1.s64 + 64;
 	// vslh v23,v5,v13
-	ctx.v23.u16[0] = ctx.v5.u16[0] << (ctx.v13.u16[0] & 0xF);
-	ctx.v23.u16[1] = ctx.v5.u16[1] << (ctx.v13.u16[1] & 0xF);
-	ctx.v23.u16[2] = ctx.v5.u16[2] << (ctx.v13.u16[2] & 0xF);
-	ctx.v23.u16[3] = ctx.v5.u16[3] << (ctx.v13.u16[3] & 0xF);
-	ctx.v23.u16[4] = ctx.v5.u16[4] << (ctx.v13.u16[4] & 0xF);
-	ctx.v23.u16[5] = ctx.v5.u16[5] << (ctx.v13.u16[5] & 0xF);
-	ctx.v23.u16[6] = ctx.v5.u16[6] << (ctx.v13.u16[6] & 0xF);
-	ctx.v23.u16[7] = ctx.v5.u16[7] << (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v5.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v23.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// addic. r8,r8,-1
 	ctx.xer.ca = ctx.r8.u32 > 0;
 	ctx.r8.s64 = ctx.r8.s64 + -1;
@@ -33470,14 +32610,12 @@ loc_82A48580:
 	// vadduhm v16,v26,v28
 	simde_mm_store_si128((simde__m128i*)ctx.v16.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v26.u16), simde_mm_load_si128((simde__m128i*)ctx.v28.u16)));
 	// vslh v22,v6,v11
-	ctx.v22.u16[0] = ctx.v6.u16[0] << (ctx.v11.u16[0] & 0xF);
-	ctx.v22.u16[1] = ctx.v6.u16[1] << (ctx.v11.u16[1] & 0xF);
-	ctx.v22.u16[2] = ctx.v6.u16[2] << (ctx.v11.u16[2] & 0xF);
-	ctx.v22.u16[3] = ctx.v6.u16[3] << (ctx.v11.u16[3] & 0xF);
-	ctx.v22.u16[4] = ctx.v6.u16[4] << (ctx.v11.u16[4] & 0xF);
-	ctx.v22.u16[5] = ctx.v6.u16[5] << (ctx.v11.u16[5] & 0xF);
-	ctx.v22.u16[6] = ctx.v6.u16[6] << (ctx.v11.u16[6] & 0xF);
-	ctx.v22.u16[7] = ctx.v6.u16[7] << (ctx.v11.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v6.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v11.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v22.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// stvx128 v2,r10,r3
 	ea = (ctx.r10.u32 + ctx.r3.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)PPC_RAW_ADDR(ea), simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)ctx.v2.u8), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
@@ -33491,14 +32629,12 @@ loc_82A48580:
 	// addi r10,r10,16
 	ctx.r10.s64 = ctx.r10.s64 + 16;
 	// vslh v17,v5,v11
-	ctx.v17.u16[0] = ctx.v5.u16[0] << (ctx.v11.u16[0] & 0xF);
-	ctx.v17.u16[1] = ctx.v5.u16[1] << (ctx.v11.u16[1] & 0xF);
-	ctx.v17.u16[2] = ctx.v5.u16[2] << (ctx.v11.u16[2] & 0xF);
-	ctx.v17.u16[3] = ctx.v5.u16[3] << (ctx.v11.u16[3] & 0xF);
-	ctx.v17.u16[4] = ctx.v5.u16[4] << (ctx.v11.u16[4] & 0xF);
-	ctx.v17.u16[5] = ctx.v5.u16[5] << (ctx.v11.u16[5] & 0xF);
-	ctx.v17.u16[6] = ctx.v5.u16[6] << (ctx.v11.u16[6] & 0xF);
-	ctx.v17.u16[7] = ctx.v5.u16[7] << (ctx.v11.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v5.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v11.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v17.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vadduhm v15,v25,v1
 	simde_mm_store_si128((simde__m128i*)ctx.v15.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v25.u16), simde_mm_load_si128((simde__m128i*)ctx.v1.u16)));
 	// vadduhm v18,v23,v7
@@ -33516,25 +32652,21 @@ loc_82A48580:
 	// vadduhm v3,v15,v16
 	simde_mm_store_si128((simde__m128i*)ctx.v3.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v15.u16), simde_mm_load_si128((simde__m128i*)ctx.v16.u16)));
 	// vslh v2,v14,v12
-	ctx.v2.u16[0] = ctx.v14.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v2.u16[1] = ctx.v14.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v2.u16[2] = ctx.v14.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v2.u16[3] = ctx.v14.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v2.u16[4] = ctx.v14.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v2.u16[5] = ctx.v14.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v2.u16[6] = ctx.v14.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v2.u16[7] = ctx.v14.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v14.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v2.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vadduhm v31,v6,v9
 	simde_mm_store_si128((simde__m128i*)ctx.v31.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v6.u16), simde_mm_load_si128((simde__m128i*)ctx.v9.u16)));
 	// vslh v30,v5,v12
-	ctx.v30.u16[0] = ctx.v5.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v30.u16[1] = ctx.v5.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v30.u16[2] = ctx.v5.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v30.u16[3] = ctx.v5.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v30.u16[4] = ctx.v5.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v30.u16[5] = ctx.v5.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v30.u16[6] = ctx.v5.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v30.u16[7] = ctx.v5.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v5.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v30.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vadduhm v29,v3,v4
 	simde_mm_store_si128((simde__m128i*)ctx.v29.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v3.u16), simde_mm_load_si128((simde__m128i*)ctx.v4.u16)));
 	// vsubuhm v28,v31,v2
@@ -33542,23 +32674,19 @@ loc_82A48580:
 	// vsubuhm v27,v29,v30
 	simde_mm_store_si128((simde__m128i*)ctx.v27.u16, simde_mm_sub_epi16(simde_mm_load_si128((simde__m128i*)ctx.v29.u16), simde_mm_load_si128((simde__m128i*)ctx.v30.u16)));
 	// vsrah v26,v28,v8
-	ctx.v26.s16[0] = ctx.v28.s16[0] >> (ctx.v8.u16[0] & 0xF);
-	ctx.v26.s16[1] = ctx.v28.s16[1] >> (ctx.v8.u16[1] & 0xF);
-	ctx.v26.s16[2] = ctx.v28.s16[2] >> (ctx.v8.u16[2] & 0xF);
-	ctx.v26.s16[3] = ctx.v28.s16[3] >> (ctx.v8.u16[3] & 0xF);
-	ctx.v26.s16[4] = ctx.v28.s16[4] >> (ctx.v8.u16[4] & 0xF);
-	ctx.v26.s16[5] = ctx.v28.s16[5] >> (ctx.v8.u16[5] & 0xF);
-	ctx.v26.s16[6] = ctx.v28.s16[6] >> (ctx.v8.u16[6] & 0xF);
-	ctx.v26.s16[7] = ctx.v28.s16[7] >> (ctx.v8.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v28.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v26.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v25,v27,v8
-	ctx.v25.s16[0] = ctx.v27.s16[0] >> (ctx.v8.u16[0] & 0xF);
-	ctx.v25.s16[1] = ctx.v27.s16[1] >> (ctx.v8.u16[1] & 0xF);
-	ctx.v25.s16[2] = ctx.v27.s16[2] >> (ctx.v8.u16[2] & 0xF);
-	ctx.v25.s16[3] = ctx.v27.s16[3] >> (ctx.v8.u16[3] & 0xF);
-	ctx.v25.s16[4] = ctx.v27.s16[4] >> (ctx.v8.u16[4] & 0xF);
-	ctx.v25.s16[5] = ctx.v27.s16[5] >> (ctx.v8.u16[5] & 0xF);
-	ctx.v25.s16[6] = ctx.v27.s16[6] >> (ctx.v8.u16[6] & 0xF);
-	ctx.v25.s16[7] = ctx.v27.s16[7] >> (ctx.v8.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v27.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v25.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vpkshus128 v52,v25,v26
 	simde_mm_store_si128((simde__m128i*)ctx.v52.u8, simde_mm_packus_epi16(simde_mm_load_si128((simde__m128i*)ctx.v26.s16), simde_mm_load_si128((simde__m128i*)ctx.v25.s16)));
 	// stvlx128 v52,r0,r6
@@ -33730,27 +32858,23 @@ loc_82A48720:
 	// addi r4,r1,64
 	ctx.r4.s64 = ctx.r1.s64 + 64;
 	// vslh v31,v9,v30
-	ctx.v31.u16[0] = ctx.v9.u16[0] << (ctx.v30.u16[0] & 0xF);
-	ctx.v31.u16[1] = ctx.v9.u16[1] << (ctx.v30.u16[1] & 0xF);
-	ctx.v31.u16[2] = ctx.v9.u16[2] << (ctx.v30.u16[2] & 0xF);
-	ctx.v31.u16[3] = ctx.v9.u16[3] << (ctx.v30.u16[3] & 0xF);
-	ctx.v31.u16[4] = ctx.v9.u16[4] << (ctx.v30.u16[4] & 0xF);
-	ctx.v31.u16[5] = ctx.v9.u16[5] << (ctx.v30.u16[5] & 0xF);
-	ctx.v31.u16[6] = ctx.v9.u16[6] << (ctx.v30.u16[6] & 0xF);
-	ctx.v31.u16[7] = ctx.v9.u16[7] << (ctx.v30.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v30.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v31.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// addic. r8,r8,-1
 	ctx.xer.ca = ctx.r8.u32 > 0;
 	ctx.r8.s64 = ctx.r8.s64 + -1;
 	ctx.cr0.compare<int32_t>(ctx.r8.s32, 0, ctx.xer);
 	// vslh v29,v10,v30
-	ctx.v29.u16[0] = ctx.v10.u16[0] << (ctx.v30.u16[0] & 0xF);
-	ctx.v29.u16[1] = ctx.v10.u16[1] << (ctx.v30.u16[1] & 0xF);
-	ctx.v29.u16[2] = ctx.v10.u16[2] << (ctx.v30.u16[2] & 0xF);
-	ctx.v29.u16[3] = ctx.v10.u16[3] << (ctx.v30.u16[3] & 0xF);
-	ctx.v29.u16[4] = ctx.v10.u16[4] << (ctx.v30.u16[4] & 0xF);
-	ctx.v29.u16[5] = ctx.v10.u16[5] << (ctx.v30.u16[5] & 0xF);
-	ctx.v29.u16[6] = ctx.v10.u16[6] << (ctx.v30.u16[6] & 0xF);
-	ctx.v29.u16[7] = ctx.v10.u16[7] << (ctx.v30.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v10.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v30.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v29.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// stvx128 v11,r10,r3
 	ea = (ctx.r10.u32 + ctx.r3.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)PPC_RAW_ADDR(ea), simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)ctx.v11.u8), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
@@ -33774,23 +32898,19 @@ loc_82A48720:
 	// vadduhm v23,v25,v27
 	simde_mm_store_si128((simde__m128i*)ctx.v23.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v25.u16), simde_mm_load_si128((simde__m128i*)ctx.v27.u16)));
 	// vsrah v22,v24,v13
-	ctx.v22.s16[0] = ctx.v24.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v22.s16[1] = ctx.v24.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v22.s16[2] = ctx.v24.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v22.s16[3] = ctx.v24.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v22.s16[4] = ctx.v24.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v22.s16[5] = ctx.v24.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v22.s16[6] = ctx.v24.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v22.s16[7] = ctx.v24.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v24.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v22.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v21,v23,v13
-	ctx.v21.s16[0] = ctx.v23.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v21.s16[1] = ctx.v23.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v21.s16[2] = ctx.v23.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v21.s16[3] = ctx.v23.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v21.s16[4] = ctx.v23.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v21.s16[5] = ctx.v23.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v21.s16[6] = ctx.v23.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v21.s16[7] = ctx.v23.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v23.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v21.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vpkshus128 v43,v21,v22
 	simde_mm_store_si128((simde__m128i*)ctx.v43.u8, simde_mm_packus_epi16(simde_mm_load_si128((simde__m128i*)ctx.v22.s16), simde_mm_load_si128((simde__m128i*)ctx.v21.s16)));
 	// stvlx128 v43,r0,r6
@@ -33820,28 +32940,24 @@ loc_82A487D4:
 	// vspltish v9,8
 	simde_mm_store_si128((simde__m128i*)ctx.v9.s16, simde_mm_set1_epi16(short(0x8)));
 	// vslh v2,v9,v12
-	ctx.v2.u16[0] = ctx.v9.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v2.u16[1] = ctx.v9.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v2.u16[2] = ctx.v9.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v2.u16[3] = ctx.v9.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v2.u16[4] = ctx.v9.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v2.u16[5] = ctx.v9.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v2.u16[6] = ctx.v9.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v2.u16[7] = ctx.v9.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v2.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// b 0x82a487f4
 	goto loc_82A487F4;
 loc_82A487EC:
 	// vspltish v9,-5
 	simde_mm_store_si128((simde__m128i*)ctx.v9.s16, simde_mm_set1_epi16(short(0xFFFB)));
 	// vsrh v2,v9,v9
-	ctx.v2.u16[0] = ctx.v9.u16[0] >> (ctx.v9.u16[0] & 0xF);
-	ctx.v2.u16[1] = ctx.v9.u16[1] >> (ctx.v9.u16[1] & 0xF);
-	ctx.v2.u16[2] = ctx.v9.u16[2] >> (ctx.v9.u16[2] & 0xF);
-	ctx.v2.u16[3] = ctx.v9.u16[3] >> (ctx.v9.u16[3] & 0xF);
-	ctx.v2.u16[4] = ctx.v9.u16[4] >> (ctx.v9.u16[4] & 0xF);
-	ctx.v2.u16[5] = ctx.v9.u16[5] >> (ctx.v9.u16[5] & 0xF);
-	ctx.v2.u16[6] = ctx.v9.u16[6] >> (ctx.v9.u16[6] & 0xF);
-	ctx.v2.u16[7] = ctx.v9.u16[7] >> (ctx.v9.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v2.u8, rex::simde_mm_srlv_epi16(a, shift));
+	}
 loc_82A487F4:
 	// subf r9,r5,r4
 	ctx.r9.u64 = ctx.r4.u64 - ctx.r5.u64;
@@ -33955,23 +33071,19 @@ loc_82A48884:
 	ea = (ctx.r10.u32 + ctx.r3.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)ctx.v7.u8, simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)PPC_RAW_ADDR(ea)), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
 	// vslh v1,v9,v12
-	ctx.v1.u16[0] = ctx.v9.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v1.u16[1] = ctx.v9.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v1.u16[2] = ctx.v9.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v1.u16[3] = ctx.v9.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v1.u16[4] = ctx.v9.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v1.u16[5] = ctx.v9.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v1.u16[6] = ctx.v9.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v1.u16[7] = ctx.v9.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v1.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v31,v7,v12
-	ctx.v31.u16[0] = ctx.v7.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v31.u16[1] = ctx.v7.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v31.u16[2] = ctx.v7.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v31.u16[3] = ctx.v7.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v31.u16[4] = ctx.v7.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v31.u16[5] = ctx.v7.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v31.u16[6] = ctx.v7.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v31.u16[7] = ctx.v7.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v7.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v31.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// lvx128 v4,r10,r31
 	ea = (ctx.r10.u32 + ctx.r31.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)ctx.v4.u8, simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)PPC_RAW_ADDR(ea)), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
@@ -33983,14 +33095,12 @@ loc_82A48884:
 	// vmrglb v5,v0,v5
 	simde_mm_store_si128((simde__m128i*)ctx.v5.u8, simde_mm_unpacklo_epi8(simde_mm_load_si128((simde__m128i*)ctx.v5.u8), simde_mm_load_si128((simde__m128i*)ctx.v0.u8)));
 	// vslh v30,v4,v13
-	ctx.v30.u16[0] = ctx.v4.u16[0] << (ctx.v13.u16[0] & 0xF);
-	ctx.v30.u16[1] = ctx.v4.u16[1] << (ctx.v13.u16[1] & 0xF);
-	ctx.v30.u16[2] = ctx.v4.u16[2] << (ctx.v13.u16[2] & 0xF);
-	ctx.v30.u16[3] = ctx.v4.u16[3] << (ctx.v13.u16[3] & 0xF);
-	ctx.v30.u16[4] = ctx.v4.u16[4] << (ctx.v13.u16[4] & 0xF);
-	ctx.v30.u16[5] = ctx.v4.u16[5] << (ctx.v13.u16[5] & 0xF);
-	ctx.v30.u16[6] = ctx.v4.u16[6] << (ctx.v13.u16[6] & 0xF);
-	ctx.v30.u16[7] = ctx.v4.u16[7] << (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v4.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v30.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vadduhm v23,v1,v9
 	simde_mm_store_si128((simde__m128i*)ctx.v23.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v1.u16), simde_mm_load_si128((simde__m128i*)ctx.v9.u16)));
 	// lvx128 v26,r10,r4
@@ -34001,61 +33111,51 @@ loc_82A48884:
 	// addi r4,r1,64
 	ctx.r4.s64 = ctx.r1.s64 + 64;
 	// vslh v29,v7,v10
-	ctx.v29.u16[0] = ctx.v7.u16[0] << (ctx.v10.u16[0] & 0xF);
-	ctx.v29.u16[1] = ctx.v7.u16[1] << (ctx.v10.u16[1] & 0xF);
-	ctx.v29.u16[2] = ctx.v7.u16[2] << (ctx.v10.u16[2] & 0xF);
-	ctx.v29.u16[3] = ctx.v7.u16[3] << (ctx.v10.u16[3] & 0xF);
-	ctx.v29.u16[4] = ctx.v7.u16[4] << (ctx.v10.u16[4] & 0xF);
-	ctx.v29.u16[5] = ctx.v7.u16[5] << (ctx.v10.u16[5] & 0xF);
-	ctx.v29.u16[6] = ctx.v7.u16[6] << (ctx.v10.u16[6] & 0xF);
-	ctx.v29.u16[7] = ctx.v7.u16[7] << (ctx.v10.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v7.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v10.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v29.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// lvx128 v28,r10,r29
 	ea = (ctx.r10.u32 + ctx.r29.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)ctx.v28.u8, simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)PPC_RAW_ADDR(ea)), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
 	// vslh v27,v7,v13
-	ctx.v27.u16[0] = ctx.v7.u16[0] << (ctx.v13.u16[0] & 0xF);
-	ctx.v27.u16[1] = ctx.v7.u16[1] << (ctx.v13.u16[1] & 0xF);
-	ctx.v27.u16[2] = ctx.v7.u16[2] << (ctx.v13.u16[2] & 0xF);
-	ctx.v27.u16[3] = ctx.v7.u16[3] << (ctx.v13.u16[3] & 0xF);
-	ctx.v27.u16[4] = ctx.v7.u16[4] << (ctx.v13.u16[4] & 0xF);
-	ctx.v27.u16[5] = ctx.v7.u16[5] << (ctx.v13.u16[5] & 0xF);
-	ctx.v27.u16[6] = ctx.v7.u16[6] << (ctx.v13.u16[6] & 0xF);
-	ctx.v27.u16[7] = ctx.v7.u16[7] << (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v7.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v27.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// addi r3,r1,368
 	ctx.r3.s64 = ctx.r1.s64 + 368;
 	// vslh v24,v3,v13
-	ctx.v24.u16[0] = ctx.v3.u16[0] << (ctx.v13.u16[0] & 0xF);
-	ctx.v24.u16[1] = ctx.v3.u16[1] << (ctx.v13.u16[1] & 0xF);
-	ctx.v24.u16[2] = ctx.v3.u16[2] << (ctx.v13.u16[2] & 0xF);
-	ctx.v24.u16[3] = ctx.v3.u16[3] << (ctx.v13.u16[3] & 0xF);
-	ctx.v24.u16[4] = ctx.v3.u16[4] << (ctx.v13.u16[4] & 0xF);
-	ctx.v24.u16[5] = ctx.v3.u16[5] << (ctx.v13.u16[5] & 0xF);
-	ctx.v24.u16[6] = ctx.v3.u16[6] << (ctx.v13.u16[6] & 0xF);
-	ctx.v24.u16[7] = ctx.v3.u16[7] << (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v3.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v24.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// addic. r8,r8,-1
 	ctx.xer.ca = ctx.r8.u32 > 0;
 	ctx.r8.s64 = ctx.r8.s64 + -1;
 	ctx.cr0.compare<int32_t>(ctx.r8.s32, 0, ctx.xer);
 	// vslh v22,v9,v10
-	ctx.v22.u16[0] = ctx.v9.u16[0] << (ctx.v10.u16[0] & 0xF);
-	ctx.v22.u16[1] = ctx.v9.u16[1] << (ctx.v10.u16[1] & 0xF);
-	ctx.v22.u16[2] = ctx.v9.u16[2] << (ctx.v10.u16[2] & 0xF);
-	ctx.v22.u16[3] = ctx.v9.u16[3] << (ctx.v10.u16[3] & 0xF);
-	ctx.v22.u16[4] = ctx.v9.u16[4] << (ctx.v10.u16[4] & 0xF);
-	ctx.v22.u16[5] = ctx.v9.u16[5] << (ctx.v10.u16[5] & 0xF);
-	ctx.v22.u16[6] = ctx.v9.u16[6] << (ctx.v10.u16[6] & 0xF);
-	ctx.v22.u16[7] = ctx.v9.u16[7] << (ctx.v10.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v10.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v22.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// add r9,r9,r5
 	ctx.r9.u64 = ctx.r9.u64 + ctx.r5.u64;
 	// vslh v21,v9,v13
-	ctx.v21.u16[0] = ctx.v9.u16[0] << (ctx.v13.u16[0] & 0xF);
-	ctx.v21.u16[1] = ctx.v9.u16[1] << (ctx.v13.u16[1] & 0xF);
-	ctx.v21.u16[2] = ctx.v9.u16[2] << (ctx.v13.u16[2] & 0xF);
-	ctx.v21.u16[3] = ctx.v9.u16[3] << (ctx.v13.u16[3] & 0xF);
-	ctx.v21.u16[4] = ctx.v9.u16[4] << (ctx.v13.u16[4] & 0xF);
-	ctx.v21.u16[5] = ctx.v9.u16[5] << (ctx.v13.u16[5] & 0xF);
-	ctx.v21.u16[6] = ctx.v9.u16[6] << (ctx.v13.u16[6] & 0xF);
-	ctx.v21.u16[7] = ctx.v9.u16[7] << (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v21.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// stvx128 v5,r10,r4
 	ea = (ctx.r10.u32 + ctx.r4.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)PPC_RAW_ADDR(ea), simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)ctx.v5.u8), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
@@ -34067,14 +33167,12 @@ loc_82A48884:
 	ea = (ctx.r10.u32 + ctx.r3.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)PPC_RAW_ADDR(ea), simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)ctx.v6.u8), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
 	// vslh v19,v4,v11
-	ctx.v19.u16[0] = ctx.v4.u16[0] << (ctx.v11.u16[0] & 0xF);
-	ctx.v19.u16[1] = ctx.v4.u16[1] << (ctx.v11.u16[1] & 0xF);
-	ctx.v19.u16[2] = ctx.v4.u16[2] << (ctx.v11.u16[2] & 0xF);
-	ctx.v19.u16[3] = ctx.v4.u16[3] << (ctx.v11.u16[3] & 0xF);
-	ctx.v19.u16[4] = ctx.v4.u16[4] << (ctx.v11.u16[4] & 0xF);
-	ctx.v19.u16[5] = ctx.v4.u16[5] << (ctx.v11.u16[5] & 0xF);
-	ctx.v19.u16[6] = ctx.v4.u16[6] << (ctx.v11.u16[6] & 0xF);
-	ctx.v19.u16[7] = ctx.v4.u16[7] << (ctx.v11.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v4.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v11.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v19.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// addi r10,r10,16
 	ctx.r10.s64 = ctx.r10.s64 + 16;
 	// vadduhm v17,v27,v2
@@ -34082,14 +33180,12 @@ loc_82A48884:
 	// vadduhm v16,v24,v6
 	simde_mm_store_si128((simde__m128i*)ctx.v16.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v24.u16), simde_mm_load_si128((simde__m128i*)ctx.v6.u16)));
 	// vslh v15,v3,v11
-	ctx.v15.u16[0] = ctx.v3.u16[0] << (ctx.v11.u16[0] & 0xF);
-	ctx.v15.u16[1] = ctx.v3.u16[1] << (ctx.v11.u16[1] & 0xF);
-	ctx.v15.u16[2] = ctx.v3.u16[2] << (ctx.v11.u16[2] & 0xF);
-	ctx.v15.u16[3] = ctx.v3.u16[3] << (ctx.v11.u16[3] & 0xF);
-	ctx.v15.u16[4] = ctx.v3.u16[4] << (ctx.v11.u16[4] & 0xF);
-	ctx.v15.u16[5] = ctx.v3.u16[5] << (ctx.v11.u16[5] & 0xF);
-	ctx.v15.u16[6] = ctx.v3.u16[6] << (ctx.v11.u16[6] & 0xF);
-	ctx.v15.u16[7] = ctx.v3.u16[7] << (ctx.v11.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v3.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v11.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v15.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vadduhm v14,v22,v23
 	simde_mm_store_si128((simde__m128i*)ctx.v14.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v22.u16), simde_mm_load_si128((simde__m128i*)ctx.v23.u16)));
 	// vadduhm v9,v21,v2
@@ -34107,25 +33203,21 @@ loc_82A48884:
 	// vadduhm v31,v9,v14
 	simde_mm_store_si128((simde__m128i*)ctx.v31.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v9.u16), simde_mm_load_si128((simde__m128i*)ctx.v14.u16)));
 	// vslh v30,v7,v12
-	ctx.v30.u16[0] = ctx.v7.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v30.u16[1] = ctx.v7.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v30.u16[2] = ctx.v7.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v30.u16[3] = ctx.v7.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v30.u16[4] = ctx.v7.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v30.u16[5] = ctx.v7.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v30.u16[6] = ctx.v7.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v30.u16[7] = ctx.v7.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v7.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v30.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vadduhm v29,v4,v5
 	simde_mm_store_si128((simde__m128i*)ctx.v29.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v4.u16), simde_mm_load_si128((simde__m128i*)ctx.v5.u16)));
 	// vslh v28,v3,v12
-	ctx.v28.u16[0] = ctx.v3.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v28.u16[1] = ctx.v3.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v28.u16[2] = ctx.v3.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v28.u16[3] = ctx.v3.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v28.u16[4] = ctx.v3.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v28.u16[5] = ctx.v3.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v28.u16[6] = ctx.v3.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v28.u16[7] = ctx.v3.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v3.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v28.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vadduhm v27,v31,v1
 	simde_mm_store_si128((simde__m128i*)ctx.v27.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v31.u16), simde_mm_load_si128((simde__m128i*)ctx.v1.u16)));
 	// vsubuhm v26,v29,v30
@@ -34133,23 +33225,19 @@ loc_82A48884:
 	// vsubuhm v25,v27,v28
 	simde_mm_store_si128((simde__m128i*)ctx.v25.u16, simde_mm_sub_epi16(simde_mm_load_si128((simde__m128i*)ctx.v27.u16), simde_mm_load_si128((simde__m128i*)ctx.v28.u16)));
 	// vsrah v24,v26,v8
-	ctx.v24.s16[0] = ctx.v26.s16[0] >> (ctx.v8.u16[0] & 0xF);
-	ctx.v24.s16[1] = ctx.v26.s16[1] >> (ctx.v8.u16[1] & 0xF);
-	ctx.v24.s16[2] = ctx.v26.s16[2] >> (ctx.v8.u16[2] & 0xF);
-	ctx.v24.s16[3] = ctx.v26.s16[3] >> (ctx.v8.u16[3] & 0xF);
-	ctx.v24.s16[4] = ctx.v26.s16[4] >> (ctx.v8.u16[4] & 0xF);
-	ctx.v24.s16[5] = ctx.v26.s16[5] >> (ctx.v8.u16[5] & 0xF);
-	ctx.v24.s16[6] = ctx.v26.s16[6] >> (ctx.v8.u16[6] & 0xF);
-	ctx.v24.s16[7] = ctx.v26.s16[7] >> (ctx.v8.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v26.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v24.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v23,v25,v8
-	ctx.v23.s16[0] = ctx.v25.s16[0] >> (ctx.v8.u16[0] & 0xF);
-	ctx.v23.s16[1] = ctx.v25.s16[1] >> (ctx.v8.u16[1] & 0xF);
-	ctx.v23.s16[2] = ctx.v25.s16[2] >> (ctx.v8.u16[2] & 0xF);
-	ctx.v23.s16[3] = ctx.v25.s16[3] >> (ctx.v8.u16[3] & 0xF);
-	ctx.v23.s16[4] = ctx.v25.s16[4] >> (ctx.v8.u16[4] & 0xF);
-	ctx.v23.s16[5] = ctx.v25.s16[5] >> (ctx.v8.u16[5] & 0xF);
-	ctx.v23.s16[6] = ctx.v25.s16[6] >> (ctx.v8.u16[6] & 0xF);
-	ctx.v23.s16[7] = ctx.v25.s16[7] >> (ctx.v8.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v25.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v23.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vpkshus128 v34,v23,v24
 	simde_mm_store_si128((simde__m128i*)ctx.v34.u8, simde_mm_packus_epi16(simde_mm_load_si128((simde__m128i*)ctx.v24.s16), simde_mm_load_si128((simde__m128i*)ctx.v23.s16)));
 	// stvlx128 v34,r0,r6
@@ -34195,28 +33283,24 @@ loc_82A48980:
 	// vspltish v9,-5
 	simde_mm_store_si128((simde__m128i*)ctx.v9.s16, simde_mm_set1_epi16(short(0xFFFB)));
 	// vsrh v1,v9,v9
-	ctx.v1.u16[0] = ctx.v9.u16[0] >> (ctx.v9.u16[0] & 0xF);
-	ctx.v1.u16[1] = ctx.v9.u16[1] >> (ctx.v9.u16[1] & 0xF);
-	ctx.v1.u16[2] = ctx.v9.u16[2] >> (ctx.v9.u16[2] & 0xF);
-	ctx.v1.u16[3] = ctx.v9.u16[3] >> (ctx.v9.u16[3] & 0xF);
-	ctx.v1.u16[4] = ctx.v9.u16[4] >> (ctx.v9.u16[4] & 0xF);
-	ctx.v1.u16[5] = ctx.v9.u16[5] >> (ctx.v9.u16[5] & 0xF);
-	ctx.v1.u16[6] = ctx.v9.u16[6] >> (ctx.v9.u16[6] & 0xF);
-	ctx.v1.u16[7] = ctx.v9.u16[7] >> (ctx.v9.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v1.u8, rex::simde_mm_srlv_epi16(a, shift));
+	}
 	// b 0x82a489c0
 	goto loc_82A489C0;
 loc_82A489B8:
 	// vspltish v9,8
 	simde_mm_store_si128((simde__m128i*)ctx.v9.s16, simde_mm_set1_epi16(short(0x8)));
 	// vslh v1,v9,v12
-	ctx.v1.u16[0] = ctx.v9.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v1.u16[1] = ctx.v9.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v1.u16[2] = ctx.v9.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v1.u16[3] = ctx.v9.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v1.u16[4] = ctx.v9.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v1.u16[5] = ctx.v9.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v1.u16[6] = ctx.v9.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v1.u16[7] = ctx.v9.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v1.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 loc_82A489C0:
 	// lwz r8,1100(r1)
 	ctx.r8.u64 = PPC_LOAD_U32(ctx.r1.u32 + 1100);
@@ -34274,85 +33358,69 @@ loc_82A489D8:
 	// vmrglb v6,v0,v6
 	simde_mm_store_si128((simde__m128i*)ctx.v6.u8, simde_mm_unpacklo_epi8(simde_mm_load_si128((simde__m128i*)ctx.v6.u8), simde_mm_load_si128((simde__m128i*)ctx.v0.u8)));
 	// vslh v30,v9,v12
-	ctx.v30.u16[0] = ctx.v9.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v30.u16[1] = ctx.v9.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v30.u16[2] = ctx.v9.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v30.u16[3] = ctx.v9.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v30.u16[4] = ctx.v9.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v30.u16[5] = ctx.v9.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v30.u16[6] = ctx.v9.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v30.u16[7] = ctx.v9.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v30.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vmrghb v31,v0,v5
 	simde_mm_store_si128((simde__m128i*)ctx.v31.u8, simde_mm_unpackhi_epi8(simde_mm_load_si128((simde__m128i*)ctx.v5.u8), simde_mm_load_si128((simde__m128i*)ctx.v0.u8)));
 	// vslh v29,v7,v12
-	ctx.v29.u16[0] = ctx.v7.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v29.u16[1] = ctx.v7.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v29.u16[2] = ctx.v7.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v29.u16[3] = ctx.v7.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v29.u16[4] = ctx.v7.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v29.u16[5] = ctx.v7.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v29.u16[6] = ctx.v7.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v29.u16[7] = ctx.v7.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v7.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v29.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vmrglb v5,v0,v5
 	simde_mm_store_si128((simde__m128i*)ctx.v5.u8, simde_mm_unpacklo_epi8(simde_mm_load_si128((simde__m128i*)ctx.v5.u8), simde_mm_load_si128((simde__m128i*)ctx.v0.u8)));
 	// vslh v28,v7,v10
-	ctx.v28.u16[0] = ctx.v7.u16[0] << (ctx.v10.u16[0] & 0xF);
-	ctx.v28.u16[1] = ctx.v7.u16[1] << (ctx.v10.u16[1] & 0xF);
-	ctx.v28.u16[2] = ctx.v7.u16[2] << (ctx.v10.u16[2] & 0xF);
-	ctx.v28.u16[3] = ctx.v7.u16[3] << (ctx.v10.u16[3] & 0xF);
-	ctx.v28.u16[4] = ctx.v7.u16[4] << (ctx.v10.u16[4] & 0xF);
-	ctx.v28.u16[5] = ctx.v7.u16[5] << (ctx.v10.u16[5] & 0xF);
-	ctx.v28.u16[6] = ctx.v7.u16[6] << (ctx.v10.u16[6] & 0xF);
-	ctx.v28.u16[7] = ctx.v7.u16[7] << (ctx.v10.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v7.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v10.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v28.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v27,v6,v13
-	ctx.v27.u16[0] = ctx.v6.u16[0] << (ctx.v13.u16[0] & 0xF);
-	ctx.v27.u16[1] = ctx.v6.u16[1] << (ctx.v13.u16[1] & 0xF);
-	ctx.v27.u16[2] = ctx.v6.u16[2] << (ctx.v13.u16[2] & 0xF);
-	ctx.v27.u16[3] = ctx.v6.u16[3] << (ctx.v13.u16[3] & 0xF);
-	ctx.v27.u16[4] = ctx.v6.u16[4] << (ctx.v13.u16[4] & 0xF);
-	ctx.v27.u16[5] = ctx.v6.u16[5] << (ctx.v13.u16[5] & 0xF);
-	ctx.v27.u16[6] = ctx.v6.u16[6] << (ctx.v13.u16[6] & 0xF);
-	ctx.v27.u16[7] = ctx.v6.u16[7] << (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v6.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v27.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v26,v7,v13
-	ctx.v26.u16[0] = ctx.v7.u16[0] << (ctx.v13.u16[0] & 0xF);
-	ctx.v26.u16[1] = ctx.v7.u16[1] << (ctx.v13.u16[1] & 0xF);
-	ctx.v26.u16[2] = ctx.v7.u16[2] << (ctx.v13.u16[2] & 0xF);
-	ctx.v26.u16[3] = ctx.v7.u16[3] << (ctx.v13.u16[3] & 0xF);
-	ctx.v26.u16[4] = ctx.v7.u16[4] << (ctx.v13.u16[4] & 0xF);
-	ctx.v26.u16[5] = ctx.v7.u16[5] << (ctx.v13.u16[5] & 0xF);
-	ctx.v26.u16[6] = ctx.v7.u16[6] << (ctx.v13.u16[6] & 0xF);
-	ctx.v26.u16[7] = ctx.v7.u16[7] << (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v7.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v26.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vadduhm v25,v29,v7
 	simde_mm_store_si128((simde__m128i*)ctx.v25.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v29.u16), simde_mm_load_si128((simde__m128i*)ctx.v7.u16)));
 	// vslh v24,v2,v13
-	ctx.v24.u16[0] = ctx.v2.u16[0] << (ctx.v13.u16[0] & 0xF);
-	ctx.v24.u16[1] = ctx.v2.u16[1] << (ctx.v13.u16[1] & 0xF);
-	ctx.v24.u16[2] = ctx.v2.u16[2] << (ctx.v13.u16[2] & 0xF);
-	ctx.v24.u16[3] = ctx.v2.u16[3] << (ctx.v13.u16[3] & 0xF);
-	ctx.v24.u16[4] = ctx.v2.u16[4] << (ctx.v13.u16[4] & 0xF);
-	ctx.v24.u16[5] = ctx.v2.u16[5] << (ctx.v13.u16[5] & 0xF);
-	ctx.v24.u16[6] = ctx.v2.u16[6] << (ctx.v13.u16[6] & 0xF);
-	ctx.v24.u16[7] = ctx.v2.u16[7] << (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v2.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v24.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vadduhm v23,v30,v9
 	simde_mm_store_si128((simde__m128i*)ctx.v23.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v30.u16), simde_mm_load_si128((simde__m128i*)ctx.v9.u16)));
 	// vslh v22,v9,v10
-	ctx.v22.u16[0] = ctx.v9.u16[0] << (ctx.v10.u16[0] & 0xF);
-	ctx.v22.u16[1] = ctx.v9.u16[1] << (ctx.v10.u16[1] & 0xF);
-	ctx.v22.u16[2] = ctx.v9.u16[2] << (ctx.v10.u16[2] & 0xF);
-	ctx.v22.u16[3] = ctx.v9.u16[3] << (ctx.v10.u16[3] & 0xF);
-	ctx.v22.u16[4] = ctx.v9.u16[4] << (ctx.v10.u16[4] & 0xF);
-	ctx.v22.u16[5] = ctx.v9.u16[5] << (ctx.v10.u16[5] & 0xF);
-	ctx.v22.u16[6] = ctx.v9.u16[6] << (ctx.v10.u16[6] & 0xF);
-	ctx.v22.u16[7] = ctx.v9.u16[7] << (ctx.v10.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v10.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v22.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v21,v9,v13
-	ctx.v21.u16[0] = ctx.v9.u16[0] << (ctx.v13.u16[0] & 0xF);
-	ctx.v21.u16[1] = ctx.v9.u16[1] << (ctx.v13.u16[1] & 0xF);
-	ctx.v21.u16[2] = ctx.v9.u16[2] << (ctx.v13.u16[2] & 0xF);
-	ctx.v21.u16[3] = ctx.v9.u16[3] << (ctx.v13.u16[3] & 0xF);
-	ctx.v21.u16[4] = ctx.v9.u16[4] << (ctx.v13.u16[4] & 0xF);
-	ctx.v21.u16[5] = ctx.v9.u16[5] << (ctx.v13.u16[5] & 0xF);
-	ctx.v21.u16[6] = ctx.v9.u16[6] << (ctx.v13.u16[6] & 0xF);
-	ctx.v21.u16[7] = ctx.v9.u16[7] << (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v21.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vadduhm v20,v27,v3
 	simde_mm_store_si128((simde__m128i*)ctx.v20.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v27.u16), simde_mm_load_si128((simde__m128i*)ctx.v3.u16)));
 	// vadduhm v18,v24,v4
@@ -34360,23 +33428,19 @@ loc_82A489D8:
 	// vadduhm v16,v28,v25
 	simde_mm_store_si128((simde__m128i*)ctx.v16.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v28.u16), simde_mm_load_si128((simde__m128i*)ctx.v25.u16)));
 	// vslh v19,v6,v11
-	ctx.v19.u16[0] = ctx.v6.u16[0] << (ctx.v11.u16[0] & 0xF);
-	ctx.v19.u16[1] = ctx.v6.u16[1] << (ctx.v11.u16[1] & 0xF);
-	ctx.v19.u16[2] = ctx.v6.u16[2] << (ctx.v11.u16[2] & 0xF);
-	ctx.v19.u16[3] = ctx.v6.u16[3] << (ctx.v11.u16[3] & 0xF);
-	ctx.v19.u16[4] = ctx.v6.u16[4] << (ctx.v11.u16[4] & 0xF);
-	ctx.v19.u16[5] = ctx.v6.u16[5] << (ctx.v11.u16[5] & 0xF);
-	ctx.v19.u16[6] = ctx.v6.u16[6] << (ctx.v11.u16[6] & 0xF);
-	ctx.v19.u16[7] = ctx.v6.u16[7] << (ctx.v11.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v6.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v11.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v19.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v17,v2,v11
-	ctx.v17.u16[0] = ctx.v2.u16[0] << (ctx.v11.u16[0] & 0xF);
-	ctx.v17.u16[1] = ctx.v2.u16[1] << (ctx.v11.u16[1] & 0xF);
-	ctx.v17.u16[2] = ctx.v2.u16[2] << (ctx.v11.u16[2] & 0xF);
-	ctx.v17.u16[3] = ctx.v2.u16[3] << (ctx.v11.u16[3] & 0xF);
-	ctx.v17.u16[4] = ctx.v2.u16[4] << (ctx.v11.u16[4] & 0xF);
-	ctx.v17.u16[5] = ctx.v2.u16[5] << (ctx.v11.u16[5] & 0xF);
-	ctx.v17.u16[6] = ctx.v2.u16[6] << (ctx.v11.u16[6] & 0xF);
-	ctx.v17.u16[7] = ctx.v2.u16[7] << (ctx.v11.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v2.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v11.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v17.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vadduhm v15,v26,v1
 	simde_mm_store_si128((simde__m128i*)ctx.v15.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v26.u16), simde_mm_load_si128((simde__m128i*)ctx.v1.u16)));
 	// vadduhm v14,v22,v23
@@ -34396,25 +33460,21 @@ loc_82A489D8:
 	// vadduhm v2,v9,v14
 	simde_mm_store_si128((simde__m128i*)ctx.v2.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v9.u16), simde_mm_load_si128((simde__m128i*)ctx.v14.u16)));
 	// vslh v31,v7,v12
-	ctx.v31.u16[0] = ctx.v7.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v31.u16[1] = ctx.v7.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v31.u16[2] = ctx.v7.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v31.u16[3] = ctx.v7.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v31.u16[4] = ctx.v7.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v31.u16[5] = ctx.v7.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v31.u16[6] = ctx.v7.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v31.u16[7] = ctx.v7.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v7.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v31.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vadduhm v30,v4,v5
 	simde_mm_store_si128((simde__m128i*)ctx.v30.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v4.u16), simde_mm_load_si128((simde__m128i*)ctx.v5.u16)));
 	// vslh v29,v6,v12
-	ctx.v29.u16[0] = ctx.v6.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v29.u16[1] = ctx.v6.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v29.u16[2] = ctx.v6.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v29.u16[3] = ctx.v6.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v29.u16[4] = ctx.v6.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v29.u16[5] = ctx.v6.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v29.u16[6] = ctx.v6.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v29.u16[7] = ctx.v6.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v6.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v29.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vadduhm v28,v2,v3
 	simde_mm_store_si128((simde__m128i*)ctx.v28.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v2.u16), simde_mm_load_si128((simde__m128i*)ctx.v3.u16)));
 	// vsubuhm v27,v30,v31
@@ -34422,23 +33482,19 @@ loc_82A489D8:
 	// vsubuhm v26,v28,v29
 	simde_mm_store_si128((simde__m128i*)ctx.v26.u16, simde_mm_sub_epi16(simde_mm_load_si128((simde__m128i*)ctx.v28.u16), simde_mm_load_si128((simde__m128i*)ctx.v29.u16)));
 	// vsrah v25,v27,v8
-	ctx.v25.s16[0] = ctx.v27.s16[0] >> (ctx.v8.u16[0] & 0xF);
-	ctx.v25.s16[1] = ctx.v27.s16[1] >> (ctx.v8.u16[1] & 0xF);
-	ctx.v25.s16[2] = ctx.v27.s16[2] >> (ctx.v8.u16[2] & 0xF);
-	ctx.v25.s16[3] = ctx.v27.s16[3] >> (ctx.v8.u16[3] & 0xF);
-	ctx.v25.s16[4] = ctx.v27.s16[4] >> (ctx.v8.u16[4] & 0xF);
-	ctx.v25.s16[5] = ctx.v27.s16[5] >> (ctx.v8.u16[5] & 0xF);
-	ctx.v25.s16[6] = ctx.v27.s16[6] >> (ctx.v8.u16[6] & 0xF);
-	ctx.v25.s16[7] = ctx.v27.s16[7] >> (ctx.v8.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v27.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v25.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v24,v26,v8
-	ctx.v24.s16[0] = ctx.v26.s16[0] >> (ctx.v8.u16[0] & 0xF);
-	ctx.v24.s16[1] = ctx.v26.s16[1] >> (ctx.v8.u16[1] & 0xF);
-	ctx.v24.s16[2] = ctx.v26.s16[2] >> (ctx.v8.u16[2] & 0xF);
-	ctx.v24.s16[3] = ctx.v26.s16[3] >> (ctx.v8.u16[3] & 0xF);
-	ctx.v24.s16[4] = ctx.v26.s16[4] >> (ctx.v8.u16[4] & 0xF);
-	ctx.v24.s16[5] = ctx.v26.s16[5] >> (ctx.v8.u16[5] & 0xF);
-	ctx.v24.s16[6] = ctx.v26.s16[6] >> (ctx.v8.u16[6] & 0xF);
-	ctx.v24.s16[7] = ctx.v26.s16[7] >> (ctx.v8.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v26.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v24.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vpkshus128 v60,v24,v25
 	simde_mm_store_si128((simde__m128i*)ctx.v60.u8, simde_mm_packus_epi16(simde_mm_load_si128((simde__m128i*)ctx.v25.s16), simde_mm_load_si128((simde__m128i*)ctx.v24.s16)));
 	// stvlx128 v60,r0,r6
@@ -34538,23 +33594,19 @@ loc_82A48AF0:
 	// vadduhm v9,v6,v9
 	simde_mm_store_si128((simde__m128i*)ctx.v9.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v6.u16), simde_mm_load_si128((simde__m128i*)ctx.v9.u16)));
 	// vslh v7,v12,v30
-	ctx.v7.u16[0] = ctx.v12.u16[0] << (ctx.v30.u16[0] & 0xF);
-	ctx.v7.u16[1] = ctx.v12.u16[1] << (ctx.v30.u16[1] & 0xF);
-	ctx.v7.u16[2] = ctx.v12.u16[2] << (ctx.v30.u16[2] & 0xF);
-	ctx.v7.u16[3] = ctx.v12.u16[3] << (ctx.v30.u16[3] & 0xF);
-	ctx.v7.u16[4] = ctx.v12.u16[4] << (ctx.v30.u16[4] & 0xF);
-	ctx.v7.u16[5] = ctx.v12.u16[5] << (ctx.v30.u16[5] & 0xF);
-	ctx.v7.u16[6] = ctx.v12.u16[6] << (ctx.v30.u16[6] & 0xF);
-	ctx.v7.u16[7] = ctx.v12.u16[7] << (ctx.v30.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v30.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v7.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v6,v11,v30
-	ctx.v6.u16[0] = ctx.v11.u16[0] << (ctx.v30.u16[0] & 0xF);
-	ctx.v6.u16[1] = ctx.v11.u16[1] << (ctx.v30.u16[1] & 0xF);
-	ctx.v6.u16[2] = ctx.v11.u16[2] << (ctx.v30.u16[2] & 0xF);
-	ctx.v6.u16[3] = ctx.v11.u16[3] << (ctx.v30.u16[3] & 0xF);
-	ctx.v6.u16[4] = ctx.v11.u16[4] << (ctx.v30.u16[4] & 0xF);
-	ctx.v6.u16[5] = ctx.v11.u16[5] << (ctx.v30.u16[5] & 0xF);
-	ctx.v6.u16[6] = ctx.v11.u16[6] << (ctx.v30.u16[6] & 0xF);
-	ctx.v6.u16[7] = ctx.v11.u16[7] << (ctx.v30.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v11.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v30.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v6.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vsubuhm v5,v8,v10
 	simde_mm_store_si128((simde__m128i*)ctx.v5.u16, simde_mm_sub_epi16(simde_mm_load_si128((simde__m128i*)ctx.v8.u16), simde_mm_load_si128((simde__m128i*)ctx.v10.u16)));
 	// vsubuhm v4,v8,v9
@@ -34568,23 +33620,19 @@ loc_82A48AF0:
 	// vadduhm v31,v2,v4
 	simde_mm_store_si128((simde__m128i*)ctx.v31.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v2.u16), simde_mm_load_si128((simde__m128i*)ctx.v4.u16)));
 	// vsrah v29,v1,v13
-	ctx.v29.s16[0] = ctx.v1.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v29.s16[1] = ctx.v1.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v29.s16[2] = ctx.v1.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v29.s16[3] = ctx.v1.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v29.s16[4] = ctx.v1.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v29.s16[5] = ctx.v1.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v29.s16[6] = ctx.v1.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v29.s16[7] = ctx.v1.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v1.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v29.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v28,v31,v13
-	ctx.v28.s16[0] = ctx.v31.s16[0] >> (ctx.v13.u16[0] & 0xF);
-	ctx.v28.s16[1] = ctx.v31.s16[1] >> (ctx.v13.u16[1] & 0xF);
-	ctx.v28.s16[2] = ctx.v31.s16[2] >> (ctx.v13.u16[2] & 0xF);
-	ctx.v28.s16[3] = ctx.v31.s16[3] >> (ctx.v13.u16[3] & 0xF);
-	ctx.v28.s16[4] = ctx.v31.s16[4] >> (ctx.v13.u16[4] & 0xF);
-	ctx.v28.s16[5] = ctx.v31.s16[5] >> (ctx.v13.u16[5] & 0xF);
-	ctx.v28.s16[6] = ctx.v31.s16[6] >> (ctx.v13.u16[6] & 0xF);
-	ctx.v28.s16[7] = ctx.v31.s16[7] >> (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v31.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v28.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vpkshus128 v54,v29,v28
 	simde_mm_store_si128((simde__m128i*)ctx.v54.u8, simde_mm_packus_epi16(simde_mm_load_si128((simde__m128i*)ctx.v28.s16), simde_mm_load_si128((simde__m128i*)ctx.v29.s16)));
 	// stvlx128 v54,r0,r6
@@ -34614,28 +33662,24 @@ loc_82A48B94:
 	// vspltish v9,-5
 	simde_mm_store_si128((simde__m128i*)ctx.v9.s16, simde_mm_set1_epi16(short(0xFFFB)));
 	// vsrh v2,v9,v9
-	ctx.v2.u16[0] = ctx.v9.u16[0] >> (ctx.v9.u16[0] & 0xF);
-	ctx.v2.u16[1] = ctx.v9.u16[1] >> (ctx.v9.u16[1] & 0xF);
-	ctx.v2.u16[2] = ctx.v9.u16[2] >> (ctx.v9.u16[2] & 0xF);
-	ctx.v2.u16[3] = ctx.v9.u16[3] >> (ctx.v9.u16[3] & 0xF);
-	ctx.v2.u16[4] = ctx.v9.u16[4] >> (ctx.v9.u16[4] & 0xF);
-	ctx.v2.u16[5] = ctx.v9.u16[5] >> (ctx.v9.u16[5] & 0xF);
-	ctx.v2.u16[6] = ctx.v9.u16[6] >> (ctx.v9.u16[6] & 0xF);
-	ctx.v2.u16[7] = ctx.v9.u16[7] >> (ctx.v9.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v2.u8, rex::simde_mm_srlv_epi16(a, shift));
+	}
 	// b 0x82a48bb4
 	goto loc_82A48BB4;
 loc_82A48BAC:
 	// vspltish v9,8
 	simde_mm_store_si128((simde__m128i*)ctx.v9.s16, simde_mm_set1_epi16(short(0x8)));
 	// vslh v2,v9,v12
-	ctx.v2.u16[0] = ctx.v9.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v2.u16[1] = ctx.v9.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v2.u16[2] = ctx.v9.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v2.u16[3] = ctx.v9.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v2.u16[4] = ctx.v9.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v2.u16[5] = ctx.v9.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v2.u16[6] = ctx.v9.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v2.u16[7] = ctx.v9.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v2.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 loc_82A48BB4:
 	// lwz r8,1100(r1)
 	ctx.r8.u64 = PPC_LOAD_U32(ctx.r1.u32 + 1100);
@@ -34693,109 +33737,89 @@ loc_82A48BCC:
 	// vmrglb v6,v0,v6
 	simde_mm_store_si128((simde__m128i*)ctx.v6.u8, simde_mm_unpacklo_epi8(simde_mm_load_si128((simde__m128i*)ctx.v6.u8), simde_mm_load_si128((simde__m128i*)ctx.v0.u8)));
 	// vslh v30,v9,v12
-	ctx.v30.u16[0] = ctx.v9.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v30.u16[1] = ctx.v9.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v30.u16[2] = ctx.v9.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v30.u16[3] = ctx.v9.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v30.u16[4] = ctx.v9.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v30.u16[5] = ctx.v9.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v30.u16[6] = ctx.v9.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v30.u16[7] = ctx.v9.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v30.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vmrghb v3,v0,v5
 	simde_mm_store_si128((simde__m128i*)ctx.v3.u8, simde_mm_unpackhi_epi8(simde_mm_load_si128((simde__m128i*)ctx.v5.u8), simde_mm_load_si128((simde__m128i*)ctx.v0.u8)));
 	// vslh v29,v7,v12
-	ctx.v29.u16[0] = ctx.v7.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v29.u16[1] = ctx.v7.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v29.u16[2] = ctx.v7.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v29.u16[3] = ctx.v7.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v29.u16[4] = ctx.v7.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v29.u16[5] = ctx.v7.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v29.u16[6] = ctx.v7.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v29.u16[7] = ctx.v7.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v7.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v29.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vmrglb v5,v0,v5
 	simde_mm_store_si128((simde__m128i*)ctx.v5.u8, simde_mm_unpacklo_epi8(simde_mm_load_si128((simde__m128i*)ctx.v5.u8), simde_mm_load_si128((simde__m128i*)ctx.v0.u8)));
 	// vslh v28,v7,v10
-	ctx.v28.u16[0] = ctx.v7.u16[0] << (ctx.v10.u16[0] & 0xF);
-	ctx.v28.u16[1] = ctx.v7.u16[1] << (ctx.v10.u16[1] & 0xF);
-	ctx.v28.u16[2] = ctx.v7.u16[2] << (ctx.v10.u16[2] & 0xF);
-	ctx.v28.u16[3] = ctx.v7.u16[3] << (ctx.v10.u16[3] & 0xF);
-	ctx.v28.u16[4] = ctx.v7.u16[4] << (ctx.v10.u16[4] & 0xF);
-	ctx.v28.u16[5] = ctx.v7.u16[5] << (ctx.v10.u16[5] & 0xF);
-	ctx.v28.u16[6] = ctx.v7.u16[6] << (ctx.v10.u16[6] & 0xF);
-	ctx.v28.u16[7] = ctx.v7.u16[7] << (ctx.v10.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v7.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v10.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v28.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v27,v6,v13
-	ctx.v27.u16[0] = ctx.v6.u16[0] << (ctx.v13.u16[0] & 0xF);
-	ctx.v27.u16[1] = ctx.v6.u16[1] << (ctx.v13.u16[1] & 0xF);
-	ctx.v27.u16[2] = ctx.v6.u16[2] << (ctx.v13.u16[2] & 0xF);
-	ctx.v27.u16[3] = ctx.v6.u16[3] << (ctx.v13.u16[3] & 0xF);
-	ctx.v27.u16[4] = ctx.v6.u16[4] << (ctx.v13.u16[4] & 0xF);
-	ctx.v27.u16[5] = ctx.v6.u16[5] << (ctx.v13.u16[5] & 0xF);
-	ctx.v27.u16[6] = ctx.v6.u16[6] << (ctx.v13.u16[6] & 0xF);
-	ctx.v27.u16[7] = ctx.v6.u16[7] << (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v6.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v27.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v26,v7,v13
-	ctx.v26.u16[0] = ctx.v7.u16[0] << (ctx.v13.u16[0] & 0xF);
-	ctx.v26.u16[1] = ctx.v7.u16[1] << (ctx.v13.u16[1] & 0xF);
-	ctx.v26.u16[2] = ctx.v7.u16[2] << (ctx.v13.u16[2] & 0xF);
-	ctx.v26.u16[3] = ctx.v7.u16[3] << (ctx.v13.u16[3] & 0xF);
-	ctx.v26.u16[4] = ctx.v7.u16[4] << (ctx.v13.u16[4] & 0xF);
-	ctx.v26.u16[5] = ctx.v7.u16[5] << (ctx.v13.u16[5] & 0xF);
-	ctx.v26.u16[6] = ctx.v7.u16[6] << (ctx.v13.u16[6] & 0xF);
-	ctx.v26.u16[7] = ctx.v7.u16[7] << (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v7.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v26.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vadduhm v25,v29,v7
 	simde_mm_store_si128((simde__m128i*)ctx.v25.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v29.u16), simde_mm_load_si128((simde__m128i*)ctx.v7.u16)));
 	// vslh v24,v4,v13
-	ctx.v24.u16[0] = ctx.v4.u16[0] << (ctx.v13.u16[0] & 0xF);
-	ctx.v24.u16[1] = ctx.v4.u16[1] << (ctx.v13.u16[1] & 0xF);
-	ctx.v24.u16[2] = ctx.v4.u16[2] << (ctx.v13.u16[2] & 0xF);
-	ctx.v24.u16[3] = ctx.v4.u16[3] << (ctx.v13.u16[3] & 0xF);
-	ctx.v24.u16[4] = ctx.v4.u16[4] << (ctx.v13.u16[4] & 0xF);
-	ctx.v24.u16[5] = ctx.v4.u16[5] << (ctx.v13.u16[5] & 0xF);
-	ctx.v24.u16[6] = ctx.v4.u16[6] << (ctx.v13.u16[6] & 0xF);
-	ctx.v24.u16[7] = ctx.v4.u16[7] << (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v4.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v24.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vadduhm v23,v30,v9
 	simde_mm_store_si128((simde__m128i*)ctx.v23.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v30.u16), simde_mm_load_si128((simde__m128i*)ctx.v9.u16)));
 	// vslh v22,v9,v10
-	ctx.v22.u16[0] = ctx.v9.u16[0] << (ctx.v10.u16[0] & 0xF);
-	ctx.v22.u16[1] = ctx.v9.u16[1] << (ctx.v10.u16[1] & 0xF);
-	ctx.v22.u16[2] = ctx.v9.u16[2] << (ctx.v10.u16[2] & 0xF);
-	ctx.v22.u16[3] = ctx.v9.u16[3] << (ctx.v10.u16[3] & 0xF);
-	ctx.v22.u16[4] = ctx.v9.u16[4] << (ctx.v10.u16[4] & 0xF);
-	ctx.v22.u16[5] = ctx.v9.u16[5] << (ctx.v10.u16[5] & 0xF);
-	ctx.v22.u16[6] = ctx.v9.u16[6] << (ctx.v10.u16[6] & 0xF);
-	ctx.v22.u16[7] = ctx.v9.u16[7] << (ctx.v10.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v10.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v22.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v21,v9,v13
-	ctx.v21.u16[0] = ctx.v9.u16[0] << (ctx.v13.u16[0] & 0xF);
-	ctx.v21.u16[1] = ctx.v9.u16[1] << (ctx.v13.u16[1] & 0xF);
-	ctx.v21.u16[2] = ctx.v9.u16[2] << (ctx.v13.u16[2] & 0xF);
-	ctx.v21.u16[3] = ctx.v9.u16[3] << (ctx.v13.u16[3] & 0xF);
-	ctx.v21.u16[4] = ctx.v9.u16[4] << (ctx.v13.u16[4] & 0xF);
-	ctx.v21.u16[5] = ctx.v9.u16[5] << (ctx.v13.u16[5] & 0xF);
-	ctx.v21.u16[6] = ctx.v9.u16[6] << (ctx.v13.u16[6] & 0xF);
-	ctx.v21.u16[7] = ctx.v9.u16[7] << (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v21.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vadduhm v16,v28,v25
 	simde_mm_store_si128((simde__m128i*)ctx.v16.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v28.u16), simde_mm_load_si128((simde__m128i*)ctx.v25.u16)));
 	// vadduhm v20,v27,v5
 	simde_mm_store_si128((simde__m128i*)ctx.v20.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v27.u16), simde_mm_load_si128((simde__m128i*)ctx.v5.u16)));
 	// vslh v19,v6,v11
-	ctx.v19.u16[0] = ctx.v6.u16[0] << (ctx.v11.u16[0] & 0xF);
-	ctx.v19.u16[1] = ctx.v6.u16[1] << (ctx.v11.u16[1] & 0xF);
-	ctx.v19.u16[2] = ctx.v6.u16[2] << (ctx.v11.u16[2] & 0xF);
-	ctx.v19.u16[3] = ctx.v6.u16[3] << (ctx.v11.u16[3] & 0xF);
-	ctx.v19.u16[4] = ctx.v6.u16[4] << (ctx.v11.u16[4] & 0xF);
-	ctx.v19.u16[5] = ctx.v6.u16[5] << (ctx.v11.u16[5] & 0xF);
-	ctx.v19.u16[6] = ctx.v6.u16[6] << (ctx.v11.u16[6] & 0xF);
-	ctx.v19.u16[7] = ctx.v6.u16[7] << (ctx.v11.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v6.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v11.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v19.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vadduhm v18,v24,v3
 	simde_mm_store_si128((simde__m128i*)ctx.v18.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v24.u16), simde_mm_load_si128((simde__m128i*)ctx.v3.u16)));
 	// vslh v17,v4,v11
-	ctx.v17.u16[0] = ctx.v4.u16[0] << (ctx.v11.u16[0] & 0xF);
-	ctx.v17.u16[1] = ctx.v4.u16[1] << (ctx.v11.u16[1] & 0xF);
-	ctx.v17.u16[2] = ctx.v4.u16[2] << (ctx.v11.u16[2] & 0xF);
-	ctx.v17.u16[3] = ctx.v4.u16[3] << (ctx.v11.u16[3] & 0xF);
-	ctx.v17.u16[4] = ctx.v4.u16[4] << (ctx.v11.u16[4] & 0xF);
-	ctx.v17.u16[5] = ctx.v4.u16[5] << (ctx.v11.u16[5] & 0xF);
-	ctx.v17.u16[6] = ctx.v4.u16[6] << (ctx.v11.u16[6] & 0xF);
-	ctx.v17.u16[7] = ctx.v4.u16[7] << (ctx.v11.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v4.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v11.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v17.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vadduhm v15,v26,v2
 	simde_mm_store_si128((simde__m128i*)ctx.v15.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v26.u16), simde_mm_load_si128((simde__m128i*)ctx.v2.u16)));
 	// vadduhm v14,v22,v23
@@ -34815,25 +33839,21 @@ loc_82A48BCC:
 	// vadduhm v1,v9,v14
 	simde_mm_store_si128((simde__m128i*)ctx.v1.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v9.u16), simde_mm_load_si128((simde__m128i*)ctx.v14.u16)));
 	// vslh v31,v7,v12
-	ctx.v31.u16[0] = ctx.v7.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v31.u16[1] = ctx.v7.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v31.u16[2] = ctx.v7.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v31.u16[3] = ctx.v7.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v31.u16[4] = ctx.v7.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v31.u16[5] = ctx.v7.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v31.u16[6] = ctx.v7.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v31.u16[7] = ctx.v7.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v7.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v31.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vadduhm v30,v4,v5
 	simde_mm_store_si128((simde__m128i*)ctx.v30.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v4.u16), simde_mm_load_si128((simde__m128i*)ctx.v5.u16)));
 	// vslh v29,v6,v12
-	ctx.v29.u16[0] = ctx.v6.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v29.u16[1] = ctx.v6.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v29.u16[2] = ctx.v6.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v29.u16[3] = ctx.v6.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v29.u16[4] = ctx.v6.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v29.u16[5] = ctx.v6.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v29.u16[6] = ctx.v6.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v29.u16[7] = ctx.v6.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v6.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v29.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vadduhm v28,v1,v3
 	simde_mm_store_si128((simde__m128i*)ctx.v28.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v1.u16), simde_mm_load_si128((simde__m128i*)ctx.v3.u16)));
 	// vsubuhm v27,v30,v31
@@ -34841,23 +33861,19 @@ loc_82A48BCC:
 	// vsubuhm v26,v28,v29
 	simde_mm_store_si128((simde__m128i*)ctx.v26.u16, simde_mm_sub_epi16(simde_mm_load_si128((simde__m128i*)ctx.v28.u16), simde_mm_load_si128((simde__m128i*)ctx.v29.u16)));
 	// vsrah v25,v27,v8
-	ctx.v25.s16[0] = ctx.v27.s16[0] >> (ctx.v8.u16[0] & 0xF);
-	ctx.v25.s16[1] = ctx.v27.s16[1] >> (ctx.v8.u16[1] & 0xF);
-	ctx.v25.s16[2] = ctx.v27.s16[2] >> (ctx.v8.u16[2] & 0xF);
-	ctx.v25.s16[3] = ctx.v27.s16[3] >> (ctx.v8.u16[3] & 0xF);
-	ctx.v25.s16[4] = ctx.v27.s16[4] >> (ctx.v8.u16[4] & 0xF);
-	ctx.v25.s16[5] = ctx.v27.s16[5] >> (ctx.v8.u16[5] & 0xF);
-	ctx.v25.s16[6] = ctx.v27.s16[6] >> (ctx.v8.u16[6] & 0xF);
-	ctx.v25.s16[7] = ctx.v27.s16[7] >> (ctx.v8.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v27.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v25.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v24,v26,v8
-	ctx.v24.s16[0] = ctx.v26.s16[0] >> (ctx.v8.u16[0] & 0xF);
-	ctx.v24.s16[1] = ctx.v26.s16[1] >> (ctx.v8.u16[1] & 0xF);
-	ctx.v24.s16[2] = ctx.v26.s16[2] >> (ctx.v8.u16[2] & 0xF);
-	ctx.v24.s16[3] = ctx.v26.s16[3] >> (ctx.v8.u16[3] & 0xF);
-	ctx.v24.s16[4] = ctx.v26.s16[4] >> (ctx.v8.u16[4] & 0xF);
-	ctx.v24.s16[5] = ctx.v26.s16[5] >> (ctx.v8.u16[5] & 0xF);
-	ctx.v24.s16[6] = ctx.v26.s16[6] >> (ctx.v8.u16[6] & 0xF);
-	ctx.v24.s16[7] = ctx.v26.s16[7] >> (ctx.v8.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v26.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v24.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vpkshus128 v48,v24,v25
 	simde_mm_store_si128((simde__m128i*)ctx.v48.u8, simde_mm_packus_epi16(simde_mm_load_si128((simde__m128i*)ctx.v25.s16), simde_mm_load_si128((simde__m128i*)ctx.v24.s16)));
 	// stvlx128 v48,r0,r6
@@ -35143,23 +34159,19 @@ loc_82A48E4C:
 	ea = (ctx.r10.u32 + ctx.r30.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)ctx.v6.u8, simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)PPC_RAW_ADDR(ea)), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
 	// vslh v2,v8,v12
-	ctx.v2.u16[0] = ctx.v8.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v2.u16[1] = ctx.v8.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v2.u16[2] = ctx.v8.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v2.u16[3] = ctx.v8.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v2.u16[4] = ctx.v8.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v2.u16[5] = ctx.v8.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v2.u16[6] = ctx.v8.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v2.u16[7] = ctx.v8.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v2.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v1,v6,v12
-	ctx.v1.u16[0] = ctx.v6.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v1.u16[1] = ctx.v6.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v1.u16[2] = ctx.v6.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v1.u16[3] = ctx.v6.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v1.u16[4] = ctx.v6.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v1.u16[5] = ctx.v6.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v1.u16[6] = ctx.v6.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v1.u16[7] = ctx.v6.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v6.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v1.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// add r3,r10,r3
 	ctx.r3.u64 = ctx.r10.u64 + ctx.r3.u64;
 	// lvx128 v5,r10,r26
@@ -35171,27 +34183,23 @@ loc_82A48E4C:
 	ea = (ctx.r10.u32 + ctx.r25.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)ctx.v3.u8, simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)PPC_RAW_ADDR(ea)), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
 	// vslh v26,v8,v10
-	ctx.v26.u16[0] = ctx.v8.u16[0] << (ctx.v10.u16[0] & 0xF);
-	ctx.v26.u16[1] = ctx.v8.u16[1] << (ctx.v10.u16[1] & 0xF);
-	ctx.v26.u16[2] = ctx.v8.u16[2] << (ctx.v10.u16[2] & 0xF);
-	ctx.v26.u16[3] = ctx.v8.u16[3] << (ctx.v10.u16[3] & 0xF);
-	ctx.v26.u16[4] = ctx.v8.u16[4] << (ctx.v10.u16[4] & 0xF);
-	ctx.v26.u16[5] = ctx.v8.u16[5] << (ctx.v10.u16[5] & 0xF);
-	ctx.v26.u16[6] = ctx.v8.u16[6] << (ctx.v10.u16[6] & 0xF);
-	ctx.v26.u16[7] = ctx.v8.u16[7] << (ctx.v10.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v10.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v26.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vadduhm v24,v2,v8
 	simde_mm_store_si128((simde__m128i*)ctx.v24.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v2.u16), simde_mm_load_si128((simde__m128i*)ctx.v8.u16)));
 	// vmrghb v31,v0,v4
 	simde_mm_store_si128((simde__m128i*)ctx.v31.u8, simde_mm_unpackhi_epi8(simde_mm_load_si128((simde__m128i*)ctx.v4.u8), simde_mm_load_si128((simde__m128i*)ctx.v0.u8)));
 	// vslh v25,v5,v13
-	ctx.v25.u16[0] = ctx.v5.u16[0] << (ctx.v13.u16[0] & 0xF);
-	ctx.v25.u16[1] = ctx.v5.u16[1] << (ctx.v13.u16[1] & 0xF);
-	ctx.v25.u16[2] = ctx.v5.u16[2] << (ctx.v13.u16[2] & 0xF);
-	ctx.v25.u16[3] = ctx.v5.u16[3] << (ctx.v13.u16[3] & 0xF);
-	ctx.v25.u16[4] = ctx.v5.u16[4] << (ctx.v13.u16[4] & 0xF);
-	ctx.v25.u16[5] = ctx.v5.u16[5] << (ctx.v13.u16[5] & 0xF);
-	ctx.v25.u16[6] = ctx.v5.u16[6] << (ctx.v13.u16[6] & 0xF);
-	ctx.v25.u16[7] = ctx.v5.u16[7] << (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v5.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v25.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vmrglb v4,v0,v4
 	simde_mm_store_si128((simde__m128i*)ctx.v4.u8, simde_mm_unpacklo_epi8(simde_mm_load_si128((simde__m128i*)ctx.v4.u8), simde_mm_load_si128((simde__m128i*)ctx.v0.u8)));
 	// vadduhm v22,v1,v6
@@ -35200,48 +34208,40 @@ loc_82A48E4C:
 	ea = (ctx.r3.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)ctx.v2.u8, simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)PPC_RAW_ADDR(ea)), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
 	// vslh v19,v3,v13
-	ctx.v19.u16[0] = ctx.v3.u16[0] << (ctx.v13.u16[0] & 0xF);
-	ctx.v19.u16[1] = ctx.v3.u16[1] << (ctx.v13.u16[1] & 0xF);
-	ctx.v19.u16[2] = ctx.v3.u16[2] << (ctx.v13.u16[2] & 0xF);
-	ctx.v19.u16[3] = ctx.v3.u16[3] << (ctx.v13.u16[3] & 0xF);
-	ctx.v19.u16[4] = ctx.v3.u16[4] << (ctx.v13.u16[4] & 0xF);
-	ctx.v19.u16[5] = ctx.v3.u16[5] << (ctx.v13.u16[5] & 0xF);
-	ctx.v19.u16[6] = ctx.v3.u16[6] << (ctx.v13.u16[6] & 0xF);
-	ctx.v19.u16[7] = ctx.v3.u16[7] << (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v3.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v19.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// lvx128 v1,r0,r31
 	ea = (ctx.r31.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)ctx.v1.u8, simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)PPC_RAW_ADDR(ea)), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
 	// vslh v23,v8,v13
-	ctx.v23.u16[0] = ctx.v8.u16[0] << (ctx.v13.u16[0] & 0xF);
-	ctx.v23.u16[1] = ctx.v8.u16[1] << (ctx.v13.u16[1] & 0xF);
-	ctx.v23.u16[2] = ctx.v8.u16[2] << (ctx.v13.u16[2] & 0xF);
-	ctx.v23.u16[3] = ctx.v8.u16[3] << (ctx.v13.u16[3] & 0xF);
-	ctx.v23.u16[4] = ctx.v8.u16[4] << (ctx.v13.u16[4] & 0xF);
-	ctx.v23.u16[5] = ctx.v8.u16[5] << (ctx.v13.u16[5] & 0xF);
-	ctx.v23.u16[6] = ctx.v8.u16[6] << (ctx.v13.u16[6] & 0xF);
-	ctx.v23.u16[7] = ctx.v8.u16[7] << (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v23.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// addi r26,r1,32
 	ctx.r26.s64 = ctx.r1.s64 + 32;
 	// vslh v21,v6,v10
-	ctx.v21.u16[0] = ctx.v6.u16[0] << (ctx.v10.u16[0] & 0xF);
-	ctx.v21.u16[1] = ctx.v6.u16[1] << (ctx.v10.u16[1] & 0xF);
-	ctx.v21.u16[2] = ctx.v6.u16[2] << (ctx.v10.u16[2] & 0xF);
-	ctx.v21.u16[3] = ctx.v6.u16[3] << (ctx.v10.u16[3] & 0xF);
-	ctx.v21.u16[4] = ctx.v6.u16[4] << (ctx.v10.u16[4] & 0xF);
-	ctx.v21.u16[5] = ctx.v6.u16[5] << (ctx.v10.u16[5] & 0xF);
-	ctx.v21.u16[6] = ctx.v6.u16[6] << (ctx.v10.u16[6] & 0xF);
-	ctx.v21.u16[7] = ctx.v6.u16[7] << (ctx.v10.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v6.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v10.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v21.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// addi r25,r1,672
 	ctx.r25.s64 = ctx.r1.s64 + 672;
 	// vslh v20,v6,v13
-	ctx.v20.u16[0] = ctx.v6.u16[0] << (ctx.v13.u16[0] & 0xF);
-	ctx.v20.u16[1] = ctx.v6.u16[1] << (ctx.v13.u16[1] & 0xF);
-	ctx.v20.u16[2] = ctx.v6.u16[2] << (ctx.v13.u16[2] & 0xF);
-	ctx.v20.u16[3] = ctx.v6.u16[3] << (ctx.v13.u16[3] & 0xF);
-	ctx.v20.u16[4] = ctx.v6.u16[4] << (ctx.v13.u16[4] & 0xF);
-	ctx.v20.u16[5] = ctx.v6.u16[5] << (ctx.v13.u16[5] & 0xF);
-	ctx.v20.u16[6] = ctx.v6.u16[6] << (ctx.v13.u16[6] & 0xF);
-	ctx.v20.u16[7] = ctx.v6.u16[7] << (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v6.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v20.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// addi r30,r1,16
 	ctx.r30.s64 = ctx.r1.s64 + 16;
 	// vadduhm v16,v26,v24
@@ -35272,26 +34272,22 @@ loc_82A48E4C:
 	ea = (ctx.r10.u32 + ctx.r24.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)ctx.v8.u8, simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)PPC_RAW_ADDR(ea)), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
 	// vslh v18,v5,v11
-	ctx.v18.u16[0] = ctx.v5.u16[0] << (ctx.v11.u16[0] & 0xF);
-	ctx.v18.u16[1] = ctx.v5.u16[1] << (ctx.v11.u16[1] & 0xF);
-	ctx.v18.u16[2] = ctx.v5.u16[2] << (ctx.v11.u16[2] & 0xF);
-	ctx.v18.u16[3] = ctx.v5.u16[3] << (ctx.v11.u16[3] & 0xF);
-	ctx.v18.u16[4] = ctx.v5.u16[4] << (ctx.v11.u16[4] & 0xF);
-	ctx.v18.u16[5] = ctx.v5.u16[5] << (ctx.v11.u16[5] & 0xF);
-	ctx.v18.u16[6] = ctx.v5.u16[6] << (ctx.v11.u16[6] & 0xF);
-	ctx.v18.u16[7] = ctx.v5.u16[7] << (ctx.v11.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v5.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v11.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v18.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// lvx128 v5,r0,r30
 	ea = (ctx.r30.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)ctx.v5.u8, simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)PPC_RAW_ADDR(ea)), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
 	// vslh v3,v3,v11
-	ctx.v3.u16[0] = ctx.v3.u16[0] << (ctx.v11.u16[0] & 0xF);
-	ctx.v3.u16[1] = ctx.v3.u16[1] << (ctx.v11.u16[1] & 0xF);
-	ctx.v3.u16[2] = ctx.v3.u16[2] << (ctx.v11.u16[2] & 0xF);
-	ctx.v3.u16[3] = ctx.v3.u16[3] << (ctx.v11.u16[3] & 0xF);
-	ctx.v3.u16[4] = ctx.v3.u16[4] << (ctx.v11.u16[4] & 0xF);
-	ctx.v3.u16[5] = ctx.v3.u16[5] << (ctx.v11.u16[5] & 0xF);
-	ctx.v3.u16[6] = ctx.v3.u16[6] << (ctx.v11.u16[6] & 0xF);
-	ctx.v3.u16[7] = ctx.v3.u16[7] << (ctx.v11.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v3.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v11.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v3.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// addi r25,r1,64
 	ctx.r25.s64 = ctx.r1.s64 + 64;
 	// vadduhm v24,v1,v4
@@ -35318,23 +34314,19 @@ loc_82A48E4C:
 	// vadduhm v20,v3,v14
 	simde_mm_store_si128((simde__m128i*)ctx.v20.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v3.u16), simde_mm_load_si128((simde__m128i*)ctx.v14.u16)));
 	// vslh v17,v23,v12
-	ctx.v17.u16[0] = ctx.v23.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v17.u16[1] = ctx.v23.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v17.u16[2] = ctx.v23.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v17.u16[3] = ctx.v23.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v17.u16[4] = ctx.v23.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v17.u16[5] = ctx.v23.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v17.u16[6] = ctx.v23.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v17.u16[7] = ctx.v23.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v23.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v17.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v15,v24,v12
-	ctx.v15.u16[0] = ctx.v24.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v15.u16[1] = ctx.v24.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v15.u16[2] = ctx.v24.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v15.u16[3] = ctx.v24.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v15.u16[4] = ctx.v24.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v15.u16[5] = ctx.v24.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v15.u16[6] = ctx.v24.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v15.u16[7] = ctx.v24.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v24.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v15.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vadduhm v16,v21,v22
 	simde_mm_store_si128((simde__m128i*)ctx.v16.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v21.u16), simde_mm_load_si128((simde__m128i*)ctx.v22.u16)));
 	// vadduhm v14,v19,v20
@@ -35342,14 +34334,12 @@ loc_82A48E4C:
 	// vor128 v18,v33,v32
 	simde_mm_store_si128((simde__m128i*)ctx.v18.u8, simde_mm_or_si128(simde_mm_load_si128((simde__m128i*)ctx.v33.u8), simde_mm_load_si128((simde__m128i*)ctx.v32.u8)));
 	// vslh v3,v6,v13
-	ctx.v3.u16[0] = ctx.v6.u16[0] << (ctx.v13.u16[0] & 0xF);
-	ctx.v3.u16[1] = ctx.v6.u16[1] << (ctx.v13.u16[1] & 0xF);
-	ctx.v3.u16[2] = ctx.v6.u16[2] << (ctx.v13.u16[2] & 0xF);
-	ctx.v3.u16[3] = ctx.v6.u16[3] << (ctx.v13.u16[3] & 0xF);
-	ctx.v3.u16[4] = ctx.v6.u16[4] << (ctx.v13.u16[4] & 0xF);
-	ctx.v3.u16[5] = ctx.v6.u16[5] << (ctx.v13.u16[5] & 0xF);
-	ctx.v3.u16[6] = ctx.v6.u16[6] << (ctx.v13.u16[6] & 0xF);
-	ctx.v3.u16[7] = ctx.v6.u16[7] << (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v6.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v3.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vsubuhm v2,v16,v17
 	simde_mm_store_si128((simde__m128i*)ctx.v2.u16, simde_mm_sub_epi16(simde_mm_load_si128((simde__m128i*)ctx.v16.u16), simde_mm_load_si128((simde__m128i*)ctx.v17.u16)));
 	// vsubuhm v31,v14,v15
@@ -35357,45 +34347,37 @@ loc_82A48E4C:
 	// vmrghb v4,v0,v18
 	simde_mm_store_si128((simde__m128i*)ctx.v4.u8, simde_mm_unpackhi_epi8(simde_mm_load_si128((simde__m128i*)ctx.v18.u8), simde_mm_load_si128((simde__m128i*)ctx.v0.u8)));
 	// vslh v1,v6,v11
-	ctx.v1.u16[0] = ctx.v6.u16[0] << (ctx.v11.u16[0] & 0xF);
-	ctx.v1.u16[1] = ctx.v6.u16[1] << (ctx.v11.u16[1] & 0xF);
-	ctx.v1.u16[2] = ctx.v6.u16[2] << (ctx.v11.u16[2] & 0xF);
-	ctx.v1.u16[3] = ctx.v6.u16[3] << (ctx.v11.u16[3] & 0xF);
-	ctx.v1.u16[4] = ctx.v6.u16[4] << (ctx.v11.u16[4] & 0xF);
-	ctx.v1.u16[5] = ctx.v6.u16[5] << (ctx.v11.u16[5] & 0xF);
-	ctx.v1.u16[6] = ctx.v6.u16[6] << (ctx.v11.u16[6] & 0xF);
-	ctx.v1.u16[7] = ctx.v6.u16[7] << (ctx.v11.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v6.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v11.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v1.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vadduhm v24,v3,v5
 	simde_mm_store_si128((simde__m128i*)ctx.v24.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v3.u16), simde_mm_load_si128((simde__m128i*)ctx.v5.u16)));
 	// vsrah v25,v2,v7
-	ctx.v25.s16[0] = ctx.v2.s16[0] >> (ctx.v7.u16[0] & 0xF);
-	ctx.v25.s16[1] = ctx.v2.s16[1] >> (ctx.v7.u16[1] & 0xF);
-	ctx.v25.s16[2] = ctx.v2.s16[2] >> (ctx.v7.u16[2] & 0xF);
-	ctx.v25.s16[3] = ctx.v2.s16[3] >> (ctx.v7.u16[3] & 0xF);
-	ctx.v25.s16[4] = ctx.v2.s16[4] >> (ctx.v7.u16[4] & 0xF);
-	ctx.v25.s16[5] = ctx.v2.s16[5] >> (ctx.v7.u16[5] & 0xF);
-	ctx.v25.s16[6] = ctx.v2.s16[6] >> (ctx.v7.u16[6] & 0xF);
-	ctx.v25.s16[7] = ctx.v2.s16[7] >> (ctx.v7.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v2.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v7.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v25.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v23,v31,v7
-	ctx.v23.s16[0] = ctx.v31.s16[0] >> (ctx.v7.u16[0] & 0xF);
-	ctx.v23.s16[1] = ctx.v31.s16[1] >> (ctx.v7.u16[1] & 0xF);
-	ctx.v23.s16[2] = ctx.v31.s16[2] >> (ctx.v7.u16[2] & 0xF);
-	ctx.v23.s16[3] = ctx.v31.s16[3] >> (ctx.v7.u16[3] & 0xF);
-	ctx.v23.s16[4] = ctx.v31.s16[4] >> (ctx.v7.u16[4] & 0xF);
-	ctx.v23.s16[5] = ctx.v31.s16[5] >> (ctx.v7.u16[5] & 0xF);
-	ctx.v23.s16[6] = ctx.v31.s16[6] >> (ctx.v7.u16[6] & 0xF);
-	ctx.v23.s16[7] = ctx.v31.s16[7] >> (ctx.v7.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v31.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v7.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v23.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vadduhm v26,v5,v4
 	simde_mm_store_si128((simde__m128i*)ctx.v26.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v5.u16), simde_mm_load_si128((simde__m128i*)ctx.v4.u16)));
 	// vslh v22,v8,v12
-	ctx.v22.u16[0] = ctx.v8.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v22.u16[1] = ctx.v8.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v22.u16[2] = ctx.v8.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v22.u16[3] = ctx.v8.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v22.u16[4] = ctx.v8.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v22.u16[5] = ctx.v8.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v22.u16[6] = ctx.v8.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v22.u16[7] = ctx.v8.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v22.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// stvx128 v25,r0,r3
 	ea = (ctx.r3.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)PPC_RAW_ADDR(ea), simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)ctx.v25.u8), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
@@ -35405,39 +34387,33 @@ loc_82A48E4C:
 	ea = (ctx.r10.u32 + ctx.r25.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)PPC_RAW_ADDR(ea), simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)ctx.v4.u8), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
 	// vslh v21,v26,v12
-	ctx.v21.u16[0] = ctx.v26.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v21.u16[1] = ctx.v26.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v21.u16[2] = ctx.v26.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v21.u16[3] = ctx.v26.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v21.u16[4] = ctx.v26.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v21.u16[5] = ctx.v26.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v21.u16[6] = ctx.v26.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v21.u16[7] = ctx.v26.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v26.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v21.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// stvx128 v23,r0,r31
 	ea = (ctx.r31.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)PPC_RAW_ADDR(ea), simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)ctx.v23.u8), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
 	// vadduhm v19,v22,v8
 	simde_mm_store_si128((simde__m128i*)ctx.v19.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v22.u16), simde_mm_load_si128((simde__m128i*)ctx.v8.u16)));
 	// vslh v18,v8,v10
-	ctx.v18.u16[0] = ctx.v8.u16[0] << (ctx.v10.u16[0] & 0xF);
-	ctx.v18.u16[1] = ctx.v8.u16[1] << (ctx.v10.u16[1] & 0xF);
-	ctx.v18.u16[2] = ctx.v8.u16[2] << (ctx.v10.u16[2] & 0xF);
-	ctx.v18.u16[3] = ctx.v8.u16[3] << (ctx.v10.u16[3] & 0xF);
-	ctx.v18.u16[4] = ctx.v8.u16[4] << (ctx.v10.u16[4] & 0xF);
-	ctx.v18.u16[5] = ctx.v8.u16[5] << (ctx.v10.u16[5] & 0xF);
-	ctx.v18.u16[6] = ctx.v8.u16[6] << (ctx.v10.u16[6] & 0xF);
-	ctx.v18.u16[7] = ctx.v8.u16[7] << (ctx.v10.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v10.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v18.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// addi r10,r10,16
 	ctx.r10.s64 = ctx.r10.s64 + 16;
 	// vslh v17,v8,v13
-	ctx.v17.u16[0] = ctx.v8.u16[0] << (ctx.v13.u16[0] & 0xF);
-	ctx.v17.u16[1] = ctx.v8.u16[1] << (ctx.v13.u16[1] & 0xF);
-	ctx.v17.u16[2] = ctx.v8.u16[2] << (ctx.v13.u16[2] & 0xF);
-	ctx.v17.u16[3] = ctx.v8.u16[3] << (ctx.v13.u16[3] & 0xF);
-	ctx.v17.u16[4] = ctx.v8.u16[4] << (ctx.v13.u16[4] & 0xF);
-	ctx.v17.u16[5] = ctx.v8.u16[5] << (ctx.v13.u16[5] & 0xF);
-	ctx.v17.u16[6] = ctx.v8.u16[6] << (ctx.v13.u16[6] & 0xF);
-	ctx.v17.u16[7] = ctx.v8.u16[7] << (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v17.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vadduhm v16,v18,v19
 	simde_mm_store_si128((simde__m128i*)ctx.v16.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v18.u16), simde_mm_load_si128((simde__m128i*)ctx.v19.u16)));
 	// vadduhm v15,v17,v9
@@ -35449,14 +34425,12 @@ loc_82A48E4C:
 	// vsubuhm v6,v8,v21
 	simde_mm_store_si128((simde__m128i*)ctx.v6.u16, simde_mm_sub_epi16(simde_mm_load_si128((simde__m128i*)ctx.v8.u16), simde_mm_load_si128((simde__m128i*)ctx.v21.u16)));
 	// vsrah v5,v6,v7
-	ctx.v5.s16[0] = ctx.v6.s16[0] >> (ctx.v7.u16[0] & 0xF);
-	ctx.v5.s16[1] = ctx.v6.s16[1] >> (ctx.v7.u16[1] & 0xF);
-	ctx.v5.s16[2] = ctx.v6.s16[2] >> (ctx.v7.u16[2] & 0xF);
-	ctx.v5.s16[3] = ctx.v6.s16[3] >> (ctx.v7.u16[3] & 0xF);
-	ctx.v5.s16[4] = ctx.v6.s16[4] >> (ctx.v7.u16[4] & 0xF);
-	ctx.v5.s16[5] = ctx.v6.s16[5] >> (ctx.v7.u16[5] & 0xF);
-	ctx.v5.s16[6] = ctx.v6.s16[6] >> (ctx.v7.u16[6] & 0xF);
-	ctx.v5.s16[7] = ctx.v6.s16[7] >> (ctx.v7.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v6.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v7.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v5.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// stvx128 v5,r0,r30
 	ea = (ctx.r30.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)PPC_RAW_ADDR(ea), simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)ctx.v5.u8), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
@@ -35687,14 +34661,12 @@ loc_82A490A8:
 	ea = (ctx.r30.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)ctx.v22.u8, simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)PPC_RAW_ADDR(ea)), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
 	// vslh v21,v6,v30
-	ctx.v21.u16[0] = ctx.v6.u16[0] << (ctx.v30.u16[0] & 0xF);
-	ctx.v21.u16[1] = ctx.v6.u16[1] << (ctx.v30.u16[1] & 0xF);
-	ctx.v21.u16[2] = ctx.v6.u16[2] << (ctx.v30.u16[2] & 0xF);
-	ctx.v21.u16[3] = ctx.v6.u16[3] << (ctx.v30.u16[3] & 0xF);
-	ctx.v21.u16[4] = ctx.v6.u16[4] << (ctx.v30.u16[4] & 0xF);
-	ctx.v21.u16[5] = ctx.v6.u16[5] << (ctx.v30.u16[5] & 0xF);
-	ctx.v21.u16[6] = ctx.v6.u16[6] << (ctx.v30.u16[6] & 0xF);
-	ctx.v21.u16[7] = ctx.v6.u16[7] << (ctx.v30.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v6.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v30.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v21.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vadduhm v23,v25,v7
 	simde_mm_store_si128((simde__m128i*)ctx.v23.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v25.u16), simde_mm_load_si128((simde__m128i*)ctx.v7.u16)));
 	// addi r24,r1,64
@@ -35706,14 +34678,12 @@ loc_82A490A8:
 	ctx.r4.s64 = ctx.r4.s64 + -1;
 	ctx.cr0.compare<int32_t>(ctx.r4.s32, 0, ctx.xer);
 	// vslh v19,v4,v30
-	ctx.v19.u16[0] = ctx.v4.u16[0] << (ctx.v30.u16[0] & 0xF);
-	ctx.v19.u16[1] = ctx.v4.u16[1] << (ctx.v30.u16[1] & 0xF);
-	ctx.v19.u16[2] = ctx.v4.u16[2] << (ctx.v30.u16[2] & 0xF);
-	ctx.v19.u16[3] = ctx.v4.u16[3] << (ctx.v30.u16[3] & 0xF);
-	ctx.v19.u16[4] = ctx.v4.u16[4] << (ctx.v30.u16[4] & 0xF);
-	ctx.v19.u16[5] = ctx.v4.u16[5] << (ctx.v30.u16[5] & 0xF);
-	ctx.v19.u16[6] = ctx.v4.u16[6] << (ctx.v30.u16[6] & 0xF);
-	ctx.v19.u16[7] = ctx.v4.u16[7] << (ctx.v30.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v4.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v30.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v19.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// stvx128 v7,r10,r26
 	ea = (ctx.r10.u32 + ctx.r26.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)PPC_RAW_ADDR(ea), simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)ctx.v7.u8), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
@@ -35723,14 +34693,12 @@ loc_82A490A8:
 	ea = (ctx.r10.u32 + ctx.r25.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)PPC_RAW_ADDR(ea), simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)ctx.v8.u8), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
 	// vslh v17,v3,v30
-	ctx.v17.u16[0] = ctx.v3.u16[0] << (ctx.v30.u16[0] & 0xF);
-	ctx.v17.u16[1] = ctx.v3.u16[1] << (ctx.v30.u16[1] & 0xF);
-	ctx.v17.u16[2] = ctx.v3.u16[2] << (ctx.v30.u16[2] & 0xF);
-	ctx.v17.u16[3] = ctx.v3.u16[3] << (ctx.v30.u16[3] & 0xF);
-	ctx.v17.u16[4] = ctx.v3.u16[4] << (ctx.v30.u16[4] & 0xF);
-	ctx.v17.u16[5] = ctx.v3.u16[5] << (ctx.v30.u16[5] & 0xF);
-	ctx.v17.u16[6] = ctx.v3.u16[6] << (ctx.v30.u16[6] & 0xF);
-	ctx.v17.u16[7] = ctx.v3.u16[7] << (ctx.v30.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v3.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v30.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v17.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// add r9,r9,r5
 	ctx.r9.u64 = ctx.r9.u64 + ctx.r5.u64;
 	// vadduhm v15,v21,v6
@@ -35759,32 +34727,26 @@ loc_82A490A8:
 	// vadduhm v3,v6,v7
 	simde_mm_store_si128((simde__m128i*)ctx.v3.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v6.u16), simde_mm_load_si128((simde__m128i*)ctx.v7.u16)));
 	// vsrah v2,v5,v11
-	ctx.v2.s16[0] = ctx.v5.s16[0] >> (ctx.v11.u16[0] & 0xF);
-	ctx.v2.s16[1] = ctx.v5.s16[1] >> (ctx.v11.u16[1] & 0xF);
-	ctx.v2.s16[2] = ctx.v5.s16[2] >> (ctx.v11.u16[2] & 0xF);
-	ctx.v2.s16[3] = ctx.v5.s16[3] >> (ctx.v11.u16[3] & 0xF);
-	ctx.v2.s16[4] = ctx.v5.s16[4] >> (ctx.v11.u16[4] & 0xF);
-	ctx.v2.s16[5] = ctx.v5.s16[5] >> (ctx.v11.u16[5] & 0xF);
-	ctx.v2.s16[6] = ctx.v5.s16[6] >> (ctx.v11.u16[6] & 0xF);
-	ctx.v2.s16[7] = ctx.v5.s16[7] >> (ctx.v11.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v5.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v11.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v2.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v1,v4,v11
-	ctx.v1.s16[0] = ctx.v4.s16[0] >> (ctx.v11.u16[0] & 0xF);
-	ctx.v1.s16[1] = ctx.v4.s16[1] >> (ctx.v11.u16[1] & 0xF);
-	ctx.v1.s16[2] = ctx.v4.s16[2] >> (ctx.v11.u16[2] & 0xF);
-	ctx.v1.s16[3] = ctx.v4.s16[3] >> (ctx.v11.u16[3] & 0xF);
-	ctx.v1.s16[4] = ctx.v4.s16[4] >> (ctx.v11.u16[4] & 0xF);
-	ctx.v1.s16[5] = ctx.v4.s16[5] >> (ctx.v11.u16[5] & 0xF);
-	ctx.v1.s16[6] = ctx.v4.s16[6] >> (ctx.v11.u16[6] & 0xF);
-	ctx.v1.s16[7] = ctx.v4.s16[7] >> (ctx.v11.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v4.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v11.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v1.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v31,v3,v11
-	ctx.v31.s16[0] = ctx.v3.s16[0] >> (ctx.v11.u16[0] & 0xF);
-	ctx.v31.s16[1] = ctx.v3.s16[1] >> (ctx.v11.u16[1] & 0xF);
-	ctx.v31.s16[2] = ctx.v3.s16[2] >> (ctx.v11.u16[2] & 0xF);
-	ctx.v31.s16[3] = ctx.v3.s16[3] >> (ctx.v11.u16[3] & 0xF);
-	ctx.v31.s16[4] = ctx.v3.s16[4] >> (ctx.v11.u16[4] & 0xF);
-	ctx.v31.s16[5] = ctx.v3.s16[5] >> (ctx.v11.u16[5] & 0xF);
-	ctx.v31.s16[6] = ctx.v3.s16[6] >> (ctx.v11.u16[6] & 0xF);
-	ctx.v31.s16[7] = ctx.v3.s16[7] >> (ctx.v11.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v3.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v11.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v31.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// stvx128 v2,r0,r3
 	ea = (ctx.r3.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)PPC_RAW_ADDR(ea), simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)ctx.v2.u8), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
@@ -35970,23 +34932,19 @@ loc_82A49298:
 	ea = (ctx.r10.u32 + ctx.r30.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)ctx.v6.u8, simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)PPC_RAW_ADDR(ea)), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
 	// vslh v1,v8,v12
-	ctx.v1.u16[0] = ctx.v8.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v1.u16[1] = ctx.v8.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v1.u16[2] = ctx.v8.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v1.u16[3] = ctx.v8.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v1.u16[4] = ctx.v8.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v1.u16[5] = ctx.v8.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v1.u16[6] = ctx.v8.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v1.u16[7] = ctx.v8.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v1.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v31,v6,v12
-	ctx.v31.u16[0] = ctx.v6.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v31.u16[1] = ctx.v6.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v31.u16[2] = ctx.v6.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v31.u16[3] = ctx.v6.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v31.u16[4] = ctx.v6.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v31.u16[5] = ctx.v6.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v31.u16[6] = ctx.v6.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v31.u16[7] = ctx.v6.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v6.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v31.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// lvx128 v3,r10,r26
 	ea = (ctx.r10.u32 + ctx.r26.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)ctx.v3.u8, simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)PPC_RAW_ADDR(ea)), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
@@ -35996,14 +34954,12 @@ loc_82A49298:
 	// vmrghb v5,v0,v4
 	simde_mm_store_si128((simde__m128i*)ctx.v5.u8, simde_mm_unpackhi_epi8(simde_mm_load_si128((simde__m128i*)ctx.v4.u8), simde_mm_load_si128((simde__m128i*)ctx.v0.u8)));
 	// vslh v24,v8,v10
-	ctx.v24.u16[0] = ctx.v8.u16[0] << (ctx.v10.u16[0] & 0xF);
-	ctx.v24.u16[1] = ctx.v8.u16[1] << (ctx.v10.u16[1] & 0xF);
-	ctx.v24.u16[2] = ctx.v8.u16[2] << (ctx.v10.u16[2] & 0xF);
-	ctx.v24.u16[3] = ctx.v8.u16[3] << (ctx.v10.u16[3] & 0xF);
-	ctx.v24.u16[4] = ctx.v8.u16[4] << (ctx.v10.u16[4] & 0xF);
-	ctx.v24.u16[5] = ctx.v8.u16[5] << (ctx.v10.u16[5] & 0xF);
-	ctx.v24.u16[6] = ctx.v8.u16[6] << (ctx.v10.u16[6] & 0xF);
-	ctx.v24.u16[7] = ctx.v8.u16[7] << (ctx.v10.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v10.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v24.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vmrglb v4,v0,v4
 	simde_mm_store_si128((simde__m128i*)ctx.v4.u8, simde_mm_unpacklo_epi8(simde_mm_load_si128((simde__m128i*)ctx.v4.u8), simde_mm_load_si128((simde__m128i*)ctx.v0.u8)));
 	// vadduhm v25,v1,v8
@@ -36015,59 +34971,49 @@ loc_82A49298:
 	// addi r26,r1,48
 	ctx.r26.s64 = ctx.r1.s64 + 48;
 	// vslh v21,v6,v10
-	ctx.v21.u16[0] = ctx.v6.u16[0] << (ctx.v10.u16[0] & 0xF);
-	ctx.v21.u16[1] = ctx.v6.u16[1] << (ctx.v10.u16[1] & 0xF);
-	ctx.v21.u16[2] = ctx.v6.u16[2] << (ctx.v10.u16[2] & 0xF);
-	ctx.v21.u16[3] = ctx.v6.u16[3] << (ctx.v10.u16[3] & 0xF);
-	ctx.v21.u16[4] = ctx.v6.u16[4] << (ctx.v10.u16[4] & 0xF);
-	ctx.v21.u16[5] = ctx.v6.u16[5] << (ctx.v10.u16[5] & 0xF);
-	ctx.v21.u16[6] = ctx.v6.u16[6] << (ctx.v10.u16[6] & 0xF);
-	ctx.v21.u16[7] = ctx.v6.u16[7] << (ctx.v10.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v6.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v10.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v21.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// add r31,r10,r31
 	ctx.r31.u64 = ctx.r10.u64 + ctx.r31.u64;
 	// vslh v20,v6,v13
-	ctx.v20.u16[0] = ctx.v6.u16[0] << (ctx.v13.u16[0] & 0xF);
-	ctx.v20.u16[1] = ctx.v6.u16[1] << (ctx.v13.u16[1] & 0xF);
-	ctx.v20.u16[2] = ctx.v6.u16[2] << (ctx.v13.u16[2] & 0xF);
-	ctx.v20.u16[3] = ctx.v6.u16[3] << (ctx.v13.u16[3] & 0xF);
-	ctx.v20.u16[4] = ctx.v6.u16[4] << (ctx.v13.u16[4] & 0xF);
-	ctx.v20.u16[5] = ctx.v6.u16[5] << (ctx.v13.u16[5] & 0xF);
-	ctx.v20.u16[6] = ctx.v6.u16[6] << (ctx.v13.u16[6] & 0xF);
-	ctx.v20.u16[7] = ctx.v6.u16[7] << (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v6.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v20.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// addi r25,r1,32
 	ctx.r25.s64 = ctx.r1.s64 + 32;
 	// vslh v26,v3,v13
-	ctx.v26.u16[0] = ctx.v3.u16[0] << (ctx.v13.u16[0] & 0xF);
-	ctx.v26.u16[1] = ctx.v3.u16[1] << (ctx.v13.u16[1] & 0xF);
-	ctx.v26.u16[2] = ctx.v3.u16[2] << (ctx.v13.u16[2] & 0xF);
-	ctx.v26.u16[3] = ctx.v3.u16[3] << (ctx.v13.u16[3] & 0xF);
-	ctx.v26.u16[4] = ctx.v3.u16[4] << (ctx.v13.u16[4] & 0xF);
-	ctx.v26.u16[5] = ctx.v3.u16[5] << (ctx.v13.u16[5] & 0xF);
-	ctx.v26.u16[6] = ctx.v3.u16[6] << (ctx.v13.u16[6] & 0xF);
-	ctx.v26.u16[7] = ctx.v3.u16[7] << (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v3.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v26.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// addi r30,r1,16
 	ctx.r30.s64 = ctx.r1.s64 + 16;
 	// vslh v23,v8,v13
-	ctx.v23.u16[0] = ctx.v8.u16[0] << (ctx.v13.u16[0] & 0xF);
-	ctx.v23.u16[1] = ctx.v8.u16[1] << (ctx.v13.u16[1] & 0xF);
-	ctx.v23.u16[2] = ctx.v8.u16[2] << (ctx.v13.u16[2] & 0xF);
-	ctx.v23.u16[3] = ctx.v8.u16[3] << (ctx.v13.u16[3] & 0xF);
-	ctx.v23.u16[4] = ctx.v8.u16[4] << (ctx.v13.u16[4] & 0xF);
-	ctx.v23.u16[5] = ctx.v8.u16[5] << (ctx.v13.u16[5] & 0xF);
-	ctx.v23.u16[6] = ctx.v8.u16[6] << (ctx.v13.u16[6] & 0xF);
-	ctx.v23.u16[7] = ctx.v8.u16[7] << (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v23.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// lvx128 v19,r0,r3
 	ea = (ctx.r3.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)ctx.v19.u8, simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)PPC_RAW_ADDR(ea)), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
 	// vslh v18,v2,v13
-	ctx.v18.u16[0] = ctx.v2.u16[0] << (ctx.v13.u16[0] & 0xF);
-	ctx.v18.u16[1] = ctx.v2.u16[1] << (ctx.v13.u16[1] & 0xF);
-	ctx.v18.u16[2] = ctx.v2.u16[2] << (ctx.v13.u16[2] & 0xF);
-	ctx.v18.u16[3] = ctx.v2.u16[3] << (ctx.v13.u16[3] & 0xF);
-	ctx.v18.u16[4] = ctx.v2.u16[4] << (ctx.v13.u16[4] & 0xF);
-	ctx.v18.u16[5] = ctx.v2.u16[5] << (ctx.v13.u16[5] & 0xF);
-	ctx.v18.u16[6] = ctx.v2.u16[6] << (ctx.v13.u16[6] & 0xF);
-	ctx.v18.u16[7] = ctx.v2.u16[7] << (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v2.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v18.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// add r30,r10,r30
 	ctx.r30.u64 = ctx.r10.u64 + ctx.r30.u64;
 	// vadduhm v14,v24,v25
@@ -36098,26 +35044,22 @@ loc_82A49298:
 	// add r9,r9,r5
 	ctx.r9.u64 = ctx.r9.u64 + ctx.r5.u64;
 	// vslh v16,v3,v11
-	ctx.v16.u16[0] = ctx.v3.u16[0] << (ctx.v11.u16[0] & 0xF);
-	ctx.v16.u16[1] = ctx.v3.u16[1] << (ctx.v11.u16[1] & 0xF);
-	ctx.v16.u16[2] = ctx.v3.u16[2] << (ctx.v11.u16[2] & 0xF);
-	ctx.v16.u16[3] = ctx.v3.u16[3] << (ctx.v11.u16[3] & 0xF);
-	ctx.v16.u16[4] = ctx.v3.u16[4] << (ctx.v11.u16[4] & 0xF);
-	ctx.v16.u16[5] = ctx.v3.u16[5] << (ctx.v11.u16[5] & 0xF);
-	ctx.v16.u16[6] = ctx.v3.u16[6] << (ctx.v11.u16[6] & 0xF);
-	ctx.v16.u16[7] = ctx.v3.u16[7] << (ctx.v11.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v3.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v11.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v16.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// lvx128 v3,r10,r26
 	ea = (ctx.r10.u32 + ctx.r26.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)ctx.v3.u8, simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)PPC_RAW_ADDR(ea)), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
 	// vslh v31,v2,v11
-	ctx.v31.u16[0] = ctx.v2.u16[0] << (ctx.v11.u16[0] & 0xF);
-	ctx.v31.u16[1] = ctx.v2.u16[1] << (ctx.v11.u16[1] & 0xF);
-	ctx.v31.u16[2] = ctx.v2.u16[2] << (ctx.v11.u16[2] & 0xF);
-	ctx.v31.u16[3] = ctx.v2.u16[3] << (ctx.v11.u16[3] & 0xF);
-	ctx.v31.u16[4] = ctx.v2.u16[4] << (ctx.v11.u16[4] & 0xF);
-	ctx.v31.u16[5] = ctx.v2.u16[5] << (ctx.v11.u16[5] & 0xF);
-	ctx.v31.u16[6] = ctx.v2.u16[6] << (ctx.v11.u16[6] & 0xF);
-	ctx.v31.u16[7] = ctx.v2.u16[7] << (ctx.v11.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v2.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v11.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v31.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// addi r26,r1,368
 	ctx.r26.s64 = ctx.r1.s64 + 368;
 	// vadduhm v23,v19,v5
@@ -36145,23 +35087,19 @@ loc_82A49298:
 	// vadduhm v18,v24,v25
 	simde_mm_store_si128((simde__m128i*)ctx.v18.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v24.u16), simde_mm_load_si128((simde__m128i*)ctx.v25.u16)));
 	// vslh v16,v23,v12
-	ctx.v16.u16[0] = ctx.v23.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v16.u16[1] = ctx.v23.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v16.u16[2] = ctx.v23.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v16.u16[3] = ctx.v23.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v16.u16[4] = ctx.v23.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v16.u16[5] = ctx.v23.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v16.u16[6] = ctx.v23.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v16.u16[7] = ctx.v23.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v23.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v16.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v14,v20,v12
-	ctx.v14.u16[0] = ctx.v20.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v14.u16[1] = ctx.v20.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v14.u16[2] = ctx.v20.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v14.u16[3] = ctx.v20.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v14.u16[4] = ctx.v20.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v14.u16[5] = ctx.v20.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v14.u16[6] = ctx.v20.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v14.u16[7] = ctx.v20.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v20.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v14.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vadduhm v15,v21,v22
 	simde_mm_store_si128((simde__m128i*)ctx.v15.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v21.u16), simde_mm_load_si128((simde__m128i*)ctx.v22.u16)));
 	// vadduhm v5,v18,v19
@@ -36169,14 +35107,12 @@ loc_82A49298:
 	// vor128 v17,v33,v32
 	simde_mm_store_si128((simde__m128i*)ctx.v17.u8, simde_mm_or_si128(simde_mm_load_si128((simde__m128i*)ctx.v33.u8), simde_mm_load_si128((simde__m128i*)ctx.v32.u8)));
 	// vslh v4,v3,v13
-	ctx.v4.u16[0] = ctx.v3.u16[0] << (ctx.v13.u16[0] & 0xF);
-	ctx.v4.u16[1] = ctx.v3.u16[1] << (ctx.v13.u16[1] & 0xF);
-	ctx.v4.u16[2] = ctx.v3.u16[2] << (ctx.v13.u16[2] & 0xF);
-	ctx.v4.u16[3] = ctx.v3.u16[3] << (ctx.v13.u16[3] & 0xF);
-	ctx.v4.u16[4] = ctx.v3.u16[4] << (ctx.v13.u16[4] & 0xF);
-	ctx.v4.u16[5] = ctx.v3.u16[5] << (ctx.v13.u16[5] & 0xF);
-	ctx.v4.u16[6] = ctx.v3.u16[6] << (ctx.v13.u16[6] & 0xF);
-	ctx.v4.u16[7] = ctx.v3.u16[7] << (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v3.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v4.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vsubuhm v2,v15,v16
 	simde_mm_store_si128((simde__m128i*)ctx.v2.u16, simde_mm_sub_epi16(simde_mm_load_si128((simde__m128i*)ctx.v15.u16), simde_mm_load_si128((simde__m128i*)ctx.v16.u16)));
 	// vsubuhm v31,v5,v14
@@ -36184,41 +35120,33 @@ loc_82A49298:
 	// vmrghb v6,v0,v17
 	simde_mm_store_si128((simde__m128i*)ctx.v6.u8, simde_mm_unpackhi_epi8(simde_mm_load_si128((simde__m128i*)ctx.v17.u8), simde_mm_load_si128((simde__m128i*)ctx.v0.u8)));
 	// vslh v1,v3,v11
-	ctx.v1.u16[0] = ctx.v3.u16[0] << (ctx.v11.u16[0] & 0xF);
-	ctx.v1.u16[1] = ctx.v3.u16[1] << (ctx.v11.u16[1] & 0xF);
-	ctx.v1.u16[2] = ctx.v3.u16[2] << (ctx.v11.u16[2] & 0xF);
-	ctx.v1.u16[3] = ctx.v3.u16[3] << (ctx.v11.u16[3] & 0xF);
-	ctx.v1.u16[4] = ctx.v3.u16[4] << (ctx.v11.u16[4] & 0xF);
-	ctx.v1.u16[5] = ctx.v3.u16[5] << (ctx.v11.u16[5] & 0xF);
-	ctx.v1.u16[6] = ctx.v3.u16[6] << (ctx.v11.u16[6] & 0xF);
-	ctx.v1.u16[7] = ctx.v3.u16[7] << (ctx.v11.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v3.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v11.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v1.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v22,v8,v12
-	ctx.v22.u16[0] = ctx.v8.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v22.u16[1] = ctx.v8.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v22.u16[2] = ctx.v8.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v22.u16[3] = ctx.v8.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v22.u16[4] = ctx.v8.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v22.u16[5] = ctx.v8.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v22.u16[6] = ctx.v8.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v22.u16[7] = ctx.v8.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v22.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vsrah v25,v2,v7
-	ctx.v25.s16[0] = ctx.v2.s16[0] >> (ctx.v7.u16[0] & 0xF);
-	ctx.v25.s16[1] = ctx.v2.s16[1] >> (ctx.v7.u16[1] & 0xF);
-	ctx.v25.s16[2] = ctx.v2.s16[2] >> (ctx.v7.u16[2] & 0xF);
-	ctx.v25.s16[3] = ctx.v2.s16[3] >> (ctx.v7.u16[3] & 0xF);
-	ctx.v25.s16[4] = ctx.v2.s16[4] >> (ctx.v7.u16[4] & 0xF);
-	ctx.v25.s16[5] = ctx.v2.s16[5] >> (ctx.v7.u16[5] & 0xF);
-	ctx.v25.s16[6] = ctx.v2.s16[6] >> (ctx.v7.u16[6] & 0xF);
-	ctx.v25.s16[7] = ctx.v2.s16[7] >> (ctx.v7.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v2.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v7.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v25.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v23,v31,v7
-	ctx.v23.s16[0] = ctx.v31.s16[0] >> (ctx.v7.u16[0] & 0xF);
-	ctx.v23.s16[1] = ctx.v31.s16[1] >> (ctx.v7.u16[1] & 0xF);
-	ctx.v23.s16[2] = ctx.v31.s16[2] >> (ctx.v7.u16[2] & 0xF);
-	ctx.v23.s16[3] = ctx.v31.s16[3] >> (ctx.v7.u16[3] & 0xF);
-	ctx.v23.s16[4] = ctx.v31.s16[4] >> (ctx.v7.u16[4] & 0xF);
-	ctx.v23.s16[5] = ctx.v31.s16[5] >> (ctx.v7.u16[5] & 0xF);
-	ctx.v23.s16[6] = ctx.v31.s16[6] >> (ctx.v7.u16[6] & 0xF);
-	ctx.v23.s16[7] = ctx.v31.s16[7] >> (ctx.v7.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v31.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v7.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v23.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vadduhm v26,v26,v6
 	simde_mm_store_si128((simde__m128i*)ctx.v26.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v26.u16), simde_mm_load_si128((simde__m128i*)ctx.v6.u16)));
 	// vadduhm v24,v4,v6
@@ -36232,39 +35160,33 @@ loc_82A49298:
 	ea = (ctx.r10.u32 + ctx.r24.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)PPC_RAW_ADDR(ea), simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)ctx.v6.u8), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
 	// vslh v21,v26,v12
-	ctx.v21.u16[0] = ctx.v26.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v21.u16[1] = ctx.v26.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v21.u16[2] = ctx.v26.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v21.u16[3] = ctx.v26.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v21.u16[4] = ctx.v26.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v21.u16[5] = ctx.v26.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v21.u16[6] = ctx.v26.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v21.u16[7] = ctx.v26.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v26.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v21.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// stvx128 v23,r0,r31
 	ea = (ctx.r31.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)PPC_RAW_ADDR(ea), simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)ctx.v23.u8), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
 	// vadduhm v20,v1,v24
 	simde_mm_store_si128((simde__m128i*)ctx.v20.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v1.u16), simde_mm_load_si128((simde__m128i*)ctx.v24.u16)));
 	// vslh v18,v8,v10
-	ctx.v18.u16[0] = ctx.v8.u16[0] << (ctx.v10.u16[0] & 0xF);
-	ctx.v18.u16[1] = ctx.v8.u16[1] << (ctx.v10.u16[1] & 0xF);
-	ctx.v18.u16[2] = ctx.v8.u16[2] << (ctx.v10.u16[2] & 0xF);
-	ctx.v18.u16[3] = ctx.v8.u16[3] << (ctx.v10.u16[3] & 0xF);
-	ctx.v18.u16[4] = ctx.v8.u16[4] << (ctx.v10.u16[4] & 0xF);
-	ctx.v18.u16[5] = ctx.v8.u16[5] << (ctx.v10.u16[5] & 0xF);
-	ctx.v18.u16[6] = ctx.v8.u16[6] << (ctx.v10.u16[6] & 0xF);
-	ctx.v18.u16[7] = ctx.v8.u16[7] << (ctx.v10.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v10.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v18.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// addi r10,r10,16
 	ctx.r10.s64 = ctx.r10.s64 + 16;
 	// vslh v17,v8,v13
-	ctx.v17.u16[0] = ctx.v8.u16[0] << (ctx.v13.u16[0] & 0xF);
-	ctx.v17.u16[1] = ctx.v8.u16[1] << (ctx.v13.u16[1] & 0xF);
-	ctx.v17.u16[2] = ctx.v8.u16[2] << (ctx.v13.u16[2] & 0xF);
-	ctx.v17.u16[3] = ctx.v8.u16[3] << (ctx.v13.u16[3] & 0xF);
-	ctx.v17.u16[4] = ctx.v8.u16[4] << (ctx.v13.u16[4] & 0xF);
-	ctx.v17.u16[5] = ctx.v8.u16[5] << (ctx.v13.u16[5] & 0xF);
-	ctx.v17.u16[6] = ctx.v8.u16[6] << (ctx.v13.u16[6] & 0xF);
-	ctx.v17.u16[7] = ctx.v8.u16[7] << (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v17.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vadduhm v16,v18,v19
 	simde_mm_store_si128((simde__m128i*)ctx.v16.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v18.u16), simde_mm_load_si128((simde__m128i*)ctx.v19.u16)));
 	// vadduhm v15,v17,v9
@@ -36276,14 +35198,12 @@ loc_82A49298:
 	// vsubuhm v6,v8,v21
 	simde_mm_store_si128((simde__m128i*)ctx.v6.u16, simde_mm_sub_epi16(simde_mm_load_si128((simde__m128i*)ctx.v8.u16), simde_mm_load_si128((simde__m128i*)ctx.v21.u16)));
 	// vsrah v5,v6,v7
-	ctx.v5.s16[0] = ctx.v6.s16[0] >> (ctx.v7.u16[0] & 0xF);
-	ctx.v5.s16[1] = ctx.v6.s16[1] >> (ctx.v7.u16[1] & 0xF);
-	ctx.v5.s16[2] = ctx.v6.s16[2] >> (ctx.v7.u16[2] & 0xF);
-	ctx.v5.s16[3] = ctx.v6.s16[3] >> (ctx.v7.u16[3] & 0xF);
-	ctx.v5.s16[4] = ctx.v6.s16[4] >> (ctx.v7.u16[4] & 0xF);
-	ctx.v5.s16[5] = ctx.v6.s16[5] >> (ctx.v7.u16[5] & 0xF);
-	ctx.v5.s16[6] = ctx.v6.s16[6] >> (ctx.v7.u16[6] & 0xF);
-	ctx.v5.s16[7] = ctx.v6.s16[7] >> (ctx.v7.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v6.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v7.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v5.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// stvx128 v5,r0,r30
 	ea = (ctx.r30.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)PPC_RAW_ADDR(ea), simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)ctx.v5.u8), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
@@ -36339,14 +35259,12 @@ loc_82A49444:
 	ea = (ctx.r10.u32 + ctx.r5.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)ctx.v0.u8, simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)PPC_RAW_ADDR(ea)), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
 	// vsrah v31,v9,v12
-	ctx.v31.s16[0] = ctx.v9.s16[0] >> (ctx.v12.u16[0] & 0xF);
-	ctx.v31.s16[1] = ctx.v9.s16[1] >> (ctx.v12.u16[1] & 0xF);
-	ctx.v31.s16[2] = ctx.v9.s16[2] >> (ctx.v12.u16[2] & 0xF);
-	ctx.v31.s16[3] = ctx.v9.s16[3] >> (ctx.v12.u16[3] & 0xF);
-	ctx.v31.s16[4] = ctx.v9.s16[4] >> (ctx.v12.u16[4] & 0xF);
-	ctx.v31.s16[5] = ctx.v9.s16[5] >> (ctx.v12.u16[5] & 0xF);
-	ctx.v31.s16[6] = ctx.v9.s16[6] >> (ctx.v12.u16[6] & 0xF);
-	ctx.v31.s16[7] = ctx.v9.s16[7] >> (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v31.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// lvx128 v63,r10,r4
 	ea = (ctx.r10.u32 + ctx.r4.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)ctx.v63.u8, simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)PPC_RAW_ADDR(ea)), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
@@ -36355,14 +35273,12 @@ loc_82A49444:
 	// vsldoi128 v5,v0,v63,4
 	simde_mm_store_si128((simde__m128i*)ctx.v5.u8, simde_mm_alignr_epi8(simde_mm_load_si128((simde__m128i*)ctx.v0.u8), simde_mm_load_si128((simde__m128i*)ctx.v63.u8), 12));
 	// vsrah v30,v0,v12
-	ctx.v30.s16[0] = ctx.v0.s16[0] >> (ctx.v12.u16[0] & 0xF);
-	ctx.v30.s16[1] = ctx.v0.s16[1] >> (ctx.v12.u16[1] & 0xF);
-	ctx.v30.s16[2] = ctx.v0.s16[2] >> (ctx.v12.u16[2] & 0xF);
-	ctx.v30.s16[3] = ctx.v0.s16[3] >> (ctx.v12.u16[3] & 0xF);
-	ctx.v30.s16[4] = ctx.v0.s16[4] >> (ctx.v12.u16[4] & 0xF);
-	ctx.v30.s16[5] = ctx.v0.s16[5] >> (ctx.v12.u16[5] & 0xF);
-	ctx.v30.s16[6] = ctx.v0.s16[6] >> (ctx.v12.u16[6] & 0xF);
-	ctx.v30.s16[7] = ctx.v0.s16[7] >> (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v30.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsldoi v4,v9,v0,2
 	simde_mm_store_si128((simde__m128i*)ctx.v4.u8, simde_mm_alignr_epi8(simde_mm_load_si128((simde__m128i*)ctx.v9.u8), simde_mm_load_si128((simde__m128i*)ctx.v0.u8), 14));
 	// addi r10,r10,16
@@ -36370,152 +35286,122 @@ loc_82A49444:
 	// vsldoi v2,v9,v0,6
 	simde_mm_store_si128((simde__m128i*)ctx.v2.u8, simde_mm_alignr_epi8(simde_mm_load_si128((simde__m128i*)ctx.v9.u8), simde_mm_load_si128((simde__m128i*)ctx.v0.u8), 10));
 	// vsrah v8,v8,v12
-	ctx.v8.s16[0] = ctx.v8.s16[0] >> (ctx.v12.u16[0] & 0xF);
-	ctx.v8.s16[1] = ctx.v8.s16[1] >> (ctx.v12.u16[1] & 0xF);
-	ctx.v8.s16[2] = ctx.v8.s16[2] >> (ctx.v12.u16[2] & 0xF);
-	ctx.v8.s16[3] = ctx.v8.s16[3] >> (ctx.v12.u16[3] & 0xF);
-	ctx.v8.s16[4] = ctx.v8.s16[4] >> (ctx.v12.u16[4] & 0xF);
-	ctx.v8.s16[5] = ctx.v8.s16[5] >> (ctx.v12.u16[5] & 0xF);
-	ctx.v8.s16[6] = ctx.v8.s16[6] >> (ctx.v12.u16[6] & 0xF);
-	ctx.v8.s16[7] = ctx.v8.s16[7] >> (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v8.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsldoi128 v3,v0,v63,2
 	simde_mm_store_si128((simde__m128i*)ctx.v3.u8, simde_mm_alignr_epi8(simde_mm_load_si128((simde__m128i*)ctx.v0.u8), simde_mm_load_si128((simde__m128i*)ctx.v63.u8), 14));
 	// vsrah v9,v5,v12
-	ctx.v9.s16[0] = ctx.v5.s16[0] >> (ctx.v12.u16[0] & 0xF);
-	ctx.v9.s16[1] = ctx.v5.s16[1] >> (ctx.v12.u16[1] & 0xF);
-	ctx.v9.s16[2] = ctx.v5.s16[2] >> (ctx.v12.u16[2] & 0xF);
-	ctx.v9.s16[3] = ctx.v5.s16[3] >> (ctx.v12.u16[3] & 0xF);
-	ctx.v9.s16[4] = ctx.v5.s16[4] >> (ctx.v12.u16[4] & 0xF);
-	ctx.v9.s16[5] = ctx.v5.s16[5] >> (ctx.v12.u16[5] & 0xF);
-	ctx.v9.s16[6] = ctx.v5.s16[6] >> (ctx.v12.u16[6] & 0xF);
-	ctx.v9.s16[7] = ctx.v5.s16[7] >> (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v5.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v9.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsldoi128 v1,v0,v63,6
 	simde_mm_store_si128((simde__m128i*)ctx.v1.u8, simde_mm_alignr_epi8(simde_mm_load_si128((simde__m128i*)ctx.v0.u8), simde_mm_load_si128((simde__m128i*)ctx.v63.u8), 10));
 	// vsrah v0,v4,v12
-	ctx.v0.s16[0] = ctx.v4.s16[0] >> (ctx.v12.u16[0] & 0xF);
-	ctx.v0.s16[1] = ctx.v4.s16[1] >> (ctx.v12.u16[1] & 0xF);
-	ctx.v0.s16[2] = ctx.v4.s16[2] >> (ctx.v12.u16[2] & 0xF);
-	ctx.v0.s16[3] = ctx.v4.s16[3] >> (ctx.v12.u16[3] & 0xF);
-	ctx.v0.s16[4] = ctx.v4.s16[4] >> (ctx.v12.u16[4] & 0xF);
-	ctx.v0.s16[5] = ctx.v4.s16[5] >> (ctx.v12.u16[5] & 0xF);
-	ctx.v0.s16[6] = ctx.v4.s16[6] >> (ctx.v12.u16[6] & 0xF);
-	ctx.v0.s16[7] = ctx.v4.s16[7] >> (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v4.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v0.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vor v4,v31,v31
 	simde_mm_store_si128((simde__m128i*)ctx.v4.u8, simde_mm_load_si128((simde__m128i*)ctx.v31.u8));
 	// vsrah v5,v3,v12
-	ctx.v5.s16[0] = ctx.v3.s16[0] >> (ctx.v12.u16[0] & 0xF);
-	ctx.v5.s16[1] = ctx.v3.s16[1] >> (ctx.v12.u16[1] & 0xF);
-	ctx.v5.s16[2] = ctx.v3.s16[2] >> (ctx.v12.u16[2] & 0xF);
-	ctx.v5.s16[3] = ctx.v3.s16[3] >> (ctx.v12.u16[3] & 0xF);
-	ctx.v5.s16[4] = ctx.v3.s16[4] >> (ctx.v12.u16[4] & 0xF);
-	ctx.v5.s16[5] = ctx.v3.s16[5] >> (ctx.v12.u16[5] & 0xF);
-	ctx.v5.s16[6] = ctx.v3.s16[6] >> (ctx.v12.u16[6] & 0xF);
-	ctx.v5.s16[7] = ctx.v3.s16[7] >> (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v3.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v5.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vslh v28,v8,v12
-	ctx.v28.u16[0] = ctx.v8.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v28.u16[1] = ctx.v8.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v28.u16[2] = ctx.v8.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v28.u16[3] = ctx.v8.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v28.u16[4] = ctx.v8.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v28.u16[5] = ctx.v8.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v28.u16[6] = ctx.v8.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v28.u16[7] = ctx.v8.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v28.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v27,v9,v12
-	ctx.v27.u16[0] = ctx.v9.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v27.u16[1] = ctx.v9.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v27.u16[2] = ctx.v9.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v27.u16[3] = ctx.v9.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v27.u16[4] = ctx.v9.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v27.u16[5] = ctx.v9.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v27.u16[6] = ctx.v9.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v27.u16[7] = ctx.v9.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v27.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vor v3,v30,v30
 	simde_mm_store_si128((simde__m128i*)ctx.v3.u8, simde_mm_load_si128((simde__m128i*)ctx.v30.u8));
 	// vslh v26,v5,v13
-	ctx.v26.u16[0] = ctx.v5.u16[0] << (ctx.v13.u16[0] & 0xF);
-	ctx.v26.u16[1] = ctx.v5.u16[1] << (ctx.v13.u16[1] & 0xF);
-	ctx.v26.u16[2] = ctx.v5.u16[2] << (ctx.v13.u16[2] & 0xF);
-	ctx.v26.u16[3] = ctx.v5.u16[3] << (ctx.v13.u16[3] & 0xF);
-	ctx.v26.u16[4] = ctx.v5.u16[4] << (ctx.v13.u16[4] & 0xF);
-	ctx.v26.u16[5] = ctx.v5.u16[5] << (ctx.v13.u16[5] & 0xF);
-	ctx.v26.u16[6] = ctx.v5.u16[6] << (ctx.v13.u16[6] & 0xF);
-	ctx.v26.u16[7] = ctx.v5.u16[7] << (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v5.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v26.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vadduhm v21,v28,v8
 	simde_mm_store_si128((simde__m128i*)ctx.v21.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v28.u16), simde_mm_load_si128((simde__m128i*)ctx.v8.u16)));
 	// vadduhm v24,v27,v9
 	simde_mm_store_si128((simde__m128i*)ctx.v24.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v27.u16), simde_mm_load_si128((simde__m128i*)ctx.v9.u16)));
 	// vslh v25,v9,v10
-	ctx.v25.u16[0] = ctx.v9.u16[0] << (ctx.v10.u16[0] & 0xF);
-	ctx.v25.u16[1] = ctx.v9.u16[1] << (ctx.v10.u16[1] & 0xF);
-	ctx.v25.u16[2] = ctx.v9.u16[2] << (ctx.v10.u16[2] & 0xF);
-	ctx.v25.u16[3] = ctx.v9.u16[3] << (ctx.v10.u16[3] & 0xF);
-	ctx.v25.u16[4] = ctx.v9.u16[4] << (ctx.v10.u16[4] & 0xF);
-	ctx.v25.u16[5] = ctx.v9.u16[5] << (ctx.v10.u16[5] & 0xF);
-	ctx.v25.u16[6] = ctx.v9.u16[6] << (ctx.v10.u16[6] & 0xF);
-	ctx.v25.u16[7] = ctx.v9.u16[7] << (ctx.v10.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v10.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v25.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v23,v9,v13
-	ctx.v23.u16[0] = ctx.v9.u16[0] << (ctx.v13.u16[0] & 0xF);
-	ctx.v23.u16[1] = ctx.v9.u16[1] << (ctx.v13.u16[1] & 0xF);
-	ctx.v23.u16[2] = ctx.v9.u16[2] << (ctx.v13.u16[2] & 0xF);
-	ctx.v23.u16[3] = ctx.v9.u16[3] << (ctx.v13.u16[3] & 0xF);
-	ctx.v23.u16[4] = ctx.v9.u16[4] << (ctx.v13.u16[4] & 0xF);
-	ctx.v23.u16[5] = ctx.v9.u16[5] << (ctx.v13.u16[5] & 0xF);
-	ctx.v23.u16[6] = ctx.v9.u16[6] << (ctx.v13.u16[6] & 0xF);
-	ctx.v23.u16[7] = ctx.v9.u16[7] << (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v23.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v20,v8,v10
-	ctx.v20.u16[0] = ctx.v8.u16[0] << (ctx.v10.u16[0] & 0xF);
-	ctx.v20.u16[1] = ctx.v8.u16[1] << (ctx.v10.u16[1] & 0xF);
-	ctx.v20.u16[2] = ctx.v8.u16[2] << (ctx.v10.u16[2] & 0xF);
-	ctx.v20.u16[3] = ctx.v8.u16[3] << (ctx.v10.u16[3] & 0xF);
-	ctx.v20.u16[4] = ctx.v8.u16[4] << (ctx.v10.u16[4] & 0xF);
-	ctx.v20.u16[5] = ctx.v8.u16[5] << (ctx.v10.u16[5] & 0xF);
-	ctx.v20.u16[6] = ctx.v8.u16[6] << (ctx.v10.u16[6] & 0xF);
-	ctx.v20.u16[7] = ctx.v8.u16[7] << (ctx.v10.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v10.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v20.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v19,v8,v13
-	ctx.v19.u16[0] = ctx.v8.u16[0] << (ctx.v13.u16[0] & 0xF);
-	ctx.v19.u16[1] = ctx.v8.u16[1] << (ctx.v13.u16[1] & 0xF);
-	ctx.v19.u16[2] = ctx.v8.u16[2] << (ctx.v13.u16[2] & 0xF);
-	ctx.v19.u16[3] = ctx.v8.u16[3] << (ctx.v13.u16[3] & 0xF);
-	ctx.v19.u16[4] = ctx.v8.u16[4] << (ctx.v13.u16[4] & 0xF);
-	ctx.v19.u16[5] = ctx.v8.u16[5] << (ctx.v13.u16[5] & 0xF);
-	ctx.v19.u16[6] = ctx.v8.u16[6] << (ctx.v13.u16[6] & 0xF);
-	ctx.v19.u16[7] = ctx.v8.u16[7] << (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v19.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v22,v0,v13
-	ctx.v22.u16[0] = ctx.v0.u16[0] << (ctx.v13.u16[0] & 0xF);
-	ctx.v22.u16[1] = ctx.v0.u16[1] << (ctx.v13.u16[1] & 0xF);
-	ctx.v22.u16[2] = ctx.v0.u16[2] << (ctx.v13.u16[2] & 0xF);
-	ctx.v22.u16[3] = ctx.v0.u16[3] << (ctx.v13.u16[3] & 0xF);
-	ctx.v22.u16[4] = ctx.v0.u16[4] << (ctx.v13.u16[4] & 0xF);
-	ctx.v22.u16[5] = ctx.v0.u16[5] << (ctx.v13.u16[5] & 0xF);
-	ctx.v22.u16[6] = ctx.v0.u16[6] << (ctx.v13.u16[6] & 0xF);
-	ctx.v22.u16[7] = ctx.v0.u16[7] << (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v22.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vsrah v18,v1,v12
-	ctx.v18.s16[0] = ctx.v1.s16[0] >> (ctx.v12.u16[0] & 0xF);
-	ctx.v18.s16[1] = ctx.v1.s16[1] >> (ctx.v12.u16[1] & 0xF);
-	ctx.v18.s16[2] = ctx.v1.s16[2] >> (ctx.v12.u16[2] & 0xF);
-	ctx.v18.s16[3] = ctx.v1.s16[3] >> (ctx.v12.u16[3] & 0xF);
-	ctx.v18.s16[4] = ctx.v1.s16[4] >> (ctx.v12.u16[4] & 0xF);
-	ctx.v18.s16[5] = ctx.v1.s16[5] >> (ctx.v12.u16[5] & 0xF);
-	ctx.v18.s16[6] = ctx.v1.s16[6] >> (ctx.v12.u16[6] & 0xF);
-	ctx.v18.s16[7] = ctx.v1.s16[7] >> (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v1.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v18.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vslh v16,v5,v11
-	ctx.v16.u16[0] = ctx.v5.u16[0] << (ctx.v11.u16[0] & 0xF);
-	ctx.v16.u16[1] = ctx.v5.u16[1] << (ctx.v11.u16[1] & 0xF);
-	ctx.v16.u16[2] = ctx.v5.u16[2] << (ctx.v11.u16[2] & 0xF);
-	ctx.v16.u16[3] = ctx.v5.u16[3] << (ctx.v11.u16[3] & 0xF);
-	ctx.v16.u16[4] = ctx.v5.u16[4] << (ctx.v11.u16[4] & 0xF);
-	ctx.v16.u16[5] = ctx.v5.u16[5] << (ctx.v11.u16[5] & 0xF);
-	ctx.v16.u16[6] = ctx.v5.u16[6] << (ctx.v11.u16[6] & 0xF);
-	ctx.v16.u16[7] = ctx.v5.u16[7] << (ctx.v11.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v5.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v11.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v16.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vsrah v9,v2,v12
-	ctx.v9.s16[0] = ctx.v2.s16[0] >> (ctx.v12.u16[0] & 0xF);
-	ctx.v9.s16[1] = ctx.v2.s16[1] >> (ctx.v12.u16[1] & 0xF);
-	ctx.v9.s16[2] = ctx.v2.s16[2] >> (ctx.v12.u16[2] & 0xF);
-	ctx.v9.s16[3] = ctx.v2.s16[3] >> (ctx.v12.u16[3] & 0xF);
-	ctx.v9.s16[4] = ctx.v2.s16[4] >> (ctx.v12.u16[4] & 0xF);
-	ctx.v9.s16[5] = ctx.v2.s16[5] >> (ctx.v12.u16[5] & 0xF);
-	ctx.v9.s16[6] = ctx.v2.s16[6] >> (ctx.v12.u16[6] & 0xF);
-	ctx.v9.s16[7] = ctx.v2.s16[7] >> (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v2.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v9.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vadduhm v15,v25,v24
 	simde_mm_store_si128((simde__m128i*)ctx.v15.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v25.u16), simde_mm_load_si128((simde__m128i*)ctx.v24.u16)));
 	// vadduhm v17,v26,v3
@@ -36529,14 +35415,12 @@ loc_82A49444:
 	// vadduhm v1,v19,v7
 	simde_mm_store_si128((simde__m128i*)ctx.v1.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v19.u16), simde_mm_load_si128((simde__m128i*)ctx.v7.u16)));
 	// vslh v5,v0,v11
-	ctx.v5.u16[0] = ctx.v0.u16[0] << (ctx.v11.u16[0] & 0xF);
-	ctx.v5.u16[1] = ctx.v0.u16[1] << (ctx.v11.u16[1] & 0xF);
-	ctx.v5.u16[2] = ctx.v0.u16[2] << (ctx.v11.u16[2] & 0xF);
-	ctx.v5.u16[3] = ctx.v0.u16[3] << (ctx.v11.u16[3] & 0xF);
-	ctx.v5.u16[4] = ctx.v0.u16[4] << (ctx.v11.u16[4] & 0xF);
-	ctx.v5.u16[5] = ctx.v0.u16[5] << (ctx.v11.u16[5] & 0xF);
-	ctx.v5.u16[6] = ctx.v0.u16[6] << (ctx.v11.u16[6] & 0xF);
-	ctx.v5.u16[7] = ctx.v0.u16[7] << (ctx.v11.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v11.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v5.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vadduhm v30,v16,v17
 	simde_mm_store_si128((simde__m128i*)ctx.v30.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v16.u16), simde_mm_load_si128((simde__m128i*)ctx.v17.u16)));
 	// vadduhm v31,v3,v18
@@ -36550,25 +35434,21 @@ loc_82A49444:
 	// vadduhm v25,v1,v2
 	simde_mm_store_si128((simde__m128i*)ctx.v25.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v1.u16), simde_mm_load_si128((simde__m128i*)ctx.v2.u16)));
 	// vslh v24,v31,v12
-	ctx.v24.u16[0] = ctx.v31.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v24.u16[1] = ctx.v31.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v24.u16[2] = ctx.v31.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v24.u16[3] = ctx.v31.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v24.u16[4] = ctx.v31.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v24.u16[5] = ctx.v31.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v24.u16[6] = ctx.v31.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v24.u16[7] = ctx.v31.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v31.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v24.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vadduhm v23,v28,v30
 	simde_mm_store_si128((simde__m128i*)ctx.v23.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v28.u16), simde_mm_load_si128((simde__m128i*)ctx.v30.u16)));
 	// vslh v22,v27,v12
-	ctx.v22.u16[0] = ctx.v27.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v22.u16[1] = ctx.v27.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v22.u16[2] = ctx.v27.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v22.u16[3] = ctx.v27.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v22.u16[4] = ctx.v27.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v22.u16[5] = ctx.v27.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v22.u16[6] = ctx.v27.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v22.u16[7] = ctx.v27.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v27.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v22.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vadduhm v21,v25,v26
 	simde_mm_store_si128((simde__m128i*)ctx.v21.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v25.u16), simde_mm_load_si128((simde__m128i*)ctx.v26.u16)));
 	// vsubuhm v20,v23,v24
@@ -36576,23 +35456,19 @@ loc_82A49444:
 	// vsubuhm v19,v21,v22
 	simde_mm_store_si128((simde__m128i*)ctx.v19.u16, simde_mm_sub_epi16(simde_mm_load_si128((simde__m128i*)ctx.v21.u16), simde_mm_load_si128((simde__m128i*)ctx.v22.u16)));
 	// vsrah v18,v20,v6
-	ctx.v18.s16[0] = ctx.v20.s16[0] >> (ctx.v6.u16[0] & 0xF);
-	ctx.v18.s16[1] = ctx.v20.s16[1] >> (ctx.v6.u16[1] & 0xF);
-	ctx.v18.s16[2] = ctx.v20.s16[2] >> (ctx.v6.u16[2] & 0xF);
-	ctx.v18.s16[3] = ctx.v20.s16[3] >> (ctx.v6.u16[3] & 0xF);
-	ctx.v18.s16[4] = ctx.v20.s16[4] >> (ctx.v6.u16[4] & 0xF);
-	ctx.v18.s16[5] = ctx.v20.s16[5] >> (ctx.v6.u16[5] & 0xF);
-	ctx.v18.s16[6] = ctx.v20.s16[6] >> (ctx.v6.u16[6] & 0xF);
-	ctx.v18.s16[7] = ctx.v20.s16[7] >> (ctx.v6.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v20.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v6.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v18.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v17,v19,v6
-	ctx.v17.s16[0] = ctx.v19.s16[0] >> (ctx.v6.u16[0] & 0xF);
-	ctx.v17.s16[1] = ctx.v19.s16[1] >> (ctx.v6.u16[1] & 0xF);
-	ctx.v17.s16[2] = ctx.v19.s16[2] >> (ctx.v6.u16[2] & 0xF);
-	ctx.v17.s16[3] = ctx.v19.s16[3] >> (ctx.v6.u16[3] & 0xF);
-	ctx.v17.s16[4] = ctx.v19.s16[4] >> (ctx.v6.u16[4] & 0xF);
-	ctx.v17.s16[5] = ctx.v19.s16[5] >> (ctx.v6.u16[5] & 0xF);
-	ctx.v17.s16[6] = ctx.v19.s16[6] >> (ctx.v6.u16[6] & 0xF);
-	ctx.v17.s16[7] = ctx.v19.s16[7] >> (ctx.v6.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v19.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v6.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v17.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vpkshss v16,v17,v18
 	simde_mm_store_si128((simde__m128i*)ctx.v16.s8, simde_mm_packs_epi16(simde_mm_load_si128((simde__m128i*)ctx.v18.s16), simde_mm_load_si128((simde__m128i*)ctx.v17.s16)));
 	// vaddubm v15,v16,v29
@@ -36666,23 +35542,19 @@ loc_82A49554:
 	// vadduhm v3,v13,v5
 	simde_mm_store_si128((simde__m128i*)ctx.v3.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v13.u16), simde_mm_load_si128((simde__m128i*)ctx.v5.u16)));
 	// vslh v2,v12,v30
-	ctx.v2.u16[0] = ctx.v12.u16[0] << (ctx.v30.u16[0] & 0xF);
-	ctx.v2.u16[1] = ctx.v12.u16[1] << (ctx.v30.u16[1] & 0xF);
-	ctx.v2.u16[2] = ctx.v12.u16[2] << (ctx.v30.u16[2] & 0xF);
-	ctx.v2.u16[3] = ctx.v12.u16[3] << (ctx.v30.u16[3] & 0xF);
-	ctx.v2.u16[4] = ctx.v12.u16[4] << (ctx.v30.u16[4] & 0xF);
-	ctx.v2.u16[5] = ctx.v12.u16[5] << (ctx.v30.u16[5] & 0xF);
-	ctx.v2.u16[6] = ctx.v12.u16[6] << (ctx.v30.u16[6] & 0xF);
-	ctx.v2.u16[7] = ctx.v12.u16[7] << (ctx.v30.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v30.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v2.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v1,v11,v30
-	ctx.v1.u16[0] = ctx.v11.u16[0] << (ctx.v30.u16[0] & 0xF);
-	ctx.v1.u16[1] = ctx.v11.u16[1] << (ctx.v30.u16[1] & 0xF);
-	ctx.v1.u16[2] = ctx.v11.u16[2] << (ctx.v30.u16[2] & 0xF);
-	ctx.v1.u16[3] = ctx.v11.u16[3] << (ctx.v30.u16[3] & 0xF);
-	ctx.v1.u16[4] = ctx.v11.u16[4] << (ctx.v30.u16[4] & 0xF);
-	ctx.v1.u16[5] = ctx.v11.u16[5] << (ctx.v30.u16[5] & 0xF);
-	ctx.v1.u16[6] = ctx.v11.u16[6] << (ctx.v30.u16[6] & 0xF);
-	ctx.v1.u16[7] = ctx.v11.u16[7] << (ctx.v30.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v11.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v30.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v1.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vsubuhm v31,v7,v4
 	simde_mm_store_si128((simde__m128i*)ctx.v31.u16, simde_mm_sub_epi16(simde_mm_load_si128((simde__m128i*)ctx.v7.u16), simde_mm_load_si128((simde__m128i*)ctx.v4.u16)));
 	// vsubuhm v28,v7,v3
@@ -36696,23 +35568,19 @@ loc_82A49554:
 	// vadduhm v24,v26,v31
 	simde_mm_store_si128((simde__m128i*)ctx.v24.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v26.u16), simde_mm_load_si128((simde__m128i*)ctx.v31.u16)));
 	// vsrah v23,v25,v6
-	ctx.v23.s16[0] = ctx.v25.s16[0] >> (ctx.v6.u16[0] & 0xF);
-	ctx.v23.s16[1] = ctx.v25.s16[1] >> (ctx.v6.u16[1] & 0xF);
-	ctx.v23.s16[2] = ctx.v25.s16[2] >> (ctx.v6.u16[2] & 0xF);
-	ctx.v23.s16[3] = ctx.v25.s16[3] >> (ctx.v6.u16[3] & 0xF);
-	ctx.v23.s16[4] = ctx.v25.s16[4] >> (ctx.v6.u16[4] & 0xF);
-	ctx.v23.s16[5] = ctx.v25.s16[5] >> (ctx.v6.u16[5] & 0xF);
-	ctx.v23.s16[6] = ctx.v25.s16[6] >> (ctx.v6.u16[6] & 0xF);
-	ctx.v23.s16[7] = ctx.v25.s16[7] >> (ctx.v6.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v25.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v6.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v23.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v22,v24,v6
-	ctx.v22.s16[0] = ctx.v24.s16[0] >> (ctx.v6.u16[0] & 0xF);
-	ctx.v22.s16[1] = ctx.v24.s16[1] >> (ctx.v6.u16[1] & 0xF);
-	ctx.v22.s16[2] = ctx.v24.s16[2] >> (ctx.v6.u16[2] & 0xF);
-	ctx.v22.s16[3] = ctx.v24.s16[3] >> (ctx.v6.u16[3] & 0xF);
-	ctx.v22.s16[4] = ctx.v24.s16[4] >> (ctx.v6.u16[4] & 0xF);
-	ctx.v22.s16[5] = ctx.v24.s16[5] >> (ctx.v6.u16[5] & 0xF);
-	ctx.v22.s16[6] = ctx.v24.s16[6] >> (ctx.v6.u16[6] & 0xF);
-	ctx.v22.s16[7] = ctx.v24.s16[7] >> (ctx.v6.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v24.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v6.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v22.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vpkshss v21,v23,v22
 	simde_mm_store_si128((simde__m128i*)ctx.v21.s8, simde_mm_packs_epi16(simde_mm_load_si128((simde__m128i*)ctx.v22.s16), simde_mm_load_si128((simde__m128i*)ctx.v23.s16)));
 	// vaddubm v20,v21,v29
@@ -36761,14 +35629,12 @@ loc_82A495F4:
 	ea = (ctx.r10.u32 + ctx.r5.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)ctx.v0.u8, simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)PPC_RAW_ADDR(ea)), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
 	// vsrah v2,v9,v12
-	ctx.v2.s16[0] = ctx.v9.s16[0] >> (ctx.v12.u16[0] & 0xF);
-	ctx.v2.s16[1] = ctx.v9.s16[1] >> (ctx.v12.u16[1] & 0xF);
-	ctx.v2.s16[2] = ctx.v9.s16[2] >> (ctx.v12.u16[2] & 0xF);
-	ctx.v2.s16[3] = ctx.v9.s16[3] >> (ctx.v12.u16[3] & 0xF);
-	ctx.v2.s16[4] = ctx.v9.s16[4] >> (ctx.v12.u16[4] & 0xF);
-	ctx.v2.s16[5] = ctx.v9.s16[5] >> (ctx.v12.u16[5] & 0xF);
-	ctx.v2.s16[6] = ctx.v9.s16[6] >> (ctx.v12.u16[6] & 0xF);
-	ctx.v2.s16[7] = ctx.v9.s16[7] >> (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v2.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// lvx128 v61,r10,r4
 	ea = (ctx.r10.u32 + ctx.r4.u32) & ~0xF;
 	simde_mm_store_si128((simde__m128i*)ctx.v61.u8, simde_mm_shuffle_epi8(simde_mm_load_si128((simde__m128i*)PPC_RAW_ADDR(ea)), simde_mm_load_si128((simde__m128i*)VectorMaskL)));
@@ -36777,14 +35643,12 @@ loc_82A495F4:
 	// vsldoi128 v31,v0,v61,2
 	simde_mm_store_si128((simde__m128i*)ctx.v31.u8, simde_mm_alignr_epi8(simde_mm_load_si128((simde__m128i*)ctx.v0.u8), simde_mm_load_si128((simde__m128i*)ctx.v61.u8), 14));
 	// vsrah v30,v0,v12
-	ctx.v30.s16[0] = ctx.v0.s16[0] >> (ctx.v12.u16[0] & 0xF);
-	ctx.v30.s16[1] = ctx.v0.s16[1] >> (ctx.v12.u16[1] & 0xF);
-	ctx.v30.s16[2] = ctx.v0.s16[2] >> (ctx.v12.u16[2] & 0xF);
-	ctx.v30.s16[3] = ctx.v0.s16[3] >> (ctx.v12.u16[3] & 0xF);
-	ctx.v30.s16[4] = ctx.v0.s16[4] >> (ctx.v12.u16[4] & 0xF);
-	ctx.v30.s16[5] = ctx.v0.s16[5] >> (ctx.v12.u16[5] & 0xF);
-	ctx.v30.s16[6] = ctx.v0.s16[6] >> (ctx.v12.u16[6] & 0xF);
-	ctx.v30.s16[7] = ctx.v0.s16[7] >> (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v30.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsldoi v28,v9,v0,6
 	simde_mm_store_si128((simde__m128i*)ctx.v28.u8, simde_mm_alignr_epi8(simde_mm_load_si128((simde__m128i*)ctx.v9.u8), simde_mm_load_si128((simde__m128i*)ctx.v0.u8), 10));
 	// addi r10,r10,16
@@ -36792,148 +35656,118 @@ loc_82A495F4:
 	// vsldoi v27,v9,v0,4
 	simde_mm_store_si128((simde__m128i*)ctx.v27.u8, simde_mm_alignr_epi8(simde_mm_load_si128((simde__m128i*)ctx.v9.u8), simde_mm_load_si128((simde__m128i*)ctx.v0.u8), 12));
 	// vsrah v8,v1,v12
-	ctx.v8.s16[0] = ctx.v1.s16[0] >> (ctx.v12.u16[0] & 0xF);
-	ctx.v8.s16[1] = ctx.v1.s16[1] >> (ctx.v12.u16[1] & 0xF);
-	ctx.v8.s16[2] = ctx.v1.s16[2] >> (ctx.v12.u16[2] & 0xF);
-	ctx.v8.s16[3] = ctx.v1.s16[3] >> (ctx.v12.u16[3] & 0xF);
-	ctx.v8.s16[4] = ctx.v1.s16[4] >> (ctx.v12.u16[4] & 0xF);
-	ctx.v8.s16[5] = ctx.v1.s16[5] >> (ctx.v12.u16[5] & 0xF);
-	ctx.v8.s16[6] = ctx.v1.s16[6] >> (ctx.v12.u16[6] & 0xF);
-	ctx.v8.s16[7] = ctx.v1.s16[7] >> (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v1.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v8.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsldoi128 v26,v0,v61,4
 	simde_mm_store_si128((simde__m128i*)ctx.v26.u8, simde_mm_alignr_epi8(simde_mm_load_si128((simde__m128i*)ctx.v0.u8), simde_mm_load_si128((simde__m128i*)ctx.v61.u8), 12));
 	// vsrah v9,v31,v12
-	ctx.v9.s16[0] = ctx.v31.s16[0] >> (ctx.v12.u16[0] & 0xF);
-	ctx.v9.s16[1] = ctx.v31.s16[1] >> (ctx.v12.u16[1] & 0xF);
-	ctx.v9.s16[2] = ctx.v31.s16[2] >> (ctx.v12.u16[2] & 0xF);
-	ctx.v9.s16[3] = ctx.v31.s16[3] >> (ctx.v12.u16[3] & 0xF);
-	ctx.v9.s16[4] = ctx.v31.s16[4] >> (ctx.v12.u16[4] & 0xF);
-	ctx.v9.s16[5] = ctx.v31.s16[5] >> (ctx.v12.u16[5] & 0xF);
-	ctx.v9.s16[6] = ctx.v31.s16[6] >> (ctx.v12.u16[6] & 0xF);
-	ctx.v9.s16[7] = ctx.v31.s16[7] >> (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v31.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v9.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsldoi128 v25,v0,v61,6
 	simde_mm_store_si128((simde__m128i*)ctx.v25.u8, simde_mm_alignr_epi8(simde_mm_load_si128((simde__m128i*)ctx.v0.u8), simde_mm_load_si128((simde__m128i*)ctx.v61.u8), 10));
 	// vsrah v4,v28,v12
-	ctx.v4.s16[0] = ctx.v28.s16[0] >> (ctx.v12.u16[0] & 0xF);
-	ctx.v4.s16[1] = ctx.v28.s16[1] >> (ctx.v12.u16[1] & 0xF);
-	ctx.v4.s16[2] = ctx.v28.s16[2] >> (ctx.v12.u16[2] & 0xF);
-	ctx.v4.s16[3] = ctx.v28.s16[3] >> (ctx.v12.u16[3] & 0xF);
-	ctx.v4.s16[4] = ctx.v28.s16[4] >> (ctx.v12.u16[4] & 0xF);
-	ctx.v4.s16[5] = ctx.v28.s16[5] >> (ctx.v12.u16[5] & 0xF);
-	ctx.v4.s16[6] = ctx.v28.s16[6] >> (ctx.v12.u16[6] & 0xF);
-	ctx.v4.s16[7] = ctx.v28.s16[7] >> (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v28.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v4.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v0,v27,v12
-	ctx.v0.s16[0] = ctx.v27.s16[0] >> (ctx.v12.u16[0] & 0xF);
-	ctx.v0.s16[1] = ctx.v27.s16[1] >> (ctx.v12.u16[1] & 0xF);
-	ctx.v0.s16[2] = ctx.v27.s16[2] >> (ctx.v12.u16[2] & 0xF);
-	ctx.v0.s16[3] = ctx.v27.s16[3] >> (ctx.v12.u16[3] & 0xF);
-	ctx.v0.s16[4] = ctx.v27.s16[4] >> (ctx.v12.u16[4] & 0xF);
-	ctx.v0.s16[5] = ctx.v27.s16[5] >> (ctx.v12.u16[5] & 0xF);
-	ctx.v0.s16[6] = ctx.v27.s16[6] >> (ctx.v12.u16[6] & 0xF);
-	ctx.v0.s16[7] = ctx.v27.s16[7] >> (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v27.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v0.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v5,v26,v12
-	ctx.v5.s16[0] = ctx.v26.s16[0] >> (ctx.v12.u16[0] & 0xF);
-	ctx.v5.s16[1] = ctx.v26.s16[1] >> (ctx.v12.u16[1] & 0xF);
-	ctx.v5.s16[2] = ctx.v26.s16[2] >> (ctx.v12.u16[2] & 0xF);
-	ctx.v5.s16[3] = ctx.v26.s16[3] >> (ctx.v12.u16[3] & 0xF);
-	ctx.v5.s16[4] = ctx.v26.s16[4] >> (ctx.v12.u16[4] & 0xF);
-	ctx.v5.s16[5] = ctx.v26.s16[5] >> (ctx.v12.u16[5] & 0xF);
-	ctx.v5.s16[6] = ctx.v26.s16[6] >> (ctx.v12.u16[6] & 0xF);
-	ctx.v5.s16[7] = ctx.v26.s16[7] >> (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v26.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v5.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vslh v24,v9,v12
-	ctx.v24.u16[0] = ctx.v9.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v24.u16[1] = ctx.v9.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v24.u16[2] = ctx.v9.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v24.u16[3] = ctx.v9.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v24.u16[4] = ctx.v9.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v24.u16[5] = ctx.v9.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v24.u16[6] = ctx.v9.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v24.u16[7] = ctx.v9.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v24.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v23,v8,v12
-	ctx.v23.u16[0] = ctx.v8.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v23.u16[1] = ctx.v8.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v23.u16[2] = ctx.v8.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v23.u16[3] = ctx.v8.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v23.u16[4] = ctx.v8.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v23.u16[5] = ctx.v8.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v23.u16[6] = ctx.v8.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v23.u16[7] = ctx.v8.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v23.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v20,v9,v10
-	ctx.v20.u16[0] = ctx.v9.u16[0] << (ctx.v10.u16[0] & 0xF);
-	ctx.v20.u16[1] = ctx.v9.u16[1] << (ctx.v10.u16[1] & 0xF);
-	ctx.v20.u16[2] = ctx.v9.u16[2] << (ctx.v10.u16[2] & 0xF);
-	ctx.v20.u16[3] = ctx.v9.u16[3] << (ctx.v10.u16[3] & 0xF);
-	ctx.v20.u16[4] = ctx.v9.u16[4] << (ctx.v10.u16[4] & 0xF);
-	ctx.v20.u16[5] = ctx.v9.u16[5] << (ctx.v10.u16[5] & 0xF);
-	ctx.v20.u16[6] = ctx.v9.u16[6] << (ctx.v10.u16[6] & 0xF);
-	ctx.v20.u16[7] = ctx.v9.u16[7] << (ctx.v10.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v10.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v20.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v19,v9,v13
-	ctx.v19.u16[0] = ctx.v9.u16[0] << (ctx.v13.u16[0] & 0xF);
-	ctx.v19.u16[1] = ctx.v9.u16[1] << (ctx.v13.u16[1] & 0xF);
-	ctx.v19.u16[2] = ctx.v9.u16[2] << (ctx.v13.u16[2] & 0xF);
-	ctx.v19.u16[3] = ctx.v9.u16[3] << (ctx.v13.u16[3] & 0xF);
-	ctx.v19.u16[4] = ctx.v9.u16[4] << (ctx.v13.u16[4] & 0xF);
-	ctx.v19.u16[5] = ctx.v9.u16[5] << (ctx.v13.u16[5] & 0xF);
-	ctx.v19.u16[6] = ctx.v9.u16[6] << (ctx.v13.u16[6] & 0xF);
-	ctx.v19.u16[7] = ctx.v9.u16[7] << (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v9.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v19.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vadduhm v21,v24,v9
 	simde_mm_store_si128((simde__m128i*)ctx.v21.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v24.u16), simde_mm_load_si128((simde__m128i*)ctx.v9.u16)));
 	// vadduhm v17,v23,v8
 	simde_mm_store_si128((simde__m128i*)ctx.v17.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v23.u16), simde_mm_load_si128((simde__m128i*)ctx.v8.u16)));
 	// vslh v16,v8,v10
-	ctx.v16.u16[0] = ctx.v8.u16[0] << (ctx.v10.u16[0] & 0xF);
-	ctx.v16.u16[1] = ctx.v8.u16[1] << (ctx.v10.u16[1] & 0xF);
-	ctx.v16.u16[2] = ctx.v8.u16[2] << (ctx.v10.u16[2] & 0xF);
-	ctx.v16.u16[3] = ctx.v8.u16[3] << (ctx.v10.u16[3] & 0xF);
-	ctx.v16.u16[4] = ctx.v8.u16[4] << (ctx.v10.u16[4] & 0xF);
-	ctx.v16.u16[5] = ctx.v8.u16[5] << (ctx.v10.u16[5] & 0xF);
-	ctx.v16.u16[6] = ctx.v8.u16[6] << (ctx.v10.u16[6] & 0xF);
-	ctx.v16.u16[7] = ctx.v8.u16[7] << (ctx.v10.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v10.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v16.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v15,v8,v13
-	ctx.v15.u16[0] = ctx.v8.u16[0] << (ctx.v13.u16[0] & 0xF);
-	ctx.v15.u16[1] = ctx.v8.u16[1] << (ctx.v13.u16[1] & 0xF);
-	ctx.v15.u16[2] = ctx.v8.u16[2] << (ctx.v13.u16[2] & 0xF);
-	ctx.v15.u16[3] = ctx.v8.u16[3] << (ctx.v13.u16[3] & 0xF);
-	ctx.v15.u16[4] = ctx.v8.u16[4] << (ctx.v13.u16[4] & 0xF);
-	ctx.v15.u16[5] = ctx.v8.u16[5] << (ctx.v13.u16[5] & 0xF);
-	ctx.v15.u16[6] = ctx.v8.u16[6] << (ctx.v13.u16[6] & 0xF);
-	ctx.v15.u16[7] = ctx.v8.u16[7] << (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v8.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v15.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vsrah v3,v25,v12
-	ctx.v3.s16[0] = ctx.v25.s16[0] >> (ctx.v12.u16[0] & 0xF);
-	ctx.v3.s16[1] = ctx.v25.s16[1] >> (ctx.v12.u16[1] & 0xF);
-	ctx.v3.s16[2] = ctx.v25.s16[2] >> (ctx.v12.u16[2] & 0xF);
-	ctx.v3.s16[3] = ctx.v25.s16[3] >> (ctx.v12.u16[3] & 0xF);
-	ctx.v3.s16[4] = ctx.v25.s16[4] >> (ctx.v12.u16[4] & 0xF);
-	ctx.v3.s16[5] = ctx.v25.s16[5] >> (ctx.v12.u16[5] & 0xF);
-	ctx.v3.s16[6] = ctx.v25.s16[6] >> (ctx.v12.u16[6] & 0xF);
-	ctx.v3.s16[7] = ctx.v25.s16[7] >> (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v25.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v3.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vslh v22,v5,v13
-	ctx.v22.u16[0] = ctx.v5.u16[0] << (ctx.v13.u16[0] & 0xF);
-	ctx.v22.u16[1] = ctx.v5.u16[1] << (ctx.v13.u16[1] & 0xF);
-	ctx.v22.u16[2] = ctx.v5.u16[2] << (ctx.v13.u16[2] & 0xF);
-	ctx.v22.u16[3] = ctx.v5.u16[3] << (ctx.v13.u16[3] & 0xF);
-	ctx.v22.u16[4] = ctx.v5.u16[4] << (ctx.v13.u16[4] & 0xF);
-	ctx.v22.u16[5] = ctx.v5.u16[5] << (ctx.v13.u16[5] & 0xF);
-	ctx.v22.u16[6] = ctx.v5.u16[6] << (ctx.v13.u16[6] & 0xF);
-	ctx.v22.u16[7] = ctx.v5.u16[7] << (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v5.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v22.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v18,v0,v13
-	ctx.v18.u16[0] = ctx.v0.u16[0] << (ctx.v13.u16[0] & 0xF);
-	ctx.v18.u16[1] = ctx.v0.u16[1] << (ctx.v13.u16[1] & 0xF);
-	ctx.v18.u16[2] = ctx.v0.u16[2] << (ctx.v13.u16[2] & 0xF);
-	ctx.v18.u16[3] = ctx.v0.u16[3] << (ctx.v13.u16[3] & 0xF);
-	ctx.v18.u16[4] = ctx.v0.u16[4] << (ctx.v13.u16[4] & 0xF);
-	ctx.v18.u16[5] = ctx.v0.u16[5] << (ctx.v13.u16[5] & 0xF);
-	ctx.v18.u16[6] = ctx.v0.u16[6] << (ctx.v13.u16[6] & 0xF);
-	ctx.v18.u16[7] = ctx.v0.u16[7] << (ctx.v13.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v13.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v18.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vslh v9,v5,v11
-	ctx.v9.u16[0] = ctx.v5.u16[0] << (ctx.v11.u16[0] & 0xF);
-	ctx.v9.u16[1] = ctx.v5.u16[1] << (ctx.v11.u16[1] & 0xF);
-	ctx.v9.u16[2] = ctx.v5.u16[2] << (ctx.v11.u16[2] & 0xF);
-	ctx.v9.u16[3] = ctx.v5.u16[3] << (ctx.v11.u16[3] & 0xF);
-	ctx.v9.u16[4] = ctx.v5.u16[4] << (ctx.v11.u16[4] & 0xF);
-	ctx.v9.u16[5] = ctx.v5.u16[5] << (ctx.v11.u16[5] & 0xF);
-	ctx.v9.u16[6] = ctx.v5.u16[6] << (ctx.v11.u16[6] & 0xF);
-	ctx.v9.u16[7] = ctx.v5.u16[7] << (ctx.v11.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v5.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v11.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v9.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vadduhm v8,v20,v21
 	simde_mm_store_si128((simde__m128i*)ctx.v8.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v20.u16), simde_mm_load_si128((simde__m128i*)ctx.v21.u16)));
 	// vadduhm v14,v22,v3
@@ -36945,14 +35779,12 @@ loc_82A495F4:
 	// vadduhm v1,v18,v4
 	simde_mm_store_si128((simde__m128i*)ctx.v1.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v18.u16), simde_mm_load_si128((simde__m128i*)ctx.v4.u16)));
 	// vslh v31,v0,v11
-	ctx.v31.u16[0] = ctx.v0.u16[0] << (ctx.v11.u16[0] & 0xF);
-	ctx.v31.u16[1] = ctx.v0.u16[1] << (ctx.v11.u16[1] & 0xF);
-	ctx.v31.u16[2] = ctx.v0.u16[2] << (ctx.v11.u16[2] & 0xF);
-	ctx.v31.u16[3] = ctx.v0.u16[3] << (ctx.v11.u16[3] & 0xF);
-	ctx.v31.u16[4] = ctx.v0.u16[4] << (ctx.v11.u16[4] & 0xF);
-	ctx.v31.u16[5] = ctx.v0.u16[5] << (ctx.v11.u16[5] & 0xF);
-	ctx.v31.u16[6] = ctx.v0.u16[6] << (ctx.v11.u16[6] & 0xF);
-	ctx.v31.u16[7] = ctx.v0.u16[7] << (ctx.v11.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v0.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v11.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v31.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vadduhm v27,v15,v7
 	simde_mm_store_si128((simde__m128i*)ctx.v27.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v15.u16), simde_mm_load_si128((simde__m128i*)ctx.v7.u16)));
 	// vadduhm v25,v9,v14
@@ -36968,25 +35800,21 @@ loc_82A495F4:
 	// vadduhm v21,v27,v28
 	simde_mm_store_si128((simde__m128i*)ctx.v21.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v27.u16), simde_mm_load_si128((simde__m128i*)ctx.v28.u16)));
 	// vslh v20,v26,v12
-	ctx.v20.u16[0] = ctx.v26.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v20.u16[1] = ctx.v26.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v20.u16[2] = ctx.v26.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v20.u16[3] = ctx.v26.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v20.u16[4] = ctx.v26.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v20.u16[5] = ctx.v26.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v20.u16[6] = ctx.v26.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v20.u16[7] = ctx.v26.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v26.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v20.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vadduhm v19,v24,v25
 	simde_mm_store_si128((simde__m128i*)ctx.v19.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v24.u16), simde_mm_load_si128((simde__m128i*)ctx.v25.u16)));
 	// vslh v18,v23,v12
-	ctx.v18.u16[0] = ctx.v23.u16[0] << (ctx.v12.u16[0] & 0xF);
-	ctx.v18.u16[1] = ctx.v23.u16[1] << (ctx.v12.u16[1] & 0xF);
-	ctx.v18.u16[2] = ctx.v23.u16[2] << (ctx.v12.u16[2] & 0xF);
-	ctx.v18.u16[3] = ctx.v23.u16[3] << (ctx.v12.u16[3] & 0xF);
-	ctx.v18.u16[4] = ctx.v23.u16[4] << (ctx.v12.u16[4] & 0xF);
-	ctx.v18.u16[5] = ctx.v23.u16[5] << (ctx.v12.u16[5] & 0xF);
-	ctx.v18.u16[6] = ctx.v23.u16[6] << (ctx.v12.u16[6] & 0xF);
-	ctx.v18.u16[7] = ctx.v23.u16[7] << (ctx.v12.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v23.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v12.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v18.u8, rex::simde_mm_sllv_epi16(a, shift));
+	}
 	// vadduhm v17,v21,v22
 	simde_mm_store_si128((simde__m128i*)ctx.v17.u16, simde_mm_add_epi16(simde_mm_load_si128((simde__m128i*)ctx.v21.u16), simde_mm_load_si128((simde__m128i*)ctx.v22.u16)));
 	// vsubuhm v16,v19,v20
@@ -36994,23 +35822,19 @@ loc_82A495F4:
 	// vsubuhm v15,v17,v18
 	simde_mm_store_si128((simde__m128i*)ctx.v15.u16, simde_mm_sub_epi16(simde_mm_load_si128((simde__m128i*)ctx.v17.u16), simde_mm_load_si128((simde__m128i*)ctx.v18.u16)));
 	// vsrah v14,v16,v6
-	ctx.v14.s16[0] = ctx.v16.s16[0] >> (ctx.v6.u16[0] & 0xF);
-	ctx.v14.s16[1] = ctx.v16.s16[1] >> (ctx.v6.u16[1] & 0xF);
-	ctx.v14.s16[2] = ctx.v16.s16[2] >> (ctx.v6.u16[2] & 0xF);
-	ctx.v14.s16[3] = ctx.v16.s16[3] >> (ctx.v6.u16[3] & 0xF);
-	ctx.v14.s16[4] = ctx.v16.s16[4] >> (ctx.v6.u16[4] & 0xF);
-	ctx.v14.s16[5] = ctx.v16.s16[5] >> (ctx.v6.u16[5] & 0xF);
-	ctx.v14.s16[6] = ctx.v16.s16[6] >> (ctx.v6.u16[6] & 0xF);
-	ctx.v14.s16[7] = ctx.v16.s16[7] >> (ctx.v6.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v16.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v6.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v14.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vsrah v0,v15,v6
-	ctx.v0.s16[0] = ctx.v15.s16[0] >> (ctx.v6.u16[0] & 0xF);
-	ctx.v0.s16[1] = ctx.v15.s16[1] >> (ctx.v6.u16[1] & 0xF);
-	ctx.v0.s16[2] = ctx.v15.s16[2] >> (ctx.v6.u16[2] & 0xF);
-	ctx.v0.s16[3] = ctx.v15.s16[3] >> (ctx.v6.u16[3] & 0xF);
-	ctx.v0.s16[4] = ctx.v15.s16[4] >> (ctx.v6.u16[4] & 0xF);
-	ctx.v0.s16[5] = ctx.v15.s16[5] >> (ctx.v6.u16[5] & 0xF);
-	ctx.v0.s16[6] = ctx.v15.s16[6] >> (ctx.v6.u16[6] & 0xF);
-	ctx.v0.s16[7] = ctx.v15.s16[7] >> (ctx.v6.u16[7] & 0xF);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v15.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v6.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi16(0xF));
+		simde_mm_store_si128((simde__m128i*)ctx.v0.u8, rex::simde_mm_srav_epi16(a, shift));
+	}
 	// vpkshss v9,v0,v14
 	simde_mm_store_si128((simde__m128i*)ctx.v9.s8, simde_mm_packs_epi16(simde_mm_load_si128((simde__m128i*)ctx.v14.s16), simde_mm_load_si128((simde__m128i*)ctx.v0.s16)));
 	// vaddubm v8,v9,v29
@@ -43396,6 +42220,3621 @@ loc_82A4BFBC:
 	ctx.r1.s64 = ctx.r1.s64 + 128;
 	// b 0x82ae167c
 	__restgprlr_29(ctx, base);
+	return;
+}
+
+__attribute__((alias("__imp__sub_82A4BFD8"))) PPC_WEAK_FUNC(sub_82A4BFD8);
+PPC_FUNC_IMPL(__imp__sub_82A4BFD8) {
+	PPC_FUNC_PROLOGUE();
+	uint32_t ea{};
+	// mflr r12
+	ctx.r12.u64 = ctx.lr;
+	// bl 0x82ae1628
+	ctx.lr = 0x82A4BFE0;
+	__savegprlr_28(ctx, base);
+	// stwu r1,-128(r1)
+	ea = -128 + ctx.r1.u32;
+	PPC_STORE_U32(ea, ctx.r1.u32);
+	ctx.r1.u32 = ea;
+	// mr r30,r4
+	ctx.r30.u64 = ctx.r4.u64;
+	// mr r29,r3
+	ctx.r29.u64 = ctx.r3.u64;
+	// mr r31,r30
+	ctx.r31.u64 = ctx.r30.u64;
+	// lbz r11,45(r30)
+	ctx.r11.u64 = PPC_LOAD_U8(ctx.r30.u32 + 45);
+	// cmplwi cr6,r11,0
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, 0, ctx.xer);
+	// bne cr6,0x82a4c044
+	if (!ctx.cr6.eq) goto loc_82A4C044;
+	// lis r28,-32064
+	ctx.r28.s64 = -2101346304;
+loc_82A4C000:
+	// mr r3,r29
+	ctx.r3.u64 = ctx.r29.u64;
+	// lwz r4,8(r31)
+	ctx.r4.u64 = PPC_LOAD_U32(ctx.r31.u32 + 8);
+	// bl 0x82a4bfd8
+	ctx.lr = 0x82A4C00C;
+	sub_82A4BFD8(ctx, base);
+	// li r5,0
+	ctx.r5.s64 = 0;
+	// li r4,1
+	ctx.r4.s64 = 1;
+	// addi r3,r30,12
+	ctx.r3.s64 = ctx.r30.s64 + 12;
+	// lwz r31,0(r31)
+	ctx.r31.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
+	// bl 0x821dc2d8
+	ctx.lr = 0x82A4C020;
+	sub_821DC2D8(ctx, base);
+	// lwz r11,29016(r28)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r28.u32 + 29016);
+	// mr r3,r30
+	ctx.r3.u64 = ctx.r30.u64;
+	// lwz r11,12(r11)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r11.u32 + 12);
+	// mtctr r11
+	ctx.ctr.u64 = ctx.r11.u64;
+	// bctrl 
+	ctx.lr = 0x82A4C034;
+	PPC_CALL_INDIRECT_FUNC(ctx.ctr.u32);
+	// lbz r11,45(r31)
+	ctx.r11.u64 = PPC_LOAD_U8(ctx.r31.u32 + 45);
+	// mr r30,r31
+	ctx.r30.u64 = ctx.r31.u64;
+	// cmplwi cr6,r11,0
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, 0, ctx.xer);
+	// beq cr6,0x82a4c000
+	if (ctx.cr6.eq) goto loc_82A4C000;
+loc_82A4C044:
+	// addi r1,r1,128
+	ctx.r1.s64 = ctx.r1.s64 + 128;
+	// b 0x82ae1678
+	__restgprlr_28(ctx, base);
+	return;
+}
+
+__attribute__((alias("__imp__sub_82A4C050"))) PPC_WEAK_FUNC(sub_82A4C050);
+PPC_FUNC_IMPL(__imp__sub_82A4C050) {
+	PPC_FUNC_PROLOGUE();
+	uint32_t ea{};
+	// mflr r12
+	ctx.r12.u64 = ctx.lr;
+	// bl 0x82ae161c
+	ctx.lr = 0x82A4C058;
+	__savegprlr_25(ctx, base);
+	// stwu r1,-224(r1)
+	ea = -224 + ctx.r1.u32;
+	PPC_STORE_U32(ea, ctx.r1.u32);
+	ctx.r1.u32 = ea;
+	// std r5,256(r1)
+	PPC_STORE_U64(ctx.r1.u32 + 256, ctx.r5.u64);
+	// mr r25,r3
+	ctx.r25.u64 = ctx.r3.u64;
+	// lwz r31,260(r1)
+	ctx.r31.u64 = PPC_LOAD_U32(ctx.r1.u32 + 260);
+	// mr r27,r4
+	ctx.r27.u64 = ctx.r4.u64;
+	// lbz r11,45(r31)
+	ctx.r11.u64 = PPC_LOAD_U8(ctx.r31.u32 + 45);
+	// cmplwi cr6,r11,0
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, 0, ctx.xer);
+	// beq cr6,0x82a4c0bc
+	if (ctx.cr6.eq) goto loc_82A4C0BC;
+	// lis r11,-32239
+	ctx.r11.s64 = -2112815104;
+	// addi r3,r1,80
+	ctx.r3.s64 = ctx.r1.s64 + 80;
+	// addi r4,r11,16156
+	ctx.r4.s64 = ctx.r11.s64 + 16156;
+	// bl 0x821db4c8
+	ctx.lr = 0x82A4C088;
+	sub_821DB4C8(ctx, base);
+	// addi r4,r1,80
+	ctx.r4.s64 = ctx.r1.s64 + 80;
+	// addi r3,r1,112
+	ctx.r3.s64 = ctx.r1.s64 + 112;
+	// bl 0x821dc3a0
+	ctx.lr = 0x82A4C094;
+	sub_821DC3A0(ctx, base);
+	// bl 0x821dc3e0
+	ctx.lr = 0x82A4C098;
+	sub_821DC3E0(ctx, base);
+	// lis r11,-32239
+	ctx.r11.s64 = -2112815104;
+	// addi r3,r1,112
+	ctx.r3.s64 = ctx.r1.s64 + 112;
+	// addi r11,r11,16268
+	ctx.r11.s64 = ctx.r11.s64 + 16268;
+	// stw r11,112(r1)
+	PPC_STORE_U32(ctx.r1.u32 + 112, ctx.r11.u32);
+	// bl 0x821dc158
+	ctx.lr = 0x82A4C0AC;
+	sub_821DC158(ctx, base);
+	// li r5,0
+	ctx.r5.s64 = 0;
+	// li r4,1
+	ctx.r4.s64 = 1;
+	// addi r3,r1,80
+	ctx.r3.s64 = ctx.r1.s64 + 80;
+	// bl 0x821dc2d8
+	ctx.lr = 0x82A4C0BC;
+	sub_821DC2D8(ctx, base);
+loc_82A4C0BC:
+	// addi r3,r1,256
+	ctx.r3.s64 = ctx.r1.s64 + 256;
+	// mr r26,r31
+	ctx.r26.u64 = ctx.r31.u64;
+	// bl 0x82a4ac70
+	ctx.lr = 0x82A4C0C8;
+	sub_82A4AC70(ctx, base);
+	// lwz r10,0(r26)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r26.u32 + 0);
+	// lbz r11,45(r10)
+	ctx.r11.u64 = PPC_LOAD_U8(ctx.r10.u32 + 45);
+	// cmplwi cr6,r11,0
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, 0, ctx.xer);
+	// beq cr6,0x82a4c0e0
+	if (ctx.cr6.eq) goto loc_82A4C0E0;
+	// lwz r28,8(r26)
+	ctx.r28.u64 = PPC_LOAD_U32(ctx.r26.u32 + 8);
+	// b 0x82a4c108
+	goto loc_82A4C108;
+loc_82A4C0E0:
+	// lwz r11,8(r26)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r26.u32 + 8);
+	// lbz r11,45(r11)
+	ctx.r11.u64 = PPC_LOAD_U8(ctx.r11.u32 + 45);
+	// cmplwi cr6,r11,0
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, 0, ctx.xer);
+	// beq cr6,0x82a4c0f8
+	if (ctx.cr6.eq) goto loc_82A4C0F8;
+	// mr r28,r10
+	ctx.r28.u64 = ctx.r10.u64;
+	// b 0x82a4c108
+	goto loc_82A4C108;
+loc_82A4C0F8:
+	// lwz r11,260(r1)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r1.u32 + 260);
+	// cmplw cr6,r11,r26
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, ctx.r26.u32, ctx.xer);
+	// lwz r28,8(r11)
+	ctx.r28.u64 = PPC_LOAD_U32(ctx.r11.u32 + 8);
+	// bne cr6,0x82a4c1e0
+	if (!ctx.cr6.eq) goto loc_82A4C1E0;
+loc_82A4C108:
+	// lbz r11,45(r28)
+	ctx.r11.u64 = PPC_LOAD_U8(ctx.r28.u32 + 45);
+	// lwz r31,4(r26)
+	ctx.r31.u64 = PPC_LOAD_U32(ctx.r26.u32 + 4);
+	// cmplwi cr6,r11,0
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, 0, ctx.xer);
+	// bne cr6,0x82a4c11c
+	if (!ctx.cr6.eq) goto loc_82A4C11C;
+	// stw r31,4(r28)
+	PPC_STORE_U32(ctx.r28.u32 + 4, ctx.r31.u32);
+loc_82A4C11C:
+	// lwz r11,4(r27)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r27.u32 + 4);
+	// lwz r10,4(r11)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r11.u32 + 4);
+	// cmplw cr6,r10,r26
+	ctx.cr6.compare<uint32_t>(ctx.r10.u32, ctx.r26.u32, ctx.xer);
+	// bne cr6,0x82a4c134
+	if (!ctx.cr6.eq) goto loc_82A4C134;
+	// stw r28,4(r11)
+	PPC_STORE_U32(ctx.r11.u32 + 4, ctx.r28.u32);
+	// b 0x82a4c14c
+	goto loc_82A4C14C;
+loc_82A4C134:
+	// lwz r11,0(r31)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
+	// cmplw cr6,r11,r26
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, ctx.r26.u32, ctx.xer);
+	// bne cr6,0x82a4c148
+	if (!ctx.cr6.eq) goto loc_82A4C148;
+	// stw r28,0(r31)
+	PPC_STORE_U32(ctx.r31.u32 + 0, ctx.r28.u32);
+	// b 0x82a4c14c
+	goto loc_82A4C14C;
+loc_82A4C148:
+	// stw r28,8(r31)
+	PPC_STORE_U32(ctx.r31.u32 + 8, ctx.r28.u32);
+loc_82A4C14C:
+	// lwz r9,4(r27)
+	ctx.r9.u64 = PPC_LOAD_U32(ctx.r27.u32 + 4);
+	// lwz r11,0(r9)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r9.u32 + 0);
+	// cmplw cr6,r11,r26
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, ctx.r26.u32, ctx.xer);
+	// bne cr6,0x82a4c194
+	if (!ctx.cr6.eq) goto loc_82A4C194;
+	// lbz r11,45(r28)
+	ctx.r11.u64 = PPC_LOAD_U8(ctx.r28.u32 + 45);
+	// cmplwi cr6,r11,0
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, 0, ctx.xer);
+	// beq cr6,0x82a4c170
+	if (ctx.cr6.eq) goto loc_82A4C170;
+	// mr r10,r31
+	ctx.r10.u64 = ctx.r31.u64;
+	// b 0x82a4c190
+	goto loc_82A4C190;
+loc_82A4C170:
+	// lwz r11,0(r28)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r28.u32 + 0);
+	// mr r10,r28
+	ctx.r10.u64 = ctx.r28.u64;
+	// b 0x82a4c184
+	goto loc_82A4C184;
+loc_82A4C17C:
+	// mr r10,r11
+	ctx.r10.u64 = ctx.r11.u64;
+	// lwz r11,0(r11)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r11.u32 + 0);
+loc_82A4C184:
+	// lbz r8,45(r11)
+	ctx.r8.u64 = PPC_LOAD_U8(ctx.r11.u32 + 45);
+	// cmplwi cr6,r8,0
+	ctx.cr6.compare<uint32_t>(ctx.r8.u32, 0, ctx.xer);
+	// beq cr6,0x82a4c17c
+	if (ctx.cr6.eq) goto loc_82A4C17C;
+loc_82A4C190:
+	// stw r10,0(r9)
+	PPC_STORE_U32(ctx.r9.u32 + 0, ctx.r10.u32);
+loc_82A4C194:
+	// lwz r9,4(r27)
+	ctx.r9.u64 = PPC_LOAD_U32(ctx.r27.u32 + 4);
+	// lwz r11,8(r9)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r9.u32 + 8);
+	// cmplw cr6,r11,r26
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, ctx.r26.u32, ctx.xer);
+	// bne cr6,0x82a4c274
+	if (!ctx.cr6.eq) goto loc_82A4C274;
+	// lbz r11,45(r28)
+	ctx.r11.u64 = PPC_LOAD_U8(ctx.r28.u32 + 45);
+	// cmplwi cr6,r11,0
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, 0, ctx.xer);
+	// beq cr6,0x82a4c1b8
+	if (ctx.cr6.eq) goto loc_82A4C1B8;
+	// mr r10,r31
+	ctx.r10.u64 = ctx.r31.u64;
+	// b 0x82a4c1d8
+	goto loc_82A4C1D8;
+loc_82A4C1B8:
+	// lwz r11,8(r28)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r28.u32 + 8);
+	// mr r10,r28
+	ctx.r10.u64 = ctx.r28.u64;
+	// b 0x82a4c1cc
+	goto loc_82A4C1CC;
+loc_82A4C1C4:
+	// mr r10,r11
+	ctx.r10.u64 = ctx.r11.u64;
+	// lwz r11,8(r11)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r11.u32 + 8);
+loc_82A4C1CC:
+	// lbz r8,45(r11)
+	ctx.r8.u64 = PPC_LOAD_U8(ctx.r11.u32 + 45);
+	// cmplwi cr6,r8,0
+	ctx.cr6.compare<uint32_t>(ctx.r8.u32, 0, ctx.xer);
+	// beq cr6,0x82a4c1c4
+	if (ctx.cr6.eq) goto loc_82A4C1C4;
+loc_82A4C1D8:
+	// stw r10,8(r9)
+	PPC_STORE_U32(ctx.r9.u32 + 8, ctx.r10.u32);
+	// b 0x82a4c274
+	goto loc_82A4C274;
+loc_82A4C1E0:
+	// stw r11,4(r10)
+	PPC_STORE_U32(ctx.r10.u32 + 4, ctx.r11.u32);
+	// lwz r10,0(r26)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r26.u32 + 0);
+	// stw r10,0(r11)
+	PPC_STORE_U32(ctx.r11.u32 + 0, ctx.r10.u32);
+	// lwz r10,8(r26)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r26.u32 + 8);
+	// cmplw cr6,r11,r10
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, ctx.r10.u32, ctx.xer);
+	// bne cr6,0x82a4c200
+	if (!ctx.cr6.eq) goto loc_82A4C200;
+	// mr r31,r11
+	ctx.r31.u64 = ctx.r11.u64;
+	// b 0x82a4c228
+	goto loc_82A4C228;
+loc_82A4C200:
+	// lbz r10,45(r28)
+	ctx.r10.u64 = PPC_LOAD_U8(ctx.r28.u32 + 45);
+	// lwz r31,4(r11)
+	ctx.r31.u64 = PPC_LOAD_U32(ctx.r11.u32 + 4);
+	// cmplwi cr6,r10,0
+	ctx.cr6.compare<uint32_t>(ctx.r10.u32, 0, ctx.xer);
+	// bne cr6,0x82a4c214
+	if (!ctx.cr6.eq) goto loc_82A4C214;
+	// stw r31,4(r28)
+	PPC_STORE_U32(ctx.r28.u32 + 4, ctx.r31.u32);
+loc_82A4C214:
+	// stw r28,0(r31)
+	PPC_STORE_U32(ctx.r31.u32 + 0, ctx.r28.u32);
+	// lwz r10,8(r26)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r26.u32 + 8);
+	// stw r10,8(r11)
+	PPC_STORE_U32(ctx.r11.u32 + 8, ctx.r10.u32);
+	// lwz r10,8(r26)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r26.u32 + 8);
+	// stw r11,4(r10)
+	PPC_STORE_U32(ctx.r10.u32 + 4, ctx.r11.u32);
+loc_82A4C228:
+	// lwz r10,4(r27)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r27.u32 + 4);
+	// lwz r9,4(r10)
+	ctx.r9.u64 = PPC_LOAD_U32(ctx.r10.u32 + 4);
+	// cmplw cr6,r9,r26
+	ctx.cr6.compare<uint32_t>(ctx.r9.u32, ctx.r26.u32, ctx.xer);
+	// bne cr6,0x82a4c240
+	if (!ctx.cr6.eq) goto loc_82A4C240;
+	// stw r11,4(r10)
+	PPC_STORE_U32(ctx.r10.u32 + 4, ctx.r11.u32);
+	// b 0x82a4c25c
+	goto loc_82A4C25C;
+loc_82A4C240:
+	// lwz r10,4(r26)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r26.u32 + 4);
+	// lwz r9,0(r10)
+	ctx.r9.u64 = PPC_LOAD_U32(ctx.r10.u32 + 0);
+	// cmplw cr6,r9,r26
+	ctx.cr6.compare<uint32_t>(ctx.r9.u32, ctx.r26.u32, ctx.xer);
+	// bne cr6,0x82a4c258
+	if (!ctx.cr6.eq) goto loc_82A4C258;
+	// stw r11,0(r10)
+	PPC_STORE_U32(ctx.r10.u32 + 0, ctx.r11.u32);
+	// b 0x82a4c25c
+	goto loc_82A4C25C;
+loc_82A4C258:
+	// stw r11,8(r10)
+	PPC_STORE_U32(ctx.r10.u32 + 8, ctx.r11.u32);
+loc_82A4C25C:
+	// lwz r10,4(r26)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r26.u32 + 4);
+	// stw r10,4(r11)
+	PPC_STORE_U32(ctx.r11.u32 + 4, ctx.r10.u32);
+	// lbz r9,44(r11)
+	ctx.r9.u64 = PPC_LOAD_U8(ctx.r11.u32 + 44);
+	// lbz r10,44(r26)
+	ctx.r10.u64 = PPC_LOAD_U8(ctx.r26.u32 + 44);
+	// stb r10,44(r11)
+	PPC_STORE_U8(ctx.r11.u32 + 44, ctx.r10.u8);
+	// stb r9,44(r26)
+	PPC_STORE_U8(ctx.r26.u32 + 44, ctx.r9.u8);
+loc_82A4C274:
+	// lbz r11,44(r26)
+	ctx.r11.u64 = PPC_LOAD_U8(ctx.r26.u32 + 44);
+	// cmplwi cr6,r11,1
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, 1, ctx.xer);
+	// bne cr6,0x82a4c414
+	if (!ctx.cr6.eq) goto loc_82A4C414;
+	// lwz r11,4(r27)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r27.u32 + 4);
+	// li r30,1
+	ctx.r30.s64 = 1;
+	// lwz r11,4(r11)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r11.u32 + 4);
+	// cmplw cr6,r28,r11
+	ctx.cr6.compare<uint32_t>(ctx.r28.u32, ctx.r11.u32, ctx.xer);
+	// beq cr6,0x82a4c410
+	if (ctx.cr6.eq) goto loc_82A4C410;
+	// li r29,0
+	ctx.r29.s64 = 0;
+loc_82A4C298:
+	// lbz r11,44(r28)
+	ctx.r11.u64 = PPC_LOAD_U8(ctx.r28.u32 + 44);
+	// cmplwi cr6,r11,1
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, 1, ctx.xer);
+	// bne cr6,0x82a4c410
+	if (!ctx.cr6.eq) goto loc_82A4C410;
+	// lwz r11,0(r31)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
+	// cmplw cr6,r28,r11
+	ctx.cr6.compare<uint32_t>(ctx.r28.u32, ctx.r11.u32, ctx.xer);
+	// bne cr6,0x82a4c354
+	if (!ctx.cr6.eq) goto loc_82A4C354;
+	// lwz r11,8(r31)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 8);
+	// lbz r10,44(r11)
+	ctx.r10.u64 = PPC_LOAD_U8(ctx.r11.u32 + 44);
+	// cmplwi cr6,r10,0
+	ctx.cr6.compare<uint32_t>(ctx.r10.u32, 0, ctx.xer);
+	// bne cr6,0x82a4c2d8
+	if (!ctx.cr6.eq) goto loc_82A4C2D8;
+	// stb r30,44(r11)
+	PPC_STORE_U8(ctx.r11.u32 + 44, ctx.r30.u8);
+	// mr r4,r31
+	ctx.r4.u64 = ctx.r31.u64;
+	// stb r29,44(r31)
+	PPC_STORE_U8(ctx.r31.u32 + 44, ctx.r29.u8);
+	// mr r3,r27
+	ctx.r3.u64 = ctx.r27.u64;
+	// bl 0x82a4ad00
+	ctx.lr = 0x82A4C2D4;
+	sub_82A4AD00(ctx, base);
+	// lwz r11,8(r31)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 8);
+loc_82A4C2D8:
+	// lbz r10,45(r11)
+	ctx.r10.u64 = PPC_LOAD_U8(ctx.r11.u32 + 45);
+	// cmplwi cr6,r10,0
+	ctx.cr6.compare<uint32_t>(ctx.r10.u32, 0, ctx.xer);
+	// bne cr6,0x82a4c3a8
+	if (!ctx.cr6.eq) goto loc_82A4C3A8;
+	// lwz r10,0(r11)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r11.u32 + 0);
+	// lbz r10,44(r10)
+	ctx.r10.u64 = PPC_LOAD_U8(ctx.r10.u32 + 44);
+	// cmplwi cr6,r10,1
+	ctx.cr6.compare<uint32_t>(ctx.r10.u32, 1, ctx.xer);
+	// bne cr6,0x82a4c304
+	if (!ctx.cr6.eq) goto loc_82A4C304;
+	// lwz r10,8(r11)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r11.u32 + 8);
+	// lbz r10,44(r10)
+	ctx.r10.u64 = PPC_LOAD_U8(ctx.r10.u32 + 44);
+	// cmplwi cr6,r10,1
+	ctx.cr6.compare<uint32_t>(ctx.r10.u32, 1, ctx.xer);
+	// beq cr6,0x82a4c3a4
+	if (ctx.cr6.eq) goto loc_82A4C3A4;
+loc_82A4C304:
+	// lwz r10,8(r11)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r11.u32 + 8);
+	// lbz r10,44(r10)
+	ctx.r10.u64 = PPC_LOAD_U8(ctx.r10.u32 + 44);
+	// cmplwi cr6,r10,1
+	ctx.cr6.compare<uint32_t>(ctx.r10.u32, 1, ctx.xer);
+	// bne cr6,0x82a4c330
+	if (!ctx.cr6.eq) goto loc_82A4C330;
+	// lwz r10,0(r11)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r11.u32 + 0);
+	// mr r4,r11
+	ctx.r4.u64 = ctx.r11.u64;
+	// mr r3,r27
+	ctx.r3.u64 = ctx.r27.u64;
+	// stb r30,44(r10)
+	PPC_STORE_U8(ctx.r10.u32 + 44, ctx.r30.u8);
+	// stb r29,44(r11)
+	PPC_STORE_U8(ctx.r11.u32 + 44, ctx.r29.u8);
+	// bl 0x82a4ad68
+	ctx.lr = 0x82A4C32C;
+	sub_82A4AD68(ctx, base);
+	// lwz r11,8(r31)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 8);
+loc_82A4C330:
+	// lbz r10,44(r31)
+	ctx.r10.u64 = PPC_LOAD_U8(ctx.r31.u32 + 44);
+	// mr r4,r31
+	ctx.r4.u64 = ctx.r31.u64;
+	// mr r3,r27
+	ctx.r3.u64 = ctx.r27.u64;
+	// stb r10,44(r11)
+	PPC_STORE_U8(ctx.r11.u32 + 44, ctx.r10.u8);
+	// stb r30,44(r31)
+	PPC_STORE_U8(ctx.r31.u32 + 44, ctx.r30.u8);
+	// lwz r11,8(r11)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r11.u32 + 8);
+	// stb r30,44(r11)
+	PPC_STORE_U8(ctx.r11.u32 + 44, ctx.r30.u8);
+	// bl 0x82a4ad00
+	ctx.lr = 0x82A4C350;
+	sub_82A4AD00(ctx, base);
+	// b 0x82a4c410
+	goto loc_82A4C410;
+loc_82A4C354:
+	// lbz r10,44(r11)
+	ctx.r10.u64 = PPC_LOAD_U8(ctx.r11.u32 + 44);
+	// cmplwi cr6,r10,0
+	ctx.cr6.compare<uint32_t>(ctx.r10.u32, 0, ctx.xer);
+	// bne cr6,0x82a4c378
+	if (!ctx.cr6.eq) goto loc_82A4C378;
+	// stb r30,44(r11)
+	PPC_STORE_U8(ctx.r11.u32 + 44, ctx.r30.u8);
+	// mr r4,r31
+	ctx.r4.u64 = ctx.r31.u64;
+	// stb r29,44(r31)
+	PPC_STORE_U8(ctx.r31.u32 + 44, ctx.r29.u8);
+	// mr r3,r27
+	ctx.r3.u64 = ctx.r27.u64;
+	// bl 0x82a4ad68
+	ctx.lr = 0x82A4C374;
+	sub_82A4AD68(ctx, base);
+	// lwz r11,0(r31)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
+loc_82A4C378:
+	// lbz r10,45(r11)
+	ctx.r10.u64 = PPC_LOAD_U8(ctx.r11.u32 + 45);
+	// cmplwi cr6,r10,0
+	ctx.cr6.compare<uint32_t>(ctx.r10.u32, 0, ctx.xer);
+	// bne cr6,0x82a4c3a8
+	if (!ctx.cr6.eq) goto loc_82A4C3A8;
+	// lwz r10,8(r11)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r11.u32 + 8);
+	// lbz r10,44(r10)
+	ctx.r10.u64 = PPC_LOAD_U8(ctx.r10.u32 + 44);
+	// cmplwi cr6,r10,1
+	ctx.cr6.compare<uint32_t>(ctx.r10.u32, 1, ctx.xer);
+	// bne cr6,0x82a4c3c4
+	if (!ctx.cr6.eq) goto loc_82A4C3C4;
+	// lwz r10,0(r11)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r11.u32 + 0);
+	// lbz r10,44(r10)
+	ctx.r10.u64 = PPC_LOAD_U8(ctx.r10.u32 + 44);
+	// cmplwi cr6,r10,1
+	ctx.cr6.compare<uint32_t>(ctx.r10.u32, 1, ctx.xer);
+	// bne cr6,0x82a4c3c4
+	if (!ctx.cr6.eq) goto loc_82A4C3C4;
+loc_82A4C3A4:
+	// stb r29,44(r11)
+	PPC_STORE_U8(ctx.r11.u32 + 44, ctx.r29.u8);
+loc_82A4C3A8:
+	// lwz r11,4(r27)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r27.u32 + 4);
+	// mr r28,r31
+	ctx.r28.u64 = ctx.r31.u64;
+	// lwz r31,4(r31)
+	ctx.r31.u64 = PPC_LOAD_U32(ctx.r31.u32 + 4);
+	// lwz r11,4(r11)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r11.u32 + 4);
+	// cmplw cr6,r28,r11
+	ctx.cr6.compare<uint32_t>(ctx.r28.u32, ctx.r11.u32, ctx.xer);
+	// bne cr6,0x82a4c298
+	if (!ctx.cr6.eq) goto loc_82A4C298;
+	// b 0x82a4c410
+	goto loc_82A4C410;
+loc_82A4C3C4:
+	// lwz r10,0(r11)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r11.u32 + 0);
+	// lbz r10,44(r10)
+	ctx.r10.u64 = PPC_LOAD_U8(ctx.r10.u32 + 44);
+	// cmplwi cr6,r10,1
+	ctx.cr6.compare<uint32_t>(ctx.r10.u32, 1, ctx.xer);
+	// bne cr6,0x82a4c3f0
+	if (!ctx.cr6.eq) goto loc_82A4C3F0;
+	// lwz r10,8(r11)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r11.u32 + 8);
+	// mr r4,r11
+	ctx.r4.u64 = ctx.r11.u64;
+	// mr r3,r27
+	ctx.r3.u64 = ctx.r27.u64;
+	// stb r30,44(r10)
+	PPC_STORE_U8(ctx.r10.u32 + 44, ctx.r30.u8);
+	// stb r29,44(r11)
+	PPC_STORE_U8(ctx.r11.u32 + 44, ctx.r29.u8);
+	// bl 0x82a4ad00
+	ctx.lr = 0x82A4C3EC;
+	sub_82A4AD00(ctx, base);
+	// lwz r11,0(r31)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
+loc_82A4C3F0:
+	// lbz r10,44(r31)
+	ctx.r10.u64 = PPC_LOAD_U8(ctx.r31.u32 + 44);
+	// mr r4,r31
+	ctx.r4.u64 = ctx.r31.u64;
+	// mr r3,r27
+	ctx.r3.u64 = ctx.r27.u64;
+	// stb r10,44(r11)
+	PPC_STORE_U8(ctx.r11.u32 + 44, ctx.r10.u8);
+	// stb r30,44(r31)
+	PPC_STORE_U8(ctx.r31.u32 + 44, ctx.r30.u8);
+	// lwz r11,0(r11)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r11.u32 + 0);
+	// stb r30,44(r11)
+	PPC_STORE_U8(ctx.r11.u32 + 44, ctx.r30.u8);
+	// bl 0x82a4ad68
+	ctx.lr = 0x82A4C410;
+	sub_82A4AD68(ctx, base);
+loc_82A4C410:
+	// stb r30,44(r28)
+	PPC_STORE_U8(ctx.r28.u32 + 44, ctx.r30.u8);
+loc_82A4C414:
+	// li r5,0
+	ctx.r5.s64 = 0;
+	// li r4,1
+	ctx.r4.s64 = 1;
+	// addi r3,r26,12
+	ctx.r3.s64 = ctx.r26.s64 + 12;
+	// bl 0x821dc2d8
+	ctx.lr = 0x82A4C424;
+	sub_821DC2D8(ctx, base);
+	// lis r11,-32064
+	ctx.r11.s64 = -2101346304;
+	// mr r3,r26
+	ctx.r3.u64 = ctx.r26.u64;
+	// lwz r11,29016(r11)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r11.u32 + 29016);
+	// lwz r11,12(r11)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r11.u32 + 12);
+	// mtctr r11
+	ctx.ctr.u64 = ctx.r11.u64;
+	// bctrl 
+	ctx.lr = 0x82A4C43C;
+	PPC_CALL_INDIRECT_FUNC(ctx.ctr.u32);
+	// lwz r11,8(r27)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r27.u32 + 8);
+	// cmplwi cr6,r11,0
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, 0, ctx.xer);
+	// beq cr6,0x82a4c450
+	if (ctx.cr6.eq) goto loc_82A4C450;
+	// addi r11,r11,-1
+	ctx.r11.s64 = ctx.r11.s64 + -1;
+	// stw r11,8(r27)
+	PPC_STORE_U32(ctx.r27.u32 + 8, ctx.r11.u32);
+loc_82A4C450:
+	// ld r11,256(r1)
+	ctx.r11.u64 = PPC_LOAD_U64(ctx.r1.u32 + 256);
+	// mr r3,r25
+	ctx.r3.u64 = ctx.r25.u64;
+	// std r11,0(r25)
+	PPC_STORE_U64(ctx.r25.u32 + 0, ctx.r11.u64);
+	// addi r1,r1,224
+	ctx.r1.s64 = ctx.r1.s64 + 224;
+	// b 0x82ae166c
+	__restgprlr_25(ctx, base);
+	return;
+}
+
+__attribute__((alias("__imp__sub_82A4C468"))) PPC_WEAK_FUNC(sub_82A4C468);
+PPC_FUNC_IMPL(__imp__sub_82A4C468) {
+	PPC_FUNC_PROLOGUE();
+	uint32_t ea{};
+	// mflr r12
+	ctx.r12.u64 = ctx.lr;
+	// stw r12,-8(r1)
+	PPC_STORE_U32(ctx.r1.u32 + -8, ctx.r12.u32);
+	// std r31,-16(r1)
+	PPC_STORE_U64(ctx.r1.u32 + -16, ctx.r31.u64);
+	// stwu r1,-112(r1)
+	ea = -112 + ctx.r1.u32;
+	PPC_STORE_U32(ea, ctx.r1.u32);
+	ctx.r1.u32 = ea;
+	// stw r4,140(r1)
+	PPC_STORE_U32(ctx.r1.u32 + 140, ctx.r4.u32);
+	// addi r5,r1,140
+	ctx.r5.s64 = ctx.r1.s64 + 140;
+	// lwz r31,236(r3)
+	ctx.r31.u64 = PPC_LOAD_U32(ctx.r3.u32 + 236);
+	// addi r3,r1,80
+	ctx.r3.s64 = ctx.r1.s64 + 80;
+	// mr r4,r31
+	ctx.r4.u64 = ctx.r31.u64;
+	// bl 0x82a4b500
+	ctx.lr = 0x82A4C490;
+	sub_82A4B500(ctx, base);
+	// mr r4,r31
+	ctx.r4.u64 = ctx.r31.u64;
+	// addi r3,r1,88
+	ctx.r3.s64 = ctx.r1.s64 + 88;
+	// ld r5,80(r1)
+	ctx.r5.u64 = PPC_LOAD_U64(ctx.r1.u32 + 80);
+	// bl 0x82a64268
+	ctx.lr = 0x82A4C4A0;
+	sub_82A64268(ctx, base);
+	// addi r1,r1,112
+	ctx.r1.s64 = ctx.r1.s64 + 112;
+	// lwz r12,-8(r1)
+	ctx.r12.u64 = PPC_LOAD_U32(ctx.r1.u32 + -8);
+	// mtlr r12
+	ctx.lr = ctx.r12.u64;
+	// ld r31,-16(r1)
+	ctx.r31.u64 = PPC_LOAD_U64(ctx.r1.u32 + -16);
+	// blr 
+	return;
+}
+
+__attribute__((alias("__imp__sub_82A4C4B8"))) PPC_WEAK_FUNC(sub_82A4C4B8);
+PPC_FUNC_IMPL(__imp__sub_82A4C4B8) {
+	PPC_FUNC_PROLOGUE();
+	uint32_t ea{};
+	// mflr r12
+	ctx.r12.u64 = ctx.lr;
+	// stw r12,-8(r1)
+	PPC_STORE_U32(ctx.r1.u32 + -8, ctx.r12.u32);
+	// std r31,-16(r1)
+	PPC_STORE_U64(ctx.r1.u32 + -16, ctx.r31.u64);
+	// stwu r1,-112(r1)
+	ea = -112 + ctx.r1.u32;
+	PPC_STORE_U32(ea, ctx.r1.u32);
+	ctx.r1.u32 = ea;
+	// stw r4,140(r1)
+	PPC_STORE_U32(ctx.r1.u32 + 140, ctx.r4.u32);
+	// addi r5,r1,140
+	ctx.r5.s64 = ctx.r1.s64 + 140;
+	// lwz r31,232(r3)
+	ctx.r31.u64 = PPC_LOAD_U32(ctx.r3.u32 + 232);
+	// addi r3,r1,80
+	ctx.r3.s64 = ctx.r1.s64 + 80;
+	// mr r4,r31
+	ctx.r4.u64 = ctx.r31.u64;
+	// bl 0x82a4b500
+	ctx.lr = 0x82A4C4E0;
+	sub_82A4B500(ctx, base);
+	// mr r4,r31
+	ctx.r4.u64 = ctx.r31.u64;
+	// addi r3,r1,88
+	ctx.r3.s64 = ctx.r1.s64 + 88;
+	// ld r5,80(r1)
+	ctx.r5.u64 = PPC_LOAD_U64(ctx.r1.u32 + 80);
+	// bl 0x82a64268
+	ctx.lr = 0x82A4C4F0;
+	sub_82A64268(ctx, base);
+	// addi r1,r1,112
+	ctx.r1.s64 = ctx.r1.s64 + 112;
+	// lwz r12,-8(r1)
+	ctx.r12.u64 = PPC_LOAD_U32(ctx.r1.u32 + -8);
+	// mtlr r12
+	ctx.lr = ctx.r12.u64;
+	// ld r31,-16(r1)
+	ctx.r31.u64 = PPC_LOAD_U64(ctx.r1.u32 + -16);
+	// blr 
+	return;
+}
+
+__attribute__((alias("__imp__sub_82A4C508"))) PPC_WEAK_FUNC(sub_82A4C508);
+PPC_FUNC_IMPL(__imp__sub_82A4C508) {
+	PPC_FUNC_PROLOGUE();
+	uint32_t ea{};
+	// mflr r12
+	ctx.r12.u64 = ctx.lr;
+	// stw r12,-8(r1)
+	PPC_STORE_U32(ctx.r1.u32 + -8, ctx.r12.u32);
+	// std r31,-16(r1)
+	PPC_STORE_U64(ctx.r1.u32 + -16, ctx.r31.u64);
+	// stwu r1,-96(r1)
+	ea = -96 + ctx.r1.u32;
+	PPC_STORE_U32(ea, ctx.r1.u32);
+	ctx.r1.u32 = ea;
+	// mr r31,r3
+	ctx.r31.u64 = ctx.r3.u64;
+	// lwz r11,4(r31)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 4);
+	// lwz r4,4(r11)
+	ctx.r4.u64 = PPC_LOAD_U32(ctx.r11.u32 + 4);
+	// bl 0x82a4bfd8
+	ctx.lr = 0x82A4C528;
+	sub_82A4BFD8(ctx, base);
+	// lwz r10,4(r31)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r31.u32 + 4);
+	// li r11,0
+	ctx.r11.s64 = 0;
+	// stw r10,4(r10)
+	PPC_STORE_U32(ctx.r10.u32 + 4, ctx.r10.u32);
+	// stw r11,8(r31)
+	PPC_STORE_U32(ctx.r31.u32 + 8, ctx.r11.u32);
+	// lwz r10,4(r31)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r31.u32 + 4);
+	// stw r10,0(r10)
+	PPC_STORE_U32(ctx.r10.u32 + 0, ctx.r10.u32);
+	// lwz r11,4(r31)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 4);
+	// stw r11,8(r11)
+	PPC_STORE_U32(ctx.r11.u32 + 8, ctx.r11.u32);
+	// addi r1,r1,96
+	ctx.r1.s64 = ctx.r1.s64 + 96;
+	// lwz r12,-8(r1)
+	ctx.r12.u64 = PPC_LOAD_U32(ctx.r1.u32 + -8);
+	// mtlr r12
+	ctx.lr = ctx.r12.u64;
+	// ld r31,-16(r1)
+	ctx.r31.u64 = PPC_LOAD_U64(ctx.r1.u32 + -16);
+	// blr 
+	return;
+}
+
+__attribute__((alias("__imp__sub_82A4C560"))) PPC_WEAK_FUNC(sub_82A4C560);
+PPC_FUNC_IMPL(__imp__sub_82A4C560) {
+	PPC_FUNC_PROLOGUE();
+	uint32_t ea{};
+	// mflr r12
+	ctx.r12.u64 = ctx.lr;
+	// bl 0x82ae1624
+	ctx.lr = 0x82A4C568;
+	__savegprlr_27(ctx, base);
+	// stwu r1,-144(r1)
+	ea = -144 + ctx.r1.u32;
+	PPC_STORE_U32(ea, ctx.r1.u32);
+	ctx.r1.u32 = ea;
+	// mr r31,r4
+	ctx.r31.u64 = ctx.r4.u64;
+	// std r5,176(r1)
+	PPC_STORE_U64(ctx.r1.u32 + 176, ctx.r5.u64);
+	// lwz r9,176(r1)
+	ctx.r9.u64 = PPC_LOAD_U32(ctx.r1.u32 + 176);
+	// mr r29,r3
+	ctx.r29.u64 = ctx.r3.u64;
+	// std r6,184(r1)
+	PPC_STORE_U64(ctx.r1.u32 + 184, ctx.r6.u64);
+	// cmplwi cr6,r9,0
+	ctx.cr6.compare<uint32_t>(ctx.r9.u32, 0, ctx.xer);
+	// lwz r10,4(r31)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r31.u32 + 4);
+	// lwz r11,0(r10)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r10.u32 + 0);
+	// beq cr6,0x82a4c598
+	if (ctx.cr6.eq) goto loc_82A4C598;
+	// cmplw cr6,r9,r31
+	ctx.cr6.compare<uint32_t>(ctx.r9.u32, ctx.r31.u32, ctx.xer);
+	// beq cr6,0x82a4c59c
+	if (ctx.cr6.eq) goto loc_82A4C59C;
+loc_82A4C598:
+	// twi 31,r0,22
+	ppc_trap(ctx, base, 22);
+loc_82A4C59C:
+	// lwz r8,180(r1)
+	ctx.r8.u64 = PPC_LOAD_U32(ctx.r1.u32 + 180);
+	// lwz r28,188(r1)
+	ctx.r28.u64 = PPC_LOAD_U32(ctx.r1.u32 + 188);
+	// lwz r30,184(r1)
+	ctx.r30.u64 = PPC_LOAD_U32(ctx.r1.u32 + 184);
+	// cmplw cr6,r8,r11
+	ctx.cr6.compare<uint32_t>(ctx.r8.u32, ctx.r11.u32, ctx.xer);
+	// bne cr6,0x82a4c5e8
+	if (!ctx.cr6.eq) goto loc_82A4C5E8;
+	// cmplwi cr6,r30,0
+	ctx.cr6.compare<uint32_t>(ctx.r30.u32, 0, ctx.xer);
+	// beq cr6,0x82a4c5c0
+	if (ctx.cr6.eq) goto loc_82A4C5C0;
+	// cmplw cr6,r30,r31
+	ctx.cr6.compare<uint32_t>(ctx.r30.u32, ctx.r31.u32, ctx.xer);
+	// beq cr6,0x82a4c5c4
+	if (ctx.cr6.eq) goto loc_82A4C5C4;
+loc_82A4C5C0:
+	// twi 31,r0,22
+	ppc_trap(ctx, base, 22);
+loc_82A4C5C4:
+	// cmplw cr6,r28,r10
+	ctx.cr6.compare<uint32_t>(ctx.r28.u32, ctx.r10.u32, ctx.xer);
+	// bne cr6,0x82a4c5e8
+	if (!ctx.cr6.eq) goto loc_82A4C5E8;
+	// mr r3,r31
+	ctx.r3.u64 = ctx.r31.u64;
+	// bl 0x82a4c508
+	ctx.lr = 0x82A4C5D4;
+	sub_82A4C508(ctx, base);
+	// lwz r11,4(r31)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 4);
+	// stw r31,0(r29)
+	PPC_STORE_U32(ctx.r29.u32 + 0, ctx.r31.u32);
+	// lwz r11,0(r11)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r11.u32 + 0);
+	// stw r11,4(r29)
+	PPC_STORE_U32(ctx.r29.u32 + 4, ctx.r11.u32);
+	// b 0x82a4c634
+	goto loc_82A4C634;
+loc_82A4C5E8:
+	// cmplwi cr6,r9,0
+	ctx.cr6.compare<uint32_t>(ctx.r9.u32, 0, ctx.xer);
+	// beq cr6,0x82a4c5f8
+	if (ctx.cr6.eq) goto loc_82A4C5F8;
+	// cmplw cr6,r9,r30
+	ctx.cr6.compare<uint32_t>(ctx.r9.u32, ctx.r30.u32, ctx.xer);
+	// beq cr6,0x82a4c5fc
+	if (ctx.cr6.eq) goto loc_82A4C5FC;
+loc_82A4C5F8:
+	// twi 31,r0,22
+	ppc_trap(ctx, base, 22);
+loc_82A4C5FC:
+	// lwz r11,180(r1)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r1.u32 + 180);
+	// cmplw cr6,r11,r28
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, ctx.r28.u32, ctx.xer);
+	// beq cr6,0x82a4c630
+	if (ctx.cr6.eq) goto loc_82A4C630;
+	// addi r3,r1,176
+	ctx.r3.s64 = ctx.r1.s64 + 176;
+	// mr r27,r5
+	ctx.r27.u64 = ctx.r5.u64;
+	// bl 0x82a4ac70
+	ctx.lr = 0x82A4C614;
+	sub_82A4AC70(ctx, base);
+	// mr r5,r27
+	ctx.r5.u64 = ctx.r27.u64;
+	// mr r4,r31
+	ctx.r4.u64 = ctx.r31.u64;
+	// addi r3,r1,80
+	ctx.r3.s64 = ctx.r1.s64 + 80;
+	// bl 0x82a4c050
+	ctx.lr = 0x82A4C624;
+	sub_82A4C050(ctx, base);
+	// ld r5,176(r1)
+	ctx.r5.u64 = PPC_LOAD_U64(ctx.r1.u32 + 176);
+	// lwz r9,176(r1)
+	ctx.r9.u64 = PPC_LOAD_U32(ctx.r1.u32 + 176);
+	// b 0x82a4c5e8
+	goto loc_82A4C5E8;
+loc_82A4C630:
+	// std r5,0(r29)
+	PPC_STORE_U64(ctx.r29.u32 + 0, ctx.r5.u64);
+loc_82A4C634:
+	// mr r3,r29
+	ctx.r3.u64 = ctx.r29.u64;
+	// addi r1,r1,144
+	ctx.r1.s64 = ctx.r1.s64 + 144;
+	// b 0x82ae1674
+	__restgprlr_27(ctx, base);
+	return;
+}
+
+__attribute__((alias("__imp__sub_82A4C640"))) PPC_WEAK_FUNC(sub_82A4C640);
+PPC_FUNC_IMPL(__imp__sub_82A4C640) {
+	PPC_FUNC_PROLOGUE();
+	PPCRegister temp{};
+	uint32_t ea{};
+	// mflr r12
+	ctx.r12.u64 = ctx.lr;
+	// bl 0x82ae1620
+	ctx.lr = 0x82A4C648;
+	__savegprlr_26(ctx, base);
+	// stwu r1,-144(r1)
+	ea = -144 + ctx.r1.u32;
+	PPC_STORE_U32(ea, ctx.r1.u32);
+	ctx.r1.u32 = ea;
+	// lis r11,-32064
+	ctx.r11.s64 = -2101346304;
+	// mr r29,r4
+	ctx.r29.u64 = ctx.r4.u64;
+	// mr r28,r5
+	ctx.r28.u64 = ctx.r5.u64;
+	// mr r27,r6
+	ctx.r27.u64 = ctx.r6.u64;
+	// mr r30,r7
+	ctx.r30.u64 = ctx.r7.u64;
+	// lwz r11,29016(r11)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r11.u32 + 29016);
+	// mr r26,r8
+	ctx.r26.u64 = ctx.r8.u64;
+	// li r3,48
+	ctx.r3.s64 = 48;
+	// lwz r11,8(r11)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r11.u32 + 8);
+	// mtctr r11
+	ctx.ctr.u64 = ctx.r11.u64;
+	// bctrl 
+	ctx.lr = 0x82A4C678;
+	PPC_CALL_INDIRECT_FUNC(ctx.ctr.u32);
+	// mr. r31,r3
+	ctx.r31.u64 = ctx.r3.u64;
+	ctx.cr0.compare<int32_t>(ctx.r31.s32, 0, ctx.xer);
+	// beq 0x82a4c6ac
+	if (ctx.cr0.eq) goto loc_82A4C6AC;
+	// stw r29,0(r31)
+	PPC_STORE_U32(ctx.r31.u32 + 0, ctx.r29.u32);
+	// addi r3,r31,12
+	ctx.r3.s64 = ctx.r31.s64 + 12;
+	// stw r28,4(r31)
+	PPC_STORE_U32(ctx.r31.u32 + 4, ctx.r28.u32);
+	// mr r4,r30
+	ctx.r4.u64 = ctx.r30.u64;
+	// stw r27,8(r31)
+	PPC_STORE_U32(ctx.r31.u32 + 8, ctx.r27.u32);
+	// bl 0x821dc288
+	ctx.lr = 0x82A4C698;
+	sub_821DC288(ctx, base);
+	// li r11,0
+	ctx.r11.s64 = 0;
+	// lfs f0,28(r30)
+	ctx.fpscr.disableFlushMode();
+	temp.u32 = PPC_LOAD_U32(ctx.r30.u32 + 28);
+	ctx.f0.f64 = double(temp.f32);
+	// stfs f0,40(r31)
+	temp.f32 = float(ctx.f0.f64);
+	PPC_STORE_U32(ctx.r31.u32 + 40, temp.u32);
+	// stb r26,44(r31)
+	PPC_STORE_U8(ctx.r31.u32 + 44, ctx.r26.u8);
+	// stb r11,45(r31)
+	PPC_STORE_U8(ctx.r31.u32 + 45, ctx.r11.u8);
+loc_82A4C6AC:
+	// mr r3,r31
+	ctx.r3.u64 = ctx.r31.u64;
+	// addi r1,r1,144
+	ctx.r1.s64 = ctx.r1.s64 + 144;
+	// b 0x82ae1670
+	__restgprlr_26(ctx, base);
+	return;
+}
+
+__attribute__((alias("__imp__sub_82A4C6B8"))) PPC_WEAK_FUNC(sub_82A4C6B8);
+PPC_FUNC_IMPL(__imp__sub_82A4C6B8) {
+	PPC_FUNC_PROLOGUE();
+	uint32_t ea{};
+	// mflr r12
+	ctx.r12.u64 = ctx.lr;
+	// stw r12,-8(r1)
+	PPC_STORE_U32(ctx.r1.u32 + -8, ctx.r12.u32);
+	// std r30,-24(r1)
+	PPC_STORE_U64(ctx.r1.u32 + -24, ctx.r30.u64);
+	// std r31,-16(r1)
+	PPC_STORE_U64(ctx.r1.u32 + -16, ctx.r31.u64);
+	// stwu r1,-144(r1)
+	ea = -144 + ctx.r1.u32;
+	PPC_STORE_U32(ea, ctx.r1.u32);
+	ctx.r1.u32 = ea;
+	// mr r30,r3
+	ctx.r30.u64 = ctx.r3.u64;
+	// addi r3,r1,80
+	ctx.r3.s64 = ctx.r1.s64 + 80;
+	// mr r31,r5
+	ctx.r31.u64 = ctx.r5.u64;
+	// bl 0x821dc288
+	ctx.lr = 0x82A4C6DC;
+	sub_821DC288(ctx, base);
+	// mr r11,r31
+	ctx.r11.u64 = ctx.r31.u64;
+loc_82A4C6E0:
+	// lbz r10,0(r11)
+	ctx.r10.u64 = PPC_LOAD_U8(ctx.r11.u32 + 0);
+	// addi r11,r11,1
+	ctx.r11.s64 = ctx.r11.s64 + 1;
+	// cmplwi cr6,r10,0
+	ctx.cr6.compare<uint32_t>(ctx.r10.u32, 0, ctx.xer);
+	// bne cr6,0x82a4c6e0
+	if (!ctx.cr6.eq) goto loc_82A4C6E0;
+	// subf r11,r31,r11
+	ctx.r11.u64 = ctx.r11.u64 - ctx.r31.u64;
+	// mr r4,r31
+	ctx.r4.u64 = ctx.r31.u64;
+	// addi r11,r11,-1
+	ctx.r11.s64 = ctx.r11.s64 + -1;
+	// rotlwi r5,r11,0
+	ctx.r5.u64 = __builtin_rotateleft32(ctx.r11.u32, 0);
+	// bl 0x82a4be00
+	ctx.lr = 0x82A4C704;
+	sub_82A4BE00(ctx, base);
+	// mr r4,r3
+	ctx.r4.u64 = ctx.r3.u64;
+	// mr r3,r30
+	ctx.r3.u64 = ctx.r30.u64;
+	// bl 0x821dc288
+	ctx.lr = 0x82A4C710;
+	sub_821DC288(ctx, base);
+	// li r5,0
+	ctx.r5.s64 = 0;
+	// li r4,1
+	ctx.r4.s64 = 1;
+	// addi r3,r1,80
+	ctx.r3.s64 = ctx.r1.s64 + 80;
+	// bl 0x821dc2d8
+	ctx.lr = 0x82A4C720;
+	sub_821DC2D8(ctx, base);
+	// mr r3,r30
+	ctx.r3.u64 = ctx.r30.u64;
+	// addi r1,r1,144
+	ctx.r1.s64 = ctx.r1.s64 + 144;
+	// lwz r12,-8(r1)
+	ctx.r12.u64 = PPC_LOAD_U32(ctx.r1.u32 + -8);
+	// mtlr r12
+	ctx.lr = ctx.r12.u64;
+	// ld r30,-24(r1)
+	ctx.r30.u64 = PPC_LOAD_U64(ctx.r1.u32 + -24);
+	// ld r31,-16(r1)
+	ctx.r31.u64 = PPC_LOAD_U64(ctx.r1.u32 + -16);
+	// blr 
+	return;
+}
+
+__attribute__((alias("__imp__sub_82A4C740"))) PPC_WEAK_FUNC(sub_82A4C740);
+PPC_FUNC_IMPL(__imp__sub_82A4C740) {
+	PPC_FUNC_PROLOGUE();
+	uint32_t ea{};
+	// mflr r12
+	ctx.r12.u64 = ctx.lr;
+	// stw r12,-8(r1)
+	PPC_STORE_U32(ctx.r1.u32 + -8, ctx.r12.u32);
+	// std r30,-24(r1)
+	PPC_STORE_U64(ctx.r1.u32 + -24, ctx.r30.u64);
+	// std r31,-16(r1)
+	PPC_STORE_U64(ctx.r1.u32 + -16, ctx.r31.u64);
+	// std r5,32(r1)
+	PPC_STORE_U64(ctx.r1.u32 + 32, ctx.r5.u64);
+	// std r6,40(r1)
+	PPC_STORE_U64(ctx.r1.u32 + 40, ctx.r6.u64);
+	// std r7,48(r1)
+	PPC_STORE_U64(ctx.r1.u32 + 48, ctx.r7.u64);
+	// std r8,56(r1)
+	PPC_STORE_U64(ctx.r1.u32 + 56, ctx.r8.u64);
+	// std r9,64(r1)
+	PPC_STORE_U64(ctx.r1.u32 + 64, ctx.r9.u64);
+	// std r10,72(r1)
+	PPC_STORE_U64(ctx.r1.u32 + 72, ctx.r10.u64);
+	// stwu r1,-1312(r1)
+	ea = -1312 + ctx.r1.u32;
+	PPC_STORE_U32(ea, ctx.r1.u32);
+	ctx.r1.u32 = ea;
+	// mr r30,r3
+	ctx.r30.u64 = ctx.r3.u64;
+	// mr r31,r4
+	ctx.r31.u64 = ctx.r4.u64;
+	// lwz r11,360(r30)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r30.u32 + 360);
+	// cmplwi cr6,r11,0
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, 0, ctx.xer);
+	// beq cr6,0x82a4c8b4
+	if (ctx.cr6.eq) goto loc_82A4C8B4;
+	// li r5,0
+	ctx.r5.s64 = 0;
+	// li r4,0
+	ctx.r4.s64 = 0;
+	// addi r3,r1,96
+	ctx.r3.s64 = ctx.r1.s64 + 96;
+	// bl 0x821dc2d8
+	ctx.lr = 0x82A4C790;
+	sub_821DC2D8(ctx, base);
+	// lbz r11,420(r30)
+	ctx.r11.u64 = PPC_LOAD_U8(ctx.r30.u32 + 420);
+	// cmplwi r11,0
+	ctx.cr0.compare<uint32_t>(ctx.r11.u32, 0, ctx.xer);
+	// beq 0x82a4c7f4
+	if (ctx.cr0.eq) goto loc_82A4C7F4;
+	// lis r11,-32063
+	ctx.r11.s64 = -2101280768;
+	// lis r10,-32238
+	ctx.r10.s64 = -2112749568;
+	// mr r5,r31
+	ctx.r5.u64 = ctx.r31.u64;
+	// addi r4,r11,4520
+	ctx.r4.s64 = ctx.r11.s64 + 4520;
+	// addi r3,r1,128
+	ctx.r3.s64 = ctx.r1.s64 + 128;
+	// addi r31,r10,-31276
+	ctx.r31.s64 = ctx.r10.s64 + -31276;
+	// bl 0x82a4c6b8
+	ctx.lr = 0x82A4C7B8;
+	sub_82A4C6B8(ctx, base);
+	// mr r4,r3
+	ctx.r4.u64 = ctx.r3.u64;
+	// addi r3,r1,224
+	ctx.r3.s64 = ctx.r1.s64 + 224;
+	// mr r5,r31
+	ctx.r5.u64 = ctx.r31.u64;
+	// bl 0x82a4c6b8
+	ctx.lr = 0x82A4C7C8;
+	sub_82A4C6B8(ctx, base);
+	// mr r4,r3
+	ctx.r4.u64 = ctx.r3.u64;
+	// li r6,-1
+	ctx.r6.s64 = -1;
+	// li r5,0
+	ctx.r5.s64 = 0;
+	// addi r3,r1,96
+	ctx.r3.s64 = ctx.r1.s64 + 96;
+	// bl 0x821dbea8
+	ctx.lr = 0x82A4C7DC;
+	sub_821DBEA8(ctx, base);
+	// li r5,0
+	ctx.r5.s64 = 0;
+	// li r4,1
+	ctx.r4.s64 = 1;
+	// addi r3,r1,224
+	ctx.r3.s64 = ctx.r1.s64 + 224;
+	// bl 0x821dc2d8
+	ctx.lr = 0x82A4C7EC;
+	sub_821DC2D8(ctx, base);
+	// addi r3,r1,128
+	ctx.r3.s64 = ctx.r1.s64 + 128;
+	// b 0x82a4c840
+	goto loc_82A4C840;
+loc_82A4C7F4:
+	// lis r11,-32238
+	ctx.r11.s64 = -2112749568;
+	// mr r4,r31
+	ctx.r4.u64 = ctx.r31.u64;
+	// addi r3,r1,192
+	ctx.r3.s64 = ctx.r1.s64 + 192;
+	// addi r31,r11,-31276
+	ctx.r31.s64 = ctx.r11.s64 + -31276;
+	// bl 0x821db4c8
+	ctx.lr = 0x82A4C808;
+	sub_821DB4C8(ctx, base);
+	// mr r4,r3
+	ctx.r4.u64 = ctx.r3.u64;
+	// addi r3,r1,160
+	ctx.r3.s64 = ctx.r1.s64 + 160;
+	// mr r5,r31
+	ctx.r5.u64 = ctx.r31.u64;
+	// bl 0x82a4c6b8
+	ctx.lr = 0x82A4C818;
+	sub_82A4C6B8(ctx, base);
+	// mr r4,r3
+	ctx.r4.u64 = ctx.r3.u64;
+	// li r6,-1
+	ctx.r6.s64 = -1;
+	// li r5,0
+	ctx.r5.s64 = 0;
+	// addi r3,r1,96
+	ctx.r3.s64 = ctx.r1.s64 + 96;
+	// bl 0x821dbea8
+	ctx.lr = 0x82A4C82C;
+	sub_821DBEA8(ctx, base);
+	// li r5,0
+	ctx.r5.s64 = 0;
+	// li r4,1
+	ctx.r4.s64 = 1;
+	// addi r3,r1,160
+	ctx.r3.s64 = ctx.r1.s64 + 160;
+	// bl 0x821dc2d8
+	ctx.lr = 0x82A4C83C;
+	sub_821DC2D8(ctx, base);
+	// addi r3,r1,192
+	ctx.r3.s64 = ctx.r1.s64 + 192;
+loc_82A4C840:
+	// li r5,0
+	ctx.r5.s64 = 0;
+	// li r4,1
+	ctx.r4.s64 = 1;
+	// bl 0x821dc2d8
+	ctx.lr = 0x82A4C84C;
+	sub_821DC2D8(ctx, base);
+	// addi r11,r1,80
+	ctx.r11.s64 = ctx.r1.s64 + 80;
+	// lwz r10,120(r1)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r1.u32 + 120);
+	// addi r9,r1,1344
+	ctx.r9.s64 = ctx.r1.s64 + 1344;
+	// lwz r5,100(r1)
+	ctx.r5.u64 = PPC_LOAD_U32(ctx.r1.u32 + 100);
+	// cmplwi cr6,r10,16
+	ctx.cr6.compare<uint32_t>(ctx.r10.u32, 16, ctx.xer);
+	// stw r9,0(r11)
+	PPC_STORE_U32(ctx.r11.u32 + 0, ctx.r9.u32);
+	// bge cr6,0x82a4c86c
+	if (!ctx.cr6.lt) goto loc_82A4C86C;
+	// addi r5,r1,100
+	ctx.r5.s64 = ctx.r1.s64 + 100;
+loc_82A4C86C:
+	// li r4,1024
+	ctx.r4.s64 = 1024;
+	// lwz r6,80(r1)
+	ctx.r6.u64 = PPC_LOAD_U32(ctx.r1.u32 + 80);
+	// addi r3,r1,256
+	ctx.r3.s64 = ctx.r1.s64 + 256;
+	// bl 0x82ae2290
+	ctx.lr = 0x82A4C87C;
+	sub_82AE2290(ctx, base);
+	// cmpwi cr6,r3,-1
+	ctx.cr6.compare<int32_t>(ctx.r3.s32, -1, ctx.xer);
+	// bne cr6,0x82a4c88c
+	if (!ctx.cr6.eq) goto loc_82A4C88C;
+	// li r11,0
+	ctx.r11.s64 = 0;
+	// stb r11,1279(r1)
+	PPC_STORE_U8(ctx.r1.u32 + 1279, ctx.r11.u8);
+loc_82A4C88C:
+	// lis r11,-32237
+	ctx.r11.s64 = -2112684032;
+	// lwz r10,360(r30)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r30.u32 + 360);
+	// addi r4,r1,256
+	ctx.r4.s64 = ctx.r1.s64 + 256;
+	// addi r3,r11,-7676
+	ctx.r3.s64 = ctx.r11.s64 + -7676;
+	// mtctr r10
+	ctx.ctr.u64 = ctx.r10.u64;
+	// bctrl 
+	ctx.lr = 0x82A4C8A4;
+	PPC_CALL_INDIRECT_FUNC(ctx.ctr.u32);
+	// li r5,0
+	ctx.r5.s64 = 0;
+	// li r4,1
+	ctx.r4.s64 = 1;
+	// addi r3,r1,96
+	ctx.r3.s64 = ctx.r1.s64 + 96;
+	// bl 0x821dc2d8
+	ctx.lr = 0x82A4C8B4;
+	sub_821DC2D8(ctx, base);
+loc_82A4C8B4:
+	// addi r1,r1,1312
+	ctx.r1.s64 = ctx.r1.s64 + 1312;
+	// lwz r12,-8(r1)
+	ctx.r12.u64 = PPC_LOAD_U32(ctx.r1.u32 + -8);
+	// mtlr r12
+	ctx.lr = ctx.r12.u64;
+	// ld r30,-24(r1)
+	ctx.r30.u64 = PPC_LOAD_U64(ctx.r1.u32 + -24);
+	// ld r31,-16(r1)
+	ctx.r31.u64 = PPC_LOAD_U64(ctx.r1.u32 + -16);
+	// blr 
+	return;
+}
+
+__attribute__((alias("__imp__sub_82A4C8D0"))) PPC_WEAK_FUNC(sub_82A4C8D0);
+PPC_FUNC_IMPL(__imp__sub_82A4C8D0) {
+	PPC_FUNC_PROLOGUE();
+	uint32_t ea{};
+	// mflr r12
+	ctx.r12.u64 = ctx.lr;
+	// stw r12,-8(r1)
+	PPC_STORE_U32(ctx.r1.u32 + -8, ctx.r12.u32);
+	// std r30,-24(r1)
+	PPC_STORE_U64(ctx.r1.u32 + -24, ctx.r30.u64);
+	// std r31,-16(r1)
+	PPC_STORE_U64(ctx.r1.u32 + -16, ctx.r31.u64);
+	// std r5,32(r1)
+	PPC_STORE_U64(ctx.r1.u32 + 32, ctx.r5.u64);
+	// std r6,40(r1)
+	PPC_STORE_U64(ctx.r1.u32 + 40, ctx.r6.u64);
+	// std r7,48(r1)
+	PPC_STORE_U64(ctx.r1.u32 + 48, ctx.r7.u64);
+	// std r8,56(r1)
+	PPC_STORE_U64(ctx.r1.u32 + 56, ctx.r8.u64);
+	// std r9,64(r1)
+	PPC_STORE_U64(ctx.r1.u32 + 64, ctx.r9.u64);
+	// std r10,72(r1)
+	PPC_STORE_U64(ctx.r1.u32 + 72, ctx.r10.u64);
+	// stwu r1,-1312(r1)
+	ea = -1312 + ctx.r1.u32;
+	PPC_STORE_U32(ea, ctx.r1.u32);
+	ctx.r1.u32 = ea;
+	// mr r30,r3
+	ctx.r30.u64 = ctx.r3.u64;
+	// mr r31,r4
+	ctx.r31.u64 = ctx.r4.u64;
+	// lwz r11,360(r30)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r30.u32 + 360);
+	// cmplwi cr6,r11,0
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, 0, ctx.xer);
+	// beq cr6,0x82a4ca44
+	if (ctx.cr6.eq) goto loc_82A4CA44;
+	// li r5,0
+	ctx.r5.s64 = 0;
+	// li r4,0
+	ctx.r4.s64 = 0;
+	// addi r3,r1,96
+	ctx.r3.s64 = ctx.r1.s64 + 96;
+	// bl 0x821dc2d8
+	ctx.lr = 0x82A4C920;
+	sub_821DC2D8(ctx, base);
+	// lbz r11,420(r30)
+	ctx.r11.u64 = PPC_LOAD_U8(ctx.r30.u32 + 420);
+	// cmplwi r11,0
+	ctx.cr0.compare<uint32_t>(ctx.r11.u32, 0, ctx.xer);
+	// beq 0x82a4c984
+	if (ctx.cr0.eq) goto loc_82A4C984;
+	// lis r11,-32063
+	ctx.r11.s64 = -2101280768;
+	// lis r10,-32238
+	ctx.r10.s64 = -2112749568;
+	// mr r5,r31
+	ctx.r5.u64 = ctx.r31.u64;
+	// addi r4,r11,4548
+	ctx.r4.s64 = ctx.r11.s64 + 4548;
+	// addi r3,r1,128
+	ctx.r3.s64 = ctx.r1.s64 + 128;
+	// addi r31,r10,-31276
+	ctx.r31.s64 = ctx.r10.s64 + -31276;
+	// bl 0x82a4c6b8
+	ctx.lr = 0x82A4C948;
+	sub_82A4C6B8(ctx, base);
+	// mr r4,r3
+	ctx.r4.u64 = ctx.r3.u64;
+	// addi r3,r1,224
+	ctx.r3.s64 = ctx.r1.s64 + 224;
+	// mr r5,r31
+	ctx.r5.u64 = ctx.r31.u64;
+	// bl 0x82a4c6b8
+	ctx.lr = 0x82A4C958;
+	sub_82A4C6B8(ctx, base);
+	// mr r4,r3
+	ctx.r4.u64 = ctx.r3.u64;
+	// li r6,-1
+	ctx.r6.s64 = -1;
+	// li r5,0
+	ctx.r5.s64 = 0;
+	// addi r3,r1,96
+	ctx.r3.s64 = ctx.r1.s64 + 96;
+	// bl 0x821dbea8
+	ctx.lr = 0x82A4C96C;
+	sub_821DBEA8(ctx, base);
+	// li r5,0
+	ctx.r5.s64 = 0;
+	// li r4,1
+	ctx.r4.s64 = 1;
+	// addi r3,r1,224
+	ctx.r3.s64 = ctx.r1.s64 + 224;
+	// bl 0x821dc2d8
+	ctx.lr = 0x82A4C97C;
+	sub_821DC2D8(ctx, base);
+	// addi r3,r1,128
+	ctx.r3.s64 = ctx.r1.s64 + 128;
+	// b 0x82a4c9d0
+	goto loc_82A4C9D0;
+loc_82A4C984:
+	// lis r11,-32238
+	ctx.r11.s64 = -2112749568;
+	// mr r4,r31
+	ctx.r4.u64 = ctx.r31.u64;
+	// addi r3,r1,192
+	ctx.r3.s64 = ctx.r1.s64 + 192;
+	// addi r31,r11,-31276
+	ctx.r31.s64 = ctx.r11.s64 + -31276;
+	// bl 0x821db4c8
+	ctx.lr = 0x82A4C998;
+	sub_821DB4C8(ctx, base);
+	// mr r4,r3
+	ctx.r4.u64 = ctx.r3.u64;
+	// addi r3,r1,160
+	ctx.r3.s64 = ctx.r1.s64 + 160;
+	// mr r5,r31
+	ctx.r5.u64 = ctx.r31.u64;
+	// bl 0x82a4c6b8
+	ctx.lr = 0x82A4C9A8;
+	sub_82A4C6B8(ctx, base);
+	// mr r4,r3
+	ctx.r4.u64 = ctx.r3.u64;
+	// li r6,-1
+	ctx.r6.s64 = -1;
+	// li r5,0
+	ctx.r5.s64 = 0;
+	// addi r3,r1,96
+	ctx.r3.s64 = ctx.r1.s64 + 96;
+	// bl 0x821dbea8
+	ctx.lr = 0x82A4C9BC;
+	sub_821DBEA8(ctx, base);
+	// li r5,0
+	ctx.r5.s64 = 0;
+	// li r4,1
+	ctx.r4.s64 = 1;
+	// addi r3,r1,160
+	ctx.r3.s64 = ctx.r1.s64 + 160;
+	// bl 0x821dc2d8
+	ctx.lr = 0x82A4C9CC;
+	sub_821DC2D8(ctx, base);
+	// addi r3,r1,192
+	ctx.r3.s64 = ctx.r1.s64 + 192;
+loc_82A4C9D0:
+	// li r5,0
+	ctx.r5.s64 = 0;
+	// li r4,1
+	ctx.r4.s64 = 1;
+	// bl 0x821dc2d8
+	ctx.lr = 0x82A4C9DC;
+	sub_821DC2D8(ctx, base);
+	// addi r11,r1,80
+	ctx.r11.s64 = ctx.r1.s64 + 80;
+	// lwz r10,120(r1)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r1.u32 + 120);
+	// addi r9,r1,1344
+	ctx.r9.s64 = ctx.r1.s64 + 1344;
+	// lwz r5,100(r1)
+	ctx.r5.u64 = PPC_LOAD_U32(ctx.r1.u32 + 100);
+	// cmplwi cr6,r10,16
+	ctx.cr6.compare<uint32_t>(ctx.r10.u32, 16, ctx.xer);
+	// stw r9,0(r11)
+	PPC_STORE_U32(ctx.r11.u32 + 0, ctx.r9.u32);
+	// bge cr6,0x82a4c9fc
+	if (!ctx.cr6.lt) goto loc_82A4C9FC;
+	// addi r5,r1,100
+	ctx.r5.s64 = ctx.r1.s64 + 100;
+loc_82A4C9FC:
+	// li r4,1024
+	ctx.r4.s64 = 1024;
+	// lwz r6,80(r1)
+	ctx.r6.u64 = PPC_LOAD_U32(ctx.r1.u32 + 80);
+	// addi r3,r1,256
+	ctx.r3.s64 = ctx.r1.s64 + 256;
+	// bl 0x82ae2290
+	ctx.lr = 0x82A4CA0C;
+	sub_82AE2290(ctx, base);
+	// cmpwi cr6,r3,-1
+	ctx.cr6.compare<int32_t>(ctx.r3.s32, -1, ctx.xer);
+	// bne cr6,0x82a4ca1c
+	if (!ctx.cr6.eq) goto loc_82A4CA1C;
+	// li r11,0
+	ctx.r11.s64 = 0;
+	// stb r11,1279(r1)
+	PPC_STORE_U8(ctx.r1.u32 + 1279, ctx.r11.u8);
+loc_82A4CA1C:
+	// lis r11,-32237
+	ctx.r11.s64 = -2112684032;
+	// lwz r10,364(r30)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r30.u32 + 364);
+	// addi r4,r1,256
+	ctx.r4.s64 = ctx.r1.s64 + 256;
+	// addi r3,r11,-7676
+	ctx.r3.s64 = ctx.r11.s64 + -7676;
+	// mtctr r10
+	ctx.ctr.u64 = ctx.r10.u64;
+	// bctrl 
+	ctx.lr = 0x82A4CA34;
+	PPC_CALL_INDIRECT_FUNC(ctx.ctr.u32);
+	// li r5,0
+	ctx.r5.s64 = 0;
+	// li r4,1
+	ctx.r4.s64 = 1;
+	// addi r3,r1,96
+	ctx.r3.s64 = ctx.r1.s64 + 96;
+	// bl 0x821dc2d8
+	ctx.lr = 0x82A4CA44;
+	sub_821DC2D8(ctx, base);
+loc_82A4CA44:
+	// addi r1,r1,1312
+	ctx.r1.s64 = ctx.r1.s64 + 1312;
+	// lwz r12,-8(r1)
+	ctx.r12.u64 = PPC_LOAD_U32(ctx.r1.u32 + -8);
+	// mtlr r12
+	ctx.lr = ctx.r12.u64;
+	// ld r30,-24(r1)
+	ctx.r30.u64 = PPC_LOAD_U64(ctx.r1.u32 + -24);
+	// ld r31,-16(r1)
+	ctx.r31.u64 = PPC_LOAD_U64(ctx.r1.u32 + -16);
+	// blr 
+	return;
+}
+
+__attribute__((alias("__imp__sub_82A4CA60"))) PPC_WEAK_FUNC(sub_82A4CA60);
+PPC_FUNC_IMPL(__imp__sub_82A4CA60) {
+	PPC_FUNC_PROLOGUE();
+	uint32_t ea{};
+	// mflr r12
+	ctx.r12.u64 = ctx.lr;
+	// stw r12,-8(r1)
+	PPC_STORE_U32(ctx.r1.u32 + -8, ctx.r12.u32);
+	// std r30,-24(r1)
+	PPC_STORE_U64(ctx.r1.u32 + -24, ctx.r30.u64);
+	// std r31,-16(r1)
+	PPC_STORE_U64(ctx.r1.u32 + -16, ctx.r31.u64);
+	// std r5,32(r1)
+	PPC_STORE_U64(ctx.r1.u32 + 32, ctx.r5.u64);
+	// std r6,40(r1)
+	PPC_STORE_U64(ctx.r1.u32 + 40, ctx.r6.u64);
+	// std r7,48(r1)
+	PPC_STORE_U64(ctx.r1.u32 + 48, ctx.r7.u64);
+	// std r8,56(r1)
+	PPC_STORE_U64(ctx.r1.u32 + 56, ctx.r8.u64);
+	// std r9,64(r1)
+	PPC_STORE_U64(ctx.r1.u32 + 64, ctx.r9.u64);
+	// std r10,72(r1)
+	PPC_STORE_U64(ctx.r1.u32 + 72, ctx.r10.u64);
+	// stwu r1,-1312(r1)
+	ea = -1312 + ctx.r1.u32;
+	PPC_STORE_U32(ea, ctx.r1.u32);
+	ctx.r1.u32 = ea;
+	// mr r30,r3
+	ctx.r30.u64 = ctx.r3.u64;
+	// mr r31,r4
+	ctx.r31.u64 = ctx.r4.u64;
+	// lwz r11,360(r30)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r30.u32 + 360);
+	// cmplwi cr6,r11,0
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, 0, ctx.xer);
+	// beq cr6,0x82a4cbd4
+	if (ctx.cr6.eq) goto loc_82A4CBD4;
+	// li r5,0
+	ctx.r5.s64 = 0;
+	// li r4,0
+	ctx.r4.s64 = 0;
+	// addi r3,r1,96
+	ctx.r3.s64 = ctx.r1.s64 + 96;
+	// bl 0x821dc2d8
+	ctx.lr = 0x82A4CAB0;
+	sub_821DC2D8(ctx, base);
+	// lbz r11,420(r30)
+	ctx.r11.u64 = PPC_LOAD_U8(ctx.r30.u32 + 420);
+	// cmplwi r11,0
+	ctx.cr0.compare<uint32_t>(ctx.r11.u32, 0, ctx.xer);
+	// beq 0x82a4cb14
+	if (ctx.cr0.eq) goto loc_82A4CB14;
+	// lis r11,-32063
+	ctx.r11.s64 = -2101280768;
+	// lis r10,-32238
+	ctx.r10.s64 = -2112749568;
+	// mr r5,r31
+	ctx.r5.u64 = ctx.r31.u64;
+	// addi r4,r11,4576
+	ctx.r4.s64 = ctx.r11.s64 + 4576;
+	// addi r3,r1,128
+	ctx.r3.s64 = ctx.r1.s64 + 128;
+	// addi r31,r10,-31276
+	ctx.r31.s64 = ctx.r10.s64 + -31276;
+	// bl 0x82a4c6b8
+	ctx.lr = 0x82A4CAD8;
+	sub_82A4C6B8(ctx, base);
+	// mr r4,r3
+	ctx.r4.u64 = ctx.r3.u64;
+	// addi r3,r1,224
+	ctx.r3.s64 = ctx.r1.s64 + 224;
+	// mr r5,r31
+	ctx.r5.u64 = ctx.r31.u64;
+	// bl 0x82a4c6b8
+	ctx.lr = 0x82A4CAE8;
+	sub_82A4C6B8(ctx, base);
+	// mr r4,r3
+	ctx.r4.u64 = ctx.r3.u64;
+	// li r6,-1
+	ctx.r6.s64 = -1;
+	// li r5,0
+	ctx.r5.s64 = 0;
+	// addi r3,r1,96
+	ctx.r3.s64 = ctx.r1.s64 + 96;
+	// bl 0x821dbea8
+	ctx.lr = 0x82A4CAFC;
+	sub_821DBEA8(ctx, base);
+	// li r5,0
+	ctx.r5.s64 = 0;
+	// li r4,1
+	ctx.r4.s64 = 1;
+	// addi r3,r1,224
+	ctx.r3.s64 = ctx.r1.s64 + 224;
+	// bl 0x821dc2d8
+	ctx.lr = 0x82A4CB0C;
+	sub_821DC2D8(ctx, base);
+	// addi r3,r1,128
+	ctx.r3.s64 = ctx.r1.s64 + 128;
+	// b 0x82a4cb60
+	goto loc_82A4CB60;
+loc_82A4CB14:
+	// lis r11,-32238
+	ctx.r11.s64 = -2112749568;
+	// mr r4,r31
+	ctx.r4.u64 = ctx.r31.u64;
+	// addi r3,r1,192
+	ctx.r3.s64 = ctx.r1.s64 + 192;
+	// addi r31,r11,-31276
+	ctx.r31.s64 = ctx.r11.s64 + -31276;
+	// bl 0x821db4c8
+	ctx.lr = 0x82A4CB28;
+	sub_821DB4C8(ctx, base);
+	// mr r4,r3
+	ctx.r4.u64 = ctx.r3.u64;
+	// addi r3,r1,160
+	ctx.r3.s64 = ctx.r1.s64 + 160;
+	// mr r5,r31
+	ctx.r5.u64 = ctx.r31.u64;
+	// bl 0x82a4c6b8
+	ctx.lr = 0x82A4CB38;
+	sub_82A4C6B8(ctx, base);
+	// mr r4,r3
+	ctx.r4.u64 = ctx.r3.u64;
+	// li r6,-1
+	ctx.r6.s64 = -1;
+	// li r5,0
+	ctx.r5.s64 = 0;
+	// addi r3,r1,96
+	ctx.r3.s64 = ctx.r1.s64 + 96;
+	// bl 0x821dbea8
+	ctx.lr = 0x82A4CB4C;
+	sub_821DBEA8(ctx, base);
+	// li r5,0
+	ctx.r5.s64 = 0;
+	// li r4,1
+	ctx.r4.s64 = 1;
+	// addi r3,r1,160
+	ctx.r3.s64 = ctx.r1.s64 + 160;
+	// bl 0x821dc2d8
+	ctx.lr = 0x82A4CB5C;
+	sub_821DC2D8(ctx, base);
+	// addi r3,r1,192
+	ctx.r3.s64 = ctx.r1.s64 + 192;
+loc_82A4CB60:
+	// li r5,0
+	ctx.r5.s64 = 0;
+	// li r4,1
+	ctx.r4.s64 = 1;
+	// bl 0x821dc2d8
+	ctx.lr = 0x82A4CB6C;
+	sub_821DC2D8(ctx, base);
+	// addi r11,r1,80
+	ctx.r11.s64 = ctx.r1.s64 + 80;
+	// lwz r10,120(r1)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r1.u32 + 120);
+	// addi r9,r1,1344
+	ctx.r9.s64 = ctx.r1.s64 + 1344;
+	// lwz r5,100(r1)
+	ctx.r5.u64 = PPC_LOAD_U32(ctx.r1.u32 + 100);
+	// cmplwi cr6,r10,16
+	ctx.cr6.compare<uint32_t>(ctx.r10.u32, 16, ctx.xer);
+	// stw r9,0(r11)
+	PPC_STORE_U32(ctx.r11.u32 + 0, ctx.r9.u32);
+	// bge cr6,0x82a4cb8c
+	if (!ctx.cr6.lt) goto loc_82A4CB8C;
+	// addi r5,r1,100
+	ctx.r5.s64 = ctx.r1.s64 + 100;
+loc_82A4CB8C:
+	// li r4,1024
+	ctx.r4.s64 = 1024;
+	// lwz r6,80(r1)
+	ctx.r6.u64 = PPC_LOAD_U32(ctx.r1.u32 + 80);
+	// addi r3,r1,256
+	ctx.r3.s64 = ctx.r1.s64 + 256;
+	// bl 0x82ae2290
+	ctx.lr = 0x82A4CB9C;
+	sub_82AE2290(ctx, base);
+	// cmpwi cr6,r3,-1
+	ctx.cr6.compare<int32_t>(ctx.r3.s32, -1, ctx.xer);
+	// bne cr6,0x82a4cbac
+	if (!ctx.cr6.eq) goto loc_82A4CBAC;
+	// li r11,0
+	ctx.r11.s64 = 0;
+	// stb r11,1279(r1)
+	PPC_STORE_U8(ctx.r1.u32 + 1279, ctx.r11.u8);
+loc_82A4CBAC:
+	// lis r11,-32237
+	ctx.r11.s64 = -2112684032;
+	// lwz r10,368(r30)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r30.u32 + 368);
+	// addi r4,r1,256
+	ctx.r4.s64 = ctx.r1.s64 + 256;
+	// addi r3,r11,-7676
+	ctx.r3.s64 = ctx.r11.s64 + -7676;
+	// mtctr r10
+	ctx.ctr.u64 = ctx.r10.u64;
+	// bctrl 
+	ctx.lr = 0x82A4CBC4;
+	PPC_CALL_INDIRECT_FUNC(ctx.ctr.u32);
+	// li r5,0
+	ctx.r5.s64 = 0;
+	// li r4,1
+	ctx.r4.s64 = 1;
+	// addi r3,r1,96
+	ctx.r3.s64 = ctx.r1.s64 + 96;
+	// bl 0x821dc2d8
+	ctx.lr = 0x82A4CBD4;
+	sub_821DC2D8(ctx, base);
+loc_82A4CBD4:
+	// addi r1,r1,1312
+	ctx.r1.s64 = ctx.r1.s64 + 1312;
+	// lwz r12,-8(r1)
+	ctx.r12.u64 = PPC_LOAD_U32(ctx.r1.u32 + -8);
+	// mtlr r12
+	ctx.lr = ctx.r12.u64;
+	// ld r30,-24(r1)
+	ctx.r30.u64 = PPC_LOAD_U64(ctx.r1.u32 + -24);
+	// ld r31,-16(r1)
+	ctx.r31.u64 = PPC_LOAD_U64(ctx.r1.u32 + -16);
+	// blr 
+	return;
+}
+
+__attribute__((alias("__imp__rex_AudioSystem_c__AudioSystemError_82A4CBF0"))) PPC_WEAK_FUNC(rex_AudioSystem_c__AudioSystemError_82A4CBF0);
+PPC_FUNC_IMPL(__imp__rex_AudioSystem_c__AudioSystemError_82A4CBF0) {
+	PPC_FUNC_PROLOGUE();
+	uint32_t ea{};
+	// mflr r12
+	ctx.r12.u64 = ctx.lr;
+	// bl 0x82ae162c
+	ctx.lr = 0x82A4CBF8;
+	__savegprlr_29(ctx, base);
+	// std r6,40(r1)
+	PPC_STORE_U64(ctx.r1.u32 + 40, ctx.r6.u64);
+	// std r7,48(r1)
+	PPC_STORE_U64(ctx.r1.u32 + 48, ctx.r7.u64);
+	// std r8,56(r1)
+	PPC_STORE_U64(ctx.r1.u32 + 56, ctx.r8.u64);
+	// std r9,64(r1)
+	PPC_STORE_U64(ctx.r1.u32 + 64, ctx.r9.u64);
+	// std r10,72(r1)
+	PPC_STORE_U64(ctx.r1.u32 + 72, ctx.r10.u64);
+	// stwu r1,-1344(r1)
+	ea = -1344 + ctx.r1.u32;
+	PPC_STORE_U32(ea, ctx.r1.u32);
+	ctx.r1.u32 = ea;
+	// mr r29,r3
+	ctx.r29.u64 = ctx.r3.u64;
+	// mr r30,r4
+	ctx.r30.u64 = ctx.r4.u64;
+	// mr r31,r5
+	ctx.r31.u64 = ctx.r5.u64;
+	// lwz r11,360(r29)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r29.u32 + 360);
+	// cmplwi cr6,r11,0
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, 0, ctx.xer);
+	// beq cr6,0x82a4cd88
+	if (ctx.cr6.eq) goto loc_82A4CD88;
+	// li r5,0
+	ctx.r5.s64 = 0;
+	// li r4,0
+	ctx.r4.s64 = 0;
+	// addi r3,r1,96
+	ctx.r3.s64 = ctx.r1.s64 + 96;
+	// bl 0x821dc2d8
+	ctx.lr = 0x82A4CC38;
+	sub_821DC2D8(ctx, base);
+	// lbz r11,420(r29)
+	ctx.r11.u64 = PPC_LOAD_U8(ctx.r29.u32 + 420);
+	// cmplwi r11,0
+	ctx.cr0.compare<uint32_t>(ctx.r11.u32, 0, ctx.xer);
+	// beq 0x82a4ccc8
+	if (ctx.cr0.eq) goto loc_82A4CCC8;
+	// lis r11,-32070
+	ctx.r11.s64 = -2101739520;
+	// rlwinm r10,r30,2,0,29
+	ctx.r10.u64 = __builtin_rotateleft64(ctx.r30.u32 | (ctx.r30.u64 << 32), 2) & 0xFFFFFFFC;
+	// addi r11,r11,-13064
+	ctx.r11.s64 = ctx.r11.s64 + -13064;
+	// lis r9,-32063
+	ctx.r9.s64 = -2101280768;
+	// lis r8,-32238
+	ctx.r8.s64 = -2112749568;
+	// addi r4,r9,4548
+	ctx.r4.s64 = ctx.r9.s64 + 4548;
+	// addi r3,r1,256
+	ctx.r3.s64 = ctx.r1.s64 + 256;
+	// lwzx r5,r10,r11
+	ctx.r5.u64 = PPC_LOAD_U32(ctx.r10.u32 + ctx.r11.u32);
+	// addi r30,r8,-31276
+	ctx.r30.s64 = ctx.r8.s64 + -31276;
+	// bl 0x82a4c6b8
+	ctx.lr = 0x82A4CC6C;
+	sub_82A4C6B8(ctx, base);
+	// mr r4,r3
+	ctx.r4.u64 = ctx.r3.u64;
+	// addi r3,r1,128
+	ctx.r3.s64 = ctx.r1.s64 + 128;
+	// mr r5,r31
+	ctx.r5.u64 = ctx.r31.u64;
+	// bl 0x82a4c6b8
+	ctx.lr = 0x82A4CC7C;
+	sub_82A4C6B8(ctx, base);
+	// mr r4,r3
+	ctx.r4.u64 = ctx.r3.u64;
+	// addi r3,r1,192
+	ctx.r3.s64 = ctx.r1.s64 + 192;
+	// mr r5,r30
+	ctx.r5.u64 = ctx.r30.u64;
+	// bl 0x82a4c6b8
+	ctx.lr = 0x82A4CC8C;
+	sub_82A4C6B8(ctx, base);
+	// mr r4,r3
+	ctx.r4.u64 = ctx.r3.u64;
+	// li r6,-1
+	ctx.r6.s64 = -1;
+	// li r5,0
+	ctx.r5.s64 = 0;
+	// addi r3,r1,96
+	ctx.r3.s64 = ctx.r1.s64 + 96;
+	// bl 0x821dbea8
+	ctx.lr = 0x82A4CCA0;
+	sub_821DBEA8(ctx, base);
+	// li r5,0
+	ctx.r5.s64 = 0;
+	// li r4,1
+	ctx.r4.s64 = 1;
+	// addi r3,r1,192
+	ctx.r3.s64 = ctx.r1.s64 + 192;
+	// bl 0x821dc2d8
+	ctx.lr = 0x82A4CCB0;
+	sub_821DC2D8(ctx, base);
+	// li r5,0
+	ctx.r5.s64 = 0;
+	// li r4,1
+	ctx.r4.s64 = 1;
+	// addi r3,r1,128
+	ctx.r3.s64 = ctx.r1.s64 + 128;
+	// bl 0x821dc2d8
+	ctx.lr = 0x82A4CCC0;
+	sub_821DC2D8(ctx, base);
+	// addi r3,r1,256
+	ctx.r3.s64 = ctx.r1.s64 + 256;
+	// b 0x82a4cd14
+	goto loc_82A4CD14;
+loc_82A4CCC8:
+	// lis r11,-32238
+	ctx.r11.s64 = -2112749568;
+	// mr r4,r31
+	ctx.r4.u64 = ctx.r31.u64;
+	// addi r3,r1,224
+	ctx.r3.s64 = ctx.r1.s64 + 224;
+	// addi r31,r11,-31276
+	ctx.r31.s64 = ctx.r11.s64 + -31276;
+	// bl 0x821db4c8
+	ctx.lr = 0x82A4CCDC;
+	sub_821DB4C8(ctx, base);
+	// mr r4,r3
+	ctx.r4.u64 = ctx.r3.u64;
+	// addi r3,r1,160
+	ctx.r3.s64 = ctx.r1.s64 + 160;
+	// mr r5,r31
+	ctx.r5.u64 = ctx.r31.u64;
+	// bl 0x82a4c6b8
+	ctx.lr = 0x82A4CCEC;
+	sub_82A4C6B8(ctx, base);
+	// mr r4,r3
+	ctx.r4.u64 = ctx.r3.u64;
+	// li r6,-1
+	ctx.r6.s64 = -1;
+	// li r5,0
+	ctx.r5.s64 = 0;
+	// addi r3,r1,96
+	ctx.r3.s64 = ctx.r1.s64 + 96;
+	// bl 0x821dbea8
+	ctx.lr = 0x82A4CD00;
+	sub_821DBEA8(ctx, base);
+	// li r5,0
+	ctx.r5.s64 = 0;
+	// li r4,1
+	ctx.r4.s64 = 1;
+	// addi r3,r1,160
+	ctx.r3.s64 = ctx.r1.s64 + 160;
+	// bl 0x821dc2d8
+	ctx.lr = 0x82A4CD10;
+	sub_821DC2D8(ctx, base);
+	// addi r3,r1,224
+	ctx.r3.s64 = ctx.r1.s64 + 224;
+loc_82A4CD14:
+	// li r5,0
+	ctx.r5.s64 = 0;
+	// li r4,1
+	ctx.r4.s64 = 1;
+	// bl 0x821dc2d8
+	ctx.lr = 0x82A4CD20;
+	sub_821DC2D8(ctx, base);
+	// addi r11,r1,80
+	ctx.r11.s64 = ctx.r1.s64 + 80;
+	// lwz r10,120(r1)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r1.u32 + 120);
+	// addi r9,r1,1384
+	ctx.r9.s64 = ctx.r1.s64 + 1384;
+	// lwz r5,100(r1)
+	ctx.r5.u64 = PPC_LOAD_U32(ctx.r1.u32 + 100);
+	// cmplwi cr6,r10,16
+	ctx.cr6.compare<uint32_t>(ctx.r10.u32, 16, ctx.xer);
+	// stw r9,0(r11)
+	PPC_STORE_U32(ctx.r11.u32 + 0, ctx.r9.u32);
+	// bge cr6,0x82a4cd40
+	if (!ctx.cr6.lt) goto loc_82A4CD40;
+	// addi r5,r1,100
+	ctx.r5.s64 = ctx.r1.s64 + 100;
+loc_82A4CD40:
+	// li r4,1024
+	ctx.r4.s64 = 1024;
+	// lwz r6,80(r1)
+	ctx.r6.u64 = PPC_LOAD_U32(ctx.r1.u32 + 80);
+	// addi r3,r1,288
+	ctx.r3.s64 = ctx.r1.s64 + 288;
+	// bl 0x82ae2290
+	ctx.lr = 0x82A4CD50;
+	sub_82AE2290(ctx, base);
+	// cmpwi cr6,r3,-1
+	ctx.cr6.compare<int32_t>(ctx.r3.s32, -1, ctx.xer);
+	// bne cr6,0x82a4cd60
+	if (!ctx.cr6.eq) goto loc_82A4CD60;
+	// li r11,0
+	ctx.r11.s64 = 0;
+	// stb r11,1311(r1)
+	PPC_STORE_U8(ctx.r1.u32 + 1311, ctx.r11.u8);
+loc_82A4CD60:
+	// lis r11,-32237
+	ctx.r11.s64 = -2112684032;
+	// lwz r10,368(r29)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r29.u32 + 368);
+	// addi r4,r1,288
+	ctx.r4.s64 = ctx.r1.s64 + 288;
+	// addi r3,r11,-7676
+	ctx.r3.s64 = ctx.r11.s64 + -7676;
+	// mtctr r10
+	ctx.ctr.u64 = ctx.r10.u64;
+	// bctrl 
+	ctx.lr = 0x82A4CD78;
+	PPC_CALL_INDIRECT_FUNC(ctx.ctr.u32);
+	// li r5,0
+	ctx.r5.s64 = 0;
+	// li r4,1
+	ctx.r4.s64 = 1;
+	// addi r3,r1,96
+	ctx.r3.s64 = ctx.r1.s64 + 96;
+	// bl 0x821dc2d8
+	ctx.lr = 0x82A4CD88;
+	sub_821DC2D8(ctx, base);
+loc_82A4CD88:
+	// addi r1,r1,1344
+	ctx.r1.s64 = ctx.r1.s64 + 1344;
+	// b 0x82ae167c
+	__restgprlr_29(ctx, base);
+	return;
+}
+
+__attribute__((alias("__imp__sub_82A4CD90"))) PPC_WEAK_FUNC(sub_82A4CD90);
+PPC_FUNC_IMPL(__imp__sub_82A4CD90) {
+	PPC_FUNC_PROLOGUE();
+	uint32_t ea{};
+	// mflr r12
+	ctx.r12.u64 = ctx.lr;
+	// bl 0x82ae1624
+	ctx.lr = 0x82A4CD98;
+	__savegprlr_27(ctx, base);
+	// stwu r1,-176(r1)
+	ea = -176 + ctx.r1.u32;
+	PPC_STORE_U32(ea, ctx.r1.u32);
+	ctx.r1.u32 = ea;
+	// mr r28,r4
+	ctx.r28.u64 = ctx.r4.u64;
+	// mr r30,r3
+	ctx.r30.u64 = ctx.r3.u64;
+	// stw r28,204(r1)
+	PPC_STORE_U32(ctx.r1.u32 + 204, ctx.r28.u32);
+	// mr r27,r5
+	ctx.r27.u64 = ctx.r5.u64;
+	// addi r5,r1,204
+	ctx.r5.s64 = ctx.r1.s64 + 204;
+	// addi r3,r1,112
+	ctx.r3.s64 = ctx.r1.s64 + 112;
+	// li r29,0
+	ctx.r29.s64 = 0;
+	// lwz r31,228(r30)
+	ctx.r31.u64 = PPC_LOAD_U32(ctx.r30.u32 + 228);
+	// mr r4,r31
+	ctx.r4.u64 = ctx.r31.u64;
+	// bl 0x82a4b500
+	ctx.lr = 0x82A4CDC4;
+	sub_82A4B500(ctx, base);
+	// lwz r11,112(r1)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r1.u32 + 112);
+	// lwz r10,4(r31)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r31.u32 + 4);
+	// cmplwi cr6,r11,0
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, 0, ctx.xer);
+	// beq cr6,0x82a4cddc
+	if (ctx.cr6.eq) goto loc_82A4CDDC;
+	// cmplw cr6,r11,r31
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, ctx.r31.u32, ctx.xer);
+	// beq cr6,0x82a4cde0
+	if (ctx.cr6.eq) goto loc_82A4CDE0;
+loc_82A4CDDC:
+	// twi 31,r0,22
+	ppc_trap(ctx, base, 22);
+loc_82A4CDE0:
+	// lwz r9,116(r1)
+	ctx.r9.u64 = PPC_LOAD_U32(ctx.r1.u32 + 116);
+	// cmplw cr6,r9,r10
+	ctx.cr6.compare<uint32_t>(ctx.r9.u32, ctx.r10.u32, ctx.xer);
+	// beq cr6,0x82a4ce1c
+	if (ctx.cr6.eq) goto loc_82A4CE1C;
+	// cmplwi cr6,r11,0
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, 0, ctx.xer);
+	// bne cr6,0x82a4cdf8
+	if (!ctx.cr6.eq) goto loc_82A4CDF8;
+	// twi 31,r0,22
+	ppc_trap(ctx, base, 22);
+loc_82A4CDF8:
+	// lwz r11,4(r11)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r11.u32 + 4);
+	// cmplw cr6,r9,r11
+	ctx.cr6.compare<uint32_t>(ctx.r9.u32, ctx.r11.u32, ctx.xer);
+	// bne cr6,0x82a4ce08
+	if (!ctx.cr6.eq) goto loc_82A4CE08;
+	// twi 31,r0,22
+	ppc_trap(ctx, base, 22);
+loc_82A4CE08:
+	// mr r4,r27
+	ctx.r4.u64 = ctx.r27.u64;
+	// lwz r3,16(r9)
+	ctx.r3.u64 = PPC_LOAD_U32(ctx.r9.u32 + 16);
+	// bl 0x82a521a0
+	ctx.lr = 0x82A4CE14;
+	sub_82A521A0(ctx, base);
+	// mr r29,r3
+	ctx.r29.u64 = ctx.r3.u64;
+	// b 0x82a4ce34
+	goto loc_82A4CE34;
+loc_82A4CE1C:
+	// lis r11,-32247
+	ctx.r11.s64 = -2113339392;
+	// mr r6,r28
+	ctx.r6.u64 = ctx.r28.u64;
+	// addi r5,r11,17752
+	ctx.r5.s64 = ctx.r11.s64 + 17752;
+	// li r4,2
+	ctx.r4.s64 = 2;
+	// mr r3,r30
+	ctx.r3.u64 = ctx.r30.u64;
+	// bl 0x82a4cbf0
+	ctx.lr = 0x82A4CE34;
+	rex_AudioSystem_c__AudioSystemError_82A4CBF0(ctx, base);
+loc_82A4CE34:
+	// mr r3,r29
+	ctx.r3.u64 = ctx.r29.u64;
+	// addi r1,r1,176
+	ctx.r1.s64 = ctx.r1.s64 + 176;
+	// b 0x82ae1674
+	__restgprlr_27(ctx, base);
+	return;
+}
+
+__attribute__((alias("__imp__sub_82A4CE40"))) PPC_WEAK_FUNC(sub_82A4CE40);
+PPC_FUNC_IMPL(__imp__sub_82A4CE40) {
+	PPC_FUNC_PROLOGUE();
+	uint32_t ea{};
+	// mflr r12
+	ctx.r12.u64 = ctx.lr;
+	// bl 0x82ae1628
+	ctx.lr = 0x82A4CE48;
+	__savegprlr_28(ctx, base);
+	// stwu r1,-160(r1)
+	ea = -160 + ctx.r1.u32;
+	PPC_STORE_U32(ea, ctx.r1.u32);
+	ctx.r1.u32 = ea;
+	// mr r29,r4
+	ctx.r29.u64 = ctx.r4.u64;
+	// mr r30,r3
+	ctx.r30.u64 = ctx.r3.u64;
+	// stw r29,188(r1)
+	PPC_STORE_U32(ctx.r1.u32 + 188, ctx.r29.u32);
+	// addi r5,r1,188
+	ctx.r5.s64 = ctx.r1.s64 + 188;
+	// addi r3,r1,112
+	ctx.r3.s64 = ctx.r1.s64 + 112;
+	// li r28,0
+	ctx.r28.s64 = 0;
+	// lwz r31,228(r30)
+	ctx.r31.u64 = PPC_LOAD_U32(ctx.r30.u32 + 228);
+	// mr r4,r31
+	ctx.r4.u64 = ctx.r31.u64;
+	// bl 0x82a4b500
+	ctx.lr = 0x82A4CE70;
+	sub_82A4B500(ctx, base);
+	// lwz r11,112(r1)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r1.u32 + 112);
+	// lwz r10,4(r31)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r31.u32 + 4);
+	// cmplwi cr6,r11,0
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, 0, ctx.xer);
+	// beq cr6,0x82a4ce88
+	if (ctx.cr6.eq) goto loc_82A4CE88;
+	// cmplw cr6,r11,r31
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, ctx.r31.u32, ctx.xer);
+	// beq cr6,0x82a4ce8c
+	if (ctx.cr6.eq) goto loc_82A4CE8C;
+loc_82A4CE88:
+	// twi 31,r0,22
+	ppc_trap(ctx, base, 22);
+loc_82A4CE8C:
+	// lwz r9,116(r1)
+	ctx.r9.u64 = PPC_LOAD_U32(ctx.r1.u32 + 116);
+	// cmplw cr6,r9,r10
+	ctx.cr6.compare<uint32_t>(ctx.r9.u32, ctx.r10.u32, ctx.xer);
+	// beq cr6,0x82a4cebc
+	if (ctx.cr6.eq) goto loc_82A4CEBC;
+	// cmplwi cr6,r11,0
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, 0, ctx.xer);
+	// bne cr6,0x82a4cea4
+	if (!ctx.cr6.eq) goto loc_82A4CEA4;
+	// twi 31,r0,22
+	ppc_trap(ctx, base, 22);
+loc_82A4CEA4:
+	// lwz r11,4(r11)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r11.u32 + 4);
+	// cmplw cr6,r9,r11
+	ctx.cr6.compare<uint32_t>(ctx.r9.u32, ctx.r11.u32, ctx.xer);
+	// bne cr6,0x82a4ceb4
+	if (!ctx.cr6.eq) goto loc_82A4CEB4;
+	// twi 31,r0,22
+	ppc_trap(ctx, base, 22);
+loc_82A4CEB4:
+	// lwz r28,16(r9)
+	ctx.r28.u64 = PPC_LOAD_U32(ctx.r9.u32 + 16);
+	// b 0x82a4ced4
+	goto loc_82A4CED4;
+loc_82A4CEBC:
+	// lis r11,-32247
+	ctx.r11.s64 = -2113339392;
+	// mr r6,r29
+	ctx.r6.u64 = ctx.r29.u64;
+	// addi r5,r11,17832
+	ctx.r5.s64 = ctx.r11.s64 + 17832;
+	// li r4,2
+	ctx.r4.s64 = 2;
+	// mr r3,r30
+	ctx.r3.u64 = ctx.r30.u64;
+	// bl 0x82a4cbf0
+	ctx.lr = 0x82A4CED4;
+	rex_AudioSystem_c__AudioSystemError_82A4CBF0(ctx, base);
+loc_82A4CED4:
+	// lwz r3,160(r28)
+	ctx.r3.u64 = PPC_LOAD_U32(ctx.r28.u32 + 160);
+	// addi r1,r1,160
+	ctx.r1.s64 = ctx.r1.s64 + 160;
+	// b 0x82ae1678
+	__restgprlr_28(ctx, base);
+	return;
+}
+
+__attribute__((alias("__imp__sub_82A4CEE0"))) PPC_WEAK_FUNC(sub_82A4CEE0);
+PPC_FUNC_IMPL(__imp__sub_82A4CEE0) {
+	PPC_FUNC_PROLOGUE();
+	uint32_t ea{};
+	// mflr r12
+	ctx.r12.u64 = ctx.lr;
+	// bl 0x82ae1624
+	ctx.lr = 0x82A4CEE8;
+	__savegprlr_27(ctx, base);
+	// stwu r1,-176(r1)
+	ea = -176 + ctx.r1.u32;
+	PPC_STORE_U32(ea, ctx.r1.u32);
+	ctx.r1.u32 = ea;
+	// mr r28,r4
+	ctx.r28.u64 = ctx.r4.u64;
+	// mr r30,r3
+	ctx.r30.u64 = ctx.r3.u64;
+	// stw r28,204(r1)
+	PPC_STORE_U32(ctx.r1.u32 + 204, ctx.r28.u32);
+	// addi r5,r1,204
+	ctx.r5.s64 = ctx.r1.s64 + 204;
+	// addi r3,r1,112
+	ctx.r3.s64 = ctx.r1.s64 + 112;
+	// li r27,0
+	ctx.r27.s64 = 0;
+	// lwz r31,228(r30)
+	ctx.r31.u64 = PPC_LOAD_U32(ctx.r30.u32 + 228);
+	// mr r4,r31
+	ctx.r4.u64 = ctx.r31.u64;
+	// bl 0x82a4b500
+	ctx.lr = 0x82A4CF10;
+	sub_82A4B500(ctx, base);
+	// lwz r11,112(r1)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r1.u32 + 112);
+	// lwz r10,4(r31)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r31.u32 + 4);
+	// cmplwi cr6,r11,0
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, 0, ctx.xer);
+	// beq cr6,0x82a4cf28
+	if (ctx.cr6.eq) goto loc_82A4CF28;
+	// cmplw cr6,r11,r31
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, ctx.r31.u32, ctx.xer);
+	// beq cr6,0x82a4cf2c
+	if (ctx.cr6.eq) goto loc_82A4CF2C;
+loc_82A4CF28:
+	// twi 31,r0,22
+	ppc_trap(ctx, base, 22);
+loc_82A4CF2C:
+	// lwz r9,116(r1)
+	ctx.r9.u64 = PPC_LOAD_U32(ctx.r1.u32 + 116);
+	// cmplw cr6,r9,r10
+	ctx.cr6.compare<uint32_t>(ctx.r9.u32, ctx.r10.u32, ctx.xer);
+	// beq cr6,0x82a4cf5c
+	if (ctx.cr6.eq) goto loc_82A4CF5C;
+	// cmplwi cr6,r11,0
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, 0, ctx.xer);
+	// bne cr6,0x82a4cf44
+	if (!ctx.cr6.eq) goto loc_82A4CF44;
+	// twi 31,r0,22
+	ppc_trap(ctx, base, 22);
+loc_82A4CF44:
+	// lwz r11,4(r11)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r11.u32 + 4);
+	// cmplw cr6,r9,r11
+	ctx.cr6.compare<uint32_t>(ctx.r9.u32, ctx.r11.u32, ctx.xer);
+	// bne cr6,0x82a4cf54
+	if (!ctx.cr6.eq) goto loc_82A4CF54;
+	// twi 31,r0,22
+	ppc_trap(ctx, base, 22);
+loc_82A4CF54:
+	// lwz r27,16(r9)
+	ctx.r27.u64 = PPC_LOAD_U32(ctx.r9.u32 + 16);
+	// b 0x82a4d024
+	goto loc_82A4D024;
+loc_82A4CF5C:
+	// lwz r11,84(r30)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r30.u32 + 84);
+	// addi r29,r30,84
+	ctx.r29.s64 = ctx.r30.s64 + 84;
+	// cmpwi cr6,r11,-1
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, -1, ctx.xer);
+	// beq cr6,0x82a4d00c
+	if (ctx.cr6.eq) goto loc_82A4D00C;
+	// lis r11,-32063
+	ctx.r11.s64 = -2101280768;
+	// lbz r11,4464(r11)
+	ctx.r11.u64 = PPC_LOAD_U8(ctx.r11.u32 + 4464);
+	// cmplwi r11,0
+	ctx.cr0.compare<uint32_t>(ctx.r11.u32, 0, ctx.xer);
+	// beq 0x82a4cf90
+	if (ctx.cr0.eq) goto loc_82A4CF90;
+	// lis r11,-32247
+	ctx.r11.s64 = -2113339392;
+	// mr r5,r28
+	ctx.r5.u64 = ctx.r28.u64;
+	// addi r4,r11,18064
+	ctx.r4.s64 = ctx.r11.s64 + 18064;
+	// mr r3,r30
+	ctx.r3.u64 = ctx.r30.u64;
+	// bl 0x82a4c8d0
+	ctx.lr = 0x82A4CF90;
+	sub_82A4C8D0(ctx, base);
+loc_82A4CF90:
+	// lwz r31,228(r30)
+	ctx.r31.u64 = PPC_LOAD_U32(ctx.r30.u32 + 228);
+	// mr r5,r29
+	ctx.r5.u64 = ctx.r29.u64;
+	// addi r3,r1,112
+	ctx.r3.s64 = ctx.r1.s64 + 112;
+	// mr r4,r31
+	ctx.r4.u64 = ctx.r31.u64;
+	// bl 0x82a4b500
+	ctx.lr = 0x82A4CFA4;
+	sub_82A4B500(ctx, base);
+	// ld r11,0(r3)
+	ctx.r11.u64 = PPC_LOAD_U64(ctx.r3.u32 + 0);
+	// lwz r9,4(r31)
+	ctx.r9.u64 = PPC_LOAD_U32(ctx.r31.u32 + 4);
+	// std r11,112(r1)
+	PPC_STORE_U64(ctx.r1.u32 + 112, ctx.r11.u64);
+	// lwz r11,112(r1)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r1.u32 + 112);
+	// cmplwi cr6,r11,0
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, 0, ctx.xer);
+	// beq cr6,0x82a4cfc4
+	if (ctx.cr6.eq) goto loc_82A4CFC4;
+	// cmplw cr6,r11,r31
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, ctx.r31.u32, ctx.xer);
+	// beq cr6,0x82a4cfc8
+	if (ctx.cr6.eq) goto loc_82A4CFC8;
+loc_82A4CFC4:
+	// twi 31,r0,22
+	ppc_trap(ctx, base, 22);
+loc_82A4CFC8:
+	// lwz r10,116(r1)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r1.u32 + 116);
+	// cmplw cr6,r10,r9
+	ctx.cr6.compare<uint32_t>(ctx.r10.u32, ctx.r9.u32, ctx.xer);
+	// beq cr6,0x82a4cff8
+	if (ctx.cr6.eq) goto loc_82A4CFF8;
+	// cmplwi cr6,r11,0
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, 0, ctx.xer);
+	// bne cr6,0x82a4cfe0
+	if (!ctx.cr6.eq) goto loc_82A4CFE0;
+	// twi 31,r0,22
+	ppc_trap(ctx, base, 22);
+loc_82A4CFE0:
+	// lwz r11,4(r11)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r11.u32 + 4);
+	// cmplw cr6,r10,r11
+	ctx.cr6.compare<uint32_t>(ctx.r10.u32, ctx.r11.u32, ctx.xer);
+	// bne cr6,0x82a4cff0
+	if (!ctx.cr6.eq) goto loc_82A4CFF0;
+	// twi 31,r0,22
+	ppc_trap(ctx, base, 22);
+loc_82A4CFF0:
+	// lwz r27,16(r10)
+	ctx.r27.u64 = PPC_LOAD_U32(ctx.r10.u32 + 16);
+	// b 0x82a4d024
+	goto loc_82A4D024;
+loc_82A4CFF8:
+	// lis r11,-32247
+	ctx.r11.s64 = -2113339392;
+	// lwz r6,0(r29)
+	ctx.r6.u64 = PPC_LOAD_U32(ctx.r29.u32 + 0);
+	// li r4,3
+	ctx.r4.s64 = 3;
+	// addi r5,r11,17984
+	ctx.r5.s64 = ctx.r11.s64 + 17984;
+	// b 0x82a4d01c
+	goto loc_82A4D01C;
+loc_82A4D00C:
+	// lis r11,-32247
+	ctx.r11.s64 = -2113339392;
+	// mr r6,r28
+	ctx.r6.u64 = ctx.r28.u64;
+	// addi r5,r11,17912
+	ctx.r5.s64 = ctx.r11.s64 + 17912;
+	// li r4,2
+	ctx.r4.s64 = 2;
+loc_82A4D01C:
+	// mr r3,r30
+	ctx.r3.u64 = ctx.r30.u64;
+	// bl 0x82a4cbf0
+	ctx.lr = 0x82A4D024;
+	rex_AudioSystem_c__AudioSystemError_82A4CBF0(ctx, base);
+loc_82A4D024:
+	// mr r3,r27
+	ctx.r3.u64 = ctx.r27.u64;
+	// addi r1,r1,176
+	ctx.r1.s64 = ctx.r1.s64 + 176;
+	// b 0x82ae1674
+	__restgprlr_27(ctx, base);
+	return;
+}
+
+__attribute__((alias("__imp__sub_82A4D030"))) PPC_WEAK_FUNC(sub_82A4D030);
+PPC_FUNC_IMPL(__imp__sub_82A4D030) {
+	PPC_FUNC_PROLOGUE();
+	uint32_t ea{};
+	// mflr r12
+	ctx.r12.u64 = ctx.lr;
+	// stw r12,-8(r1)
+	PPC_STORE_U32(ctx.r1.u32 + -8, ctx.r12.u32);
+	// std r31,-16(r1)
+	PPC_STORE_U64(ctx.r1.u32 + -16, ctx.r31.u64);
+	// stwu r1,-128(r1)
+	ea = -128 + ctx.r1.u32;
+	PPC_STORE_U32(ea, ctx.r1.u32);
+	ctx.r1.u32 = ea;
+	// lwz r31,256(r3)
+	ctx.r31.u64 = PPC_LOAD_U32(ctx.r3.u32 + 256);
+	// addic. r11,r31,1
+	ctx.xer.ca = ctx.r31.u32 > 4294967294;
+	ctx.r11.s64 = ctx.r31.s64 + 1;
+	ctx.cr0.compare<int32_t>(ctx.r11.s32, 0, ctx.xer);
+	// stw r11,256(r3)
+	PPC_STORE_U32(ctx.r3.u32 + 256, ctx.r11.u32);
+	// bne 0x82a4d060
+	if (!ctx.cr0.eq) goto loc_82A4D060;
+	// lis r11,-32247
+	ctx.r11.s64 = -2113339392;
+	// li r4,3
+	ctx.r4.s64 = 3;
+	// addi r5,r11,18136
+	ctx.r5.s64 = ctx.r11.s64 + 18136;
+	// bl 0x82a4cbf0
+	ctx.lr = 0x82A4D060;
+	rex_AudioSystem_c__AudioSystemError_82A4CBF0(ctx, base);
+loc_82A4D060:
+	// mr r3,r31
+	ctx.r3.u64 = ctx.r31.u64;
+	// addi r1,r1,128
+	ctx.r1.s64 = ctx.r1.s64 + 128;
+	// lwz r12,-8(r1)
+	ctx.r12.u64 = PPC_LOAD_U32(ctx.r1.u32 + -8);
+	// mtlr r12
+	ctx.lr = ctx.r12.u64;
+	// ld r31,-16(r1)
+	ctx.r31.u64 = PPC_LOAD_U64(ctx.r1.u32 + -16);
+	// blr 
+	return;
+}
+
+__attribute__((alias("__imp__rex_AudioSystem_c__OutOfMemory_82A4D078"))) PPC_WEAK_FUNC(rex_AudioSystem_c__OutOfMemory_82A4D078);
+PPC_FUNC_IMPL(__imp__rex_AudioSystem_c__OutOfMemory_82A4D078) {
+	PPC_FUNC_PROLOGUE();
+	uint32_t ea{};
+	// mflr r12
+	ctx.r12.u64 = ctx.lr;
+	// stw r12,-8(r1)
+	PPC_STORE_U32(ctx.r1.u32 + -8, ctx.r12.u32);
+	// std r30,-24(r1)
+	PPC_STORE_U64(ctx.r1.u32 + -24, ctx.r30.u64);
+	// std r31,-16(r1)
+	PPC_STORE_U64(ctx.r1.u32 + -16, ctx.r31.u64);
+	// stwu r1,-128(r1)
+	ea = -128 + ctx.r1.u32;
+	PPC_STORE_U32(ea, ctx.r1.u32);
+	ctx.r1.u32 = ea;
+	// mr r31,r3
+	ctx.r31.u64 = ctx.r3.u64;
+	// mr r30,r4
+	ctx.r30.u64 = ctx.r4.u64;
+	// lwz r11,356(r31)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 356);
+	// cmplwi cr6,r11,0
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, 0, ctx.xer);
+	// beq cr6,0x82a4d0a8
+	if (ctx.cr6.eq) goto loc_82A4D0A8;
+	// mtctr r11
+	ctx.ctr.u64 = ctx.r11.u64;
+	// bctrl 
+	ctx.lr = 0x82A4D0A8;
+	PPC_CALL_INDIRECT_FUNC(ctx.ctr.u32);
+loc_82A4D0A8:
+	// cmplwi cr6,r30,0
+	ctx.cr6.compare<uint32_t>(ctx.r30.u32, 0, ctx.xer);
+	// li r4,3
+	ctx.r4.s64 = 3;
+	// mr r3,r31
+	ctx.r3.u64 = ctx.r31.u64;
+	// bne cr6,0x82a4d0c4
+	if (!ctx.cr6.eq) goto loc_82A4D0C4;
+	// lis r11,-32247
+	ctx.r11.s64 = -2113339392;
+	// addi r5,r11,18204
+	ctx.r5.s64 = ctx.r11.s64 + 18204;
+	// b 0x82a4d0c8
+	goto loc_82A4D0C8;
+loc_82A4D0C4:
+	// mr r5,r30
+	ctx.r5.u64 = ctx.r30.u64;
+loc_82A4D0C8:
+	// bl 0x82a4cbf0
+	ctx.lr = 0x82A4D0CC;
+	rex_AudioSystem_c__AudioSystemError_82A4CBF0(ctx, base);
+	// addi r1,r1,128
+	ctx.r1.s64 = ctx.r1.s64 + 128;
+	// lwz r12,-8(r1)
+	ctx.r12.u64 = PPC_LOAD_U32(ctx.r1.u32 + -8);
+	// mtlr r12
+	ctx.lr = ctx.r12.u64;
+	// ld r30,-24(r1)
+	ctx.r30.u64 = PPC_LOAD_U64(ctx.r1.u32 + -24);
+	// ld r31,-16(r1)
+	ctx.r31.u64 = PPC_LOAD_U64(ctx.r1.u32 + -16);
+	// blr 
+	return;
+}
+
+__attribute__((alias("__imp__sub_82A4D0E8"))) PPC_WEAK_FUNC(sub_82A4D0E8);
+PPC_FUNC_IMPL(__imp__sub_82A4D0E8) {
+	PPC_FUNC_PROLOGUE();
+	PPCRegister temp{};
+	uint32_t ea{};
+	// mflr r12
+	ctx.r12.u64 = ctx.lr;
+	// bl 0x82ae15f0
+	ctx.lr = 0x82A4D0F0;
+	__savegprlr_14(ctx, base);
+	// stwu r1,-288(r1)
+	ea = -288 + ctx.r1.u32;
+	PPC_STORE_U32(ea, ctx.r1.u32);
+	ctx.r1.u32 = ea;
+	// lis r31,-32064
+	ctx.r31.s64 = -2101346304;
+	// mr r30,r3
+	ctx.r30.u64 = ctx.r3.u64;
+	// stw r30,308(r1)
+	PPC_STORE_U32(ctx.r1.u32 + 308, ctx.r30.u32);
+	// lwz r3,29016(r31)
+	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 29016);
+	// lwz r11,92(r3)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r3.u32 + 92);
+	// cmpwi cr6,r11,2
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 2, ctx.xer);
+	// bne cr6,0x82a4d42c
+	if (!ctx.cr6.eq) goto loc_82A4D42C;
+	// lwz r11,256(r30)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r30.u32 + 256);
+	// lis r10,-32247
+	ctx.r10.s64 = -2113339392;
+	// addi r4,r10,18776
+	ctx.r4.s64 = ctx.r10.s64 + 18776;
+	// addi r5,r11,-1
+	ctx.r5.s64 = ctx.r11.s64 + -1;
+	// bl 0x82a4c740
+	ctx.lr = 0x82A4D124;
+	sub_82A4C740(ctx, base);
+	// lis r11,-32247
+	ctx.r11.s64 = -2113339392;
+	// lwz r3,29016(r31)
+	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 29016);
+	// addi r4,r11,18752
+	ctx.r4.s64 = ctx.r11.s64 + 18752;
+	// bl 0x82a4c740
+	ctx.lr = 0x82A4D134;
+	sub_82A4C740(ctx, base);
+	// li r11,0
+	ctx.r11.s64 = 0;
+	// lis r6,-32247
+	ctx.r6.s64 = -2113339392;
+	// stw r11,112(r1)
+	PPC_STORE_U32(ctx.r1.u32 + 112, ctx.r11.u32);
+	// lis r7,-32247
+	ctx.r7.s64 = -2113339392;
+	// lis r27,-32247
+	ctx.r27.s64 = -2113339392;
+	// lis r26,-32247
+	ctx.r26.s64 = -2113339392;
+	// lis r25,-32247
+	ctx.r25.s64 = -2113339392;
+	// lis r24,-32247
+	ctx.r24.s64 = -2113339392;
+	// lis r28,-32247
+	ctx.r28.s64 = -2113339392;
+	// lis r29,-32247
+	ctx.r29.s64 = -2113339392;
+	// lis r3,-32247
+	ctx.r3.s64 = -2113339392;
+	// lis r4,-32247
+	ctx.r4.s64 = -2113339392;
+	// lis r5,-32247
+	ctx.r5.s64 = -2113339392;
+	// lis r8,-32247
+	ctx.r8.s64 = -2113339392;
+	// lis r9,-32247
+	ctx.r9.s64 = -2113339392;
+	// addi r6,r6,18696
+	ctx.r6.s64 = ctx.r6.s64 + 18696;
+	// addi r7,r7,18640
+	ctx.r7.s64 = ctx.r7.s64 + 18640;
+	// addi r22,r27,18612
+	ctx.r22.s64 = ctx.r27.s64 + 18612;
+	// stw r6,120(r1)
+	PPC_STORE_U32(ctx.r1.u32 + 120, ctx.r6.u32);
+	// addi r21,r26,18604
+	ctx.r21.s64 = ctx.r26.s64 + 18604;
+	// stw r7,116(r1)
+	PPC_STORE_U32(ctx.r1.u32 + 116, ctx.r7.u32);
+	// addi r14,r25,18584
+	ctx.r14.s64 = ctx.r25.s64 + 18584;
+	// addi r17,r24,18552
+	ctx.r17.s64 = ctx.r24.s64 + 18552;
+	// lwz r11,228(r30)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r30.u32 + 228);
+	// lis r30,-32247
+	ctx.r30.s64 = -2113339392;
+	// addi r20,r28,18520
+	ctx.r20.s64 = ctx.r28.s64 + 18520;
+	// addi r19,r29,18508
+	ctx.r19.s64 = ctx.r29.s64 + 18508;
+	// addi r18,r30,18288
+	ctx.r18.s64 = ctx.r30.s64 + 18288;
+	// addi r26,r3,18500
+	ctx.r26.s64 = ctx.r3.s64 + 18500;
+	// lwz r10,4(r11)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r11.u32 + 4);
+	// addi r16,r4,18452
+	ctx.r16.s64 = ctx.r4.s64 + 18452;
+	// stw r11,128(r1)
+	PPC_STORE_U32(ctx.r1.u32 + 128, ctx.r11.u32);
+	// addi r15,r5,18400
+	ctx.r15.s64 = ctx.r5.s64 + 18400;
+	// addi r25,r8,18352
+	ctx.r25.s64 = ctx.r8.s64 + 18352;
+	// addi r24,r9,18316
+	ctx.r24.s64 = ctx.r9.s64 + 18316;
+	// lwz r11,0(r10)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r10.u32 + 0);
+	// lis r10,-32247
+	ctx.r10.s64 = -2113339392;
+	// addi r23,r10,18240
+	ctx.r23.s64 = ctx.r10.s64 + 18240;
+	// stw r11,132(r1)
+	PPC_STORE_U32(ctx.r1.u32 + 132, ctx.r11.u32);
+	// ld r11,128(r1)
+	ctx.r11.u64 = PPC_LOAD_U64(ctx.r1.u32 + 128);
+	// std r11,128(r1)
+	PPC_STORE_U64(ctx.r1.u32 + 128, ctx.r11.u64);
+	// lis r11,-32247
+	ctx.r11.s64 = -2113339392;
+	// addi r27,r11,18232
+	ctx.r27.s64 = ctx.r11.s64 + 18232;
+loc_82A4D1E0:
+	// lwz r28,308(r1)
+	ctx.r28.u64 = PPC_LOAD_U32(ctx.r1.u32 + 308);
+	// lwz r10,128(r1)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r1.u32 + 128);
+	// cmplwi cr6,r10,0
+	ctx.cr6.compare<uint32_t>(ctx.r10.u32, 0, ctx.xer);
+	// lwz r11,228(r28)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r28.u32 + 228);
+	// lwz r9,4(r11)
+	ctx.r9.u64 = PPC_LOAD_U32(ctx.r11.u32 + 4);
+	// beq cr6,0x82a4d200
+	if (ctx.cr6.eq) goto loc_82A4D200;
+	// cmplw cr6,r10,r11
+	ctx.cr6.compare<uint32_t>(ctx.r10.u32, ctx.r11.u32, ctx.xer);
+	// beq cr6,0x82a4d204
+	if (ctx.cr6.eq) goto loc_82A4D204;
+loc_82A4D200:
+	// twi 31,r0,22
+	ppc_trap(ctx, base, 22);
+loc_82A4D204:
+	// lwz r11,132(r1)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r1.u32 + 132);
+	// cmplw cr6,r11,r9
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, ctx.r9.u32, ctx.xer);
+	// beq cr6,0x82a4d41c
+	if (ctx.cr6.eq) goto loc_82A4D41C;
+	// cmplwi cr6,r10,0
+	ctx.cr6.compare<uint32_t>(ctx.r10.u32, 0, ctx.xer);
+	// bne cr6,0x82a4d21c
+	if (!ctx.cr6.eq) goto loc_82A4D21C;
+	// twi 31,r0,22
+	ppc_trap(ctx, base, 22);
+loc_82A4D21C:
+	// lwz r10,4(r10)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r10.u32 + 4);
+	// cmplw cr6,r11,r10
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, ctx.r10.u32, ctx.xer);
+	// bne cr6,0x82a4d22c
+	if (!ctx.cr6.eq) goto loc_82A4D22C;
+	// twi 31,r0,22
+	ppc_trap(ctx, base, 22);
+loc_82A4D22C:
+	// lwz r30,112(r1)
+	ctx.r30.u64 = PPC_LOAD_U32(ctx.r1.u32 + 112);
+	// li r10,50
+	ctx.r10.s64 = 50;
+	// lwz r29,16(r11)
+	ctx.r29.u64 = PPC_LOAD_U32(ctx.r11.u32 + 16);
+	// divw r11,r30,r10
+	ctx.r11.u64 = uint32_t((ctx.r10.s32 && !(ctx.r30.s32 == INT32_MIN && ctx.r10.s32 == -1)) ? ctx.r30.s32 / ctx.r10.s32 : 0);
+	// mulli r11,r11,50
+	ctx.r11.s64 = static_cast<int64_t>(ctx.r11.u64 * static_cast<uint64_t>(50));
+	// subf. r11,r11,r30
+	ctx.r11.u64 = ctx.r30.u64 - ctx.r11.u64;
+	ctx.cr0.compare<int32_t>(ctx.r11.s32, 0, ctx.xer);
+	// bne 0x82a4d2c0
+	if (!ctx.cr0.eq) goto loc_82A4D2C0;
+	// mr r4,r27
+	ctx.r4.u64 = ctx.r27.u64;
+	// lwz r3,29016(r31)
+	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 29016);
+	// bl 0x82a4c740
+	ctx.lr = 0x82A4D254;
+	sub_82A4C740(ctx, base);
+	// mr r4,r23
+	ctx.r4.u64 = ctx.r23.u64;
+	// lwz r3,29016(r31)
+	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 29016);
+	// bl 0x82a4c740
+	ctx.lr = 0x82A4D260;
+	sub_82A4C740(ctx, base);
+	// mr r4,r24
+	ctx.r4.u64 = ctx.r24.u64;
+	// lwz r3,29016(r31)
+	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 29016);
+	// bl 0x82a4c740
+	ctx.lr = 0x82A4D26C;
+	sub_82A4C740(ctx, base);
+	// mr r4,r25
+	ctx.r4.u64 = ctx.r25.u64;
+	// lwz r3,29016(r31)
+	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 29016);
+	// bl 0x82a4c740
+	ctx.lr = 0x82A4D278;
+	sub_82A4C740(ctx, base);
+	// lbz r11,64(r28)
+	ctx.r11.u64 = PPC_LOAD_U8(ctx.r28.u32 + 64);
+	// cmplwi r11,0
+	ctx.cr0.compare<uint32_t>(ctx.r11.u32, 0, ctx.xer);
+	// beq 0x82a4d29c
+	if (ctx.cr0.eq) goto loc_82A4D29C;
+	// lwz r3,29016(r31)
+	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 29016);
+	// lwz r4,116(r1)
+	ctx.r4.u64 = PPC_LOAD_U32(ctx.r1.u32 + 116);
+	// bl 0x82a4c740
+	ctx.lr = 0x82A4D290;
+	sub_82A4C740(ctx, base);
+	// lwz r3,29016(r31)
+	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 29016);
+	// lwz r4,120(r1)
+	ctx.r4.u64 = PPC_LOAD_U32(ctx.r1.u32 + 120);
+	// bl 0x82a4c740
+	ctx.lr = 0x82A4D29C;
+	sub_82A4C740(ctx, base);
+loc_82A4D29C:
+	// mr r4,r15
+	ctx.r4.u64 = ctx.r15.u64;
+	// lwz r3,29016(r31)
+	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 29016);
+	// bl 0x82a4c740
+	ctx.lr = 0x82A4D2A8;
+	sub_82A4C740(ctx, base);
+	// mr r4,r16
+	ctx.r4.u64 = ctx.r16.u64;
+	// lwz r3,29016(r31)
+	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 29016);
+	// bl 0x82a4c740
+	ctx.lr = 0x82A4D2B4;
+	sub_82A4C740(ctx, base);
+	// mr r4,r26
+	ctx.r4.u64 = ctx.r26.u64;
+	// lwz r3,29016(r31)
+	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 29016);
+	// bl 0x82a4c740
+	ctx.lr = 0x82A4D2C0;
+	sub_82A4C740(ctx, base);
+loc_82A4D2C0:
+	// mr r4,r27
+	ctx.r4.u64 = ctx.r27.u64;
+	// lwz r3,29016(r31)
+	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 29016);
+	// bl 0x82a4c740
+	ctx.lr = 0x82A4D2CC;
+	sub_82A4C740(ctx, base);
+	// mr r4,r18
+	ctx.r4.u64 = ctx.r18.u64;
+	// mr r5,r30
+	ctx.r5.u64 = ctx.r30.u64;
+	// lwz r3,29016(r31)
+	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 29016);
+	// bl 0x82a4c740
+	ctx.lr = 0x82A4D2DC;
+	sub_82A4C740(ctx, base);
+	// lwz r10,32(r29)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r29.u32 + 32);
+	// addi r11,r29,8
+	ctx.r11.s64 = ctx.r29.s64 + 8;
+	// cmplwi cr6,r10,16
+	ctx.cr6.compare<uint32_t>(ctx.r10.u32, 16, ctx.xer);
+	// blt cr6,0x82a4d2f4
+	if (ctx.cr6.lt) goto loc_82A4D2F4;
+	// lwz r5,4(r11)
+	ctx.r5.u64 = PPC_LOAD_U32(ctx.r11.u32 + 4);
+	// b 0x82a4d2f8
+	goto loc_82A4D2F8;
+loc_82A4D2F4:
+	// addi r5,r11,4
+	ctx.r5.s64 = ctx.r11.s64 + 4;
+loc_82A4D2F8:
+	// mr r4,r19
+	ctx.r4.u64 = ctx.r19.u64;
+	// lwz r3,29016(r31)
+	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 29016);
+	// bl 0x82a4c740
+	ctx.lr = 0x82A4D304;
+	sub_82A4C740(ctx, base);
+	// mr r4,r20
+	ctx.r4.u64 = ctx.r20.u64;
+	// lwz r3,29016(r31)
+	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 29016);
+	// lwz r5,4(r29)
+	ctx.r5.u64 = PPC_LOAD_U32(ctx.r29.u32 + 4);
+	// bl 0x82a4c740
+	ctx.lr = 0x82A4D314;
+	sub_82A4C740(ctx, base);
+	// lbz r11,64(r28)
+	ctx.r11.u64 = PPC_LOAD_U8(ctx.r28.u32 + 64);
+	// cmplwi r11,0
+	ctx.cr0.compare<uint32_t>(ctx.r11.u32, 0, ctx.xer);
+	// beq 0x82a4d350
+	if (ctx.cr0.eq) goto loc_82A4D350;
+	// lfs f1,164(r29)
+	ctx.fpscr.disableFlushMode();
+	temp.u32 = PPC_LOAD_U32(ctx.r29.u32 + 164);
+	ctx.f1.f64 = double(temp.f32);
+	// mr r4,r17
+	ctx.r4.u64 = ctx.r17.u64;
+	// stfd f1,32(r1)
+	PPC_STORE_U64(ctx.r1.u32 + 32, ctx.f1.u64);
+	// ld r5,32(r1)
+	ctx.r5.u64 = PPC_LOAD_U64(ctx.r1.u32 + 32);
+	// lwz r3,29016(r31)
+	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 29016);
+	// bl 0x82a4c740
+	ctx.lr = 0x82A4D338;
+	sub_82A4C740(ctx, base);
+	// lfs f1,168(r29)
+	ctx.fpscr.disableFlushMode();
+	temp.u32 = PPC_LOAD_U32(ctx.r29.u32 + 168);
+	ctx.f1.f64 = double(temp.f32);
+	// stfd f1,32(r1)
+	PPC_STORE_U64(ctx.r1.u32 + 32, ctx.f1.u64);
+	// ld r5,32(r1)
+	ctx.r5.u64 = PPC_LOAD_U64(ctx.r1.u32 + 32);
+	// mr r4,r17
+	ctx.r4.u64 = ctx.r17.u64;
+	// lwz r3,29016(r31)
+	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 29016);
+	// bl 0x82a4c740
+	ctx.lr = 0x82A4D350;
+	sub_82A4C740(ctx, base);
+loc_82A4D350:
+	// mr r4,r14
+	ctx.r4.u64 = ctx.r14.u64;
+	// lwz r3,29016(r31)
+	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 29016);
+	// bl 0x82a4c740
+	ctx.lr = 0x82A4D35C;
+	sub_82A4C740(ctx, base);
+	// li r30,0
+	ctx.r30.s64 = 0;
+	// li r28,0
+	ctx.r28.s64 = 0;
+loc_82A4D364:
+	// lwz r11,192(r29)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r29.u32 + 192);
+	// cmplwi cr6,r11,0
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, 0, ctx.xer);
+	// beq cr6,0x82a4d3dc
+	if (ctx.cr6.eq) goto loc_82A4D3DC;
+	// lwz r9,196(r29)
+	ctx.r9.u64 = PPC_LOAD_U32(ctx.r29.u32 + 196);
+	// li r10,28
+	ctx.r10.s64 = 28;
+	// subf r11,r11,r9
+	ctx.r11.u64 = ctx.r9.u64 - ctx.r11.u64;
+	// divw r11,r11,r10
+	ctx.r11.u64 = uint32_t((ctx.r10.s32 && !(ctx.r11.s32 == INT32_MIN && ctx.r10.s32 == -1)) ? ctx.r11.s32 / ctx.r10.s32 : 0);
+	// cmplw cr6,r30,r11
+	ctx.cr6.compare<uint32_t>(ctx.r30.u32, ctx.r11.u32, ctx.xer);
+	// bge cr6,0x82a4d3dc
+	if (!ctx.cr6.lt) goto loc_82A4D3DC;
+	// lwz r11,192(r29)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r29.u32 + 192);
+	// cmplwi cr6,r11,0
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, 0, ctx.xer);
+	// beq cr6,0x82a4d3a8
+	if (ctx.cr6.eq) goto loc_82A4D3A8;
+	// rotlwi r9,r9,0
+	ctx.r9.u64 = __builtin_rotateleft32(ctx.r9.u32, 0);
+	// subf r9,r11,r9
+	ctx.r9.u64 = ctx.r9.u64 - ctx.r11.u64;
+	// divw r10,r9,r10
+	ctx.r10.u64 = uint32_t((ctx.r10.s32 && !(ctx.r9.s32 == INT32_MIN && ctx.r10.s32 == -1)) ? ctx.r9.s32 / ctx.r10.s32 : 0);
+	// cmplw cr6,r30,r10
+	ctx.cr6.compare<uint32_t>(ctx.r30.u32, ctx.r10.u32, ctx.xer);
+	// blt cr6,0x82a4d3ac
+	if (ctx.cr6.lt) goto loc_82A4D3AC;
+loc_82A4D3A8:
+	// twi 31,r0,22
+	ppc_trap(ctx, base, 22);
+loc_82A4D3AC:
+	// add r11,r28,r11
+	ctx.r11.u64 = ctx.r28.u64 + ctx.r11.u64;
+	// lwz r10,24(r11)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r11.u32 + 24);
+	// cmplwi cr6,r10,16
+	ctx.cr6.compare<uint32_t>(ctx.r10.u32, 16, ctx.xer);
+	// blt cr6,0x82a4d3c4
+	if (ctx.cr6.lt) goto loc_82A4D3C4;
+	// lwz r4,4(r11)
+	ctx.r4.u64 = PPC_LOAD_U32(ctx.r11.u32 + 4);
+	// b 0x82a4d3c8
+	goto loc_82A4D3C8;
+loc_82A4D3C4:
+	// addi r4,r11,4
+	ctx.r4.s64 = ctx.r11.s64 + 4;
+loc_82A4D3C8:
+	// lwz r3,29016(r31)
+	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 29016);
+	// bl 0x82a4c740
+	ctx.lr = 0x82A4D3D0;
+	sub_82A4C740(ctx, base);
+	// addi r30,r30,1
+	ctx.r30.s64 = ctx.r30.s64 + 1;
+	// addi r28,r28,28
+	ctx.r28.s64 = ctx.r28.s64 + 28;
+	// b 0x82a4d364
+	goto loc_82A4D364;
+loc_82A4D3DC:
+	// mr r4,r21
+	ctx.r4.u64 = ctx.r21.u64;
+	// lwz r3,29016(r31)
+	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 29016);
+	// bl 0x82a4c740
+	ctx.lr = 0x82A4D3E8;
+	sub_82A4C740(ctx, base);
+	// mr r4,r22
+	ctx.r4.u64 = ctx.r22.u64;
+	// lwz r3,29016(r31)
+	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 29016);
+	// lwz r5,120(r29)
+	ctx.r5.u64 = PPC_LOAD_U32(ctx.r29.u32 + 120);
+	// bl 0x82a4c740
+	ctx.lr = 0x82A4D3F8;
+	sub_82A4C740(ctx, base);
+	// mr r4,r26
+	ctx.r4.u64 = ctx.r26.u64;
+	// lwz r3,29016(r31)
+	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 29016);
+	// bl 0x82a4c740
+	ctx.lr = 0x82A4D404;
+	sub_82A4C740(ctx, base);
+	// addi r3,r1,128
+	ctx.r3.s64 = ctx.r1.s64 + 128;
+	// bl 0x82a5e230
+	ctx.lr = 0x82A4D40C;
+	sub_82A5E230(ctx, base);
+	// lwz r11,112(r1)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r1.u32 + 112);
+	// addi r11,r11,1
+	ctx.r11.s64 = ctx.r11.s64 + 1;
+	// stw r11,112(r1)
+	PPC_STORE_U32(ctx.r1.u32 + 112, ctx.r11.u32);
+	// b 0x82a4d1e0
+	goto loc_82A4D1E0;
+loc_82A4D41C:
+	// lis r11,-32247
+	ctx.r11.s64 = -2113339392;
+	// lwz r3,29016(r31)
+	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 29016);
+	// addi r4,r11,18220
+	ctx.r4.s64 = ctx.r11.s64 + 18220;
+	// bl 0x82a4c740
+	ctx.lr = 0x82A4D42C;
+	sub_82A4C740(ctx, base);
+loc_82A4D42C:
+	// addi r1,r1,288
+	ctx.r1.s64 = ctx.r1.s64 + 288;
+	// b 0x82ae1640
+	__restgprlr_14(ctx, base);
+	return;
+}
+
+__attribute__((alias("__imp__sub_82A4D438"))) PPC_WEAK_FUNC(sub_82A4D438);
+PPC_FUNC_IMPL(__imp__sub_82A4D438) {
+	PPC_FUNC_PROLOGUE();
+	PPCRegister temp{};
+	uint32_t ea{};
+	// mflr r12
+	ctx.r12.u64 = ctx.lr;
+	// bl 0x82ae1618
+	ctx.lr = 0x82A4D440;
+	__savegprlr_24(ctx, base);
+	// stfd f31,-80(r1)
+	ctx.fpscr.disableFlushMode();
+	PPC_STORE_U64(ctx.r1.u32 + -80, ctx.f31.u64);
+	// stwu r1,-208(r1)
+	ea = -208 + ctx.r1.u32;
+	PPC_STORE_U32(ea, ctx.r1.u32);
+	ctx.r1.u32 = ea;
+	// lis r30,-32064
+	ctx.r30.s64 = -2101346304;
+	// mr r31,r3
+	ctx.r31.u64 = ctx.r3.u64;
+	// lwz r3,29016(r30)
+	ctx.r3.u64 = PPC_LOAD_U32(ctx.r30.u32 + 29016);
+	// lwz r11,92(r3)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r3.u32 + 92);
+	// cmpwi cr6,r11,2
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 2, ctx.xer);
+	// bne cr6,0x82a4d5dc
+	if (!ctx.cr6.eq) goto loc_82A4D5DC;
+	// lis r11,-32247
+	ctx.r11.s64 = -2113339392;
+	// addi r4,r11,19036
+	ctx.r4.s64 = ctx.r11.s64 + 19036;
+	// bl 0x82a4c740
+	ctx.lr = 0x82A4D46C;
+	sub_82A4C740(ctx, base);
+	// lfs f1,96(r31)
+	ctx.fpscr.disableFlushMode();
+	temp.u32 = PPC_LOAD_U32(ctx.r31.u32 + 96);
+	ctx.f1.f64 = double(temp.f32);
+	// bl 0x82a4a2e0
+	ctx.lr = 0x82A4D474;
+	sub_82A4A2E0(ctx, base);
+	// fmr f2,f1
+	ctx.fpscr.disableFlushMode();
+	ctx.f2.f64 = ctx.f1.f64;
+	// lfs f1,96(r31)
+	temp.u32 = PPC_LOAD_U32(ctx.r31.u32 + 96);
+	ctx.f1.f64 = double(temp.f32);
+	// lis r11,-32247
+	ctx.r11.s64 = -2113339392;
+	// stfd f2,40(r1)
+	PPC_STORE_U64(ctx.r1.u32 + 40, ctx.f2.u64);
+	// ld r6,40(r1)
+	ctx.r6.u64 = PPC_LOAD_U64(ctx.r1.u32 + 40);
+	// stfd f1,32(r1)
+	PPC_STORE_U64(ctx.r1.u32 + 32, ctx.f1.u64);
+	// ld r5,32(r1)
+	ctx.r5.u64 = PPC_LOAD_U64(ctx.r1.u32 + 32);
+	// addi r4,r11,19004
+	ctx.r4.s64 = ctx.r11.s64 + 19004;
+	// lwz r3,29016(r30)
+	ctx.r3.u64 = PPC_LOAD_U32(ctx.r30.u32 + 29016);
+	// bl 0x82a4c740
+	ctx.lr = 0x82A4D49C;
+	sub_82A4C740(ctx, base);
+	// lfs f1,68(r31)
+	ctx.fpscr.disableFlushMode();
+	temp.u32 = PPC_LOAD_U32(ctx.r31.u32 + 68);
+	ctx.f1.f64 = double(temp.f32);
+	// stfd f1,32(r1)
+	PPC_STORE_U64(ctx.r1.u32 + 32, ctx.f1.u64);
+	// ld r5,32(r1)
+	ctx.r5.u64 = PPC_LOAD_U64(ctx.r1.u32 + 32);
+	// lis r11,-32247
+	ctx.r11.s64 = -2113339392;
+	// lwz r3,29016(r30)
+	ctx.r3.u64 = PPC_LOAD_U32(ctx.r30.u32 + 29016);
+	// addi r4,r11,18972
+	ctx.r4.s64 = ctx.r11.s64 + 18972;
+	// bl 0x82a4c740
+	ctx.lr = 0x82A4D4B8;
+	sub_82A4C740(ctx, base);
+	// bl 0x82a50468
+	ctx.lr = 0x82A4D4BC;
+	rex_AudioWorkspaceManager_c__Instance_82A50468(ctx, base);
+	// addi r24,r3,8
+	ctx.r24.s64 = ctx.r3.s64 + 8;
+	// lis r8,-32247
+	ctx.r8.s64 = -2113339392;
+	// stw r24,112(r1)
+	PPC_STORE_U32(ctx.r1.u32 + 112, ctx.r24.u32);
+	// lis r9,-32247
+	ctx.r9.s64 = -2113339392;
+	// lis r10,-32247
+	ctx.r10.s64 = -2113339392;
+	// lis r25,-32247
+	ctx.r25.s64 = -2113339392;
+	// lwz r11,4(r24)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r24.u32 + 4);
+	// addi r29,r8,18920
+	ctx.r29.s64 = ctx.r8.s64 + 18920;
+	// addi r28,r9,18884
+	ctx.r28.s64 = ctx.r9.s64 + 18884;
+	// addi r27,r10,18848
+	ctx.r27.s64 = ctx.r10.s64 + 18848;
+	// lwz r11,0(r11)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r11.u32 + 0);
+	// stw r11,116(r1)
+	PPC_STORE_U32(ctx.r1.u32 + 116, ctx.r11.u32);
+	// ld r11,112(r1)
+	ctx.r11.u64 = PPC_LOAD_U64(ctx.r1.u32 + 112);
+	// std r11,112(r1)
+	PPC_STORE_U64(ctx.r1.u32 + 112, ctx.r11.u64);
+	// lis r11,-32247
+	ctx.r11.s64 = -2113339392;
+	// addi r26,r11,18812
+	ctx.r26.s64 = ctx.r11.s64 + 18812;
+loc_82A4D4FC:
+	// lwz r10,112(r1)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r1.u32 + 112);
+	// lwz r9,4(r24)
+	ctx.r9.u64 = PPC_LOAD_U32(ctx.r24.u32 + 4);
+	// cmplwi cr6,r10,0
+	ctx.cr6.compare<uint32_t>(ctx.r10.u32, 0, ctx.xer);
+	// beq cr6,0x82a4d514
+	if (ctx.cr6.eq) goto loc_82A4D514;
+	// cmplw cr6,r10,r24
+	ctx.cr6.compare<uint32_t>(ctx.r10.u32, ctx.r24.u32, ctx.xer);
+	// beq cr6,0x82a4d518
+	if (ctx.cr6.eq) goto loc_82A4D518;
+loc_82A4D514:
+	// twi 31,r0,22
+	ppc_trap(ctx, base, 22);
+loc_82A4D518:
+	// lwz r11,116(r1)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r1.u32 + 116);
+	// cmplw cr6,r11,r9
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, ctx.r9.u32, ctx.xer);
+	// beq cr6,0x82a4d5dc
+	if (ctx.cr6.eq) goto loc_82A4D5DC;
+	// cmplwi cr6,r10,0
+	ctx.cr6.compare<uint32_t>(ctx.r10.u32, 0, ctx.xer);
+	// bne cr6,0x82a4d530
+	if (!ctx.cr6.eq) goto loc_82A4D530;
+	// twi 31,r0,22
+	ppc_trap(ctx, base, 22);
+loc_82A4D530:
+	// lwz r10,4(r10)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r10.u32 + 4);
+	// cmplw cr6,r11,r10
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, ctx.r10.u32, ctx.xer);
+	// bne cr6,0x82a4d540
+	if (!ctx.cr6.eq) goto loc_82A4D540;
+	// twi 31,r0,22
+	ppc_trap(ctx, base, 22);
+loc_82A4D540:
+	// lwz r31,16(r11)
+	ctx.r31.u64 = PPC_LOAD_U32(ctx.r11.u32 + 16);
+	// mr r4,r26
+	ctx.r4.u64 = ctx.r26.u64;
+	// lwz r3,29016(r30)
+	ctx.r3.u64 = PPC_LOAD_U32(ctx.r30.u32 + 29016);
+	// lwz r5,4(r31)
+	ctx.r5.u64 = PPC_LOAD_U32(ctx.r31.u32 + 4);
+	// bl 0x82a4c740
+	ctx.lr = 0x82A4D554;
+	sub_82A4C740(ctx, base);
+	// lbz r11,28(r31)
+	ctx.r11.u64 = PPC_LOAD_U8(ctx.r31.u32 + 28);
+	// lfs f31,16856(r25)
+	ctx.fpscr.disableFlushMode();
+	temp.u32 = PPC_LOAD_U32(ctx.r25.u32 + 16856);
+	ctx.f31.f64 = double(temp.f32);
+	// cmplwi r11,0
+	ctx.cr0.compare<uint32_t>(ctx.r11.u32, 0, ctx.xer);
+	// beq 0x82a4d56c
+	if (ctx.cr0.eq) goto loc_82A4D56C;
+	// fmr f1,f31
+	ctx.f1.f64 = ctx.f31.f64;
+	// b 0x82a4d570
+	goto loc_82A4D570;
+loc_82A4D56C:
+	// lfs f1,24(r31)
+	ctx.fpscr.disableFlushMode();
+	temp.u32 = PPC_LOAD_U32(ctx.r31.u32 + 24);
+	ctx.f1.f64 = double(temp.f32);
+loc_82A4D570:
+	// cmplwi cr6,r11,0
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, 0, ctx.xer);
+	// bne cr6,0x82a4d57c
+	if (!ctx.cr6.eq) goto loc_82A4D57C;
+	// lfs f31,24(r31)
+	ctx.fpscr.disableFlushMode();
+	temp.u32 = PPC_LOAD_U32(ctx.r31.u32 + 24);
+	ctx.f31.f64 = double(temp.f32);
+loc_82A4D57C:
+	// bl 0x82a4a2e0
+	ctx.lr = 0x82A4D580;
+	sub_82A4A2E0(ctx, base);
+	// fmr f2,f1
+	ctx.fpscr.disableFlushMode();
+	ctx.f2.f64 = ctx.f1.f64;
+	// fmr f1,f31
+	ctx.f1.f64 = ctx.f31.f64;
+	// stfd f2,40(r1)
+	PPC_STORE_U64(ctx.r1.u32 + 40, ctx.f2.u64);
+	// stfd f1,32(r1)
+	PPC_STORE_U64(ctx.r1.u32 + 32, ctx.f1.u64);
+	// ld r6,40(r1)
+	ctx.r6.u64 = PPC_LOAD_U64(ctx.r1.u32 + 40);
+	// ld r5,32(r1)
+	ctx.r5.u64 = PPC_LOAD_U64(ctx.r1.u32 + 32);
+	// mr r4,r27
+	ctx.r4.u64 = ctx.r27.u64;
+	// lwz r3,29016(r30)
+	ctx.r3.u64 = PPC_LOAD_U32(ctx.r30.u32 + 29016);
+	// bl 0x82a4c740
+	ctx.lr = 0x82A4D5A4;
+	sub_82A4C740(ctx, base);
+	// lfs f1,32(r31)
+	ctx.fpscr.disableFlushMode();
+	temp.u32 = PPC_LOAD_U32(ctx.r31.u32 + 32);
+	ctx.f1.f64 = double(temp.f32);
+	// stfd f1,32(r1)
+	PPC_STORE_U64(ctx.r1.u32 + 32, ctx.f1.u64);
+	// ld r5,32(r1)
+	ctx.r5.u64 = PPC_LOAD_U64(ctx.r1.u32 + 32);
+	// mr r4,r28
+	ctx.r4.u64 = ctx.r28.u64;
+	// lwz r3,29016(r30)
+	ctx.r3.u64 = PPC_LOAD_U32(ctx.r30.u32 + 29016);
+	// bl 0x82a4c740
+	ctx.lr = 0x82A4D5BC;
+	sub_82A4C740(ctx, base);
+	// lwz r11,40(r31)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 40);
+	// mr r4,r29
+	ctx.r4.u64 = ctx.r29.u64;
+	// lwz r3,29016(r30)
+	ctx.r3.u64 = PPC_LOAD_U32(ctx.r30.u32 + 29016);
+	// lwz r5,56(r11)
+	ctx.r5.u64 = PPC_LOAD_U32(ctx.r11.u32 + 56);
+	// bl 0x82a4c740
+	ctx.lr = 0x82A4D5D0;
+	sub_82A4C740(ctx, base);
+	// addi r3,r1,112
+	ctx.r3.s64 = ctx.r1.s64 + 112;
+	// bl 0x82a5e230
+	ctx.lr = 0x82A4D5D8;
+	sub_82A5E230(ctx, base);
+	// b 0x82a4d4fc
+	goto loc_82A4D4FC;
+loc_82A4D5DC:
+	// addi r1,r1,208
+	ctx.r1.s64 = ctx.r1.s64 + 208;
+	// lfd f31,-80(r1)
+	ctx.fpscr.disableFlushMode();
+	ctx.f31.u64 = PPC_LOAD_U64(ctx.r1.u32 + -80);
+	// b 0x82ae1668
+	__restgprlr_24(ctx, base);
+	return;
+}
+
+__attribute__((alias("__imp__sub_82A4D5E8"))) PPC_WEAK_FUNC(sub_82A4D5E8);
+PPC_FUNC_IMPL(__imp__sub_82A4D5E8) {
+	PPC_FUNC_PROLOGUE();
+	uint32_t ea{};
+	// mflr r12
+	ctx.r12.u64 = ctx.lr;
+	// bl 0x82ae162c
+	ctx.lr = 0x82A4D5F0;
+	__savegprlr_29(ctx, base);
+	// stwu r1,-112(r1)
+	ea = -112 + ctx.r1.u32;
+	PPC_STORE_U32(ea, ctx.r1.u32);
+	ctx.r1.u32 = ea;
+	// mr r29,r3
+	ctx.r29.u64 = ctx.r3.u64;
+	// mr r30,r4
+	ctx.r30.u64 = ctx.r4.u64;
+	// cmplw cr6,r29,r30
+	ctx.cr6.compare<uint32_t>(ctx.r29.u32, ctx.r30.u32, ctx.xer);
+	// beq cr6,0x82a4d7a4
+	if (ctx.cr6.eq) goto loc_82A4D7A4;
+	// lwz r5,4(r30)
+	ctx.r5.u64 = PPC_LOAD_U32(ctx.r30.u32 + 4);
+	// cmplwi cr6,r5,0
+	ctx.cr6.compare<uint32_t>(ctx.r5.u32, 0, ctx.xer);
+	// beq cr6,0x82a4d620
+	if (ctx.cr6.eq) goto loc_82A4D620;
+	// lwz r9,8(r30)
+	ctx.r9.u64 = PPC_LOAD_U32(ctx.r30.u32 + 8);
+	// subf r11,r5,r9
+	ctx.r11.u64 = ctx.r9.u64 - ctx.r5.u64;
+	// srawi. r10,r11,2
+	ctx.xer.ca = (ctx.r11.s32 < 0) & ((ctx.r11.u32 & 0x3) != 0);
+	ctx.r10.s64 = ctx.r11.s32 >> 2;
+	ctx.cr0.compare<int32_t>(ctx.r10.s32, 0, ctx.xer);
+	// bne 0x82a4d62c
+	if (!ctx.cr0.eq) goto loc_82A4D62C;
+loc_82A4D620:
+	// mr r3,r29
+	ctx.r3.u64 = ctx.r29.u64;
+	// bl 0x82a4bab0
+	ctx.lr = 0x82A4D628;
+	sub_82A4BAB0(ctx, base);
+	// b 0x82a4d7a4
+	goto loc_82A4D7A4;
+loc_82A4D62C:
+	// lwz r3,4(r29)
+	ctx.r3.u64 = PPC_LOAD_U32(ctx.r29.u32 + 4);
+	// cmplwi cr6,r3,0
+	ctx.cr6.compare<uint32_t>(ctx.r3.u32, 0, ctx.xer);
+	// bne cr6,0x82a4d640
+	if (!ctx.cr6.eq) goto loc_82A4D640;
+	// li r11,0
+	ctx.r11.s64 = 0;
+	// b 0x82a4d64c
+	goto loc_82A4D64C;
+loc_82A4D640:
+	// lwz r11,8(r29)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r29.u32 + 8);
+	// subf r11,r3,r11
+	ctx.r11.u64 = ctx.r11.u64 - ctx.r3.u64;
+	// srawi r11,r11,2
+	ctx.xer.ca = (ctx.r11.s32 < 0) & ((ctx.r11.u32 & 0x3) != 0);
+	ctx.r11.s64 = ctx.r11.s32 >> 2;
+loc_82A4D64C:
+	// cmplw cr6,r10,r11
+	ctx.cr6.compare<uint32_t>(ctx.r10.u32, ctx.r11.u32, ctx.xer);
+	// bgt cr6,0x82a4d698
+	if (ctx.cr6.gt) goto loc_82A4D698;
+	// subf r11,r5,r9
+	ctx.r11.u64 = ctx.r9.u64 - ctx.r5.u64;
+	// srawi. r11,r11,2
+	ctx.xer.ca = (ctx.r11.s32 < 0) & ((ctx.r11.u32 & 0x3) != 0);
+	ctx.r11.s64 = ctx.r11.s32 >> 2;
+	ctx.cr0.compare<int32_t>(ctx.r11.s32, 0, ctx.xer);
+	// ble 0x82a4d66c
+	if (!ctx.cr0.gt) goto loc_82A4D66C;
+	// rlwinm r4,r11,2,0,29
+	ctx.r4.u64 = __builtin_rotateleft64(ctx.r11.u32 | (ctx.r11.u64 << 32), 2) & 0xFFFFFFFC;
+	// mr r6,r4
+	ctx.r6.u64 = ctx.r4.u64;
+	// bl 0x82adf370
+	ctx.lr = 0x82A4D66C;
+	sub_82ADF370(ctx, base);
+loc_82A4D66C:
+	// lwz r11,4(r30)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r30.u32 + 4);
+	// cmplwi cr6,r11,0
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, 0, ctx.xer);
+	// beq cr6,0x82a4d684
+	if (ctx.cr6.eq) goto loc_82A4D684;
+	// lwz r10,8(r30)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r30.u32 + 8);
+	// subf r11,r11,r10
+	ctx.r11.u64 = ctx.r10.u64 - ctx.r11.u64;
+	// srawi r11,r11,2
+	ctx.xer.ca = (ctx.r11.s32 < 0) & ((ctx.r11.u32 & 0x3) != 0);
+	ctx.r11.s64 = ctx.r11.s32 >> 2;
+loc_82A4D684:
+	// lwz r10,4(r29)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r29.u32 + 4);
+	// rlwinm r11,r11,2,0,29
+	ctx.r11.u64 = __builtin_rotateleft64(ctx.r11.u32 | (ctx.r11.u64 << 32), 2) & 0xFFFFFFFC;
+	// add r11,r11,r10
+	ctx.r11.u64 = ctx.r11.u64 + ctx.r10.u64;
+	// stw r11,8(r29)
+	PPC_STORE_U32(ctx.r29.u32 + 8, ctx.r11.u32);
+	// b 0x82a4d7a4
+	goto loc_82A4D7A4;
+loc_82A4D698:
+	// cmplwi cr6,r3,0
+	ctx.cr6.compare<uint32_t>(ctx.r3.u32, 0, ctx.xer);
+	// bne cr6,0x82a4d6a8
+	if (!ctx.cr6.eq) goto loc_82A4D6A8;
+	// li r11,0
+	ctx.r11.s64 = 0;
+	// b 0x82a4d6b4
+	goto loc_82A4D6B4;
+loc_82A4D6A8:
+	// lwz r11,12(r29)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r29.u32 + 12);
+	// subf r11,r3,r11
+	ctx.r11.u64 = ctx.r11.u64 - ctx.r3.u64;
+	// srawi r11,r11,2
+	ctx.xer.ca = (ctx.r11.s32 < 0) & ((ctx.r11.u32 & 0x3) != 0);
+	ctx.r11.s64 = ctx.r11.s32 >> 2;
+loc_82A4D6B4:
+	// cmplw cr6,r10,r11
+	ctx.cr6.compare<uint32_t>(ctx.r10.u32, ctx.r11.u32, ctx.xer);
+	// bgt cr6,0x82a4d72c
+	if (ctx.cr6.gt) goto loc_82A4D72C;
+	// cmplwi cr6,r3,0
+	ctx.cr6.compare<uint32_t>(ctx.r3.u32, 0, ctx.xer);
+	// bne cr6,0x82a4d6cc
+	if (!ctx.cr6.eq) goto loc_82A4D6CC;
+	// li r11,0
+	ctx.r11.s64 = 0;
+	// b 0x82a4d6d8
+	goto loc_82A4D6D8;
+loc_82A4D6CC:
+	// lwz r11,8(r29)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r29.u32 + 8);
+	// subf r11,r3,r11
+	ctx.r11.u64 = ctx.r11.u64 - ctx.r3.u64;
+	// srawi r11,r11,2
+	ctx.xer.ca = (ctx.r11.s32 < 0) & ((ctx.r11.u32 & 0x3) != 0);
+	ctx.r11.s64 = ctx.r11.s32 >> 2;
+loc_82A4D6D8:
+	// lwz r5,4(r30)
+	ctx.r5.u64 = PPC_LOAD_U32(ctx.r30.u32 + 4);
+	// rlwinm r11,r11,2,0,29
+	ctx.r11.u64 = __builtin_rotateleft64(ctx.r11.u32 | (ctx.r11.u64 << 32), 2) & 0xFFFFFFFC;
+	// add r31,r11,r5
+	ctx.r31.u64 = ctx.r11.u64 + ctx.r5.u64;
+	// subf r11,r5,r31
+	ctx.r11.u64 = ctx.r31.u64 - ctx.r5.u64;
+	// srawi. r11,r11,2
+	ctx.xer.ca = (ctx.r11.s32 < 0) & ((ctx.r11.u32 & 0x3) != 0);
+	ctx.r11.s64 = ctx.r11.s32 >> 2;
+	ctx.cr0.compare<int32_t>(ctx.r11.s32, 0, ctx.xer);
+	// ble 0x82a4d6fc
+	if (!ctx.cr0.gt) goto loc_82A4D6FC;
+	// rlwinm r4,r11,2,0,29
+	ctx.r4.u64 = __builtin_rotateleft64(ctx.r11.u32 | (ctx.r11.u64 << 32), 2) & 0xFFFFFFFC;
+	// mr r6,r4
+	ctx.r6.u64 = ctx.r4.u64;
+	// bl 0x82adf370
+	ctx.lr = 0x82A4D6FC;
+	sub_82ADF370(ctx, base);
+loc_82A4D6FC:
+	// lwz r11,8(r30)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r30.u32 + 8);
+	// lwz r3,8(r29)
+	ctx.r3.u64 = PPC_LOAD_U32(ctx.r29.u32 + 8);
+	// subf r11,r31,r11
+	ctx.r11.u64 = ctx.r11.u64 - ctx.r31.u64;
+	// srawi. r11,r11,2
+	ctx.xer.ca = (ctx.r11.s32 < 0) & ((ctx.r11.u32 & 0x3) != 0);
+	ctx.r11.s64 = ctx.r11.s32 >> 2;
+	ctx.cr0.compare<int32_t>(ctx.r11.s32, 0, ctx.xer);
+	// rlwinm r6,r11,2,0,29
+	ctx.r6.u64 = __builtin_rotateleft64(ctx.r11.u32 | (ctx.r11.u64 << 32), 2) & 0xFFFFFFFC;
+	// add r30,r6,r3
+	ctx.r30.u64 = ctx.r6.u64 + ctx.r3.u64;
+	// beq 0x82a4d724
+	if (ctx.cr0.eq) goto loc_82A4D724;
+	// mr r5,r31
+	ctx.r5.u64 = ctx.r31.u64;
+	// mr r4,r6
+	ctx.r4.u64 = ctx.r6.u64;
+	// bl 0x82adf370
+	ctx.lr = 0x82A4D724;
+	sub_82ADF370(ctx, base);
+loc_82A4D724:
+	// stw r30,8(r29)
+	PPC_STORE_U32(ctx.r29.u32 + 8, ctx.r30.u32);
+	// b 0x82a4d7a4
+	goto loc_82A4D7A4;
+loc_82A4D72C:
+	// cmplwi cr6,r3,0
+	ctx.cr6.compare<uint32_t>(ctx.r3.u32, 0, ctx.xer);
+	// beq cr6,0x82a4d748
+	if (ctx.cr6.eq) goto loc_82A4D748;
+	// lis r11,-32064
+	ctx.r11.s64 = -2101346304;
+	// lwz r11,29016(r11)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r11.u32 + 29016);
+	// lwz r11,12(r11)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r11.u32 + 12);
+	// mtctr r11
+	ctx.ctr.u64 = ctx.r11.u64;
+	// bctrl 
+	ctx.lr = 0x82A4D748;
+	PPC_CALL_INDIRECT_FUNC(ctx.ctr.u32);
+loc_82A4D748:
+	// lwz r11,4(r30)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r30.u32 + 4);
+	// cmplwi cr6,r11,0
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, 0, ctx.xer);
+	// bne cr6,0x82a4d75c
+	if (!ctx.cr6.eq) goto loc_82A4D75C;
+	// li r4,0
+	ctx.r4.s64 = 0;
+	// b 0x82a4d768
+	goto loc_82A4D768;
+loc_82A4D75C:
+	// lwz r10,8(r30)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r30.u32 + 8);
+	// subf r11,r11,r10
+	ctx.r11.u64 = ctx.r10.u64 - ctx.r11.u64;
+	// srawi r4,r11,2
+	ctx.xer.ca = (ctx.r11.s32 < 0) & ((ctx.r11.u32 & 0x3) != 0);
+	ctx.r4.s64 = ctx.r11.s32 >> 2;
+loc_82A4D768:
+	// mr r3,r29
+	ctx.r3.u64 = ctx.r29.u64;
+	// bl 0x82a53070
+	ctx.lr = 0x82A4D770;
+	sub_82A53070(ctx, base);
+	// clrlwi. r11,r3,24
+	ctx.r11.u64 = ctx.r3.u32 & 0xFF;
+	ctx.cr0.compare<int32_t>(ctx.r11.s32, 0, ctx.xer);
+	// beq 0x82a4d7a4
+	if (ctx.cr0.eq) goto loc_82A4D7A4;
+	// lwz r5,4(r30)
+	ctx.r5.u64 = PPC_LOAD_U32(ctx.r30.u32 + 4);
+	// lwz r11,8(r30)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r30.u32 + 8);
+	// lwz r3,4(r29)
+	ctx.r3.u64 = PPC_LOAD_U32(ctx.r29.u32 + 4);
+	// subf r11,r5,r11
+	ctx.r11.u64 = ctx.r11.u64 - ctx.r5.u64;
+	// srawi. r11,r11,2
+	ctx.xer.ca = (ctx.r11.s32 < 0) & ((ctx.r11.u32 & 0x3) != 0);
+	ctx.r11.s64 = ctx.r11.s32 >> 2;
+	ctx.cr0.compare<int32_t>(ctx.r11.s32, 0, ctx.xer);
+	// rlwinm r6,r11,2,0,29
+	ctx.r6.u64 = __builtin_rotateleft64(ctx.r11.u32 | (ctx.r11.u64 << 32), 2) & 0xFFFFFFFC;
+	// add r31,r6,r3
+	ctx.r31.u64 = ctx.r6.u64 + ctx.r3.u64;
+	// beq 0x82a4d7a0
+	if (ctx.cr0.eq) goto loc_82A4D7A0;
+	// mr r4,r6
+	ctx.r4.u64 = ctx.r6.u64;
+	// bl 0x82adf370
+	ctx.lr = 0x82A4D7A0;
+	sub_82ADF370(ctx, base);
+loc_82A4D7A0:
+	// stw r31,8(r29)
+	PPC_STORE_U32(ctx.r29.u32 + 8, ctx.r31.u32);
+loc_82A4D7A4:
+	// mr r3,r29
+	ctx.r3.u64 = ctx.r29.u64;
+	// addi r1,r1,112
+	ctx.r1.s64 = ctx.r1.s64 + 112;
+	// b 0x82ae167c
+	__restgprlr_29(ctx, base);
+	return;
+}
+
+__attribute__((alias("__imp__sub_82A4D7B0"))) PPC_WEAK_FUNC(sub_82A4D7B0);
+PPC_FUNC_IMPL(__imp__sub_82A4D7B0) {
+	PPC_FUNC_PROLOGUE();
+	uint32_t ea{};
+	// mflr r12
+	ctx.r12.u64 = ctx.lr;
+	// stw r12,-8(r1)
+	PPC_STORE_U32(ctx.r1.u32 + -8, ctx.r12.u32);
+	// std r31,-16(r1)
+	PPC_STORE_U64(ctx.r1.u32 + -16, ctx.r31.u64);
+	// stwu r1,-112(r1)
+	ea = -112 + ctx.r1.u32;
+	PPC_STORE_U32(ea, ctx.r1.u32);
+	ctx.r1.u32 = ea;
+	// mr r31,r3
+	ctx.r31.u64 = ctx.r3.u64;
+	// addi r3,r1,88
+	ctx.r3.s64 = ctx.r1.s64 + 88;
+	// stw r31,88(r1)
+	PPC_STORE_U32(ctx.r1.u32 + 88, ctx.r31.u32);
+	// mr r4,r31
+	ctx.r4.u64 = ctx.r31.u64;
+	// stw r31,80(r1)
+	PPC_STORE_U32(ctx.r1.u32 + 80, ctx.r31.u32);
+	// lwz r11,4(r31)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 4);
+	// lwz r10,0(r11)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r11.u32 + 0);
+	// stw r11,84(r1)
+	PPC_STORE_U32(ctx.r1.u32 + 84, ctx.r11.u32);
+	// ld r6,80(r1)
+	ctx.r6.u64 = PPC_LOAD_U64(ctx.r1.u32 + 80);
+	// stw r10,92(r1)
+	PPC_STORE_U32(ctx.r1.u32 + 92, ctx.r10.u32);
+	// ld r5,88(r1)
+	ctx.r5.u64 = PPC_LOAD_U64(ctx.r1.u32 + 88);
+	// bl 0x82a4c560
+	ctx.lr = 0x82A4D7F0;
+	sub_82A4C560(ctx, base);
+	// lis r11,-32064
+	ctx.r11.s64 = -2101346304;
+	// lwz r11,29016(r11)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r11.u32 + 29016);
+	// lwz r3,4(r31)
+	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 4);
+	// lwz r11,12(r11)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r11.u32 + 12);
+	// mtctr r11
+	ctx.ctr.u64 = ctx.r11.u64;
+	// bctrl 
+	ctx.lr = 0x82A4D808;
+	PPC_CALL_INDIRECT_FUNC(ctx.ctr.u32);
+	// li r11,0
+	ctx.r11.s64 = 0;
+	// stw r11,4(r31)
+	PPC_STORE_U32(ctx.r31.u32 + 4, ctx.r11.u32);
+	// stw r11,8(r31)
+	PPC_STORE_U32(ctx.r31.u32 + 8, ctx.r11.u32);
+	// addi r1,r1,112
+	ctx.r1.s64 = ctx.r1.s64 + 112;
+	// lwz r12,-8(r1)
+	ctx.r12.u64 = PPC_LOAD_U32(ctx.r1.u32 + -8);
+	// mtlr r12
+	ctx.lr = ctx.r12.u64;
+	// ld r31,-16(r1)
+	ctx.r31.u64 = PPC_LOAD_U64(ctx.r1.u32 + -16);
+	// blr 
 	return;
 }
 

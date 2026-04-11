@@ -37771,7 +37771,7 @@ PPC_FUNC_IMPL(__imp__sub_822E8668) {
 	ctx.f2.f64 = double(temp.f32);
 	// bl 0x8228be08
 	ctx.lr = 0x822E86A0;
-	sub_8228BE08(ctx, base);
+	rex_supportFrustumConstructClippingFrustum_8228BE08(ctx, base);
 	// lwz r11,120(r31)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 120);
 	// cmplwi cr6,r11,12

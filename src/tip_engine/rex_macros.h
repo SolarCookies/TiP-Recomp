@@ -42,6 +42,7 @@ auto* memory = runtime->memory(); \
 uint8_t* name = memory->virtual_membase()
 
 
+
 /* ---------- definitions */
 
 template <typename t_type>

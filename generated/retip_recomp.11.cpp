@@ -684,10 +684,12 @@ loc_822F88D0:
 	// blt cr6,0x822f8b14
 	if (ctx.cr6.lt) goto loc_822F8B14;
 	// vslw128 v38,v62,v62
-	ctx.v38.u32[0] = ctx.v62.u32[0] << (ctx.v62.u8[0] & 0x1F);
-	ctx.v38.u32[1] = ctx.v62.u32[1] << (ctx.v62.u8[4] & 0x1F);
-	ctx.v38.u32[2] = ctx.v62.u32[2] << (ctx.v62.u8[8] & 0x1F);
-	ctx.v38.u32[3] = ctx.v62.u32[3] << (ctx.v62.u8[12] & 0x1F);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v62.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v62.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi32(0x1F));
+		simde_mm_store_si128((simde__m128i*)ctx.v38.u8, simde_mm_sllv_epi32(a, shift));
+	}
 	// vpermwi128 v37,v13,135
 	simde_mm_store_si128((simde__m128i*)ctx.v37.u32, simde_mm_shuffle_epi32(simde_mm_load_si128((simde__m128i*)ctx.v13.u32), 0x78));
 	// vpermwi128 v8,v13,99
@@ -2536,10 +2538,12 @@ loc_822F9530:
 	// blt cr6,0x822f9720
 	if (ctx.cr6.lt) goto loc_822F9720;
 	// vslw128 v38,v62,v62
-	ctx.v38.u32[0] = ctx.v62.u32[0] << (ctx.v62.u8[0] & 0x1F);
-	ctx.v38.u32[1] = ctx.v62.u32[1] << (ctx.v62.u8[4] & 0x1F);
-	ctx.v38.u32[2] = ctx.v62.u32[2] << (ctx.v62.u8[8] & 0x1F);
-	ctx.v38.u32[3] = ctx.v62.u32[3] << (ctx.v62.u8[12] & 0x1F);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v62.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v62.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi32(0x1F));
+		simde_mm_store_si128((simde__m128i*)ctx.v38.u8, simde_mm_sllv_epi32(a, shift));
+	}
 	// vpermwi128 v37,v13,135
 	simde_mm_store_si128((simde__m128i*)ctx.v37.u32, simde_mm_shuffle_epi32(simde_mm_load_si128((simde__m128i*)ctx.v13.u32), 0x78));
 	// vpermwi128 v8,v13,99

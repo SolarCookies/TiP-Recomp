@@ -135,3 +135,27 @@ name = "skiplightingTwo_hook"
 registers = []
 after_instruction = true
 jump_address_on_true = 0x825B9A58
+
+#82257540
+[[midasm_hook]]
+address = 0x82257540
+name = "AspectRatio_hook"
+registers = ["r3"]
+after_instruction = true
+
+#821C430C
+[[midasm_hook]]
+address = 0x821C430C
+name = "SkipIntroVideos_hook"
+registers = []
+after_instruction = true
+jump_address_on_true = 0x821C4354
+
+#821C4580
+[[midasm_hook]]
+address = 0x821C4580
+name = "SkipIntroVideosTwo_hook"
+registers = []
+after_instruction = true
+jump_address_on_true = 0x821C45B8
+

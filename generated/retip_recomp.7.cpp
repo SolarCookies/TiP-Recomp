@@ -48140,8 +48140,8 @@ PPC_FUNC_IMPL(__imp__sub_8228BA98) {
 	return;
 }
 
-__attribute__((alias("__imp__sub_8228BE08"))) PPC_WEAK_FUNC(sub_8228BE08);
-PPC_FUNC_IMPL(__imp__sub_8228BE08) {
+__attribute__((alias("__imp__rex_supportFrustumConstructClippingFrustum_8228BE08"))) PPC_WEAK_FUNC(rex_supportFrustumConstructClippingFrustum_8228BE08);
+PPC_FUNC_IMPL(__imp__rex_supportFrustumConstructClippingFrustum_8228BE08) {
 	PPC_FUNC_PROLOGUE();
 	PPCRegister temp{};
 	uint32_t ea{};

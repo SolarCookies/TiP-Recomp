@@ -40,6 +40,19 @@ REXCVAR_DEFINE_BOOL(DisableUIDraw, false, "_Trouble in Paradise", "Disables the 
 REXCVAR_DEFINE_BOOL(UseAspectRatioFromConfig, false, "_Trouble in Paradise", "Use Aspect Ratio from config");
 REXCVAR_DEFINE_DOUBLE(AspectRatio, 1.7777778f, "_Trouble in Paradise", "Aspect Ratio");
 
+REXCVAR_DEFINE_BOOL(SkipIntros, false, "_Trouble in Paradise", "Skip Intro Videos");
+
+//REXCVAR_DEFINE_BOOL(Freecam, false, "_Trouble in Paradise", "Enables the Freecam");
+//REXCVAR_DEFINE_DOUBLE(Freecam_X, 0.0f, "_Trouble in Paradise", "Freecam X Position");
+//REXCVAR_DEFINE_DOUBLE(Freecam_Y, 0.0f, "_Trouble in Paradise", "Freecam Y Position");
+//REXCVAR_DEFINE_DOUBLE(Freecam_Z, 0.0f, "_Trouble in Paradise", "Freecam Z Position");
+
+//REXCVAR_DEFINE_BOOL(Custom_Viewport, false, "_Trouble in Paradise", "Use custom viewport");
+//REXCVAR_DEFINE_INT32(Viewport_X, 0, "_Trouble in Paradise", "Custom viewport X");
+//REXCVAR_DEFINE_INT32(Viewport_Y, 0, "_Trouble in Paradise", "Custom viewport Y");
+//REXCVAR_DEFINE_INT32(Viewport_Width, 1920, "_Trouble in Paradise", "Custom viewport width");
+//REXCVAR_DEFINE_INT32(Viewport_Height, 1080, "_Trouble in Paradise", "Custom viewport height");
+
 
 //REXCVAR_DEFINE_COLOR(ambientColor, 0x000000FF, "_Trouble in Paradise", "Controls the ambient color of the scene");
 //REXCVAR_DEFINE_COLOR(ambientModelColor, 0x000000FF, "_Trouble in Paradise", "Controls the ambient color of the models in the scene");
@@ -53,78 +66,115 @@ REXCVAR_DEFINE_DOUBLE(AspectRatio, 1.7777778f, "_Trouble in Paradise", "Aspect R
 //REXCVAR_DEFINE_INT32(maxGPU, 60, "_Trouble in Paradise", "Limits the gpu FPS to the specified value (0 for unlimited)");
 
 
-
+/*
 REX_PPC_EXTERN_IMPORT(camMainGetPos_821F07E0);
 
 float * camMainGetPos_821F07E0_Hook(float *result){
-  /*
   if(REXCVAR_GET(Freecam)) {
     result[0] = to_byteswapped_float(static_cast<float>(REXCVAR_GET(Freecam_X)));
     result[1] = to_byteswapped_float(static_cast<float>(REXCVAR_GET(Freecam_Y)));
     result[2] = to_byteswapped_float(static_cast<float>(REXCVAR_GET(Freecam_Z)));
 
     //.data:82C34E98 Me_36.virtCam
-    uintptr_t virtCam = reinterpret_cast<uintptr_t>(0x100000000ull + 0x82C34E98);
-    *(float *)(virtCam + 8) = result[0];
-    *(float *)(virtCam + 12) = result[1];
-    *(float *)(virtCam + 16) = result[2];
-    DebugLogFloat("Freecam X", static_cast<float>(REXCVAR_GET(Freecam_X)));
-    DebugLogFloat("Freecam Y", static_cast<float>(REXCVAR_GET(Freecam_Y)));
-    DebugLogFloat("Freecam Z", static_cast<float>(REXCVAR_GET(Freecam_Z)));
+    camVirt_s* virtCam = reinterpret_cast<camVirt_s*>(0x100000000ull + 0x82C34E98);
+    virtCam->pos.x = result[0];
+    virtCam->pos.y = result[1];
+    virtCam->pos.z = result[2];
 
-    if((float *)(virtCam + 8) != nullptr) {
-        DebugLogFloat("CamMainGetPos X", *(float *)(virtCam + 8));
+    camMainWorkspace_s* workspace = reinterpret_cast<camMainWorkspace_s*>(0x100000000ull + 0x82C34D48);
+
+    if(REXCVAR_GET(Custom_Viewport)) {
+      workspace->FullScreenViewport.X = std::byteswap(static_cast<uint32_t>(REXCVAR_GET(Viewport_X)));
+      workspace->FullScreenViewport.Y = std::byteswap(static_cast<uint32_t>(REXCVAR_GET(Viewport_Y)));
+      workspace->FullScreenViewport.Width = std::byteswap(static_cast<uint32_t>(REXCVAR_GET(Viewport_Width)));
+      workspace->FullScreenViewport.Height = std::byteswap(static_cast<uint32_t>(REXCVAR_GET(Viewport_Height)));
+      workspace->outputViewportIsDirty = 1;
     }
-    if((float *)(virtCam + 12) != nullptr) {
-        DebugLogFloat("CamMainGetPos Y", *(float *)(virtCam + 12));
-    }
-    if((float *)(virtCam + 16) != nullptr) {
-        DebugLogFloat("CamMainGetPos Z", *(float *)(virtCam + 16));
-    }
+
+    //DebugLogInt32("CamPtr", uint32_t(workspace->virtCam));
+    //camVirt_s* virtCam1 = reinterpret_cast<camVirt_s*>(0x100000000ull + workspace->virtCam);
+    //DebugLogFloat("CamPosX", to_byteswapped_float(virtCam1->pos.x));
+    //DebugLogFloat("CamPosY", to_byteswapped_float(virtCam1->pos.y));
+    //DebugLogFloat("CamPosZ", to_byteswapped_float(virtCam1->pos.z));
+
 
     return result;
   }else{
     //.data:82C34E98 Me_36.virtCam
-    uintptr_t virtCam = reinterpret_cast<uintptr_t>(0x100000000ull + 0x82C34E98);
+    //camVirt_s* virtCam = reinterpret_cast<camVirt_s*>(0x100000000ull + 0x82C34E98);
     //*(float *)(virtCam + 8) = result[0];
     //*(float *)(virtCam + 12) = result[1];
     //*(float *)(virtCam + 16) = result[2];
-    DebugLogFloat("Freecam X", static_cast<float>(REXCVAR_GET(Freecam_X)));
-    DebugLogFloat("Freecam Y", static_cast<float>(REXCVAR_GET(Freecam_Y)));
-    DebugLogFloat("Freecam Z", static_cast<float>(REXCVAR_GET(Freecam_Z)));
-    if((float *)(virtCam + 8) != nullptr) {
-        DebugLogFloat("CamMainGetPos X", *(float *)(virtCam + 8));
-    }
-    if((float *)(virtCam + 12) != nullptr) {
-        DebugLogFloat("CamMainGetPos Y", *(float *)(virtCam + 12));
-    }
-    if((float *)(virtCam + 16) != nullptr) {
-        DebugLogFloat("CamMainGetPos Z", *(float *)(virtCam + 16));
-    }
     return rex ::GuestToHostFunction<float *>(__imp__rex_camMainGetPos_821F07E0, result);
   }
-    */
   return rex ::GuestToHostFunction<float *>(__imp__rex_camMainGetPos_821F07E0, result);
 }
-
 REX_PPC_HOOK(camMainGetPos_821F07E0);
+*/
 
-//double rex_camMainGetAspectRatio_821F0730()
 REX_PPC_EXTERN_IMPORT(camMainGetAspectRatio_821F0730);
-
 float camMainGetAspectRatio_821F0730_Hook() {
-  if(REXCVAR_GET(UseAspectRatioFromConfig)) {
-    float aspectRatio = static_cast<float>(REXCVAR_GET(AspectRatio));
-    DebugLogFloat("Aspect Ratio", aspectRatio);
-    return aspectRatio;
-  }
-  float aspectRatio = rex::GuestToHostFunction<float>(__imp__rex_camMainGetAspectRatio_821F0730);
-  DebugLogFloat("Aspect Ratio", static_cast<float>(aspectRatio));
+  float aspectRatio;
+  //if(REXCVAR_GET(UseAspectRatioFromConfig)) {
+  //  aspectRatio = static_cast<float>(REXCVAR_GET(AspectRatio));
+  //}else{
+    aspectRatio = rex::GuestToHostFunction<float>(__imp__rex_camMainGetAspectRatio_821F0730);
+  //}
   return aspectRatio;
+} REX_PPC_HOOK(camMainGetAspectRatio_821F0730);
+
+//supportFrustumConstructClippingFrustum_8228BE08
+REX_PPC_EXTERN_IMPORT(supportFrustumConstructClippingFrustum_8228BE08);
+void supportFrustumConstructClippingFrustum_8228BE08_Hook(double a1,double a2,double a3,double a4,int a5,int a6,int a7,int a8,float *a9,float *a10) {
+    float customAR = static_cast<float>(REXCVAR_GET(AspectRatio));
+    if(REXCVAR_GET(UseAspectRatioFromConfig)) {
+      a2 = customAR;
+    }
+    rex::GuestToHostFunction<void>(__imp__rex_supportFrustumConstructClippingFrustum_8228BE08, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10);
 }
+REX_PPC_HOOK(supportFrustumConstructClippingFrustum_8228BE08);
 
-REX_PPC_HOOK(camMainGetAspectRatio_821F0730);
 
+REX_PPC_EXTERN_IMPORT(camMainPostDrawLetterbox_821F0910);
+int camMainPostDrawLetterbox_821F0910_Hook(){
+  //float customAR = static_cast<float>(REXCVAR_GET(AspectRatio));
+  //float* flt_821612EC = reinterpret_cast<float*>(0x100000000ull + 0x821612EC);
+  //*flt_821612EC = 1.0f;
+  return 1;
+}
+REX_PPC_HOOK(camMainPostDrawLetterbox_821F0910);
+
+REX_PPC_EXTERN_IMPORT(mlMtxPerspective_82247408);
+void mlMtxPerspective_82247408_Hook(float* outMtx, float fov, float aspectRatio, float nearZ, float farZ) {
+    float customAR = aspectRatio;
+    if(REXCVAR_GET(UseAspectRatioFromConfig)) {
+      customAR = static_cast<float>(REXCVAR_GET(AspectRatio));
+    }
+    rex::GuestToHostFunction<void>(__imp__rex_mlMtxPerspective_82247408, outMtx, fov, customAR, nearZ, farZ);
+}
+REX_PPC_HOOK(mlMtxPerspective_82247408);
+
+
+REX_PPC_EXTERN_IMPORT(meUpdateOutputViewport_821F0F30);
+int meUpdateOutputViewport_821F0F30_Hook() {
+    int result = rex::GuestToHostFunction<int>(__imp__rex_meUpdateOutputViewport_821F0F30);
+    if(REXCVAR_GET(UseAspectRatioFromConfig)) {
+        float customAR = static_cast<float>(REXCVAR_GET(AspectRatio));
+        float* aspectRatioPtr = reinterpret_cast<float*>(0x100000000ull + 0x82C34F00);
+        *aspectRatioPtr = to_byteswapped_float(customAR);
+    }
+    return result;
+}
+REX_PPC_HOOK(meUpdateOutputViewport_821F0F30);
+
+void AspectRatio_hook(PPCRegister& r3) {
+  if(REXCVAR_GET(UseAspectRatioFromConfig)) {
+    //r3.u32 + 0x399C | *(float *)&r3+0x399C = AspectRatio;
+    float customAR = static_cast<float>(REXCVAR_GET(AspectRatio));
+    float* aspectRatioPtr = reinterpret_cast<float*>(0x100000000ull + r3.u32 + 0x399C);
+    *aspectRatioPtr = to_byteswapped_float(customAR);
+  }
+}
 
 void CPU_fps_hook() {
   fpsManager.showFPS = REXCVAR_GET(show_fps);
@@ -533,4 +583,12 @@ bool skiplighting_hook() {
 
 bool skiplightingTwo_hook() {
   return false; // Always branch to loc_824DDA84
+}
+
+bool SkipIntroVideos_hook() {
+  return REXCVAR_GET(SkipIntros);
+}
+
+bool SkipIntroVideosTwo_hook() {
+  return REXCVAR_GET(SkipIntros);
 }

@@ -3136,7 +3136,7 @@ PPCFuncMapping PPCFuncMappings[] = {
 	{ 0x8228B9E8, sub_8228B9E8 },
 	{ 0x8228BA38, sub_8228BA38 },
 	{ 0x8228BA98, sub_8228BA98 },
-	{ 0x8228BE08, sub_8228BE08 },
+	{ 0x8228BE08, rex_supportFrustumConstructClippingFrustum_8228BE08 },
 	{ 0x8228C2D8, sub_8228C2D8 },
 	{ 0x8228C390, sub_8228C390 },
 	{ 0x8228C448, sub_8228C448 },

@@ -149,6 +149,7 @@
 0x82240ED8 = {name = "rex_locMainGetBundlesPath_82240ED8"}
 0x82246280 = {name = "rex_mlMap_82246280"}
 0x82247408 = {name = "rex_mlMtxPerspective_82247408"}
+0x8228BE08 = {name = "rex_supportFrustumConstructClippingFrustum_8228BE08"}
 0x8224C6B8 = {name = "rex_mlVec_Serialise_8224C6B8"}
 0x8224C890 = {name = "rex_meHandleFileError_8224C890"}
 0x82252868 = {name = "rex_padHardwareTick_82252868"}

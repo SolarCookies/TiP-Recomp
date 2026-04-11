@@ -17915,10 +17915,12 @@ PPC_FUNC_IMPL(__imp__sub_822437E8) {
 	ctx.fpscr.enableFlushModeUnconditional();
 	simde_mm_store_ps(ctx.v10.f32, simde_mm_mul_ps(simde_mm_cvtepi32_ps(simde_mm_load_si128((simde__m128i*)ctx.v63.u32)), simde_mm_castsi128_ps(simde_mm_set1_epi32(int(0x3F000000)))));
 	// vslw128 v61,v61,v61
-	ctx.v61.u32[0] = ctx.v61.u32[0] << (ctx.v61.u8[0] & 0x1F);
-	ctx.v61.u32[1] = ctx.v61.u32[1] << (ctx.v61.u8[4] & 0x1F);
-	ctx.v61.u32[2] = ctx.v61.u32[2] << (ctx.v61.u8[8] & 0x1F);
-	ctx.v61.u32[3] = ctx.v61.u32[3] << (ctx.v61.u8[12] & 0x1F);
+	{
+		simde__m128i a = simde_mm_load_si128((simde__m128i*)ctx.v61.u8);
+		simde__m128i b = simde_mm_load_si128((simde__m128i*)ctx.v61.u8);
+		simde__m128i shift = simde_mm_and_si128(b, simde_mm_set1_epi32(0x1F));
+		simde_mm_store_si128((simde__m128i*)ctx.v61.u8, simde_mm_sllv_epi32(a, shift));
+	}
 	// vspltw128 v9,v60,3
 	simde_mm_store_si128((simde__m128i*)ctx.v9.u32, simde_mm_shuffle_epi32(simde_mm_load_si128((simde__m128i*)ctx.v60.u32), 0x0));
 loc_8224382C:
@@ -65468,6 +65470,8 @@ loc_82256ED8:
 	goto loc_82256E44;
 }
 
+extern void AspectRatio_hook(PPCRegister& r3);
+
 __attribute__((alias("__imp__sub_82256EE8"))) PPC_WEAK_FUNC(sub_82256EE8);
 PPC_FUNC_IMPL(__imp__sub_82256EE8) {
 	PPC_FUNC_PROLOGUE();
@@ -66495,6 +66499,7 @@ loc_82257540:
 	ctx.fpscr.disableFlushMode();
 	temp.f32 = float(ctx.f0.f64);
 	PPC_STORE_U32(ctx.r31.u32 + 14748, temp.u32);
+	AspectRatio_hook(ctx.r3);
 	// bl 0x821f0f30
 	ctx.lr = 0x82257548;
 	rex_meUpdateOutputViewport_821F0F30(ctx, base);

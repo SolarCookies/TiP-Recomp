@@ -6465,6 +6465,10 @@ loc_821C3D44:
 	sub_82AFC988(ctx, base);
 }
 
+extern bool SkipIntroVideos_hook();
+
+extern bool SkipIntroVideosTwo_hook();
+
 __attribute__((alias("__imp__sub_821C3D58"))) PPC_WEAK_FUNC(sub_821C3D58);
 PPC_FUNC_IMPL(__imp__sub_821C3D58) {
 	PPC_FUNC_PROLOGUE();
@@ -7280,6 +7284,11 @@ loc_821C42DC:
 	sub_8224C7F8(ctx, base);
 	// stw r3,88(r1)
 	PPC_STORE_U32(ctx.r1.u32 + 88, ctx.r3.u32);
+	if (SkipIntroVideos_hook()) {
+		goto loc_821C4354;
+	}
+	else {
+	}
 	// lis r10,-32228
 	ctx.r10.s64 = -2112094208;
 	// li r8,0
@@ -7636,6 +7645,11 @@ loc_821C4574:
 	sub_826E0100(ctx, base);
 	// li r11,259
 	ctx.r11.s64 = 259;
+	if (SkipIntroVideosTwo_hook()) {
+		goto loc_821C45B8;
+	}
+	else {
+	}
 	// lis r30,-32060
 	ctx.r30.s64 = -2101084160;
 	// stw r11,80(r1)
@@ -7667,6 +7681,7 @@ loc_821C458C:
 	ctx.cr6.compare<uint32_t>(ctx.r11.u32, 259, ctx.xer);
 	// beq cr6,0x821c458c
 	if (ctx.cr6.eq) goto loc_821C458C;
+loc_821C45B8:
 	// lwz r31,-10972(r26)
 	ctx.r31.u64 = PPC_LOAD_U32(ctx.r26.u32 + -10972);
 	// cmplwi cr6,r31,0

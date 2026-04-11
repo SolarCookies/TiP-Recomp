@@ -5219,3 +5219,126 @@ struct lightMainWorkspace_s
   float blueShiftScalar;
   int cubeFogEnabled;
 };
+
+//////////////////////////////////////////////////////////
+
+/* 11678 */
+struct dsLinkedListNode_cam
+{
+  int _prevPtr;
+  int _nextPtr;
+};
+
+/* 12084 */
+struct camVirt_s_rotation
+{
+  mlRot_s pyrR;
+  mlQuat quat;
+};
+
+/* 1009 */
+enum camVirt_Aspect_e : __int32
+{
+  camVirt_Aspect_4_3 = 0x0,
+  camVirt_Aspect_16_9 = 0x1,
+  camVirt_Aspect_2_35 = 0x2,
+  camVirt_Aspect_UseViewport = 0x3,
+  camVirt_Aspect_Max = 0x4,
+};
+
+/* 12085 */
+struct camVirt_s
+{
+  dsLinkedListNode_cam node;
+  mlVec pos;
+  camVirt_s_rotation rotation;
+  float focalLength;
+  float nearDist;
+  float farDist;
+  camVirt_Aspect_e aspectType;
+  char name[33];
+  uint8_t flags;
+  uint8_t planeIdx;
+  uint8_t __pad2[2];
+  float screenRatio;
+  float screenDist;
+  int unk1;
+  int unk2;
+};
+
+/* 7650 */
+struct _D3DVIEWPORT9
+{
+  unsigned int X;
+  unsigned int Y;
+  unsigned int Width;
+  unsigned int Height;
+  float MinZ;
+  float MaxZ;
+};
+
+/* 11924 */
+struct camViewport_s
+{
+  int x;
+  int y;
+  int w;
+  int h;
+};
+
+/* 11922 */
+struct plane3d
+{
+  vec3d n;
+  float d;
+};
+
+/* 11923 */
+struct frustum3d
+{
+  vec3d verts[6];
+  plane3d planes[6];
+};
+
+/* 2028 */
+enum camManDisplayMode_e : uint32_t
+{
+  camManDisplayMode_NULL = 0x0,
+  camManDisplayMode_SP = 0x1,
+  camManDisplayMode_MPHorz = 0x2,
+  camManDisplayMode_MPVert = 0x3,
+  camManDisplayMode_MPThree = 0x4,
+  camManDisplayMode_MPFour = 0x5,
+  camManDisplayMode_MAX = 0x6,
+};
+
+/* 17546 */
+struct camMainWorkspace_s_unnamed_tag
+{
+  camManDisplayMode_e mode;
+  int dummy[3];
+};
+
+/* 17547 */
+struct camMainWorkspace_s
+{
+  float viewMtx[4][4];
+  float projMtx[4][4];
+  float visCamToWorldMtx[4][4];
+  camVirt_s defaultVirtCam;
+  _D3DVIEWPORT9 FullScreenViewport;
+  camVirt_s *virtCam;
+  camViewport_s viewport;
+  frustum3d clipFrustum;
+  mlVec dirVec;
+  camViewport_s outputViewport;
+  float fovY;
+  camVirt_Aspect_e viewportAspect;
+  int isOrthoCamera;
+  int viewIsDirty;
+  int projIsDirty;
+  int D3DViewportIsDirty;
+  int outputViewportIsDirty;
+  camMainWorkspace_s_unnamed_tag xuiViewports;
+  uint8_t pad[5];
+};
