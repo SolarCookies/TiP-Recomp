@@ -5237,7 +5237,7 @@ struct camVirt_s_rotation
 };
 
 /* 1009 */
-enum camVirt_Aspect_e : __int32
+enum camVirt_Aspect_e : uint32_t
 {
   camVirt_Aspect_4_3 = 0x0,
   camVirt_Aspect_16_9 = 0x1,
