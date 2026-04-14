@@ -24,6 +24,7 @@
 #include "tip_engine/CustomRenderer/engine/World/Camera.h"
 
 #include "tip_engine/CustomRenderer/engine/Actors/SkyboxActor.h"
+#include "tip_engine/CustomRenderer/engine/Actors/DebugGridActor.h"
 
 
 class RetipApp : public rex::ReXApp {
@@ -57,6 +58,10 @@ class RetipApp : public rex::ReXApp {
         auto skyboxActor = std::make_unique<Skybox>();
         g_world->AddActor(std::move(skyboxActor));
 
+        // Debug grid: 10x10 cubes on the XZ plane for camera testing
+        auto debugGrid = std::make_unique<DebugGrid>();
+        g_world->AddActor(std::move(debugGrid));
+
         g_world->ConstructWorld();
 
         g_camera = std::make_unique<class Camera>(1280.0f, 720.0f, glm::vec3(0.0f, 0.0f, 2.0f));
@@ -74,7 +79,7 @@ class RetipApp : public rex::ReXApp {
    }
   // void OnConfigurePaths(rex::PathConfig& paths) override {}
   void OnCreateDialogs(rex::ui::ImGuiDrawer* drawer) override {
-        //drawer->AddDialog(new DebugOverlayDialog(drawer));
+        drawer->AddDialog(new DebugOverlayDialog(drawer));
         auto fpsDialog = new FpsOverlayDialog(drawer);
         fpsDialog->fpsManager = &fpsManager;
         drawer->AddDialog(fpsDialog);

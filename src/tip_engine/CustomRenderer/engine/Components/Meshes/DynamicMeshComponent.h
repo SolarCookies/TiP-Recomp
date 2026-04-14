@@ -120,6 +120,12 @@ public:
 	bool isTriangleStrip = false;
 	Texture ColorTexture;
 	Texture NormalTexture;
+
+	template<typename T>
+	void SetParameter(const char* name, T value) {
+		if (OBJ) OBJ->SetMaterialParameter(name, value);
+	}
+
 protected:
 	//Model* OBJ;
 	std::unique_ptr<Model> OBJ; // Temporary model for reinitialization

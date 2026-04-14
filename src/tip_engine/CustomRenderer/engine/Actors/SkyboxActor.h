@@ -1,6 +1,7 @@
 #include "Actor.h"
 #include "../Components/Component.h"
 #include "../Components/Meshes/DynamicMeshComponent.h"
+#include "tip_engine/Globals.h"
 
 class Skybox : public Actor {
 public:
@@ -14,28 +15,28 @@ public:
         auto modelComp = new DynamicMeshComponent("Sky");
         modelComp->ConstructMesh({
             // Front face (z = 100)
-            {{-100.0f, -100.0f,  100.0f}, {1.0f, 1.0f, 1.0f}, {0.0f, 0.0f}, {0.0f, 0.0f, -1.0f}},  // 0
-            {{ 100.0f, -100.0f,  100.0f}, {1.0f, 1.0f, 1.0f}, {1.0f, 0.0f}, {0.0f, 0.0f, -1.0f}},  // 1
-            {{ 100.0f,  100.0f,  100.0f}, {1.0f, 1.0f, 1.0f}, {1.0f, 1.0f}, {0.0f, 0.0f, -1.0f}},  // 2
-            {{-100.0f,  100.0f,  100.0f}, {1.0f, 1.0f, 1.0f}, {0.0f, 1.0f}, {0.0f, 0.0f, -1.0f}},  // 3
+            {{-1.0f, -1.0f,  1.0f}, {1.0f, 1.0f, 1.0f}, {0.0f, 0.0f}, {0.0f, 0.0f, -1.0f}},  // 0
+            {{ 1.0f, -1.0f,  1.0f}, {1.0f, 1.0f, 1.0f}, {1.0f, 0.0f}, {0.0f, 0.0f, -1.0f}},  // 1
+            {{ 1.0f,  1.0f,  1.0f}, {1.0f, 1.0f, 1.0f}, {1.0f, 1.0f}, {0.0f, 0.0f, -1.0f}},  // 2
+            {{-1.0f,  1.0f,  1.0f}, {1.0f, 1.0f, 1.0f}, {0.0f, 1.0f}, {0.0f, 0.0f, -1.0f}},  // 3
             // Back face (z = -100)
-            {{-100.0f, -100.0f, -100.0f}, {1.0f, 1.0f, 1.0f}, {1.0f, 0.0f}, {0.0f, 0.0f, 1.0f}},   // 4
-            {{-100.0f,  100.0f, -100.0f}, {1.0f, 1.0f, 1.0f}, {1.0f, 1.0f}, {0.0f, 0.0f, 1.0f}},   // 5
-            {{ 100.0f,  100.0f, -100.0f}, {1.0f, 1.0f, 1.0f}, {0.0f, 1.0f}, {0.0f, 0.0f, 1.0f}},   // 6
-            {{ 100.0f, -100.0f, -100.0f}, {1.0f, 1.0f, 1.0f}, {0.0f, 0.0f}, {0.0f, 0.0f, 1.0f}},   // 7
+            {{-1.0f, -1.0f, -1.0f}, {1.0f, 1.0f, 1.0f}, {1.0f, 0.0f}, {0.0f, 0.0f, 1.0f}},   // 4
+            {{-1.0f,  1.0f, -1.0f}, {1.0f, 1.0f, 1.0f}, {1.0f, 1.0f}, {0.0f, 0.0f, 1.0f}},   // 5
+            {{ 1.0f,  1.0f, -1.0f}, {1.0f, 1.0f, 1.0f}, {0.0f, 1.0f}, {0.0f, 0.0f, 1.0f}},   // 6
+            {{ 1.0f, -1.0f, -1.0f}, {1.0f, 1.0f, 1.0f}, {0.0f, 0.0f}, {0.0f, 0.0f, 1.0f}},   // 7
         }, {
-            // Front face
-            0, 2, 1,  0, 3, 2,
-            // Back face
-            4, 6, 5,  4, 7, 6,
-            // Left face
-            4, 3, 0,  4, 5, 3,
-            // Right face
-            1, 6, 7,  1, 2, 6,
-            // Top face
-            3, 6, 2,  3, 5, 6,
-            // Bottom face
-            4, 1, 7,  4, 0, 1,
+            // Front face (CCW when viewed from outside, +Z)
+            0, 1, 2,  0, 2, 3,
+            // Back face (CCW when viewed from outside, -Z)
+            4, 5, 6,  4, 6, 7,
+            // Left face (CCW when viewed from outside, -X)
+            4, 0, 3,  4, 3, 5,
+            // Right face (CCW when viewed from outside, +X)
+            1, 7, 6,  1, 6, 2,
+            // Top face (CCW when viewed from outside, +Y)
+            3, 2, 6,  3, 6, 5,
+            // Bottom face (CCW when viewed from outside, -Y)
+            4, 7, 1,  4, 1, 0,
         });
         this->AddComponent(modelComp);
         Actor::Construct();
@@ -46,16 +47,19 @@ public:
     }
 
     void Tick(float deltaTime, World* world) override {
+        // Move skybox to follow camera position
+        if (g_camera) {
+        //    this->SetWorldPosition(g_camera->Position);
+        }
+        this->SetWorldPosition(glm::vec3(0.0f)); // Keep skybox centered at origin for now
+        this->SetWorldScale(glm::vec3(10.0f));  // Scale up so it's visible
         Actor::Tick(deltaTime, world);
     }
 
     void Render(VinceWindow* Window, class Camera* Cam) override {
-        // Skybox must render at far plane with LEQUAL depth, no depth write
-        glDepthFunc(GL_LEQUAL);
-        glDepthMask(GL_FALSE);
+        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
         Actor::Render(Window, Cam);
-        glDepthMask(GL_TRUE);
-        glDepthFunc(GL_LESS);
+        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     }
     void EndPlay() override {
         Actor::EndPlay();
