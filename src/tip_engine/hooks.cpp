@@ -261,65 +261,6 @@ void CPU_fps_hook() {
     // Try camMainWorkspace_s which has visCamToWorldMtx and virtCam with pos
     camMainWorkspace_s* camWorkspace = reinterpret_cast<camMainWorkspace_s*>(0x100000000ull + 0x82C34D48);
 
-    // Debug: full view matrix from drawStaticWorkspace
-    DebugLogFloat("V_00", to_byteswapped_float(drawStaticWorkspace[0].view[0][0]));
-    DebugLogFloat("V_01", to_byteswapped_float(drawStaticWorkspace[0].view[0][1]));
-    DebugLogFloat("V_02", to_byteswapped_float(drawStaticWorkspace[0].view[0][2]));
-    DebugLogFloat("V_03", to_byteswapped_float(drawStaticWorkspace[0].view[0][3]));
-    DebugLogFloat("V_10", to_byteswapped_float(drawStaticWorkspace[0].view[1][0]));
-    DebugLogFloat("V_11", to_byteswapped_float(drawStaticWorkspace[0].view[1][1]));
-    DebugLogFloat("V_12", to_byteswapped_float(drawStaticWorkspace[0].view[1][2]));
-    DebugLogFloat("V_13", to_byteswapped_float(drawStaticWorkspace[0].view[1][3]));
-    DebugLogFloat("V_20", to_byteswapped_float(drawStaticWorkspace[0].view[2][0]));
-    DebugLogFloat("V_21", to_byteswapped_float(drawStaticWorkspace[0].view[2][1]));
-    DebugLogFloat("V_22", to_byteswapped_float(drawStaticWorkspace[0].view[2][2]));
-    DebugLogFloat("V_23", to_byteswapped_float(drawStaticWorkspace[0].view[2][3]));
-    DebugLogFloat("V_30", to_byteswapped_float(drawStaticWorkspace[0].view[3][0]));
-    DebugLogFloat("V_31", to_byteswapped_float(drawStaticWorkspace[0].view[3][1]));
-    DebugLogFloat("V_32", to_byteswapped_float(drawStaticWorkspace[0].view[3][2]));
-    DebugLogFloat("V_33", to_byteswapped_float(drawStaticWorkspace[0].view[3][3]));
-
-    // Debug: full projection matrix from drawStaticWorkspace
-    DebugLogFloat("P_00", to_byteswapped_float(drawStaticWorkspace[0].projection[0][0]));
-    DebugLogFloat("P_01", to_byteswapped_float(drawStaticWorkspace[0].projection[0][1]));
-    DebugLogFloat("P_02", to_byteswapped_float(drawStaticWorkspace[0].projection[0][2]));
-    DebugLogFloat("P_03", to_byteswapped_float(drawStaticWorkspace[0].projection[0][3]));
-    DebugLogFloat("P_10", to_byteswapped_float(drawStaticWorkspace[0].projection[1][0]));
-    DebugLogFloat("P_11", to_byteswapped_float(drawStaticWorkspace[0].projection[1][1]));
-    DebugLogFloat("P_12", to_byteswapped_float(drawStaticWorkspace[0].projection[1][2]));
-    DebugLogFloat("P_13", to_byteswapped_float(drawStaticWorkspace[0].projection[1][3]));
-    DebugLogFloat("P_20", to_byteswapped_float(drawStaticWorkspace[0].projection[2][0]));
-    DebugLogFloat("P_21", to_byteswapped_float(drawStaticWorkspace[0].projection[2][1]));
-    DebugLogFloat("P_22", to_byteswapped_float(drawStaticWorkspace[0].projection[2][2]));
-    DebugLogFloat("P_23", to_byteswapped_float(drawStaticWorkspace[0].projection[2][3]));
-    DebugLogFloat("P_30", to_byteswapped_float(drawStaticWorkspace[0].projection[3][0]));
-    DebugLogFloat("P_31", to_byteswapped_float(drawStaticWorkspace[0].projection[3][1]));
-    DebugLogFloat("P_32", to_byteswapped_float(drawStaticWorkspace[0].projection[3][2]));
-    DebugLogFloat("P_33", to_byteswapped_float(drawStaticWorkspace[0].projection[3][3]));
-
-    // Debug: full basis matrix
-    DebugLogFloat("B_00", to_byteswapped_float(drawStaticWorkspace[0].basis[0][0]));
-    DebugLogFloat("B_01", to_byteswapped_float(drawStaticWorkspace[0].basis[0][1]));
-    DebugLogFloat("B_02", to_byteswapped_float(drawStaticWorkspace[0].basis[0][2]));
-    DebugLogFloat("B_03", to_byteswapped_float(drawStaticWorkspace[0].basis[0][3]));
-    DebugLogFloat("B_10", to_byteswapped_float(drawStaticWorkspace[0].basis[1][0]));
-    DebugLogFloat("B_11", to_byteswapped_float(drawStaticWorkspace[0].basis[1][1]));
-    DebugLogFloat("B_12", to_byteswapped_float(drawStaticWorkspace[0].basis[1][2]));
-    DebugLogFloat("B_13", to_byteswapped_float(drawStaticWorkspace[0].basis[1][3]));
-    DebugLogFloat("B_20", to_byteswapped_float(drawStaticWorkspace[0].basis[2][0]));
-    DebugLogFloat("B_21", to_byteswapped_float(drawStaticWorkspace[0].basis[2][1]));
-    DebugLogFloat("B_22", to_byteswapped_float(drawStaticWorkspace[0].basis[2][2]));
-    DebugLogFloat("B_23", to_byteswapped_float(drawStaticWorkspace[0].basis[2][3]));
-    DebugLogFloat("B_30", to_byteswapped_float(drawStaticWorkspace[0].basis[3][0]));
-    DebugLogFloat("B_31", to_byteswapped_float(drawStaticWorkspace[0].basis[3][1]));
-    DebugLogFloat("B_32", to_byteswapped_float(drawStaticWorkspace[0].basis[3][2]));
-    DebugLogFloat("B_33", to_byteswapped_float(drawStaticWorkspace[0].basis[3][3]));
-
-    // Debug: visCamToWorldMtx from camMainWorkspace
-    DebugLogFloat("C2W_30", to_byteswapped_float(camWorkspace->visCamToWorldMtx[3][0]));
-    DebugLogFloat("C2W_31", to_byteswapped_float(camWorkspace->visCamToWorldMtx[3][1]));
-    DebugLogFloat("C2W_32", to_byteswapped_float(camWorkspace->visCamToWorldMtx[3][2]));
-
     // Extract view, projection, and basis matrices (big-endian, already column-major)
     // The game's ml math library stores matrices in column-major order matching OpenGL/GLM
     glm::mat4 gameView(1.0f);

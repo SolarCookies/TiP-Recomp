@@ -451,3 +451,8 @@
 0x821EBE28 = {name = "rex_meCursorCamCalculatePos_821EBE28"}
 #//rex_meCursorCamCalculatePitch_822C1C00
 0x822C1C00 = {name = "rex_meCursorCamCalculatePitch_822C1C00"}
+
+#Rendering Functions
+0x82274610 = {name = "rex_render_scenegraphDrawGetIndexBuffer_82274610"}
+0x82658228 = {name = "rex_render_D3DDevice_SetIndices_82658228"}
+0x82664FF0 = {name = "rex_render_D3DDevice_DrawIndexedVertices_82664FF0"}

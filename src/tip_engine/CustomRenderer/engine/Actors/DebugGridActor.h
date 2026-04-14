@@ -57,7 +57,7 @@ public:
         // Center the grid on the camera's XZ position, Y=0
         glm::vec3 camPos(0.0f);
         if (g_camera) {
-            camPos = g_camera->Position;
+            //camPos = g_camera->Position;
         }
 
         int idx = 0;
@@ -79,7 +79,7 @@ public:
 
     void Render(VinceWindow* Window, class Camera* Cam) override {
         //glDisable(GL_CULL_FACE);
-        return;
+        //return;
         // Set unlit right before draw so it's guaranteed active
         for (auto& comp : components) {
             auto* mesh = dynamic_cast<DynamicMeshComponent*>(comp.get());
