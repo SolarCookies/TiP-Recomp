@@ -7625,7 +7625,7 @@ loc_825983E0:
 	ctx.r4.s64 = ctx.r1.s64 + 120;
 	// bl 0x821ebe28
 	ctx.lr = 0x82598460;
-	sub_821EBE28(ctx, base);
+	rex_meCursorCamCalculatePos_821EBE28(ctx, base);
 	// addi r4,r1,104
 	ctx.r4.s64 = ctx.r1.s64 + 104;
 	// mr r3,r31
@@ -53546,7 +53546,7 @@ loc_825ABB3C:
 	ctx.r4.u64 = ctx.r29.u64;
 	// bl 0x821ebe28
 	ctx.lr = 0x825ABB58;
-	sub_821EBE28(ctx, base);
+	rex_meCursorCamCalculatePos_821EBE28(ctx, base);
 	// lwz r30,60(r31)
 	ctx.r30.u64 = PPC_LOAD_U32(ctx.r31.u32 + 60);
 	// cmplwi cr6,r30,0
@@ -55713,7 +55713,7 @@ PPC_FUNC_IMPL(__imp__sub_825AC958) {
 	PPC_STORE_U32(ctx.r31.u32 + 3784, ctx.r8.u32);
 	// bl 0x821ebe28
 	ctx.lr = 0x825AC9A8;
-	sub_821EBE28(ctx, base);
+	rex_meCursorCamCalculatePos_821EBE28(ctx, base);
 	// cmplwi cr6,r30,0
 	ctx.cr6.compare<uint32_t>(ctx.r30.u32, 0, ctx.xer);
 	// beq cr6,0x825ac9d8

@@ -6,3 +6,7 @@
 0x821F07E0 = {name = "rex_camMainGetPos_821F07E0"}
 0x821C8E78 = {name = "rex_appMainDraw_821C8E78"}
 0x821C91C0 = {name = "rex_appMainTickPreDraw_821C91C0"}
+#sub_822C1C00
+0x822C1C00 = {name = "rex_inputPitchState_822C1C00"}
+#sub_822C4260
+0x822C4260 = {name = "rex_inputGetState_822C4260"}

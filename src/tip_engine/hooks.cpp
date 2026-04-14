@@ -3,6 +3,7 @@
 #include <cstdint>
 #include <cmath>
 #include <cstring>
+#include <chrono>
 #include <rex/ui/imgui_dialog.h>
 #include "Overlays/Fps.h"
 #include "imgui.h"
@@ -19,18 +20,13 @@
 #include "rex_macros.h"
 #include <fstream>
 #include "tip_engine/Types/CommonTypes.h"
+#include <SDL3/SDL.h>
+#include <thread>
+#include <atomic>
+#include "tip_engine/Globals.h"
+#include "tip_engine/CustomRenderer/engine/World/World.h"
+#include "tip_engine/CustomRenderer/engine/World/Camera.h"
 
-inline float to_byteswapped_float(float f) {
-    uint32_t i = std::byteswap(*reinterpret_cast<uint32_t*>(&f));
-    return *reinterpret_cast<float*>(&i);
-}
-
-inline double to_byteswapped_double(double d) {
-    uint64_t i = std::byteswap(*reinterpret_cast<uint64_t*>(&d));
-    return *reinterpret_cast<double*>(&i);
-}
-
-REXCVAR_DEFINE_BOOL(show_fps_overlay, false, "_Trouble in Paradise", "Show FPS overlay");
 REXCVAR_DEFINE_BOOL(rgb_cursor, false, "_Trouble in Paradise", "Enables the Gursor");
 REXCVAR_DEFINE_BOOL(lock_fps, false, "_Trouble in Paradise", "Lock to 30 FPS");
 REXCVAR_DEFINE_BOOL(show_fps, false, "_Trouble in Paradise", "Show FPS Overlay");
@@ -112,16 +108,6 @@ float * camMainGetPos_821F07E0_Hook(float *result){
 REX_PPC_HOOK(camMainGetPos_821F07E0);
 */
 
-REX_PPC_EXTERN_IMPORT(camMainGetAspectRatio_821F0730);
-float camMainGetAspectRatio_821F0730_Hook() {
-  float aspectRatio;
-  //if(REXCVAR_GET(UseAspectRatioFromConfig)) {
-  //  aspectRatio = static_cast<float>(REXCVAR_GET(AspectRatio));
-  //}else{
-    aspectRatio = rex::GuestToHostFunction<float>(__imp__rex_camMainGetAspectRatio_821F0730);
-  //}
-  return aspectRatio;
-} REX_PPC_HOOK(camMainGetAspectRatio_821F0730);
 
 //supportFrustumConstructClippingFrustum_8228BE08
 REX_PPC_EXTERN_IMPORT(supportFrustumConstructClippingFrustum_8228BE08);
@@ -171,84 +157,159 @@ void AspectRatio_hook(PPCRegister& r3) {
   if(REXCVAR_GET(UseAspectRatioFromConfig)) {
     //r3.u32 + 0x399C | *(float *)&r3+0x399C = AspectRatio;
     float customAR = static_cast<float>(REXCVAR_GET(AspectRatio));
-    float* aspectRatioPtr = reinterpret_cast<float*>(0x100000000ull + r3.u32 + 0x399C);
-    *aspectRatioPtr = to_byteswapped_float(customAR);
+    if(r3.u32){
+      float* aspectRatioPtr = reinterpret_cast<float*>(0x100000000ull + r3.u32 + 0x399C);
+      *aspectRatioPtr = to_byteswapped_float(customAR);
+    }
   }
 }
+
+#include <rex/input/input_system.h>
+#include <rex/ui/virtual_key.h>
+#include "Globals.h"
+
+using rex::ui::VirtualKey;
+
+bool processEvents()
+{
+  if (!g_raw_input) return false;
+
+    float deltaX = 0, deltaY = 0;
+    auto [dx, dy] = g_raw_input->GetMouseDelta();
+    deltaX += dx;
+    deltaY += dy;
+
+    DebugLogFloat("MouseDeltaX", deltaX);
+    DebugLogFloat("MouseDeltaY", deltaY);
+    //Debug flt_8215C724
+    float* flt_8215C724 = reinterpret_cast<float*>(0x100000000ull + 0x8215C724);
+    DebugLogFloat("flt_8215C724", to_byteswapped_float(*flt_8215C724));
+
+    // Use deltaX and deltaY here for your camera/input logic
+    return true;
+}
+
+bool hasmouseinput = false;
+
+static auto lastFrameTime = std::chrono::high_resolution_clock::now();
 
 void CPU_fps_hook() {
   fpsManager.showFPS = REXCVAR_GET(show_fps);
-  auto fpshook = fpsManager.GetCreateCounter("CPU");
+  auto fpshook = fpsManager.GetCreateCounter("Tick");
   fpshook->Tick();
+
+  //82BEBC78 # scenegraphDrawStaticWorkspace_s Me_5[6]
+  scenegraphDrawStaticWorkspace_s* drawStaticWorkspace = reinterpret_cast<scenegraphDrawStaticWorkspace_s*>(0x100000000ull + 0x82BEBC78);
+  drawStaticWorkspace[0].isFurEnabled = 0;
+  drawStaticWorkspace[0].isFurEnabledCount = 0;
+  drawStaticWorkspace[1].isFurEnabled = 0;
+  drawStaticWorkspace[1].isFurEnabledCount = 0;
+  drawStaticWorkspace[2].isFurEnabled = 0;
+  drawStaticWorkspace[2].isFurEnabledCount = 0;
+  drawStaticWorkspace[3].isFurEnabled = 0;
+  drawStaticWorkspace[3].isFurEnabledCount = 0;
+  drawStaticWorkspace[4].isFurEnabled = 0;
+  drawStaticWorkspace[4].isFurEnabledCount = 0;
+  drawStaticWorkspace[5].isFurEnabled = 0;
+  drawStaticWorkspace[5].isFurEnabledCount = 0;
+
+  if (!windowPtr || !g_world || !g_camera) return;
+
+  // Delta time
+  auto currentTime = std::chrono::high_resolution_clock::now();
+  std::chrono::duration<float> elapsed = currentTime - lastFrameTime;
+  float deltaTime = elapsed.count();
+  lastFrameTime = currentTime;
+
+  glfwPollEvents();
+  if(glfwWindowShouldClose(windowPtr->getWindow())) {
+    glfwMakeContextCurrent(nullptr);
+    exit(0);
+  }
+
+  // Switch to the GLFW window's OpenGL context
+  static bool gladReloaded = false;
+  glfwMakeContextCurrent(windowPtr->getWindow());
+  if (!gladReloaded) {
+    gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+    glEnable(GL_DEPTH_TEST);
+    gladReloaded = true;
+  }
+
+  // Update viewport to match window size
+  int fbWidth, fbHeight;
+  glfwGetFramebufferSize(windowPtr->getWindow(), &fbWidth, &fbHeight);
+  if (fbWidth <= 0 || fbHeight <= 0) {
+    glfwMakeContextCurrent(nullptr);
+    return;
+  }
+  g_camera->width = static_cast<float>(fbWidth);
+  g_camera->height = static_cast<float>(fbHeight);
+
+  // Render directly to the default framebuffer (window)
+  glBindFramebuffer(GL_FRAMEBUFFER, 0);
+  glViewport(0, 0, fbWidth, fbHeight);
+  // Alpha=1.0 makes rendered content opaque over the acrylic background
+  glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+  g_camera->Inputs(windowPtr->getWindow());
+  g_camera->updateMatrix(45.0f, 0.01f, 100000.0f);
+
+  // Sync game camera data into custom renderer camera
+  {
+    // Extract camera position (big-endian → host)
+    g_camera->Position.x = to_byteswapped_float(drawStaticWorkspace[0].cameraPosition.x);
+    g_camera->Position.y = to_byteswapped_float(drawStaticWorkspace[0].cameraPosition.y);
+    g_camera->Position.z = to_byteswapped_float(drawStaticWorkspace[0].cameraPosition.z);
+
+    // Extract view and projection matrices (big-endian row-major → glm column-major)
+    glm::mat4 gameView(1.0f);
+    glm::mat4 gameProj(1.0f);
+    for (int row = 0; row < 4; row++) {
+      for (int col = 0; col < 4; col++) {
+        gameView[col][row] = to_byteswapped_float(drawStaticWorkspace[0].view[row][col]);
+        gameProj[col][row] = to_byteswapped_float(drawStaticWorkspace[0].projection[row][col]);
+      }
+    }
+    g_camera->cameraMatrix = gameProj * gameView;
+  }
+
+  g_world->TickWorld(deltaTime);
+  g_world->Render(windowPtr.get(), g_camera.get());
+
+  windowPtr->EndFrame();
+
+  // Release context so it doesn't block other threads
+  glfwMakeContextCurrent(nullptr);
 }
 
 void GPU_fps_hook() {
-  auto fpshook = fpsManager.GetCreateCounter("GPU");
-  fpshook->Tick();
+  //auto fpshook = fpsManager.GetCreateCounter("GPU");
+  //fpshook->Tick();
 }
-
-/*
-PPC_EXTERN_IMPORT(__imp__rex_appMainTickPreDraw_821C91C0);
-PPC_EXTERN_IMPORT(__imp__rex_appMainDraw_821C8E78);
-void MainLoop_hook() {
-  using clock = std::chrono::steady_clock;
-
-  auto last_cpu_tick = clock::now();
-  auto last_gpu_draw = clock::now();
-  auto cpu_accumulator = clock::duration::zero();
-
-  int Run = 1;
-  while (Run) {
-    auto now = clock::now();
-
-    // CPU tick rate from cvar (0 = unlimited)
-    int32_t cpuLimit = REXCVAR_GET(maxCPU);
-    if (cpuLimit > 0) {
-      auto cpu_interval = std::chrono::duration_cast<clock::duration>(
-          std::chrono::duration<double>(1.0 / cpuLimit));
-      cpu_accumulator += now - last_cpu_tick;
-      last_cpu_tick = now;
-
-      while (cpu_accumulator >= cpu_interval) {
-        Run = rex ::GuestToHostFunction<int>(__imp__rex_appMainTickPreDraw_821C91C0);
-        TriggerReadCallback();
-        cpu_accumulator -= cpu_interval;
-        if (!Run) break;
-      }
-    } else {
-      Run = rex ::GuestToHostFunction<int>(__imp__rex_appMainTickPreDraw_821C91C0);
-      TriggerReadCallback();
-    }
-
-    // GPU draw rate from cvar (0 = unlimited)
-    if (Run) {
-      int32_t gpuLimit = REXCVAR_GET(maxGPU);
-      if (gpuLimit > 0) {
-        auto gpu_interval = std::chrono::duration_cast<clock::duration>(
-            std::chrono::duration<double>(1.0 / gpuLimit));
-        auto gpu_elapsed = now - last_gpu_draw;
-        if (gpu_elapsed >= gpu_interval) {
-          rex ::GuestToHostFunction<void>(__imp__rex_appMainDraw_821C8E78);
-          last_gpu_draw = now;
-        }
-      } else {
-        rex ::GuestToHostFunction<void>(__imp__rex_appMainDraw_821C8E78);
-      }
-    }
-
-    if (cpuLimit > 0 || REXCVAR_GET(maxGPU) > 0) {
-      std::this_thread::yield();
-    }
-  }
-}
-*/
 
 void vsync_hook(PPCRegister& r10) {
   if(!REXCVAR_GET(lock_fps)) {
     r10.u32 = 0; // Force vsync off
+    REXCVAR_SET(vsync, false);
+  }else{
+    REXCVAR_SET(vsync, true);
   }
-
+  //d3d12_submit_on_primary_buffer_end
+  //REXCVAR_SET(d3d12_submit_on_primary_buffer_end, false);
+  //REXCVAR_SET(scribble_heap, true);
   
+}
+
+void InRomanceMinigame_hook(){
+  REXCVAR_SET(vsync, true);
+  REXCVAR_SET(lock_fps, true);
+}
+
+void NotInRomanceMinigame_hook(){
+  REXCVAR_SET(vsync, false);
+  REXCVAR_SET(lock_fps, false);
 }
 
 bool Space1_hook() {

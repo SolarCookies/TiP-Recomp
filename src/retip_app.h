@@ -5,7 +5,9 @@
 
 #pragma once
 
+#include <memory>
 #include <rex/rex_app.h>
+#include "retip_config.h"
 #include "tip_engine/hooks.h"
 #include <rex/ppc/function.h>
 #include "tip_engine/Log.h"
@@ -13,6 +15,15 @@
 #include "tip_engine/Overlays/DebugInfo.h"
 #include "ImPlot/implot.h"
 #include "Webcam.h"
+#include "tip_engine/Globals.h"
+#include "tip_engine/SleepHooks.h"
+#include "tip_engine/Overlays/TiPTools.h"
+#include "tip_engine/Overlays/TiPTools/SpawnMenu.h"
+#include "tip_engine/CustomRenderer/Window.h"
+#include "tip_engine/CustomRenderer/engine/World/World.h"
+#include "tip_engine/CustomRenderer/engine/World/Camera.h"
+
+#include "tip_engine/CustomRenderer/engine/Actors/SkyboxActor.h"
 
 
 class RetipApp : public rex::ReXApp {
@@ -25,15 +36,41 @@ class RetipApp : public rex::ReXApp {
         PPCImageConfig));
   }
 
+
   // Override virtual hooks for customization:
   // void OnPreSetup(rex::RuntimeConfig& config) override {}
    void OnPostSetup() override {
         ImPlot::CreateContext();
+        g_raw_input = runtime()->input_system()->GetRawInput();
+        timeBeginPeriod(1);
+
+        windowPtr = std::make_unique<VinceWindow>(1280, 720, "TiP Recomp");
+        windowPtr->SetupImGuiIO();
+        windowPtr->InitFrameBuffer();
+
+        glEnable(GL_DEPTH_TEST);
+        glfwSwapInterval(0);
+
+        g_world = new World();
+
+        // Add a skybox actor to the world
+        auto skyboxActor = std::make_unique<Skybox>();
+        g_world->AddActor(std::move(skyboxActor));
+
+        g_world->ConstructWorld();
+
+        g_camera = std::make_unique<class Camera>(1280.0f, 720.0f, glm::vec3(0.0f, 0.0f, 2.0f));
+
+        // Release the GL context so CPU_fps_hook can acquire it on its thread
+        glfwMakeContextCurrent(nullptr);
    }
 
   // void OnCreateDialogs(rex::ui::ImGuiDrawer* drawer) override {}
    void OnShutdown() override {
         ImPlot::DestroyContext();
+        DisableHighResTimer();
+        delete g_world;
+        g_world = nullptr;
    }
   // void OnConfigurePaths(rex::PathConfig& paths) override {}
   void OnCreateDialogs(rex::ui::ImGuiDrawer* drawer) override {
@@ -42,6 +79,9 @@ class RetipApp : public rex::ReXApp {
         fpsDialog->fpsManager = &fpsManager;
         drawer->AddDialog(fpsDialog);
 
+        auto tipToolsDialog = new TipToolsDialog(drawer);
+        drawer->AddDialog(tipToolsDialog);
+        tipToolsDialog->pages.push_back(std::make_unique<SpawnMenuPage>());
     }
 };
 

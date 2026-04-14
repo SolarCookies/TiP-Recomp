@@ -9540,7 +9540,7 @@ loc_822DC734:
 	PPC_STORE_U32(ctx.r1.u32 + 180, temp.u32);
 	// bl 0x821ebe28
 	ctx.lr = 0x822DC754;
-	sub_821EBE28(ctx, base);
+	rex_meCursorCamCalculatePos_821EBE28(ctx, base);
 	// mr r3,r30
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x821ea3d8
@@ -33949,7 +33949,7 @@ loc_822E6CC4:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
 	// bl 0x822c4260
 	ctx.lr = 0x822E6CE4;
-	sub_822C4260(ctx, base);
+	rex_inputGetState_822C4260(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x822e6d08

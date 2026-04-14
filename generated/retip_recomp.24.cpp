@@ -44119,7 +44119,7 @@ loc_824C1B38:
 	PPC_STORE_U32(ctx.r1.u32 + 104, temp.u32);
 	// bl 0x821ebe28
 	ctx.lr = 0x824C1B94;
-	sub_821EBE28(ctx, base);
+	rex_meCursorCamCalculatePos_821EBE28(ctx, base);
 	// addi r4,r1,96
 	ctx.r4.s64 = ctx.r1.s64 + 96;
 	// mr r3,r29
@@ -62979,7 +62979,7 @@ loc_824C9854:
 	ctx.r4.s64 = ctx.r1.s64 + 120;
 	// bl 0x821ebe28
 	ctx.lr = 0x824C98A0;
-	sub_821EBE28(ctx, base);
+	rex_meCursorCamCalculatePos_821EBE28(ctx, base);
 	// b 0x824c98a8
 	goto loc_824C98A8;
 loc_824C98A4:
