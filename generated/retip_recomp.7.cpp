@@ -38603,7 +38603,7 @@ PPC_FUNC_IMPL(__imp__sub_82287FC0) {
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x821ebe28
 	ctx.lr = 0x82287FF0;
-	sub_821EBE28(ctx, base);
+	rex_meCursorCamCalculatePos_821EBE28(ctx, base);
 	// addi r4,r1,88
 	ctx.r4.s64 = ctx.r1.s64 + 88;
 	// mr r3,r30

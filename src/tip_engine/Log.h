@@ -12,64 +12,43 @@
 #include <rex/cvar.h>
 #include <rex/ppc/types.h>
 #include <rex/system/kernel_state.h>
+#include <rex/ppc/types.h>
+#include <rex/logging.h>
 
-inline auto frameTime1=std::chrono::system_clock::now();
-inline int frame1 = 0;
-
-struct LogPacket {
-    int32_t ms;
-    std::string message;
-};
-
-inline std::vector<LogPacket> logMessages;
-
-inline void TickLogMessages() {
-
-    frame1++;
-    auto Time = std::chrono::system_clock::now();
-    std::chrono::duration<double, std::milli> delta = Time - frameTime1;
-    frameTime1 = Time;
-    double fpsfromMS = 1000 / delta.count();
-    if (frame1 >= 60) {
-        frame1 = 0;
-    }
-    
-    for (auto it = logMessages.begin(); it != logMessages.end();) {
-        it->ms -= static_cast<int32_t>(delta.count());
-        if (it->ms <= 0) {
-            it = logMessages.erase(it);
-        } else {
-            ++it;
-        }
-    }
-
+namespace renut::log {
+  inline const rex::LogCategoryId Input = rex::RegisterLogCategory("retip");
 }
 
-class LogOverlayDialog : public rex::ui::ImGuiDialog {
-public:
-    explicit LogOverlayDialog(rex::ui::ImGuiDrawer* drawer)
-        : rex::ui::ImGuiDialog(drawer) {}
+#define RETIP_TRACE(...) REXLOG_CAT_TRACE(::renut::log::Input, __VA_ARGS__)
+#define RETIP_DEBUG(...) REXLOG_CAT_DEBUG(::renut::log::Input, __VA_ARGS__)
+#define RETIP_INFO(...)  REXLOG_CAT_INFO(::renut::log::Input, __VA_ARGS__)
+#define RETIP_WARN(...)  REXLOG_CAT_WARN(::renut::log::Input, __VA_ARGS__)
+#define RETIP_ERROR(...) REXLOG_CAT_ERROR(::renut::log::Input, __VA_ARGS__)
 
-    void OnDraw(ImGuiIO& io) override {
-        ImGui::SetNextWindowPos(ImVec2(io.DisplaySize.x - 160.0f, 0.0f), ImGuiCond_FirstUseEver);
-        ImGui::SetNextWindowSize(ImVec2(150.0f, 720.0f), ImGuiCond_FirstUseEver);
-        ImGui::Begin("Log Overlay");
-        for (auto& packet : logMessages) {
-            ImGui::Text("%s", packet.message.c_str());
-        }
-        if (ImGui::GetScrollY() >= ImGui::GetScrollMaxY())
-            ImGui::SetScrollHereY(1.0f);
-        ImGui::End();
-        TickLogMessages();
-    }
+enum class LogLevel {
+    Trace,
+    Debug,
+    Info,
+    Warn,
+    Error
 };
 
-inline void Log(std::string message, uint32_t SecondsOnScreen) {
-    LogPacket packet;
-    packet.ms = SecondsOnScreen * 1000; // Convert seconds to milliseconds
-    packet.message = message;
-    logMessages.push_back(packet);
-    while (logMessages.size() > 100) {
-        logMessages.erase(logMessages.begin());
+inline void Log(LogLevel level, const std::string& message) {
+    switch (level) {
+        case LogLevel::Trace:
+            RETIP_TRACE(message.c_str());
+            break;
+        case LogLevel::Debug:
+            RETIP_DEBUG(message.c_str());
+            break;
+        case LogLevel::Info:
+            RETIP_INFO(message.c_str());
+            break;
+        case LogLevel::Warn:
+            RETIP_WARN(message.c_str());
+            break;
+        case LogLevel::Error:
+            RETIP_ERROR(message.c_str());
+            break;
     }
 }

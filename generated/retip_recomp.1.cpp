@@ -72559,7 +72559,7 @@ PPC_FUNC_IMPL(__imp__sub_821DF9F8) {
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x821ebe28
 	ctx.lr = 0x821DFA30;
-	sub_821EBE28(ctx, base);
+	rex_meCursorCamCalculatePos_821EBE28(ctx, base);
 	// lfs f0,176(r31)
 	ctx.fpscr.disableFlushMode();
 	temp.u32 = PPC_LOAD_U32(ctx.r31.u32 + 176);

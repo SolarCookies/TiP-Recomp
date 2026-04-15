@@ -18706,8 +18706,8 @@ loc_82664638:
 	return;
 }
 
-__attribute__((alias("__imp__sub_82664640"))) PPC_WEAK_FUNC(sub_82664640);
-PPC_FUNC_IMPL(__imp__sub_82664640) {
+__attribute__((alias("__imp__rex_render_D3DDevice_BeginIndexedVertices_82664640"))) PPC_WEAK_FUNC(rex_render_D3DDevice_BeginIndexedVertices_82664640);
+PPC_FUNC_IMPL(__imp__rex_render_D3DDevice_BeginIndexedVertices_82664640) {
 	PPC_FUNC_PROLOGUE();
 	PPCRegister temp{};
 	uint32_t ea{};
@@ -19530,7 +19530,7 @@ PPC_FUNC_IMPL(__imp__sub_82664B60) {
 	ctx.r27.u64 = ctx.r7.u64;
 	// bl 0x82664640
 	ctx.lr = 0x82664BA8;
-	sub_82664640(ctx, base);
+	rex_render_D3DDevice_BeginIndexedVertices_82664640(ctx, base);
 	// cmpwi r3,0
 	ctx.cr0.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne 0x82664bf8
@@ -20178,8 +20178,8 @@ loc_82664FE8:
 	return;
 }
 
-__attribute__((alias("__imp__sub_82664FF0"))) PPC_WEAK_FUNC(sub_82664FF0);
-PPC_FUNC_IMPL(__imp__sub_82664FF0) {
+__attribute__((alias("__imp__rex_render_D3DDevice_DrawIndexedVertices_82664FF0"))) PPC_WEAK_FUNC(rex_render_D3DDevice_DrawIndexedVertices_82664FF0);
+PPC_FUNC_IMPL(__imp__rex_render_D3DDevice_DrawIndexedVertices_82664FF0) {
 	PPC_FUNC_PROLOGUE();
 	PPCRegister temp{};
 	uint32_t ea{};

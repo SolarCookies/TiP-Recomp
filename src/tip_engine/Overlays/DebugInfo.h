@@ -138,9 +138,8 @@ public:
         : rex::ui::ImGuiDialog(drawer) {}
 
     void OnDraw(ImGuiIO& io) override{
-        ImGui::SetNextWindowSize(ImVec2(200, 200), ImGuiCond_Always);
         ImGui::SetNextWindowBgAlpha(0.35f);
-        ImGui::Begin("Debug Info", nullptr, ImGuiWindowFlags_NoResize);
+        ImGui::Begin("Debug Info", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
         for (const auto& info : g_debugInfoList) {
             ImGui::Text("%s: %s", info.name, GetDebugInfoValueString(info).c_str());
         }

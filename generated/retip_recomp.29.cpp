@@ -33840,7 +33840,7 @@ loc_8256199C:
 	PPC_STORE_U32(ctx.r1.u32 + 88, temp.u32);
 	// bl 0x821ebe28
 	ctx.lr = 0x82561A64;
-	sub_821EBE28(ctx, base);
+	rex_meCursorCamCalculatePos_821EBE28(ctx, base);
 	// lfs f6,176(r31)
 	ctx.fpscr.disableFlushMode();
 	temp.u32 = PPC_LOAD_U32(ctx.r31.u32 + 176);
@@ -34964,7 +34964,7 @@ loc_825621CC:
 	ctx.r3.u64 = ctx.r27.u64;
 	// bl 0x821ebe28
 	ctx.lr = 0x825621D8;
-	sub_821EBE28(ctx, base);
+	rex_meCursorCamCalculatePos_821EBE28(ctx, base);
 	// addi r4,r1,80
 	ctx.r4.s64 = ctx.r1.s64 + 80;
 	// mr r3,r27
@@ -35606,7 +35606,7 @@ loc_825625B8:
 	ctx.r3.u64 = ctx.r27.u64;
 	// bl 0x821ebe28
 	ctx.lr = 0x82562614;
-	sub_821EBE28(ctx, base);
+	rex_meCursorCamCalculatePos_821EBE28(ctx, base);
 	// mr r3,r27
 	ctx.r3.u64 = ctx.r27.u64;
 	// bl 0x821ea3d8
@@ -41131,7 +41131,7 @@ loc_82564AEC:
 	ctx.r4.s64 = ctx.r1.s64 + 96;
 	// bl 0x821ebe28
 	ctx.lr = 0x82564B08;
-	sub_821EBE28(ctx, base);
+	rex_meCursorCamCalculatePos_821EBE28(ctx, base);
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x821ea3d8
@@ -43027,7 +43027,7 @@ PPC_FUNC_IMPL(__imp__sub_82565798) {
 	PPC_STORE_U32(ctx.r1.u32 + 88, temp.u32);
 	// bl 0x821ebe28
 	ctx.lr = 0x825657F0;
-	sub_821EBE28(ctx, base);
+	rex_meCursorCamCalculatePos_821EBE28(ctx, base);
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x821ea3d8
@@ -44855,7 +44855,7 @@ loc_825663A8:
 loc_825663AC:
 	// bl 0x821ebe28
 	ctx.lr = 0x825663B0;
-	sub_821EBE28(ctx, base);
+	rex_meCursorCamCalculatePos_821EBE28(ctx, base);
 loc_825663B0:
 	// cmplwi cr6,r29,0
 	ctx.cr6.compare<uint32_t>(ctx.r29.u32, 0, ctx.xer);
@@ -45006,7 +45006,7 @@ loc_8256647C:
 	PPC_STORE_U32(ctx.r1.u32 + 92, temp.u32);
 	// bl 0x821ebe28
 	ctx.lr = 0x82566494;
-	sub_821EBE28(ctx, base);
+	rex_meCursorCamCalculatePos_821EBE28(ctx, base);
 loc_82566494:
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
@@ -45251,7 +45251,7 @@ loc_825665F8:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x821ebe28
 	ctx.lr = 0x8256661C;
-	sub_821EBE28(ctx, base);
+	rex_meCursorCamCalculatePos_821EBE28(ctx, base);
 	// lfs f11,176(r30)
 	ctx.fpscr.disableFlushMode();
 	temp.u32 = PPC_LOAD_U32(ctx.r30.u32 + 176);
@@ -45746,7 +45746,7 @@ loc_825668E0:
 	PPC_STORE_U32(ctx.r1.u32 + 88, temp.u32);
 	// bl 0x821ebe28
 	ctx.lr = 0x82566930;
-	sub_821EBE28(ctx, base);
+	rex_meCursorCamCalculatePos_821EBE28(ctx, base);
 	// addi r1,r1,144
 	ctx.r1.s64 = ctx.r1.s64 + 144;
 	// lwz r12,-8(r1)
@@ -57204,7 +57204,7 @@ loc_8256B63C:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x821ebe28
 	ctx.lr = 0x8256B648;
-	sub_821EBE28(ctx, base);
+	rex_meCursorCamCalculatePos_821EBE28(ctx, base);
 	// mr r3,r30
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x821ea3d8
@@ -57250,7 +57250,7 @@ loc_8256B668:
 	PPC_STORE_U32(ctx.r30.u32 + 3280, temp.u32);
 	// bl 0x821ebe28
 	ctx.lr = 0x8256B690;
-	sub_821EBE28(ctx, base);
+	rex_meCursorCamCalculatePos_821EBE28(ctx, base);
 	// mr r3,r30
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x821ea3d8
@@ -57864,7 +57864,7 @@ PPC_FUNC_IMPL(__imp__sub_8256BA10) {
 	PPC_STORE_U32(ctx.r31.u32 + 3280, temp.u32);
 	// bl 0x821ebe28
 	ctx.lr = 0x8256BAB8;
-	sub_821EBE28(ctx, base);
+	rex_meCursorCamCalculatePos_821EBE28(ctx, base);
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x821ea3d8
@@ -67562,7 +67562,7 @@ loc_8256FB5C:
 	PPC_STORE_U32(ctx.r26.u32 + 8, temp.u32);
 	// bl 0x821ebe28
 	ctx.lr = 0x8256FB80;
-	sub_821EBE28(ctx, base);
+	rex_meCursorCamCalculatePos_821EBE28(ctx, base);
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x821ea3d8
@@ -68463,7 +68463,7 @@ PPC_FUNC_IMPL(__imp__sub_825700C0) {
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x821ebe28
 	ctx.lr = 0x82570118;
-	sub_821EBE28(ctx, base);
+	rex_meCursorCamCalculatePos_821EBE28(ctx, base);
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x821ea3d8

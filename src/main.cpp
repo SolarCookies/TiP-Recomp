@@ -12,12 +12,6 @@
 #include "tip_engine/Overlays/DebugInfo.h"
 #include "retip_app.h"
 
-#include <rex/ppc/types.h>
-#include <rex/logging.h>
-
-namespace renut::log {
-  inline const rex::LogCategoryId Input = rex::RegisterLogCategory("retip");
-}
 
 REX_DEFINE_APP(retip, RetipApp::Create)
 

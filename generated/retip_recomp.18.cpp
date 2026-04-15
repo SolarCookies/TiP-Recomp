@@ -30409,6 +30409,8 @@ loc_823EA6B0:
 	return;
 }
 
+extern void InRomanceMinigame_hook();
+
 __attribute__((alias("__imp__sub_823EA6B8"))) PPC_WEAK_FUNC(sub_823EA6B8);
 PPC_FUNC_IMPL(__imp__sub_823EA6B8) {
 	PPC_FUNC_PROLOGUE();
@@ -31866,6 +31868,7 @@ loc_823EB050:
 	PPC_STORE_U32(ctx.r11.u32 + 344, temp.u32);
 	// stw r31,340(r11)
 	PPC_STORE_U32(ctx.r11.u32 + 340, ctx.r31.u32);
+	InRomanceMinigame_hook();
 	// stw r30,328(r11)
 	PPC_STORE_U32(ctx.r11.u32 + 328, ctx.r30.u32);
 loc_823EB074:
@@ -34514,6 +34517,8 @@ loc_823EC268:
 	return;
 }
 
+extern void NotInRomanceMinigame_hook();
+
 __attribute__((alias("__imp__sub_823EC280"))) PPC_WEAK_FUNC(sub_823EC280);
 PPC_FUNC_IMPL(__imp__sub_823EC280) {
 	PPC_FUNC_PROLOGUE();
@@ -34647,6 +34652,7 @@ loc_823EC348:
 	PPC_STORE_U32(ctx.r11.u32 + 344, temp.u32);
 	// stw r27,340(r11)
 	PPC_STORE_U32(ctx.r11.u32 + 340, ctx.r27.u32);
+	NotInRomanceMinigame_hook();
 	// stw r27,328(r11)
 	PPC_STORE_U32(ctx.r11.u32 + 328, ctx.r27.u32);
 loc_823EC36C:

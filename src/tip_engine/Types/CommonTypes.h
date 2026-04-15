@@ -5342,3 +5342,46 @@ struct camMainWorkspace_s
   camMainWorkspace_s_unnamed_tag xuiViewports;
   uint8_t pad[5];
 };
+
+/* 17074 */
+struct scenegraphDrawStaticWorkspace_s
+{
+  mlV4 grassParams;
+  float shadowReceivingStrength;
+  float shadowKernelScale;
+  int isFurEnabled;
+  unsigned int isFurEnabledCount;
+  int drawMode;
+  int enableViewProjectionSetting;
+  float grayScaleRemappingValue;
+  float globalTessellationValue;
+  float globalTessellationScale;
+  float globalTessellationOffset;
+  int wireframeMode;
+  int fadeShadowBufferContribution;
+  float basis[4][4];
+  float invBasis[4][4];
+  float view[4][4];
+  float projection[4][4];
+  float projDrawModeMtx[4][4];
+  mlVec cameraPosition;
+  float viewMtxStack[16][4][4];
+  float projMtxStack[16][4][4];
+  unsigned int viewMtxStackSize;
+  unsigned int projMtxStackSize;
+  int cullMode;
+  int vertexBufferList; //offset
+  int indexBufferList; //offset
+  int vertexDeclarationList; //offset
+  int opaqueAlphaBlend;
+  int curShadowBuffer;
+  int furLayerJump;
+  mlVec furTranslationDelta;
+  int currentContextIndex;
+  int curRenderTarget;
+  int curDepthStencilSurface;
+  _D3DVIEWPORT9 curViewport;
+  int isUsingFloatingPointDepthBuffer;
+  int isStateValid;
+  mlV4 uvScaleOffset;
+};

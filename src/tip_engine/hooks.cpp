@@ -3,7 +3,10 @@
 #include <cstdint>
 #include <cmath>
 #include <cstring>
+#include <chrono>
 #include <rex/ui/imgui_dialog.h>
+#include "D3DTypes.h"
+#include "Log.h"
 #include "Overlays/Fps.h"
 #include "imgui.h"
 
@@ -18,19 +21,16 @@
 
 #include "rex_macros.h"
 #include <fstream>
+#include <mutex>
 #include "tip_engine/Types/CommonTypes.h"
+#include <SDL3/SDL.h>
+#include <thread>
+#include <atomic>
+#include "tip_engine/Globals.h"
+#include "tip_engine/CustomRenderer/engine/World/World.h"
+#include "tip_engine/CustomRenderer/engine/World/Camera.h"
+#include "tip_engine/CustomRenderer/engine/Components/Meshes/DynamicMeshComponent.h"
 
-inline float to_byteswapped_float(float f) {
-    uint32_t i = std::byteswap(*reinterpret_cast<uint32_t*>(&f));
-    return *reinterpret_cast<float*>(&i);
-}
-
-inline double to_byteswapped_double(double d) {
-    uint64_t i = std::byteswap(*reinterpret_cast<uint64_t*>(&d));
-    return *reinterpret_cast<double*>(&i);
-}
-
-REXCVAR_DEFINE_BOOL(show_fps_overlay, false, "_Trouble in Paradise", "Show FPS overlay");
 REXCVAR_DEFINE_BOOL(rgb_cursor, false, "_Trouble in Paradise", "Enables the Gursor");
 REXCVAR_DEFINE_BOOL(lock_fps, false, "_Trouble in Paradise", "Lock to 30 FPS");
 REXCVAR_DEFINE_BOOL(show_fps, false, "_Trouble in Paradise", "Show FPS Overlay");
@@ -41,30 +41,7 @@ REXCVAR_DEFINE_BOOL(UseAspectRatioFromConfig, false, "_Trouble in Paradise", "Us
 REXCVAR_DEFINE_DOUBLE(AspectRatio, 1.7777778f, "_Trouble in Paradise", "Aspect Ratio");
 
 REXCVAR_DEFINE_BOOL(SkipIntros, false, "_Trouble in Paradise", "Skip Intro Videos");
-
-//REXCVAR_DEFINE_BOOL(Freecam, false, "_Trouble in Paradise", "Enables the Freecam");
-//REXCVAR_DEFINE_DOUBLE(Freecam_X, 0.0f, "_Trouble in Paradise", "Freecam X Position");
-//REXCVAR_DEFINE_DOUBLE(Freecam_Y, 0.0f, "_Trouble in Paradise", "Freecam Y Position");
-//REXCVAR_DEFINE_DOUBLE(Freecam_Z, 0.0f, "_Trouble in Paradise", "Freecam Z Position");
-
-//REXCVAR_DEFINE_BOOL(Custom_Viewport, false, "_Trouble in Paradise", "Use custom viewport");
-//REXCVAR_DEFINE_INT32(Viewport_X, 0, "_Trouble in Paradise", "Custom viewport X");
-//REXCVAR_DEFINE_INT32(Viewport_Y, 0, "_Trouble in Paradise", "Custom viewport Y");
-//REXCVAR_DEFINE_INT32(Viewport_Width, 1920, "_Trouble in Paradise", "Custom viewport width");
-//REXCVAR_DEFINE_INT32(Viewport_Height, 1080, "_Trouble in Paradise", "Custom viewport height");
-
-
-//REXCVAR_DEFINE_COLOR(ambientColor, 0x000000FF, "_Trouble in Paradise", "Controls the ambient color of the scene");
-//REXCVAR_DEFINE_COLOR(ambientModelColor, 0x000000FF, "_Trouble in Paradise", "Controls the ambient color of the models in the scene");
-//REXCVAR_DEFINE_COLOR(directionalColor, 0xFFFFFFFF, "_Trouble in Paradise", "Controls the color of the directional light in the scene");
-//REXCVAR_DEFINE_COLOR(fogColor, 0x000000FF, "_Trouble in Paradise", "Controls the color of the fog in the scene");
-//REXCVAR_DEFINE_DOUBLE(fogOpacity, 1.0f, "_Trouble in Paradise", "Controls the opacity of the fog in the scene");
-//REXCVAR_DEFINE_DOUBLE(blueShiftScalar, 0.0f, "_Trouble in Paradise", "Controls the intensity of the blue shift effect in the scene");
-//REXCVAR_DEFINE_BOOL(cubeFogEnabled, false, "_Trouble in Paradise", "Enables cube fog in the scene");
-
-//REXCVAR_DEFINE_INT32(maxCPU, 60, "_Trouble in Paradise", "Limits the cpu FPS to the specified value (0 for unlimited)");
-//REXCVAR_DEFINE_INT32(maxGPU, 60, "_Trouble in Paradise", "Limits the gpu FPS to the specified value (0 for unlimited)");
-
+REXCVAR_DEFINE_BOOL(DisableFur, false, "_Trouble in Paradise", "Disables Fur Rendering");
 
 /*
 REX_PPC_EXTERN_IMPORT(camMainGetPos_821F07E0);
@@ -112,16 +89,6 @@ float * camMainGetPos_821F07E0_Hook(float *result){
 REX_PPC_HOOK(camMainGetPos_821F07E0);
 */
 
-REX_PPC_EXTERN_IMPORT(camMainGetAspectRatio_821F0730);
-float camMainGetAspectRatio_821F0730_Hook() {
-  float aspectRatio;
-  //if(REXCVAR_GET(UseAspectRatioFromConfig)) {
-  //  aspectRatio = static_cast<float>(REXCVAR_GET(AspectRatio));
-  //}else{
-    aspectRatio = rex::GuestToHostFunction<float>(__imp__rex_camMainGetAspectRatio_821F0730);
-  //}
-  return aspectRatio;
-} REX_PPC_HOOK(camMainGetAspectRatio_821F0730);
 
 //supportFrustumConstructClippingFrustum_8228BE08
 REX_PPC_EXTERN_IMPORT(supportFrustumConstructClippingFrustum_8228BE08);
@@ -171,84 +138,294 @@ void AspectRatio_hook(PPCRegister& r3) {
   if(REXCVAR_GET(UseAspectRatioFromConfig)) {
     //r3.u32 + 0x399C | *(float *)&r3+0x399C = AspectRatio;
     float customAR = static_cast<float>(REXCVAR_GET(AspectRatio));
-    float* aspectRatioPtr = reinterpret_cast<float*>(0x100000000ull + r3.u32 + 0x399C);
-    *aspectRatioPtr = to_byteswapped_float(customAR);
+    if(r3.u32){
+      float* aspectRatioPtr = reinterpret_cast<float*>(0x100000000ull + r3.u32 + 0x399C);
+      *aspectRatioPtr = to_byteswapped_float(customAR);
+    }
   }
 }
 
+#include <rex/input/input_system.h>
+#include <rex/ui/virtual_key.h>
+#include "Globals.h"
+
+using rex::ui::VirtualKey;
+
+bool processEvents()
+{
+  /*
+  if (!g_raw_input) return false;
+
+    float deltaX = 0, deltaY = 0;
+    auto [dx, dy] = g_raw_input->GetMouseDelta();
+    deltaX += dx;
+    deltaY += dy;
+
+    DebugLogFloat("MouseDeltaX", deltaX);
+    DebugLogFloat("MouseDeltaY", deltaY);
+    //Debug flt_8215C724
+    float* flt_8215C724 = reinterpret_cast<float*>(0x100000000ull + 0x8215C724);
+    DebugLogFloat("flt_8215C724", to_byteswapped_float(*flt_8215C724));
+
+    */
+    return true;
+}
+
+bool hasmouseinput = false;
+
+
+REX_PPC_EXTERN_IMPORT(render_D3DDevice_BeginIndexedVertices_82664640);
+int render_D3DDevice_BeginIndexedVertices_82664640_Hook(
+    uint32_t pDevice,
+    uint32_t PrimitiveType,
+    int32_t  BaseVertexIndex,
+    uint32_t NumVertices,
+    uint32_t IndexCount,
+    uint32_t IndexDataFormat,
+    uint32_t VertexStreamZeroStride,
+    uint32_t ppIndexDataint,
+    uint32_t ppVertexData,
+    uint32_t a10,
+    uint32_t a11,
+    uint32_t a12,
+    uint32_t a13,
+    uint32_t a14,
+    uint32_t a15,
+    uint32_t a16,
+    uint32_t a17,
+    uint32_t a18,
+    uint32_t a19,
+    uint32_t a20,
+    uint32_t a21,
+    uint32_t a22,
+    uint32_t a23,
+    uint32_t a24,
+    uint32_t a25,
+    uint32_t a26,
+    uint32_t a27,
+    uint32_t a28)
+{
+  /*
+  std::string primitiveStr1;
+  switch (PrimitiveType) {
+    case 1: primitiveStr1 = "POINTLIST"; break;
+    case 2: primitiveStr1 = "LINELIST"; break;
+    case 3: primitiveStr1 = "LINESTRIP"; break;
+    case 4: primitiveStr1 = "TRIANGLELIST"; break;
+    case 5: primitiveStr1 = "TRIANGLEFAN"; break;
+    case 6: primitiveStr1 = "TRIANGLESTRIP"; break;
+    case 8: primitiveStr1 = "RECTLIST"; break;
+    case 13: primitiveStr1 = "QUADLIST"; break;
+    default: primitiveStr1 = "UNKNOWN"; break;
+  }
+  primitiveStr1 += " NumVertices=" + std::to_string(NumVertices);
+  primitiveStr1 += " IndexCount=" + std::to_string(IndexCount);
+  primitiveStr1 += " BaseVertexIndex=" + std::to_string(BaseVertexIndex);
+  primitiveStr1 += " IndexDataFormat=" + std::to_string(IndexDataFormat);
+  primitiveStr1 += " VertexStreamZeroStride=" + std::to_string(VertexStreamZeroStride);
+  //primitiveStr1 += " ppIndexData=" + (ppIndexData ? ("0x" + std::to_string(*ppIndexData)) : "null");
+  //primitiveStr1 += " ppVertexData=" + (ppVertexData ? ("0x" + std::to_string(*ppVertexData)) : "null");
+*/
+
+    int result = rex::GuestToHostFunction<int>(
+        __imp__rex_render_D3DDevice_BeginIndexedVertices_82664640, pDevice, PrimitiveType, BaseVertexIndex, NumVertices,
+        IndexCount, IndexDataFormat, VertexStreamZeroStride, ppIndexDataint, ppVertexData, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28);
+
+    return result;
+}
+REX_PPC_HOOK(render_D3DDevice_BeginIndexedVertices_82664640);
+
+
+REX_PPC_EXTERN_IMPORT(render_D3DDevice_DrawIndexedVertices_82664FF0);
+void render_D3DDevice_DrawIndexedVertices_82664FF0_Hook(
+  int pDevice,
+  char PrimitiveType,
+  int BaseVertexIndex,
+  int NumVertices,
+  unsigned int IndexCount,
+  int IndexDataFormat,
+  unsigned int VertexStreamZeroStride,
+  unsigned int ppIndexData,
+  unsigned int ppVertexData,
+  int a10,
+  int a11,
+  int a12,
+  int a13,
+  int a14,
+  int a15,
+  int a16,
+  int a17,
+  int a18,
+  int a19,
+  int a20,
+  int a21,
+  int a22,
+  int a23,
+  int a24,
+  int a25,
+  int a26,
+  int a27,
+  int a28)
+  {
+    /*
+  std::string primitiveStr;
+  switch (PrimitiveType) {
+    case 1: primitiveStr = "POINTLIST"; break;
+    case 2: primitiveStr = "LINELIST"; break;
+    case 3: primitiveStr = "LINESTRIP"; break;
+    case 4: primitiveStr = "TRIANGLELIST"; break;
+    case 5: primitiveStr = "TRIANGLEFAN"; break;
+    case 6: primitiveStr = "TRIANGLESTRIP"; break;
+    case 8: primitiveStr = "RECTLIST"; break;
+    case 13: primitiveStr = "QUADLIST"; break;
+    default: primitiveStr = "UNKNOWN"; break;
+  }
+  primitiveStr += " NumVertices=" + std::to_string(NumVertices);
+  primitiveStr += " IndexCount=" + std::to_string(IndexCount);
+  primitiveStr += " BaseVertexIndex=" + std::to_string(BaseVertexIndex);
+  primitiveStr += " IndexDataFormat=" + std::to_string(IndexDataFormat);
+  primitiveStr += " VertexStreamZeroStride=" + std::to_string(VertexStreamZeroStride);
+  //primitiveStr += " ppIndexData=" + (ppIndexData ? ("0x" + std::to_string(*ppIndexData)) : "null");
+  //primitiveStr += " ppVertexData=" + (ppVertexData ? ("0x" + std::to_string(*ppVertexData)) : "null");
+
+
+  Log(LogLevel::Error, "DrawIndexedVertices called: " + primitiveStr);
+  */
+    rex::GuestToHostFunction<void>(
+        __imp__rex_render_D3DDevice_DrawIndexedVertices_82664FF0, pDevice, PrimitiveType, BaseVertexIndex, NumVertices,
+        IndexCount, IndexDataFormat, VertexStreamZeroStride, ppIndexData, ppVertexData, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28);
+}
+REX_PPC_HOOK(render_D3DDevice_DrawIndexedVertices_82664FF0);
+
+
+
+static auto lastFrameTime = std::chrono::high_resolution_clock::now();
 void CPU_fps_hook() {
   fpsManager.showFPS = REXCVAR_GET(show_fps);
-  auto fpshook = fpsManager.GetCreateCounter("CPU");
+  auto fpshook = fpsManager.GetCreateCounter("Tick");
   fpshook->Tick();
 }
 
 void GPU_fps_hook() {
-  auto fpshook = fpsManager.GetCreateCounter("GPU");
-  fpshook->Tick();
-}
+  //auto fpshook = fpsManager.GetCreateCounter("GPU");
+  //fpshook->Tick();
 
-/*
-PPC_EXTERN_IMPORT(__imp__rex_appMainTickPreDraw_821C91C0);
-PPC_EXTERN_IMPORT(__imp__rex_appMainDraw_821C8E78);
-void MainLoop_hook() {
-  using clock = std::chrono::steady_clock;
-
-  auto last_cpu_tick = clock::now();
-  auto last_gpu_draw = clock::now();
-  auto cpu_accumulator = clock::duration::zero();
-
-  int Run = 1;
-  while (Run) {
-    auto now = clock::now();
-
-    // CPU tick rate from cvar (0 = unlimited)
-    int32_t cpuLimit = REXCVAR_GET(maxCPU);
-    if (cpuLimit > 0) {
-      auto cpu_interval = std::chrono::duration_cast<clock::duration>(
-          std::chrono::duration<double>(1.0 / cpuLimit));
-      cpu_accumulator += now - last_cpu_tick;
-      last_cpu_tick = now;
-
-      while (cpu_accumulator >= cpu_interval) {
-        Run = rex ::GuestToHostFunction<int>(__imp__rex_appMainTickPreDraw_821C91C0);
-        TriggerReadCallback();
-        cpu_accumulator -= cpu_interval;
-        if (!Run) break;
-      }
-    } else {
-      Run = rex ::GuestToHostFunction<int>(__imp__rex_appMainTickPreDraw_821C91C0);
-      TriggerReadCallback();
+  scenegraphDrawStaticWorkspace_s* drawStaticWorkspace = reinterpret_cast<scenegraphDrawStaticWorkspace_s*>(0x100000000ull + 0x82BEBC78);
+  videoParams_s* videoParams = reinterpret_cast<videoParams_s*>(0x100000000ull + 0x83A56158);
+  if(REXCVAR_GET(DisableFur)) {
+    for (int i = 0; i < 6; i++) {
+      drawStaticWorkspace[i].isFurEnabled = 0;
+      drawStaticWorkspace[i].isFurEnabledCount = 0;
     }
-
-    // GPU draw rate from cvar (0 = unlimited)
-    if (Run) {
-      int32_t gpuLimit = REXCVAR_GET(maxGPU);
-      if (gpuLimit > 0) {
-        auto gpu_interval = std::chrono::duration_cast<clock::duration>(
-            std::chrono::duration<double>(1.0 / gpuLimit));
-        auto gpu_elapsed = now - last_gpu_draw;
-        if (gpu_elapsed >= gpu_interval) {
-          rex ::GuestToHostFunction<void>(__imp__rex_appMainDraw_821C8E78);
-          last_gpu_draw = now;
-        }
-      } else {
-        rex ::GuestToHostFunction<void>(__imp__rex_appMainDraw_821C8E78);
-      }
-    }
-
-    if (cpuLimit > 0 || REXCVAR_GET(maxGPU) > 0) {
-      std::this_thread::yield();
+  } else {
+    for (int i = 0; i < 6; i++) {
+      drawStaticWorkspace[i].isFurEnabled = 1;
+      drawStaticWorkspace[i].isFurEnabledCount = 1;
     }
   }
+
+  if (!windowPtr || !g_world || !g_camera) return;
+
+  auto currentTime = std::chrono::high_resolution_clock::now();
+  std::chrono::duration<float> elapsed = currentTime - lastFrameTime;
+  float deltaTime = elapsed.count();
+  lastFrameTime = currentTime;
+
+  glfwPollEvents();
+  if(glfwWindowShouldClose(windowPtr->getWindow())) {
+    glfwMakeContextCurrent(nullptr);
+    exit(0);
+  }
+
+  if (windowPtr->isOverlay() && g_mainWindowHandle) {
+    windowPtr->SyncToOwnerWindow(g_mainWindowHandle);
+  }
+
+  static bool gladReloaded = false;
+  glfwMakeContextCurrent(windowPtr->getWindow());
+  if (!gladReloaded) {
+    gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+    glEnable(GL_DEPTH_TEST);
+    gladReloaded = true;
+  }
+
+  int fbWidth, fbHeight;
+  glfwGetFramebufferSize(windowPtr->getWindow(), &fbWidth, &fbHeight);
+  if (fbWidth <= 0 || fbHeight <= 0) {
+    glfwMakeContextCurrent(nullptr);
+    return;
+  }
+  g_camera->width = static_cast<float>(fbWidth);
+  g_camera->height = static_cast<float>(fbHeight);
+
+  glBindFramebuffer(GL_FRAMEBUFFER, 0);
+  glViewport(0, 0, fbWidth, fbHeight);
+  glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+  g_camera->Inputs(windowPtr->getWindow());
+  g_camera->updateMatrix(45.0f, 0.01f, 100000.0f);
+
+  {
+    camMainWorkspace_s* camWorkspace = reinterpret_cast<camMainWorkspace_s*>(0x100000000ull + 0x82C34D48);
+
+    glm::mat4 gameView(1.0f);
+    glm::mat4 gameProj(1.0f);
+    glm::mat4 gameBasis(1.0f);
+    for (int row = 0; row < 4; row++) {
+      for (int col = 0; col < 4; col++) {
+        gameView[row][col] = to_byteswapped_float(drawStaticWorkspace[0].view[row][col]);
+        gameProj[row][col] = to_byteswapped_float(drawStaticWorkspace[0].projection[row][col]);
+        gameBasis[row][col] = to_byteswapped_float(drawStaticWorkspace[0].basis[row][col]);
+      }
+    }
+
+    g_camera->Position.x = to_byteswapped_float(camWorkspace->visCamToWorldMtx[3][0]);
+    g_camera->Position.y = to_byteswapped_float(camWorkspace->visCamToWorldMtx[3][1]);
+    g_camera->Position.z = to_byteswapped_float(camWorkspace->visCamToWorldMtx[3][2]);
+
+    DebugLogFloat("CameraPosX", g_camera->Position.x);
+    DebugLogFloat("CameraPosY", g_camera->Position.y);
+    DebugLogFloat("CameraPosZ", g_camera->Position.z);
+
+    g_camera->cameraMatrix = gameProj * gameView;
+  }
+
+  g_world->TickWorld(deltaTime);
+  g_world->Render(windowPtr.get(), g_camera.get());
+
+
+  windowPtr->EndFrame();
+
+  glfwMakeContextCurrent(nullptr);
 }
-*/
 
 void vsync_hook(PPCRegister& r10) {
   if(!REXCVAR_GET(lock_fps)) {
     r10.u32 = 0; // Force vsync off
+    //REXCVAR_SET(vsync, false);
+  }else{
+    REXCVAR_SET(vsync, true);
   }
-
+  //d3d12_submit_on_primary_buffer_end
+  //REXCVAR_SET(d3d12_submit_on_primary_buffer_end, false);
+  //REXCVAR_SET(scribble_heap, true);
   
+}
+
+inline bool VSyncBefore;
+inline bool lockFPSBefore;
+
+void InRomanceMinigame_hook(){
+  VSyncBefore = REXCVAR_GET(vsync);
+  lockFPSBefore = REXCVAR_GET(lock_fps);
+  REXCVAR_SET(vsync, true);
+  REXCVAR_SET(lock_fps, true);
+}
+
+void NotInRomanceMinigame_hook(){
+  REXCVAR_SET(vsync, VSyncBefore);
+  REXCVAR_SET(lock_fps, lockFPSBefore);
 }
 
 bool Space1_hook() {

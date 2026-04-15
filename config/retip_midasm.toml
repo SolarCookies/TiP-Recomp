@@ -10,12 +10,6 @@ name = "GPU_fps_hook"
 registers = []
 after_instruction = true
 
-#[[midasm_hook]]
-#address = 0x821C4758
-#name = "MainLoop_hook"
-#registers = []
-#after_instruction = true
-
 [[midasm_hook]]
 address = 0x8229B71C
 name = "vsync_hook"
@@ -159,3 +153,16 @@ registers = []
 after_instruction = true
 jump_address_on_true = 0x821C45B8
 
+#823EC364 (Not In Romance Minigame)
+[[midasm_hook]]
+address = 0x823EC364
+name = "NotInRomanceMinigame_hook"
+registers = []
+after_instruction = true
+
+#823EB06C (In Romance Minigame)
+[[midasm_hook]]
+address = 0x823EB06C
+name = "InRomanceMinigame_hook"
+registers = []
+after_instruction = true
