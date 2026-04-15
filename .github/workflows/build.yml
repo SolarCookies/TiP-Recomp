@@ -107,9 +107,6 @@ jobs:
           shopt -s globstar
           gh release create "${{ github.ref_name }}" \
             --title "ReTiP ${{ github.ref_name }}" \
-            --notes "# Download and install through the https://goopie.xyz Launcher
-
-## Changelog Post:
-https://www.patreon.com/SolarCookies/" \
+            --notes $'# Download and install through the https://goopie.xyz Launcher\n\n## Changelog Post:\nhttps://www.patreon.com/SolarCookies/' \
             artifacts/**/* \
             retip.toml
