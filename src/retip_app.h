@@ -45,12 +45,12 @@ class RetipApp : public rex::ReXApp {
   // void OnPreSetup(rex::RuntimeConfig& config) override {}
    void OnPostSetup() override {
         ImPlot::CreateContext();
-        g_raw_input = runtime()->input_system()->GetRawInput();
+        //g_raw_input = runtime()->input_system()->GetRawInput();
         timeBeginPeriod(1);
 
         if(REXCVAR_GET(SolarRendererPreview)) {
 
-            windowPtr = std::make_unique<VinceWindow>(1280, 720, "TiP Recomp", REXCVAR_GET(OverlaySolarRenderer));
+            windowPtr = std::make_unique<VinceWindow>(1280, 720, "Solar Renderer", REXCVAR_GET(OverlaySolarRenderer));
             windowPtr->SetupImGuiIO();
             windowPtr->InitFrameBuffer();
 
@@ -86,7 +86,6 @@ class RetipApp : public rex::ReXApp {
    }
   // void OnConfigurePaths(rex::PathConfig& paths) override {}
   void OnCreateDialogs(rex::ui::ImGuiDrawer* drawer) override {
-        // Capture main window handle now that the window exists
         if (windowPtr && windowPtr->isOverlay() && window()) {
             g_mainWindowHandle = window()->GetNativeWindowHandle();
         }

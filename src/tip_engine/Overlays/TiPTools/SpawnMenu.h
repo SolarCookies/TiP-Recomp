@@ -4,14 +4,14 @@ class SpawnMenuPage : public TipToolsPage {
 public:
     SpawnMenuPage() {
         name = "Spawn Menu";
-        description = "Spawn various entities in the world.";
+        description = "Spawn Pinata and Items in the world.";
     }
 
     void OnOpen() override {
     }
 
     void OnDraw() override {
-        ImGui::Text("Spawn Menu Content Goes Here");
+        ImGui::Text("Spawn Menu Will Be In Next Update");
     }
 
     void OnClose() override {

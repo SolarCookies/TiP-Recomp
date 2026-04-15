@@ -43,30 +43,6 @@ REXCVAR_DEFINE_DOUBLE(AspectRatio, 1.7777778f, "_Trouble in Paradise", "Aspect R
 REXCVAR_DEFINE_BOOL(SkipIntros, false, "_Trouble in Paradise", "Skip Intro Videos");
 REXCVAR_DEFINE_BOOL(DisableFur, false, "_Trouble in Paradise", "Disables Fur Rendering");
 
-//REXCVAR_DEFINE_BOOL(Freecam, false, "_Trouble in Paradise", "Enables the Freecam");
-//REXCVAR_DEFINE_DOUBLE(Freecam_X, 0.0f, "_Trouble in Paradise", "Freecam X Position");
-//REXCVAR_DEFINE_DOUBLE(Freecam_Y, 0.0f, "_Trouble in Paradise", "Freecam Y Position");
-//REXCVAR_DEFINE_DOUBLE(Freecam_Z, 0.0f, "_Trouble in Paradise", "Freecam Z Position");
-
-//REXCVAR_DEFINE_BOOL(Custom_Viewport, false, "_Trouble in Paradise", "Use custom viewport");
-//REXCVAR_DEFINE_INT32(Viewport_X, 0, "_Trouble in Paradise", "Custom viewport X");
-//REXCVAR_DEFINE_INT32(Viewport_Y, 0, "_Trouble in Paradise", "Custom viewport Y");
-//REXCVAR_DEFINE_INT32(Viewport_Width, 1920, "_Trouble in Paradise", "Custom viewport width");
-//REXCVAR_DEFINE_INT32(Viewport_Height, 1080, "_Trouble in Paradise", "Custom viewport height");
-
-
-//REXCVAR_DEFINE_COLOR(ambientColor, 0x000000FF, "_Trouble in Paradise", "Controls the ambient color of the scene");
-//REXCVAR_DEFINE_COLOR(ambientModelColor, 0x000000FF, "_Trouble in Paradise", "Controls the ambient color of the models in the scene");
-//REXCVAR_DEFINE_COLOR(directionalColor, 0xFFFFFFFF, "_Trouble in Paradise", "Controls the color of the directional light in the scene");
-//REXCVAR_DEFINE_COLOR(fogColor, 0x000000FF, "_Trouble in Paradise", "Controls the color of the fog in the scene");
-//REXCVAR_DEFINE_DOUBLE(fogOpacity, 1.0f, "_Trouble in Paradise", "Controls the opacity of the fog in the scene");
-//REXCVAR_DEFINE_DOUBLE(blueShiftScalar, 0.0f, "_Trouble in Paradise", "Controls the intensity of the blue shift effect in the scene");
-//REXCVAR_DEFINE_BOOL(cubeFogEnabled, false, "_Trouble in Paradise", "Enables cube fog in the scene");
-
-//REXCVAR_DEFINE_INT32(maxCPU, 60, "_Trouble in Paradise", "Limits the cpu FPS to the specified value (0 for unlimited)");
-//REXCVAR_DEFINE_INT32(maxGPU, 60, "_Trouble in Paradise", "Limits the gpu FPS to the specified value (0 for unlimited)");
-
-
 /*
 REX_PPC_EXTERN_IMPORT(camMainGetPos_821F07E0);
 
@@ -177,6 +153,7 @@ using rex::ui::VirtualKey;
 
 bool processEvents()
 {
+  /*
   if (!g_raw_input) return false;
 
     float deltaX = 0, deltaY = 0;
@@ -190,7 +167,7 @@ bool processEvents()
     float* flt_8215C724 = reinterpret_cast<float*>(0x100000000ull + 0x8215C724);
     DebugLogFloat("flt_8215C724", to_byteswapped_float(*flt_8215C724));
 
-    // Use deltaX and deltaY here for your camera/input logic
+    */
     return true;
 }
 
@@ -250,8 +227,6 @@ int render_D3DDevice_BeginIndexedVertices_82664640_Hook(
   //primitiveStr1 += " ppVertexData=" + (ppVertexData ? ("0x" + std::to_string(*ppVertexData)) : "null");
 */
 
-  //Log(LogLevel::Error, "BeginIndexedVertices called: " + primitiveStr1);
-    
     int result = rex::GuestToHostFunction<int>(
         __imp__rex_render_D3DDevice_BeginIndexedVertices_82664640, pDevice, PrimitiveType, BaseVertexIndex, NumVertices,
         IndexCount, IndexDataFormat, VertexStreamZeroStride, ppIndexDataint, ppVertexData, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28);
@@ -316,7 +291,6 @@ void render_D3DDevice_DrawIndexedVertices_82664FF0_Hook(
 
   Log(LogLevel::Error, "DrawIndexedVertices called: " + primitiveStr);
   */
-    // Call the original
     rex::GuestToHostFunction<void>(
         __imp__rex_render_D3DDevice_DrawIndexedVertices_82664FF0, pDevice, PrimitiveType, BaseVertexIndex, NumVertices,
         IndexCount, IndexDataFormat, VertexStreamZeroStride, ppIndexData, ppVertexData, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28);
@@ -336,9 +310,7 @@ void GPU_fps_hook() {
   //auto fpshook = fpsManager.GetCreateCounter("GPU");
   //fpshook->Tick();
 
-  //82BEBC78 # scenegraphDrawStaticWorkspace_s Me_5[6]
   scenegraphDrawStaticWorkspace_s* drawStaticWorkspace = reinterpret_cast<scenegraphDrawStaticWorkspace_s*>(0x100000000ull + 0x82BEBC78);
-  //83A56158 videoParams_s
   videoParams_s* videoParams = reinterpret_cast<videoParams_s*>(0x100000000ull + 0x83A56158);
   if(REXCVAR_GET(DisableFur)) {
     for (int i = 0; i < 6; i++) {
@@ -354,7 +326,6 @@ void GPU_fps_hook() {
 
   if (!windowPtr || !g_world || !g_camera) return;
 
-  // Delta time
   auto currentTime = std::chrono::high_resolution_clock::now();
   std::chrono::duration<float> elapsed = currentTime - lastFrameTime;
   float deltaTime = elapsed.count();
@@ -366,12 +337,10 @@ void GPU_fps_hook() {
     exit(0);
   }
 
-  // Sync overlay window position/size to the main rexglue window
   if (windowPtr->isOverlay() && g_mainWindowHandle) {
     windowPtr->SyncToOwnerWindow(g_mainWindowHandle);
   }
 
-  // Switch to the GLFW window's OpenGL context
   static bool gladReloaded = false;
   glfwMakeContextCurrent(windowPtr->getWindow());
   if (!gladReloaded) {
@@ -380,7 +349,6 @@ void GPU_fps_hook() {
     gladReloaded = true;
   }
 
-  // Update viewport to match window size
   int fbWidth, fbHeight;
   glfwGetFramebufferSize(windowPtr->getWindow(), &fbWidth, &fbHeight);
   if (fbWidth <= 0 || fbHeight <= 0) {
@@ -390,23 +358,17 @@ void GPU_fps_hook() {
   g_camera->width = static_cast<float>(fbWidth);
   g_camera->height = static_cast<float>(fbHeight);
 
-  // Render directly to the default framebuffer (window)
   glBindFramebuffer(GL_FRAMEBUFFER, 0);
   glViewport(0, 0, fbWidth, fbHeight);
-  // Alpha=1.0 makes rendered content opaque over the acrylic background
   glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
   g_camera->Inputs(windowPtr->getWindow());
   g_camera->updateMatrix(45.0f, 0.01f, 100000.0f);
 
-  // Sync game camera data into custom renderer camera
   {
-    // Try camMainWorkspace_s which has visCamToWorldMtx and virtCam with pos
     camMainWorkspace_s* camWorkspace = reinterpret_cast<camMainWorkspace_s*>(0x100000000ull + 0x82C34D48);
 
-    // Extract view, projection, and basis matrices (big-endian, already column-major)
-    // The game's ml math library stores matrices in column-major order matching OpenGL/GLM
     glm::mat4 gameView(1.0f);
     glm::mat4 gameProj(1.0f);
     glm::mat4 gameBasis(1.0f);
@@ -418,7 +380,6 @@ void GPU_fps_hook() {
       }
     }
 
-    // Try extracting camera position from visCamToWorldMtx (last row = translation in D3D row-major)
     g_camera->Position.x = to_byteswapped_float(camWorkspace->visCamToWorldMtx[3][0]);
     g_camera->Position.y = to_byteswapped_float(camWorkspace->visCamToWorldMtx[3][1]);
     g_camera->Position.z = to_byteswapped_float(camWorkspace->visCamToWorldMtx[3][2]);
@@ -427,8 +388,6 @@ void GPU_fps_hook() {
     DebugLogFloat("CameraPosY", g_camera->Position.y);
     DebugLogFloat("CameraPosZ", g_camera->Position.z);
 
-    // The game projection already uses OpenGL convention (P_23 = -1.0)
-    // No D3D-to-GL depth conversion needed
     g_camera->cameraMatrix = gameProj * gameView;
   }
 
@@ -438,7 +397,6 @@ void GPU_fps_hook() {
 
   windowPtr->EndFrame();
 
-  // Release context so it doesn't block other threads
   glfwMakeContextCurrent(nullptr);
 }
 

@@ -5,7 +5,6 @@
 #include "tip_engine/CustomRenderer/Window.h"
 #include "tip_engine/CustomRenderer/engine/World/Camera.h"
 
-// Forward declare World to avoid pulling in Actor/Component chain
 class World;
 
 inline float to_byteswapped_float(float f) {
