@@ -1,13 +1,15 @@
 # Auto-generated cvar configuration
-show_fps = true
-SkipIntros = true
-DEBUGYAW = 4
+SolarRendererPreview = false
+SkipIntros = false
 enable_console = false
 log_level = "off"
 scribble_heap = true
+fullscreen=true
 vsync = false
 readback_memexport = false
 readback_memexport_fast = false
+d3d12_readback_resolve = false
 d3d12_submit_on_primary_buffer_end = false
+swap_post_effect = "fxaa_extreme"
 gpu_allow_invalid_fetch_constants = true
 present_letterbox = false

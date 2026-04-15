@@ -64290,8 +64290,8 @@ loc_826581FC:
 	return;
 }
 
-__attribute__((alias("__imp__sub_82658228"))) PPC_WEAK_FUNC(sub_82658228);
-PPC_FUNC_IMPL(__imp__sub_82658228) {
+__attribute__((alias("__imp__rex_render_D3DDevice_SetIndices_82658228"))) PPC_WEAK_FUNC(rex_render_D3DDevice_SetIndices_82658228);
+PPC_FUNC_IMPL(__imp__rex_render_D3DDevice_SetIndices_82658228) {
 	PPC_FUNC_PROLOGUE();
 	uint32_t ea{};
 	// mflr r12
@@ -66466,7 +66466,7 @@ loc_82659094:
 	PPC_STORE_U64(ctx.r31.u32 + 16, ctx.r11.u64);
 	// bl 0x82658228
 	ctx.lr = 0x826590CC;
-	sub_82658228(ctx, base);
+	rex_render_D3DDevice_SetIndices_82658228(ctx, base);
 	// li r11,1
 	ctx.r11.s64 = 1;
 	// li r30,0

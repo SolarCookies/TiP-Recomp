@@ -9357,7 +9357,7 @@ loc_82202CAC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82658228
 	ctx.lr = 0x82202CF4;
-	sub_82658228(ctx, base);
+	rex_render_D3DDevice_SetIndices_82658228(ctx, base);
 	// li r30,0
 	ctx.r30.s64 = 0;
 	// addi r29,r31,1164

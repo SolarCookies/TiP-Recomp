@@ -18,8 +18,11 @@ inline double to_byteswapped_double(double d) {
     return *reinterpret_cast<double*>(&i);
 }
 
-inline rex::input::IRawInput* g_raw_input = nullptr;
+//inline rex::input::IRawInput* g_raw_input = nullptr;
 
 inline std::unique_ptr<VinceWindow> windowPtr = nullptr;
 inline World* g_world = nullptr;
 inline std::unique_ptr<class Camera> g_camera = nullptr;
+
+// Main rexglue window handle for overlay tracking
+inline void* g_mainWindowHandle = nullptr;

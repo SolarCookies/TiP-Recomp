@@ -16,10 +16,11 @@
 
 class VinceWindow {
 	public:
-		VinceWindow(int width, int height, const char* title)
+		VinceWindow(int width, int height, const char* title, bool overlayMode = false)
 			: width(width),
 			height(height),
 			title(title),
+			overlay(overlayMode),
 			window(nullptr, glfwDestroyWindow) // Properly initialize unique_ptr with deleter
 		{
 			init();
@@ -28,6 +29,8 @@ class VinceWindow {
 	void SetupImGuiIO();
 	void InitFrameBuffer();
 	void EnableBlur();
+	void SyncToOwnerWindow(void* ownerHwnd);
+	bool isOverlay() const { return overlay; }
 
 	void NewFrame() {
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
@@ -48,6 +51,7 @@ class VinceWindow {
 	const char* glsl_version;
 
 	int width, height;
+	bool overlay;
 private:
 		const char* title;
 		std::unique_ptr<GLFWwindow, void(*)(GLFWwindow*)> window; // Use custom deleter type

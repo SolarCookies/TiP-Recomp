@@ -54026,14 +54026,14 @@ PPC_FUNC_IMPL(__imp__sub_822709F8) {
 	ctx.r3.u64 = PPC_LOAD_U16(ctx.r30.u32 + 18);
 	// bl 0x82274610
 	ctx.lr = 0x82270A48;
-	sub_82274610(ctx, base);
+	rex_render_scenegraphDrawGetIndexBuffer_82274610(ctx, base);
 	// mr r4,r3
 	ctx.r4.u64 = ctx.r3.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82658228
 	ctx.lr = 0x82270A54;
-	sub_82658228(ctx, base);
+	rex_render_D3DDevice_SetIndices_82658228(ctx, base);
 loc_82270A54:
 	// lis r10,-32234
 	ctx.r10.s64 = -2112487424;
@@ -54192,14 +54192,14 @@ loc_82270B64:
 	ctx.r3.u64 = PPC_LOAD_U16(ctx.r30.u32 + 18);
 	// bl 0x82274610
 	ctx.lr = 0x82270B6C;
-	sub_82274610(ctx, base);
+	rex_render_scenegraphDrawGetIndexBuffer_82274610(ctx, base);
 	// mr r4,r3
 	ctx.r4.u64 = ctx.r3.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82658228
 	ctx.lr = 0x82270B78;
-	sub_82658228(ctx, base);
+	rex_render_D3DDevice_SetIndices_82658228(ctx, base);
 	// cmpwi cr6,r29,0
 	ctx.cr6.compare<int32_t>(ctx.r29.s32, 0, ctx.xer);
 	// beq cr6,0x82270e08
@@ -54241,7 +54241,7 @@ loc_82270BA0:
 	ctx.r7.u64 = ctx.r10.u64 + ctx.r11.u64;
 	// bl 0x82664ff0
 	ctx.lr = 0x82270BC8;
-	sub_82664FF0(ctx, base);
+	rex_render_D3DDevice_DrawIndexedVertices_82664FF0(ctx, base);
 	// b 0x82270e08
 	goto loc_82270E08;
 loc_82270BCC:
@@ -54289,14 +54289,14 @@ loc_82270BEC:
 	ctx.r3.u64 = PPC_LOAD_U16(ctx.r10.u32 + ctx.r30.u32);
 	// bl 0x82274610
 	ctx.lr = 0x82270C20;
-	sub_82274610(ctx, base);
+	rex_render_scenegraphDrawGetIndexBuffer_82274610(ctx, base);
 	// mr r4,r3
 	ctx.r4.u64 = ctx.r3.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82658228
 	ctx.lr = 0x82270C2C;
-	sub_82658228(ctx, base);
+	rex_render_D3DDevice_SetIndices_82658228(ctx, base);
 	// lwz r9,36(r24)
 	ctx.r9.u64 = PPC_LOAD_U32(ctx.r24.u32 + 36);
 	// cmpwi cr6,r9,0
@@ -54336,7 +54336,7 @@ loc_82270BEC:
 	ctx.r7.u64 = ctx.r11.u64 + ctx.r10.u64;
 	// bl 0x82664ff0
 	ctx.lr = 0x82270C78;
-	sub_82664FF0(ctx, base);
+	rex_render_D3DDevice_DrawIndexedVertices_82664FF0(ctx, base);
 	// b 0x82270e08
 	goto loc_82270E08;
 loc_82270C7C:
@@ -54369,7 +54369,7 @@ loc_82270C7C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82664ff0
 	ctx.lr = 0x82270CB4;
-	sub_82664FF0(ctx, base);
+	rex_render_D3DDevice_DrawIndexedVertices_82664FF0(ctx, base);
 	// b 0x82270e08
 	goto loc_82270E08;
 loc_82270CB8:
@@ -54782,14 +54782,14 @@ loc_82270F38:
 	ctx.r3.u64 = PPC_LOAD_U16(ctx.r30.u32 + 18);
 	// bl 0x82274610
 	ctx.lr = 0x82270F94;
-	sub_82274610(ctx, base);
+	rex_render_scenegraphDrawGetIndexBuffer_82274610(ctx, base);
 	// mr r4,r3
 	ctx.r4.u64 = ctx.r3.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82658228
 	ctx.lr = 0x82270FA0;
-	sub_82658228(ctx, base);
+	rex_render_D3DDevice_SetIndices_82658228(ctx, base);
 	// lwz r11,36(r24)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r24.u32 + 36);
 	// lwz r3,20160(r22)
@@ -54854,7 +54854,7 @@ loc_82270FF0:
 	ctx.r7.u64 = ctx.r10.u64 + ctx.r11.u64;
 	// bl 0x82664ff0
 	ctx.lr = 0x82271018;
-	sub_82664FF0(ctx, base);
+	rex_render_D3DDevice_DrawIndexedVertices_82664FF0(ctx, base);
 	// b 0x8227127c
 	goto loc_8227127C;
 loc_8227101C:
@@ -54922,14 +54922,14 @@ loc_82271060:
 	ctx.r3.u64 = PPC_LOAD_U16(ctx.r10.u32 + ctx.r30.u32);
 	// bl 0x82274610
 	ctx.lr = 0x82271094;
-	sub_82274610(ctx, base);
+	rex_render_scenegraphDrawGetIndexBuffer_82274610(ctx, base);
 	// mr r4,r3
 	ctx.r4.u64 = ctx.r3.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82658228
 	ctx.lr = 0x822710A0;
-	sub_82658228(ctx, base);
+	rex_render_D3DDevice_SetIndices_82658228(ctx, base);
 	// lwz r9,36(r24)
 	ctx.r9.u64 = PPC_LOAD_U32(ctx.r24.u32 + 36);
 	// cmpwi cr6,r9,0
@@ -54969,7 +54969,7 @@ loc_82271060:
 	ctx.r7.u64 = ctx.r11.u64 + ctx.r10.u64;
 	// bl 0x82664ff0
 	ctx.lr = 0x822710EC;
-	sub_82664FF0(ctx, base);
+	rex_render_D3DDevice_DrawIndexedVertices_82664FF0(ctx, base);
 	// b 0x8227127c
 	goto loc_8227127C;
 loc_822710F0:
@@ -55002,7 +55002,7 @@ loc_822710F0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82664ff0
 	ctx.lr = 0x82271128;
-	sub_82664FF0(ctx, base);
+	rex_render_D3DDevice_DrawIndexedVertices_82664FF0(ctx, base);
 	// b 0x8227127c
 	goto loc_8227127C;
 loc_8227112C:
@@ -55413,14 +55413,14 @@ loc_822713C4:
 	ctx.r3.u64 = PPC_LOAD_U16(ctx.r31.u32 + 18);
 	// bl 0x82274610
 	ctx.lr = 0x822713E8;
-	sub_82274610(ctx, base);
+	rex_render_scenegraphDrawGetIndexBuffer_82274610(ctx, base);
 	// mr r4,r3
 	ctx.r4.u64 = ctx.r3.u64;
 	// mr r3,r30
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82658228
 	ctx.lr = 0x822713F4;
-	sub_82658228(ctx, base);
+	rex_render_D3DDevice_SetIndices_82658228(ctx, base);
 	// lwz r11,36(r26)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r26.u32 + 36);
 	// cmpwi cr6,r11,0
@@ -55499,7 +55499,7 @@ loc_82271458:
 	ctx.r7.u64 = ctx.r10.u64 + ctx.r11.u64;
 	// bl 0x82664ff0
 	ctx.lr = 0x82271488;
-	sub_82664FF0(ctx, base);
+	rex_render_D3DDevice_DrawIndexedVertices_82664FF0(ctx, base);
 	// b 0x82271780
 	goto loc_82271780;
 loc_8227148C:
@@ -55591,14 +55591,14 @@ loc_822714FC:
 	ctx.r3.u64 = PPC_LOAD_U16(ctx.r10.u32 + ctx.r31.u32);
 	// bl 0x82274610
 	ctx.lr = 0x82271530;
-	sub_82274610(ctx, base);
+	rex_render_scenegraphDrawGetIndexBuffer_82274610(ctx, base);
 	// mr r4,r3
 	ctx.r4.u64 = ctx.r3.u64;
 	// mr r3,r30
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82658228
 	ctx.lr = 0x8227153C;
-	sub_82658228(ctx, base);
+	rex_render_D3DDevice_SetIndices_82658228(ctx, base);
 	// lis r11,-31835
 	ctx.r11.s64 = -2086338560;
 	// lwz r9,36(r26)
@@ -55646,7 +55646,7 @@ loc_822714FC:
 	ctx.r7.u64 = ctx.r11.u64 + ctx.r10.u64;
 	// bl 0x82664ff0
 	ctx.lr = 0x82271598;
-	sub_82664FF0(ctx, base);
+	rex_render_D3DDevice_DrawIndexedVertices_82664FF0(ctx, base);
 	// b 0x82271780
 	goto loc_82271780;
 loc_8227159C:
@@ -55687,7 +55687,7 @@ loc_8227159C:
 	ctx.r7.u64 = ctx.r11.u64 + ctx.r10.u64;
 	// bl 0x82664ff0
 	ctx.lr = 0x822715E4;
-	sub_82664FF0(ctx, base);
+	rex_render_D3DDevice_DrawIndexedVertices_82664FF0(ctx, base);
 	// b 0x82271780
 	goto loc_82271780;
 loc_822715E8:
@@ -62819,8 +62819,8 @@ PPC_FUNC_IMPL(__imp__sub_822745C0) {
 	return;
 }
 
-__attribute__((alias("__imp__sub_82274610"))) PPC_WEAK_FUNC(sub_82274610);
-PPC_FUNC_IMPL(__imp__sub_82274610) {
+__attribute__((alias("__imp__rex_render_scenegraphDrawGetIndexBuffer_82274610"))) PPC_WEAK_FUNC(rex_render_scenegraphDrawGetIndexBuffer_82274610);
+PPC_FUNC_IMPL(__imp__rex_render_scenegraphDrawGetIndexBuffer_82274610) {
 	PPC_FUNC_PROLOGUE();
 	uint32_t ea{};
 	// mflr r12
@@ -64661,14 +64661,14 @@ loc_822751E0:
 	ctx.r3.u64 = PPC_LOAD_U16(ctx.r31.u32 + 18);
 	// bl 0x82274610
 	ctx.lr = 0x82275204;
-	sub_82274610(ctx, base);
+	rex_render_scenegraphDrawGetIndexBuffer_82274610(ctx, base);
 	// mr r4,r3
 	ctx.r4.u64 = ctx.r3.u64;
 	// mr r3,r30
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82658228
 	ctx.lr = 0x82275210;
-	sub_82658228(ctx, base);
+	rex_render_D3DDevice_SetIndices_82658228(ctx, base);
 	// lwz r11,36(r23)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r23.u32 + 36);
 	// lwz r3,0(r20)
@@ -64737,7 +64737,7 @@ loc_82275268:
 	ctx.r7.u64 = ctx.r10.u64 + ctx.r11.u64;
 	// bl 0x82664ff0
 	ctx.lr = 0x82275290;
-	sub_82664FF0(ctx, base);
+	rex_render_D3DDevice_DrawIndexedVertices_82664FF0(ctx, base);
 	// b 0x82275528
 	goto loc_82275528;
 loc_82275294:
@@ -64825,14 +64825,14 @@ loc_822752FC:
 	ctx.r3.u64 = PPC_LOAD_U16(ctx.r10.u32 + ctx.r31.u32);
 	// bl 0x82274610
 	ctx.lr = 0x82275330;
-	sub_82274610(ctx, base);
+	rex_render_scenegraphDrawGetIndexBuffer_82274610(ctx, base);
 	// mr r4,r3
 	ctx.r4.u64 = ctx.r3.u64;
 	// mr r3,r30
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82658228
 	ctx.lr = 0x8227533C;
-	sub_82658228(ctx, base);
+	rex_render_D3DDevice_SetIndices_82658228(ctx, base);
 	// lwz r9,36(r23)
 	ctx.r9.u64 = PPC_LOAD_U32(ctx.r23.u32 + 36);
 	// lwz r3,0(r20)
@@ -64872,7 +64872,7 @@ loc_822752FC:
 	ctx.r7.u64 = ctx.r11.u64 + ctx.r10.u64;
 	// bl 0x82664ff0
 	ctx.lr = 0x82275388;
-	sub_82664FF0(ctx, base);
+	rex_render_D3DDevice_DrawIndexedVertices_82664FF0(ctx, base);
 	// b 0x82275528
 	goto loc_82275528;
 loc_8227538C:
@@ -64905,7 +64905,7 @@ loc_8227538C:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82664ff0
 	ctx.lr = 0x822753C4;
-	sub_82664FF0(ctx, base);
+	rex_render_D3DDevice_DrawIndexedVertices_82664FF0(ctx, base);
 	// b 0x82275528
 	goto loc_82275528;
 loc_822753C8:
@@ -65153,14 +65153,14 @@ loc_82275558:
 	ctx.r3.u64 = PPC_LOAD_U16(ctx.r31.u32 + 18);
 	// bl 0x82274610
 	ctx.lr = 0x82275578;
-	sub_82274610(ctx, base);
+	rex_render_scenegraphDrawGetIndexBuffer_82274610(ctx, base);
 	// mr r4,r3
 	ctx.r4.u64 = ctx.r3.u64;
 	// mr r3,r30
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82658228
 	ctx.lr = 0x82275584;
-	sub_82658228(ctx, base);
+	rex_render_D3DDevice_SetIndices_82658228(ctx, base);
 loc_82275584:
 	// lwz r11,0(r23)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r23.u32 + 0);
@@ -65268,14 +65268,14 @@ loc_82275638:
 	ctx.r3.u64 = PPC_LOAD_U16(ctx.r31.u32 + 18);
 	// bl 0x82274610
 	ctx.lr = 0x82275640;
-	sub_82274610(ctx, base);
+	rex_render_scenegraphDrawGetIndexBuffer_82274610(ctx, base);
 	// mr r4,r3
 	ctx.r4.u64 = ctx.r3.u64;
 	// mr r3,r30
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82658228
 	ctx.lr = 0x8227564C;
-	sub_82658228(ctx, base);
+	rex_render_D3DDevice_SetIndices_82658228(ctx, base);
 	// cmpwi cr6,r29,0
 	ctx.cr6.compare<int32_t>(ctx.r29.s32, 0, ctx.xer);
 	// beq cr6,0x822758dc
@@ -65317,7 +65317,7 @@ loc_82275674:
 	ctx.r7.u64 = ctx.r10.u64 + ctx.r11.u64;
 	// bl 0x82664ff0
 	ctx.lr = 0x8227569C;
-	sub_82664FF0(ctx, base);
+	rex_render_D3DDevice_DrawIndexedVertices_82664FF0(ctx, base);
 	// b 0x822758dc
 	goto loc_822758DC;
 loc_822756A0:
@@ -65365,14 +65365,14 @@ loc_822756C0:
 	ctx.r3.u64 = PPC_LOAD_U16(ctx.r10.u32 + ctx.r31.u32);
 	// bl 0x82274610
 	ctx.lr = 0x822756F4;
-	sub_82274610(ctx, base);
+	rex_render_scenegraphDrawGetIndexBuffer_82274610(ctx, base);
 	// mr r4,r3
 	ctx.r4.u64 = ctx.r3.u64;
 	// mr r3,r30
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82658228
 	ctx.lr = 0x82275700;
-	sub_82658228(ctx, base);
+	rex_render_D3DDevice_SetIndices_82658228(ctx, base);
 	// lwz r9,36(r23)
 	ctx.r9.u64 = PPC_LOAD_U32(ctx.r23.u32 + 36);
 	// cmpwi cr6,r9,0
@@ -65412,7 +65412,7 @@ loc_822756C0:
 	ctx.r7.u64 = ctx.r11.u64 + ctx.r10.u64;
 	// bl 0x82664ff0
 	ctx.lr = 0x8227574C;
-	sub_82664FF0(ctx, base);
+	rex_render_D3DDevice_DrawIndexedVertices_82664FF0(ctx, base);
 	// b 0x822758dc
 	goto loc_822758DC;
 loc_82275750:
@@ -65445,7 +65445,7 @@ loc_82275750:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82664ff0
 	ctx.lr = 0x82275788;
-	sub_82664FF0(ctx, base);
+	rex_render_D3DDevice_DrawIndexedVertices_82664FF0(ctx, base);
 	// b 0x822758dc
 	goto loc_822758DC;
 loc_8227578C:
@@ -65852,14 +65852,14 @@ loc_82275A04:
 	ctx.r3.u64 = PPC_LOAD_U16(ctx.r31.u32 + 18);
 	// bl 0x82274610
 	ctx.lr = 0x82275A60;
-	sub_82274610(ctx, base);
+	rex_render_scenegraphDrawGetIndexBuffer_82274610(ctx, base);
 	// mr r4,r3
 	ctx.r4.u64 = ctx.r3.u64;
 	// mr r3,r30
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82658228
 	ctx.lr = 0x82275A6C;
-	sub_82658228(ctx, base);
+	rex_render_D3DDevice_SetIndices_82658228(ctx, base);
 	// lwz r11,36(r23)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r23.u32 + 36);
 	// lwz r3,0(r20)
@@ -65924,7 +65924,7 @@ loc_82275ABC:
 	ctx.r7.u64 = ctx.r10.u64 + ctx.r11.u64;
 	// bl 0x82664ff0
 	ctx.lr = 0x82275AE4;
-	sub_82664FF0(ctx, base);
+	rex_render_D3DDevice_DrawIndexedVertices_82664FF0(ctx, base);
 	// b 0x82275d48
 	goto loc_82275D48;
 loc_82275AE8:
@@ -65992,14 +65992,14 @@ loc_82275B2C:
 	ctx.r3.u64 = PPC_LOAD_U16(ctx.r10.u32 + ctx.r31.u32);
 	// bl 0x82274610
 	ctx.lr = 0x82275B60;
-	sub_82274610(ctx, base);
+	rex_render_scenegraphDrawGetIndexBuffer_82274610(ctx, base);
 	// mr r4,r3
 	ctx.r4.u64 = ctx.r3.u64;
 	// mr r3,r30
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82658228
 	ctx.lr = 0x82275B6C;
-	sub_82658228(ctx, base);
+	rex_render_D3DDevice_SetIndices_82658228(ctx, base);
 	// lwz r9,36(r23)
 	ctx.r9.u64 = PPC_LOAD_U32(ctx.r23.u32 + 36);
 	// cmpwi cr6,r9,0
@@ -66039,7 +66039,7 @@ loc_82275B2C:
 	ctx.r7.u64 = ctx.r11.u64 + ctx.r10.u64;
 	// bl 0x82664ff0
 	ctx.lr = 0x82275BB8;
-	sub_82664FF0(ctx, base);
+	rex_render_D3DDevice_DrawIndexedVertices_82664FF0(ctx, base);
 	// b 0x82275d48
 	goto loc_82275D48;
 loc_82275BBC:
@@ -66072,7 +66072,7 @@ loc_82275BBC:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82664ff0
 	ctx.lr = 0x82275BF4;
-	sub_82664FF0(ctx, base);
+	rex_render_D3DDevice_DrawIndexedVertices_82664FF0(ctx, base);
 	// b 0x82275d48
 	goto loc_82275D48;
 loc_82275BF8:
@@ -68158,14 +68158,14 @@ loc_82276980:
 	ctx.r3.u64 = PPC_LOAD_U16(ctx.r31.u32 + 18);
 	// bl 0x82274610
 	ctx.lr = 0x822769E4;
-	sub_82274610(ctx, base);
+	rex_render_scenegraphDrawGetIndexBuffer_82274610(ctx, base);
 	// mr r4,r3
 	ctx.r4.u64 = ctx.r3.u64;
 	// mr r3,r30
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82658228
 	ctx.lr = 0x822769F0;
-	sub_82658228(ctx, base);
+	rex_render_D3DDevice_SetIndices_82658228(ctx, base);
 	// lbz r11,17(r31)
 	ctx.r11.u64 = PPC_LOAD_U8(ctx.r31.u32 + 17);
 	// li r4,6
@@ -68199,7 +68199,7 @@ loc_82276A04:
 	ctx.r7.u64 = ctx.r10.u64 + ctx.r11.u64;
 	// bl 0x82664ff0
 	ctx.lr = 0x82276A30;
-	sub_82664FF0(ctx, base);
+	rex_render_D3DDevice_DrawIndexedVertices_82664FF0(ctx, base);
 	// b 0x822770c0
 	goto loc_822770C0;
 loc_82276A34:
@@ -68213,14 +68213,14 @@ loc_82276A34:
 	ctx.r3.u64 = PPC_LOAD_U16(ctx.r31.u32 + 136);
 	// bl 0x82274610
 	ctx.lr = 0x82276A48;
-	sub_82274610(ctx, base);
+	rex_render_scenegraphDrawGetIndexBuffer_82274610(ctx, base);
 	// mr r4,r3
 	ctx.r4.u64 = ctx.r3.u64;
 	// mr r3,r30
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82658228
 	ctx.lr = 0x82276A54;
-	sub_82658228(ctx, base);
+	rex_render_D3DDevice_SetIndices_82658228(ctx, base);
 	// lhz r10,106(r31)
 	ctx.r10.u64 = PPC_LOAD_U16(ctx.r31.u32 + 106);
 	// li r11,3
@@ -68241,7 +68241,7 @@ loc_82276A34:
 	ctx.r7.u64 = ctx.r11.u64 + ctx.r10.u64;
 	// bl 0x82664ff0
 	ctx.lr = 0x82276A7C;
-	sub_82664FF0(ctx, base);
+	rex_render_D3DDevice_DrawIndexedVertices_82664FF0(ctx, base);
 	// b 0x822770c0
 	goto loc_822770C0;
 loc_82276A80:
@@ -68314,7 +68314,7 @@ loc_82276A94:
 	ctx.r26.u64 = ctx.r25.u64 + ctx.r26.u64;
 	// bl 0x82664640
 	ctx.lr = 0x82276B08;
-	sub_82664640(ctx, base);
+	rex_render_D3DDevice_BeginIndexedVertices_82664640(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x822770c0

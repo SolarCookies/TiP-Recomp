@@ -52429,7 +52429,7 @@ PPC_FUNC_IMPL(__imp__sub_823B1E70) {
 	ctx.r4.u64 = PPC_LOAD_U32(ctx.r30.u32 + 328);
 	// bl 0x82658228
 	ctx.lr = 0x823B2334;
-	sub_82658228(ctx, base);
+	rex_render_D3DDevice_SetIndices_82658228(ctx, base);
 	// lwz r11,-10976(r31)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + -10976);
 	// lfs f12,800(r30)
@@ -53425,7 +53425,7 @@ loc_823B2768:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + -10976);
 	// bl 0x82664ff0
 	ctx.lr = 0x823B292C;
-	sub_82664FF0(ctx, base);
+	rex_render_D3DDevice_DrawIndexedVertices_82664FF0(ctx, base);
 	// lwz r10,428(r30)
 	ctx.r10.u64 = PPC_LOAD_U32(ctx.r30.u32 + 428);
 	// addi r29,r29,8
@@ -54051,7 +54051,7 @@ loc_823B2CA8:
 	ctx.r7.s64 = static_cast<int64_t>(ctx.r11.u64 * static_cast<uint64_t>(1568));
 	// bl 0x82664ff0
 	ctx.lr = 0x823B2D68;
-	sub_82664FF0(ctx, base);
+	rex_render_D3DDevice_DrawIndexedVertices_82664FF0(ctx, base);
 	// lwz r10,428(r30)
 	ctx.r10.u64 = PPC_LOAD_U32(ctx.r30.u32 + 428);
 	// addi r28,r28,8
@@ -54362,7 +54362,7 @@ loc_823B2F74:
 	ctx.r4.s64 = ctx.r11.s64 + 72;
 	// bl 0x82658228
 	ctx.lr = 0x823B2F88;
-	sub_82658228(ctx, base);
+	rex_render_D3DDevice_SetIndices_82658228(ctx, base);
 	// lwz r11,12(r28)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r28.u32 + 12);
 	// li r8,1
@@ -54439,7 +54439,7 @@ loc_823B2F74:
 	ctx.r7.u64 = ctx.r11.u64 + ctx.r10.u64;
 	// bl 0x82664ff0
 	ctx.lr = 0x823B300C;
-	sub_82664FF0(ctx, base);
+	rex_render_D3DDevice_DrawIndexedVertices_82664FF0(ctx, base);
 	// cmpwi cr6,r23,0
 	ctx.cr6.compare<int32_t>(ctx.r23.s32, 0, ctx.xer);
 	// beq cr6,0x823b3074
@@ -54501,7 +54501,7 @@ loc_823B2F74:
 	ctx.r7.u64 = ctx.r11.u64 + ctx.r10.u64;
 	// bl 0x82664ff0
 	ctx.lr = 0x823B3074;
-	sub_82664FF0(ctx, base);
+	rex_render_D3DDevice_DrawIndexedVertices_82664FF0(ctx, base);
 loc_823B3074:
 	// lwz r11,16(r28)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r28.u32 + 16);
@@ -54820,7 +54820,7 @@ loc_823B3230:
 	ctx.r4.s64 = ctx.r11.s64 + 72;
 	// bl 0x82658228
 	ctx.lr = 0x823B32A8;
-	sub_82658228(ctx, base);
+	rex_render_D3DDevice_SetIndices_82658228(ctx, base);
 	// lwz r11,20(r28)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r28.u32 + 20);
 	// li r8,1
@@ -54865,7 +54865,7 @@ loc_823B3230:
 	ctx.r7.u64 = __builtin_rotateleft64(ctx.r8.u32 | (ctx.r8.u64 << 32), 2) & 0xFFFFFFFC;
 	// bl 0x82664ff0
 	ctx.lr = 0x823B32F8;
-	sub_82664FF0(ctx, base);
+	rex_render_D3DDevice_DrawIndexedVertices_82664FF0(ctx, base);
 loc_823B32F8:
 	// lwz r11,24(r28)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r28.u32 + 24);
@@ -55325,7 +55325,7 @@ loc_823B35EC:
 	ctx.r4.s64 = ctx.r11.s64 + 72;
 	// bl 0x82658228
 	ctx.lr = 0x823B3624;
-	sub_82658228(ctx, base);
+	rex_render_D3DDevice_SetIndices_82658228(ctx, base);
 	// mr r5,r23
 	ctx.r5.u64 = ctx.r23.u64;
 	// li r4,0
@@ -55394,7 +55394,7 @@ loc_823B35EC:
 	ctx.r7.u64 = ctx.r11.u64 + ctx.r10.u64;
 	// bl 0x82664ff0
 	ctx.lr = 0x823B3698;
-	sub_82664FF0(ctx, base);
+	rex_render_D3DDevice_DrawIndexedVertices_82664FF0(ctx, base);
 	// lwz r11,-10976(r31)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + -10976);
 	// lfs f10,84(r1)
@@ -55452,7 +55452,7 @@ loc_823B35EC:
 	ctx.r7.u64 = ctx.r11.u64 + ctx.r10.u64;
 	// bl 0x82664ff0
 	ctx.lr = 0x823B36F8;
-	sub_82664FF0(ctx, base);
+	rex_render_D3DDevice_DrawIndexedVertices_82664FF0(ctx, base);
 	// lwz r10,16(r28)
 	ctx.r10.u64 = PPC_LOAD_U32(ctx.r28.u32 + 16);
 	// addi r25,r25,1

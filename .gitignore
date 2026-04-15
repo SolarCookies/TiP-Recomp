@@ -27,3 +27,4 @@ out/build/win-amd64-relwithdebinfo/retip.pdb
 TiP-Recomp.code-workspace
 retip.exe
 retip.pdb
+logs/retip.log

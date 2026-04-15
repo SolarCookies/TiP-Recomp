@@ -26,6 +26,9 @@
 #include "tip_engine/CustomRenderer/engine/Actors/SkyboxActor.h"
 #include "tip_engine/CustomRenderer/engine/Actors/DebugGridActor.h"
 
+REXCVAR_DEFINE_BOOL(SolarRendererPreview, false, "_Trouble in Paradise/Graphics", "Enables the Solar Renderer").lifecycle(rex::cvar::Lifecycle::kRequiresRestart);
+REXCVAR_DEFINE_BOOL(OverlaySolarRenderer, false, "_Trouble in Paradise/Graphics", "Overlay Solar Renderer on main window").lifecycle(rex::cvar::Lifecycle::kRequiresRestart);
+
 
 class RetipApp : public rex::ReXApp {
  public:
@@ -45,29 +48,33 @@ class RetipApp : public rex::ReXApp {
         g_raw_input = runtime()->input_system()->GetRawInput();
         timeBeginPeriod(1);
 
-        windowPtr = std::make_unique<VinceWindow>(1280, 720, "TiP Recomp");
-        windowPtr->SetupImGuiIO();
-        windowPtr->InitFrameBuffer();
+        if(REXCVAR_GET(SolarRendererPreview)) {
 
-        glEnable(GL_DEPTH_TEST);
-        glfwSwapInterval(0);
+            windowPtr = std::make_unique<VinceWindow>(1280, 720, "TiP Recomp", REXCVAR_GET(OverlaySolarRenderer));
+            windowPtr->SetupImGuiIO();
+            windowPtr->InitFrameBuffer();
 
-        g_world = new World();
+            glEnable(GL_DEPTH_TEST);
+            glfwSwapInterval(0);
 
-        // Add a skybox actor to the world
-        auto skyboxActor = std::make_unique<Skybox>();
-        g_world->AddActor(std::move(skyboxActor));
+            g_world = new World();
 
-        // Debug grid: 10x10 cubes on the XZ plane for camera testing
-        auto debugGrid = std::make_unique<DebugGrid>();
-        g_world->AddActor(std::move(debugGrid));
+            // Add a skybox actor to the world
+            auto skyboxActor = std::make_unique<Skybox>();
+            g_world->AddActor(std::move(skyboxActor));
 
-        g_world->ConstructWorld();
+            // Debug grid: 10x10 cubes on the XZ plane for camera testing
+            auto debugGrid = std::make_unique<DebugGrid>();
+            g_world->AddActor(std::move(debugGrid));
 
-        g_camera = std::make_unique<class Camera>(1280.0f, 720.0f, glm::vec3(0.0f, 0.0f, 2.0f));
+            g_world->ConstructWorld();
 
-        // Release the GL context so CPU_fps_hook can acquire it on its thread
-        glfwMakeContextCurrent(nullptr);
+            g_camera = std::make_unique<class Camera>(1280.0f, 720.0f, glm::vec3(0.0f, 0.0f, 2.0f));
+
+            // Release the GL context so CPU_fps_hook can acquire it on its thread
+            glfwMakeContextCurrent(nullptr);
+            
+        }
    }
 
   // void OnCreateDialogs(rex::ui::ImGuiDrawer* drawer) override {}
@@ -79,6 +86,11 @@ class RetipApp : public rex::ReXApp {
    }
   // void OnConfigurePaths(rex::PathConfig& paths) override {}
   void OnCreateDialogs(rex::ui::ImGuiDrawer* drawer) override {
+        // Capture main window handle now that the window exists
+        if (windowPtr && windowPtr->isOverlay() && window()) {
+            g_mainWindowHandle = window()->GetNativeWindowHandle();
+        }
+
         drawer->AddDialog(new DebugOverlayDialog(drawer));
         auto fpsDialog = new FpsOverlayDialog(drawer);
         fpsDialog->fpsManager = &fpsManager;

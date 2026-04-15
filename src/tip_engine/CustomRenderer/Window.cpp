@@ -69,10 +69,16 @@ void VinceWindow::init()
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
 	glfwWindowHint(GLFW_TRANSPARENT_FRAMEBUFFER, GLFW_TRUE);
 
+	if (overlay) {
+		glfwWindowHint(GLFW_DECORATED, GLFW_FALSE);
+		glfwWindowHint(GLFW_FLOATING, GLFW_TRUE);
+		glfwWindowHint(GLFW_FOCUS_ON_SHOW, GLFW_FALSE);
+		glfwWindowHint(GLFW_MOUSE_PASSTHROUGH, GLFW_TRUE);
+	}
 
 	// Create window with graphics context using unique_ptr and custom deleter
 	window = std::unique_ptr<GLFWwindow, decltype(&glfwDestroyWindow)>(
-		glfwCreateWindow(1280, 720, "Solar Renderer", nullptr, nullptr),
+		glfwCreateWindow(width, height, overlay ? "" : "Solar Renderer", nullptr, nullptr),
 		&glfwDestroyWindow
 	);
 	if (!window) {
@@ -91,7 +97,20 @@ void VinceWindow::init()
 	}
 
 	glViewport(0, 0, bufferWidth, bufferHeight);
-	VinceWindow::EnableBlur();
+
+	if (overlay) {
+		HWND hwnd = glfwGetWin32Window(window.get());
+		if (hwnd) {
+			MARGINS margins = { -1, -1, -1, -1 };
+			DwmExtendFrameIntoClientArea(hwnd, &margins);
+
+			// Always-on-top
+			SetWindowPos(hwnd, HWND_TOPMOST, 0, 0, 0, 0,
+				SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE);
+		}
+	} else {
+		VinceWindow::EnableBlur();
+	}
 }
 
 void VinceWindow::SetupImGuiIO()
@@ -104,4 +123,29 @@ void VinceWindow::InitFrameBuffer()
 	//Gets the frame-buffer ready to start
 	frameBuffer.create_framebuffer(0);
 	frameBuffer2.create_framebuffer(1);
+}
+
+void VinceWindow::SyncToOwnerWindow(void* ownerHwnd)
+{
+	if (!ownerHwnd || !window) return;
+	HWND owner = static_cast<HWND>(ownerHwnd);
+
+	RECT rect;
+	if (!GetClientRect(owner, &rect)) return;
+
+	POINT topLeft = { rect.left, rect.top };
+	ClientToScreen(owner, &topLeft);
+
+	int w = rect.right - rect.left;
+	int h = rect.bottom - rect.top;
+
+	// Only update if size/position changed
+	int curX, curY, curW, curH;
+	glfwGetWindowPos(window.get(), &curX, &curY);
+	glfwGetWindowSize(window.get(), &curW, &curH);
+
+	if (curX != topLeft.x || curY != topLeft.y || curW != w || curH != h) {
+		glfwSetWindowPos(window.get(), topLeft.x, topLeft.y);
+		glfwSetWindowSize(window.get(), w, h);
+	}
 }

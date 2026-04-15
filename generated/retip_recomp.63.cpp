@@ -16441,7 +16441,7 @@ PPC_FUNC_IMPL(__imp__sub_82969270) {
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 56);
 	// bl 0x82658228
 	ctx.lr = 0x829692DC;
-	sub_82658228(ctx, base);
+	rex_render_D3DDevice_SetIndices_82658228(ctx, base);
 	// li r6,0
 	ctx.r6.s64 = 0;
 	// li r5,0
@@ -19844,7 +19844,7 @@ PPC_FUNC_IMPL(__imp__sub_8296A838) {
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r29.u32 + 56);
 	// bl 0x82658228
 	ctx.lr = 0x8296A8A0;
-	sub_82658228(ctx, base);
+	rex_render_D3DDevice_SetIndices_82658228(ctx, base);
 	// li r11,1
 	ctx.r11.s64 = 1;
 	// mr r31,r27
@@ -20528,7 +20528,7 @@ loc_8296ACBC:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 56);
 	// bl 0x82658228
 	ctx.lr = 0x8296AD44;
-	sub_82658228(ctx, base);
+	rex_render_D3DDevice_SetIndices_82658228(ctx, base);
 	// lwz r4,68(r31)
 	ctx.r4.u64 = PPC_LOAD_U32(ctx.r31.u32 + 68);
 	// lwz r3,56(r31)

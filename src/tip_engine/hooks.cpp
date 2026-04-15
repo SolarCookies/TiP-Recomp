@@ -5,6 +5,8 @@
 #include <cstring>
 #include <chrono>
 #include <rex/ui/imgui_dialog.h>
+#include "D3DTypes.h"
+#include "Log.h"
 #include "Overlays/Fps.h"
 #include "imgui.h"
 
@@ -19,6 +21,7 @@
 
 #include "rex_macros.h"
 #include <fstream>
+#include <mutex>
 #include "tip_engine/Types/CommonTypes.h"
 #include <SDL3/SDL.h>
 #include <thread>
@@ -26,6 +29,7 @@
 #include "tip_engine/Globals.h"
 #include "tip_engine/CustomRenderer/engine/World/World.h"
 #include "tip_engine/CustomRenderer/engine/World/Camera.h"
+#include "tip_engine/CustomRenderer/engine/Components/Meshes/DynamicMeshComponent.h"
 
 REXCVAR_DEFINE_BOOL(rgb_cursor, false, "_Trouble in Paradise", "Enables the Gursor");
 REXCVAR_DEFINE_BOOL(lock_fps, false, "_Trouble in Paradise", "Lock to 30 FPS");
@@ -37,6 +41,7 @@ REXCVAR_DEFINE_BOOL(UseAspectRatioFromConfig, false, "_Trouble in Paradise", "Us
 REXCVAR_DEFINE_DOUBLE(AspectRatio, 1.7777778f, "_Trouble in Paradise", "Aspect Ratio");
 
 REXCVAR_DEFINE_BOOL(SkipIntros, false, "_Trouble in Paradise", "Skip Intro Videos");
+REXCVAR_DEFINE_BOOL(DisableFur, false, "_Trouble in Paradise", "Disables Fur Rendering");
 
 //REXCVAR_DEFINE_BOOL(Freecam, false, "_Trouble in Paradise", "Enables the Freecam");
 //REXCVAR_DEFINE_DOUBLE(Freecam_X, 0.0f, "_Trouble in Paradise", "Freecam X Position");
@@ -191,27 +196,161 @@ bool processEvents()
 
 bool hasmouseinput = false;
 
-static auto lastFrameTime = std::chrono::high_resolution_clock::now();
 
+REX_PPC_EXTERN_IMPORT(render_D3DDevice_BeginIndexedVertices_82664640);
+int render_D3DDevice_BeginIndexedVertices_82664640_Hook(
+    uint32_t pDevice,
+    uint32_t PrimitiveType,
+    int32_t  BaseVertexIndex,
+    uint32_t NumVertices,
+    uint32_t IndexCount,
+    uint32_t IndexDataFormat,
+    uint32_t VertexStreamZeroStride,
+    uint32_t ppIndexDataint,
+    uint32_t ppVertexData,
+    uint32_t a10,
+    uint32_t a11,
+    uint32_t a12,
+    uint32_t a13,
+    uint32_t a14,
+    uint32_t a15,
+    uint32_t a16,
+    uint32_t a17,
+    uint32_t a18,
+    uint32_t a19,
+    uint32_t a20,
+    uint32_t a21,
+    uint32_t a22,
+    uint32_t a23,
+    uint32_t a24,
+    uint32_t a25,
+    uint32_t a26,
+    uint32_t a27,
+    uint32_t a28)
+{
+  /*
+  std::string primitiveStr1;
+  switch (PrimitiveType) {
+    case 1: primitiveStr1 = "POINTLIST"; break;
+    case 2: primitiveStr1 = "LINELIST"; break;
+    case 3: primitiveStr1 = "LINESTRIP"; break;
+    case 4: primitiveStr1 = "TRIANGLELIST"; break;
+    case 5: primitiveStr1 = "TRIANGLEFAN"; break;
+    case 6: primitiveStr1 = "TRIANGLESTRIP"; break;
+    case 8: primitiveStr1 = "RECTLIST"; break;
+    case 13: primitiveStr1 = "QUADLIST"; break;
+    default: primitiveStr1 = "UNKNOWN"; break;
+  }
+  primitiveStr1 += " NumVertices=" + std::to_string(NumVertices);
+  primitiveStr1 += " IndexCount=" + std::to_string(IndexCount);
+  primitiveStr1 += " BaseVertexIndex=" + std::to_string(BaseVertexIndex);
+  primitiveStr1 += " IndexDataFormat=" + std::to_string(IndexDataFormat);
+  primitiveStr1 += " VertexStreamZeroStride=" + std::to_string(VertexStreamZeroStride);
+  //primitiveStr1 += " ppIndexData=" + (ppIndexData ? ("0x" + std::to_string(*ppIndexData)) : "null");
+  //primitiveStr1 += " ppVertexData=" + (ppVertexData ? ("0x" + std::to_string(*ppVertexData)) : "null");
+*/
+
+  //Log(LogLevel::Error, "BeginIndexedVertices called: " + primitiveStr1);
+    
+    int result = rex::GuestToHostFunction<int>(
+        __imp__rex_render_D3DDevice_BeginIndexedVertices_82664640, pDevice, PrimitiveType, BaseVertexIndex, NumVertices,
+        IndexCount, IndexDataFormat, VertexStreamZeroStride, ppIndexDataint, ppVertexData, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28);
+
+    return result;
+}
+REX_PPC_HOOK(render_D3DDevice_BeginIndexedVertices_82664640);
+
+
+REX_PPC_EXTERN_IMPORT(render_D3DDevice_DrawIndexedVertices_82664FF0);
+void render_D3DDevice_DrawIndexedVertices_82664FF0_Hook(
+  int pDevice,
+  char PrimitiveType,
+  int BaseVertexIndex,
+  int NumVertices,
+  unsigned int IndexCount,
+  int IndexDataFormat,
+  unsigned int VertexStreamZeroStride,
+  unsigned int ppIndexData,
+  unsigned int ppVertexData,
+  int a10,
+  int a11,
+  int a12,
+  int a13,
+  int a14,
+  int a15,
+  int a16,
+  int a17,
+  int a18,
+  int a19,
+  int a20,
+  int a21,
+  int a22,
+  int a23,
+  int a24,
+  int a25,
+  int a26,
+  int a27,
+  int a28)
+  {
+    /*
+  std::string primitiveStr;
+  switch (PrimitiveType) {
+    case 1: primitiveStr = "POINTLIST"; break;
+    case 2: primitiveStr = "LINELIST"; break;
+    case 3: primitiveStr = "LINESTRIP"; break;
+    case 4: primitiveStr = "TRIANGLELIST"; break;
+    case 5: primitiveStr = "TRIANGLEFAN"; break;
+    case 6: primitiveStr = "TRIANGLESTRIP"; break;
+    case 8: primitiveStr = "RECTLIST"; break;
+    case 13: primitiveStr = "QUADLIST"; break;
+    default: primitiveStr = "UNKNOWN"; break;
+  }
+  primitiveStr += " NumVertices=" + std::to_string(NumVertices);
+  primitiveStr += " IndexCount=" + std::to_string(IndexCount);
+  primitiveStr += " BaseVertexIndex=" + std::to_string(BaseVertexIndex);
+  primitiveStr += " IndexDataFormat=" + std::to_string(IndexDataFormat);
+  primitiveStr += " VertexStreamZeroStride=" + std::to_string(VertexStreamZeroStride);
+  //primitiveStr += " ppIndexData=" + (ppIndexData ? ("0x" + std::to_string(*ppIndexData)) : "null");
+  //primitiveStr += " ppVertexData=" + (ppVertexData ? ("0x" + std::to_string(*ppVertexData)) : "null");
+
+
+  Log(LogLevel::Error, "DrawIndexedVertices called: " + primitiveStr);
+  */
+    // Call the original
+    rex::GuestToHostFunction<void>(
+        __imp__rex_render_D3DDevice_DrawIndexedVertices_82664FF0, pDevice, PrimitiveType, BaseVertexIndex, NumVertices,
+        IndexCount, IndexDataFormat, VertexStreamZeroStride, ppIndexData, ppVertexData, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28);
+}
+REX_PPC_HOOK(render_D3DDevice_DrawIndexedVertices_82664FF0);
+
+
+
+static auto lastFrameTime = std::chrono::high_resolution_clock::now();
 void CPU_fps_hook() {
   fpsManager.showFPS = REXCVAR_GET(show_fps);
   auto fpshook = fpsManager.GetCreateCounter("Tick");
   fpshook->Tick();
+}
+
+void GPU_fps_hook() {
+  //auto fpshook = fpsManager.GetCreateCounter("GPU");
+  //fpshook->Tick();
 
   //82BEBC78 # scenegraphDrawStaticWorkspace_s Me_5[6]
   scenegraphDrawStaticWorkspace_s* drawStaticWorkspace = reinterpret_cast<scenegraphDrawStaticWorkspace_s*>(0x100000000ull + 0x82BEBC78);
-  drawStaticWorkspace[0].isFurEnabled = 0;
-  drawStaticWorkspace[0].isFurEnabledCount = 0;
-  drawStaticWorkspace[1].isFurEnabled = 0;
-  drawStaticWorkspace[1].isFurEnabledCount = 0;
-  drawStaticWorkspace[2].isFurEnabled = 0;
-  drawStaticWorkspace[2].isFurEnabledCount = 0;
-  drawStaticWorkspace[3].isFurEnabled = 0;
-  drawStaticWorkspace[3].isFurEnabledCount = 0;
-  drawStaticWorkspace[4].isFurEnabled = 0;
-  drawStaticWorkspace[4].isFurEnabledCount = 0;
-  drawStaticWorkspace[5].isFurEnabled = 0;
-  drawStaticWorkspace[5].isFurEnabledCount = 0;
+  //83A56158 videoParams_s
+  videoParams_s* videoParams = reinterpret_cast<videoParams_s*>(0x100000000ull + 0x83A56158);
+  if(REXCVAR_GET(DisableFur)) {
+    for (int i = 0; i < 6; i++) {
+      drawStaticWorkspace[i].isFurEnabled = 0;
+      drawStaticWorkspace[i].isFurEnabledCount = 0;
+    }
+  } else {
+    for (int i = 0; i < 6; i++) {
+      drawStaticWorkspace[i].isFurEnabled = 1;
+      drawStaticWorkspace[i].isFurEnabledCount = 1;
+    }
+  }
 
   if (!windowPtr || !g_world || !g_camera) return;
 
@@ -225,6 +364,11 @@ void CPU_fps_hook() {
   if(glfwWindowShouldClose(windowPtr->getWindow())) {
     glfwMakeContextCurrent(nullptr);
     exit(0);
+  }
+
+  // Sync overlay window position/size to the main rexglue window
+  if (windowPtr->isOverlay() && g_mainWindowHandle) {
+    windowPtr->SyncToOwnerWindow(g_mainWindowHandle);
   }
 
   // Switch to the GLFW window's OpenGL context
@@ -291,21 +435,17 @@ void CPU_fps_hook() {
   g_world->TickWorld(deltaTime);
   g_world->Render(windowPtr.get(), g_camera.get());
 
+
   windowPtr->EndFrame();
 
   // Release context so it doesn't block other threads
   glfwMakeContextCurrent(nullptr);
 }
 
-void GPU_fps_hook() {
-  //auto fpshook = fpsManager.GetCreateCounter("GPU");
-  //fpshook->Tick();
-}
-
 void vsync_hook(PPCRegister& r10) {
   if(!REXCVAR_GET(lock_fps)) {
     r10.u32 = 0; // Force vsync off
-    REXCVAR_SET(vsync, false);
+    //REXCVAR_SET(vsync, false);
   }else{
     REXCVAR_SET(vsync, true);
   }
@@ -315,14 +455,19 @@ void vsync_hook(PPCRegister& r10) {
   
 }
 
+inline bool VSyncBefore;
+inline bool lockFPSBefore;
+
 void InRomanceMinigame_hook(){
+  VSyncBefore = REXCVAR_GET(vsync);
+  lockFPSBefore = REXCVAR_GET(lock_fps);
   REXCVAR_SET(vsync, true);
   REXCVAR_SET(lock_fps, true);
 }
 
 void NotInRomanceMinigame_hook(){
-  REXCVAR_SET(vsync, false);
-  REXCVAR_SET(lock_fps, false);
+  REXCVAR_SET(vsync, VSyncBefore);
+  REXCVAR_SET(lock_fps, lockFPSBefore);
 }
 
 bool Space1_hook() {
