@@ -415,10 +415,16 @@ void vsync_hook(PPCRegister& r10) {
 
 inline bool VSyncBefore;
 inline bool lockFPSBefore;
+inline bool InRomanceMinigame = false;
 
 void InRomanceMinigame_hook(){
+  if(!InRomanceMinigame) {
+    VSyncBefore = REXCVAR_GET(vsync);
+    lockFPSBefore = REXCVAR_GET(lock_fps);
+  }
   VSyncBefore = REXCVAR_GET(vsync);
   lockFPSBefore = REXCVAR_GET(lock_fps);
+  InRomanceMinigame = true;
   REXCVAR_SET(vsync, true);
   REXCVAR_SET(lock_fps, true);
 }
@@ -426,6 +432,7 @@ void InRomanceMinigame_hook(){
 void NotInRomanceMinigame_hook(){
   REXCVAR_SET(vsync, VSyncBefore);
   REXCVAR_SET(lock_fps, lockFPSBefore);
+  InRomanceMinigame = false;
 }
 
 bool Space1_hook() {
