@@ -25,7 +25,7 @@
 #include <atomic>
 #include "tip_engine/Globals.h"
 
-REXCVAR_DEFINE_INT32(DEBUGYAW, 0, "_Trouble in Paradise", "Debug Yaw");
+//REXCVAR_DEFINE_INT32(DEBUGYAW, 0, "_Trouble in Paradise", "Debug Yaw");
 
 /*
 //rex_meCursorCamCalculatePos_821EBE28
@@ -87,9 +87,12 @@ REX_PPC_HOOK(meCursorCamCalculatePitch_822C1C00)
 REX_PPC_EXTERN_IMPORT(meCursorCamCalculateZoom_822C1CE0);
 void meCursorCamCalculateZoom_822C1CE0_Hook(int camera, int controls) {
     
-    //dump 0x58 bytes from the struct at camera for debugging
     float* ZoomOutPtr = reinterpret_cast<float*>(0x100000000ull + camera + 84);
-    ZoomOutPtr[0] = to_byteswapped_float(1150.0f); //Further zoom out (Zoom Max)
+    if(!g_IsPlacingBuilding) {
+        ZoomOutPtr[0] = to_byteswapped_float(1150.0f); //Further zoom out (Zoom Max)
+    }else{
+        ZoomOutPtr[0] = to_byteswapped_float(300.0f); //Zoom in when placing building
+    }
     float* PitchMaxPtr = reinterpret_cast<float*>(0x100000000ull + camera + 60);
     PitchMaxPtr[0] = to_byteswapped_float(89.0f); //Increase pitch max
     float* PitchMinPtr = reinterpret_cast<float*>(0x100000000ull + camera + 52);

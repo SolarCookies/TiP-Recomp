@@ -19,6 +19,7 @@
 #include "tip_engine/SleepHooks.h"
 #include "tip_engine/Overlays/TiPTools.h"
 #include "tip_engine/Overlays/TiPTools/SpawnMenu.h"
+#include "tip_engine/Overlays/StartupOverlay.h"
 #include "tip_engine/CustomRenderer/Window.h"
 #include "tip_engine/CustomRenderer/engine/World/World.h"
 #include "tip_engine/CustomRenderer/engine/World/Camera.h"
@@ -28,6 +29,7 @@
 
 REXCVAR_DEFINE_BOOL(SolarRendererPreview, false, "_Trouble in Paradise/Graphics", "Enables the Solar Renderer").lifecycle(rex::cvar::Lifecycle::kRequiresRestart);
 REXCVAR_DEFINE_BOOL(OverlaySolarRenderer, false, "_Trouble in Paradise/Graphics", "Overlay Solar Renderer on main window").lifecycle(rex::cvar::Lifecycle::kRequiresRestart);
+REXCVAR_DEFINE_BOOL(ShowStartupOverlay, true, "_Trouble in Paradise", "Show startup overlay popup");
 
 
 class RetipApp : public rex::ReXApp {
@@ -90,7 +92,8 @@ class RetipApp : public rex::ReXApp {
             g_mainWindowHandle = window()->GetNativeWindowHandle();
         }
 
-        drawer->AddDialog(new DebugOverlayDialog(drawer));
+        drawer->AddDialog(new StartupOverlayDialog(drawer));
+        //drawer->AddDialog(new DebugOverlayDialog(drawer));
         auto fpsDialog = new FpsOverlayDialog(drawer);
         fpsDialog->fpsManager = &fpsManager;
         drawer->AddDialog(fpsDialog);

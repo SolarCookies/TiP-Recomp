@@ -166,3 +166,17 @@ address = 0x823EB06C
 name = "InRomanceMinigame_hook"
 registers = []
 after_instruction = true
+
+#8255DED8 (Not Placing Building)
+[[midasm_hook]]
+address = 0x8255DED8
+name = "NotPlacingBuilding_hook"
+registers = []
+after_instruction = true
+
+#8255E50C (Placing Building)
+[[midasm_hook]]
+address = 0x8255E50C
+name = "PlacingBuilding_hook"
+registers = []
+after_instruction = true

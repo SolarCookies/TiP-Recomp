@@ -25,3 +25,5 @@ inline std::unique_ptr<class Camera> g_camera = nullptr;
 
 // Main rexglue window handle for overlay tracking
 inline void* g_mainWindowHandle = nullptr;
+
+inline bool g_IsPlacingBuilding = false;

@@ -769,3 +769,11 @@ bool SkipIntroVideos_hook() {
 bool SkipIntroVideosTwo_hook() {
   return REXCVAR_GET(SkipIntros);
 }
+
+void NotPlacingBuilding_hook(){
+  g_IsPlacingBuilding = false;
+}
+
+void PlacingBuilding_hook(){
+  g_IsPlacingBuilding = true;
+}

@@ -24673,6 +24673,8 @@ loc_8255DDD8:
 	return;
 }
 
+extern void NotPlacingBuilding_hook();
+
 __attribute__((alias("__imp__sub_8255DE10"))) PPC_WEAK_FUNC(sub_8255DE10);
 PPC_FUNC_IMPL(__imp__sub_8255DE10) {
 	PPC_FUNC_PROLOGUE();
@@ -24792,6 +24794,7 @@ loc_8255DECC:
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r28.u32 + 16);
 	// addi r11,r11,-1
 	ctx.r11.s64 = ctx.r11.s64 + -1;
+	NotPlacingBuilding_hook();
 	// stw r11,16(r28)
 	PPC_STORE_U32(ctx.r28.u32 + 16, ctx.r11.u32);
 	// addi r1,r1,128
@@ -25388,6 +25391,8 @@ loc_8255E2D0:
 	return;
 }
 
+extern void PlacingBuilding_hook();
+
 __attribute__((alias("__imp__sub_8255E2E8"))) PPC_WEAK_FUNC(sub_8255E2E8);
 PPC_FUNC_IMPL(__imp__sub_8255E2E8) {
 	PPC_FUNC_PROLOGUE();
@@ -25703,6 +25708,7 @@ loc_8255E4C4:
 	ctx.r9.s64 = ctx.r11.s64 + 1;
 	// stw r9,16(r30)
 	PPC_STORE_U32(ctx.r30.u32 + 16, ctx.r9.u32);
+	PlacingBuilding_hook();
 loc_8255E510:
 	// mr r4,r28
 	ctx.r4.u64 = ctx.r28.u64;
