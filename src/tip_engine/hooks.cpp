@@ -422,8 +422,6 @@ void InRomanceMinigame_hook(){
     VSyncBefore = REXCVAR_GET(vsync);
     lockFPSBefore = REXCVAR_GET(lock_fps);
   }
-  VSyncBefore = REXCVAR_GET(vsync);
-  lockFPSBefore = REXCVAR_GET(lock_fps);
   InRomanceMinigame = true;
   REXCVAR_SET(vsync, true);
   REXCVAR_SET(lock_fps, true);
