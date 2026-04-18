@@ -8,7 +8,6 @@
 #include <glm/gtc/type_ptr.hpp>
 
 #include <rex/logging.h>
-#include <rex/ppc/types.h>
 
 #include <GLFW/glfw3.h>
 

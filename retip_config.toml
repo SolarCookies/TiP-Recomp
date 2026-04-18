@@ -3,8 +3,8 @@
 includes = [
 "config/retip_crt.toml",
 "config/retip_ctx_ctr.toml",
-"config/retip_functions.toml",
 "config/retip_midasm.toml",
+"config/retip_functions.toml",
 "config/retip_hooked.toml"
 ]
 

@@ -9186,7 +9186,7 @@ loc_8235DF30:
 	PPC_STORE_U32(ctx.r1.u32 + 116, temp.u32);
 	// bl 0x82575c30
 	ctx.lr = 0x8235DFEC;
-	sub_82575C30(ctx, base);
+	rex_spawn_supportPinataCreateGeneralEx_82575C30(ctx, base);
 	// mr r31,r3
 	ctx.r31.u64 = ctx.r3.u64;
 	// li r4,404
@@ -37036,7 +37036,7 @@ loc_82369C0C:
 	ctx.f2.f64 = double(temp.f32);
 	// bl 0x82575c30
 	ctx.lr = 0x82369C44;
-	sub_82575C30(ctx, base);
+	rex_spawn_supportPinataCreateGeneralEx_82575C30(ctx, base);
 	// lwz r27,2428(r31)
 	ctx.r27.u64 = PPC_LOAD_U32(ctx.r31.u32 + 2428);
 	// mr r30,r3

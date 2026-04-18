@@ -39769,7 +39769,7 @@ loc_824774B0:
 	ctx.f1.f64 = ctx.f2.f64;
 	// bl 0x82575c30
 	ctx.lr = 0x824774D8;
-	sub_82575C30(ctx, base);
+	rex_spawn_supportPinataCreateGeneralEx_82575C30(ctx, base);
 	// li r4,24
 	ctx.r4.s64 = 24;
 	// mr r3,r27

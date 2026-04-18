@@ -69994,7 +69994,7 @@ loc_826E9504:
 	PPC_STORE_U32(ctx.r1.u32 + 180, temp.u32);
 	// bl 0x826645f8
 	ctx.lr = 0x826E971C;
-	sub_826645F8(ctx, base);
+	rex_render_D3DDevice_DrawVerticesUP_826645F8(ctx, base);
 	// li r3,0
 	ctx.r3.s64 = 0;
 loc_826E9720:

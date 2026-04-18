@@ -27723,7 +27723,7 @@ loc_82626F94:
 	ctx.r4.s64 = -2147483648;
 	// bl 0x82213760
 	ctx.lr = 0x82626FDC;
-	rex_fsThreadAsyncAddFileOpenOperation_82213760(ctx, base);
+	sub_82213760(ctx, base);
 	// addi r1,r1,208
 	ctx.r1.s64 = ctx.r1.s64 + 208;
 	// b 0x82ae166c
@@ -28592,7 +28592,7 @@ loc_82627570:
 	ctx.r4.s64 = -2147483648;
 	// bl 0x82213760
 	ctx.lr = 0x8262760C;
-	rex_fsThreadAsyncAddFileOpenOperation_82213760(ctx, base);
+	sub_82213760(ctx, base);
 	// addi r1,r1,208
 	ctx.r1.s64 = ctx.r1.s64 + 208;
 	// b 0x82ae166c
@@ -32073,7 +32073,7 @@ loc_82628DA8:
 	ctx.r3.u64 = ctx.r26.u64;
 	// bl 0x82575c30
 	ctx.lr = 0x82628DCC;
-	sub_82575C30(ctx, base);
+	rex_spawn_supportPinataCreateGeneralEx_82575C30(ctx, base);
 	// addis r31,r31,13
 	ctx.r31.s64 = ctx.r31.s64 + 851968;
 	// mr r29,r3
@@ -32390,7 +32390,7 @@ loc_82628FC4:
 	ctx.r7.s64 = 171;
 	// bl 0x82575c30
 	ctx.lr = 0x82628FF4;
-	sub_82575C30(ctx, base);
+	rex_spawn_supportPinataCreateGeneralEx_82575C30(ctx, base);
 	// mr r30,r3
 	ctx.r30.u64 = ctx.r3.u64;
 	// li r7,171
@@ -39325,7 +39325,7 @@ loc_8262BEDC:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x8228d848
 	ctx.lr = 0x8262BF38;
-	rex_threadSpinLockLock_8228D848(ctx, base);
+	sub_8228D848(ctx, base);
 	// lwz r31,3772(r31)
 	ctx.r31.u64 = PPC_LOAD_U32(ctx.r31.u32 + 3772);
 	// cmplwi cr6,r31,0
@@ -39598,7 +39598,7 @@ loc_8262C0AC:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x8228d848
 	ctx.lr = 0x8262C10C;
-	rex_threadSpinLockLock_8228D848(ctx, base);
+	sub_8228D848(ctx, base);
 	// lwz r31,3772(r31)
 	ctx.r31.u64 = PPC_LOAD_U32(ctx.r31.u32 + 3772);
 	// cmplwi cr6,r31,0

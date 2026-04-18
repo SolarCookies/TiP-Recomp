@@ -7,7 +7,7 @@
 
 #include <memory>
 #include <rex/rex_app.h>
-#include "retip_config.h"
+#include "generated/retip_init.h"
 #include "tip_engine/hooks.h"
 #include <rex/ppc/function.h>
 #include "tip_engine/Log.h"
@@ -19,6 +19,7 @@
 #include "tip_engine/SleepHooks.h"
 #include "tip_engine/Overlays/TiPTools.h"
 #include "tip_engine/Overlays/TiPTools/SpawnMenu.h"
+#include "tip_engine/Overlays/TiPTools/PlayerMenu.h"
 #include "tip_engine/Overlays/StartupOverlay.h"
 #include "tip_engine/CustomRenderer/Window.h"
 #include "tip_engine/CustomRenderer/engine/World/World.h"
@@ -26,6 +27,7 @@
 
 #include "tip_engine/CustomRenderer/engine/Actors/SkyboxActor.h"
 #include "tip_engine/CustomRenderer/engine/Actors/DebugGridActor.h"
+#include "tip_engine/CustomRenderer/engine/Actors/VertexPreviewActor.h"
 
 REXCVAR_DEFINE_BOOL(SolarRendererPreview, false, "_Trouble in Paradise/Graphics", "Enables the Solar Renderer").lifecycle(rex::cvar::Lifecycle::kRequiresRestart);
 REXCVAR_DEFINE_BOOL(OverlaySolarRenderer, false, "_Trouble in Paradise/Graphics", "Overlay Solar Renderer on main window").lifecycle(rex::cvar::Lifecycle::kRequiresRestart);
@@ -69,6 +71,10 @@ class RetipApp : public rex::ReXApp {
             auto debugGrid = std::make_unique<DebugGrid>();
             g_world->AddActor(std::move(debugGrid));
 
+            // Vertex preview: renders DrawVerticesUP captured verts as points
+            auto vertexPreview = std::make_unique<VertexPreviewActor>();
+            g_world->AddActor(std::move(vertexPreview));
+
             g_world->ConstructWorld();
 
             g_camera = std::make_unique<class Camera>(1280.0f, 720.0f, glm::vec3(0.0f, 0.0f, 2.0f));
@@ -101,6 +107,7 @@ class RetipApp : public rex::ReXApp {
         auto tipToolsDialog = new TipToolsDialog(drawer);
         drawer->AddDialog(tipToolsDialog);
         tipToolsDialog->pages.push_back(std::make_unique<SpawnMenuPage>());
+        tipToolsDialog->pages.push_back(std::make_unique<PlayerMenuPage>());
     }
 };
 

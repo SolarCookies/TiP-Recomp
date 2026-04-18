@@ -6524,7 +6524,7 @@ PPC_FUNC_IMPL(__imp__sub_821C3D58) {
 	rex_glMemClear1_82B0A290(ctx, base);
 	// bl 0x82b0a910
 	ctx.lr = 0x821C3DB0;
-	rex_GetCurrentThreadId_82B0A910(ctx, base);
+	sub_82B0A910(ctx, base);
 	// stw r3,4(r24)
 	PPC_STORE_U32(ctx.r24.u32 + 4, ctx.r3.u32);
 	// bl 0x82b1ccc4
@@ -7058,7 +7058,7 @@ loc_821C4110:
 	sub_82B0A920(ctx, base);
 	// bl 0x82b0a910
 	ctx.lr = 0x821C417C;
-	rex_GetCurrentThreadId_82B0A910(ctx, base);
+	sub_82B0A910(ctx, base);
 	// mr r11,r3
 	ctx.r11.u64 = ctx.r3.u64;
 	// li r4,0
@@ -7097,7 +7097,7 @@ loc_821C4198:
 	ctx.r3.s64 = 0;
 	// bl 0x82afccb0
 	ctx.lr = 0x821C41C4;
-	rex_CreateThread_82AFCCB0(ctx, base);
+	sub_82AFCCB0(ctx, base);
 	// stw r3,-4(r29)
 	PPC_STORE_U32(ctx.r29.u32 + -4, ctx.r3.u32);
 	// mr r4,r28
@@ -7123,7 +7123,7 @@ loc_821C41D0:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r24.u32 + 64);
 	// bl 0x82b0a968
 	ctx.lr = 0x821C41F0;
-	rex_ResumeThread_82B0A968(ctx, base);
+	sub_82B0A968(ctx, base);
 	// lwz r11,72(r24)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r24.u32 + 72);
 	// cmpwi cr6,r11,0
@@ -7305,7 +7305,7 @@ loc_821C42DC:
 	ctx.r3.s64 = 0;
 	// bl 0x82afccb0
 	ctx.lr = 0x821C4330;
-	rex_CreateThread_82AFCCB0(ctx, base);
+	sub_82AFCCB0(ctx, base);
 	// lwz r11,-7216(r30)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r30.u32 + -7216);
 	// mr r28,r3
@@ -7699,11 +7699,11 @@ loc_821C45C8:
 	if (ctx.cr6.eq) goto loc_821C45D8;
 	// bl 0x82b0a910
 	ctx.lr = 0x821C45D8;
-	rex_GetCurrentThreadId_82B0A910(ctx, base);
+	sub_82B0A910(ctx, base);
 loc_821C45D8:
 	// bl 0x82b0a910
 	ctx.lr = 0x821C45DC;
-	rex_GetCurrentThreadId_82B0A910(ctx, base);
+	sub_82B0A910(ctx, base);
 	// stw r3,10888(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 10888, ctx.r3.u32);
 	// bl 0x8229b828
@@ -7923,7 +7923,7 @@ loc_821C4750:
 	PPC_STORE_U32(ctx.r24.u32 + 4848, ctx.r11.u32);
 	// bl 0x8228d338
 	ctx.lr = 0x821C475C;
-	rex_threadMainResumeAllThreads_8228D338(ctx, base);
+	sub_8228D338(ctx, base);
 loc_821C475C:
 	// bl 0x821c91c0
 	ctx.lr = 0x821C4760;
@@ -8314,11 +8314,11 @@ loc_821C49EC:
 	if (ctx.cr6.eq) goto loc_821C49FC;
 	// bl 0x82b0a910
 	ctx.lr = 0x821C49FC;
-	rex_GetCurrentThreadId_82B0A910(ctx, base);
+	sub_82B0A910(ctx, base);
 loc_821C49FC:
 	// bl 0x82b0a910
 	ctx.lr = 0x821C4A00;
-	rex_GetCurrentThreadId_82B0A910(ctx, base);
+	sub_82B0A910(ctx, base);
 	// stw r3,10888(r30)
 	PPC_STORE_U32(ctx.r30.u32 + 10888, ctx.r3.u32);
 	// lwz r11,0(r31)
@@ -19017,7 +19017,7 @@ loc_821C928C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8228d848
 	ctx.lr = 0x821C92B8;
-	rex_threadSpinLockLock_8228D848(ctx, base);
+	sub_8228D848(ctx, base);
 	// li r9,1
 	ctx.r9.s64 = 1;
 loc_821C92BC:
@@ -26087,7 +26087,7 @@ loc_821CC2D0:
 	ctx.r3.s64 = ctx.r30.s64 + 4;
 	// bl 0x8228d848
 	ctx.lr = 0x821CC2E4;
-	rex_threadSpinLockLock_8228D848(ctx, base);
+	sub_8228D848(ctx, base);
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82b04350
@@ -33155,7 +33155,7 @@ loc_821CF290:
 	ctx.r3.s64 = ctx.r1.s64 + 80;
 	// bl 0x82213760
 	ctx.lr = 0x821CF344;
-	rex_fsThreadAsyncAddFileOpenOperation_82213760(ctx, base);
+	sub_82213760(ctx, base);
 	// lis r10,-32239
 	ctx.r10.s64 = -2112815104;
 	// addi r3,r10,8300
@@ -34026,7 +34026,7 @@ PPC_FUNC_IMPL(__imp__sub_821CF8D0) {
 	ctx.r6.u64 = ctx.r31.u64;
 	// bl 0x82afccb0
 	ctx.lr = 0x821CF918;
-	rex_CreateThread_82AFCCB0(ctx, base);
+	sub_82AFCCB0(ctx, base);
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82afd178
@@ -36024,7 +36024,7 @@ loc_821D0664:
 	ctx.r6.u64 = ctx.r31.u64;
 	// bl 0x82afccb0
 	ctx.lr = 0x821D06B4;
-	rex_CreateThread_82AFCCB0(ctx, base);
+	sub_82AFCCB0(ctx, base);
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82afd178
@@ -40940,7 +40940,7 @@ PPC_FUNC_IMPL(__imp__sub_821D2758) {
 	ctx.r6.u64 = ctx.r31.u64;
 	// bl 0x82afccb0
 	ctx.lr = 0x821D27C0;
-	rex_CreateThread_82AFCCB0(ctx, base);
+	sub_82AFCCB0(ctx, base);
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82afd178
@@ -42376,7 +42376,7 @@ loc_821D3128:
 	ctx.r4.s64 = -2147483648;
 	// bl 0x82213760
 	ctx.lr = 0x821D3154;
-	rex_fsThreadAsyncAddFileOpenOperation_82213760(ctx, base);
+	sub_82213760(ctx, base);
 	// stb r28,4(r31)
 	PPC_STORE_U8(ctx.r31.u32 + 4, ctx.r28.u8);
 	// addi r1,r1,128
@@ -42622,7 +42622,7 @@ PPC_FUNC_IMPL(__imp__rex_meSectionAsyncDecompress_821D3270) {
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 96);
 	// bl 0x82b0a898
 	ctx.lr = 0x821D32F0;
-	rex_fsThreadAsyncAddDecompressOperation_82B0A898(ctx, base);
+	sub_82B0A898(ctx, base);
 	// addi r1,r1,144
 	ctx.r1.s64 = ctx.r1.s64 + 144;
 	// b 0x82ae1670

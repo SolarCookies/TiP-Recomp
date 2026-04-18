@@ -63876,7 +63876,7 @@ loc_8225636C:
 	ctx.r3.s64 = 12;
 	// bl 0x8228d690
 	ctx.lr = 0x82256398;
-	rex_threadMsgCreate_8228D690(ctx, base);
+	sub_8228D690(ctx, base);
 	// li r11,0
 	ctx.r11.s64 = 0;
 	// li r10,1
@@ -63942,7 +63942,7 @@ loc_822563EC:
 	ctx.r3.s64 = 12;
 	// bl 0x8228d690
 	ctx.lr = 0x82256418;
-	rex_threadMsgCreate_8228D690(ctx, base);
+	sub_8228D690(ctx, base);
 	// li r10,1
 	ctx.r10.s64 = 1;
 	// li r11,0
@@ -64008,7 +64008,7 @@ loc_8225646C:
 	ctx.r3.s64 = 12;
 	// bl 0x8228d690
 	ctx.lr = 0x82256498;
-	rex_threadMsgCreate_8228D690(ctx, base);
+	sub_8228D690(ctx, base);
 	// li r11,2
 	ctx.r11.s64 = 2;
 	// li r10,0
@@ -64070,7 +64070,7 @@ loc_822564E4:
 	ctx.r3.s64 = 12;
 	// bl 0x8228d690
 	ctx.lr = 0x82256510;
-	rex_threadMsgCreate_8228D690(ctx, base);
+	sub_8228D690(ctx, base);
 	// li r11,3
 	ctx.r11.s64 = 3;
 	// li r10,0
@@ -64140,7 +64140,7 @@ loc_8225656C:
 	ctx.r3.s64 = 12;
 	// bl 0x8228d690
 	ctx.lr = 0x82256598;
-	rex_threadMsgCreate_8228D690(ctx, base);
+	sub_8228D690(ctx, base);
 	// li r11,4
 	ctx.r11.s64 = 4;
 	// li r10,0
@@ -64210,7 +64210,7 @@ loc_822565F4:
 	ctx.r3.s64 = 12;
 	// bl 0x8228d690
 	ctx.lr = 0x82256620;
-	rex_threadMsgCreate_8228D690(ctx, base);
+	sub_8228D690(ctx, base);
 	// li r11,5
 	ctx.r11.s64 = 5;
 	// li r10,0
@@ -64985,7 +64985,7 @@ loc_82256B88:
 	ctx.r3.s64 = 0;
 	// bl 0x824daed8
 	ctx.lr = 0x82256B90;
-	rex_gameThreadMsgPinataCheckPostbox_824DAED8(ctx, base);
+	sub_824DAED8(ctx, base);
 	// mulli r11,r29,3143
 	ctx.r11.s64 = static_cast<int64_t>(ctx.r29.u64 * static_cast<uint64_t>(3143));
 	// add r11,r11,r30
@@ -65005,7 +65005,7 @@ loc_82256BAC:
 	ctx.r3.s64 = 0;
 	// bl 0x824daed8
 	ctx.lr = 0x82256BB4;
-	rex_gameThreadMsgPinataCheckPostbox_824DAED8(ctx, base);
+	sub_824DAED8(ctx, base);
 	// lwzx r11,r30,r31
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r30.u32 + ctx.r31.u32);
 	// cmpwi cr6,r11,0
@@ -65022,7 +65022,7 @@ loc_82256BC8:
 	ctx.r3.s64 = 0;
 	// bl 0x824daed8
 	ctx.lr = 0x82256BD0;
-	rex_gameThreadMsgPinataCheckPostbox_824DAED8(ctx, base);
+	sub_824DAED8(ctx, base);
 	// mulli r11,r29,3143
 	ctx.r11.s64 = static_cast<int64_t>(ctx.r29.u64 * static_cast<uint64_t>(3143));
 	// add r11,r11,r30
@@ -65042,7 +65042,7 @@ loc_82256BEC:
 	ctx.r3.s64 = 0;
 	// bl 0x824daed8
 	ctx.lr = 0x82256BF4;
-	rex_gameThreadMsgPinataCheckPostbox_824DAED8(ctx, base);
+	sub_824DAED8(ctx, base);
 	// lwzx r11,r30,r31
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r30.u32 + ctx.r31.u32);
 	// cmpwi cr6,r11,0
@@ -65059,7 +65059,7 @@ loc_82256C08:
 	ctx.r3.s64 = 0;
 	// bl 0x824daed8
 	ctx.lr = 0x82256C10;
-	rex_gameThreadMsgPinataCheckPostbox_824DAED8(ctx, base);
+	sub_824DAED8(ctx, base);
 	// mulli r11,r29,3143
 	ctx.r11.s64 = static_cast<int64_t>(ctx.r29.u64 * static_cast<uint64_t>(3143));
 	// add r11,r11,r30
@@ -65079,7 +65079,7 @@ loc_82256C2C:
 	ctx.r3.s64 = 0;
 	// bl 0x824daed8
 	ctx.lr = 0x82256C34;
-	rex_gameThreadMsgPinataCheckPostbox_824DAED8(ctx, base);
+	sub_824DAED8(ctx, base);
 	// lwzx r11,r30,r31
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r30.u32 + ctx.r31.u32);
 	// cmpwi cr6,r11,0
@@ -65096,7 +65096,7 @@ loc_82256C48:
 	ctx.r3.s64 = 0;
 	// bl 0x824daed8
 	ctx.lr = 0x82256C50;
-	rex_gameThreadMsgPinataCheckPostbox_824DAED8(ctx, base);
+	sub_824DAED8(ctx, base);
 	// mulli r11,r29,3143
 	ctx.r11.s64 = static_cast<int64_t>(ctx.r29.u64 * static_cast<uint64_t>(3143));
 	// add r11,r11,r30
@@ -65116,7 +65116,7 @@ loc_82256C6C:
 	ctx.r3.s64 = 0;
 	// bl 0x824daed8
 	ctx.lr = 0x82256C74;
-	rex_gameThreadMsgPinataCheckPostbox_824DAED8(ctx, base);
+	sub_824DAED8(ctx, base);
 	// lwzx r11,r30,r31
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r30.u32 + ctx.r31.u32);
 	// cmpwi cr6,r11,0
@@ -65133,7 +65133,7 @@ loc_82256C88:
 	ctx.r3.s64 = 0;
 	// bl 0x824daed8
 	ctx.lr = 0x82256C90;
-	rex_gameThreadMsgPinataCheckPostbox_824DAED8(ctx, base);
+	sub_824DAED8(ctx, base);
 	// mulli r11,r29,3143
 	ctx.r11.s64 = static_cast<int64_t>(ctx.r29.u64 * static_cast<uint64_t>(3143));
 	// add r11,r11,r30
@@ -65153,7 +65153,7 @@ loc_82256CAC:
 	ctx.r3.s64 = 0;
 	// bl 0x824daed8
 	ctx.lr = 0x82256CB4;
-	rex_gameThreadMsgPinataCheckPostbox_824DAED8(ctx, base);
+	sub_824DAED8(ctx, base);
 	// lwzx r11,r30,r31
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r30.u32 + ctx.r31.u32);
 	// cmpwi cr6,r11,0
@@ -65170,7 +65170,7 @@ loc_82256CC8:
 	ctx.r3.s64 = 0;
 	// bl 0x824daed8
 	ctx.lr = 0x82256CD0;
-	rex_gameThreadMsgPinataCheckPostbox_824DAED8(ctx, base);
+	sub_824DAED8(ctx, base);
 	// mulli r11,r29,3143
 	ctx.r11.s64 = static_cast<int64_t>(ctx.r29.u64 * static_cast<uint64_t>(3143));
 	// add r11,r11,r30
@@ -65190,7 +65190,7 @@ loc_82256CEC:
 	ctx.r3.s64 = 0;
 	// bl 0x824daed8
 	ctx.lr = 0x82256CF4;
-	rex_gameThreadMsgPinataCheckPostbox_824DAED8(ctx, base);
+	sub_824DAED8(ctx, base);
 	// lwzx r11,r30,r31
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r30.u32 + ctx.r31.u32);
 	// cmpwi cr6,r11,0
@@ -68014,7 +68014,7 @@ PPC_FUNC_IMPL(__imp__sub_82257E80) {
 	ctx.r3.s64 = 13;
 	// bl 0x8228d690
 	ctx.lr = 0x82257FA0;
-	rex_threadMsgCreate_8228D690(ctx, base);
+	sub_8228D690(ctx, base);
 	// lwz r11,80(r1)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r1.u32 + 80);
 	// lwz r7,84(r1)
@@ -68066,7 +68066,7 @@ loc_82257FF8:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r9.u32 + ctx.r11.u32);
 	// bl 0x82b0a898
 	ctx.lr = 0x82258004;
-	rex_fsThreadAsyncAddDecompressOperation_82B0A898(ctx, base);
+	sub_82B0A898(ctx, base);
 	// li r6,1
 	ctx.r6.s64 = 1;
 	// mr r5,r27
@@ -68255,7 +68255,7 @@ PPC_FUNC_IMPL(__imp__sub_82258020) {
 	ctx.r3.s64 = 13;
 	// bl 0x8228d690
 	ctx.lr = 0x82258154;
-	rex_threadMsgCreate_8228D690(ctx, base);
+	sub_8228D690(ctx, base);
 	// lwz r11,80(r1)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r1.u32 + 80);
 	// lwz r3,84(r1)
@@ -68307,7 +68307,7 @@ loc_822581AC:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r9.u32 + ctx.r11.u32);
 	// bl 0x82b0a898
 	ctx.lr = 0x822581B8;
-	rex_fsThreadAsyncAddDecompressOperation_82B0A898(ctx, base);
+	sub_82B0A898(ctx, base);
 	// li r6,2
 	ctx.r6.s64 = 2;
 	// mr r5,r27
@@ -68478,7 +68478,7 @@ PPC_FUNC_IMPL(__imp__sub_822581D8) {
 	ctx.r3.s64 = 13;
 	// bl 0x8228d690
 	ctx.lr = 0x822582E8;
-	rex_threadMsgCreate_8228D690(ctx, base);
+	sub_8228D690(ctx, base);
 	// lwz r11,80(r1)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r1.u32 + 80);
 	// lwz r5,84(r1)
@@ -68528,7 +68528,7 @@ loc_8225833C:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r9.u32 + ctx.r11.u32);
 	// bl 0x82b0a898
 	ctx.lr = 0x82258348;
-	rex_fsThreadAsyncAddDecompressOperation_82B0A898(ctx, base);
+	sub_82B0A898(ctx, base);
 	// li r6,0
 	ctx.r6.s64 = 0;
 	// mr r5,r27
@@ -69432,7 +69432,7 @@ loc_82258930:
 	ctx.r3.s64 = 13;
 	// bl 0x8228d690
 	ctx.lr = 0x822589B0;
-	rex_threadMsgCreate_8228D690(ctx, base);
+	sub_8228D690(ctx, base);
 	// lwz r3,80(r1)
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r1.u32 + 80);
 	// lwz r7,84(r1)
@@ -70168,7 +70168,7 @@ loc_82258E64:
 	ctx.r3.s64 = 13;
 	// bl 0x8228d690
 	ctx.lr = 0x82258EE4;
-	rex_threadMsgCreate_8228D690(ctx, base);
+	sub_8228D690(ctx, base);
 	// lwz r3,80(r1)
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r1.u32 + 80);
 	// lwz r7,84(r1)
@@ -70447,7 +70447,7 @@ loc_8225907C:
 	ctx.r3.s64 = 13;
 	// bl 0x8228d690
 	ctx.lr = 0x822590D4;
-	rex_threadMsgCreate_8228D690(ctx, base);
+	sub_8228D690(ctx, base);
 	// lwz r11,80(r1)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r1.u32 + 80);
 	// lwz r4,84(r1)
@@ -70499,7 +70499,7 @@ loc_8225912C:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r9.u32 + ctx.r11.u32);
 	// bl 0x82b0a898
 	ctx.lr = 0x82259138;
-	rex_fsThreadAsyncAddDecompressOperation_82B0A898(ctx, base);
+	sub_82B0A898(ctx, base);
 	// li r6,5
 	ctx.r6.s64 = 5;
 	// mr r5,r27

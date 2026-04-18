@@ -67857,7 +67857,7 @@ PPC_FUNC_IMPL(__imp__sub_82AA8F78) {
 	PPC_STORE_U32(ctx.r1.u32 + 1192, ctx.r11.u32);
 	// bl 0x82b0a910
 	ctx.lr = 0x82AA8FB0;
-	rex_GetCurrentThreadId_82B0A910(ctx, base);
+	sub_82B0A910(ctx, base);
 	// stw r3,128(r1)
 	PPC_STORE_U32(ctx.r1.u32 + 128, ctx.r3.u32);
 	// lis r11,-32063

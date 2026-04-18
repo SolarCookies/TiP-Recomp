@@ -17302,7 +17302,7 @@ loc_82AE46E0:
 	ctx.r28.u64 = ctx.r11.u64 - ctx.r29.u64;
 	// bl 0x82b0a910
 	ctx.lr = 0x82AE46FC;
-	rex_GetCurrentThreadId_82B0A910(ctx, base);
+	sub_82B0A910(ctx, base);
 	// mr r4,r29
 	ctx.r4.u64 = ctx.r29.u64;
 	// mr r5,r28
@@ -43814,7 +43814,7 @@ PPC_FUNC_IMPL(__imp__sub_82AEF220) {
 	PPC_STORE_U32(ctx.r31.u32 + 92, ctx.r11.u32);
 	// bl 0x82b0a910
 	ctx.lr = 0x82AEF2C0;
-	rex_GetCurrentThreadId_82B0A910(ctx, base);
+	sub_82B0A910(ctx, base);
 	// li r11,-1
 	ctx.r11.s64 = -1;
 	// stw r3,0(r31)
@@ -44246,7 +44246,7 @@ PPC_FUNC_IMPL(__imp__sub_82AEF498) {
 	PPC_STORE_U32(ctx.r31.u32 + 92, ctx.r11.u32);
 	// bl 0x82b0a910
 	ctx.lr = 0x82AEF584;
-	rex_GetCurrentThreadId_82B0A910(ctx, base);
+	sub_82B0A910(ctx, base);
 	// lis r10,-32061
 	ctx.r10.s64 = -2101149696;
 	// lis r11,-32080
@@ -59169,7 +59169,7 @@ loc_82AF585C:
 	ctx.r29.u64 = ctx.r10.u64 ^ ctx.r11.u64;
 	// bl 0x82b0a910
 	ctx.lr = 0x82AF5874;
-	rex_GetCurrentThreadId_82B0A910(ctx, base);
+	sub_82B0A910(ctx, base);
 	// xor r29,r3,r29
 	ctx.r29.u64 = ctx.r3.u64 ^ ctx.r29.u64;
 	// bl 0x82b04f08

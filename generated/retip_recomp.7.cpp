@@ -51523,8 +51523,8 @@ loc_8228D330:
 	return;
 }
 
-__attribute__((alias("__imp__rex_threadMainResumeAllThreads_8228D338"))) PPC_WEAK_FUNC(rex_threadMainResumeAllThreads_8228D338);
-PPC_FUNC_IMPL(__imp__rex_threadMainResumeAllThreads_8228D338) {
+__attribute__((alias("__imp__sub_8228D338"))) PPC_WEAK_FUNC(sub_8228D338);
+PPC_FUNC_IMPL(__imp__sub_8228D338) {
 	PPC_FUNC_PROLOGUE();
 	uint32_t ea{};
 	// mflr r12
@@ -51562,7 +51562,7 @@ loc_8228D358:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r30.u32 + -12);
 	// bl 0x82b0a968
 	ctx.lr = 0x8228D378;
-	rex_ResumeThread_82B0A968(ctx, base);
+	sub_82B0A968(ctx, base);
 	// bl 0x8229b828
 	ctx.lr = 0x8228D37C;
 	rex_videoMainUpdateUILoadingScreen_8229B828(ctx, base);
@@ -52022,8 +52022,8 @@ loc_8228D5D8:
 	return;
 }
 
-__attribute__((alias("__imp__rex_threadMsgCreate_8228D690"))) PPC_WEAK_FUNC(rex_threadMsgCreate_8228D690);
-PPC_FUNC_IMPL(__imp__rex_threadMsgCreate_8228D690) {
+__attribute__((alias("__imp__sub_8228D690"))) PPC_WEAK_FUNC(sub_8228D690);
+PPC_FUNC_IMPL(__imp__sub_8228D690) {
 	PPC_FUNC_PROLOGUE();
 	uint32_t ea{};
 	// mflr r12
@@ -52166,12 +52166,12 @@ loc_8228D784:
 	// lwzx r3,r8,r11
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r8.u32 + ctx.r11.u32);
 	// b 0x82b0a898
-	rex_fsThreadAsyncAddDecompressOperation_82B0A898(ctx, base);
+	sub_82B0A898(ctx, base);
 	return;
 }
 
-__attribute__((alias("__imp__rex_threadMsgGetNextMail_8228D790"))) PPC_WEAK_FUNC(rex_threadMsgGetNextMail_8228D790);
-PPC_FUNC_IMPL(__imp__rex_threadMsgGetNextMail_8228D790) {
+__attribute__((alias("__imp__sub_8228D790"))) PPC_WEAK_FUNC(sub_8228D790);
+PPC_FUNC_IMPL(__imp__sub_8228D790) {
 	PPC_FUNC_PROLOGUE();
 	uint32_t ea{};
 	// mflr r12
@@ -52277,8 +52277,8 @@ loc_8228D834:
 	return;
 }
 
-__attribute__((alias("__imp__rex_threadSpinLockLock_8228D848"))) PPC_WEAK_FUNC(rex_threadSpinLockLock_8228D848);
-PPC_FUNC_IMPL(__imp__rex_threadSpinLockLock_8228D848) {
+__attribute__((alias("__imp__sub_8228D848"))) PPC_WEAK_FUNC(sub_8228D848);
+PPC_FUNC_IMPL(__imp__sub_8228D848) {
 	PPC_FUNC_PROLOGUE();
 	uint32_t ea{};
 	// mflr r12
@@ -75782,7 +75782,7 @@ loc_822974D8:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x8228d848
 	ctx.lr = 0x82297520;
-	rex_threadSpinLockLock_8228D848(ctx, base);
+	sub_8228D848(ctx, base);
 	// lwz r31,4(r30)
 	ctx.r31.u64 = PPC_LOAD_U32(ctx.r30.u32 + 4);
 	// cmplwi cr6,r31,0
@@ -75960,7 +75960,7 @@ loc_82297610:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x8228d848
 	ctx.lr = 0x82297650;
-	rex_threadSpinLockLock_8228D848(ctx, base);
+	sub_8228D848(ctx, base);
 	// lwz r31,4(r30)
 	ctx.r31.u64 = PPC_LOAD_U32(ctx.r30.u32 + 4);
 	// cmplwi cr6,r31,0

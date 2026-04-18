@@ -28,3 +28,4 @@ TiP-Recomp.code-workspace
 retip.exe
 retip.pdb
 logs/retip.log
+/logs

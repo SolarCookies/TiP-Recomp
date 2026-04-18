@@ -12453,7 +12453,7 @@ loc_824F5F3C:
 	ctx.r3.s64 = 6;
 	// bl 0x8228d690
 	ctx.lr = 0x824F5F54;
-	rex_threadMsgCreate_8228D690(ctx, base);
+	sub_8228D690(ctx, base);
 	// lis r11,-31835
 	ctx.r11.s64 = -2086338560;
 	// addi r8,r31,56
@@ -12501,7 +12501,7 @@ loc_824F5FA4:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r8.u32 + ctx.r11.u32);
 	// bl 0x82b0a898
 	ctx.lr = 0x824F5FB0;
-	rex_fsThreadAsyncAddDecompressOperation_82B0A898(ctx, base);
+	sub_82B0A898(ctx, base);
 	// addi r1,r1,112
 	ctx.r1.s64 = ctx.r1.s64 + 112;
 	// lwz r12,-8(r1)
@@ -12547,7 +12547,7 @@ PPC_FUNC_IMPL(__imp__sub_824F5FC8) {
 	ctx.r3.s64 = 7;
 	// bl 0x8228d690
 	ctx.lr = 0x824F5FF8;
-	rex_threadMsgCreate_8228D690(ctx, base);
+	sub_8228D690(ctx, base);
 	// lwz r10,80(r1)
 	ctx.r10.u64 = PPC_LOAD_U32(ctx.r1.u32 + 80);
 	// lis r11,-31835
@@ -12587,7 +12587,7 @@ loc_824F6038:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r8.u32 + ctx.r11.u32);
 	// bl 0x82b0a898
 	ctx.lr = 0x824F6044;
-	rex_fsThreadAsyncAddDecompressOperation_82B0A898(ctx, base);
+	sub_82B0A898(ctx, base);
 	// lwz r11,8(r27)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r27.u32 + 8);
 	// cmpwi cr6,r11,0
@@ -14369,7 +14369,7 @@ loc_824F6BE0:
 	ctx.r3.s64 = 8;
 	// bl 0x8228d690
 	ctx.lr = 0x824F6C0C;
-	rex_threadMsgCreate_8228D690(ctx, base);
+	sub_8228D690(ctx, base);
 	// lwz r10,80(r1)
 	ctx.r10.u64 = PPC_LOAD_U32(ctx.r1.u32 + 80);
 	// addi r11,r30,32
@@ -14395,7 +14395,7 @@ loc_824F6BE0:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r9.u32 + ctx.r11.u32);
 	// bl 0x82b0a898
 	ctx.lr = 0x824F6C40;
-	rex_fsThreadAsyncAddDecompressOperation_82B0A898(ctx, base);
+	sub_82B0A898(ctx, base);
 	// b 0x824f6c6c
 	goto loc_824F6C6C;
 loc_824F6C44:
@@ -14409,7 +14409,7 @@ loc_824F6C44:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r9.u32 + ctx.r11.u32);
 	// bl 0x82b0a898
 	ctx.lr = 0x824F6C58;
-	rex_fsThreadAsyncAddDecompressOperation_82B0A898(ctx, base);
+	sub_82B0A898(ctx, base);
 	// b 0x824f6c6c
 	goto loc_824F6C6C;
 loc_824F6C5C:
@@ -14692,7 +14692,7 @@ PPC_FUNC_IMPL(__imp__sub_824F6DD8) {
 loc_824F6DF8:
 	// bl 0x8228d790
 	ctx.lr = 0x824F6DFC;
-	rex_threadMsgGetNextMail_8228D790(ctx, base);
+	sub_8228D790(ctx, base);
 	// cmplwi cr6,r3,0
 	ctx.cr6.compare<uint32_t>(ctx.r3.u32, 0, ctx.xer);
 	// beq cr6,0x824f6e3c
@@ -51255,7 +51255,7 @@ PPC_FUNC_IMPL(__imp__sub_825062C0) {
 	ctx.f2.f64 = double(temp.f32);
 	// bl 0x82575c30
 	ctx.lr = 0x82506318;
-	sub_82575C30(ctx, base);
+	rex_spawn_supportPinataCreateGeneralEx_82575C30(ctx, base);
 	// addi r1,r1,224
 	ctx.r1.s64 = ctx.r1.s64 + 224;
 	// lfd f30,-96(r1)
@@ -53975,7 +53975,7 @@ loc_82507598:
 	ctx.r3.u64 = ctx.r26.u64;
 	// bl 0x82575c30
 	ctx.lr = 0x825075D4;
-	sub_82575C30(ctx, base);
+	rex_spawn_supportPinataCreateGeneralEx_82575C30(ctx, base);
 	// li r5,1
 	ctx.r5.s64 = 1;
 	// li r4,0

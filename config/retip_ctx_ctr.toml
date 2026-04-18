@@ -21,3 +21,5 @@
 0x82352120 = {} #Storing medicine in store building crash fix
 0x825d13f8 = {} #Deliver Trap crash Fix
 0x823331c8 = {} #Packing Eggs crash fix
+
+0x822751b8 = {}

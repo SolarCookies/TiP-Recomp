@@ -1,48 +1,5 @@
 #include "retip_init.h"
 
-__attribute__((alias("__imp__sub_82B16D18"))) PPC_WEAK_FUNC(sub_82B16D18);
-PPC_FUNC_IMPL(__imp__sub_82B16D18) {
-	PPC_FUNC_PROLOGUE();
-	PPCRegister temp{};
-	uint32_t ea{};
-	// mflr r12
-	ctx.r12.u64 = ctx.lr;
-	// stw r12,-8(r1)
-	PPC_STORE_U32(ctx.r1.u32 + -8, ctx.r12.u32);
-	// stwu r1,-96(r1)
-	ea = -96 + ctx.r1.u32;
-	PPC_STORE_U32(ea, ctx.r1.u32);
-	ctx.r1.u32 = ea;
-	// lis r11,-32247
-	ctx.r11.s64 = -2113339392;
-	// lis r10,-32234
-	ctx.r10.s64 = -2112487424;
-	// lfd f2,16768(r11)
-	ctx.fpscr.disableFlushMode();
-	ctx.f2.u64 = PPC_LOAD_U64(ctx.r11.u32 + 16768);
-	// lfd f1,4336(r10)
-	ctx.f1.u64 = PPC_LOAD_U64(ctx.r10.u32 + 4336);
-	// bl 0x82adf628
-	ctx.lr = 0x82B16D38;
-	sub_82ADF628(ctx, base);
-	// lis r11,-32063
-	ctx.r11.s64 = -2101280768;
-	// frsp f0,f1
-	ctx.fpscr.disableFlushMode();
-	ctx.f0.f64 = double(float(ctx.f1.f64));
-	// stfs f0,4476(r11)
-	temp.f32 = float(ctx.f0.f64);
-	PPC_STORE_U32(ctx.r11.u32 + 4476, temp.u32);
-	// addi r1,r1,96
-	ctx.r1.s64 = ctx.r1.s64 + 96;
-	// lwz r12,-8(r1)
-	ctx.r12.u64 = PPC_LOAD_U32(ctx.r1.u32 + -8);
-	// mtlr r12
-	ctx.lr = ctx.r12.u64;
-	// blr 
-	return;
-}
-
 __attribute__((alias("__imp__sub_82B16D58"))) PPC_WEAK_FUNC(sub_82B16D58);
 PPC_FUNC_IMPL(__imp__sub_82B16D58) {
 	PPC_FUNC_PROLOGUE();

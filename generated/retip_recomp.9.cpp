@@ -21364,7 +21364,7 @@ PPC_FUNC_IMPL(__imp__sub_822C05E0) {
 	ctx.f1.f64 = double(temp.f32);
 	// bl 0x82575c30
 	ctx.lr = 0x822C066C;
-	sub_82575C30(ctx, base);
+	rex_spawn_supportPinataCreateGeneralEx_82575C30(ctx, base);
 	// mr r27,r3
 	ctx.r27.u64 = ctx.r3.u64;
 	// addi r7,r1,88
@@ -24449,7 +24449,7 @@ loc_822C19F4:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r8.u32 + 108);
 	// bl 0x82575c30
 	ctx.lr = 0x822C1A24;
-	sub_82575C30(ctx, base);
+	rex_spawn_supportPinataCreateGeneralEx_82575C30(ctx, base);
 	// stw r3,12(r28)
 	PPC_STORE_U32(ctx.r28.u32 + 12, ctx.r3.u32);
 	// addi r3,r1,272
@@ -24747,8 +24747,8 @@ loc_822C1BEC:
 	return;
 }
 
-__attribute__((alias("__imp__rex_inputPitchState_822C1C00"))) PPC_WEAK_FUNC(rex_inputPitchState_822C1C00);
-PPC_FUNC_IMPL(__imp__rex_inputPitchState_822C1C00) {
+__attribute__((alias("__imp__rex_meCursorCamCalculatePitch_822C1C00"))) PPC_WEAK_FUNC(rex_meCursorCamCalculatePitch_822C1C00);
+PPC_FUNC_IMPL(__imp__rex_meCursorCamCalculatePitch_822C1C00) {
 	PPC_FUNC_PROLOGUE();
 	PPCRegister temp{};
 	uint32_t ea{};
@@ -25232,7 +25232,7 @@ PPC_FUNC_IMPL(__imp__rex_cursorCameraTick_822C1E88) {
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 4);
 	// bl 0x822c4260
 	ctx.lr = 0x822C1EF8;
-	rex_inputGetState_822C4260(ctx, base);
+	rex_cursorInstLocksIsLockSet_822C4260(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x822c1f80
@@ -25243,7 +25243,7 @@ PPC_FUNC_IMPL(__imp__rex_cursorCameraTick_822C1E88) {
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 4);
 	// bl 0x822c4260
 	ctx.lr = 0x822C1F0C;
-	rex_inputGetState_822C4260(ctx, base);
+	rex_cursorInstLocksIsLockSet_822C4260(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x822c1f20
@@ -25262,7 +25262,7 @@ loc_822C1F20:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 4);
 	// bl 0x822c4260
 	ctx.lr = 0x822C1F2C;
-	rex_inputGetState_822C4260(ctx, base);
+	rex_cursorInstLocksIsLockSet_822C4260(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x822c1f40
@@ -25281,7 +25281,7 @@ loc_822C1F40:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 4);
 	// bl 0x822c4260
 	ctx.lr = 0x822C1F4C;
-	rex_inputGetState_822C4260(ctx, base);
+	rex_cursorInstLocksIsLockSet_822C4260(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x822c1f60
@@ -25292,7 +25292,7 @@ loc_822C1F40:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x822c1c00
 	ctx.lr = 0x822C1F60;
-	rex_inputPitchState_822C1C00(ctx, base);
+	rex_meCursorCamCalculatePitch_822C1C00(ctx, base);
 loc_822C1F60:
 	// li r4,128
 	ctx.r4.s64 = 128;
@@ -25300,7 +25300,7 @@ loc_822C1F60:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 4);
 	// bl 0x822c4260
 	ctx.lr = 0x822C1F6C;
-	rex_inputGetState_822C4260(ctx, base);
+	rex_cursorInstLocksIsLockSet_822C4260(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x822c1f80
@@ -30707,8 +30707,8 @@ loc_822C4248:
 	return;
 }
 
-__attribute__((alias("__imp__rex_inputGetState_822C4260"))) PPC_WEAK_FUNC(rex_inputGetState_822C4260);
-PPC_FUNC_IMPL(__imp__rex_inputGetState_822C4260) {
+__attribute__((alias("__imp__rex_cursorInstLocksIsLockSet_822C4260"))) PPC_WEAK_FUNC(rex_cursorInstLocksIsLockSet_822C4260);
+PPC_FUNC_IMPL(__imp__rex_cursorInstLocksIsLockSet_822C4260) {
 	PPC_FUNC_PROLOGUE();
 	uint32_t ea{};
 	// mflr r12
@@ -35545,7 +35545,7 @@ PPC_FUNC_IMPL(__imp__sub_822C6240) {
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x822c4260
 	ctx.lr = 0x822C62D4;
-	rex_inputGetState_822C4260(ctx, base);
+	rex_cursorInstLocksIsLockSet_822C4260(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x822c6440
@@ -35805,7 +35805,7 @@ loc_822C6440:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x822c4260
 	ctx.lr = 0x822C6470;
-	rex_inputGetState_822C4260(ctx, base);
+	rex_cursorInstLocksIsLockSet_822C4260(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x822c64a0
@@ -35816,7 +35816,7 @@ loc_822C6440:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x822c4260
 	ctx.lr = 0x822C6484;
-	rex_inputGetState_822C4260(ctx, base);
+	rex_cursorInstLocksIsLockSet_822C4260(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x822c64a0
@@ -35827,7 +35827,7 @@ loc_822C6440:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x822c4260
 	ctx.lr = 0x822C6498;
-	rex_inputGetState_822C4260(ctx, base);
+	rex_cursorInstLocksIsLockSet_822C4260(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x822c666c
@@ -36076,7 +36076,7 @@ loc_822C661C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x822c4260
 	ctx.lr = 0x822C6634;
-	rex_inputGetState_822C4260(ctx, base);
+	rex_cursorInstLocksIsLockSet_822C4260(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x822c666c
@@ -36472,7 +36472,7 @@ loc_822C6850:
 	ctx.r3.u64 = ctx.r23.u64;
 	// bl 0x822c4260
 	ctx.lr = 0x822C6894;
-	rex_inputGetState_822C4260(ctx, base);
+	rex_cursorInstLocksIsLockSet_822C4260(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x822c68c4
@@ -36484,7 +36484,7 @@ loc_822C689C:
 	ctx.r3.u64 = ctx.r23.u64;
 	// bl 0x822c4260
 	ctx.lr = 0x822C68A8;
-	rex_inputGetState_822C4260(ctx, base);
+	rex_cursorInstLocksIsLockSet_822C4260(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x822c68c4
@@ -36495,7 +36495,7 @@ loc_822C689C:
 	ctx.r3.u64 = ctx.r23.u64;
 	// bl 0x822c4260
 	ctx.lr = 0x822C68BC;
-	rex_inputGetState_822C4260(ctx, base);
+	rex_cursorInstLocksIsLockSet_822C4260(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x822c68d8
@@ -40624,7 +40624,7 @@ PPC_FUNC_IMPL(__imp__sub_822C8328) {
 	ctx.r31.u64 = PPC_LOAD_U32(ctx.r11.u32 + 8);
 	// bl 0x822c4260
 	ctx.lr = 0x822C8350;
-	rex_inputGetState_822C4260(ctx, base);
+	rex_cursorInstLocksIsLockSet_822C4260(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x822c83c8
@@ -40902,7 +40902,7 @@ PPC_FUNC_IMPL(__imp__sub_822C8510) {
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x822c4260
 	ctx.lr = 0x822C8550;
-	rex_inputGetState_822C4260(ctx, base);
+	rex_cursorInstLocksIsLockSet_822C4260(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x822c867c
@@ -43549,7 +43549,7 @@ loc_822C9758:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x822c4260
 	ctx.lr = 0x822C9764;
-	rex_inputGetState_822C4260(ctx, base);
+	rex_cursorInstLocksIsLockSet_822C4260(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x822c97ec
@@ -43729,7 +43729,7 @@ loc_822C988C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x822c4260
 	ctx.lr = 0x822C9898;
-	rex_inputGetState_822C4260(ctx, base);
+	rex_cursorInstLocksIsLockSet_822C4260(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x822c9bec

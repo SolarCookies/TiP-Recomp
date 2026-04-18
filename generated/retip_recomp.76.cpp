@@ -23795,7 +23795,7 @@ loc_82AD7144:
 	PPC_STORE_U32(ctx.r1.u32 + 372, temp.u32);
 	// bl 0x826645f8
 	ctx.lr = 0x82AD7258;
-	sub_826645F8(ctx, base);
+	rex_render_D3DDevice_DrawVerticesUP_826645F8(ctx, base);
 loc_82AD7258:
 	// lfs f29,80(r1)
 	ctx.fpscr.disableFlushMode();
@@ -25346,7 +25346,7 @@ loc_82AD79E8:
 	PPC_STORE_U64(ctx.r31.u32 + 8, ctx.r11.u64);
 	// bl 0x826645f8
 	ctx.lr = 0x82AD7C7C;
-	sub_826645F8(ctx, base);
+	rex_render_D3DDevice_DrawVerticesUP_826645F8(ctx, base);
 	// lbz r11,12(r30)
 	ctx.r11.u64 = PPC_LOAD_U8(ctx.r30.u32 + 12);
 	// lfs f29,136(r1)

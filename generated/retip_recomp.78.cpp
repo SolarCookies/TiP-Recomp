@@ -11587,8 +11587,8 @@ loc_82AFCC9C:
 	return;
 }
 
-__attribute__((alias("__imp__rex_CreateThread_82AFCCB0"))) PPC_WEAK_FUNC(rex_CreateThread_82AFCCB0);
-PPC_FUNC_IMPL(__imp__rex_CreateThread_82AFCCB0) {
+__attribute__((alias("__imp__sub_82AFCCB0"))) PPC_WEAK_FUNC(sub_82AFCCB0);
+PPC_FUNC_IMPL(__imp__sub_82AFCCB0) {
 	PPC_FUNC_PROLOGUE();
 	// mr r9,r8
 	ctx.r9.u64 = ctx.r8.u64;
@@ -15065,7 +15065,7 @@ PPC_FUNC_IMPL(__imp__sub_82AFE1A8) {
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 52);
 	// bl 0x82b0a898
 	ctx.lr = 0x82AFE1EC;
-	rex_fsThreadAsyncAddDecompressOperation_82B0A898(ctx, base);
+	sub_82B0A898(ctx, base);
 	// addi r1,r1,112
 	ctx.r1.s64 = ctx.r1.s64 + 112;
 	// lwz r12,-8(r1)
@@ -15148,7 +15148,7 @@ PPC_FUNC_IMPL(__imp__sub_82AFE218) {
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 52);
 	// bl 0x82b0a898
 	ctx.lr = 0x82AFE274;
-	rex_fsThreadAsyncAddDecompressOperation_82B0A898(ctx, base);
+	sub_82B0A898(ctx, base);
 	// addi r1,r1,112
 	ctx.r1.s64 = ctx.r1.s64 + 112;
 	// lwz r12,-8(r1)
@@ -15256,7 +15256,7 @@ loc_82AFE32C:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 52);
 	// bl 0x82b0a898
 	ctx.lr = 0x82AFE334;
-	rex_fsThreadAsyncAddDecompressOperation_82B0A898(ctx, base);
+	sub_82B0A898(ctx, base);
 loc_82AFE334:
 	// addi r3,r31,16
 	ctx.r3.s64 = ctx.r31.s64 + 16;
@@ -18895,7 +18895,7 @@ loc_82AFFBF8:
 	PPC_STORE_U32(ctx.r31.u32 + 124, ctx.r11.u32);
 	// bl 0x82b0a898
 	ctx.lr = 0x82AFFC44;
-	rex_fsThreadAsyncAddDecompressOperation_82B0A898(ctx, base);
+	sub_82B0A898(ctx, base);
 	// addi r3,r31,16
 	ctx.r3.s64 = ctx.r31.s64 + 16;
 	// bl 0x82b1cca4
@@ -19030,7 +19030,7 @@ PPC_FUNC_IMPL(__imp__sub_82AFFCD0) {
 loc_82AFFD18:
 	// bl 0x82b0a898
 	ctx.lr = 0x82AFFD1C;
-	rex_fsThreadAsyncAddDecompressOperation_82B0A898(ctx, base);
+	sub_82B0A898(ctx, base);
 	// li r3,100
 	ctx.r3.s64 = 100;
 	// bl 0x82afccf8
@@ -26916,7 +26916,7 @@ loc_82B0329C:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r30.u32 + 52);
 	// bl 0x82b0a898
 	ctx.lr = 0x82B032EC;
-	rex_fsThreadAsyncAddDecompressOperation_82B0A898(ctx, base);
+	sub_82B0A898(ctx, base);
 loc_82B032EC:
 	// addi r3,r30,16
 	ctx.r3.s64 = ctx.r30.s64 + 16;
@@ -28168,7 +28168,7 @@ loc_82B03B74:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 52);
 	// bl 0x82b0a898
 	ctx.lr = 0x82B03B88;
-	rex_fsThreadAsyncAddDecompressOperation_82B0A898(ctx, base);
+	sub_82B0A898(ctx, base);
 	// b 0x82b03850
 	goto loc_82B03850;
 loc_82B03B8C:
@@ -28305,7 +28305,7 @@ loc_82B03C54:
 	ctx.r3.s64 = 0;
 	// bl 0x82afccb0
 	ctx.lr = 0x82B03C78;
-	rex_CreateThread_82AFCCB0(ctx, base);
+	sub_82AFCCB0(ctx, base);
 	// stw r3,52(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 52, ctx.r3.u32);
 	// cmplwi r3,0
@@ -28346,7 +28346,7 @@ loc_82B03CA4:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 52);
 	// bl 0x82b0a968
 	ctx.lr = 0x82B03CC0;
-	rex_ResumeThread_82B0A968(ctx, base);
+	sub_82B0A968(ctx, base);
 	// li r3,0
 	ctx.r3.s64 = 0;
 loc_82B03CC4:
@@ -42705,8 +42705,8 @@ PPC_FUNC_IMPL(__imp__rex_WaitForSingleObject_82B0A890) {
 	return;
 }
 
-__attribute__((alias("__imp__rex_fsThreadAsyncAddDecompressOperation_82B0A898"))) PPC_WEAK_FUNC(rex_fsThreadAsyncAddDecompressOperation_82B0A898);
-PPC_FUNC_IMPL(__imp__rex_fsThreadAsyncAddDecompressOperation_82B0A898) {
+__attribute__((alias("__imp__sub_82B0A898"))) PPC_WEAK_FUNC(sub_82B0A898);
+PPC_FUNC_IMPL(__imp__sub_82B0A898) {
 	PPC_FUNC_PROLOGUE();
 	uint32_t ea{};
 	// mflr r12
@@ -42787,8 +42787,8 @@ loc_82B0A900:
 	return;
 }
 
-__attribute__((alias("__imp__rex_GetCurrentThreadId_82B0A910"))) PPC_WEAK_FUNC(rex_GetCurrentThreadId_82B0A910);
-PPC_FUNC_IMPL(__imp__rex_GetCurrentThreadId_82B0A910) {
+__attribute__((alias("__imp__sub_82B0A910"))) PPC_WEAK_FUNC(sub_82B0A910);
+PPC_FUNC_IMPL(__imp__sub_82B0A910) {
 	PPC_FUNC_PROLOGUE();
 	// lwz r11,256(r13)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r13.u32 + 256);
@@ -42844,8 +42844,8 @@ loc_82B0A954:
 	return;
 }
 
-__attribute__((alias("__imp__rex_ResumeThread_82B0A968"))) PPC_WEAK_FUNC(rex_ResumeThread_82B0A968);
-PPC_FUNC_IMPL(__imp__rex_ResumeThread_82B0A968) {
+__attribute__((alias("__imp__sub_82B0A968"))) PPC_WEAK_FUNC(sub_82B0A968);
+PPC_FUNC_IMPL(__imp__sub_82B0A968) {
 	PPC_FUNC_PROLOGUE();
 	uint32_t ea{};
 	// mflr r12
@@ -67074,8 +67074,8 @@ loc_82B14AD0:
 	return;
 }
 
-__attribute__((alias("__imp__rex_XapiThreadStartup_82B14AE0"))) PPC_WEAK_FUNC(rex_XapiThreadStartup_82B14AE0);
-PPC_FUNC_IMPL(__imp__rex_XapiThreadStartup_82B14AE0) {
+__attribute__((alias("__imp__sub_82B14AE0"))) PPC_WEAK_FUNC(sub_82B14AE0);
+PPC_FUNC_IMPL(__imp__sub_82B14AE0) {
 	PPC_FUNC_PROLOGUE();
 	uint32_t ea{};
 	// mflr r12
@@ -67131,27 +67131,6 @@ PPC_FUNC_IMPL(__imp__rex_XapiThreadStartup_82B14AE0) {
 	// bl 0x82b1dc34
 	ctx.lr = 0x82B14B3C;
 	__imp__ExTerminateThread(ctx, base);
-	// mflr r12
-	ctx.r12.u64 = ctx.lr;
-	// stw r12,-8(r1)
-	PPC_STORE_U32(ctx.r1.u32 + -8, ctx.r12.u32);
-	// stwu r1,-96(r1)
-	ea = -96 + ctx.r1.u32;
-	PPC_STORE_U32(ea, ctx.r1.u32);
-	ctx.r1.u32 = ea;
-	// bl 0x82afcc20
-	ctx.lr = 0x82B14B4C;
-	sub_82AFCC20(ctx, base);
-	// mr r8,r8
-	ctx.r8.u64 = ctx.r8.u64;
-	// lwz r1,0(r1)
-	ctx.r1.u64 = PPC_LOAD_U32(ctx.r1.u32 + 0);
-	// lwz r12,-8(r1)
-	ctx.r12.u64 = PPC_LOAD_U32(ctx.r1.u32 + -8);
-	// mtlr r12
-	ctx.lr = ctx.r12.u64;
-	// blr 
-	return;
 }
 
 __attribute__((alias("__imp__sub_82B14B3C"))) PPC_WEAK_FUNC(sub_82B14B3C);
@@ -72255,6 +72234,49 @@ PPC_FUNC_IMPL(__imp__sub_82B16CD8) {
 	// stfs f0,4472(r11)
 	temp.f32 = float(ctx.f0.f64);
 	PPC_STORE_U32(ctx.r11.u32 + 4472, temp.u32);
+	// addi r1,r1,96
+	ctx.r1.s64 = ctx.r1.s64 + 96;
+	// lwz r12,-8(r1)
+	ctx.r12.u64 = PPC_LOAD_U32(ctx.r1.u32 + -8);
+	// mtlr r12
+	ctx.lr = ctx.r12.u64;
+	// blr 
+	return;
+}
+
+__attribute__((alias("__imp__sub_82B16D18"))) PPC_WEAK_FUNC(sub_82B16D18);
+PPC_FUNC_IMPL(__imp__sub_82B16D18) {
+	PPC_FUNC_PROLOGUE();
+	PPCRegister temp{};
+	uint32_t ea{};
+	// mflr r12
+	ctx.r12.u64 = ctx.lr;
+	// stw r12,-8(r1)
+	PPC_STORE_U32(ctx.r1.u32 + -8, ctx.r12.u32);
+	// stwu r1,-96(r1)
+	ea = -96 + ctx.r1.u32;
+	PPC_STORE_U32(ea, ctx.r1.u32);
+	ctx.r1.u32 = ea;
+	// lis r11,-32247
+	ctx.r11.s64 = -2113339392;
+	// lis r10,-32234
+	ctx.r10.s64 = -2112487424;
+	// lfd f2,16768(r11)
+	ctx.fpscr.disableFlushMode();
+	ctx.f2.u64 = PPC_LOAD_U64(ctx.r11.u32 + 16768);
+	// lfd f1,4336(r10)
+	ctx.f1.u64 = PPC_LOAD_U64(ctx.r10.u32 + 4336);
+	// bl 0x82adf628
+	ctx.lr = 0x82B16D38;
+	sub_82ADF628(ctx, base);
+	// lis r11,-32063
+	ctx.r11.s64 = -2101280768;
+	// frsp f0,f1
+	ctx.fpscr.disableFlushMode();
+	ctx.f0.f64 = double(float(ctx.f1.f64));
+	// stfs f0,4476(r11)
+	temp.f32 = float(ctx.f0.f64);
+	PPC_STORE_U32(ctx.r11.u32 + 4476, temp.u32);
 	// addi r1,r1,96
 	ctx.r1.s64 = ctx.r1.s64 + 96;
 	// lwz r12,-8(r1)

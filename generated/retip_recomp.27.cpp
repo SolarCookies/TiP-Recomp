@@ -44311,7 +44311,7 @@ PPC_FUNC_IMPL(__imp__sub_82524390) {
 	PPC_STORE_U32(ctx.r1.u32 + 84, temp.u32);
 	// bl 0x82575c30
 	ctx.lr = 0x82524418;
-	sub_82575C30(ctx, base);
+	rex_spawn_supportPinataCreateGeneralEx_82575C30(ctx, base);
 	// mr r30,r3
 	ctx.r30.u64 = ctx.r3.u64;
 	// lwz r11,136(r30)

@@ -5507,8 +5507,8 @@ PPC_FUNC_IMPL(__imp__sub_82201540) {
 	return;
 }
 
-__attribute__((alias("__imp__sub_822015D8"))) PPC_WEAK_FUNC(sub_822015D8);
-PPC_FUNC_IMPL(__imp__sub_822015D8) {
+__attribute__((alias("__imp__rex_render_DrawQuad2D_822015D8"))) PPC_WEAK_FUNC(rex_render_DrawQuad2D_822015D8);
+PPC_FUNC_IMPL(__imp__rex_render_DrawQuad2D_822015D8) {
 	PPC_FUNC_PROLOGUE();
 	PPCRegister temp{};
 	uint32_t ea{};
@@ -5741,7 +5741,7 @@ loc_82201724:
 	ctx.f1.f64 = ctx.f2.f64;
 	// bl 0x822015d8
 	ctx.lr = 0x82201744;
-	sub_822015D8(ctx, base);
+	rex_render_DrawQuad2D_822015D8(ctx, base);
 	// addi r1,r1,128
 	ctx.r1.s64 = ctx.r1.s64 + 128;
 	// b 0x82ae1674
@@ -6623,7 +6623,7 @@ loc_82201C0C:
 	ctx.r5.s64 = 0;
 	// bl 0x82202ee0
 	ctx.lr = 0x82201C4C;
-	sub_82202EE0(ctx, base);
+	rex_render_DrawColoredQuad_82202EE0(ctx, base);
 	// addi r1,r1,144
 	ctx.r1.s64 = ctx.r1.s64 + 144;
 	// b 0x82ae1674
@@ -7645,7 +7645,7 @@ PPC_FUNC_IMPL(__imp__sub_82202080) {
 	ctx.r4.s64 = 4;
 	// bl 0x826645f8
 	ctx.lr = 0x822021C4;
-	sub_826645F8(ctx, base);
+	rex_render_D3DDevice_DrawVerticesUP_826645F8(ctx, base);
 	// addi r1,r1,160
 	ctx.r1.s64 = ctx.r1.s64 + 160;
 	// b 0x82ae167c
@@ -9518,7 +9518,7 @@ PPC_FUNC_IMPL(__imp__sub_82202D78) {
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82204aa0
 	ctx.lr = 0x82202E10;
-	sub_82204AA0(ctx, base);
+	rex_render_DrawTexturedQuad_82204AA0(ctx, base);
 	// addi r1,r1,176
 	ctx.r1.s64 = ctx.r1.s64 + 176;
 	// lfd f30,-88(r1)
@@ -9637,8 +9637,8 @@ PPC_FUNC_IMPL(__imp__sub_82202E20) {
 	return;
 }
 
-__attribute__((alias("__imp__sub_82202EE0"))) PPC_WEAK_FUNC(sub_82202EE0);
-PPC_FUNC_IMPL(__imp__sub_82202EE0) {
+__attribute__((alias("__imp__rex_render_DrawColoredQuad_82202EE0"))) PPC_WEAK_FUNC(rex_render_DrawColoredQuad_82202EE0);
+PPC_FUNC_IMPL(__imp__rex_render_DrawColoredQuad_82202EE0) {
 	PPC_FUNC_PROLOGUE();
 	PPCRegister temp{};
 	uint32_t ea{};
@@ -10639,7 +10639,7 @@ PPC_FUNC_IMPL(__imp__sub_822031C8) {
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
 	// bl 0x826645f8
 	ctx.lr = 0x82203570;
-	sub_826645F8(ctx, base);
+	rex_render_D3DDevice_DrawVerticesUP_826645F8(ctx, base);
 	// lwz r11,0(r31)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
 	// li r9,1
@@ -13839,8 +13839,8 @@ loc_82204A84:
 	return;
 }
 
-__attribute__((alias("__imp__sub_82204AA0"))) PPC_WEAK_FUNC(sub_82204AA0);
-PPC_FUNC_IMPL(__imp__sub_82204AA0) {
+__attribute__((alias("__imp__rex_render_DrawTexturedQuad_82204AA0"))) PPC_WEAK_FUNC(rex_render_DrawTexturedQuad_82204AA0);
+PPC_FUNC_IMPL(__imp__rex_render_DrawTexturedQuad_82204AA0) {
 	PPC_FUNC_PROLOGUE();
 	PPCRegister temp{};
 	PPCVRegister vTemp{};
@@ -23219,7 +23219,7 @@ loc_8220854C:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r28.u32 + -10976);
 	// bl 0x826645f8
 	ctx.lr = 0x82208964;
-	sub_826645F8(ctx, base);
+	rex_render_D3DDevice_DrawVerticesUP_826645F8(ctx, base);
 	// li r4,6
 	ctx.r4.s64 = 6;
 	// lwz r3,-10976(r28)
@@ -30764,7 +30764,7 @@ loc_8220BCD0:
 	ctx.r3.s64 = ctx.r29.s64 + 4;
 	// bl 0x8228d848
 	ctx.lr = 0x8220BD04;
-	rex_threadSpinLockLock_8228D848(ctx, base);
+	sub_8228D848(ctx, base);
 	// cmpwi cr6,r30,2
 	ctx.cr6.compare<int32_t>(ctx.r30.s32, 2, ctx.xer);
 	// beq cr6,0x8220bd4c
@@ -32676,7 +32676,7 @@ PPC_FUNC_IMPL(__imp__sub_8220C990) {
 	ctx.r3.s64 = ctx.r31.s64 + 4;
 	// bl 0x8228d848
 	ctx.lr = 0x8220C9DC;
-	rex_threadSpinLockLock_8228D848(ctx, base);
+	sub_8228D848(ctx, base);
 	// lhz r11,12(r30)
 	ctx.r11.u64 = PPC_LOAD_U16(ctx.r30.u32 + 12);
 	// cmpwi cr6,r11,2
@@ -49008,8 +49008,8 @@ loc_822136A0:
 	return;
 }
 
-__attribute__((alias("__imp__rex_fsThreadAsyncInit_822136B8"))) PPC_WEAK_FUNC(rex_fsThreadAsyncInit_822136B8);
-PPC_FUNC_IMPL(__imp__rex_fsThreadAsyncInit_822136B8) {
+__attribute__((alias("__imp__sub_822136B8"))) PPC_WEAK_FUNC(sub_822136B8);
+PPC_FUNC_IMPL(__imp__sub_822136B8) {
 	PPC_FUNC_PROLOGUE();
 	uint32_t ea{};
 	// mflr r12
@@ -49085,8 +49085,8 @@ PPC_FUNC_IMPL(__imp__rex_fsThreadAsyncInit_822136B8) {
 	return;
 }
 
-__attribute__((alias("__imp__rex_fsThreadAsyncCheckPostbox_82213738"))) PPC_WEAK_FUNC(rex_fsThreadAsyncCheckPostbox_82213738);
-PPC_FUNC_IMPL(__imp__rex_fsThreadAsyncCheckPostbox_82213738) {
+__attribute__((alias("__imp__sub_82213738"))) PPC_WEAK_FUNC(sub_82213738);
+PPC_FUNC_IMPL(__imp__sub_82213738) {
 	PPC_FUNC_PROLOGUE();
 	uint32_t ea{};
 	// mflr r12
@@ -49100,7 +49100,7 @@ PPC_FUNC_IMPL(__imp__rex_fsThreadAsyncCheckPostbox_82213738) {
 loc_82213744:
 	// bl 0x8228d790
 	ctx.lr = 0x82213748;
-	rex_threadMsgGetNextMail_8228D790(ctx, base);
+	sub_8228D790(ctx, base);
 	// cmplwi cr6,r3,0
 	ctx.cr6.compare<uint32_t>(ctx.r3.u32, 0, ctx.xer);
 	// bne cr6,0x82213744
@@ -49115,8 +49115,8 @@ loc_82213744:
 	return;
 }
 
-__attribute__((alias("__imp__rex_fsThreadAsyncAddFileOpenOperation_82213760"))) PPC_WEAK_FUNC(rex_fsThreadAsyncAddFileOpenOperation_82213760);
-PPC_FUNC_IMPL(__imp__rex_fsThreadAsyncAddFileOpenOperation_82213760) {
+__attribute__((alias("__imp__sub_82213760"))) PPC_WEAK_FUNC(sub_82213760);
+PPC_FUNC_IMPL(__imp__sub_82213760) {
 	PPC_FUNC_PROLOGUE();
 	uint32_t ea{};
 	// mflr r12
@@ -49193,7 +49193,7 @@ loc_822137AC:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 96);
 	// bl 0x82b0a898
 	ctx.lr = 0x822137E4;
-	rex_fsThreadAsyncAddDecompressOperation_82B0A898(ctx, base);
+	sub_82B0A898(ctx, base);
 	// addi r1,r1,128
 	ctx.r1.s64 = ctx.r1.s64 + 128;
 	// b 0x82ae1678

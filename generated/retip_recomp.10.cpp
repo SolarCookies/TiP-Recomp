@@ -3838,7 +3838,7 @@ PPC_FUNC_IMPL(__imp__sub_822D9FA8) {
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82575c30
 	ctx.lr = 0x822DA044;
-	sub_82575C30(ctx, base);
+	rex_spawn_supportPinataCreateGeneralEx_82575C30(ctx, base);
 	// stw r3,0(r30)
 	PPC_STORE_U32(ctx.r30.u32 + 0, ctx.r3.u32);
 	// lwz r4,8(r31)
@@ -14021,7 +14021,7 @@ loc_822DE624:
 	ctx.f1.f64 = ctx.f2.f64;
 	// bl 0x82575c30
 	ctx.lr = 0x822DE650;
-	sub_82575C30(ctx, base);
+	rex_spawn_supportPinataCreateGeneralEx_82575C30(ctx, base);
 	// lwz r7,856(r31)
 	ctx.r7.u64 = PPC_LOAD_U32(ctx.r31.u32 + 856);
 	// mr r30,r3
@@ -33949,7 +33949,7 @@ loc_822E6CC4:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
 	// bl 0x822c4260
 	ctx.lr = 0x822E6CE4;
-	rex_inputGetState_822C4260(ctx, base);
+	rex_cursorInstLocksIsLockSet_822C4260(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x822e6d08
@@ -40076,7 +40076,7 @@ loc_822E96A8:
 	ctx.r4.s64 = -2147483648;
 	// bl 0x82213760
 	ctx.lr = 0x822E9700;
-	rex_fsThreadAsyncAddFileOpenOperation_82213760(ctx, base);
+	sub_82213760(ctx, base);
 	// addi r1,r1,544
 	ctx.r1.s64 = ctx.r1.s64 + 544;
 	// b 0x82ae1674
@@ -50840,7 +50840,7 @@ loc_822EDF5C:
 	ctx.f1.f64 = double(temp.f32);
 	// bl 0x82575c30
 	ctx.lr = 0x822EDF80;
-	sub_82575C30(ctx, base);
+	rex_spawn_supportPinataCreateGeneralEx_82575C30(ctx, base);
 	// lwz r10,0(r31)
 	ctx.r10.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
 	// cmplwi cr6,r22,0
@@ -66951,7 +66951,7 @@ loc_822F4BC8:
 	PPC_STORE_U64(ctx.r31.u32 + 8, ctx.r10.u64);
 	// bl 0x826645f8
 	ctx.lr = 0x822F4BFC;
-	sub_826645F8(ctx, base);
+	rex_render_D3DDevice_DrawVerticesUP_826645F8(ctx, base);
 	// cmplwi cr6,r29,0
 	ctx.cr6.compare<uint32_t>(ctx.r29.u32, 0, ctx.xer);
 	// beq cr6,0x822f4db8
@@ -67075,7 +67075,7 @@ loc_822F4CAC:
 	PPC_STORE_U64(ctx.r31.u32 + 32, ctx.r11.u64);
 	// bl 0x826645f8
 	ctx.lr = 0x822F4CE4;
-	sub_826645F8(ctx, base);
+	rex_render_D3DDevice_DrawVerticesUP_826645F8(ctx, base);
 	// cmplwi cr6,r29,0
 	ctx.cr6.compare<uint32_t>(ctx.r29.u32, 0, ctx.xer);
 	// beq cr6,0x822f4d90

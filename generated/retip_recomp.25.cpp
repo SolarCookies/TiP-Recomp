@@ -25920,8 +25920,8 @@ loc_824DAECC:
 	return;
 }
 
-__attribute__((alias("__imp__rex_gameThreadMsgPinataCheckPostbox_824DAED8"))) PPC_WEAK_FUNC(rex_gameThreadMsgPinataCheckPostbox_824DAED8);
-PPC_FUNC_IMPL(__imp__rex_gameThreadMsgPinataCheckPostbox_824DAED8) {
+__attribute__((alias("__imp__sub_824DAED8"))) PPC_WEAK_FUNC(sub_824DAED8);
+PPC_FUNC_IMPL(__imp__sub_824DAED8) {
 	PPC_FUNC_PROLOGUE();
 	PPCRegister temp{};
 	uint32_t ea{};
@@ -25963,7 +25963,7 @@ PPC_FUNC_IMPL(__imp__rex_gameThreadMsgPinataCheckPostbox_824DAED8) {
 loc_824DAF14:
 	// bl 0x8228d790
 	ctx.lr = 0x824DAF18;
-	rex_threadMsgGetNextMail_8228D790(ctx, base);
+	sub_8228D790(ctx, base);
 	// mr r11,r3
 	ctx.r11.u64 = ctx.r3.u64;
 	// cmplwi cr6,r11,0
@@ -44873,7 +44873,7 @@ loc_824E2FAC:
 	ctx.f1.f64 = double(temp.f32);
 	// bl 0x82575c30
 	ctx.lr = 0x824E2FCC;
-	sub_82575C30(ctx, base);
+	rex_spawn_supportPinataCreateGeneralEx_82575C30(ctx, base);
 	// lbz r10,0(r28)
 	ctx.r10.u64 = PPC_LOAD_U8(ctx.r28.u32 + 0);
 	// stw r10,3260(r3)
@@ -45924,7 +45924,7 @@ loc_824E36C0:
 	ctx.r3.u64 = ctx.r20.u64;
 	// bl 0x82575c30
 	ctx.lr = 0x824E3710;
-	sub_82575C30(ctx, base);
+	rex_spawn_supportPinataCreateGeneralEx_82575C30(ctx, base);
 	// stw r3,88(r1)
 	PPC_STORE_U32(ctx.r1.u32 + 88, ctx.r3.u32);
 	// bl 0x824e3778
@@ -49538,7 +49538,7 @@ loc_824E4DE8:
 	ctx.r3.u64 = ctx.r26.u64;
 	// bl 0x82575c30
 	ctx.lr = 0x824E4E40;
-	sub_82575C30(ctx, base);
+	rex_spawn_supportPinataCreateGeneralEx_82575C30(ctx, base);
 	// stw r3,8(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 8, ctx.r3.u32);
 	// addi r3,r1,240
@@ -74422,7 +74422,7 @@ loc_824EF5B8:
 	ctx.r3.u64 = ctx.r25.u64;
 	// bl 0x82575c30
 	ctx.lr = 0x824EF5E0;
-	sub_82575C30(ctx, base);
+	rex_spawn_supportPinataCreateGeneralEx_82575C30(ctx, base);
 	// mr r30,r3
 	ctx.r30.u64 = ctx.r3.u64;
 	// cmplwi cr6,r30,0
@@ -77184,7 +77184,7 @@ loc_824F08B8:
 	ctx.r31.s64 = ctx.r27.s64 + 4500;
 	// bl 0x824daed8
 	ctx.lr = 0x824F08C4;
-	rex_gameThreadMsgPinataCheckPostbox_824DAED8(ctx, base);
+	sub_824DAED8(ctx, base);
 	// addi r11,r29,4
 	ctx.r11.s64 = ctx.r29.s64 + 4;
 	// rlwinm r30,r11,2,0,29
@@ -77200,7 +77200,7 @@ loc_824F08D8:
 	ctx.r3.s64 = 0;
 	// bl 0x824daed8
 	ctx.lr = 0x824F08E0;
-	rex_gameThreadMsgPinataCheckPostbox_824DAED8(ctx, base);
+	sub_824DAED8(ctx, base);
 	// lwzx r11,r30,r31
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r30.u32 + ctx.r31.u32);
 	// cmpwi cr6,r11,0

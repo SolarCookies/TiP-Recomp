@@ -152,7 +152,7 @@ loc_82441F50:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 248);
 	// bl 0x82575c30
 	ctx.lr = 0x82441FA4;
-	sub_82575C30(ctx, base);
+	rex_spawn_supportPinataCreateGeneralEx_82575C30(ctx, base);
 	// li r4,9
 	ctx.r4.s64 = 9;
 	// mr r31,r3
@@ -76038,7 +76038,7 @@ loc_82462578:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82575c30
 	ctx.lr = 0x82462594;
-	sub_82575C30(ctx, base);
+	rex_spawn_supportPinataCreateGeneralEx_82575C30(ctx, base);
 	// lwz r11,88(r1)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r1.u32 + 88);
 	// lwz r10,92(r1)
@@ -77846,7 +77846,7 @@ loc_82463180:
 	ctx.f1.f64 = ctx.f2.f64;
 	// bl 0x82575c30
 	ctx.lr = 0x824631AC;
-	sub_82575C30(ctx, base);
+	rex_spawn_supportPinataCreateGeneralEx_82575C30(ctx, base);
 	// mr r4,r3
 	ctx.r4.u64 = ctx.r3.u64;
 	// mr r3,r25

@@ -107,7 +107,7 @@ loc_8265C954:
 	ctx.r29.u64 = ctx.r30.u64 + ctx.r26.u64;
 	// bl 0x82b0a910
 	ctx.lr = 0x8265C980;
-	rex_GetCurrentThreadId_82B0A910(ctx, base);
+	sub_82B0A910(ctx, base);
 	// lwz r11,10888(r31)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 10888);
 	// cmplw cr6,r11,r3
@@ -18657,8 +18657,8 @@ loc_826645F0:
 	return;
 }
 
-__attribute__((alias("__imp__sub_826645F8"))) PPC_WEAK_FUNC(sub_826645F8);
-PPC_FUNC_IMPL(__imp__sub_826645F8) {
+__attribute__((alias("__imp__rex_render_D3DDevice_DrawVerticesUP_826645F8"))) PPC_WEAK_FUNC(rex_render_D3DDevice_DrawVerticesUP_826645F8);
+PPC_FUNC_IMPL(__imp__rex_render_D3DDevice_DrawVerticesUP_826645F8) {
 	PPC_FUNC_PROLOGUE();
 	uint32_t ea{};
 	// mflr r12
@@ -55749,7 +55749,7 @@ loc_82673B2C:
 	ctx.r3.s64 = 0;
 	// bl 0x82afccb0
 	ctx.lr = 0x82673B78;
-	rex_CreateThread_82AFCCB0(ctx, base);
+	sub_82AFCCB0(ctx, base);
 	// stw r3,8(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 8, ctx.r3.u32);
 	// cmplwi r3,0
@@ -63211,7 +63211,7 @@ loc_82676D6C:
 	if (ctx.cr6.eq) goto loc_82676DA4;
 	// bl 0x82b0a910
 	ctx.lr = 0x82676D7C;
-	rex_GetCurrentThreadId_82B0A910(ctx, base);
+	sub_82B0A910(ctx, base);
 	// lwz r11,10888(r31)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 10888);
 	// cmplw cr6,r11,r3

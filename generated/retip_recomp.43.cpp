@@ -33976,7 +33976,7 @@ PPC_FUNC_IMPL(__imp__rex_D3DXShader_CPreProcessor_RtlEnterCriticalSection_827178
 	ctx.r31.u64 = ctx.r3.u64;
 	// bl 0x82759e48
 	ctx.lr = 0x827178B4;
-	rex_D3DXShader_ThreadLocalDataBegin_82759E48(ctx, base);
+	sub_82759E48(ctx, base);
 	// mr. r30,r3
 	ctx.r30.u64 = ctx.r3.u64;
 	ctx.cr0.compare<int32_t>(ctx.r30.s32, 0, ctx.xer);

@@ -30847,7 +30847,7 @@ loc_822A3FA0:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + -10976);
 	// bl 0x826645f8
 	ctx.lr = 0x822A4178;
-	sub_826645F8(ctx, base);
+	rex_render_D3DDevice_DrawVerticesUP_826645F8(ctx, base);
 	// li r4,0
 	ctx.r4.s64 = 0;
 	// lwz r3,-10976(r31)
@@ -41707,7 +41707,7 @@ PPC_FUNC_IMPL(__imp__rex_ZlibUncompressMemory_822A88E8) {
 	ctx.r28.u64 = ctx.r6.u64;
 	// bl 0x8228d848
 	ctx.lr = 0x822A8910;
-	rex_threadSpinLockLock_8228D848(ctx, base);
+	sub_8228D848(ctx, base);
 	// lis r11,-32213
 	ctx.r11.s64 = -2111111168;
 	// stw r31,80(r1)
@@ -58843,7 +58843,7 @@ loc_822AFFF4:
 	ctx.r3.s64 = 18;
 	// bl 0x8228d690
 	ctx.lr = 0x822B0008;
-	rex_threadMsgCreate_8228D690(ctx, base);
+	sub_8228D690(ctx, base);
 	// lwz r10,80(r1)
 	ctx.r10.u64 = PPC_LOAD_U32(ctx.r1.u32 + 80);
 	// addi r11,r31,32
@@ -58871,7 +58871,7 @@ loc_822AFFF4:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r9.u32 + ctx.r11.u32);
 	// bl 0x82b0a898
 	ctx.lr = 0x822B0040;
-	rex_fsThreadAsyncAddDecompressOperation_82B0A898(ctx, base);
+	sub_82B0A898(ctx, base);
 	// addi r1,r1,128
 	ctx.r1.s64 = ctx.r1.s64 + 128;
 	// b 0x82ae167c
@@ -58888,7 +58888,7 @@ loc_822B0048:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r9.u32 + ctx.r11.u32);
 	// bl 0x82b0a898
 	ctx.lr = 0x822B005C;
-	rex_fsThreadAsyncAddDecompressOperation_82B0A898(ctx, base);
+	sub_82B0A898(ctx, base);
 	// addi r1,r1,128
 	ctx.r1.s64 = ctx.r1.s64 + 128;
 	// b 0x82ae167c

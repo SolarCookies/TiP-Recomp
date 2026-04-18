@@ -33012,7 +33012,7 @@ PPC_FUNC_IMPL(__imp__rex_D3DXShader_CNode_SetAlloc_82756060) {
 	ctx.r31.u64 = ctx.r3.u64;
 	// bl 0x82759e28
 	ctx.lr = 0x82756078;
-	rex_D3DXShader_GetThreadLocalData_82759E28(ctx, base);
+	sub_82759E28(ctx, base);
 	// mr r11,r3
 	ctx.r11.u64 = ctx.r3.u64;
 	// lwz r3,0(r11)
@@ -33053,7 +33053,7 @@ PPC_FUNC_IMPL(__imp__sub_82756098) {
 	ctx.r30.u64 = ctx.r4.u64;
 	// bl 0x82759e28
 	ctx.lr = 0x827560B8;
-	rex_D3DXShader_GetThreadLocalData_82759E28(ctx, base);
+	sub_82759E28(ctx, base);
 	// mr r5,r30
 	ctx.r5.u64 = ctx.r30.u64;
 	// lwz r3,0(r3)
@@ -33095,7 +33095,7 @@ PPC_FUNC_IMPL(__imp__sub_827560E0) {
 	ctx.r31.u64 = ctx.r3.u64;
 	// bl 0x82759e28
 	ctx.lr = 0x827560F8;
-	rex_D3DXShader_GetThreadLocalData_82759E28(ctx, base);
+	sub_82759E28(ctx, base);
 	// li r5,16
 	ctx.r5.s64 = 16;
 	// lwz r3,0(r3)
@@ -33203,7 +33203,7 @@ PPC_FUNC_IMPL(__imp__sub_82756188) {
 	ctx.r31.u64 = ctx.r3.u64;
 	// bl 0x82759e28
 	ctx.lr = 0x827561A0;
-	rex_D3DXShader_GetThreadLocalData_82759E28(ctx, base);
+	sub_82759E28(ctx, base);
 	// li r5,16
 	ctx.r5.s64 = 16;
 	// lwz r3,0(r3)
@@ -33556,7 +33556,7 @@ loc_827563E4:
 	if (!ctx.cr6.eq) goto loc_8275649C;
 	// bl 0x82759e28
 	ctx.lr = 0x827563F4;
-	rex_D3DXShader_GetThreadLocalData_82759E28(ctx, base);
+	sub_82759E28(ctx, base);
 	// li r5,16
 	ctx.r5.s64 = 16;
 	// li r4,20
@@ -34138,7 +34138,7 @@ PPC_FUNC_IMPL(__imp__sub_827567A0) {
 	ctx.r31.u64 = ctx.r3.u64;
 	// bl 0x82759e28
 	ctx.lr = 0x827567B8;
-	rex_D3DXShader_GetThreadLocalData_82759E28(ctx, base);
+	sub_82759E28(ctx, base);
 	// li r5,16
 	ctx.r5.s64 = 16;
 	// lwz r3,0(r3)
@@ -34430,7 +34430,7 @@ PPC_FUNC_IMPL(__imp__sub_827569A0) {
 	ctx.r30.u64 = ctx.r3.u64;
 	// bl 0x82759e28
 	ctx.lr = 0x827569BC;
-	rex_D3DXShader_GetThreadLocalData_82759E28(ctx, base);
+	sub_82759E28(ctx, base);
 	// li r5,16
 	ctx.r5.s64 = 16;
 	// lwz r3,0(r3)
@@ -34764,7 +34764,7 @@ PPC_FUNC_IMPL(__imp__sub_82756BE8) {
 	ctx.r30.u64 = ctx.r3.u64;
 	// bl 0x82759e28
 	ctx.lr = 0x82756C04;
-	rex_D3DXShader_GetThreadLocalData_82759E28(ctx, base);
+	sub_82759E28(ctx, base);
 	// li r5,16
 	ctx.r5.s64 = 16;
 	// lwz r3,0(r3)
@@ -35233,7 +35233,7 @@ PPC_FUNC_IMPL(__imp__sub_82756F30) {
 	ctx.r30.u64 = ctx.r3.u64;
 	// bl 0x82759e28
 	ctx.lr = 0x82756F4C;
-	rex_D3DXShader_GetThreadLocalData_82759E28(ctx, base);
+	sub_82759E28(ctx, base);
 	// li r5,16
 	ctx.r5.s64 = 16;
 	// lwz r3,0(r3)
@@ -35650,7 +35650,7 @@ PPC_FUNC_IMPL(__imp__sub_82757218) {
 	ctx.r30.u64 = ctx.r3.u64;
 	// bl 0x82759e28
 	ctx.lr = 0x82757234;
-	rex_D3DXShader_GetThreadLocalData_82759E28(ctx, base);
+	sub_82759E28(ctx, base);
 	// li r5,16
 	ctx.r5.s64 = 16;
 	// lwz r3,0(r3)
@@ -35964,7 +35964,7 @@ PPC_FUNC_IMPL(__imp__sub_82757438) {
 	ctx.r30.u64 = ctx.r3.u64;
 	// bl 0x82759e28
 	ctx.lr = 0x82757454;
-	rex_D3DXShader_GetThreadLocalData_82759E28(ctx, base);
+	sub_82759E28(ctx, base);
 	// li r5,16
 	ctx.r5.s64 = 16;
 	// lwz r3,0(r3)
@@ -36200,7 +36200,7 @@ PPC_FUNC_IMPL(__imp__sub_827575C8) {
 	ctx.r30.u64 = ctx.r3.u64;
 	// bl 0x82759e28
 	ctx.lr = 0x827575E4;
-	rex_D3DXShader_GetThreadLocalData_82759E28(ctx, base);
+	sub_82759E28(ctx, base);
 	// li r5,16
 	ctx.r5.s64 = 16;
 	// lwz r3,0(r3)
@@ -36488,7 +36488,7 @@ PPC_FUNC_IMPL(__imp__sub_827577B8) {
 	ctx.r30.u64 = ctx.r3.u64;
 	// bl 0x82759e28
 	ctx.lr = 0x827577D4;
-	rex_D3DXShader_GetThreadLocalData_82759E28(ctx, base);
+	sub_82759E28(ctx, base);
 	// li r5,16
 	ctx.r5.s64 = 16;
 	// lwz r3,0(r3)
@@ -36793,7 +36793,7 @@ PPC_FUNC_IMPL(__imp__sub_827579C8) {
 	ctx.r30.u64 = ctx.r3.u64;
 	// bl 0x82759e28
 	ctx.lr = 0x827579E4;
-	rex_D3DXShader_GetThreadLocalData_82759E28(ctx, base);
+	sub_82759E28(ctx, base);
 	// li r5,16
 	ctx.r5.s64 = 16;
 	// lwz r3,0(r3)
@@ -37096,7 +37096,7 @@ PPC_FUNC_IMPL(__imp__sub_82757BE0) {
 	ctx.r30.u64 = ctx.r3.u64;
 	// bl 0x82759e28
 	ctx.lr = 0x82757BFC;
-	rex_D3DXShader_GetThreadLocalData_82759E28(ctx, base);
+	sub_82759E28(ctx, base);
 	// li r5,16
 	ctx.r5.s64 = 16;
 	// lwz r3,0(r3)
@@ -37674,7 +37674,7 @@ PPC_FUNC_IMPL(__imp__sub_82757FF0) {
 	ctx.r31.u64 = ctx.r3.u64;
 	// bl 0x82759e28
 	ctx.lr = 0x8275800C;
-	rex_D3DXShader_GetThreadLocalData_82759E28(ctx, base);
+	sub_82759E28(ctx, base);
 	// li r5,16
 	ctx.r5.s64 = 16;
 	// lwz r3,0(r3)
@@ -38474,7 +38474,7 @@ PPC_FUNC_IMPL(__imp__sub_82758598) {
 	ctx.r31.u64 = ctx.r3.u64;
 	// bl 0x82759e28
 	ctx.lr = 0x827585B4;
-	rex_D3DXShader_GetThreadLocalData_82759E28(ctx, base);
+	sub_82759E28(ctx, base);
 	// li r5,16
 	ctx.r5.s64 = 16;
 	// lwz r3,0(r3)
@@ -39176,7 +39176,7 @@ PPC_FUNC_IMPL(__imp__sub_82758A88) {
 	ctx.r31.u64 = ctx.r3.u64;
 	// bl 0x82759e28
 	ctx.lr = 0x82758AA4;
-	rex_D3DXShader_GetThreadLocalData_82759E28(ctx, base);
+	sub_82759E28(ctx, base);
 	// li r5,16
 	ctx.r5.s64 = 16;
 	// lwz r3,0(r3)
@@ -39858,7 +39858,7 @@ PPC_FUNC_IMPL(__imp__sub_82758F48) {
 	ctx.r30.u64 = ctx.r3.u64;
 	// bl 0x82759e28
 	ctx.lr = 0x82758F64;
-	rex_D3DXShader_GetThreadLocalData_82759E28(ctx, base);
+	sub_82759E28(ctx, base);
 	// li r5,16
 	ctx.r5.s64 = 16;
 	// lwz r3,0(r3)
@@ -40471,7 +40471,7 @@ PPC_FUNC_IMPL(__imp__sub_82759390) {
 	ctx.r30.u64 = ctx.r3.u64;
 	// bl 0x82759e28
 	ctx.lr = 0x827593AC;
-	rex_D3DXShader_GetThreadLocalData_82759E28(ctx, base);
+	sub_82759E28(ctx, base);
 	// li r5,16
 	ctx.r5.s64 = 16;
 	// lwz r3,0(r3)
@@ -40662,7 +40662,7 @@ PPC_FUNC_IMPL(__imp__sub_827594E8) {
 	ctx.r30.u64 = ctx.r3.u64;
 	// bl 0x82759e28
 	ctx.lr = 0x82759504;
-	rex_D3DXShader_GetThreadLocalData_82759E28(ctx, base);
+	sub_82759E28(ctx, base);
 	// li r5,16
 	ctx.r5.s64 = 16;
 	// lwz r3,0(r3)
@@ -40942,7 +40942,7 @@ PPC_FUNC_IMPL(__imp__sub_827596D8) {
 	ctx.r31.u64 = ctx.r3.u64;
 	// bl 0x82759e28
 	ctx.lr = 0x827596F0;
-	rex_D3DXShader_GetThreadLocalData_82759E28(ctx, base);
+	sub_82759E28(ctx, base);
 	// li r5,16
 	ctx.r5.s64 = 16;
 	// lwz r3,0(r3)
@@ -41256,7 +41256,7 @@ PPC_FUNC_IMPL(__imp__sub_827598F8) {
 	ctx.r30.u64 = ctx.r3.u64;
 	// bl 0x82759e28
 	ctx.lr = 0x82759914;
-	rex_D3DXShader_GetThreadLocalData_82759E28(ctx, base);
+	sub_82759E28(ctx, base);
 	// li r5,16
 	ctx.r5.s64 = 16;
 	// lwz r3,0(r3)
@@ -41593,7 +41593,7 @@ PPC_FUNC_IMPL(__imp__sub_82759B40) {
 	ctx.r30.u64 = ctx.r3.u64;
 	// bl 0x82759e28
 	ctx.lr = 0x82759B5C;
-	rex_D3DXShader_GetThreadLocalData_82759E28(ctx, base);
+	sub_82759E28(ctx, base);
 	// li r5,16
 	ctx.r5.s64 = 16;
 	// lwz r3,0(r3)
@@ -41756,7 +41756,7 @@ PPC_FUNC_IMPL(__imp__sub_82759C60) {
 	ctx.r30.u64 = ctx.r3.u64;
 	// bl 0x82759e28
 	ctx.lr = 0x82759C7C;
-	rex_D3DXShader_GetThreadLocalData_82759E28(ctx, base);
+	sub_82759E28(ctx, base);
 	// li r5,16
 	ctx.r5.s64 = 16;
 	// lwz r3,0(r3)
@@ -41899,7 +41899,7 @@ PPC_FUNC_IMPL(__imp__sub_82759D58) {
 	ctx.r30.u64 = ctx.r3.u64;
 	// bl 0x82759e28
 	ctx.lr = 0x82759D74;
-	rex_D3DXShader_GetThreadLocalData_82759E28(ctx, base);
+	sub_82759E28(ctx, base);
 	// li r5,16
 	ctx.r5.s64 = 16;
 	// lwz r3,0(r3)
@@ -41997,8 +41997,8 @@ loc_82759E0C:
 	return;
 }
 
-__attribute__((alias("__imp__rex_D3DXShader_GetThreadLocalData_82759E28"))) PPC_WEAK_FUNC(rex_D3DXShader_GetThreadLocalData_82759E28);
-PPC_FUNC_IMPL(__imp__rex_D3DXShader_GetThreadLocalData_82759E28) {
+__attribute__((alias("__imp__sub_82759E28"))) PPC_WEAK_FUNC(sub_82759E28);
+PPC_FUNC_IMPL(__imp__sub_82759E28) {
 	PPC_FUNC_PROLOGUE();
 	// lis r11,-32072
 	ctx.r11.s64 = -2101870592;
@@ -42024,8 +42024,8 @@ PPC_FUNC_IMPL(__imp__sub_82759E44) {
 	return;
 }
 
-__attribute__((alias("__imp__rex_D3DXShader_ThreadLocalDataBegin_82759E48"))) PPC_WEAK_FUNC(rex_D3DXShader_ThreadLocalDataBegin_82759E48);
-PPC_FUNC_IMPL(__imp__rex_D3DXShader_ThreadLocalDataBegin_82759E48) {
+__attribute__((alias("__imp__sub_82759E48"))) PPC_WEAK_FUNC(sub_82759E48);
+PPC_FUNC_IMPL(__imp__sub_82759E48) {
 	PPC_FUNC_PROLOGUE();
 	uint32_t ea{};
 	// mflr r12

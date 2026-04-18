@@ -1801,7 +1801,7 @@ loc_825341DC:
 	ctx.r3.s64 = 12;
 	// bl 0x8228d690
 	ctx.lr = 0x8253420C;
-	rex_threadMsgCreate_8228D690(ctx, base);
+	sub_8228D690(ctx, base);
 	// li r11,6
 	ctx.r11.s64 = 6;
 	// li r10,0
@@ -1886,7 +1886,7 @@ PPC_FUNC_IMPL(__imp__sub_82534278) {
 	ctx.r31.u64 = ctx.r5.u64;
 	// bl 0x824daed8
 	ctx.lr = 0x8253429C;
-	rex_gameThreadMsgPinataCheckPostbox_824DAED8(ctx, base);
+	sub_824DAED8(ctx, base);
 	// addi r11,r31,4
 	ctx.r11.s64 = ctx.r31.s64 + 4;
 	// rlwinm r31,r11,2,0,29
@@ -1902,7 +1902,7 @@ loc_825342B0:
 	ctx.r3.s64 = 0;
 	// bl 0x824daed8
 	ctx.lr = 0x825342B8;
-	rex_gameThreadMsgPinataCheckPostbox_824DAED8(ctx, base);
+	sub_824DAED8(ctx, base);
 	// lwzx r11,r31,r30
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + ctx.r30.u32);
 	// cmpwi cr6,r11,0
@@ -1948,7 +1948,7 @@ loc_825342F8:
 	ctx.r3.s64 = 0;
 	// bl 0x824daed8
 	ctx.lr = 0x82534300;
-	rex_gameThreadMsgPinataCheckPostbox_824DAED8(ctx, base);
+	sub_824DAED8(ctx, base);
 	// li r9,0
 	ctx.r9.s64 = 0;
 	// li r8,0
@@ -2171,7 +2171,7 @@ loc_82534464:
 	ctx.r3.s64 = 14;
 	// bl 0x8228d690
 	ctx.lr = 0x8253448C;
-	rex_threadMsgCreate_8228D690(ctx, base);
+	sub_8228D690(ctx, base);
 	// lis r11,-31835
 	ctx.r11.s64 = -2086338560;
 	// addi r9,r11,20168
@@ -2213,7 +2213,7 @@ loc_825344D0:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r8.u32 + ctx.r11.u32);
 	// bl 0x82b0a898
 	ctx.lr = 0x825344DC;
-	rex_fsThreadAsyncAddDecompressOperation_82B0A898(ctx, base);
+	sub_82B0A898(ctx, base);
 loc_825344DC:
 	// lwz r11,12(r31)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 12);
@@ -2226,7 +2226,7 @@ loc_825344DC:
 	ctx.r3.s64 = 0;
 	// bl 0x824daed8
 	ctx.lr = 0x825344F4;
-	rex_gameThreadMsgPinataCheckPostbox_824DAED8(ctx, base);
+	sub_824DAED8(ctx, base);
 	// lis r11,-31780
 	ctx.r11.s64 = -2082734080;
 	// lwz r3,-10976(r11)
@@ -2301,7 +2301,7 @@ PPC_FUNC_IMPL(__imp__sub_82534518) {
 	ctx.r3.s64 = 15;
 	// bl 0x8228d690
 	ctx.lr = 0x8253456C;
-	rex_threadMsgCreate_8228D690(ctx, base);
+	sub_8228D690(ctx, base);
 	// lwz r10,80(r1)
 	ctx.r10.u64 = PPC_LOAD_U32(ctx.r1.u32 + 80);
 	// lis r11,-31835
@@ -2341,7 +2341,7 @@ loc_825345AC:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r8.u32 + ctx.r11.u32);
 	// bl 0x82b0a898
 	ctx.lr = 0x825345B8;
-	rex_fsThreadAsyncAddDecompressOperation_82B0A898(ctx, base);
+	sub_82B0A898(ctx, base);
 	// lis r11,-32059
 	ctx.r11.s64 = -2101018624;
 	// addi r28,r11,-6120
@@ -2357,7 +2357,7 @@ loc_825345C0:
 	ctx.r3.s64 = 0;
 	// bl 0x824daed8
 	ctx.lr = 0x825345D4;
-	rex_gameThreadMsgPinataCheckPostbox_824DAED8(ctx, base);
+	sub_824DAED8(ctx, base);
 	// mr r4,r29
 	ctx.r4.u64 = ctx.r29.u64;
 	// mr r3,r30
@@ -2587,7 +2587,7 @@ loc_82534730:
 	ctx.r3.s64 = 16;
 	// bl 0x8228d690
 	ctx.lr = 0x82534770;
-	rex_threadMsgCreate_8228D690(ctx, base);
+	sub_8228D690(ctx, base);
 	// lwz r3,80(r1)
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r1.u32 + 80);
 	// bl 0x8228d748
@@ -2695,7 +2695,7 @@ loc_825347FC:
 	ctx.r3.s64 = 17;
 	// bl 0x8228d690
 	ctx.lr = 0x82534824;
-	rex_threadMsgCreate_8228D690(ctx, base);
+	sub_8228D690(ctx, base);
 	// lwz r8,80(r1)
 	ctx.r8.u64 = PPC_LOAD_U32(ctx.r1.u32 + 80);
 	// lis r11,-31835
@@ -2735,7 +2735,7 @@ loc_82534864:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r8.u32 + ctx.r11.u32);
 	// bl 0x82b0a898
 	ctx.lr = 0x82534870;
-	rex_fsThreadAsyncAddDecompressOperation_82B0A898(ctx, base);
+	sub_82B0A898(ctx, base);
 loc_82534870:
 	// addi r1,r1,112
 	ctx.r1.s64 = ctx.r1.s64 + 112;
@@ -3550,7 +3550,7 @@ loc_82534DD8:
 	ctx.r3.s64 = 11;
 	// bl 0x8228d690
 	ctx.lr = 0x82534E08;
-	rex_threadMsgCreate_8228D690(ctx, base);
+	sub_8228D690(ctx, base);
 	// lwz r10,80(r1)
 	ctx.r10.u64 = PPC_LOAD_U32(ctx.r1.u32 + 80);
 	// addi r11,r30,32
@@ -3584,7 +3584,7 @@ loc_82534E3C:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r9.u32 + ctx.r11.u32);
 	// bl 0x82b0a898
 	ctx.lr = 0x82534E48;
-	rex_fsThreadAsyncAddDecompressOperation_82B0A898(ctx, base);
+	sub_82B0A898(ctx, base);
 loc_82534E48:
 	// lwz r3,-8(r30)
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r30.u32 + -8);
@@ -3659,7 +3659,7 @@ PPC_FUNC_IMPL(__imp__sub_82534E70) {
 loc_82534EBC:
 	// bl 0x8228d790
 	ctx.lr = 0x82534EC0;
-	rex_threadMsgGetNextMail_8228D790(ctx, base);
+	sub_8228D790(ctx, base);
 	// mr r24,r3
 	ctx.r24.u64 = ctx.r3.u64;
 	// cmplwi cr6,r24,0
@@ -4379,7 +4379,7 @@ loc_825353A0:
 	ctx.r3.s64 = 13;
 	// bl 0x8228d690
 	ctx.lr = 0x825353E0;
-	rex_threadMsgCreate_8228D690(ctx, base);
+	sub_8228D690(ctx, base);
 	// lwz r11,80(r1)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r1.u32 + 80);
 	// li r9,6
@@ -4435,7 +4435,7 @@ loc_82535440:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r9.u32 + ctx.r11.u32);
 	// bl 0x82b0a898
 	ctx.lr = 0x8253544C;
-	rex_fsThreadAsyncAddDecompressOperation_82B0A898(ctx, base);
+	sub_82B0A898(ctx, base);
 	// addi r10,r19,2
 	ctx.r10.s64 = ctx.r19.s64 + 2;
 	// rlwinm r9,r10,2,0,29
@@ -17510,7 +17510,7 @@ loc_8253AD50:
 	ctx.r3.s64 = 9;
 	// bl 0x8228d690
 	ctx.lr = 0x8253AD68;
-	rex_threadMsgCreate_8228D690(ctx, base);
+	sub_8228D690(ctx, base);
 	// lwz r11,80(r1)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r1.u32 + 80);
 	// addi r9,r31,16
@@ -17550,7 +17550,7 @@ loc_8253ADA8:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r9.u32 + ctx.r11.u32);
 	// bl 0x82b0a898
 	ctx.lr = 0x8253ADB4;
-	rex_fsThreadAsyncAddDecompressOperation_82B0A898(ctx, base);
+	sub_82B0A898(ctx, base);
 	// stw r29,4(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 4, ctx.r29.u32);
 	// addi r1,r1,176
@@ -28163,7 +28163,7 @@ loc_8253F48C:
 	ctx.r3.u64 = ctx.r28.u64;
 	// bl 0x8228d848
 	ctx.lr = 0x8253F494;
-	rex_threadSpinLockLock_8228D848(ctx, base);
+	sub_8228D848(ctx, base);
 	// lwz r11,552(r24)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r24.u32 + 552);
 	// lwz r3,20160(r21)
@@ -34986,7 +34986,7 @@ loc_82542180:
 	ctx.r24.s64 = ctx.r17.s64 + 4500;
 	// bl 0x824daed8
 	ctx.lr = 0x8254218C;
-	rex_gameThreadMsgPinataCheckPostbox_824DAED8(ctx, base);
+	sub_824DAED8(ctx, base);
 	// addi r11,r31,28
 	ctx.r11.s64 = ctx.r31.s64 + 28;
 	// rlwinm r30,r11,2,0,29
@@ -35002,7 +35002,7 @@ loc_825421A0:
 	ctx.r3.s64 = 0;
 	// bl 0x824daed8
 	ctx.lr = 0x825421A8;
-	rex_gameThreadMsgPinataCheckPostbox_824DAED8(ctx, base);
+	sub_824DAED8(ctx, base);
 	// lwzx r11,r30,r24
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r30.u32 + ctx.r24.u32);
 	// cmpwi cr6,r11,0
@@ -35226,7 +35226,7 @@ loc_82542308:
 	ctx.r3.s64 = 12;
 	// bl 0x8228d690
 	ctx.lr = 0x82542338;
-	rex_threadMsgCreate_8228D690(ctx, base);
+	sub_8228D690(ctx, base);
 	// li r11,2
 	ctx.r11.s64 = 2;
 	// li r7,0
@@ -35730,7 +35730,7 @@ loc_8254269C:
 	ctx.r24.s64 = ctx.r17.s64 + 4500;
 	// bl 0x824daed8
 	ctx.lr = 0x825426A8;
-	rex_gameThreadMsgPinataCheckPostbox_824DAED8(ctx, base);
+	sub_824DAED8(ctx, base);
 	// addi r11,r30,16
 	ctx.r11.s64 = ctx.r30.s64 + 16;
 	// rlwinm r31,r11,2,0,29
@@ -35746,7 +35746,7 @@ loc_825426BC:
 	ctx.r3.s64 = 0;
 	// bl 0x824daed8
 	ctx.lr = 0x825426C4;
-	rex_gameThreadMsgPinataCheckPostbox_824DAED8(ctx, base);
+	sub_824DAED8(ctx, base);
 	// lwzx r11,r31,r24
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + ctx.r24.u32);
 	// cmpwi cr6,r11,0
@@ -35970,7 +35970,7 @@ loc_82542824:
 	ctx.r3.s64 = 12;
 	// bl 0x8228d690
 	ctx.lr = 0x82542854;
-	rex_threadMsgCreate_8228D690(ctx, base);
+	sub_8228D690(ctx, base);
 	// li r7,0
 	ctx.r7.s64 = 0;
 	// mr r6,r17
@@ -36360,7 +36360,7 @@ loc_82542AEC:
 	ctx.r23.s64 = ctx.r17.s64 + 4500;
 	// bl 0x824daed8
 	ctx.lr = 0x82542AF8;
-	rex_gameThreadMsgPinataCheckPostbox_824DAED8(ctx, base);
+	sub_824DAED8(ctx, base);
 	// addi r11,r30,28
 	ctx.r11.s64 = ctx.r30.s64 + 28;
 	// rlwinm r31,r11,2,0,29
@@ -36376,7 +36376,7 @@ loc_82542B0C:
 	ctx.r3.s64 = 0;
 	// bl 0x824daed8
 	ctx.lr = 0x82542B14;
-	rex_gameThreadMsgPinataCheckPostbox_824DAED8(ctx, base);
+	sub_824DAED8(ctx, base);
 	// lwzx r11,r31,r23
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + ctx.r23.u32);
 	// cmpwi cr6,r11,0
@@ -36602,7 +36602,7 @@ loc_82542C78:
 	ctx.r3.s64 = 12;
 	// bl 0x8228d690
 	ctx.lr = 0x82542CA8;
-	rex_threadMsgCreate_8228D690(ctx, base);
+	sub_8228D690(ctx, base);
 	// li r11,2
 	ctx.r11.s64 = 2;
 	// li r7,0
@@ -37032,7 +37032,7 @@ loc_82542F84:
 	ctx.r23.s64 = ctx.r17.s64 + 4500;
 	// bl 0x824daed8
 	ctx.lr = 0x82542F90;
-	rex_gameThreadMsgPinataCheckPostbox_824DAED8(ctx, base);
+	sub_824DAED8(ctx, base);
 	// addi r11,r30,28
 	ctx.r11.s64 = ctx.r30.s64 + 28;
 	// rlwinm r31,r11,2,0,29
@@ -37048,7 +37048,7 @@ loc_82542FA4:
 	ctx.r3.s64 = 0;
 	// bl 0x824daed8
 	ctx.lr = 0x82542FAC;
-	rex_gameThreadMsgPinataCheckPostbox_824DAED8(ctx, base);
+	sub_824DAED8(ctx, base);
 	// lwzx r11,r31,r23
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + ctx.r23.u32);
 	// cmpwi cr6,r11,0
@@ -37274,7 +37274,7 @@ loc_82543110:
 	ctx.r3.s64 = 12;
 	// bl 0x8228d690
 	ctx.lr = 0x82543140;
-	rex_threadMsgCreate_8228D690(ctx, base);
+	sub_8228D690(ctx, base);
 	// li r11,2
 	ctx.r11.s64 = 2;
 	// li r7,0
@@ -38694,7 +38694,7 @@ loc_82543ADC:
 	ctx.r4.u64 = ctx.r29.u64;
 	// bl 0x82213760
 	ctx.lr = 0x82543AF8;
-	rex_fsThreadAsyncAddFileOpenOperation_82213760(ctx, base);
+	sub_82213760(ctx, base);
 	// addic. r30,r30,-1
 	ctx.xer.ca = ctx.r30.u32 > 0;
 	ctx.r30.s64 = ctx.r30.s64 + -1;
@@ -76327,6 +76327,78 @@ loc_825537A0:
 	ctx.r12.u64 = PPC_LOAD_U32(ctx.r1.u32 + -8);
 	// mtlr r12
 	ctx.lr = ctx.r12.u64;
+	// blr 
+	return;
+}
+
+__attribute__((alias("__imp__sub_825537B8"))) PPC_WEAK_FUNC(sub_825537B8);
+PPC_FUNC_IMPL(__imp__sub_825537B8) {
+	PPC_FUNC_PROLOGUE();
+	// lwz r11,4(r3)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r3.u32 + 4);
+	// cmplwi cr6,r11,12
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, 12, ctx.xer);
+	// bgt cr6,0x82553828
+	if (ctx.cr6.gt) goto loc_82553828;
+	// lis r12,-32171
+	ctx.r12.s64 = -2108358656;
+	// addi r12,r12,14300
+	ctx.r12.s64 = ctx.r12.s64 + 14300;
+	// rlwinm r0,r11,2,0,29
+	ctx.r0.u64 = __builtin_rotateleft64(ctx.r11.u32 | (ctx.r11.u64 << 32), 2) & 0xFFFFFFFC;
+	// lwzx r0,r12,r0
+	ctx.r0.u64 = PPC_LOAD_U32(ctx.r12.u32 + ctx.r0.u32);
+	// mtctr r0
+	ctx.ctr.u64 = ctx.r0.u64;
+	// bctr 
+	switch (ctx.r11.u32) {
+	case 0:
+		goto loc_82553828;
+	case 1:
+		goto loc_82553810;
+	case 2:
+		goto loc_82553818;
+	case 3:
+		goto loc_82553818;
+	case 4:
+		goto loc_82553820;
+	case 5:
+		goto loc_82553820;
+	case 6:
+		goto loc_82553818;
+	case 7:
+		goto loc_82553818;
+	case 8:
+		goto loc_82553820;
+	case 9:
+		goto loc_82553820;
+	case 10:
+		goto loc_82553820;
+	case 11:
+		goto loc_82553820;
+	case 12:
+		goto loc_82553818;
+	default:
+		__builtin_trap(); // Switch case out of range
+	}
+loc_82553810:
+	// li r3,26
+	ctx.r3.s64 = 26;
+	// blr 
+	return;
+loc_82553818:
+	// li r3,125
+	ctx.r3.s64 = 125;
+	// blr 
+	return;
+loc_82553820:
+	// li r3,53
+	ctx.r3.s64 = 53;
+	// blr 
+	return;
+loc_82553828:
+	// li r3,0
+	ctx.r3.s64 = 0;
 	// blr 
 	return;
 }

@@ -28,3 +28,12 @@ SetFilePointerEx = 0x82B05010
 memcpy = 0x82AE1C70
 #memmove = 0x82AE0060
 #memset = 0x82AE22A0
+
+#rex_CreateThread_82AFCCB0
+#rex_GetExitCodeThread_82AFCAD8
+#rex_WaitForSingleObjectEx_82B12A58
+#rex_ResumeThread_82B0A968
+#CreateThread = 0x82AFCCB0
+#ExitThread = 0x82AFCAD8
+#WaitForSingleObjectEx = 0x82B12A58
+#ResumeThread = 0x82B0A968

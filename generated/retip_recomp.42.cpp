@@ -5425,8 +5425,8 @@ PPC_FUNC_IMPL(__imp__sub_826EC7A8) {
 	return;
 }
 
-__attribute__((alias("__imp__sub_826EC800"))) PPC_WEAK_FUNC(sub_826EC800);
-PPC_FUNC_IMPL(__imp__sub_826EC800) {
+__attribute__((alias("__imp__rex_ui_Xui_XuiDevice_DrawPrimitiveUP_826EC800"))) PPC_WEAK_FUNC(rex_ui_Xui_XuiDevice_DrawPrimitiveUP_826EC800);
+PPC_FUNC_IMPL(__imp__rex_ui_Xui_XuiDevice_DrawPrimitiveUP_826EC800) {
 	PPC_FUNC_PROLOGUE();
 	uint32_t ea{};
 	// mflr r12
@@ -18998,7 +18998,7 @@ PPC_FUNC_IMPL(__imp__sub_826F2140) {
 	ctx.r31.u64 = ctx.r3.u64;
 	// bl 0x82b0a910
 	ctx.lr = 0x826F2158;
-	rex_GetCurrentThreadId_82B0A910(ctx, base);
+	sub_82B0A910(ctx, base);
 	// lwz r11,72(r31)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 72);
 	// addi r8,r1,80
@@ -24727,7 +24727,7 @@ loc_826F483C:
 	if (ctx.cr6.eq) goto loc_826F489C;
 	// bl 0x82b0a910
 	ctx.lr = 0x826F4854;
-	rex_GetCurrentThreadId_82B0A910(ctx, base);
+	sub_82B0A910(ctx, base);
 	// addi r30,r31,72
 	ctx.r30.s64 = ctx.r31.s64 + 72;
 loc_826F4858:

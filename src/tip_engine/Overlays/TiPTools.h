@@ -3,6 +3,8 @@
 #include <rex/ui/imgui_dialog.h>
 #include <rex/ui/keybinds.h>
 #include "imgui.h"
+#include "SmartStyles.h"
+#include "TiPWidgets.h"
 
 // Used for submenus in the tools overlay, such as "Spawn Menu", "World Menu" and "Player Menu" (Same stuff you would see in a GTA5 mod menu)
 class TipToolsPage {
@@ -10,6 +12,8 @@ public:
     virtual ~TipToolsPage() = default;
     std::string name;
     std::string description; //Tooltip
+    ImColor color = ImColor(255, 255, 255); //Default white, can be used for the button color in the main menu
+    bool wantsClose = false; // Set true from OnDraw to signal parent to close this page
     virtual void OnOpen() = 0;
     virtual void OnDraw() = 0;
     virtual void OnClose() = 0;
@@ -30,12 +34,13 @@ public:
     }
 
     void DrawMenu();
+    void HandleInput();
 
-    void OnDraw(ImGuiIO& io) override{
-        if (!visible_) return;
-        DrawMenu();
-    }
+    void OnDraw(ImGuiIO& io) override;
 
     std::vector<std::unique_ptr<TipToolsPage>> pages;
-    uint32_t currentPage = 0; //0 is the main menu, 1 is the 0 index of "pages"
+    int selectedPage = -1;    // -1 = no sub-panel open
+    int highlightedIndex = 0; // Currently focused item (controller/keyboard)
+    float lastInputTime = 0.0f; // Input debounce timer
+    TiPWidgets::AccelState vertAccel;
 };

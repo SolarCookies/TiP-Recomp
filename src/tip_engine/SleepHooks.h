@@ -4,7 +4,6 @@
 #include <timeapi.h>
 #include <rex/cvar.h>
 #include <rex/graphics/flags.h>
-#include <rex/ppc/types.h>
 #include <rex/system/kernel_state.h>
 #include <fstream>
 #include <thread>
@@ -24,7 +23,7 @@ inline void DisableHighResTimer() {
     }
 
 // Sleep CRT hook
-inline ppc_u32_result_t Sleep_hook(ppc_u32_t ms) {
+inline u32 Sleep_hook(u32 ms) {
     EnableHighResTimer();
 
     if (ms == 0) {

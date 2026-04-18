@@ -7286,7 +7286,7 @@ loc_822FB62C:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x8228d848
 	ctx.lr = 0x822FB634;
-	rex_threadSpinLockLock_8228D848(ctx, base);
+	sub_8228D848(ctx, base);
 	// lis r9,-31789
 	ctx.r9.s64 = -2083323904;
 	// lis r10,-31835
@@ -31302,7 +31302,7 @@ PPC_FUNC_IMPL(__imp__sub_82305898) {
 	ctx.r28.s64 = 1;
 	// bl 0x82575c30
 	ctx.lr = 0x823058E8;
-	sub_82575C30(ctx, base);
+	rex_spawn_supportPinataCreateGeneralEx_82575C30(ctx, base);
 	// mr r31,r3
 	ctx.r31.u64 = ctx.r3.u64;
 	// cmplwi cr6,r31,0
@@ -31744,7 +31744,7 @@ loc_82305B50:
 	ctx.r7.u64 = PPC_LOAD_U32(ctx.r6.u32 + 0);
 	// bl 0x82575c30
 	ctx.lr = 0x82305BD8;
-	sub_82575C30(ctx, base);
+	rex_spawn_supportPinataCreateGeneralEx_82575C30(ctx, base);
 	// lwz r5,248(r31)
 	ctx.r5.u64 = PPC_LOAD_U32(ctx.r31.u32 + 248);
 	// li r4,1

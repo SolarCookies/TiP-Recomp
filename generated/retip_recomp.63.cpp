@@ -48693,7 +48693,7 @@ loc_82976F88:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 272);
 	// bl 0x82b0a968
 	ctx.lr = 0x82976FB0;
-	rex_ResumeThread_82B0A968(ctx, base);
+	sub_82B0A968(ctx, base);
 	// li r11,0
 	ctx.r11.s64 = 0;
 	// stw r11,240(r31)
@@ -48766,7 +48766,7 @@ loc_82977000:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 272);
 	// bl 0x82b0a968
 	ctx.lr = 0x82977028;
-	rex_ResumeThread_82B0A968(ctx, base);
+	sub_82B0A968(ctx, base);
 	// li r11,0
 	ctx.r11.s64 = 0;
 	// stw r11,240(r31)
@@ -50818,7 +50818,7 @@ PPC_FUNC_IMPL(__imp__sub_82977C38) {
 	PPC_STORE_U32(ctx.r31.u32 + 208, ctx.r9.u32);
 	// bl 0x82afccb0
 	ctx.lr = 0x82977D50;
-	rex_CreateThread_82AFCCB0(ctx, base);
+	sub_82AFCCB0(ctx, base);
 	// cmplwi cr6,r3,0
 	ctx.cr6.compare<uint32_t>(ctx.r3.u32, 0, ctx.xer);
 	// stw r3,264(r31)
@@ -50859,7 +50859,7 @@ loc_82977D74:
 	ctx.r3.s64 = 0;
 	// bl 0x82afccb0
 	ctx.lr = 0x82977D9C;
-	rex_CreateThread_82AFCCB0(ctx, base);
+	sub_82AFCCB0(ctx, base);
 	// cmplwi cr6,r3,0
 	ctx.cr6.compare<uint32_t>(ctx.r3.u32, 0, ctx.xer);
 	// stw r3,268(r31)
@@ -50900,7 +50900,7 @@ loc_82977DC0:
 	ctx.r3.s64 = 0;
 	// bl 0x82afccb0
 	ctx.lr = 0x82977DE8;
-	rex_CreateThread_82AFCCB0(ctx, base);
+	sub_82AFCCB0(ctx, base);
 	// cmplwi cr6,r3,0
 	ctx.cr6.compare<uint32_t>(ctx.r3.u32, 0, ctx.xer);
 	// stw r3,272(r31)
@@ -50941,7 +50941,7 @@ loc_82977E0C:
 	ctx.r3.s64 = 0;
 	// bl 0x82afccb0
 	ctx.lr = 0x82977E34;
-	rex_CreateThread_82AFCCB0(ctx, base);
+	sub_82AFCCB0(ctx, base);
 	// cmplwi cr6,r3,0
 	ctx.cr6.compare<uint32_t>(ctx.r3.u32, 0, ctx.xer);
 	// stw r3,276(r31)
@@ -51170,7 +51170,7 @@ loc_82977FA4:
 	if (ctx.cr6.eq) goto loc_82977FDC;
 	// bl 0x82b0a968
 	ctx.lr = 0x82977FC8;
-	rex_ResumeThread_82B0A968(ctx, base);
+	sub_82B0A968(ctx, base);
 	// lwz r11,0(r31)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
 	// mr r3,r31
@@ -51191,7 +51191,7 @@ loc_82977FDC:
 	if (ctx.cr6.eq) goto loc_82978000;
 	// bl 0x82b0a968
 	ctx.lr = 0x82977FEC;
-	rex_ResumeThread_82B0A968(ctx, base);
+	sub_82B0A968(ctx, base);
 	// lwz r11,0(r31)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
 	// mr r3,r31
@@ -51212,7 +51212,7 @@ loc_82978000:
 	if (ctx.cr6.eq) goto loc_82978024;
 	// bl 0x82b0a968
 	ctx.lr = 0x82978010;
-	rex_ResumeThread_82B0A968(ctx, base);
+	sub_82B0A968(ctx, base);
 	// lwz r11,0(r31)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
 	// mr r3,r31
@@ -51233,7 +51233,7 @@ loc_82978024:
 	if (ctx.cr6.eq) goto loc_82978048;
 	// bl 0x82b0a968
 	ctx.lr = 0x82978034;
-	rex_ResumeThread_82B0A968(ctx, base);
+	sub_82B0A968(ctx, base);
 	// lwz r11,0(r31)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
 	// mr r3,r31
@@ -51259,7 +51259,7 @@ loc_82978058:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 264);
 	// bl 0x82b0a968
 	ctx.lr = 0x82978060;
-	rex_ResumeThread_82B0A968(ctx, base);
+	sub_82B0A968(ctx, base);
 	// lwz r11,0(r31)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
 	// mr r3,r31
@@ -51301,7 +51301,7 @@ loc_829780A0:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 268);
 	// bl 0x82b0a968
 	ctx.lr = 0x829780A8;
-	rex_ResumeThread_82B0A968(ctx, base);
+	sub_82B0A968(ctx, base);
 	// lwz r11,0(r31)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
 	// mr r3,r31
@@ -51343,7 +51343,7 @@ loc_829780E8:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 272);
 	// bl 0x82b0a968
 	ctx.lr = 0x829780F0;
-	rex_ResumeThread_82B0A968(ctx, base);
+	sub_82B0A968(ctx, base);
 	// lwz r11,0(r31)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
 	// mr r3,r31
@@ -51385,7 +51385,7 @@ loc_82978130:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 276);
 	// bl 0x82b0a968
 	ctx.lr = 0x82978138;
-	rex_ResumeThread_82B0A968(ctx, base);
+	sub_82B0A968(ctx, base);
 	// lwz r11,0(r31)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
 	// mr r3,r31
@@ -51617,17 +51617,17 @@ loc_82978270:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 264);
 	// bl 0x82b0a968
 	ctx.lr = 0x829782C4;
-	rex_ResumeThread_82B0A968(ctx, base);
+	sub_82B0A968(ctx, base);
 	// lwz r3,268(r31)
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 268);
 	// bl 0x82b0a968
 	ctx.lr = 0x829782CC;
-	rex_ResumeThread_82B0A968(ctx, base);
+	sub_82B0A968(ctx, base);
 	// lwz r3,276(r31)
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 276);
 	// bl 0x82b0a968
 	ctx.lr = 0x829782D4;
-	rex_ResumeThread_82B0A968(ctx, base);
+	sub_82B0A968(ctx, base);
 	// lwz r5,0(r31)
 	ctx.r5.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
 	// mr r3,r31
@@ -52107,12 +52107,12 @@ loc_829785D4:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r25.u32 + 264);
 	// bl 0x82b0a968
 	ctx.lr = 0x82978634;
-	rex_ResumeThread_82B0A968(ctx, base);
+	sub_82B0A968(ctx, base);
 	// lwz r3,268(r25)
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r25.u32 + 268);
 	// bl 0x82b0a968
 	ctx.lr = 0x8297863C;
-	rex_ResumeThread_82B0A968(ctx, base);
+	sub_82B0A968(ctx, base);
 	// lwz r10,0(r25)
 	ctx.r10.u64 = PPC_LOAD_U32(ctx.r25.u32 + 0);
 	// mr r3,r25
@@ -52346,7 +52346,7 @@ loc_829787B0:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r25.u32 + 272);
 	// bl 0x82b0a968
 	ctx.lr = 0x829787E4;
-	rex_ResumeThread_82B0A968(ctx, base);
+	sub_82B0A968(ctx, base);
 	// stw r22,240(r25)
 	PPC_STORE_U32(ctx.r25.u32 + 240, ctx.r22.u32);
 	// b 0x82978840
@@ -52380,7 +52380,7 @@ loc_82978814:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r25.u32 + 272);
 	// bl 0x82b0a968
 	ctx.lr = 0x82978820;
-	rex_ResumeThread_82B0A968(ctx, base);
+	sub_82B0A968(ctx, base);
 	// stw r22,240(r25)
 	PPC_STORE_U32(ctx.r25.u32 + 240, ctx.r22.u32);
 loc_82978824:
@@ -54389,7 +54389,7 @@ loc_8297957C:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 272);
 	// bl 0x82b0a968
 	ctx.lr = 0x829795B0;
-	rex_ResumeThread_82B0A968(ctx, base);
+	sub_82B0A968(ctx, base);
 	// stw r27,240(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 240, ctx.r27.u32);
 	// b 0x82979ba0
@@ -55051,7 +55051,7 @@ loc_829799A4:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 272);
 	// bl 0x82b0a968
 	ctx.lr = 0x82979A10;
-	rex_ResumeThread_82B0A968(ctx, base);
+	sub_82B0A968(ctx, base);
 	// stw r27,240(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 240, ctx.r27.u32);
 	// b 0x82979a54
@@ -55076,7 +55076,7 @@ loc_82979A18:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 272);
 	// bl 0x82b0a968
 	ctx.lr = 0x82979A3C;
-	rex_ResumeThread_82B0A968(ctx, base);
+	sub_82B0A968(ctx, base);
 	// stw r27,240(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 240, ctx.r27.u32);
 loc_82979A40:

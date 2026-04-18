@@ -60485,7 +60485,7 @@ loc_8295CD10:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r30.u32 + 1304);
 	// bl 0x82b0a898
 	ctx.lr = 0x8295CD18;
-	rex_fsThreadAsyncAddDecompressOperation_82B0A898(ctx, base);
+	sub_82B0A898(ctx, base);
 	// b 0x8295cd2c
 	goto loc_8295CD2C;
 loc_8295CD1C:
