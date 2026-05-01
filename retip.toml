@@ -16,5 +16,7 @@ fullscreen = true
 gpu_allow_invalid_fetch_constants = true
 d3d12_tiled_shared_memory = false
 present_letterbox = false
+mnk_mode = true                                                                                                                                                                                                         
+mnk_sensitivity = 1.0
 execute_unclipped_draw_vs_on_cpu = true
 execute_unclipped_draw_vs_on_cpu_with_scissor = true

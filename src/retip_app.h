@@ -23,6 +23,8 @@
 #include "tip_engine/Overlays/TiPTools/SettingsMenu.h"
 #include "tip_engine/Overlays/TiPTools/PinataMenu.h"
 #include "tip_engine/Overlays/StartupOverlay.h"
+#include "tip_engine/Input/TipMouseListener.h"
+#include "tip_engine/Input/TipRawMouse.h"
 #include "tip_engine/CustomRenderer/Window.h"
 #include "tip_engine/CustomRenderer/engine/World/World.h"
 #include "tip_engine/CustomRenderer/engine/World/Camera.h"
@@ -49,6 +51,10 @@ REXCVAR_DEFINE_BOOL(OverlaySolarRenderer, false, "_Trouble in Paradise/Graphics"
 
 REXCVAR_DEFINE_BOOL(ShowStartupOverlay, true, "_Trouble in Paradise", "Show startup overlay popup");
 
+//Pulled from SDK's mnk_input_driver.cpp - no public header declares it
+REXCVAR_DECLARE(bool, mnk_mode);
+REXCVAR_DECLARE(double, mnk_sensitivity);
+
 
 class RetipApp : public rex::ReXApp {
  public:
@@ -68,6 +74,14 @@ class RetipApp : public rex::ReXApp {
 
         ImPlot::CreateContext();
         //g_raw_input = runtime()->input_system()->GetRawInput();
+        timeBeginPeriod(1);
+
+        //Force MnK driver on regardless of toml, since EXE may run from build dir without retip.toml
+        REXCVAR_SET(mnk_mode, true);
+
+        //Silence MnK's mouse->right-stick path; CursorHooks consumes mouse delta directly
+        REXCVAR_SET(mnk_sensitivity, 0.0);
+
         //timeBeginPeriod(1);
 
         Log(LogLevel::Info, "Initializing Discord RPC");
@@ -117,6 +131,15 @@ class RetipApp : public rex::ReXApp {
   // void OnCreateDialogs(rex::ui::ImGuiDrawer* drawer) override {}
    void OnShutdown() override {
         Log(LogLevel::Info, "Application Shutting Down");
+     
+        if (g_raw_mouse) {
+            g_raw_mouse->Teardown();
+        }
+        g_raw_mouse.reset();
+        if (g_mouse_listener && window()) {
+            window()->RemoveInputListener(g_mouse_listener.get());
+        }
+        g_mouse_listener.reset();
 
         Log(LogLevel::Info, "Shutting down Discord RPC");
         retip::discord_rpc::Stop();
@@ -138,6 +161,24 @@ class RetipApp : public rex::ReXApp {
             g_mainWindowHandle = window()->GetNativeWindowHandle();
         }
     #endif
+
+        //Mouse delta source for native mouse-look. Try Win32 raw input first
+        //(bypasses MnK's cursor centering -> no contamination from SetCursorPos
+        //events). Fall back to the WindowInputListener path if raw input setup
+        //fails (non-Win32 builds, or if RegisterRawInputDevices refuses).
+        if (window()) {
+            g_raw_mouse = std::make_unique<TipRawMouse>();
+            bool raw_active = false;
+#ifdef _WIN32
+            HWND hwnd = static_cast<HWND>(window()->GetNativeWindowHandle());
+            raw_active = g_raw_mouse->Setup(hwnd);
+#endif
+            if (!raw_active) {
+                g_raw_mouse.reset();
+                g_mouse_listener = std::make_unique<TipMouseListener>(window());
+                window()->AddInputListener(g_mouse_listener.get(), 0);
+            }
+        }
 
         drawer->AddDialog(new StartupOverlayDialog(drawer));
         //drawer->AddDialog(new DebugOverlayDialog(drawer));
