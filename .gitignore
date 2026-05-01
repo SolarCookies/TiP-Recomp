@@ -34,3 +34,12 @@ dxgi.dll
 *.dll
 /reshade-shaders
 *.fx
+*.i64
+/.vscode
+*.log
+build_log.txt
+*.bin
+*.bak
+*.dump
+*.log1
+ReShade.ini
