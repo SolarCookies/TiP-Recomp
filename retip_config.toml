@@ -3,8 +3,8 @@
 includes = [
 "config/retip_crt.toml",
 "config/retip_ctx_ctr.toml",
-"config/retip_functions.toml",
 "config/retip_midasm.toml",
+#"config/retip_functions.toml", #These are just for reference, If added it adds stablility issues, each one when hooked needs to be moved to retip_hooked
 "config/retip_hooked.toml"
 ]
 

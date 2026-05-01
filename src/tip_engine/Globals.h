@@ -37,3 +37,22 @@ inline std::unique_ptr<TipMouseListener> g_mouse_listener = nullptr;
 // MnK's cursor centering entirely; see TipRawMouse.h. Null on non-Win32 or
 // when raw input setup fails (CursorHooks falls back to g_mouse_listener).
 inline std::unique_ptr<TipRawMouse> g_raw_mouse = nullptr;
+
+// When true, game input (gamepad/keyboard to the guest) should be blocked.
+// Set by TiPTools when the mod menu is visible.
+inline bool g_LockGameInput = false;
+
+inline uint32_t scene = 0;
+
+// Spawn request queued from UI thread, processed on PPC thread by gardenMainGetGardenScene hook
+struct SpawnRequest {
+    bool pending = false;
+    uint32_t tagID = 0;
+    float scale = 1.0f;
+    bool spawnWild = false;
+    int wildcard = 0;   // 0=none, 1-3=wildcard body traits
+};
+inline SpawnRequest g_SpawnRequest;
+inline uint32_t g_LastSpawnedEntity = 0;
+
+inline float* playerPos;

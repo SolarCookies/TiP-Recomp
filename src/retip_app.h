@@ -7,7 +7,7 @@
 
 #include <memory>
 #include <rex/rex_app.h>
-#include "retip_config.h"
+#include "generated/retip_init.h"
 #include "tip_engine/hooks.h"
 #include <rex/ppc/function.h>
 #include "tip_engine/Log.h"
@@ -16,9 +16,12 @@
 #include "ImPlot/implot.h"
 #include "Webcam.h"
 #include "tip_engine/Globals.h"
-#include "tip_engine/SleepHooks.h"
 #include "tip_engine/Overlays/TiPTools.h"
 #include "tip_engine/Overlays/TiPTools/SpawnMenu.h"
+#include "tip_engine/Overlays/TiPTools/PlayerMenu.h"
+#include "tip_engine/Overlays/TiPTools/GraphicsMenu.h"
+#include "tip_engine/Overlays/TiPTools/SettingsMenu.h"
+#include "tip_engine/Overlays/TiPTools/PinataMenu.h"
 #include "tip_engine/Overlays/StartupOverlay.h"
 #include "tip_engine/Input/TipMouseListener.h"
 #include "tip_engine/Input/TipRawMouse.h"
@@ -28,9 +31,24 @@
 
 #include "tip_engine/CustomRenderer/engine/Actors/SkyboxActor.h"
 #include "tip_engine/CustomRenderer/engine/Actors/DebugGridActor.h"
+#include "tip_engine/CustomRenderer/engine/Actors/VertexPreviewActor.h"
+#include "tip_engine/DiscordRPC.h"
 
+#ifndef NOMINMAX
+#define NOMINMAX
+#endif
+#include <Windows.h>
+#include <cstdint>
+#include <timeapi.h>
+#include <fstream>
+#include <thread>
+#include <atomic>
+
+#ifdef DEBUG_BUILD
 REXCVAR_DEFINE_BOOL(SolarRendererPreview, false, "_Trouble in Paradise/Graphics", "Enables the Solar Renderer").lifecycle(rex::cvar::Lifecycle::kRequiresRestart);
 REXCVAR_DEFINE_BOOL(OverlaySolarRenderer, false, "_Trouble in Paradise/Graphics", "Overlay Solar Renderer on main window").lifecycle(rex::cvar::Lifecycle::kRequiresRestart);
+#endif
+
 REXCVAR_DEFINE_BOOL(ShowStartupOverlay, true, "_Trouble in Paradise", "Show startup overlay popup");
 
 //Pulled from SDK's mnk_input_driver.cpp - no public header declares it
@@ -52,6 +70,8 @@ class RetipApp : public rex::ReXApp {
   // Override virtual hooks for customization:
   // void OnPreSetup(rex::RuntimeConfig& config) override {}
    void OnPostSetup() override {
+        Log(LogLevel::Info, "Application Started");
+
         ImPlot::CreateContext();
         //g_raw_input = runtime()->input_system()->GetRawInput();
         timeBeginPeriod(1);
@@ -62,6 +82,18 @@ class RetipApp : public rex::ReXApp {
         //Silence MnK's mouse->right-stick path; CursorHooks consumes mouse delta directly
         REXCVAR_SET(mnk_sensitivity, 0.0);
 
+        //timeBeginPeriod(1);
+
+        Log(LogLevel::Info, "Initializing Discord RPC");
+        retip::discord_rpc::Presence rpc;
+        rpc.details        = "";
+        rpc.state          = "";
+        rpc.largeImageKey  = "10979_viva_piata_trouble_in_paradise";
+        rpc.largeImageText = "ReTiP";
+        retip::discord_rpc::Start(rpc);
+        Log(LogLevel::Info, "Discord RPC Initialized");
+
+#ifdef DEBUG_BUILD
         if(REXCVAR_GET(SolarRendererPreview)) {
 
             windowPtr = std::make_unique<VinceWindow>(1280, 720, "Solar Renderer", REXCVAR_GET(OverlaySolarRenderer));
@@ -81,6 +113,10 @@ class RetipApp : public rex::ReXApp {
             auto debugGrid = std::make_unique<DebugGrid>();
             g_world->AddActor(std::move(debugGrid));
 
+            // Vertex preview: renders DrawVerticesUP captured verts as points
+            auto vertexPreview = std::make_unique<VertexPreviewActor>();
+            g_world->AddActor(std::move(vertexPreview));
+
             g_world->ConstructWorld();
 
             g_camera = std::make_unique<class Camera>(1280.0f, 720.0f, glm::vec3(0.0f, 0.0f, 2.0f));
@@ -89,10 +125,13 @@ class RetipApp : public rex::ReXApp {
             glfwMakeContextCurrent(nullptr);
             
         }
+        #endif
    }
 
   // void OnCreateDialogs(rex::ui::ImGuiDrawer* drawer) override {}
    void OnShutdown() override {
+        Log(LogLevel::Info, "Application Shutting Down");
+     
         if (g_raw_mouse) {
             g_raw_mouse->Teardown();
         }
@@ -101,16 +140,27 @@ class RetipApp : public rex::ReXApp {
             window()->RemoveInputListener(g_mouse_listener.get());
         }
         g_mouse_listener.reset();
+
+        Log(LogLevel::Info, "Shutting down Discord RPC");
+        retip::discord_rpc::Stop();
+
+        Log(LogLevel::Info, "Cleaning up resources");
         ImPlot::DestroyContext();
-        DisableHighResTimer();
+
+        Log(LogLevel::Info, "Cleaning up world and renderer");
+        //timeEndPeriod(1);
         delete g_world;
         g_world = nullptr;
-   }
+    }
+
   // void OnConfigurePaths(rex::PathConfig& paths) override {}
   void OnCreateDialogs(rex::ui::ImGuiDrawer* drawer) override {
+    Log(LogLevel::Info, "Creating UI Dialogs");
+    #ifdef DEBUG_BUILD
         if (windowPtr && windowPtr->isOverlay() && window()) {
             g_mainWindowHandle = window()->GetNativeWindowHandle();
         }
+    #endif
 
         //Mouse delta source for native mouse-look. Try Win32 raw input first
         //(bypasses MnK's cursor centering -> no contamination from SetCursorPos
@@ -138,7 +188,13 @@ class RetipApp : public rex::ReXApp {
 
         auto tipToolsDialog = new TipToolsDialog(drawer);
         drawer->AddDialog(tipToolsDialog);
+        
+        tipToolsDialog->pages.push_back(std::make_unique<PlayerMenuPage>());
+        tipToolsDialog->pages.push_back(std::make_unique<PinataMenuPage>());
         tipToolsDialog->pages.push_back(std::make_unique<SpawnMenuPage>());
+        //tipToolsDialog->pages.push_back(std::make_unique<GraphicsMenuPage>());
+        //tipToolsDialog->pages.push_back(std::make_unique<SettingsMenuPage>());
+        Log(LogLevel::Info, "UI Dialogs Created");
     }
 };
 
@@ -149,60 +205,3 @@ PPC_STUB(__imp__XUsbcamReadFrame)
 PPC_STUB(__imp__XUsbcamDestroy)
 PPC_STUB(__imp__XUsbcamCreate)
 PPC_STUB(__imp__XUsbcamGetState)
-
-/*
-inline int XUsbcamGetState_Replacement() {
-    return 2;
-}
-
-PPC_HOOK(__imp__XUsbcamGetState, XUsbcamGetState_Replacement)
-
-inline int XUsbcamCreate_Replacement(int buffer, int bufferSize, int* outHandle){
-    *outHandle = std::byteswap(1);
-    return 2;
-}
-
-PPC_HOOK(__imp__XUsbcamCreate, XUsbcamCreate_Replacement)
-
-inline int XUsbcamReadFrame_Replacement(int handle, int pBuffer, int size, XUsbcamCallback callback, int context) {
-    auto cam = fpsManager.GetCreateCounter("cam");
-
-    cam->Tick();
-
-    DebugLogInt32("callback size", size);
-    DebugLogInt64("callback context", context);
-    DebugLogInt64("callback handle", handle);
-    DebugLogInt64("callback buffer", pBuffer);
-    DebugLogInt64("callback callback ptr", (int64_t)callback);
-    
-    ReadCallback = callback; // Store the callback for later use
-    ReadCallbackContext = context; // Store the context for later use
-    ReadCallbackSize = size; // Store the size for later use
-    
-    return 2; 
-}
-
-PPC_HOOK(__imp__XUsbcamReadFrame, XUsbcamReadFrame_Replacement)
-
-
-//((int (__fastcall *)(int, int, int, int *))XUsbcamSetConfig[0])(dword_82C11A5C, v16, v15, &v13);
-
-//((int (__fastcall *)(int, int, int, int, int (*)(), int))XUsbcamSetView[0])(dword_82C11A5C,a1,a2,a3,v11,v8);
-
-//((int (__fastcall *)(int, int, char *, unsigned int, _DWORD, int, _DWORD, int (*)()))XUsbcamSetCaptureMode[0])(dword_82C11A5C,4,"21VN",HIWORD(a2),(unsigned __int16)a2,v12,0,v10);
-
-inline int XUsbcamSetConfig_Replacement(int a1, int a2, int a3, int* outConfig) {
-    return 2;
-}
-PPC_HOOK(__imp__XUsbcamSetConfig, XUsbcamSetConfig_Replacement)
-
-inline int XUsbcamSetView_Replacement(int a1, int a2, int a3, int a4, int (*callback)(), int a6) {
-    return 2;
-}
-PPC_HOOK(__imp__XUsbcamSetView, XUsbcamSetView_Replacement)
-
-inline int XUsbcamSetCaptureMode_Replacement(int a1, int a2, char* a3, unsigned int a4, int a5, int a6, int a7, int (*callback)()) {
-    return 0;
-}
-PPC_HOOK(__imp__XUsbcamSetCaptureMode, XUsbcamSetCaptureMode_Replacement)
-*/

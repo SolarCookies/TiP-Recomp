@@ -1,17 +1,22 @@
 # Auto-generated cvar configuration
-SolarRendererPreview = false
+video_mode_refresh_rate = 60.0
+show_fps = false
 SkipIntros = false
+disableSurfacePreferences = false
 enable_console = false
-log_level = "off"
+log_level = "error"
+log_file = "logs/retip.log"
 scribble_heap = true
-fullscreen=true
 vsync = false
 readback_memexport = false
 readback_memexport_fast = false
-d3d12_readback_resolve = false
+d3d12_bindless = false
 d3d12_submit_on_primary_buffer_end = false
-swap_post_effect = "fxaa_extreme"
+fullscreen = true
 gpu_allow_invalid_fetch_constants = true
+d3d12_tiled_shared_memory = false
 present_letterbox = false
 mnk_mode = true                                                                                                                                                                                                         
 mnk_sensitivity = 1.0
+execute_unclipped_draw_vs_on_cpu = true
+execute_unclipped_draw_vs_on_cpu_with_scissor = true
