@@ -11,24 +11,23 @@ Showcase Video: https://youtu.be/Kih42KlocII?si=WeSh2FvBYrwQuNB-
 Currently only supports windows, Linux is planned though. This project is still very early on so you will run into issues, if you do please report them in the github issues tab, Just make sure before you do no one else as made that same issue.
 
 ## Setup
-- 1 Download the latest Launcher somewhere on the C drive (Depending on your system you might need to disable the antivirus to download or extract)
-- 2 Obtain a legal copy of TiP's Iso (World) (I dont support piracy)
+- 1 Download the latest [Goopie](https://goopie.xyz) and install it, (Preferably at the defualt location, you can adjust the game location in the settings)
+- 2 Obtain a legal copy of TiP's Iso (World) (We dont support piracy)
 - 3 Inside the launcher press "Select Iso"
 - 4 Once Selected the Iso will start to extract, if it doesn't work make sure the name is normalized aka "C:/Games/" not "C:/Games but with a space and a $/"
-- 5 Once its extracted it will say "Download", Press it
+- 5 Once its extracted it will say "Download" or "Update", Press it
 - 6 Now that the recompiled exe is downloaded you can press "Launch"
-- 7 If an update is out the launcher will force you to update, this is by design. As we rapidly fix bugs we want people to be using to latest version.
 
-## Building from scratch
-- 1 Clone and Build the Rexglue SDK https://github.com/rexglue/rexglue-sdk/
+## Building from scratch (We are on Rexglue 0.7.4)
+- 1 Clone and Build the Rexglue SDK 0.7.4 https://github.com/rexglue/rexglue-sdk/
 
 ```
-git clone --recursive https://github.com/rexglue/rexglue-sdk.git
+git clone --recursive --branch v0.7.4 https://github.com/rexglue/rexglue-sdk.git
 cd rexglue-sdk
 cmake --preset win-amd64
 cmake --build --preset win-amd64-relwithdebinfo --target install
 ```
-- 2 Clone TiP-Recomp
+- 2 Clone TiP-Recomp (The dev branch is what you should target for pull request)
 ```
 cd ../
 git clone https://github.com/SolarCookies/TiP-Recomp.git
@@ -42,3 +41,4 @@ git clone https://github.com/SolarCookies/TiP-Recomp.git
 - [Franksy32](https://https://github.com/Franksy32) For providing the unlimited garden space patches
 - [Smash-chu](https://smash-chu.carrd.co/) For the Title Artwork
 - [birabittoh](https://github.com/birabittoh) For the Github Building Workflows
+- [Zorkats](https://github.com/Zorkats) For Mouse and Keyboard Support
