@@ -25,5 +25,4 @@ public:
     int prevFocusIndex = -1;
     int coins = 0;
     int experience = 0;
-    int level = 0;
 };

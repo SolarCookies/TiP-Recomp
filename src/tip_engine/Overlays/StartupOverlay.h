@@ -55,7 +55,7 @@ public:
             ImGuiWindowFlags_AlwaysAutoResize);
 
         ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 1.0f, 1.0f, alpha));
-        const char* text = "ReTiP 1.9 - Press F4 to open up the recomp settings";
+        const char* text = "ReTiP 1.10 - Press F4 to open up the recomp settings";
         float textWidth = ImGui::CalcTextSize(text).x;
         ImGui::SetCursorPosX((windowWidth - textWidth) * 0.5f);
         ImGui::SetCursorPosY((windowHeight - ImGui::GetTextLineHeight()) * 0.5f);

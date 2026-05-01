@@ -37,6 +37,7 @@ REXCVAR_DEFINE_BOOL(UseAspectRatioFromConfig, false, "_Trouble in Paradise", "Us
 REXCVAR_DEFINE_DOUBLE(AspectRatio, 1.7777778f, "_Trouble in Paradise", "Aspect Ratio");
 REXCVAR_DEFINE_BOOL(SkipIntros, false, "_Trouble in Paradise", "Skip Intro Videos");
 
+
 // Guest memory bounds for safety checks
 static constexpr uint64_t GUEST_MEM_BASE = 0x100000000ull;
 static constexpr uint64_t GUEST_MEM_SIZE = 0x100000000ull; // 4GB guest address space
@@ -48,6 +49,8 @@ static bool IsGuestRangeValid(uint32_t guestAddr, uint64_t size) {
     uint64_t end = static_cast<uint64_t>(guestAddr) + size;
     return end <= GUEST_MEM_SIZE;
 }
+
+#ifdef DEBUG_BUILD
 
 REXCVAR_DEFINE_BOOL(PreviewDrawVerticesUP, false, "_Trouble in Paradise", "Preview DrawVerticesUP vertices as points");
 REXCVAR_DEFINE_BOOL(PreviewBeginIndexedVertices, false, "_Trouble in Paradise", "Preview BeginIndexedVertices vertices as points");
@@ -110,8 +113,9 @@ int render_D3DDevice_BeginIndexedVertices_82664640_Hook(
     return result;
 }
 REX_PPC_HOOK(render_D3DDevice_BeginIndexedVertices_82664640);
+#endif
 
-
+#ifdef DEBUG_BUILD
 REX_PPC_EXTERN_IMPORT(render_D3DDevice_DrawIndexedVertices_82664FF0);
 void render_D3DDevice_DrawIndexedVertices_82664FF0_Hook(
   int pDevice,
@@ -255,22 +259,26 @@ void render_D3DDevice_DrawIndexedVertices_82664FF0_Hook(
 }
 REX_PPC_HOOK(render_D3DDevice_DrawIndexedVertices_82664FF0);
 
+#endif
 
 
 //supportFrustumConstructClippingFrustum_8228BE08
 REX_PPC_EXTERN_IMPORT(supportFrustumConstructClippingFrustum_8228BE08);
 void supportFrustumConstructClippingFrustum_8228BE08_Hook(double a1,double a2,double a3,double a4,int a5,int a6,int a7,int a8,float *a9,float *a10) {
+    Log(LogLevel::Info, "supportFrustumConstructClippingFrustum Hook Hit");
     float customAR = static_cast<float>(REXCVAR_GET(AspectRatio));
     if(REXCVAR_GET(UseAspectRatioFromConfig)) {
       a2 = customAR;
     }
     rex::GuestToHostFunction<void>(__imp__rex_supportFrustumConstructClippingFrustum_8228BE08, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10);
+    Log(LogLevel::Info, "supportFrustumConstructClippingFrustum Hook Finished");
 }
 REX_PPC_HOOK(supportFrustumConstructClippingFrustum_8228BE08);
 
 
 REX_PPC_EXTERN_IMPORT(camMainPostDrawLetterbox_821F0910);
 int camMainPostDrawLetterbox_821F0910_Hook(){
+    Log(LogLevel::Info, "camMainPostDrawLetterbox Hook Hit");
   //float customAR = static_cast<float>(REXCVAR_GET(AspectRatio));
   //float* flt_821612EC = reinterpret_cast<float*>(0x100000000ull + 0x821612EC);
   //*flt_821612EC = 1.0f;
@@ -280,35 +288,45 @@ REX_PPC_HOOK(camMainPostDrawLetterbox_821F0910);
 
 REX_PPC_EXTERN_IMPORT(mlMtxPerspective_82247408);
 void mlMtxPerspective_82247408_Hook(float* outMtx, float fov, float aspectRatio, float nearZ, float farZ) {
+    Log(LogLevel::Info, "mlMtxPerspective Hook Hit");
     float customAR = aspectRatio;
     if(REXCVAR_GET(UseAspectRatioFromConfig)) {
       customAR = static_cast<float>(REXCVAR_GET(AspectRatio));
     }
     rex::GuestToHostFunction<void>(__imp__rex_mlMtxPerspective_82247408, outMtx, fov, customAR, nearZ, farZ);
+    Log(LogLevel::Info, "mlMtxPerspective Hook Finished");
 }
 REX_PPC_HOOK(mlMtxPerspective_82247408);
 
 
 REX_PPC_EXTERN_IMPORT(meUpdateOutputViewport_821F0F30);
 int meUpdateOutputViewport_821F0F30_Hook() {
+    Log(LogLevel::Info, "meUpdateOutputViewport Hook Hit");
     int result = rex::GuestToHostFunction<int>(__imp__rex_meUpdateOutputViewport_821F0F30);
     if(REXCVAR_GET(UseAspectRatioFromConfig)) {
+        Log(LogLevel::Info, "Updating Aspect Ratio in meUpdateOutputViewport");
         float customAR = static_cast<float>(REXCVAR_GET(AspectRatio));
         float* aspectRatioPtr = reinterpret_cast<float*>(0x100000000ull + 0x82C34F00);
         *aspectRatioPtr = to_byteswapped_float(customAR);
+        Log(LogLevel::Info, "Aspect Ratio Updated in meUpdateOutputViewport");
     }
+    
+    Log(LogLevel::Info, "meUpdateOutputViewport Hook Finished");
     return result;
 }
 REX_PPC_HOOK(meUpdateOutputViewport_821F0F30);
 
 void AspectRatio_hook(PPCRegister& r3) {
   if(REXCVAR_GET(UseAspectRatioFromConfig)) {
+    
+    Log(LogLevel::Info, "Aspect Ratio Hook Hit");
     //r3.u32 + 0x399C | *(float *)&r3+0x399C = AspectRatio;
     float customAR = static_cast<float>(REXCVAR_GET(AspectRatio));
     if(r3.u32){
       float* aspectRatioPtr = reinterpret_cast<float*>(0x100000000ull + r3.u32 + 0x399C);
       *aspectRatioPtr = to_byteswapped_float(customAR);
     }
+    Log(LogLevel::Info, "Aspect Ratio Hook Finished");
   }
 }
 
@@ -333,72 +351,6 @@ bool skipSecondDraw_hook(){
   return REXCVAR_GET(DisableUIDraw);
 }
 
-void skipRenderState0_hook(PPCRegister& r10){
-  return;
-  /*
-  if(REXCVAR_GET(SkipShadowPass_One)){
-    r10.u32 = 0; // Set shadow count to 0 to skip shadow pass
-  }else{
-    r10.u32 = 1;
-  }
-    */
-}
-
-void skipRenderState1_hook(PPCRegister& r9){
-  return;
-  /*
-  if(REXCVAR_GET(SkipShadowPass_Two)){
-    r9.u32 = 0; // Set shadow count to 0 to skip shadow pass
-  }else{
-    r9.u32 = 1;
-  }
-    */
-}
-
-void skipRenderState2_hook(PPCRegister& r9){
-  return;
-  /*
-  if(REXCVAR_GET(SkipShadowPass_Three)){
-    r9.u32 = 0; // Set shadow count to 0 to skip shadow pass
-  }else{
-    r9.u32 = 1;
-  }
-    */
-}
-
-void skipRenderState3_hook(PPCRegister& r9){
-  return;
-  /*
-  if(REXCVAR_GET(SkipOpaquePass)){
-    r9.u32 = 0; // Set shadow count to 0 to skip shadow pass
-  }else{
-    r9.u32 = 1;
-  }
-    */
-}
-
-void skipRenderState4_hook(PPCRegister& r9){
-  return;
-  /*
-  if(REXCVAR_GET(SkipAlphaPass)){
-    r9.u32 = 0; // Set shadow count to 0 to skip shadow pass
-  }else{
-    r9.u32 = 1;
-  }
-    */
-}
-
-void skipRenderState5_hook(PPCRegister& r9){
-  return;
-  /*
-  if(REXCVAR_GET(SkipPostProcessPass)){
-    r9.u32 = 0; // Set shadow count to 0 to skip shadow pass
-  }else{
-    r9.u32 = 1;
-  }
-    */
-}
-
 bool skiplighting_hook() {
   return false; // Always branch to loc_824DDA84
 }
@@ -415,6 +367,7 @@ bool SkipIntroVideosTwo_hook() {
   return REXCVAR_GET(SkipIntros);
 }
 
+#ifdef _DEBUG
 // Hook for sub_826645F8 - DrawVerticesUP (non-indexed immediate vertex draw)
 // Captures vertex positions and forwards them to the VertexPreviewActor
 
@@ -469,8 +422,9 @@ uint32_t render_D3DDevice_DrawVerticesUP_826645F8_Hook(
     return result;
 }
 REX_PPC_HOOK(render_D3DDevice_DrawVerticesUP_826645F8);
+#endif
 
-
+#ifdef DEBUG_BUILD
 // Hook for XUI non-indexed draw
 REX_PPC_EXTERN_IMPORT(ui_Xui_XuiDevice_DrawPrimitiveUP_826EC800);
 int ui_Xui_XuiDevice_DrawPrimitiveUP_826EC800_Hook(
@@ -577,8 +531,9 @@ int ui_Xui_XuiDevice_DrawPrimitiveUP_826EC800_Hook(
     return result;
 }
 REX_PPC_HOOK(ui_Xui_XuiDevice_DrawPrimitiveUP_826EC800);
+#endif
 
-
+#ifdef DEBUG_BUILD
 // Hook for sub_82202EE0 - draws a colored quad using BeginVertices
 // Vertex format: float x, float y, DWORD color, float u, float v (stride 0x14 = 20 bytes)
 // Also captures the world matrix from a6 which is multiplied with projMtx
@@ -626,8 +581,9 @@ uint32_t render_DrawColoredQuad_82202EE0_Hook(
     return result;
 }
 REX_PPC_HOOK(render_DrawColoredQuad_82202EE0);
+#endif
 
-
+#ifdef DEBUG_BUILD
 // Hook for sub_822015D8 - draws a centered 2D quad using BeginVertices
 // Vertex format: float x, float y, float z(=0), float u, float v (stride 0x14)
 REXCVAR_DEFINE_BOOL(PreviewDrawQuad2D, false, "_Trouble in Paradise", "Preview sub_822015D8 2D quad vertices");
@@ -671,8 +627,9 @@ uint32_t render_DrawQuad2D_822015D8_Hook(
     return result;
 }
 REX_PPC_HOOK(render_DrawQuad2D_822015D8);
+#endif
 
-
+#ifdef DEBUG_BUILD
 // Hook for sub_82204AA0 - draws a textured quad with matrix setup
 // Vertex format: float x, float y, DWORD color, float u, float v (stride 0x14)
 REXCVAR_DEFINE_BOOL(PreviewDrawTexturedQuad, false, "_Trouble in Paradise", "Preview sub_82204AA0 textured quad vertices");
@@ -718,3 +675,4 @@ uint32_t render_DrawTexturedQuad_82204AA0_Hook(
     return result;
 }
 REX_PPC_HOOK(render_DrawTexturedQuad_82204AA0);
+#endif

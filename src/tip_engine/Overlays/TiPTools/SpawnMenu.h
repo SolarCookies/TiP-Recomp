@@ -43,6 +43,8 @@ public:
     int optionsFocusIndex = 0;
     int variantIndex = 0;
     int wildcardIndex = 0;
+    bool Wild = false;
+    bool isResident = false;
     float sizeScale = 1.0f;
 
     // Acceleration state

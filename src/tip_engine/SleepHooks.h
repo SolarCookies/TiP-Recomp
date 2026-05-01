@@ -1,3 +1,9 @@
+
+#ifndef NOMINMAX
+#define NOMINMAX
+#include "rex_macros.h"
+#endif
+#include <Windows.h>
 #include <cstdint>
 #include <cmath>
 #include <cstring>
@@ -8,8 +14,9 @@
 #include <fstream>
 #include <thread>
 #include <atomic>
+#include "tip_engine/rex_macros.h"
 
-
+/*
 inline std::once_flag g_timer_init;
 
 inline void EnableHighResTimer() {
@@ -20,10 +27,11 @@ inline void EnableHighResTimer() {
 
 inline void DisableHighResTimer() {
     timeEndPeriod(1);
-    }
+}
 
 // Sleep CRT hook
-inline u32 Sleep_hook(u32 ms) {
+REX_PPC_EXTERN_IMPORT(Sleep_82AFCCF8);
+inline rex::u32 Sleep_hook(rex::u32 ms) {
     EnableHighResTimer();
 
     if (ms == 0) {
@@ -48,3 +56,4 @@ inline u32 Sleep_hook(u32 ms) {
     return 0;
 }
 PPC_HOOK(rex_Sleep_82AFCCF8, Sleep_hook);
+*/

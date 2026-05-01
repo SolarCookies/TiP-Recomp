@@ -37,3 +37,4 @@ memcpy = 0x82AE1C70
 #ExitThread = 0x82AFCAD8
 #WaitForSingleObjectEx = 0x82B12A58
 #ResumeThread = 0x82B0A968
+

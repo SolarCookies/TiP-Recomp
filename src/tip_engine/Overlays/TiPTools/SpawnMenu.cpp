@@ -3,10 +3,12 @@
 #include "../TiPWidgets.h"
 #include "src/tip_engine/rex_macros.h"
 #include "src/tip_engine/Globals.h"
+#include "src/tip_engine/Log.h"
 #include <algorithm>
 #include <cstring>
 #include <cctype>
 #include <set>
+#include <string>
 
 //rex_supportPinataTagClassify_825A0818 (Used to verify a tag to see if it has a valid class) returns supportPinataTagClass_e
 REX_PPC_EXTERN_IMPORT(supportPinataTagClassify_825A0818);
@@ -15,7 +17,7 @@ static constexpr float kSpawnListWidth = 300.0f;
 static constexpr float kSpawnListHeight = 400.0f;
 static constexpr float kSpawnOptionsWidth = 260.0f;
 static constexpr float kSpawnItemHeight = 26.0f;
-static constexpr int kSpawnOptionCount = 4; // variant, wildcard, color, size, SPAWN button
+static constexpr int kSpawnOptionCount = 3; // resident, size, SPAWN button
 
 static const std::vector<const char*> kColorOptions = {
     "Default", "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Pink", "White", "Black"
@@ -144,6 +146,80 @@ static bool ContainsCaseInsensitive(const char* haystack, const char* needle) {
     return false;
 }
 
+
+REX_PPC_EXTERN_IMPORT(spawn_supportPinataCreateGeneralEx_82575C30);
+void SpawnPinata(){
+    Log(LogLevel::Info, "SpawnPinata function called");
+  if (!g_SpawnRequest.pending) return;
+
+  uint32_t tagID = g_SpawnRequest.tagID;
+  float spawnScale = g_SpawnRequest.scale;
+  int wildcard = g_SpawnRequest.wildcard;
+  bool spawnWild = g_SpawnRequest.spawnWild;
+  g_SpawnRequest.pending = false;
+
+  if (scene == 0) return;
+
+  int item = rex::GuestToHostFunction<int>(__imp__rex_spawn_supportPinataCreateGeneralEx_82575C30,scene, 0, 0, tagID, 0, wildcard, spawnScale, 1.0);
+}
+
+PPC_EXTERN_IMPORT(__imp__rex_spawn_supportPinataCreateGeneral_82575AB8);
+PPC_EXTERN_FUNC(rex_spawn_supportPinataCreateGeneral_82575AB8) {
+    Log(LogLevel::Info, "spawn_supportPinataCreateGeneral Hook Hit");
+    __imp__rex_spawn_supportPinataCreateGeneral_82575AB8(ctx, base);
+    Log(LogLevel::Info, "spawn_supportPinataCreateGeneral finished");
+}
+
+int spawn_supportPinataCreateGeneralEx_82575C30_Hook(int a1, int a2, int a3, int a4, double spawnScale, double a6, int tagID, int a8, int a9, int a10, int a11, int a12, int a13, int a14, int a15){
+    Log(LogLevel::Info, "spawn_supportPinataCreateGeneralEx Hook Hit");
+    
+    //spawnScale = 10.5f;
+    //a6 = 3.0f;
+
+    // Get the guest address of the PPC function that called this hook
+    //uint32_t callerAddr = rex::GetGuestCallerAddress();
+    
+    //char callerHex[32];
+    //snprintf(callerHex, sizeof(callerHex), "0x%08X", callerAddr);
+
+
+    int item = rex::GuestToHostFunction<int>(__imp__rex_spawn_supportPinataCreateGeneralEx_82575C30, a1, a2, a3, a4, spawnScale, a6, tagID, a8, a9, a10, a11, a12, a13, a14, a15);
+    Log(LogLevel::Info, "spawn_supportPinataCreateGeneralEx called original function");
+    
+    std::string tagName = "Unknown";
+    auto it = ItemTags.find(tagID - 1);
+    if (it != ItemTags.end()) {
+        tagName = it->second.Tag;
+    }
+
+
+    std::string logmsg;
+    logmsg += "spawn_supportPinataCreateGeneralEx called from:";
+    //logmsg += callerHex;
+    logmsg += " with: ";
+    //logmsg += "a1=" + std::to_string(a1) + " "; //ptr to scene
+    //logmsg += "a3=" + std::to_string(a3) + " ";
+    //logmsg += "a4=" + std::to_string(a4) + " "; //Unk not ptr
+    //logmsg += "spawnScale=" + std::to_string(spawnScale) + " "; //Scale as double
+    //logmsg += "a6=" + std::to_string(a6) + " "; //Unk double
+    logmsg += "tagName=" + tagName + " ";
+    //logmsg += "a8=" + std::to_string(a8) + " "; //Looks like it could be a ptr
+    //logmsg += "a9=" + std::to_string(a9) + " "; //Seems to always be 0
+    //logmsg += "a10=" + std::to_string(a10) + " "; //Mostly 0 but sometimes 6 or 7 (Pun not intended) (Could be class?)
+    //logmsg += "a11=" + std::to_string(a11) + " "; 
+    //logmsg += "a12=" + std::to_string(a12) + " "; 
+    //logmsg += "a13=" + std::to_string(a13) + " ";
+    //logmsg += "a14=" + std::to_string(a14) + " ";
+    //logmsg += "a15=" + std::to_string(a15) + " ";
+    //logmsg += "-> item=" + std::to_string(item); //output is the ptr to the item
+
+    Log(LogLevel::Error,logmsg.c_str());
+    Log(LogLevel::Info, "spawn_supportPinataCreateGeneralEx Hook Finished");
+    return item;
+};
+REX_PPC_HOOK(spawn_supportPinataCreateGeneralEx_82575C30);
+
+
 void SpawnMenuPage::OnDraw() {
     BuildCategories();
     int kCategoryCount = (int)sCategories.size();
@@ -271,6 +347,8 @@ void SpawnMenuPage::OnDraw() {
                 optionsFocusIndex = 0;
                 variantIndex = 0;
                 wildcardIndex = 0;
+                Wild = false;
+                isResident = false;
                 sizeScale = 1.0f;
                 TiPWidgets::SetInputCooldown(0.25f);
             }
@@ -310,6 +388,8 @@ void SpawnMenuPage::OnDraw() {
                 optionsFocusIndex = 0;
                 variantIndex = 0;
                 wildcardIndex = 0;
+                Wild = false;
+                isResident = false;
                 sizeScale = 1.0f;
             }
 
@@ -345,32 +425,21 @@ void SpawnMenuPage::OnDraw() {
         TiPWidgets::PushListStyle();
         float optW = ImGui::GetContentRegionAvail().x;
 
-        // 0: Variant dropdown
-        TiPWidgets::Dropdown("Variant", variantIndex,
-            {"Default", "Variant 1", "Variant 2", "Variant 3"},
-            optionsFocusIndex == 0, optW, input);
+        // 0: Is Resident checkbox
+        TiPWidgets::Toggle("Is Resident", isResident, optionsFocusIndex == 0, optW, input);
 
-        // 1: Wildcard dropdown
-        TiPWidgets::Dropdown("Wildcard", wildcardIndex,
-            {"None", "Wildcard 1", "Wildcard 2", "Wildcard 3"},
-            optionsFocusIndex == 1, optW, input);
-
-        // 2: Size slider
+        // 1: Size slider
         TiPWidgets::FloatSlider("Scale", sizeScale, 0.1f, 5.0f, 0.1f,
-            optionsFocusIndex == 2, optW, sliderAccel.holdTime, sliderAccel.accumulator);
+            optionsFocusIndex == 1, optW, sliderAccel.holdTime, sliderAccel.accumulator);
 
-        // 3: Spawn button (colored)
+        // 2: Spawn button (colored)
         if (TiPWidgets::ColorListButton("SPAWN", GetTypeColor(selectedTag->type),
-                                          optionsFocusIndex == 3, optW, 32.0f) ||
-            (optionsFocusIndex == 3 && input.confirm)) {
-                // Queue a spawn request — processed on the PPC thread by
-                // the gardenMainGetGardenScene hook (see hooks.cpp).
-                // Spawning must happen on the PPC thread because the game's
-                // entity creation functions require a valid PPC context with
-                // proper stack, TLS, and scene state.
+                                          optionsFocusIndex == 2, optW, 32.0f) ||
+            (optionsFocusIndex == 2 && input.confirm)) {
                 g_SpawnRequest.tagID = selectedTag->ID + 1; // Game uses 1-based tag IDs for spawning
                 g_SpawnRequest.scale = sizeScale;
                 g_SpawnRequest.wildcard = wildcardIndex; // 0=none, 1-3=wildcard body traits
+                g_SpawnRequest.spawnWild = !isResident;
                 g_SpawnRequest.pending = true;
         }
 

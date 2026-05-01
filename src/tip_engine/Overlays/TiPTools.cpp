@@ -9,6 +9,7 @@ static constexpr float kSubPanelWidth = 320.0f;
 static constexpr float kMenuPadding = 2.0f;
 static constexpr float kItemHeight = 32.0f;
 static constexpr float kHeaderHeight = 38.0f;
+static constexpr float kWarningHeight = 18.0f;
 
 void TipToolsDialog::HandleInput() {
     // When a sub-page is open, don't poll — the sub-page handles its own input.
@@ -49,7 +50,7 @@ void TipToolsDialog::DrawMenu() {
         ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoNav;
 
     // Calculate total window height: header + items (no extra padding since WindowPadding is 0 for the item area)
-    float totalHeight = kHeaderHeight + (kItemHeight * pages.size());
+    float totalHeight = kHeaderHeight + kWarningHeight + (kItemHeight * pages.size());
     ImGui::SetNextWindowSize(ImVec2(kMenuWidth, totalHeight), ImGuiCond_Always);
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
     ImGui::Begin("TiP Tools###TiPMainMenu", nullptr, menuFlags);
@@ -86,7 +87,7 @@ void TipToolsDialog::DrawMenu() {
         }
 
         // Center the title text
-        const char* title = "ReTip 1.9 Tools";
+        const char* title = "ReTip Tools";
         ImVec2 textSize = ImGui::CalcTextSize(title);
         ImVec2 textPos = ImVec2(
             headerMin.x + (kMenuWidth - textSize.x) * 0.5f,
@@ -96,6 +97,23 @@ void TipToolsDialog::DrawMenu() {
 
         // Push cursor past the header
         ImGui::SetCursorPosY(kHeaderHeight);
+        ImGui::SetCursorPosX(0);
+    }
+
+    // --- Warning strip ---
+    {
+        ImVec2 winPos = ImGui::GetWindowPos();
+        ImVec2 warnMin = ImVec2(winPos.x, winPos.y + kHeaderHeight);
+        ImVec2 warnMax = ImVec2(winPos.x + kMenuWidth, winPos.y + kHeaderHeight + kWarningHeight);
+        ImGui::GetWindowDrawList()->AddRectFilled(warnMin, warnMax, ImColor(180, 120, 0, 220));
+        const char* warnText = "Experimental - Use at your own risk";
+        ImVec2 warnTextSize = ImGui::CalcTextSize(warnText);
+        ImVec2 warnTextPos = ImVec2(
+            warnMin.x + (kMenuWidth - warnTextSize.x) * 0.5f,
+            warnMin.y + (kWarningHeight - warnTextSize.y) * 0.5f
+        );
+        ImGui::GetWindowDrawList()->AddText(warnTextPos, ImColor(255, 230, 150, 255), warnText);
+        ImGui::SetCursorPosY(kHeaderHeight + kWarningHeight);
         ImGui::SetCursorPosX(0);
     }
 
@@ -162,14 +180,27 @@ void TipToolsDialog::DrawMenu() {
 }
 
 void TipToolsDialog::OnDraw(ImGuiIO& io) {
-    // Select (Back) controller toggle (with debounce)
-    static float lastToggleTime = 0.0f;
+    // Hold Select (Back) to open TiP Tools
+    static float selectHoldStart = -1.0f;
+    static constexpr float kHoldThreshold = 0.5f; // seconds
     float now = (float)ImGui::GetTime();
-    if (TiPWidgets::IsSelectPressed() && (now - lastToggleTime > 0.4f)) {
-        visible_ = !visible_;
-        lastToggleTime = now;
-        if (visible_)
-            TiPWidgets::SetInputCooldown(0.3f); // Don't immediately process A/B after opening
+
+    bool selectDown = TiPWidgets::IsSelectPressed();
+
+    if (!visible_) {
+        if (selectDown) {
+            if (selectHoldStart < 0.0f)
+                selectHoldStart = now;
+            else if (now - selectHoldStart >= kHoldThreshold) {
+                visible_ = true;
+                selectHoldStart = -1.0f;
+                TiPWidgets::SetInputCooldown(0.3f);
+            }
+        } else {
+            selectHoldStart = -1.0f;
+        }
+    } else {
+        selectHoldStart = -1.0f;
     }
 
     if (!visible_) {

@@ -180,10 +180,3 @@ address = 0x8255E50C
 name = "PlacingBuilding_hook"
 registers = []
 after_instruction = true
-
-#82575C74 (Spawning regsiter Capture)
-[[midasm_hook]]
-address = 0x82575C74
-name = "SpawnCapture_hook"
-registers = ["r3", "r4", "r5", "r6", "r7", "r8", "r9", "r10"]
-after_instruction = true

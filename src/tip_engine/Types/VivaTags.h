@@ -66,6 +66,7 @@ struct VivaTag {
 };
 
 inline bool IsValidPinataTagClass(supportPinataTagClass_e tagClass) {
+    /*
     switch(tagClass) {
         case supportPinataTag_Class_Camera:
         case supportPinataTag_Class_Background:
@@ -84,6 +85,13 @@ inline bool IsValidPinataTagClass(supportPinataTagClass_e tagClass) {
             return false;
         default:
             return true;
+    }
+            */
+    switch(tagClass) {
+        case supportPinataTag_Class_Animal:
+            return true;
+        default:
+            return false;
     }
 }
 

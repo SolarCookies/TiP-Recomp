@@ -29,3 +29,8 @@ retip.exe
 retip.pdb
 logs/retip.log
 /logs
+dxgi.dll
+dxgi.dll
+*.dll
+/reshade-shaders
+*.fx

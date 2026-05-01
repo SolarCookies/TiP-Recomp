@@ -1,4 +1,5 @@
 #include "Globals.h"
+#include "Log.h"
 #include "tip_engine/hooks.h"
 
 #include <cstdint>
@@ -26,16 +27,17 @@
 
 //REXCVAR_DEFINE_INT32(DEBUGYAW, 0, "_Trouble in Paradise", "Debug Yaw");
 
-REXCVAR_DEFINE_BOOL(rgb_cursor, false, "_Trouble in Paradise", "Enables the Gursor");
 
+REXCVAR_DEFINE_BOOL(rgb_cursor, false, "_Trouble in Paradise", "Enables the Gursor");
+/*
 //rex_meCursorCamCalculatePos_821EBE28
 REX_PPC_EXTERN_IMPORT(meCursorCamCalculatePos_821EBE28);
 int meCursorCamCalculatePos_821EBE28_Hook(int camera, float *pos) {
-    if(g_LockGameInput) {
-        return 0;
-    }
+    //if(g_LockGameInput) {
+    //    return 0;
+    //}
     int result = rex::GuestToHostFunction<int>(__imp__rex_meCursorCamCalculatePos_821EBE28, camera, pos);
-/*
+
     //auto [nx, ny] = raw_input->GetMovementInputNormalized();
     float WASD_DeltaX = 0.0f;
     float WASD_DeltaY = 0.0f;
@@ -54,11 +56,15 @@ int meCursorCamCalculatePos_821EBE28_Hook(int camera, float *pos) {
     //float* posPtr = reinterpret_cast<float*>(camera + 104);
     pos[0] = to_byteswapped_float(finalx);
     pos[2] = to_byteswapped_float(finaly);
-    */
+    
+
+    playerPos = reinterpret_cast<float*>(camera + 104);
     return result;
 }
 REX_PPC_HOOK(meCursorCamCalculatePos_821EBE28)
+*/
 
+/*
 //rex_meCursorCamCalculateYaw_822C1B18
 REX_PPC_EXTERN_IMPORT(meCursorCamCalculateYaw_822C1B18);
 int meCursorCamCalculateYaw_822C1B18_Hook(int camera, int controls) {
@@ -66,7 +72,6 @@ int meCursorCamCalculateYaw_822C1B18_Hook(int camera, int controls) {
         return 0;
     }
     int result = rex::GuestToHostFunction<int>(__imp__rex_meCursorCamCalculateYaw_822C1B18, camera, controls);
-    /*
     float* YawPtr = reinterpret_cast<float*>(0x100000000ull + camera + 32);
     g_raw_input->SetMouseCapture(false);
 
@@ -77,11 +82,12 @@ int meCursorCamCalculateYaw_822C1B18_Hook(int camera, int controls) {
     float newYaw = currentYaw + yawDelta;
 
     YawPtr[0] = to_byteswapped_float(newYaw);
-*/
     return result;
 }
 REX_PPC_HOOK(meCursorCamCalculateYaw_822C1B18)
+*/
 
+ /*
 //rex_meCursorCamCalculatePitch_822C1C00
 REX_PPC_EXTERN_IMPORT(meCursorCamCalculatePitch_822C1C00);
 int meCursorCamCalculatePitch_822C1C00_Hook(int camera, int controls) {
@@ -92,30 +98,44 @@ int meCursorCamCalculatePitch_822C1C00_Hook(int camera, int controls) {
     return result;
 }
 REX_PPC_HOOK(meCursorCamCalculatePitch_822C1C00)
+*/
+
+
 
 //rex_meCursorCamCalculateZoom_822C1CE0
 REX_PPC_EXTERN_IMPORT(meCursorCamCalculateZoom_822C1CE0);
 void meCursorCamCalculateZoom_822C1CE0_Hook(int camera, int controls) {
-    if(g_LockGameInput) {
+    Log(LogLevel::Info, "meCursorCamCalculateZoom Hook Hit");
+
+    // Call original first — this ensures guest memory pages for the camera struct are committed
+    // before we write to them. Writing before the original call was the crash cause on some machines.
+    rex::GuestToHostFunction<void>(__imp__rex_meCursorCamCalculateZoom_822C1CE0, camera, controls);
+
+    if(static_cast<uint32_t>(camera) == 0){
+        Log(LogLevel::Info, "meCursorCamCalculateZoom_822C1CE0_Hook Camera was null, skipping overrides");
         return;
     }
-    
-    float* ZoomOutPtr = reinterpret_cast<float*>(0x100000000ull + camera + 84);
+
+    float* ZoomOutPtr = reinterpret_cast<float*>(0x100000000ull + static_cast<uint32_t>(camera) + 84);
     if(!g_IsPlacingBuilding) {
         ZoomOutPtr[0] = to_byteswapped_float(1150.0f); //Further zoom out (Zoom Max)
+        Log(LogLevel::Info, "Not placing building, setting zoom out to 1150.0f");
     }else{
         ZoomOutPtr[0] = to_byteswapped_float(300.0f); //Zoom in when placing building
+        Log(LogLevel::Info, "Placing building, setting zoom out to 300.0f");
     }
-    float* PitchMaxPtr = reinterpret_cast<float*>(0x100000000ull + camera + 60);
-    PitchMaxPtr[0] = to_byteswapped_float(89.0f); //Increase pitch max
-    float* PitchMinPtr = reinterpret_cast<float*>(0x100000000ull + camera + 52);
-    PitchMinPtr[0] = to_byteswapped_float(-89.0f); //Decrease pitch min
-    
 
-    rex::GuestToHostFunction<void>(__imp__rex_meCursorCamCalculateZoom_822C1CE0, camera, controls);
+    float* PitchMaxPtr = reinterpret_cast<float*>(0x100000000ull + static_cast<uint32_t>(camera) + 60);
+    PitchMaxPtr[0] = to_byteswapped_float(89.0f); //Increase pitch max
+
+    float* PitchMinPtr = reinterpret_cast<float*>(0x100000000ull + static_cast<uint32_t>(camera) + 52);
+    PitchMinPtr[0] = to_byteswapped_float(-89.0f); //Decrease pitch min
+
+    Log(LogLevel::Info, "meCursorCamCalculateZoom Hook Finished");
 }
 REX_PPC_HOOK(meCursorCamCalculateZoom_822C1CE0)
 
+/*
 
 //rex_CXuiModule__ProcessInput_8229A968
 REX_PPC_EXTERN_IMPORT(CXuiModule__ProcessInput_8229A968);
@@ -141,13 +161,17 @@ int XInputGetKeystroke_82B0A740_Hook(int a1,int a2,int a3,int a4,int a5,int a6,i
 }
 REX_PPC_HOOK(XInputGetKeystroke_82B0A740);
 
+*/
 //int rex_XuiProcessInput_826B2DE0(unsigned __int16 *a1)
 REX_PPC_EXTERN_IMPORT(XuiProcessInput_826B2DE0);
 int XuiProcessInput_826B2DE0_Hook(unsigned __int16 *a1) {
+    Log(LogLevel::Info, "XuiProcessInput Hook Hit");
     if(g_LockGameInput) {
+        Log(LogLevel::Info, "Game input is locked, blocking input in XuiProcessInput");
         return 0; // Block game input when the menu is open
     }
     int result = rex::GuestToHostFunction<int>(__imp__rex_XuiProcessInput_826B2DE0, a1);
+    Log(LogLevel::Info, "XuiProcessInput Hook Finished");
     return result;
 }
 REX_PPC_HOOK(XuiProcessInput_826B2DE0);
@@ -190,7 +214,9 @@ static int yellowCount = 0;
 
 void CursorColor_hook(PPCRegister& r31, PPCRegister& r27)
 {
+    Log(LogLevel::Info, "Cursor Color Hook Hit");
   if(!REXCVAR_GET(rgb_cursor)) {
+    Log(LogLevel::Info, "rgb_cursor cvar is disabled, skipping color modification");
     return;
   }
 
@@ -285,4 +311,5 @@ void CursorColor_hook(PPCRegister& r31, PPCRegister& r27)
 
     // Apply cycling color, byte-swapped for PPC
     *colorPtr = std::byteswap(rgba);
+    Log(LogLevel::Info, "Modified cursor triangle color to rainbow");
 }

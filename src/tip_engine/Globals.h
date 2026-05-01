@@ -39,7 +39,10 @@ struct SpawnRequest {
     bool pending = false;
     uint32_t tagID = 0;
     float scale = 1.0f;
+    bool spawnWild = false;
     int wildcard = 0;   // 0=none, 1-3=wildcard body traits
 };
 inline SpawnRequest g_SpawnRequest;
 inline uint32_t g_LastSpawnedEntity = 0;
+
+inline float* playerPos;

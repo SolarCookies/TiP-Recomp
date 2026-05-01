@@ -17,10 +17,12 @@
 #include "tip_engine/Log.h"
 #include "tip_engine/D3DTypes.h"
 #include "Overlays/DebugInfo.h"
+#include "tip_engine/DiscordRPC.h"
 
 #include "rex_macros.h"
 #include <fstream>
 #include <mutex>
+#include <filesystem>
 #include "tip_engine/Types/CommonTypes.h"
 #include <SDL3/SDL.h>
 #include <thread>
@@ -33,6 +35,7 @@
 REXCVAR_DEFINE_BOOL(lock_fps, false, "_Trouble in Paradise", "Lock to 30 FPS");
 REXCVAR_DEFINE_BOOL(show_fps, false, "_Trouble in Paradise", "Show FPS Overlay");
 REXCVAR_DEFINE_BOOL(DisableFur, false, "_Trouble in Paradise", "Disables Fur Rendering");
+REXCVAR_DEFINE_BOOL(DiscordActivity, false, "_Trouble in Paradise", "Discord Activity");
 
 /*
 REX_PPC_EXTERN_IMPORT(camMainGetPos_821F07E0);
@@ -112,14 +115,17 @@ bool hasmouseinput = false;
 
 static auto lastFrameTime = std::chrono::high_resolution_clock::now();
 void CPU_fps_hook() {
+  Log(LogLevel::Info, "CPU Hook Hit");
   fpsManager.showFPS = REXCVAR_GET(show_fps);
   auto fpshook = fpsManager.GetCreateCounter("Tick");
   fpshook->Tick();
+  Log(LogLevel::Info, "CPU Hook Finished");
 }
 
 void GPU_fps_hook() {
   //auto fpshook = fpsManager.GetCreateCounter("GPU");
   //fpshook->Tick();
+  Log(LogLevel::Info, "GPU Hook Hit");
 
   scenegraphDrawStaticWorkspace_s* drawStaticWorkspace = reinterpret_cast<scenegraphDrawStaticWorkspace_s*>(0x100000000ull + 0x82BEBC78);
   videoParams_s* videoParams = reinterpret_cast<videoParams_s*>(0x100000000ull + 0x83A56158);
@@ -134,7 +140,8 @@ void GPU_fps_hook() {
       drawStaticWorkspace[i].isFurEnabledCount = 1;
     }
   }
-
+  Log(LogLevel::Info, "GPU Hook Finished");
+/*
   if (!windowPtr || !g_world || !g_camera) return;
 
   auto currentTime = std::chrono::high_resolution_clock::now();
@@ -195,10 +202,6 @@ void GPU_fps_hook() {
     g_camera->Position.y = to_byteswapped_float(camWorkspace->visCamToWorldMtx[3][1]);
     g_camera->Position.z = to_byteswapped_float(camWorkspace->visCamToWorldMtx[3][2]);
 
-    DebugLogFloat("CameraPosX", g_camera->Position.x);
-    DebugLogFloat("CameraPosY", g_camera->Position.y);
-    DebugLogFloat("CameraPosZ", g_camera->Position.z);
-
     g_camera->cameraMatrix = gameProj * gameView;
   }
 
@@ -209,15 +212,18 @@ void GPU_fps_hook() {
   windowPtr->EndFrame();
 
   glfwMakeContextCurrent(nullptr);
+  */
 }
 
 void vsync_hook(PPCRegister& r10) {
+  Log(LogLevel::Info, "VSync Hook Hit");
   if(!REXCVAR_GET(lock_fps)) {
     r10.u32 = 0; // Force vsync off
     //REXCVAR_SET(vsync, false);
   }else{
     REXCVAR_SET(vsync, true);
   }
+  Log(LogLevel::Info, "VSync Hook Finished");
   //d3d12_submit_on_primary_buffer_end
   //REXCVAR_SET(d3d12_submit_on_primary_buffer_end, false);
   //REXCVAR_SET(scribble_heap, true);
@@ -229,6 +235,7 @@ inline bool lockFPSBefore;
 inline bool InRomanceMinigame = false;
 
 void InRomanceMinigame_hook(){
+  Log(LogLevel::Info, "In Romance Minigame Hook Hit");
   if(!InRomanceMinigame) {
     VSyncBefore = REXCVAR_GET(vsync);
     lockFPSBefore = REXCVAR_GET(lock_fps);
@@ -236,95 +243,125 @@ void InRomanceMinigame_hook(){
   InRomanceMinigame = true;
   REXCVAR_SET(vsync, true);
   REXCVAR_SET(lock_fps, true);
+  Log(LogLevel::Info, "In Romance Minigame Hook Finished");
 }
 
 void NotInRomanceMinigame_hook(){
+  Log(LogLevel::Info, "Not In Romance Minigame Hook Hit");
   REXCVAR_SET(vsync, VSyncBefore);
   REXCVAR_SET(lock_fps, lockFPSBefore);
   InRomanceMinigame = false;
+  Log(LogLevel::Info, "Not In Romance Minigame Hook Finished");
 }
 
 void NotPlacingBuilding_hook(){
+  Log(LogLevel::Info, "Not Placing Building Hook Hit");
   g_IsPlacingBuilding = false;
+  Log(LogLevel::Info, "Not Placing Building Hook Finished");
 }
 
 void PlacingBuilding_hook(){
+  Log(LogLevel::Info, "Placing Building Hook Hit");
   g_IsPlacingBuilding = true;
+  Log(LogLevel::Info, "Placing Building Hook Finished");
 }
 
-void SpawnCapture_hook(
-    PPCRegister& r3, PPCRegister& r4, PPCRegister& r5, PPCRegister& r6,
-    PPCRegister& r7, PPCRegister& r8, PPCRegister& r9, PPCRegister& r10)
-{
-  scene = r3.u32;
-}
+char sceneNameBuffer[126];
 
-// ============================================================
-// Spawn System — gardenMainGetGardenScene hook
-// ============================================================
-// gardenMainGetGardenScene (0x824E1120) fires every frame on the PPC thread.
-// After calling the original, ctx.r3 = garden scene pointer.
-// We use this to process queued spawn requests from the UI thread.
-//
-// sub_82575C30: supportPinataCreateGeneralEx
-//   Calls meCreatePinataAvatar (sub_82575E50) which dispatches by tag type,
-//   then calls meCreateAvatar (sub_825758D8) for piñatas.
-//
-// Register layout for sub_82575C30:
-//   r3  = scene (sceneMainWorkspace_s*)
-//   r4  = pos   (const mlVec* — guest pointer to float[3], 0 = origin)
-//   r5  = rot   (const mlRot_s* — guest pointer to float[3], 0 = zero rotation)
-//   r7  = tag   (supportPinataTag_e — the species/item ID to spawn)
-//   r9  = owner (pinatajuice_Owner_e — 0 = Garden)
-//   r10 = wildcard (stored at entity+468 via meCreateAvatar)
-//   f1  = scale (double — game scale, 1.0 = normal)
-//   f2  = age   (double — piñata age, 0.0 = baby/egg, 1.0 = adult)
-//
-// Returns spawned entity pointer in r3 (0 = failed).
-//
-// NOTE: sub_82575AB8 (supportPinataCreateGeneral) does NOT forward r9/r10
-// to the downstream functions — it always passes 0 for wildcard and owner.
-// Use sub_82575C30 instead for wildcard support.
-// ============================================================
-
-// Original gardenMainGetGardenScene — we call through to it first
 PPC_EXTERN_IMPORT(__imp__rex_gardenMainGetGardenScene_824E1120);
-
-// rex_spawn_supportPinataCreateGeneralEx_82575C30: creation function with wildcard support
-// This is the recompiled original (hooked name from retip_hooked.toml).
 PPC_EXTERN_FUNC(rex_spawn_supportPinataCreateGeneralEx_82575C30);
-
-// Hook: override gardenMainGetGardenScene, call original, then process spawn queue
 PPC_EXTERN_FUNC(rex_gardenMainGetGardenScene_824E1120) {
-    // Call the original implementation — after this, ctx.r3 = garden scene ptr
+  Log(LogLevel::Info, "Get Garden Scene Hook Hit");
     __imp__rex_gardenMainGetGardenScene_824E1120(ctx, base);
 
-    // Process pending spawn request (queued from SpawnMenu UI)
-    if (!g_SpawnRequest.pending) return;
-
     uint32_t gardenScene = ctx.r3.u32;
-    if (gardenScene == 0) return; // Not in a garden, can't spawn
+    if (gardenScene <= 0) return;
+    scene = gardenScene;
+    
+    Log(LogLevel::Info, std::string("Current Scene: ") + sceneNameBuffer);
 
-    uint32_t tagID = g_SpawnRequest.tagID;
-    float spawnScale = g_SpawnRequest.scale;
-    int wildcard = g_SpawnRequest.wildcard;
-    g_SpawnRequest.pending = false;
+    if(REXCVAR_GET(DiscordActivity)){
+      Log(LogLevel::Info, "Updating Discord Activity");
+      char* sceneNamePtr = reinterpret_cast<char*>(0x100000000ull + gardenScene);
+      std::strncpy(sceneNameBuffer, sceneNamePtr, sizeof(sceneNameBuffer) - 1);
+      sceneNameBuffer[sizeof(sceneNameBuffer) - 1] = '\0';
 
-    PPCContext saveCtx = ctx;
+      std::string ActualSceneName;
+      std::string_view sceneNameView(sceneNameBuffer);
+      if(sceneNameView.find("aid_script_pinata_game_newfrontend_garden") != std::string_view::npos) {
+        ActualSceneName = "Main Menu";
+      }else if(sceneNameView.find("aid_script_pinata_game_garden_blank") != std::string_view::npos) {
+        ActualSceneName = "Garden";
+      }else if(sceneNameView.find("aid_script_pinata_game_credits") != std::string_view::npos) {
+        ActualSceneName = "Credits";
+      }
+      retip::discord_rpc::SetDetails(std::string("In ") + ActualSceneName);
+      Log(LogLevel::Info, "Discord Activity Updated");
+    }
+    
 
-    // Set up registers for supportPinataCreateGeneralEx (0x82575C30)
-    //ctx.r3.u64 = gardenScene;
-    ctx.r4.u64 = 0;             // pos = null (spawn at origin)
-    ctx.r5.u64 = 0;             // rot = null (zero rotation)
-    ctx.r7.u64 = tagID;         // species tag
-    ctx.r9.u64 = 0;             // owner = Garden (0)
-    //ctx.r10.u64 = wildcard;     // wildcard trait → entity+468
-    ctx.f1.f64 = (double)spawnScale;
-    ctx.f2.f64 = 1.0;           // age (0 = baby/egg)
+    if (g_SpawnRequest.pending){
+      Log(LogLevel::Info, "Processing pending spawn request");
+      uint32_t tagID = g_SpawnRequest.tagID;
+      float spawnScale = g_SpawnRequest.scale;
+      int wildcard = g_SpawnRequest.wildcard;
+      bool spawnWild = g_SpawnRequest.spawnWild;
+      g_SpawnRequest.pending = false;
 
-    rex_spawn_supportPinataCreateGeneralEx_82575C30(ctx, base);
+      PPCContext saveCtx = ctx;
 
-    g_LastSpawnedEntity = ctx.r3.u32;
+      float* pos = reinterpret_cast<float*>(0x100000000ull + playerPos);
 
-    ctx = saveCtx;
+      float poss[3] = { pos[0], pos[1], pos[2] };
+
+      ctx.r3.u64 = gardenScene;
+      if(spawnWild) {
+          ctx.r4.u64 = reinterpret_cast<uint64_t>(pos);
+      } else {
+          ctx.r4.u64 = 0; //a2
+      }
+      ctx.r5.u64 = 0; //a3
+      ctx.r7.u64 = tagID; //a5
+      ctx.r9.u64 = 0; //a7
+      ctx.r10.u64 = 0; //a8
+      ctx.f1.f64 = (double)spawnScale; //a9
+      ctx.f2.f64 = 1.0; //a2 (Age) 1 = adult, 0 = baby (Babies still use spawnScale)
+
+      rex_spawn_supportPinataCreateGeneralEx_82575C30(ctx, base);
+      
+      g_LastSpawnedEntity = ctx.r3.u32;
+
+      ctx = saveCtx;
+      Log(LogLevel::Info, "Pending spawn request processed");
+    }
+    Log(LogLevel::Info, "Get Garden Scene Hook Finished");
+
 }
+
+
+#ifdef DEBUG_BUILD
+REX_PPC_EXTERN_IMPORT(entityBodyPinataAnimalSetIsWildcard_82383538);
+int entityBodyPinataAnimalSetIsWildcard_82383538_Hook(int a1, int a2) {
+    return rex::GuestToHostFunction<int>(__imp__rex_entityBodyPinataAnimalSetIsWildcard_82383538, a1, a2);
+};
+REX_PPC_HOOK(entityBodyPinataAnimalSetIsWildcard_82383538);
+
+
+//int __fastcall rex_spawn_egg_82334638(int a1, int a2, int a3)
+REX_PPC_EXTERN_IMPORT(spawn_egg_82334638);
+int spawn_egg_82334638_Hook(int a1, int a2, int a3) {
+
+  //*(_DWORD *)(a1 + 4840) IsWildcard
+  //*(_DWORD *)(a1 + 4844) IsWildcardID
+  //int* isWildcardPtr = reinterpret_cast<int*>(0x100000000ull + a1 + 4840);
+  //isWildcardPtr[0] = std::byteswap(1); // Force wildcard
+  //isWildcardPtr[1] = std::byteswap(1); // Force wildcard ID
+
+  int result = rex::GuestToHostFunction<int>(__imp__rex_spawn_egg_82334638, a1, a2, a3);
+
+  return result;
+};
+REX_PPC_HOOK(spawn_egg_82334638);
+#endif
+
+
