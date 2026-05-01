@@ -40,6 +40,5 @@ dxgi.dll
 build_log.txt
 *.bin
 *.bak
-*.dump
 *.log1
 ReShade.ini
