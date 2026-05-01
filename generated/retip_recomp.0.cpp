@@ -854,7 +854,7 @@ loc_821A0568:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r28.u32 + 104);
 	// bl 0x821ebc08
 	ctx.lr = 0x821A0584;
-	rex_avatarPosGet_821EBC08(ctx, base);
+	sub_821EBC08(ctx, base);
 	// lfs f0,140(r1)
 	ctx.fpscr.disableFlushMode();
 	temp.u32 = PPC_LOAD_U32(ctx.r1.u32 + 140);
@@ -893,19 +893,19 @@ loc_821A0568:
 	ctx.r5.u64 = PPC_LOAD_U32(ctx.r30.u32 + 8);
 	// bl 0x821d17f0
 	ctx.lr = 0x821A05C8;
-	rex_assetIdPrintf_821D17F0(ctx, base);
+	sub_821D17F0(ctx, base);
 	// addi r4,r1,128
 	ctx.r4.s64 = ctx.r1.s64 + 128;
 	// addi r3,r1,160
 	ctx.r3.s64 = ctx.r1.s64 + 160;
 	// bl 0x821d1890
 	ctx.lr = 0x821A05D4;
-	rex_statsCommonGetStatsAidFromTag_821D1890(ctx, base);
+	sub_821D1890(ctx, base);
 	// addi r3,r1,128
 	ctx.r3.s64 = ctx.r1.s64 + 128;
 	// bl 0x821d0890
 	ctx.lr = 0x821A05DC;
-	rex_assetManExists_821D0890(ctx, base);
+	sub_821D0890(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a0618
@@ -922,19 +922,19 @@ loc_821A0568:
 	ctx.r3.s64 = ctx.r1.s64 + 160;
 	// bl 0x821d17f0
 	ctx.lr = 0x821A05FC;
-	rex_assetIdPrintf_821D17F0(ctx, base);
+	sub_821D17F0(ctx, base);
 	// addi r4,r1,128
 	ctx.r4.s64 = ctx.r1.s64 + 128;
 	// addi r3,r1,160
 	ctx.r3.s64 = ctx.r1.s64 + 160;
 	// bl 0x821d1890
 	ctx.lr = 0x821A0608;
-	rex_statsCommonGetStatsAidFromTag_821D1890(ctx, base);
+	sub_821D1890(ctx, base);
 	// addi r3,r1,128
 	ctx.r3.s64 = ctx.r1.s64 + 128;
 	// bl 0x821d0890
 	ctx.lr = 0x821A0610;
-	rex_assetManExists_821D0890(ctx, base);
+	sub_821D0890(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a06a8
@@ -969,7 +969,7 @@ loc_821A0618:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x821ebc08
 	ctx.lr = 0x821A0650;
-	rex_avatarPosGet_821EBC08(ctx, base);
+	sub_821EBC08(ctx, base);
 loc_821A0650:
 	// lbz r11,500(r28)
 	ctx.r11.u64 = PPC_LOAD_U8(ctx.r28.u32 + 500);
@@ -1503,19 +1503,19 @@ loc_821A095C:
 	ctx.r9.u64 = ctx.r25.u64;
 	// bl 0x821d17f0
 	ctx.lr = 0x821A09B8;
-	rex_assetIdPrintf_821D17F0(ctx, base);
+	sub_821D17F0(ctx, base);
 	// mr r4,r31
 	ctx.r4.u64 = ctx.r31.u64;
 	// addi r3,r1,144
 	ctx.r3.s64 = ctx.r1.s64 + 144;
 	// bl 0x821d1890
 	ctx.lr = 0x821A09C4;
-	rex_statsCommonGetStatsAidFromTag_821D1890(ctx, base);
+	sub_821D1890(ctx, base);
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x821d0890
 	ctx.lr = 0x821A09CC;
-	rex_assetManExists_821D0890(ctx, base);
+	sub_821D0890(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a0a14
@@ -1534,19 +1534,19 @@ loc_821A095C:
 	ctx.r3.s64 = ctx.r1.s64 + 144;
 	// bl 0x821d17f0
 	ctx.lr = 0x821A09F0;
-	rex_assetIdPrintf_821D17F0(ctx, base);
+	sub_821D17F0(ctx, base);
 	// mr r4,r31
 	ctx.r4.u64 = ctx.r31.u64;
 	// addi r3,r1,144
 	ctx.r3.s64 = ctx.r1.s64 + 144;
 	// bl 0x821d1890
 	ctx.lr = 0x821A09FC;
-	rex_statsCommonGetStatsAidFromTag_821D1890(ctx, base);
+	sub_821D1890(ctx, base);
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x821d0890
 	ctx.lr = 0x821A0A04;
-	rex_assetManExists_821D0890(ctx, base);
+	sub_821D0890(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a0a14
@@ -2579,7 +2579,7 @@ loc_821A10B4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A10D0;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a10f8
@@ -2597,7 +2597,7 @@ loc_821A10B4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A10F0;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a1124
@@ -2621,7 +2621,7 @@ loc_821A10F8:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A111C;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A111C:
 	// li r11,0
 	ctx.r11.s64 = 0;
@@ -3494,7 +3494,7 @@ loc_821A16A4:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r9.u32 + ctx.r10.u32);
 	// bl 0x822276d0
 	ctx.lr = 0x821A16BC;
-	rex_glStringCompare_822276D0(ctx, base);
+	sub_822276D0(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bge cr6,0x821a16cc
@@ -3647,7 +3647,7 @@ loc_821A179C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A17B8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a17e0
@@ -3658,14 +3658,14 @@ loc_821A179C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821A17CC;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r30
 	ctx.r4.u64 = ctx.r30.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A17D8;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a180c
@@ -3689,7 +3689,7 @@ loc_821A17E0:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A1804;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A1804:
 	// li r11,0
 	ctx.r11.s64 = 0;
@@ -3715,7 +3715,7 @@ loc_821A180C:
 	ctx.r5.s64 = ctx.r11.s64 + -19324;
 	// bl 0x822809f0
 	ctx.lr = 0x821A1834;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821a1854
 	goto loc_821A1854;
 loc_821A1838:
@@ -3735,7 +3735,7 @@ loc_821A1838:
 	ctx.r5.s64 = ctx.r11.s64 + -19324;
 	// bl 0x82281f68
 	ctx.lr = 0x821A1854;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821A1854:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -3785,7 +3785,7 @@ PPC_FUNC_IMPL(__imp__sub_821A1878) {
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r9.u32 + 104);
 	// bl 0x821ebc08
 	ctx.lr = 0x821A18A4;
-	rex_avatarPosGet_821EBC08(ctx, base);
+	sub_821EBC08(ctx, base);
 	// lbz r11,272(r8)
 	ctx.r11.u64 = PPC_LOAD_U8(ctx.r8.u32 + 272);
 	// lwz r10,312(r8)
@@ -4180,7 +4180,7 @@ loc_821A1B10:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x822805e0
 	ctx.lr = 0x821A1B3C;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821a1b58
 	goto loc_821A1B58;
 loc_821A1B40:
@@ -4196,7 +4196,7 @@ loc_821A1B40:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281d60
 	ctx.lr = 0x821A1B58;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821A1B58:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -4234,7 +4234,7 @@ loc_821A1B84:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A1B9C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a1c50
@@ -4266,7 +4266,7 @@ loc_821A1BC0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A1BD8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a1c00
@@ -4284,7 +4284,7 @@ loc_821A1BC0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A1BF8;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a1c28
@@ -4308,7 +4308,7 @@ loc_821A1C00:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A1C24;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A1C24:
 	// stw r21,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r21.u32);
@@ -4324,14 +4324,14 @@ loc_821A1C28:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281618
 	ctx.lr = 0x821A1C40;
-	rex_serialiseStreamRW_PointerX_82281618(ctx, base);
+	sub_82281618(ctx, base);
 	// mr r4,r30
 	ctx.r4.u64 = ctx.r30.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A1C4C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// b 0x821a1c78
 	goto loc_821A1C78;
 loc_821A1C50:
@@ -4353,7 +4353,7 @@ loc_821A1C50:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A1C74;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A1C74:
 	// stw r21,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r21.u32);
@@ -4382,7 +4382,7 @@ loc_821A1C78:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A1CA4;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,16
 	ctx.r28.s64 = 16;
 	// cmpwi cr6,r3,0
@@ -4423,7 +4423,7 @@ loc_821A1CCC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x822806b0
 	ctx.lr = 0x821A1CF4;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821a1d14
 	goto loc_821A1D14;
 loc_821A1CF8:
@@ -4441,7 +4441,7 @@ loc_821A1CF8:
 	ctx.r5.s64 = ctx.r11.s64 + -19268;
 	// bl 0x82281dc8
 	ctx.lr = 0x821A1D14;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821A1D14:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -4465,7 +4465,7 @@ loc_821A1D18:
 	ctx.r5.s64 = ctx.r11.s64 + -19248;
 	// bl 0x822806b0
 	ctx.lr = 0x821A1D40;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821a1d60
 	goto loc_821A1D60;
 loc_821A1D44:
@@ -4483,7 +4483,7 @@ loc_821A1D44:
 	ctx.r5.s64 = ctx.r11.s64 + -19248;
 	// bl 0x82281dc8
 	ctx.lr = 0x821A1D60;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821A1D60:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -4507,7 +4507,7 @@ loc_821A1D64:
 	ctx.r5.s64 = ctx.r11.s64 + -19232;
 	// bl 0x822809f0
 	ctx.lr = 0x821A1D8C;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821a1dac
 	goto loc_821A1DAC;
 loc_821A1D90:
@@ -4527,7 +4527,7 @@ loc_821A1D90:
 	ctx.r5.s64 = ctx.r11.s64 + -19232;
 	// bl 0x82281f68
 	ctx.lr = 0x821A1DAC;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821A1DAC:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -4551,7 +4551,7 @@ loc_821A1DB0:
 	ctx.r5.s64 = ctx.r11.s64 + -19220;
 	// bl 0x822809f0
 	ctx.lr = 0x821A1DD8;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
 	// mr r4,r30
@@ -4560,7 +4560,7 @@ loc_821A1DB0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A1DE8;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// b 0x821a1e44
 	goto loc_821A1E44;
 loc_821A1DEC:
@@ -4580,7 +4580,7 @@ loc_821A1DEC:
 	ctx.r5.s64 = ctx.r11.s64 + -19220;
 	// bl 0x82281f68
 	ctx.lr = 0x821A1E08;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
 loc_821A1E0C:
@@ -4590,7 +4590,7 @@ loc_821A1E0C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A1E18;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// b 0x821a1e44
 	goto loc_821A1E44;
 loc_821A1E1C:
@@ -4612,7 +4612,7 @@ loc_821A1E1C:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A1E40;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A1E40:
 	// stw r21,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r21.u32);
@@ -4633,7 +4633,7 @@ loc_821A1E44:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A1E64;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a1e8c
@@ -4644,14 +4644,14 @@ loc_821A1E44:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821A1E78;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r30
 	ctx.r4.u64 = ctx.r30.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A1E84;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a1eb4
@@ -4675,7 +4675,7 @@ loc_821A1E8C:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A1EB0;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A1EB0:
 	// stw r21,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r21.u32);
@@ -4696,7 +4696,7 @@ loc_821A1EB4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A1ED4;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a203c
@@ -4842,7 +4842,7 @@ loc_821A1FBC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A1FDC;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a2004
@@ -4853,14 +4853,14 @@ loc_821A1FBC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821A1FF0;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r30
 	ctx.r4.u64 = ctx.r30.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A1FFC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a202c
@@ -4884,7 +4884,7 @@ loc_821A2004:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A2028;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A2028:
 	// stw r21,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r21.u32);
@@ -4895,7 +4895,7 @@ loc_821A202C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A2038;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// b 0x821a2064
 	goto loc_821A2064;
 loc_821A203C:
@@ -4917,7 +4917,7 @@ loc_821A203C:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A2060;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A2060:
 	// stw r21,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r21.u32);
@@ -4941,7 +4941,7 @@ loc_821A2064:
 	ctx.r5.s64 = ctx.r11.s64 + -19140;
 	// bl 0x822805e0
 	ctx.lr = 0x821A208C;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
 	// li r3,1
@@ -4966,7 +4966,7 @@ loc_821A209C:
 	ctx.r5.s64 = ctx.r11.s64 + -19140;
 	// bl 0x82281d60
 	ctx.lr = 0x821A20B8;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
 loc_821A20BC:
@@ -5075,7 +5075,7 @@ loc_821A2148:
 	ctx.r5.s64 = ctx.r11.s64 + -19104;
 	// bl 0x822809f0
 	ctx.lr = 0x821A2170;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821a2190
 	goto loc_821A2190;
 loc_821A2174:
@@ -5095,7 +5095,7 @@ loc_821A2174:
 	ctx.r5.s64 = ctx.r11.s64 + -19104;
 	// bl 0x82281f68
 	ctx.lr = 0x821A2190;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821A2190:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -5191,7 +5191,7 @@ loc_821A2214:
 	ctx.r5.s64 = ctx.r11.s64 + -19036;
 	// bl 0x822806b0
 	ctx.lr = 0x821A223C;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821a225c
 	goto loc_821A225C;
 loc_821A2240:
@@ -5209,7 +5209,7 @@ loc_821A2240:
 	ctx.r5.s64 = ctx.r11.s64 + -19036;
 	// bl 0x82281dc8
 	ctx.lr = 0x821A225C;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821A225C:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -5241,7 +5241,7 @@ loc_821A2278:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x822805e0
 	ctx.lr = 0x821A2294;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821a22b0
 	goto loc_821A22B0;
 loc_821A2298:
@@ -5257,7 +5257,7 @@ loc_821A2298:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281d60
 	ctx.lr = 0x821A22B0;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821A22B0:
 	// addic. r28,r28,-1
 	ctx.xer.ca = ctx.r28.u32 > 0;
@@ -5450,7 +5450,7 @@ loc_821A237C:
 	PPC_STORE_U32(ctx.r31.u32 + 776, temp.u32);
 	// bl 0x821ebc08
 	ctx.lr = 0x821A23DC;
-	rex_avatarPosGet_821EBC08(ctx, base);
+	sub_821EBC08(ctx, base);
 	// stw r28,836(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 836, ctx.r28.u32);
 	// stb r28,592(r31)
@@ -5463,7 +5463,7 @@ loc_821A237C:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 104);
 	// bl 0x821ebc08
 	ctx.lr = 0x821A23F4;
-	rex_avatarPosGet_821EBC08(ctx, base);
+	sub_821EBC08(ctx, base);
 	// addi r3,r31,168
 	ctx.r3.s64 = ctx.r31.s64 + 168;
 	// addi r4,r30,616
@@ -5543,10 +5543,10 @@ loc_821A246C:
 	if (ctx.cr6.eq) goto loc_821A2494;
 	// bl 0x821d26f8
 	ctx.lr = 0x821A2484;
-	rex_meFindUnitByData_821D26F8(ctx, base);
+	sub_821D26F8(ctx, base);
 	// bl 0x821d1e80
 	ctx.lr = 0x821A2488;
-	rex_assetManCloseUnitX_821D1E80(ctx, base);
+	sub_821D1E80(ctx, base);
 	// stw r28,4(r29)
 	PPC_STORE_U32(ctx.r29.u32 + 4, ctx.r28.u32);
 	// stw r28,0(r29)
@@ -5558,7 +5558,7 @@ loc_821A2494:
 	ctx.r3.u64 = ctx.r27.u64;
 	// bl 0x821d1c10
 	ctx.lr = 0x821A249C;
-	rex_assetManOpen_821D1C10(ctx, base);
+	sub_821D1C10(ctx, base);
 	// stw r3,4(r29)
 	PPC_STORE_U32(ctx.r29.u32 + 4, ctx.r3.u32);
 	// cmplwi cr6,r3,0
@@ -5630,7 +5630,7 @@ loc_821A250C:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 104);
 	// bl 0x821ebc08
 	ctx.lr = 0x821A2518;
-	rex_avatarPosGet_821EBC08(ctx, base);
+	sub_821EBC08(ctx, base);
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// addi r29,r31,852
@@ -5798,10 +5798,10 @@ loc_821A2610:
 	if (ctx.cr6.eq) goto loc_821A2638;
 	// bl 0x821d26f8
 	ctx.lr = 0x821A2628;
-	rex_meFindUnitByData_821D26F8(ctx, base);
+	sub_821D26F8(ctx, base);
 	// bl 0x821d1e80
 	ctx.lr = 0x821A262C;
-	rex_assetManCloseUnitX_821D1E80(ctx, base);
+	sub_821D1E80(ctx, base);
 	// stw r30,4(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 4, ctx.r30.u32);
 	// stw r30,0(r31)
@@ -5835,7 +5835,7 @@ PPC_FUNC_IMPL(__imp__sub_821A2640) {
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r9.u32 + 104);
 	// bl 0x821ebc08
 	ctx.lr = 0x821A2658;
-	rex_avatarPosGet_821EBC08(ctx, base);
+	sub_821EBC08(ctx, base);
 	// lwz r11,104(r9)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r9.u32 + 104);
 	// lwz r10,600(r11)
@@ -5954,7 +5954,7 @@ PPC_FUNC_IMPL(__imp__sub_821A26A0) {
 	PPC_STORE_U8(ctx.r11.u32 + 1, ctx.r10.u8);
 	// bl 0x821ebc08
 	ctx.lr = 0x821A271C;
-	rex_avatarPosGet_821EBC08(ctx, base);
+	sub_821EBC08(ctx, base);
 	// lis r8,-32234
 	ctx.r8.s64 = -2112487424;
 	// lfs f13,820(r9)
@@ -6092,7 +6092,7 @@ loc_821A27D8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A27F8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r26,0
 	ctx.r26.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -6135,7 +6135,7 @@ loc_821A2824:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x822806b0
 	ctx.lr = 0x821A284C;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821a286c
 	goto loc_821A286C;
 loc_821A2850:
@@ -6153,7 +6153,7 @@ loc_821A2850:
 	ctx.r5.s64 = ctx.r11.s64 + -18996;
 	// bl 0x82281dc8
 	ctx.lr = 0x821A286C;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821A286C:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -6171,7 +6171,7 @@ loc_821A2870:
 	ctx.r5.s64 = ctx.r10.s64 + -18984;
 	// bl 0x82281618
 	ctx.lr = 0x821A288C;
-	rex_serialiseStreamRW_PointerX_82281618(ctx, base);
+	sub_82281618(ctx, base);
 	// addi r4,r27,116
 	ctx.r4.s64 = ctx.r27.s64 + 116;
 	// li r9,512
@@ -6185,7 +6185,7 @@ loc_821A2870:
 	ctx.r5.s64 = ctx.r8.s64 + -18972;
 	// bl 0x82281618
 	ctx.lr = 0x821A28A8;
-	rex_serialiseStreamRW_PointerX_82281618(ctx, base);
+	sub_82281618(ctx, base);
 	// addi r4,r27,120
 	ctx.r4.s64 = ctx.r27.s64 + 120;
 	// li r7,512
@@ -6205,7 +6205,7 @@ loc_821A2870:
 	ctx.r5.s64 = ctx.r11.s64 + -18960;
 	// bl 0x822806b0
 	ctx.lr = 0x821A28D0;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821a28f0
 	goto loc_821A28F0;
 loc_821A28D4:
@@ -6223,7 +6223,7 @@ loc_821A28D4:
 	ctx.r5.s64 = ctx.r11.s64 + -18960;
 	// bl 0x82281dc8
 	ctx.lr = 0x821A28F0;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821A28F0:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -6243,14 +6243,14 @@ loc_821A28F4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281390
 	ctx.lr = 0x821A2914;
-	rex_serialiseStreamRW_StringX_82281390(ctx, base);
+	sub_82281390(ctx, base);
 	// mr r4,r30
 	ctx.r4.u64 = ctx.r30.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A2920;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// b 0x821a294c
 	goto loc_821A294C;
 loc_821A2924:
@@ -6272,7 +6272,7 @@ loc_821A2924:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A2948;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A2948:
 	// stw r26,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r26.u32);
@@ -6293,7 +6293,7 @@ loc_821A294C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A296C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a2a80
@@ -6329,7 +6329,7 @@ loc_821A2994:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A29B0;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a29d8
@@ -6340,14 +6340,14 @@ loc_821A2994:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821A29C4;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r29
 	ctx.r4.u64 = ctx.r29.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A29D0;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a2a00
@@ -6371,7 +6371,7 @@ loc_821A29D8:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A29FC;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A29FC:
 	// stw r26,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r26.u32);
@@ -6392,7 +6392,7 @@ loc_821A2A00:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A2A20;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a2a48
@@ -6403,14 +6403,14 @@ loc_821A2A00:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821A2A34;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r30
 	ctx.r4.u64 = ctx.r30.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A2A40;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a2a70
@@ -6434,7 +6434,7 @@ loc_821A2A48:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A2A6C;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A2A6C:
 	// stw r26,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r26.u32);
@@ -6445,7 +6445,7 @@ loc_821A2A70:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A2A7C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// b 0x821a2aa8
 	goto loc_821A2AA8;
 loc_821A2A80:
@@ -6467,7 +6467,7 @@ loc_821A2A80:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A2AA4;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A2AA4:
 	// stw r26,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r26.u32);
@@ -6488,7 +6488,7 @@ loc_821A2AA8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A2AC8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a2af0
@@ -6506,7 +6506,7 @@ loc_821A2AA8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A2AE8;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a2b18
@@ -6530,7 +6530,7 @@ loc_821A2AF0:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A2B14;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A2B14:
 	// stw r26,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r26.u32);
@@ -6551,7 +6551,7 @@ loc_821A2B18:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A2B38;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a2b60
@@ -6569,7 +6569,7 @@ loc_821A2B18:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A2B58;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a2b88
@@ -6593,7 +6593,7 @@ loc_821A2B60:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A2B84;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A2B84:
 	// stw r26,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r26.u32);
@@ -6614,7 +6614,7 @@ loc_821A2B88:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A2BA8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a2bd0
@@ -6632,7 +6632,7 @@ loc_821A2B88:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A2BC8;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a2bf8
@@ -6656,7 +6656,7 @@ loc_821A2BD0:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A2BF4;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A2BF4:
 	// stw r26,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r26.u32);
@@ -6677,7 +6677,7 @@ loc_821A2BF8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A2C18;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a2c40
@@ -6695,7 +6695,7 @@ loc_821A2BF8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A2C38;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a2c68
@@ -6719,7 +6719,7 @@ loc_821A2C40:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A2C64;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A2C64:
 	// stw r26,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r26.u32);
@@ -6740,7 +6740,7 @@ loc_821A2C68:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A2C88;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a2cb0
@@ -6758,7 +6758,7 @@ loc_821A2C68:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A2CA8;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a2cd8
@@ -6782,7 +6782,7 @@ loc_821A2CB0:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A2CD4;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A2CD4:
 	// stw r26,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r26.u32);
@@ -6803,7 +6803,7 @@ loc_821A2CD8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A2CF8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a2d20
@@ -6821,7 +6821,7 @@ loc_821A2CD8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A2D18;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a2d48
@@ -6845,7 +6845,7 @@ loc_821A2D20:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A2D44;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A2D44:
 	// stw r26,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r26.u32);
@@ -6866,7 +6866,7 @@ loc_821A2D48:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A2D68;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a2d90
@@ -6884,7 +6884,7 @@ loc_821A2D48:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A2D88;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a2db8
@@ -6908,7 +6908,7 @@ loc_821A2D90:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A2DB4;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A2DB4:
 	// stw r26,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r26.u32);
@@ -6929,7 +6929,7 @@ loc_821A2DB8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A2DD8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a2e00
@@ -6947,7 +6947,7 @@ loc_821A2DB8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A2DF8;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a2e28
@@ -6971,7 +6971,7 @@ loc_821A2E00:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A2E24;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A2E24:
 	// stw r26,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r26.u32);
@@ -6992,7 +6992,7 @@ loc_821A2E28:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A2E48;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a2e70
@@ -7010,7 +7010,7 @@ loc_821A2E28:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A2E68;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a2e98
@@ -7034,7 +7034,7 @@ loc_821A2E70:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A2E94;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A2E94:
 	// stw r26,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r26.u32);
@@ -7055,7 +7055,7 @@ loc_821A2E98:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A2EB8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a2ee0
@@ -7073,7 +7073,7 @@ loc_821A2E98:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A2ED8;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a2f08
@@ -7097,7 +7097,7 @@ loc_821A2EE0:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A2F04;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A2F04:
 	// stw r26,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r26.u32);
@@ -7118,7 +7118,7 @@ loc_821A2F08:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A2F28;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a2f50
@@ -7136,7 +7136,7 @@ loc_821A2F08:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A2F48;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a2f78
@@ -7160,7 +7160,7 @@ loc_821A2F50:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A2F74;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A2F74:
 	// stw r26,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r26.u32);
@@ -7184,7 +7184,7 @@ loc_821A2F78:
 	ctx.r5.s64 = ctx.r11.s64 + -18800;
 	// bl 0x822809f0
 	ctx.lr = 0x821A2FA0;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821a2fc0
 	goto loc_821A2FC0;
 loc_821A2FA4:
@@ -7204,7 +7204,7 @@ loc_821A2FA4:
 	ctx.r5.s64 = ctx.r11.s64 + -18800;
 	// bl 0x82281f68
 	ctx.lr = 0x821A2FC0;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821A2FC0:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -7228,7 +7228,7 @@ loc_821A2FC4:
 	ctx.r5.s64 = ctx.r11.s64 + -18792;
 	// bl 0x822809f0
 	ctx.lr = 0x821A2FEC;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821a300c
 	goto loc_821A300C;
 loc_821A2FF0:
@@ -7248,7 +7248,7 @@ loc_821A2FF0:
 	ctx.r5.s64 = ctx.r11.s64 + -18792;
 	// bl 0x82281f68
 	ctx.lr = 0x821A300C;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821A300C:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -7272,7 +7272,7 @@ loc_821A3010:
 	ctx.r5.s64 = ctx.r11.s64 + -18784;
 	// bl 0x822809f0
 	ctx.lr = 0x821A3038;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821a3058
 	goto loc_821A3058;
 loc_821A303C:
@@ -7292,7 +7292,7 @@ loc_821A303C:
 	ctx.r5.s64 = ctx.r11.s64 + -18784;
 	// bl 0x82281f68
 	ctx.lr = 0x821A3058;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821A3058:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -7316,7 +7316,7 @@ loc_821A305C:
 	ctx.r5.s64 = ctx.r11.s64 + -18776;
 	// bl 0x822809f0
 	ctx.lr = 0x821A3084;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821a30a4
 	goto loc_821A30A4;
 loc_821A3088:
@@ -7336,7 +7336,7 @@ loc_821A3088:
 	ctx.r5.s64 = ctx.r11.s64 + -18776;
 	// bl 0x82281f68
 	ctx.lr = 0x821A30A4;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821A30A4:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -7357,7 +7357,7 @@ loc_821A30A8:
 	ctx.r5.s64 = ctx.r11.s64 + -18760;
 	// bl 0x822805e0
 	ctx.lr = 0x821A30C8;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821a30e8
 	goto loc_821A30E8;
 loc_821A30CC:
@@ -7375,7 +7375,7 @@ loc_821A30CC:
 	ctx.r5.s64 = ctx.r11.s64 + -18760;
 	// bl 0x82281d60
 	ctx.lr = 0x821A30E8;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821A30E8:
 	// lwz r11,0(r31)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
@@ -7393,7 +7393,7 @@ loc_821A30E8:
 	ctx.r5.s64 = ctx.r11.s64 + -18740;
 	// bl 0x822805e0
 	ctx.lr = 0x821A3108;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// li r3,1
 	ctx.r3.s64 = 1;
 	// addi r1,r1,144
@@ -7416,7 +7416,7 @@ loc_821A3114:
 	ctx.r5.s64 = ctx.r11.s64 + -18740;
 	// bl 0x82281d60
 	ctx.lr = 0x821A3130;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821A3130:
 	// li r3,1
 	ctx.r3.s64 = 1;
@@ -7591,7 +7591,7 @@ loc_821A3244:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A3260;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r26,0
 	ctx.r26.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -7604,14 +7604,14 @@ loc_821A3244:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821A3278;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r27
 	ctx.r4.u64 = ctx.r27.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A3284;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a32b4
@@ -7635,7 +7635,7 @@ loc_821A328C:
 	ctx.r3.u64 = ctx.r27.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A32B0;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A32B0:
 	// stw r26,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r26.u32);
@@ -7762,7 +7762,7 @@ loc_821A335C:
 	ctx.r5.s64 = ctx.r11.s64 + -18700;
 	// bl 0x822806b0
 	ctx.lr = 0x821A3394;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
 	// li r3,1
@@ -7787,7 +7787,7 @@ loc_821A33A4:
 	ctx.r5.s64 = ctx.r11.s64 + -18700;
 	// bl 0x82281dc8
 	ctx.lr = 0x821A33C0;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
 loc_821A33C4:
@@ -8323,7 +8323,7 @@ loc_821A3780:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x821ebc08
 	ctx.lr = 0x821A378C;
-	rex_avatarPosGet_821EBC08(ctx, base);
+	sub_821EBC08(ctx, base);
 	// lwz r11,2416(r30)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r30.u32 + 2416);
 	// cmplwi cr6,r11,0
@@ -8566,7 +8566,7 @@ loc_821A38F4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A3910;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a3938
@@ -8577,14 +8577,14 @@ loc_821A38F4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821A3924;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r30
 	ctx.r4.u64 = ctx.r30.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A3930;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a3964
@@ -8608,7 +8608,7 @@ loc_821A3938:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A395C;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A395C:
 	// li r11,0
 	ctx.r11.s64 = 0;
@@ -8634,7 +8634,7 @@ loc_821A3964:
 	ctx.r5.s64 = ctx.r11.s64 + -18664;
 	// bl 0x822805e0
 	ctx.lr = 0x821A398C;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821a39ac
 	goto loc_821A39AC;
 loc_821A3990:
@@ -8652,7 +8652,7 @@ loc_821A3990:
 	ctx.r5.s64 = ctx.r11.s64 + -18664;
 	// bl 0x82281d60
 	ctx.lr = 0x821A39AC;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821A39AC:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -8726,7 +8726,7 @@ loc_821A3A04:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x822805e0
 	ctx.lr = 0x821A3A2C;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821a3a4c
 	goto loc_821A3A4C;
 loc_821A3A30:
@@ -8744,7 +8744,7 @@ loc_821A3A30:
 	ctx.r5.s64 = ctx.r11.s64 + -18648;
 	// bl 0x82281d60
 	ctx.lr = 0x821A3A4C;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821A3A4C:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -8768,7 +8768,7 @@ loc_821A3A50:
 	ctx.r5.s64 = ctx.r11.s64 + -18640;
 	// bl 0x822806b0
 	ctx.lr = 0x821A3A78;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821a3a98
 	goto loc_821A3A98;
 loc_821A3A7C:
@@ -8786,7 +8786,7 @@ loc_821A3A7C:
 	ctx.r5.s64 = ctx.r11.s64 + -18640;
 	// bl 0x82281dc8
 	ctx.lr = 0x821A3A98;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821A3A98:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -8818,7 +8818,7 @@ loc_821A3AB8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A3AD0;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a3af8
@@ -8836,7 +8836,7 @@ loc_821A3AB8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A3AF0;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a3b20
@@ -8860,7 +8860,7 @@ loc_821A3AF8:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A3B1C;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A3B1C:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -8941,7 +8941,7 @@ loc_821A3B7C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x822809f0
 	ctx.lr = 0x821A3BA4;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821a3bc4
 	goto loc_821A3BC4;
 loc_821A3BA8:
@@ -8961,7 +8961,7 @@ loc_821A3BA8:
 	ctx.r5.s64 = ctx.r11.s64 + -18624;
 	// bl 0x82281f68
 	ctx.lr = 0x821A3BC4;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821A3BC4:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -8985,7 +8985,7 @@ loc_821A3BC8:
 	ctx.r5.s64 = ctx.r11.s64 + -18612;
 	// bl 0x822809f0
 	ctx.lr = 0x821A3BF0;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821a3c10
 	goto loc_821A3C10;
 loc_821A3BF4:
@@ -9005,7 +9005,7 @@ loc_821A3BF4:
 	ctx.r5.s64 = ctx.r11.s64 + -18612;
 	// bl 0x82281f68
 	ctx.lr = 0x821A3C10;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821A3C10:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -9092,7 +9092,7 @@ loc_821A3C68:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A3CA0;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r26,0
 	ctx.r26.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -9105,14 +9105,14 @@ loc_821A3C68:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821A3CB8;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r30
 	ctx.r4.u64 = ctx.r30.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A3CC4;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a3cf4
@@ -9136,7 +9136,7 @@ loc_821A3CCC:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A3CF0;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A3CF0:
 	// stw r26,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r26.u32);
@@ -9160,7 +9160,7 @@ loc_821A3CF4:
 	ctx.r5.s64 = ctx.r11.s64 + -18572;
 	// bl 0x822809f0
 	ctx.lr = 0x821A3D1C;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821a3d3c
 	goto loc_821A3D3C;
 loc_821A3D20:
@@ -9180,7 +9180,7 @@ loc_821A3D20:
 	ctx.r5.s64 = ctx.r11.s64 + -18572;
 	// bl 0x82281f68
 	ctx.lr = 0x821A3D3C;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821A3D3C:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -9204,7 +9204,7 @@ loc_821A3D40:
 	ctx.r5.s64 = ctx.r11.s64 + -18564;
 	// bl 0x822809f0
 	ctx.lr = 0x821A3D68;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821a3d88
 	goto loc_821A3D88;
 loc_821A3D6C:
@@ -9224,7 +9224,7 @@ loc_821A3D6C:
 	ctx.r5.s64 = ctx.r11.s64 + -18564;
 	// bl 0x82281f68
 	ctx.lr = 0x821A3D88;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821A3D88:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -9248,7 +9248,7 @@ loc_821A3D8C:
 	ctx.r5.s64 = ctx.r11.s64 + -18544;
 	// bl 0x822809f0
 	ctx.lr = 0x821A3DB4;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821a3dd4
 	goto loc_821A3DD4;
 loc_821A3DB8:
@@ -9268,7 +9268,7 @@ loc_821A3DB8:
 	ctx.r5.s64 = ctx.r11.s64 + -18544;
 	// bl 0x82281f68
 	ctx.lr = 0x821A3DD4;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821A3DD4:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -9292,7 +9292,7 @@ loc_821A3DD8:
 	ctx.r5.s64 = ctx.r11.s64 + -18528;
 	// bl 0x822809f0
 	ctx.lr = 0x821A3E00;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821a3e20
 	goto loc_821A3E20;
 loc_821A3E04:
@@ -9312,7 +9312,7 @@ loc_821A3E04:
 	ctx.r5.s64 = ctx.r11.s64 + -18528;
 	// bl 0x82281f68
 	ctx.lr = 0x821A3E20;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821A3E20:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -9336,7 +9336,7 @@ loc_821A3E24:
 	ctx.r5.s64 = ctx.r11.s64 + -18516;
 	// bl 0x822809f0
 	ctx.lr = 0x821A3E4C;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821a3e6c
 	goto loc_821A3E6C;
 loc_821A3E50:
@@ -9356,7 +9356,7 @@ loc_821A3E50:
 	ctx.r5.s64 = ctx.r11.s64 + -18516;
 	// bl 0x82281f68
 	ctx.lr = 0x821A3E6C;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821A3E6C:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -9377,7 +9377,7 @@ loc_821A3E70:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A3E90;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a4000
@@ -9413,7 +9413,7 @@ loc_821A3EB8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A3ED4;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a3efc
@@ -9431,7 +9431,7 @@ loc_821A3EB8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A3EF4;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a3f24
@@ -9455,7 +9455,7 @@ loc_821A3EFC:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A3F20;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A3F20:
 	// stw r26,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r26.u32);
@@ -9476,7 +9476,7 @@ loc_821A3F24:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A3F44;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a3f6c
@@ -9494,7 +9494,7 @@ loc_821A3F24:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A3F64;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a3f94
@@ -9518,7 +9518,7 @@ loc_821A3F6C:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A3F90;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A3F90:
 	// stw r26,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r26.u32);
@@ -9542,7 +9542,7 @@ loc_821A3F94:
 	ctx.r5.s64 = ctx.r11.s64 + -18468;
 	// bl 0x822805e0
 	ctx.lr = 0x821A3FBC;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
 	// mr r4,r29
@@ -9551,7 +9551,7 @@ loc_821A3F94:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A3FCC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// b 0x821a4028
 	goto loc_821A4028;
 loc_821A3FD0:
@@ -9569,7 +9569,7 @@ loc_821A3FD0:
 	ctx.r5.s64 = ctx.r11.s64 + -18468;
 	// bl 0x82281d60
 	ctx.lr = 0x821A3FEC;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
 loc_821A3FF0:
@@ -9579,7 +9579,7 @@ loc_821A3FF0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A3FFC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// b 0x821a4028
 	goto loc_821A4028;
 loc_821A4000:
@@ -9601,7 +9601,7 @@ loc_821A4000:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A4024;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A4024:
 	// stw r26,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r26.u32);
@@ -9622,7 +9622,7 @@ loc_821A4028:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A4048;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a4070
@@ -9640,7 +9640,7 @@ loc_821A4028:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A4068;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a4098
@@ -9664,7 +9664,7 @@ loc_821A4070:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A4094;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A4094:
 	// stw r26,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r26.u32);
@@ -9685,7 +9685,7 @@ loc_821A4098:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A40B8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a40e0
@@ -9696,14 +9696,14 @@ loc_821A4098:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821A40CC;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r30
 	ctx.r4.u64 = ctx.r30.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A40D8;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a4108
@@ -9727,7 +9727,7 @@ loc_821A40E0:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A4104;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A4104:
 	// stw r26,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r26.u32);
@@ -9751,7 +9751,7 @@ loc_821A4108:
 	ctx.r5.s64 = ctx.r11.s64 + -18428;
 	// bl 0x822806b0
 	ctx.lr = 0x821A4130;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821a4150
 	goto loc_821A4150;
 loc_821A4134:
@@ -9769,7 +9769,7 @@ loc_821A4134:
 	ctx.r5.s64 = ctx.r11.s64 + -18428;
 	// bl 0x82281dc8
 	ctx.lr = 0x821A4150;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821A4150:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -9793,7 +9793,7 @@ loc_821A4154:
 	ctx.r5.s64 = ctx.r11.s64 + -18400;
 	// bl 0x822806b0
 	ctx.lr = 0x821A417C;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821a419c
 	goto loc_821A419C;
 loc_821A4180:
@@ -9811,7 +9811,7 @@ loc_821A4180:
 	ctx.r5.s64 = ctx.r11.s64 + -18400;
 	// bl 0x82281dc8
 	ctx.lr = 0x821A419C;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821A419C:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -9832,7 +9832,7 @@ loc_821A41A0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A41C0;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a41e8
@@ -9843,14 +9843,14 @@ loc_821A41A0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821A41D4;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r30
 	ctx.r4.u64 = ctx.r30.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A41E0;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a4210
@@ -9874,7 +9874,7 @@ loc_821A41E8:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A420C;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A420C:
 	// stw r26,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r26.u32);
@@ -10140,7 +10140,7 @@ loc_821A439C:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 104);
 	// bl 0x821ebc08
 	ctx.lr = 0x821A43C4;
-	rex_avatarPosGet_821EBC08(ctx, base);
+	sub_821EBC08(ctx, base);
 loc_821A43C4:
 	// lis r11,-32234
 	ctx.r11.s64 = -2112487424;
@@ -10277,7 +10277,7 @@ PPC_FUNC_IMPL(__imp__sub_821A4458) {
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x821ebc08
 	ctx.lr = 0x821A449C;
-	rex_avatarPosGet_821EBC08(ctx, base);
+	sub_821EBC08(ctx, base);
 	// li r8,0
 	ctx.r8.s64 = 0;
 	// li r7,0
@@ -11505,7 +11505,7 @@ loc_821A4C48:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A4C64;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a4d44
@@ -11546,7 +11546,7 @@ loc_821A4C8C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x822809f0
 	ctx.lr = 0x821A4CB4;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821a4cd4
 	goto loc_821A4CD4;
 loc_821A4CB8:
@@ -11566,7 +11566,7 @@ loc_821A4CB8:
 	ctx.r5.s64 = ctx.r11.s64 + -18364;
 	// bl 0x82281f68
 	ctx.lr = 0x821A4CD4;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821A4CD4:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -11590,7 +11590,7 @@ loc_821A4CD8:
 	ctx.r5.s64 = ctx.r11.s64 + -18360;
 	// bl 0x822809f0
 	ctx.lr = 0x821A4D00;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
 	// mr r4,r30
@@ -11599,7 +11599,7 @@ loc_821A4CD8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A4D10;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// b 0x821a4d70
 	goto loc_821A4D70;
 loc_821A4D14:
@@ -11619,7 +11619,7 @@ loc_821A4D14:
 	ctx.r5.s64 = ctx.r11.s64 + -18360;
 	// bl 0x82281f68
 	ctx.lr = 0x821A4D30;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
 loc_821A4D34:
@@ -11629,7 +11629,7 @@ loc_821A4D34:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A4D40;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// b 0x821a4d70
 	goto loc_821A4D70;
 loc_821A4D44:
@@ -11651,7 +11651,7 @@ loc_821A4D44:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A4D68;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A4D68:
 	// li r11,0
 	ctx.r11.s64 = 0;
@@ -11677,7 +11677,7 @@ loc_821A4D70:
 	ctx.r5.s64 = ctx.r11.s64 + -18356;
 	// bl 0x822809f0
 	ctx.lr = 0x821A4D98;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
 	// li r3,1
@@ -11704,7 +11704,7 @@ loc_821A4DA8:
 	ctx.r5.s64 = ctx.r11.s64 + -18356;
 	// bl 0x82281f68
 	ctx.lr = 0x821A4DC4;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
 loc_821A4DC8:
@@ -11767,7 +11767,7 @@ loc_821A4E10:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A4E2C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a4fa0
@@ -11815,7 +11815,7 @@ loc_821A4E6C:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A4E84;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a4eac
@@ -11833,7 +11833,7 @@ loc_821A4E6C:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A4EA4;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a4ed4
@@ -11857,7 +11857,7 @@ loc_821A4EAC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A4ED0;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A4ED0:
 	// stw r25,20(r30)
 	PPC_STORE_U32(ctx.r30.u32 + 20, ctx.r25.u32);
@@ -11895,7 +11895,7 @@ loc_821A4ED4:
 	ctx.r5.s64 = ctx.r11.s64 + -18648;
 	// bl 0x822805e0
 	ctx.lr = 0x821A4F10;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821a4f30
 	goto loc_821A4F30;
 loc_821A4F14:
@@ -11913,7 +11913,7 @@ loc_821A4F14:
 	ctx.r5.s64 = ctx.r11.s64 + -18648;
 	// bl 0x82281d60
 	ctx.lr = 0x821A4F30;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821A4F30:
 	// stw r3,20(r30)
 	PPC_STORE_U32(ctx.r30.u32 + 20, ctx.r3.u32);
@@ -11937,7 +11937,7 @@ loc_821A4F34:
 	ctx.r5.s64 = ctx.r11.s64 + -18332;
 	// bl 0x822806b0
 	ctx.lr = 0x821A4F5C;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// stw r3,20(r30)
 	PPC_STORE_U32(ctx.r30.u32 + 20, ctx.r3.u32);
 	// mr r4,r26
@@ -11946,7 +11946,7 @@ loc_821A4F34:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A4F6C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// b 0x821a4fcc
 	goto loc_821A4FCC;
 loc_821A4F70:
@@ -11964,7 +11964,7 @@ loc_821A4F70:
 	ctx.r5.s64 = ctx.r11.s64 + -18332;
 	// bl 0x82281dc8
 	ctx.lr = 0x821A4F8C;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 	// stw r3,20(r30)
 	PPC_STORE_U32(ctx.r30.u32 + 20, ctx.r3.u32);
 loc_821A4F90:
@@ -11974,7 +11974,7 @@ loc_821A4F90:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A4F9C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// b 0x821a4fcc
 	goto loc_821A4FCC;
 loc_821A4FA0:
@@ -11996,7 +11996,7 @@ loc_821A4FA0:
 	ctx.r3.u64 = ctx.r26.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A4FC4;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A4FC4:
 	// li r25,0
 	ctx.r25.s64 = 0;
@@ -12019,7 +12019,7 @@ loc_821A4FCC:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A4FEC;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a5014
@@ -12037,7 +12037,7 @@ loc_821A4FCC:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A500C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a503c
@@ -12061,7 +12061,7 @@ loc_821A5014:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A5038;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A5038:
 	// stw r25,20(r30)
 	PPC_STORE_U32(ctx.r30.u32 + 20, ctx.r25.u32);
@@ -12236,7 +12236,7 @@ loc_821A5138:
 	ctx.r3.u64 = ctx.r11.u64 + ctx.r29.u64;
 	// bl 0x822276d0
 	ctx.lr = 0x821A5154;
-	rex_glStringCompare_822276D0(ctx, base);
+	sub_822276D0(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bge cr6,0x821a5164
@@ -12430,7 +12430,7 @@ loc_821A5264:
 	ctx.r4.s64 = ctx.r1.s64 + 80;
 	// bl 0x821d1890
 	ctx.lr = 0x821A5298;
-	rex_statsCommonGetStatsAidFromTag_821D1890(ctx, base);
+	sub_821D1890(ctx, base);
 	// addi r3,r1,80
 	ctx.r3.s64 = ctx.r1.s64 + 80;
 	// bl 0x82252108
@@ -12451,7 +12451,7 @@ loc_821A5264:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82223dc0
 	ctx.lr = 0x821A52BC;
-	rex_glMemFree_82223DC0(ctx, base);
+	sub_82223DC0(ctx, base);
 loc_821A52BC:
 	// lwz r11,104(r29)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r29.u32 + 104);
@@ -12657,7 +12657,7 @@ loc_821A53F0:
 	ctx.r3.u64 = ctx.r28.u64;
 	// bl 0x821d1890
 	ctx.lr = 0x821A5410;
-	rex_statsCommonGetStatsAidFromTag_821D1890(ctx, base);
+	sub_821D1890(ctx, base);
 	// addi r3,r1,80
 	ctx.r3.s64 = ctx.r1.s64 + 80;
 	// bl 0x82252108
@@ -12678,7 +12678,7 @@ loc_821A53F0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82223dc0
 	ctx.lr = 0x821A5434;
-	rex_glMemFree_82223DC0(ctx, base);
+	sub_82223DC0(ctx, base);
 loc_821A5434:
 	// addi r1,r1,400
 	ctx.r1.s64 = ctx.r1.s64 + 400;
@@ -12739,7 +12739,7 @@ loc_821A5474:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x822805e0
 	ctx.lr = 0x821A5498;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821a54b8
 	goto loc_821A54B8;
 loc_821A549C:
@@ -12757,7 +12757,7 @@ loc_821A549C:
 	ctx.r5.s64 = ctx.r11.s64 + -12988;
 	// bl 0x82281d60
 	ctx.lr = 0x821A54B8;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821A54B8:
 	// lwz r11,0(r31)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
@@ -12791,7 +12791,7 @@ loc_821A54D4:
 	ctx.r5.s64 = ctx.r11.s64 + -12984;
 	// bl 0x822805e0
 	ctx.lr = 0x821A54F4;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821a5514
 	goto loc_821A5514;
 loc_821A54F8:
@@ -12809,7 +12809,7 @@ loc_821A54F8:
 	ctx.r5.s64 = ctx.r11.s64 + -12984;
 	// bl 0x82281d60
 	ctx.lr = 0x821A5514;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821A5514:
 	// lwz r11,0(r31)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
@@ -12827,7 +12827,7 @@ loc_821A5514:
 	ctx.r5.s64 = ctx.r11.s64 + -12968;
 	// bl 0x822805e0
 	ctx.lr = 0x821A5534;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821a5554
 	goto loc_821A5554;
 loc_821A5538:
@@ -12845,7 +12845,7 @@ loc_821A5538:
 	ctx.r5.s64 = ctx.r11.s64 + -12968;
 	// bl 0x82281d60
 	ctx.lr = 0x821A5554;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821A5554:
 	// addi r4,r29,28
 	ctx.r4.s64 = ctx.r29.s64 + 28;
@@ -12866,7 +12866,7 @@ loc_821A5554:
 	ctx.r5.s64 = ctx.r11.s64 + -12952;
 	// bl 0x822806b0
 	ctx.lr = 0x821A557C;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
 	// li r3,1
@@ -12891,7 +12891,7 @@ loc_821A558C:
 	ctx.r5.s64 = ctx.r11.s64 + -12952;
 	// bl 0x82281dc8
 	ctx.lr = 0x821A55A8;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
 loc_821A55AC:
@@ -12960,7 +12960,7 @@ loc_821A55F4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x822805e0
 	ctx.lr = 0x821A561C;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821a563c
 	goto loc_821A563C;
 loc_821A5620:
@@ -12978,7 +12978,7 @@ loc_821A5620:
 	ctx.r5.s64 = ctx.r11.s64 + -12932;
 	// bl 0x82281d60
 	ctx.lr = 0x821A563C;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821A563C:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -13061,7 +13061,7 @@ loc_821A56AC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A56C8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,0
 	ctx.r28.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -13081,7 +13081,7 @@ loc_821A56AC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A56EC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a571c
@@ -13105,7 +13105,7 @@ loc_821A56F4:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A5718;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A5718:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -13126,7 +13126,7 @@ loc_821A571C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A573C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a5764
@@ -13137,14 +13137,14 @@ loc_821A571C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x821d9d90
 	ctx.lr = 0x821A5750;
-	rex_assetId_Serialise_821D9D90(ctx, base);
+	sub_821D9D90(ctx, base);
 	// mr r4,r30
 	ctx.r4.u64 = ctx.r30.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A575C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a578c
@@ -13168,7 +13168,7 @@ loc_821A5764:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A5788;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A5788:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -13189,7 +13189,7 @@ loc_821A578C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A57AC;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a57d4
@@ -13200,14 +13200,14 @@ loc_821A578C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x821d9d90
 	ctx.lr = 0x821A57C0;
-	rex_assetId_Serialise_821D9D90(ctx, base);
+	sub_821D9D90(ctx, base);
 	// mr r4,r30
 	ctx.r4.u64 = ctx.r30.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A57CC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a57fc
@@ -13231,7 +13231,7 @@ loc_821A57D4:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A57F8;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A57F8:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -13251,7 +13251,7 @@ loc_821A57FC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281390
 	ctx.lr = 0x821A581C;
-	rex_serialiseStreamRW_StringX_82281390(ctx, base);
+	sub_82281390(ctx, base);
 	// li r3,1
 	ctx.r3.s64 = 1;
 	// addi r1,r1,128
@@ -13301,7 +13301,7 @@ loc_821A5854:
 	ctx.r5.s64 = ctx.r10.s64 + -19352;
 	// bl 0x82281390
 	ctx.lr = 0x821A586C;
-	rex_serialiseStreamRW_StringX_82281390(ctx, base);
+	sub_82281390(ctx, base);
 	// li r3,1
 	ctx.r3.s64 = 1;
 	// addi r1,r1,96
@@ -13402,7 +13402,7 @@ loc_821A58F8:
 	ctx.r5.s64 = ctx.r11.s64 + -12852;
 	// bl 0x822805e0
 	ctx.lr = 0x821A5918;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821a5938
 	goto loc_821A5938;
 loc_821A591C:
@@ -13420,7 +13420,7 @@ loc_821A591C:
 	ctx.r5.s64 = ctx.r11.s64 + -12852;
 	// bl 0x82281d60
 	ctx.lr = 0x821A5938;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821A5938:
 	// lwz r11,0(r31)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
@@ -13438,7 +13438,7 @@ loc_821A5938:
 	ctx.r5.s64 = ctx.r11.s64 + -12836;
 	// bl 0x822805e0
 	ctx.lr = 0x821A5958;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821a5978
 	goto loc_821A5978;
 loc_821A595C:
@@ -13456,7 +13456,7 @@ loc_821A595C:
 	ctx.r5.s64 = ctx.r11.s64 + -12836;
 	// bl 0x82281d60
 	ctx.lr = 0x821A5978;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821A5978:
 	// lis r11,-32239
 	ctx.r11.s64 = -2112815104;
@@ -13474,7 +13474,7 @@ loc_821A5978:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A5998;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a5a74
@@ -13556,7 +13556,7 @@ loc_821A59F8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A5A30;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// li r3,1
 	ctx.r3.s64 = 1;
 	// addi r1,r1,128
@@ -13589,7 +13589,7 @@ loc_821A5A5C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A5A68;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// li r3,1
 	ctx.r3.s64 = 1;
 	// addi r1,r1,128
@@ -13687,7 +13687,7 @@ loc_821A5AE8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x822809f0
 	ctx.lr = 0x821A5B0C;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821a5b28
 	goto loc_821A5B28;
 loc_821A5B10:
@@ -13705,7 +13705,7 @@ loc_821A5B10:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281f68
 	ctx.lr = 0x821A5B28;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821A5B28:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -14080,7 +14080,7 @@ loc_821A5DAC:
 	ctx.r5.s64 = ctx.r10.s64 + -12804;
 	// bl 0x82281618
 	ctx.lr = 0x821A5DC0;
-	rex_serialiseStreamRW_PointerX_82281618(ctx, base);
+	sub_82281618(ctx, base);
 	// li r3,1
 	ctx.r3.s64 = 1;
 	// addi r1,r1,96
@@ -14140,7 +14140,7 @@ loc_821A5E18:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x821ebc08
 	ctx.lr = 0x821A5E24;
-	rex_avatarPosGet_821EBC08(ctx, base);
+	sub_821EBC08(ctx, base);
 	// addi r4,r31,2676
 	ctx.r4.s64 = ctx.r31.s64 + 2676;
 	// bl 0x821ebfb0
@@ -14291,7 +14291,7 @@ loc_821A5EFC:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x821d1890
 	ctx.lr = 0x821A5F28;
-	rex_statsCommonGetStatsAidFromTag_821D1890(ctx, base);
+	sub_821D1890(ctx, base);
 	// addi r3,r1,80
 	ctx.r3.s64 = ctx.r1.s64 + 80;
 	// bl 0x82252108
@@ -14312,7 +14312,7 @@ loc_821A5EFC:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82223dc0
 	ctx.lr = 0x821A5F4C;
-	rex_glMemFree_82223DC0(ctx, base);
+	sub_82223DC0(ctx, base);
 loc_821A5F4C:
 	// lwz r4,732(r29)
 	ctx.r4.u64 = PPC_LOAD_U32(ctx.r29.u32 + 732);
@@ -14714,7 +14714,7 @@ loc_821A61C0:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x821d1890
 	ctx.lr = 0x821A61F4;
-	rex_statsCommonGetStatsAidFromTag_821D1890(ctx, base);
+	sub_821D1890(ctx, base);
 	// addi r3,r1,96
 	ctx.r3.s64 = ctx.r1.s64 + 96;
 	// bl 0x82252108
@@ -14735,7 +14735,7 @@ loc_821A61C0:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82223dc0
 	ctx.lr = 0x821A6218;
-	rex_glMemFree_82223DC0(ctx, base);
+	sub_82223DC0(ctx, base);
 	// lwz r11,248(r31)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 248);
 	// cmplwi cr6,r11,0
@@ -14990,7 +14990,7 @@ loc_821A63A4:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x821d1890
 	ctx.lr = 0x821A63D8;
-	rex_statsCommonGetStatsAidFromTag_821D1890(ctx, base);
+	sub_821D1890(ctx, base);
 	// addi r3,r1,96
 	ctx.r3.s64 = ctx.r1.s64 + 96;
 	// bl 0x82252108
@@ -15015,7 +15015,7 @@ loc_821A63A4:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82223dc0
 	ctx.lr = 0x821A6404;
-	rex_glMemFree_82223DC0(ctx, base);
+	sub_82223DC0(ctx, base);
 	// lwz r11,248(r31)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 248);
 	// cmplwi cr6,r11,0
@@ -15349,7 +15349,7 @@ loc_821A65E0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A6648;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,0
 	ctx.r28.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -15369,7 +15369,7 @@ loc_821A65E0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A666C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a6690
@@ -15407,7 +15407,7 @@ loc_821A6690:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A66B0;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a66d8
@@ -15425,7 +15425,7 @@ loc_821A6690:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A66D0;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a6700
@@ -15449,7 +15449,7 @@ loc_821A66D8:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A66FC;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A66FC:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -15470,7 +15470,7 @@ loc_821A6700:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A6720;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a6748
@@ -15481,14 +15481,14 @@ loc_821A6700:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821A6734;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r30
 	ctx.r4.u64 = ctx.r30.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A6740;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a6770
@@ -15512,7 +15512,7 @@ loc_821A6748:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A676C;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A676C:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -15533,7 +15533,7 @@ loc_821A6770:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A6790;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a67b8
@@ -15551,7 +15551,7 @@ loc_821A6770:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A67B0;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a67e0
@@ -15575,7 +15575,7 @@ loc_821A67B8:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A67DC;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A67DC:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -15599,7 +15599,7 @@ loc_821A67E0:
 	ctx.r5.s64 = ctx.r11.s64 + -12604;
 	// bl 0x822805e0
 	ctx.lr = 0x821A6808;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821a6828
 	goto loc_821A6828;
 loc_821A680C:
@@ -15617,7 +15617,7 @@ loc_821A680C:
 	ctx.r5.s64 = ctx.r11.s64 + -12604;
 	// bl 0x82281d60
 	ctx.lr = 0x821A6828;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821A6828:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -15641,7 +15641,7 @@ loc_821A682C:
 	ctx.r5.s64 = ctx.r11.s64 + -12860;
 	// bl 0x822805e0
 	ctx.lr = 0x821A6854;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821a6874
 	goto loc_821A6874;
 loc_821A6858:
@@ -15659,7 +15659,7 @@ loc_821A6858:
 	ctx.r5.s64 = ctx.r11.s64 + -12860;
 	// bl 0x82281d60
 	ctx.lr = 0x821A6874;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821A6874:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -15683,7 +15683,7 @@ loc_821A6878:
 	ctx.r5.s64 = ctx.r11.s64 + -12588;
 	// bl 0x822805e0
 	ctx.lr = 0x821A68A0;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821a68c0
 	goto loc_821A68C0;
 loc_821A68A4:
@@ -15701,7 +15701,7 @@ loc_821A68A4:
 	ctx.r5.s64 = ctx.r11.s64 + -12588;
 	// bl 0x82281d60
 	ctx.lr = 0x821A68C0;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821A68C0:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -15725,7 +15725,7 @@ loc_821A68C4:
 	ctx.r5.s64 = ctx.r11.s64 + -12580;
 	// bl 0x822805e0
 	ctx.lr = 0x821A68EC;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821a690c
 	goto loc_821A690C;
 loc_821A68F0:
@@ -15743,7 +15743,7 @@ loc_821A68F0:
 	ctx.r5.s64 = ctx.r11.s64 + -12580;
 	// bl 0x82281d60
 	ctx.lr = 0x821A690C;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821A690C:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -15767,7 +15767,7 @@ loc_821A6910:
 	ctx.r5.s64 = ctx.r11.s64 + -12568;
 	// bl 0x822805e0
 	ctx.lr = 0x821A6938;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821a6958
 	goto loc_821A6958;
 loc_821A693C:
@@ -15785,7 +15785,7 @@ loc_821A693C:
 	ctx.r5.s64 = ctx.r11.s64 + -12568;
 	// bl 0x82281d60
 	ctx.lr = 0x821A6958;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821A6958:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -15809,7 +15809,7 @@ loc_821A695C:
 	ctx.r5.s64 = ctx.r11.s64 + -12560;
 	// bl 0x822806b0
 	ctx.lr = 0x821A6984;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821a69a4
 	goto loc_821A69A4;
 loc_821A6988:
@@ -15827,7 +15827,7 @@ loc_821A6988:
 	ctx.r5.s64 = ctx.r11.s64 + -12560;
 	// bl 0x82281dc8
 	ctx.lr = 0x821A69A4;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821A69A4:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -15848,7 +15848,7 @@ loc_821A69A8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A69C8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a6a6c
@@ -15889,7 +15889,7 @@ loc_821A69F0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x822806b0
 	ctx.lr = 0x821A6A18;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
 	// mr r4,r30
@@ -15898,7 +15898,7 @@ loc_821A69F0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A6A28;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// li r3,1
 	ctx.r3.s64 = 1;
 	// addi r1,r1,128
@@ -15921,7 +15921,7 @@ loc_821A6A34:
 	ctx.r5.s64 = ctx.r11.s64 + -12524;
 	// bl 0x82281dc8
 	ctx.lr = 0x821A6A50;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
 loc_821A6A54:
@@ -15931,7 +15931,7 @@ loc_821A6A54:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A6A60;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// li r3,1
 	ctx.r3.s64 = 1;
 	// addi r1,r1,128
@@ -16636,7 +16636,7 @@ loc_821A6F5C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x821ebc08
 	ctx.lr = 0x821A6F68;
-	rex_avatarPosGet_821EBC08(ctx, base);
+	sub_821EBC08(ctx, base);
 	// lis r10,-32234
 	ctx.r10.s64 = -2112487424;
 	// li r11,1
@@ -16793,7 +16793,7 @@ loc_821A705C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x821ebc08
 	ctx.lr = 0x821A7068;
-	rex_avatarPosGet_821EBC08(ctx, base);
+	sub_821EBC08(ctx, base);
 	// lis r11,-32234
 	ctx.r11.s64 = -2112487424;
 	// addi r4,r1,120
@@ -17156,7 +17156,7 @@ loc_821A72D4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x821ebc08
 	ctx.lr = 0x821A72EC;
-	rex_avatarPosGet_821EBC08(ctx, base);
+	sub_821EBC08(ctx, base);
 	// addi r4,r31,2676
 	ctx.r4.s64 = ctx.r31.s64 + 2676;
 	// bl 0x821ebfb0
@@ -17185,7 +17185,7 @@ loc_821A7314:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x821ebc08
 	ctx.lr = 0x821A7320;
-	rex_avatarPosGet_821EBC08(ctx, base);
+	sub_821EBC08(ctx, base);
 	// li r5,2
 	ctx.r5.s64 = 2;
 	// addi r4,r1,128
@@ -17217,7 +17217,7 @@ loc_821A734C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x821ebc08
 	ctx.lr = 0x821A7358;
-	rex_avatarPosGet_821EBC08(ctx, base);
+	sub_821EBC08(ctx, base);
 	// li r6,0
 	ctx.r6.s64 = 0;
 	// li r5,4
@@ -17861,7 +17861,7 @@ loc_821A77B0:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r9.u32 + ctx.r10.u32);
 	// bl 0x822276d0
 	ctx.lr = 0x821A77C8;
-	rex_glStringCompare_822276D0(ctx, base);
+	sub_822276D0(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bge cr6,0x821a77d8
@@ -18577,7 +18577,7 @@ loc_821A7C7C:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r9.u32 + ctx.r10.u32);
 	// bl 0x822276d0
 	ctx.lr = 0x821A7C94;
-	rex_glStringCompare_822276D0(ctx, base);
+	sub_822276D0(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bge cr6,0x821a7ca4
@@ -18682,7 +18682,7 @@ loc_821A7D1C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x822805e0
 	ctx.lr = 0x821A7D44;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821a7d64
 	goto loc_821A7D64;
 loc_821A7D48:
@@ -18700,7 +18700,7 @@ loc_821A7D48:
 	ctx.r5.s64 = ctx.r11.s64 + -9032;
 	// bl 0x82281d60
 	ctx.lr = 0x821A7D64;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821A7D64:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -18724,7 +18724,7 @@ loc_821A7D68:
 	ctx.r5.s64 = ctx.r11.s64 + -9020;
 	// bl 0x822805e0
 	ctx.lr = 0x821A7D90;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821a7db0
 	goto loc_821A7DB0;
 loc_821A7D94:
@@ -18742,7 +18742,7 @@ loc_821A7D94:
 	ctx.r5.s64 = ctx.r11.s64 + -9020;
 	// bl 0x82281d60
 	ctx.lr = 0x821A7DB0;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821A7DB0:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -18817,7 +18817,7 @@ loc_821A7E0C:
 	ctx.r5.s64 = ctx.r11.s64 + -12988;
 	// bl 0x822805e0
 	ctx.lr = 0x821A7E2C;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821a7e4c
 	goto loc_821A7E4C;
 loc_821A7E30:
@@ -18835,7 +18835,7 @@ loc_821A7E30:
 	ctx.r5.s64 = ctx.r11.s64 + -12988;
 	// bl 0x82281d60
 	ctx.lr = 0x821A7E4C;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821A7E4C:
 	// addi r4,r30,12
 	ctx.r4.s64 = ctx.r30.s64 + 12;
@@ -18940,7 +18940,7 @@ loc_821A7EE4:
 	ctx.r5.s64 = ctx.r11.s64 + -8984;
 	// bl 0x822809f0
 	ctx.lr = 0x821A7F0C;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821a7f2c
 	goto loc_821A7F2C;
 loc_821A7F10:
@@ -18960,7 +18960,7 @@ loc_821A7F10:
 	ctx.r5.s64 = ctx.r11.s64 + -8984;
 	// bl 0x82281f68
 	ctx.lr = 0x821A7F2C;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821A7F2C:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -19038,7 +19038,7 @@ loc_821A7F8C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x822809f0
 	ctx.lr = 0x821A7FB4;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821a7fd4
 	goto loc_821A7FD4;
 loc_821A7FB8:
@@ -19058,7 +19058,7 @@ loc_821A7FB8:
 	ctx.r5.s64 = ctx.r11.s64 + -8976;
 	// bl 0x82281f68
 	ctx.lr = 0x821A7FD4;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821A7FD4:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -19079,7 +19079,7 @@ loc_821A7FD8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A7FF8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a8020
@@ -19097,7 +19097,7 @@ loc_821A7FD8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A8018;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a804c
@@ -19121,7 +19121,7 @@ loc_821A8020:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A8044;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A8044:
 	// li r11,0
 	ctx.r11.s64 = 0;
@@ -19201,7 +19201,7 @@ loc_821A80A4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x822809f0
 	ctx.lr = 0x821A80CC;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821a80ec
 	goto loc_821A80EC;
 loc_821A80D0:
@@ -19221,7 +19221,7 @@ loc_821A80D0:
 	ctx.r5.s64 = ctx.r11.s64 + -8976;
 	// bl 0x82281f68
 	ctx.lr = 0x821A80EC;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821A80EC:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -19245,7 +19245,7 @@ loc_821A80F0:
 	ctx.r5.s64 = ctx.r11.s64 + -8944;
 	// bl 0x822806b0
 	ctx.lr = 0x821A8118;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821a8138
 	goto loc_821A8138;
 loc_821A811C:
@@ -19263,7 +19263,7 @@ loc_821A811C:
 	ctx.r5.s64 = ctx.r11.s64 + -8944;
 	// bl 0x82281dc8
 	ctx.lr = 0x821A8138;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821A8138:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -19335,7 +19335,7 @@ loc_821A8190:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A81AC;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a828c
@@ -19376,7 +19376,7 @@ loc_821A81D4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x822809f0
 	ctx.lr = 0x821A81FC;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821a821c
 	goto loc_821A821C;
 loc_821A8200:
@@ -19396,7 +19396,7 @@ loc_821A8200:
 	ctx.r5.s64 = ctx.r11.s64 + -18364;
 	// bl 0x82281f68
 	ctx.lr = 0x821A821C;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821A821C:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -19420,7 +19420,7 @@ loc_821A8220:
 	ctx.r5.s64 = ctx.r11.s64 + -18360;
 	// bl 0x822809f0
 	ctx.lr = 0x821A8248;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
 	// mr r4,r30
@@ -19429,7 +19429,7 @@ loc_821A8220:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A8258;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// b 0x821a82b8
 	goto loc_821A82B8;
 loc_821A825C:
@@ -19449,7 +19449,7 @@ loc_821A825C:
 	ctx.r5.s64 = ctx.r11.s64 + -18360;
 	// bl 0x82281f68
 	ctx.lr = 0x821A8278;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
 loc_821A827C:
@@ -19459,7 +19459,7 @@ loc_821A827C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A8288;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// b 0x821a82b8
 	goto loc_821A82B8;
 loc_821A828C:
@@ -19481,7 +19481,7 @@ loc_821A828C:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A82B0;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A82B0:
 	// li r11,0
 	ctx.r11.s64 = 0;
@@ -19507,7 +19507,7 @@ loc_821A82B8:
 	ctx.r5.s64 = ctx.r11.s64 + -8920;
 	// bl 0x822809f0
 	ctx.lr = 0x821A82E0;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821a8300
 	goto loc_821A8300;
 loc_821A82E4:
@@ -19527,7 +19527,7 @@ loc_821A82E4:
 	ctx.r5.s64 = ctx.r11.s64 + -8920;
 	// bl 0x82281f68
 	ctx.lr = 0x821A8300;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821A8300:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -19551,7 +19551,7 @@ loc_821A8304:
 	ctx.r5.s64 = ctx.r11.s64 + -8900;
 	// bl 0x822809f0
 	ctx.lr = 0x821A832C;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821a834c
 	goto loc_821A834C;
 loc_821A8330:
@@ -19571,7 +19571,7 @@ loc_821A8330:
 	ctx.r5.s64 = ctx.r11.s64 + -8900;
 	// bl 0x82281f68
 	ctx.lr = 0x821A834C;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821A834C:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -19595,7 +19595,7 @@ loc_821A8350:
 	ctx.r5.s64 = ctx.r11.s64 + -8884;
 	// bl 0x822809f0
 	ctx.lr = 0x821A8378;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821a8398
 	goto loc_821A8398;
 loc_821A837C:
@@ -19615,7 +19615,7 @@ loc_821A837C:
 	ctx.r5.s64 = ctx.r11.s64 + -8884;
 	// bl 0x82281f68
 	ctx.lr = 0x821A8398;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821A8398:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -19639,7 +19639,7 @@ loc_821A839C:
 	ctx.r5.s64 = ctx.r11.s64 + -8860;
 	// bl 0x822809f0
 	ctx.lr = 0x821A83C4;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821a83e4
 	goto loc_821A83E4;
 loc_821A83C8:
@@ -19659,7 +19659,7 @@ loc_821A83C8:
 	ctx.r5.s64 = ctx.r11.s64 + -8860;
 	// bl 0x82281f68
 	ctx.lr = 0x821A83E4;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821A83E4:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -19683,7 +19683,7 @@ loc_821A83E8:
 	ctx.r5.s64 = ctx.r11.s64 + -8844;
 	// bl 0x822809f0
 	ctx.lr = 0x821A8410;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821a8430
 	goto loc_821A8430;
 loc_821A8414:
@@ -19703,7 +19703,7 @@ loc_821A8414:
 	ctx.r5.s64 = ctx.r11.s64 + -8844;
 	// bl 0x82281f68
 	ctx.lr = 0x821A8430;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821A8430:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -19727,7 +19727,7 @@ loc_821A8434:
 	ctx.r5.s64 = ctx.r11.s64 + -8828;
 	// bl 0x822809f0
 	ctx.lr = 0x821A845C;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821a847c
 	goto loc_821A847C;
 loc_821A8460:
@@ -19747,7 +19747,7 @@ loc_821A8460:
 	ctx.r5.s64 = ctx.r11.s64 + -8828;
 	// bl 0x82281f68
 	ctx.lr = 0x821A847C;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821A847C:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -19771,7 +19771,7 @@ loc_821A8480:
 	ctx.r5.s64 = ctx.r11.s64 + -8808;
 	// bl 0x822809f0
 	ctx.lr = 0x821A84A8;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821a84c8
 	goto loc_821A84C8;
 loc_821A84AC:
@@ -19791,7 +19791,7 @@ loc_821A84AC:
 	ctx.r5.s64 = ctx.r11.s64 + -8808;
 	// bl 0x82281f68
 	ctx.lr = 0x821A84C8;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821A84C8:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -19815,7 +19815,7 @@ loc_821A84CC:
 	ctx.r5.s64 = ctx.r11.s64 + -8792;
 	// bl 0x822809f0
 	ctx.lr = 0x821A84F4;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
 	// li r3,1
@@ -19842,7 +19842,7 @@ loc_821A8504:
 	ctx.r5.s64 = ctx.r11.s64 + -8792;
 	// bl 0x82281f68
 	ctx.lr = 0x821A8520;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
 loc_821A8524:
@@ -19905,7 +19905,7 @@ loc_821A8564:
 	ctx.r5.s64 = ctx.r11.s64 + -8784;
 	// bl 0x822805e0
 	ctx.lr = 0x821A8588;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821a85a8
 	goto loc_821A85A8;
 loc_821A858C:
@@ -19923,7 +19923,7 @@ loc_821A858C:
 	ctx.r5.s64 = ctx.r11.s64 + -8784;
 	// bl 0x82281d60
 	ctx.lr = 0x821A85A8;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821A85A8:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -19999,7 +19999,7 @@ loc_821A8604:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x822809f0
 	ctx.lr = 0x821A862C;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821a864c
 	goto loc_821A864C;
 loc_821A8630:
@@ -20019,7 +20019,7 @@ loc_821A8630:
 	ctx.r5.s64 = ctx.r11.s64 + -8772;
 	// bl 0x82281f68
 	ctx.lr = 0x821A864C;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821A864C:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -20043,7 +20043,7 @@ loc_821A8650:
 	ctx.r5.s64 = ctx.r11.s64 + -8752;
 	// bl 0x822809f0
 	ctx.lr = 0x821A8678;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821a8698
 	goto loc_821A8698;
 loc_821A867C:
@@ -20063,7 +20063,7 @@ loc_821A867C:
 	ctx.r5.s64 = ctx.r11.s64 + -8752;
 	// bl 0x82281f68
 	ctx.lr = 0x821A8698;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821A8698:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -20087,7 +20087,7 @@ loc_821A869C:
 	ctx.r5.s64 = ctx.r11.s64 + -9000;
 	// bl 0x822806b0
 	ctx.lr = 0x821A86C4;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821a86e4
 	goto loc_821A86E4;
 loc_821A86C8:
@@ -20105,7 +20105,7 @@ loc_821A86C8:
 	ctx.r5.s64 = ctx.r11.s64 + -9000;
 	// bl 0x82281dc8
 	ctx.lr = 0x821A86E4;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821A86E4:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -20129,7 +20129,7 @@ loc_821A86E8:
 	ctx.r5.s64 = ctx.r11.s64 + -18792;
 	// bl 0x822809f0
 	ctx.lr = 0x821A8710;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821a8730
 	goto loc_821A8730;
 loc_821A8714:
@@ -20149,7 +20149,7 @@ loc_821A8714:
 	ctx.r5.s64 = ctx.r11.s64 + -18792;
 	// bl 0x82281f68
 	ctx.lr = 0x821A8730;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821A8730:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -20173,7 +20173,7 @@ loc_821A8734:
 	ctx.r5.s64 = ctx.r11.s64 + -8744;
 	// bl 0x822809f0
 	ctx.lr = 0x821A875C;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821a877c
 	goto loc_821A877C;
 loc_821A8760:
@@ -20193,7 +20193,7 @@ loc_821A8760:
 	ctx.r5.s64 = ctx.r11.s64 + -8744;
 	// bl 0x82281f68
 	ctx.lr = 0x821A877C;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821A877C:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -20217,7 +20217,7 @@ loc_821A8780:
 	ctx.r5.s64 = ctx.r11.s64 + -8900;
 	// bl 0x822809f0
 	ctx.lr = 0x821A87A8;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821a87c8
 	goto loc_821A87C8;
 loc_821A87AC:
@@ -20237,7 +20237,7 @@ loc_821A87AC:
 	ctx.r5.s64 = ctx.r11.s64 + -8900;
 	// bl 0x82281f68
 	ctx.lr = 0x821A87C8;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821A87C8:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -20261,7 +20261,7 @@ loc_821A87CC:
 	ctx.r5.s64 = ctx.r11.s64 + -8728;
 	// bl 0x822809f0
 	ctx.lr = 0x821A87F4;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821a8814
 	goto loc_821A8814;
 loc_821A87F8:
@@ -20281,7 +20281,7 @@ loc_821A87F8:
 	ctx.r5.s64 = ctx.r11.s64 + -8728;
 	// bl 0x82281f68
 	ctx.lr = 0x821A8814;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821A8814:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -20305,7 +20305,7 @@ loc_821A8818:
 	ctx.r5.s64 = ctx.r11.s64 + -8716;
 	// bl 0x822809f0
 	ctx.lr = 0x821A8840;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821a8860
 	goto loc_821A8860;
 loc_821A8844:
@@ -20325,7 +20325,7 @@ loc_821A8844:
 	ctx.r5.s64 = ctx.r11.s64 + -8716;
 	// bl 0x82281f68
 	ctx.lr = 0x821A8860;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821A8860:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -20349,7 +20349,7 @@ loc_821A8864:
 	ctx.r5.s64 = ctx.r11.s64 + -8704;
 	// bl 0x822809f0
 	ctx.lr = 0x821A888C;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821a88ac
 	goto loc_821A88AC;
 loc_821A8890:
@@ -20369,7 +20369,7 @@ loc_821A8890:
 	ctx.r5.s64 = ctx.r11.s64 + -8704;
 	// bl 0x82281f68
 	ctx.lr = 0x821A88AC;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821A88AC:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -20393,7 +20393,7 @@ loc_821A88B0:
 	ctx.r5.s64 = ctx.r11.s64 + -8696;
 	// bl 0x822809f0
 	ctx.lr = 0x821A88D8;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821a88f8
 	goto loc_821A88F8;
 loc_821A88DC:
@@ -20413,7 +20413,7 @@ loc_821A88DC:
 	ctx.r5.s64 = ctx.r11.s64 + -8696;
 	// bl 0x82281f68
 	ctx.lr = 0x821A88F8;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821A88F8:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -20437,7 +20437,7 @@ loc_821A88FC:
 	ctx.r5.s64 = ctx.r11.s64 + -8676;
 	// bl 0x822809f0
 	ctx.lr = 0x821A8924;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821a8944
 	goto loc_821A8944;
 loc_821A8928:
@@ -20457,7 +20457,7 @@ loc_821A8928:
 	ctx.r5.s64 = ctx.r11.s64 + -8676;
 	// bl 0x82281f68
 	ctx.lr = 0x821A8944;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821A8944:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -20481,7 +20481,7 @@ loc_821A8948:
 	ctx.r5.s64 = ctx.r11.s64 + -8660;
 	// bl 0x822809f0
 	ctx.lr = 0x821A8970;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821a8990
 	goto loc_821A8990;
 loc_821A8974:
@@ -20501,7 +20501,7 @@ loc_821A8974:
 	ctx.r5.s64 = ctx.r11.s64 + -8660;
 	// bl 0x82281f68
 	ctx.lr = 0x821A8990;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821A8990:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -20525,7 +20525,7 @@ loc_821A8994:
 	ctx.r5.s64 = ctx.r11.s64 + -8644;
 	// bl 0x822805e0
 	ctx.lr = 0x821A89BC;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821a89dc
 	goto loc_821A89DC;
 loc_821A89C0:
@@ -20543,7 +20543,7 @@ loc_821A89C0:
 	ctx.r5.s64 = ctx.r11.s64 + -8644;
 	// bl 0x82281d60
 	ctx.lr = 0x821A89DC;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821A89DC:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -20567,7 +20567,7 @@ loc_821A89E0:
 	ctx.r5.s64 = ctx.r11.s64 + -8624;
 	// bl 0x822809f0
 	ctx.lr = 0x821A8A08;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821a8a28
 	goto loc_821A8A28;
 loc_821A8A0C:
@@ -20587,7 +20587,7 @@ loc_821A8A0C:
 	ctx.r5.s64 = ctx.r11.s64 + -8624;
 	// bl 0x82281f68
 	ctx.lr = 0x821A8A28;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821A8A28:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -20611,7 +20611,7 @@ loc_821A8A2C:
 	ctx.r5.s64 = ctx.r11.s64 + -8612;
 	// bl 0x822809f0
 	ctx.lr = 0x821A8A54;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821a8a74
 	goto loc_821A8A74;
 loc_821A8A58:
@@ -20631,7 +20631,7 @@ loc_821A8A58:
 	ctx.r5.s64 = ctx.r11.s64 + -8612;
 	// bl 0x82281f68
 	ctx.lr = 0x821A8A74;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821A8A74:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -20655,7 +20655,7 @@ loc_821A8A78:
 	ctx.r5.s64 = ctx.r11.s64 + -8600;
 	// bl 0x822809f0
 	ctx.lr = 0x821A8AA0;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821a8ac0
 	goto loc_821A8AC0;
 loc_821A8AA4:
@@ -20675,7 +20675,7 @@ loc_821A8AA4:
 	ctx.r5.s64 = ctx.r11.s64 + -8600;
 	// bl 0x82281f68
 	ctx.lr = 0x821A8AC0;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821A8AC0:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -20699,7 +20699,7 @@ loc_821A8AC4:
 	ctx.r5.s64 = ctx.r11.s64 + -8592;
 	// bl 0x822809f0
 	ctx.lr = 0x821A8AEC;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821a8b0c
 	goto loc_821A8B0C;
 loc_821A8AF0:
@@ -20719,7 +20719,7 @@ loc_821A8AF0:
 	ctx.r5.s64 = ctx.r11.s64 + -8592;
 	// bl 0x82281f68
 	ctx.lr = 0x821A8B0C;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821A8B0C:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -20791,7 +20791,7 @@ loc_821A8B64:
 	ctx.r5.s64 = ctx.r11.s64 + -8580;
 	// bl 0x822809f0
 	ctx.lr = 0x821A8B88;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821a8ba8
 	goto loc_821A8BA8;
 loc_821A8B8C:
@@ -20811,7 +20811,7 @@ loc_821A8B8C:
 	ctx.r5.s64 = ctx.r11.s64 + -8580;
 	// bl 0x82281f68
 	ctx.lr = 0x821A8BA8;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821A8BA8:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -20881,7 +20881,7 @@ loc_821A8C00:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A8C1C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a8cfc
@@ -20922,7 +20922,7 @@ loc_821A8C44:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x822809f0
 	ctx.lr = 0x821A8C6C;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821a8c8c
 	goto loc_821A8C8C;
 loc_821A8C70:
@@ -20942,7 +20942,7 @@ loc_821A8C70:
 	ctx.r5.s64 = ctx.r11.s64 + -18364;
 	// bl 0x82281f68
 	ctx.lr = 0x821A8C8C;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821A8C8C:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -20966,7 +20966,7 @@ loc_821A8C90:
 	ctx.r5.s64 = ctx.r11.s64 + -18360;
 	// bl 0x822809f0
 	ctx.lr = 0x821A8CB8;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
 	// mr r4,r30
@@ -20975,7 +20975,7 @@ loc_821A8C90:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A8CC8;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// b 0x821a8d28
 	goto loc_821A8D28;
 loc_821A8CCC:
@@ -20995,7 +20995,7 @@ loc_821A8CCC:
 	ctx.r5.s64 = ctx.r11.s64 + -18360;
 	// bl 0x82281f68
 	ctx.lr = 0x821A8CE8;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
 loc_821A8CEC:
@@ -21005,7 +21005,7 @@ loc_821A8CEC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A8CF8;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// b 0x821a8d28
 	goto loc_821A8D28;
 loc_821A8CFC:
@@ -21027,7 +21027,7 @@ loc_821A8CFC:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A8D20;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A8D20:
 	// li r11,0
 	ctx.r11.s64 = 0;
@@ -21053,7 +21053,7 @@ loc_821A8D28:
 	ctx.r5.s64 = ctx.r11.s64 + -8568;
 	// bl 0x822809f0
 	ctx.lr = 0x821A8D50;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821a8d70
 	goto loc_821A8D70;
 loc_821A8D54:
@@ -21073,7 +21073,7 @@ loc_821A8D54:
 	ctx.r5.s64 = ctx.r11.s64 + -8568;
 	// bl 0x82281f68
 	ctx.lr = 0x821A8D70;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821A8D70:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -21097,7 +21097,7 @@ loc_821A8D74:
 	ctx.r5.s64 = ctx.r11.s64 + -8844;
 	// bl 0x822809f0
 	ctx.lr = 0x821A8D9C;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821a8dbc
 	goto loc_821A8DBC;
 loc_821A8DA0:
@@ -21117,7 +21117,7 @@ loc_821A8DA0:
 	ctx.r5.s64 = ctx.r11.s64 + -8844;
 	// bl 0x82281f68
 	ctx.lr = 0x821A8DBC;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821A8DBC:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -21141,7 +21141,7 @@ loc_821A8DC0:
 	ctx.r5.s64 = ctx.r11.s64 + -8792;
 	// bl 0x822809f0
 	ctx.lr = 0x821A8DE8;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821a8e08
 	goto loc_821A8E08;
 loc_821A8DEC:
@@ -21161,7 +21161,7 @@ loc_821A8DEC:
 	ctx.r5.s64 = ctx.r11.s64 + -8792;
 	// bl 0x82281f68
 	ctx.lr = 0x821A8E08;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821A8E08:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -21185,7 +21185,7 @@ loc_821A8E0C:
 	ctx.r5.s64 = ctx.r11.s64 + -8552;
 	// bl 0x822806b0
 	ctx.lr = 0x821A8E34;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
 	// li r3,1
@@ -21210,7 +21210,7 @@ loc_821A8E44:
 	ctx.r5.s64 = ctx.r11.s64 + -8552;
 	// bl 0x82281dc8
 	ctx.lr = 0x821A8E60;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
 loc_821A8E64:
@@ -21277,7 +21277,7 @@ loc_821A8EA4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x822805e0
 	ctx.lr = 0x821A8ECC;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821a8eec
 	goto loc_821A8EEC;
 loc_821A8ED0:
@@ -21295,7 +21295,7 @@ loc_821A8ED0:
 	ctx.r5.s64 = ctx.r11.s64 + -8532;
 	// bl 0x82281d60
 	ctx.lr = 0x821A8EEC;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821A8EEC:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -21319,7 +21319,7 @@ loc_821A8EF0:
 	ctx.r5.s64 = ctx.r11.s64 + -8520;
 	// bl 0x822805e0
 	ctx.lr = 0x821A8F18;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821a8f38
 	goto loc_821A8F38;
 loc_821A8F1C:
@@ -21337,7 +21337,7 @@ loc_821A8F1C:
 	ctx.r5.s64 = ctx.r11.s64 + -8520;
 	// bl 0x82281d60
 	ctx.lr = 0x821A8F38;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821A8F38:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -21361,7 +21361,7 @@ loc_821A8F3C:
 	ctx.r5.s64 = ctx.r11.s64 + -8752;
 	// bl 0x822809f0
 	ctx.lr = 0x821A8F64;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821a8f84
 	goto loc_821A8F84;
 loc_821A8F68:
@@ -21381,7 +21381,7 @@ loc_821A8F68:
 	ctx.r5.s64 = ctx.r11.s64 + -8752;
 	// bl 0x82281f68
 	ctx.lr = 0x821A8F84;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821A8F84:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -21402,7 +21402,7 @@ loc_821A8F88:
 	ctx.r5.s64 = ctx.r11.s64 + -8508;
 	// bl 0x822805e0
 	ctx.lr = 0x821A8FA8;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821a8fc8
 	goto loc_821A8FC8;
 loc_821A8FAC:
@@ -21420,7 +21420,7 @@ loc_821A8FAC:
 	ctx.r5.s64 = ctx.r11.s64 + -8508;
 	// bl 0x82281d60
 	ctx.lr = 0x821A8FC8;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821A8FC8:
 	// lwz r11,0(r31)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
@@ -21438,7 +21438,7 @@ loc_821A8FC8:
 	ctx.r5.s64 = ctx.r11.s64 + -8492;
 	// bl 0x822805e0
 	ctx.lr = 0x821A8FE8;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821a9008
 	goto loc_821A9008;
 loc_821A8FEC:
@@ -21456,7 +21456,7 @@ loc_821A8FEC:
 	ctx.r5.s64 = ctx.r11.s64 + -8492;
 	// bl 0x82281d60
 	ctx.lr = 0x821A9008;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821A9008:
 	// lis r11,-32239
 	ctx.r11.s64 = -2112815104;
@@ -21474,7 +21474,7 @@ loc_821A9008:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A9028;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,0
 	ctx.r28.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -21487,14 +21487,14 @@ loc_821A9008:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821A9040;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r30
 	ctx.r4.u64 = ctx.r30.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A904C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a907c
@@ -21518,7 +21518,7 @@ loc_821A9054:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A9078;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A9078:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -21539,7 +21539,7 @@ loc_821A907C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A909C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a90c4
@@ -21550,14 +21550,14 @@ loc_821A907C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821A90B0;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r30
 	ctx.r4.u64 = ctx.r30.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A90BC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a90ec
@@ -21581,7 +21581,7 @@ loc_821A90C4:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A90E8;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A90E8:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -21644,7 +21644,7 @@ loc_821A912C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A9148;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,0
 	ctx.r28.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -21657,14 +21657,14 @@ loc_821A912C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821A9160;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r29
 	ctx.r4.u64 = ctx.r29.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A916C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a919c
@@ -21688,7 +21688,7 @@ loc_821A9174:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A9198;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A9198:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -21712,7 +21712,7 @@ loc_821A919C:
 	ctx.r5.s64 = ctx.r11.s64 + -8440;
 	// bl 0x822809f0
 	ctx.lr = 0x821A91C4;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821a91e4
 	goto loc_821A91E4;
 loc_821A91C8:
@@ -21732,7 +21732,7 @@ loc_821A91C8:
 	ctx.r5.s64 = ctx.r11.s64 + -8440;
 	// bl 0x82281f68
 	ctx.lr = 0x821A91E4;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821A91E4:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -21756,7 +21756,7 @@ loc_821A91E8:
 	ctx.r5.s64 = ctx.r11.s64 + -8428;
 	// bl 0x822806b0
 	ctx.lr = 0x821A9210;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821a9230
 	goto loc_821A9230;
 loc_821A9214:
@@ -21774,7 +21774,7 @@ loc_821A9214:
 	ctx.r5.s64 = ctx.r11.s64 + -8428;
 	// bl 0x82281dc8
 	ctx.lr = 0x821A9230;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821A9230:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -21798,7 +21798,7 @@ loc_821A9234:
 	ctx.r5.s64 = ctx.r11.s64 + -8416;
 	// bl 0x822806b0
 	ctx.lr = 0x821A925C;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821a927c
 	goto loc_821A927C;
 loc_821A9260:
@@ -21816,7 +21816,7 @@ loc_821A9260:
 	ctx.r5.s64 = ctx.r11.s64 + -8416;
 	// bl 0x82281dc8
 	ctx.lr = 0x821A927C;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821A927C:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -21837,7 +21837,7 @@ loc_821A9280:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A92A0;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a92c8
@@ -21855,7 +21855,7 @@ loc_821A9280:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A92C0;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a92f0
@@ -21879,7 +21879,7 @@ loc_821A92C8:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A92EC;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A92EC:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -21900,7 +21900,7 @@ loc_821A92F0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A9310;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a9338
@@ -21918,7 +21918,7 @@ loc_821A92F0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A9330;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a9360
@@ -21942,7 +21942,7 @@ loc_821A9338:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A935C;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A935C:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -22003,7 +22003,7 @@ loc_821A93A4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281618
 	ctx.lr = 0x821A93C0;
-	rex_serialiseStreamRW_PointerX_82281618(ctx, base);
+	sub_82281618(ctx, base);
 	// addi r4,r30,4
 	ctx.r4.s64 = ctx.r30.s64 + 4;
 	// li r9,512
@@ -22017,7 +22017,7 @@ loc_821A93A4:
 	ctx.r5.s64 = ctx.r8.s64 + -8388;
 	// bl 0x82281618
 	ctx.lr = 0x821A93DC;
-	rex_serialiseStreamRW_PointerX_82281618(ctx, base);
+	sub_82281618(ctx, base);
 	// addi r4,r30,8
 	ctx.r4.s64 = ctx.r30.s64 + 8;
 	// li r7,512
@@ -22037,7 +22037,7 @@ loc_821A93A4:
 	ctx.r5.s64 = ctx.r11.s64 + -8380;
 	// bl 0x822806b0
 	ctx.lr = 0x821A9404;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821a9424
 	goto loc_821A9424;
 loc_821A9408:
@@ -22055,7 +22055,7 @@ loc_821A9408:
 	ctx.r5.s64 = ctx.r11.s64 + -8380;
 	// bl 0x82281dc8
 	ctx.lr = 0x821A9424;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821A9424:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -22076,7 +22076,7 @@ loc_821A9428:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A9448;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,0
 	ctx.r28.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -22089,14 +22089,14 @@ loc_821A9428:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821A9460;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r29
 	ctx.r4.u64 = ctx.r29.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A946C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a949c
@@ -22120,7 +22120,7 @@ loc_821A9474:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A9498;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A9498:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -22144,7 +22144,7 @@ loc_821A949C:
 	ctx.r5.s64 = ctx.r11.s64 + -8356;
 	// bl 0x822806b0
 	ctx.lr = 0x821A94C4;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821a94e4
 	goto loc_821A94E4;
 loc_821A94C8:
@@ -22162,7 +22162,7 @@ loc_821A94C8:
 	ctx.r5.s64 = ctx.r11.s64 + -8356;
 	// bl 0x82281dc8
 	ctx.lr = 0x821A94E4;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821A94E4:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -22183,7 +22183,7 @@ loc_821A94E8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A9508;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a9530
@@ -22194,14 +22194,14 @@ loc_821A94E8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821A951C;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r30
 	ctx.r4.u64 = ctx.r30.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A9528;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a9558
@@ -22225,7 +22225,7 @@ loc_821A9530:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A9554;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A9554:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -22289,7 +22289,7 @@ loc_821A95A0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281618
 	ctx.lr = 0x821A95BC;
-	rex_serialiseStreamRW_PointerX_82281618(ctx, base);
+	sub_82281618(ctx, base);
 	// addi r4,r26,4
 	ctx.r4.s64 = ctx.r26.s64 + 4;
 	// li r9,512
@@ -22309,7 +22309,7 @@ loc_821A95A0:
 	ctx.r5.s64 = ctx.r11.s64 + -8380;
 	// bl 0x822806b0
 	ctx.lr = 0x821A95E4;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821a9604
 	goto loc_821A9604;
 loc_821A95E8:
@@ -22327,7 +22327,7 @@ loc_821A95E8:
 	ctx.r5.s64 = ctx.r11.s64 + -8380;
 	// bl 0x82281dc8
 	ctx.lr = 0x821A9604;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821A9604:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -22348,7 +22348,7 @@ loc_821A9608:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A9628;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r24,0
 	ctx.r24.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -22361,14 +22361,14 @@ loc_821A9608:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821A9640;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r30
 	ctx.r4.u64 = ctx.r30.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A964C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a967c
@@ -22392,7 +22392,7 @@ loc_821A9654:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A9678;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A9678:
 	// stw r24,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r24.u32);
@@ -22416,7 +22416,7 @@ loc_821A967C:
 	ctx.r5.s64 = ctx.r11.s64 + -8316;
 	// bl 0x822809f0
 	ctx.lr = 0x821A96A4;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821a96c4
 	goto loc_821A96C4;
 loc_821A96A8:
@@ -22436,7 +22436,7 @@ loc_821A96A8:
 	ctx.r5.s64 = ctx.r11.s64 + -8316;
 	// bl 0x82281f68
 	ctx.lr = 0x821A96C4;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821A96C4:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -22460,7 +22460,7 @@ loc_821A96C8:
 	ctx.r5.s64 = ctx.r11.s64 + -8304;
 	// bl 0x822806b0
 	ctx.lr = 0x821A96F0;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821a9710
 	goto loc_821A9710;
 loc_821A96F4:
@@ -22478,7 +22478,7 @@ loc_821A96F4:
 	ctx.r5.s64 = ctx.r11.s64 + -8304;
 	// bl 0x82281dc8
 	ctx.lr = 0x821A9710;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821A9710:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -22508,7 +22508,7 @@ loc_821A972C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A9744;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a976c
@@ -22519,14 +22519,14 @@ loc_821A972C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821A9758;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r30
 	ctx.r4.u64 = ctx.r30.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A9764;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a9794
@@ -22550,7 +22550,7 @@ loc_821A976C:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A9790;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A9790:
 	// stw r24,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r24.u32);
@@ -22584,7 +22584,7 @@ loc_821A9794:
 	ctx.r5.s64 = ctx.r11.s64 + -8268;
 	// bl 0x822805e0
 	ctx.lr = 0x821A97CC;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821a97ec
 	goto loc_821A97EC;
 loc_821A97D0:
@@ -22602,7 +22602,7 @@ loc_821A97D0:
 	ctx.r5.s64 = ctx.r11.s64 + -8268;
 	// bl 0x82281d60
 	ctx.lr = 0x821A97EC;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821A97EC:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -22630,7 +22630,7 @@ loc_821A9804:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A981C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a9844
@@ -22641,14 +22641,14 @@ loc_821A9804:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821A9830;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r30
 	ctx.r4.u64 = ctx.r30.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A983C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a986c
@@ -22672,7 +22672,7 @@ loc_821A9844:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A9868;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A9868:
 	// stw r24,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r24.u32);
@@ -22706,7 +22706,7 @@ loc_821A986C:
 	ctx.r5.s64 = ctx.r11.s64 + -8232;
 	// bl 0x822805e0
 	ctx.lr = 0x821A98A4;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
 	// b 0x821a994c
@@ -22734,7 +22734,7 @@ loc_821A98AC:
 	ctx.r27.u64 = PPC_LOAD_U32(ctx.r31.u32 + 8);
 	// bl 0x8220cd10
 	ctx.lr = 0x821A98D8;
-	rex_dsMemoryContainerAlloc_8220CD10(ctx, base);
+	sub_8220CD10(ctx, base);
 	// lis r11,-32239
 	ctx.r11.s64 = -2112815104;
 	// mr r30,r3
@@ -22743,7 +22743,7 @@ loc_821A98AC:
 	ctx.r3.s64 = ctx.r11.s64 + -8232;
 	// bl 0x82282f60
 	ctx.lr = 0x821A98E8;
-	rex_meGetVariableNameHash_82282F60(ctx, base);
+	sub_82282F60(ctx, base);
 	// sth r3,10(r30)
 	PPC_STORE_U16(ctx.r30.u32 + 10, ctx.r3.u16);
 	// stw r24,0(r30)
@@ -22790,7 +22790,7 @@ loc_821A9918:
 	ctx.r3.s64 = ctx.r11.s64 + 36;
 	// bl 0x8220cd10
 	ctx.lr = 0x821A9940;
-	rex_dsMemoryContainerAlloc_8220CD10(ctx, base);
+	sub_8220CD10(ctx, base);
 	// stw r3,12(r30)
 	PPC_STORE_U32(ctx.r30.u32 + 12, ctx.r3.u32);
 	// stw r28,0(r3)
@@ -22817,7 +22817,7 @@ loc_821A994C:
 	ctx.r5.s64 = ctx.r11.s64 + -8752;
 	// bl 0x822809f0
 	ctx.lr = 0x821A9974;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821a9994
 	goto loc_821A9994;
 loc_821A9978:
@@ -22837,7 +22837,7 @@ loc_821A9978:
 	ctx.r5.s64 = ctx.r11.s64 + -8752;
 	// bl 0x82281f68
 	ctx.lr = 0x821A9994;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821A9994:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -22858,7 +22858,7 @@ loc_821A9998:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A99B8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a9b38
@@ -22894,7 +22894,7 @@ loc_821A99E0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A99FC;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a9a24
@@ -22905,14 +22905,14 @@ loc_821A99E0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821A9A10;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r29
 	ctx.r4.u64 = ctx.r29.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A9A1C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a9a4c
@@ -22936,7 +22936,7 @@ loc_821A9A24:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A9A48;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A9A48:
 	// stw r24,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r24.u32);
@@ -22957,7 +22957,7 @@ loc_821A9A4C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A9A6C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a9a94
@@ -22968,14 +22968,14 @@ loc_821A9A4C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821A9A80;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r30
 	ctx.r4.u64 = ctx.r30.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A9A8C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a9abc
@@ -22999,7 +22999,7 @@ loc_821A9A94:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A9AB8;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A9AB8:
 	// stw r24,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r24.u32);
@@ -23023,7 +23023,7 @@ loc_821A9ABC:
 	ctx.r5.s64 = ctx.r11.s64 + -8984;
 	// bl 0x822809f0
 	ctx.lr = 0x821A9AE4;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
 	// mr r4,r29
@@ -23032,7 +23032,7 @@ loc_821A9ABC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A9AF4;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// li r3,1
 	ctx.r3.s64 = 1;
 	// addi r1,r1,160
@@ -23057,7 +23057,7 @@ loc_821A9B00:
 	ctx.r5.s64 = ctx.r11.s64 + -8984;
 	// bl 0x82281f68
 	ctx.lr = 0x821A9B1C;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
 loc_821A9B20:
@@ -23067,7 +23067,7 @@ loc_821A9B20:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A9B2C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// li r3,1
 	ctx.r3.s64 = 1;
 	// addi r1,r1,160
@@ -23094,7 +23094,7 @@ loc_821A9B38:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A9B5C;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A9B5C:
 	// stw r24,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r24.u32);
@@ -23157,7 +23157,7 @@ loc_821A9BAC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281618
 	ctx.lr = 0x821A9BC8;
-	rex_serialiseStreamRW_PointerX_82281618(ctx, base);
+	sub_82281618(ctx, base);
 	// addi r4,r30,4
 	ctx.r4.s64 = ctx.r30.s64 + 4;
 	// li r9,512
@@ -23177,7 +23177,7 @@ loc_821A9BAC:
 	ctx.r5.s64 = ctx.r11.s64 + -8192;
 	// bl 0x822806b0
 	ctx.lr = 0x821A9BF0;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821a9c10
 	goto loc_821A9C10;
 loc_821A9BF4:
@@ -23195,7 +23195,7 @@ loc_821A9BF4:
 	ctx.r5.s64 = ctx.r11.s64 + -8192;
 	// bl 0x82281dc8
 	ctx.lr = 0x821A9C10;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821A9C10:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -23267,7 +23267,7 @@ loc_821A9C64:
 	ctx.r5.s64 = ctx.r11.s64 + -18348;
 	// bl 0x822809f0
 	ctx.lr = 0x821A9C88;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821a9ca8
 	goto loc_821A9CA8;
 loc_821A9C8C:
@@ -23287,7 +23287,7 @@ loc_821A9C8C:
 	ctx.r5.s64 = ctx.r11.s64 + -18348;
 	// bl 0x82281f68
 	ctx.lr = 0x821A9CA8;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821A9CA8:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -23353,7 +23353,7 @@ loc_821A9CFC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281618
 	ctx.lr = 0x821A9D18;
-	rex_serialiseStreamRW_PointerX_82281618(ctx, base);
+	sub_82281618(ctx, base);
 	// lis r9,-32239
 	ctx.r9.s64 = -2112815104;
 	// addi r30,r27,4
@@ -23370,7 +23370,7 @@ loc_821A9CFC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A9D38;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r26,0
 	ctx.r26.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -23383,14 +23383,14 @@ loc_821A9CFC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821A9D50;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r30
 	ctx.r4.u64 = ctx.r30.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A9D5C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a9d8c
@@ -23414,7 +23414,7 @@ loc_821A9D64:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A9D88;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A9D88:
 	// stw r26,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r26.u32);
@@ -23435,7 +23435,7 @@ loc_821A9D8C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A9DAC;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a9dd4
@@ -23453,7 +23453,7 @@ loc_821A9D8C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A9DCC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a9dfc
@@ -23477,7 +23477,7 @@ loc_821A9DD4:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A9DF8;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A9DF8:
 	// stw r26,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r26.u32);
@@ -23498,7 +23498,7 @@ loc_821A9DFC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A9E1C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a9e44
@@ -23516,7 +23516,7 @@ loc_821A9DFC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A9E3C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a9e6c
@@ -23540,7 +23540,7 @@ loc_821A9E44:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A9E68;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A9E68:
 	// stw r26,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r26.u32);
@@ -23570,7 +23570,7 @@ loc_821A9E84:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A9E9C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a9ec4
@@ -23581,14 +23581,14 @@ loc_821A9E84:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821A9EB0;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r30
 	ctx.r4.u64 = ctx.r30.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A9EBC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a9eec
@@ -23612,7 +23612,7 @@ loc_821A9EC4:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A9EE8;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A9EE8:
 	// stw r26,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r26.u32);
@@ -23646,7 +23646,7 @@ loc_821A9EEC:
 	ctx.r5.s64 = ctx.r11.s64 + -8268;
 	// bl 0x822805e0
 	ctx.lr = 0x821A9F24;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821a9f44
 	goto loc_821A9F44;
 loc_821A9F28:
@@ -23664,7 +23664,7 @@ loc_821A9F28:
 	ctx.r5.s64 = ctx.r11.s64 + -8268;
 	// bl 0x82281d60
 	ctx.lr = 0x821A9F44;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821A9F44:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -23692,7 +23692,7 @@ loc_821A9F5C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821A9F74;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821a9f9c
@@ -23703,14 +23703,14 @@ loc_821A9F5C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821A9F88;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r30
 	ctx.r4.u64 = ctx.r30.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821A9F94;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821a9fc4
@@ -23734,7 +23734,7 @@ loc_821A9F9C:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821A9FC0;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821A9FC0:
 	// stw r26,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r26.u32);
@@ -23768,7 +23768,7 @@ loc_821A9FC4:
 	ctx.r5.s64 = ctx.r11.s64 + -8232;
 	// bl 0x822805e0
 	ctx.lr = 0x821A9FFC;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
 	// li r3,1
@@ -23801,7 +23801,7 @@ loc_821AA00C:
 	ctx.r27.u64 = PPC_LOAD_U32(ctx.r31.u32 + 8);
 	// bl 0x8220cd10
 	ctx.lr = 0x821AA038;
-	rex_dsMemoryContainerAlloc_8220CD10(ctx, base);
+	sub_8220CD10(ctx, base);
 	// lis r11,-32239
 	ctx.r11.s64 = -2112815104;
 	// mr r30,r3
@@ -23810,7 +23810,7 @@ loc_821AA00C:
 	ctx.r3.s64 = ctx.r11.s64 + -8232;
 	// bl 0x82282f60
 	ctx.lr = 0x821AA048;
-	rex_meGetVariableNameHash_82282F60(ctx, base);
+	sub_82282F60(ctx, base);
 	// sth r3,10(r30)
 	PPC_STORE_U16(ctx.r30.u32 + 10, ctx.r3.u16);
 	// stw r26,0(r30)
@@ -23857,7 +23857,7 @@ loc_821AA078:
 	ctx.r3.s64 = ctx.r11.s64 + 36;
 	// bl 0x8220cd10
 	ctx.lr = 0x821AA0A0;
-	rex_dsMemoryContainerAlloc_8220CD10(ctx, base);
+	sub_8220CD10(ctx, base);
 	// mr r10,r3
 	ctx.r10.u64 = ctx.r3.u64;
 	// stw r10,12(r30)
@@ -23924,7 +23924,7 @@ loc_821AA0F4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281618
 	ctx.lr = 0x821AA110;
-	rex_serialiseStreamRW_PointerX_82281618(ctx, base);
+	sub_82281618(ctx, base);
 	// addi r4,r27,4
 	ctx.r4.s64 = ctx.r27.s64 + 4;
 	// li r9,512
@@ -23938,7 +23938,7 @@ loc_821AA0F4:
 	ctx.r5.s64 = ctx.r8.s64 + -8388;
 	// bl 0x82281618
 	ctx.lr = 0x821AA12C;
-	rex_serialiseStreamRW_PointerX_82281618(ctx, base);
+	sub_82281618(ctx, base);
 	// addi r4,r27,8
 	ctx.r4.s64 = ctx.r27.s64 + 8;
 	// li r7,512
@@ -23958,7 +23958,7 @@ loc_821AA0F4:
 	ctx.r5.s64 = ctx.r11.s64 + -8752;
 	// bl 0x822809f0
 	ctx.lr = 0x821AA154;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821aa174
 	goto loc_821AA174;
 loc_821AA158:
@@ -23978,7 +23978,7 @@ loc_821AA158:
 	ctx.r5.s64 = ctx.r11.s64 + -8752;
 	// bl 0x82281f68
 	ctx.lr = 0x821AA174;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821AA174:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -24002,7 +24002,7 @@ loc_821AA178:
 	ctx.r5.s64 = ctx.r11.s64 + -8380;
 	// bl 0x822806b0
 	ctx.lr = 0x821AA1A0;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821aa1c0
 	goto loc_821AA1C0;
 loc_821AA1A4:
@@ -24020,7 +24020,7 @@ loc_821AA1A4:
 	ctx.r5.s64 = ctx.r11.s64 + -8380;
 	// bl 0x82281dc8
 	ctx.lr = 0x821AA1C0;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821AA1C0:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -24041,7 +24041,7 @@ loc_821AA1C4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821AA1E4;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r26,0
 	ctx.r26.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -24061,7 +24061,7 @@ loc_821AA1C4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821AA208;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821aa238
@@ -24085,7 +24085,7 @@ loc_821AA210:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821AA234;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821AA234:
 	// stw r26,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r26.u32);
@@ -24106,7 +24106,7 @@ loc_821AA238:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821AA258;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821aa280
@@ -24124,7 +24124,7 @@ loc_821AA238:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821AA278;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821aa2a8
@@ -24148,7 +24148,7 @@ loc_821AA280:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821AA2A4;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821AA2A4:
 	// stw r26,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r26.u32);
@@ -24178,7 +24178,7 @@ loc_821AA2C0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821AA2D8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821aa300
@@ -24189,14 +24189,14 @@ loc_821AA2C0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821AA2EC;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r30
 	ctx.r4.u64 = ctx.r30.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821AA2F8;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821aa328
@@ -24220,7 +24220,7 @@ loc_821AA300:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821AA324;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821AA324:
 	// stw r26,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r26.u32);
@@ -24254,7 +24254,7 @@ loc_821AA328:
 	ctx.r5.s64 = ctx.r11.s64 + -8268;
 	// bl 0x822805e0
 	ctx.lr = 0x821AA360;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821aa380
 	goto loc_821AA380;
 loc_821AA364:
@@ -24272,7 +24272,7 @@ loc_821AA364:
 	ctx.r5.s64 = ctx.r11.s64 + -8268;
 	// bl 0x82281d60
 	ctx.lr = 0x821AA380;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821AA380:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -24300,7 +24300,7 @@ loc_821AA398:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821AA3B0;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821aa3d8
@@ -24311,14 +24311,14 @@ loc_821AA398:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821AA3C4;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r30
 	ctx.r4.u64 = ctx.r30.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821AA3D0;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821aa400
@@ -24342,7 +24342,7 @@ loc_821AA3D8:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821AA3FC;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821AA3FC:
 	// stw r26,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r26.u32);
@@ -24376,7 +24376,7 @@ loc_821AA400:
 	ctx.r5.s64 = ctx.r11.s64 + -8232;
 	// bl 0x822805e0
 	ctx.lr = 0x821AA438;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
 	// li r3,1
@@ -24409,7 +24409,7 @@ loc_821AA448:
 	ctx.r27.u64 = PPC_LOAD_U32(ctx.r31.u32 + 8);
 	// bl 0x8220cd10
 	ctx.lr = 0x821AA474;
-	rex_dsMemoryContainerAlloc_8220CD10(ctx, base);
+	sub_8220CD10(ctx, base);
 	// lis r11,-32239
 	ctx.r11.s64 = -2112815104;
 	// mr r30,r3
@@ -24418,7 +24418,7 @@ loc_821AA448:
 	ctx.r3.s64 = ctx.r11.s64 + -8232;
 	// bl 0x82282f60
 	ctx.lr = 0x821AA484;
-	rex_meGetVariableNameHash_82282F60(ctx, base);
+	sub_82282F60(ctx, base);
 	// sth r3,10(r30)
 	PPC_STORE_U16(ctx.r30.u32 + 10, ctx.r3.u16);
 	// stw r26,0(r30)
@@ -24465,7 +24465,7 @@ loc_821AA4B4:
 	ctx.r3.s64 = ctx.r11.s64 + 36;
 	// bl 0x8220cd10
 	ctx.lr = 0x821AA4DC;
-	rex_dsMemoryContainerAlloc_8220CD10(ctx, base);
+	sub_8220CD10(ctx, base);
 	// mr r10,r3
 	ctx.r10.u64 = ctx.r3.u64;
 	// stw r10,12(r30)
@@ -24540,7 +24540,7 @@ loc_821AA530:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x822806b0
 	ctx.lr = 0x821AA558;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821aa578
 	goto loc_821AA578;
 loc_821AA55C:
@@ -24558,7 +24558,7 @@ loc_821AA55C:
 	ctx.r5.s64 = ctx.r11.s64 + -8380;
 	// bl 0x82281dc8
 	ctx.lr = 0x821AA578;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821AA578:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -24576,7 +24576,7 @@ loc_821AA57C:
 	ctx.r5.s64 = ctx.r10.s64 + -8124;
 	// bl 0x82281618
 	ctx.lr = 0x821AA598;
-	rex_serialiseStreamRW_PointerX_82281618(ctx, base);
+	sub_82281618(ctx, base);
 	// addi r4,r30,8
 	ctx.r4.s64 = ctx.r30.s64 + 8;
 	// li r9,512
@@ -24590,7 +24590,7 @@ loc_821AA57C:
 	ctx.r5.s64 = ctx.r8.s64 + -8112;
 	// bl 0x82281618
 	ctx.lr = 0x821AA5B4;
-	rex_serialiseStreamRW_PointerX_82281618(ctx, base);
+	sub_82281618(ctx, base);
 	// addi r4,r30,12
 	ctx.r4.s64 = ctx.r30.s64 + 12;
 	// li r7,512
@@ -24610,7 +24610,7 @@ loc_821AA57C:
 	ctx.r5.s64 = ctx.r11.s64 + -8752;
 	// bl 0x822809f0
 	ctx.lr = 0x821AA5DC;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821aa5fc
 	goto loc_821AA5FC;
 loc_821AA5E0:
@@ -24630,7 +24630,7 @@ loc_821AA5E0:
 	ctx.r5.s64 = ctx.r11.s64 + -8752;
 	// bl 0x82281f68
 	ctx.lr = 0x821AA5FC;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821AA5FC:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -24651,7 +24651,7 @@ loc_821AA600:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821AA620;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821aa7a4
@@ -24687,7 +24687,7 @@ loc_821AA648:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821AA664;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,0
 	ctx.r27.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -24700,14 +24700,14 @@ loc_821AA648:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821AA67C;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r28
 	ctx.r4.u64 = ctx.r28.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821AA688;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821aa6b8
@@ -24731,7 +24731,7 @@ loc_821AA690:
 	ctx.r3.u64 = ctx.r28.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821AA6B4;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821AA6B4:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -24752,7 +24752,7 @@ loc_821AA6B8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821AA6D8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821aa700
@@ -24763,14 +24763,14 @@ loc_821AA6B8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821AA6EC;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r29
 	ctx.r4.u64 = ctx.r29.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821AA6F8;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821aa728
@@ -24794,7 +24794,7 @@ loc_821AA700:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821AA724;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821AA724:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -24818,7 +24818,7 @@ loc_821AA728:
 	ctx.r5.s64 = ctx.r11.s64 + -8984;
 	// bl 0x822809f0
 	ctx.lr = 0x821AA750;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
 	// mr r4,r28
@@ -24827,7 +24827,7 @@ loc_821AA728:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821AA760;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// li r3,1
 	ctx.r3.s64 = 1;
 	// addi r1,r1,128
@@ -24852,7 +24852,7 @@ loc_821AA76C:
 	ctx.r5.s64 = ctx.r11.s64 + -8984;
 	// bl 0x82281f68
 	ctx.lr = 0x821AA788;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
 loc_821AA78C:
@@ -24862,7 +24862,7 @@ loc_821AA78C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821AA798;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// li r3,1
 	ctx.r3.s64 = 1;
 	// addi r1,r1,128
@@ -24889,7 +24889,7 @@ loc_821AA7A4:
 	ctx.r3.u64 = ctx.r28.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821AA7C8;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821AA7C8:
 	// li r11,0
 	ctx.r11.s64 = 0;
@@ -24951,7 +24951,7 @@ loc_821AA814:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281618
 	ctx.lr = 0x821AA830;
-	rex_serialiseStreamRW_PointerX_82281618(ctx, base);
+	sub_82281618(ctx, base);
 	// addi r4,r29,4
 	ctx.r4.s64 = ctx.r29.s64 + 4;
 	// li r9,512
@@ -24971,7 +24971,7 @@ loc_821AA814:
 	ctx.r5.s64 = ctx.r11.s64 + -8380;
 	// bl 0x822806b0
 	ctx.lr = 0x821AA858;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821aa878
 	goto loc_821AA878;
 loc_821AA85C:
@@ -24989,7 +24989,7 @@ loc_821AA85C:
 	ctx.r5.s64 = ctx.r11.s64 + -8380;
 	// bl 0x82281dc8
 	ctx.lr = 0x821AA878;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821AA878:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -25013,7 +25013,7 @@ loc_821AA87C:
 	ctx.r5.s64 = ctx.r11.s64 + -8100;
 	// bl 0x822806b0
 	ctx.lr = 0x821AA8A4;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821aa8c4
 	goto loc_821AA8C4;
 loc_821AA8A8:
@@ -25031,7 +25031,7 @@ loc_821AA8A8:
 	ctx.r5.s64 = ctx.r11.s64 + -8100;
 	// bl 0x82281dc8
 	ctx.lr = 0x821AA8C4;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821AA8C4:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -25052,7 +25052,7 @@ loc_821AA8C8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821AA8E8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,0
 	ctx.r28.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -25065,14 +25065,14 @@ loc_821AA8C8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821AA900;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r30
 	ctx.r4.u64 = ctx.r30.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821AA90C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821aa93c
@@ -25096,7 +25096,7 @@ loc_821AA914:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821AA938;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821AA938:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -25120,7 +25120,7 @@ loc_821AA93C:
 	ctx.r5.s64 = ctx.r11.s64 + -8084;
 	// bl 0x822806b0
 	ctx.lr = 0x821AA964;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821aa984
 	goto loc_821AA984;
 loc_821AA968:
@@ -25138,7 +25138,7 @@ loc_821AA968:
 	ctx.r5.s64 = ctx.r11.s64 + -8084;
 	// bl 0x82281dc8
 	ctx.lr = 0x821AA984;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821AA984:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -25159,7 +25159,7 @@ loc_821AA988:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821AA9A8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821aa9d0
@@ -25170,14 +25170,14 @@ loc_821AA988:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821AA9BC;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r30
 	ctx.r4.u64 = ctx.r30.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821AA9C8;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821aa9f8
@@ -25201,7 +25201,7 @@ loc_821AA9D0:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821AA9F4;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821AA9F4:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -25287,7 +25287,7 @@ loc_821AAA64:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281618
 	ctx.lr = 0x821AAA80;
-	rex_serialiseStreamRW_PointerX_82281618(ctx, base);
+	sub_82281618(ctx, base);
 	// addi r4,r27,4
 	ctx.r4.s64 = ctx.r27.s64 + 4;
 	// li r9,512
@@ -25307,7 +25307,7 @@ loc_821AAA64:
 	ctx.r5.s64 = ctx.r11.s64 + -8380;
 	// bl 0x822806b0
 	ctx.lr = 0x821AAAA8;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821aaac8
 	goto loc_821AAAC8;
 loc_821AAAAC:
@@ -25325,7 +25325,7 @@ loc_821AAAAC:
 	ctx.r5.s64 = ctx.r11.s64 + -8380;
 	// bl 0x82281dc8
 	ctx.lr = 0x821AAAC8;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821AAAC8:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -25349,7 +25349,7 @@ loc_821AAACC:
 	ctx.r5.s64 = ctx.r11.s64 + -8072;
 	// bl 0x822806b0
 	ctx.lr = 0x821AAAF4;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821aab14
 	goto loc_821AAB14;
 loc_821AAAF8:
@@ -25367,7 +25367,7 @@ loc_821AAAF8:
 	ctx.r5.s64 = ctx.r11.s64 + -8072;
 	// bl 0x82281dc8
 	ctx.lr = 0x821AAB14;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821AAB14:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -25391,7 +25391,7 @@ loc_821AAB18:
 	ctx.r5.s64 = ctx.r11.s64 + -8056;
 	// bl 0x822806b0
 	ctx.lr = 0x821AAB40;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821aab60
 	goto loc_821AAB60;
 loc_821AAB44:
@@ -25409,7 +25409,7 @@ loc_821AAB44:
 	ctx.r5.s64 = ctx.r11.s64 + -8056;
 	// bl 0x82281dc8
 	ctx.lr = 0x821AAB60;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821AAB60:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -25441,7 +25441,7 @@ loc_821AAB80:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821AAB98;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821aabc0
@@ -25452,14 +25452,14 @@ loc_821AAB80:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821AABAC;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r30
 	ctx.r4.u64 = ctx.r30.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821AABB8;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821aabe8
@@ -25483,7 +25483,7 @@ loc_821AABC0:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821AABE4;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821AABE4:
 	// stw r26,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r26.u32);
@@ -25517,7 +25517,7 @@ loc_821AABE8:
 	ctx.r5.s64 = ctx.r11.s64 + -8268;
 	// bl 0x822805e0
 	ctx.lr = 0x821AAC20;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821aac40
 	goto loc_821AAC40;
 loc_821AAC24:
@@ -25535,7 +25535,7 @@ loc_821AAC24:
 	ctx.r5.s64 = ctx.r11.s64 + -8268;
 	// bl 0x82281d60
 	ctx.lr = 0x821AAC40;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821AAC40:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -25563,7 +25563,7 @@ loc_821AAC58:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821AAC70;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821aac98
@@ -25574,14 +25574,14 @@ loc_821AAC58:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821AAC84;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r30
 	ctx.r4.u64 = ctx.r30.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821AAC90;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821aacc0
@@ -25605,7 +25605,7 @@ loc_821AAC98:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821AACBC;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821AACBC:
 	// stw r26,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r26.u32);
@@ -25639,7 +25639,7 @@ loc_821AACC0:
 	ctx.r5.s64 = ctx.r11.s64 + -8232;
 	// bl 0x822805e0
 	ctx.lr = 0x821AACF8;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
 	// li r3,1
@@ -25672,7 +25672,7 @@ loc_821AAD08:
 	ctx.r27.u64 = PPC_LOAD_U32(ctx.r31.u32 + 8);
 	// bl 0x8220cd10
 	ctx.lr = 0x821AAD34;
-	rex_dsMemoryContainerAlloc_8220CD10(ctx, base);
+	sub_8220CD10(ctx, base);
 	// lis r11,-32239
 	ctx.r11.s64 = -2112815104;
 	// mr r30,r3
@@ -25681,7 +25681,7 @@ loc_821AAD08:
 	ctx.r3.s64 = ctx.r11.s64 + -8232;
 	// bl 0x82282f60
 	ctx.lr = 0x821AAD44;
-	rex_meGetVariableNameHash_82282F60(ctx, base);
+	sub_82282F60(ctx, base);
 	// sth r3,10(r30)
 	PPC_STORE_U16(ctx.r30.u32 + 10, ctx.r3.u16);
 	// stw r26,0(r30)
@@ -25728,7 +25728,7 @@ loc_821AAD74:
 	ctx.r3.s64 = ctx.r11.s64 + 36;
 	// bl 0x8220cd10
 	ctx.lr = 0x821AAD9C;
-	rex_dsMemoryContainerAlloc_8220CD10(ctx, base);
+	sub_8220CD10(ctx, base);
 	// mr r10,r3
 	ctx.r10.u64 = ctx.r3.u64;
 	// stw r10,12(r30)
@@ -25794,7 +25794,7 @@ loc_821AADEC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281618
 	ctx.lr = 0x821AAE08;
-	rex_serialiseStreamRW_PointerX_82281618(ctx, base);
+	sub_82281618(ctx, base);
 	// addi r4,r29,4
 	ctx.r4.s64 = ctx.r29.s64 + 4;
 	// li r9,512
@@ -25814,7 +25814,7 @@ loc_821AADEC:
 	ctx.r5.s64 = ctx.r11.s64 + -8040;
 	// bl 0x822805e0
 	ctx.lr = 0x821AAE30;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821aae50
 	goto loc_821AAE50;
 loc_821AAE34:
@@ -25832,7 +25832,7 @@ loc_821AAE34:
 	ctx.r5.s64 = ctx.r11.s64 + -8040;
 	// bl 0x82281d60
 	ctx.lr = 0x821AAE50;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821AAE50:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -25856,7 +25856,7 @@ loc_821AAE54:
 	ctx.r5.s64 = ctx.r11.s64 + -8028;
 	// bl 0x822805e0
 	ctx.lr = 0x821AAE7C;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821aae9c
 	goto loc_821AAE9C;
 loc_821AAE80:
@@ -25874,7 +25874,7 @@ loc_821AAE80:
 	ctx.r5.s64 = ctx.r11.s64 + -8028;
 	// bl 0x82281d60
 	ctx.lr = 0x821AAE9C;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821AAE9C:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -25898,7 +25898,7 @@ loc_821AAEA0:
 	ctx.r5.s64 = ctx.r11.s64 + -8020;
 	// bl 0x822805e0
 	ctx.lr = 0x821AAEC8;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821aaee8
 	goto loc_821AAEE8;
 loc_821AAECC:
@@ -25916,7 +25916,7 @@ loc_821AAECC:
 	ctx.r5.s64 = ctx.r11.s64 + -8020;
 	// bl 0x82281d60
 	ctx.lr = 0x821AAEE8;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821AAEE8:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -25948,7 +25948,7 @@ loc_821AAF08:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821AAF20;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821aaf48
@@ -25959,14 +25959,14 @@ loc_821AAF08:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821AAF34;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r30
 	ctx.r4.u64 = ctx.r30.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821AAF40;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821aaf70
@@ -25990,7 +25990,7 @@ loc_821AAF48:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821AAF6C;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821AAF6C:
 	// stw r25,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r25.u32);
@@ -26026,7 +26026,7 @@ loc_821AAF90:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821AAFA8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821aafd0
@@ -26037,14 +26037,14 @@ loc_821AAF90:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821AAFBC;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r30
 	ctx.r4.u64 = ctx.r30.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821AAFC8;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821aaff8
@@ -26068,7 +26068,7 @@ loc_821AAFD0:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821AAFF4;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821AAFF4:
 	// stw r25,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r25.u32);
@@ -26132,7 +26132,7 @@ loc_821AB044:
 	ctx.r5.s64 = ctx.r10.s64 + -7976;
 	// bl 0x82281390
 	ctx.lr = 0x821AB05C;
-	rex_serialiseStreamRW_StringX_82281390(ctx, base);
+	sub_82281390(ctx, base);
 	// li r3,1
 	ctx.r3.s64 = 1;
 	// addi r1,r1,96
@@ -26185,7 +26185,7 @@ loc_821AB09C:
 	ctx.r5.s64 = ctx.r10.s64 + -7964;
 	// bl 0x82281390
 	ctx.lr = 0x821AB0B4;
-	rex_serialiseStreamRW_StringX_82281390(ctx, base);
+	sub_82281390(ctx, base);
 	// li r3,1
 	ctx.r3.s64 = 1;
 	// addi r1,r1,96
@@ -26247,7 +26247,7 @@ loc_821AB0FC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821AB118;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,0
 	ctx.r28.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -26260,14 +26260,14 @@ loc_821AB0FC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821AB130;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r29
 	ctx.r4.u64 = ctx.r29.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821AB13C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821ab16c
@@ -26291,7 +26291,7 @@ loc_821AB144:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821AB168;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821AB168:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -26312,7 +26312,7 @@ loc_821AB16C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821AB18C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821ab1b4
@@ -26323,14 +26323,14 @@ loc_821AB16C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821AB1A0;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r30
 	ctx.r4.u64 = ctx.r30.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821AB1AC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821ab1dc
@@ -26354,7 +26354,7 @@ loc_821AB1B4:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821AB1D8;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821AB1D8:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -26375,7 +26375,7 @@ loc_821AB1DC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821AB1FC;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821ab224
@@ -26386,14 +26386,14 @@ loc_821AB1DC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821AB210;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r30
 	ctx.r4.u64 = ctx.r30.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821AB21C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821ab24c
@@ -26417,7 +26417,7 @@ loc_821AB224:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821AB248;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821AB248:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -26438,7 +26438,7 @@ loc_821AB24C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821AB26C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821ab294
@@ -26456,7 +26456,7 @@ loc_821AB24C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821AB28C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821ab2bc
@@ -26480,7 +26480,7 @@ loc_821AB294:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821AB2B8;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821AB2B8:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -26501,7 +26501,7 @@ loc_821AB2BC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821AB2DC;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821ab304
@@ -26519,7 +26519,7 @@ loc_821AB2BC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821AB2FC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821ab32c
@@ -26543,7 +26543,7 @@ loc_821AB304:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821AB328;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821AB328:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -26564,7 +26564,7 @@ loc_821AB32C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821AB34C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821ab374
@@ -26582,7 +26582,7 @@ loc_821AB32C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821AB36C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821ab39c
@@ -26606,7 +26606,7 @@ loc_821AB374:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821AB398;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821AB398:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -26630,7 +26630,7 @@ loc_821AB39C:
 	ctx.r5.s64 = ctx.r11.s64 + -7848;
 	// bl 0x822809f0
 	ctx.lr = 0x821AB3C4;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821ab3e4
 	goto loc_821AB3E4;
 loc_821AB3C8:
@@ -26650,7 +26650,7 @@ loc_821AB3C8:
 	ctx.r5.s64 = ctx.r11.s64 + -7848;
 	// bl 0x82281f68
 	ctx.lr = 0x821AB3E4;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821AB3E4:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -26674,7 +26674,7 @@ loc_821AB3E8:
 	ctx.r5.s64 = ctx.r11.s64 + -7840;
 	// bl 0x822809f0
 	ctx.lr = 0x821AB410;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
 	// li r3,1
@@ -26701,7 +26701,7 @@ loc_821AB420:
 	ctx.r5.s64 = ctx.r11.s64 + -7840;
 	// bl 0x82281f68
 	ctx.lr = 0x821AB43C;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
 loc_821AB440:
@@ -26765,7 +26765,7 @@ loc_821AB484:
 	ctx.r5.s64 = ctx.r11.s64 + -8984;
 	// bl 0x822809f0
 	ctx.lr = 0x821AB4A8;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821ab4c8
 	goto loc_821AB4C8;
 loc_821AB4AC:
@@ -26785,7 +26785,7 @@ loc_821AB4AC:
 	ctx.r5.s64 = ctx.r11.s64 + -8984;
 	// bl 0x82281f68
 	ctx.lr = 0x821AB4C8;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821AB4C8:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -26857,7 +26857,7 @@ loc_821AB524:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281390
 	ctx.lr = 0x821AB544;
-	rex_serialiseStreamRW_StringX_82281390(ctx, base);
+	sub_82281390(ctx, base);
 	// addi r4,r30,48
 	ctx.r4.s64 = ctx.r30.s64 + 48;
 	// li r9,512
@@ -26877,7 +26877,7 @@ loc_821AB524:
 	ctx.r5.s64 = ctx.r11.s64 + -7820;
 	// bl 0x822809f0
 	ctx.lr = 0x821AB56C;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821ab58c
 	goto loc_821AB58C;
 loc_821AB570:
@@ -26897,7 +26897,7 @@ loc_821AB570:
 	ctx.r5.s64 = ctx.r11.s64 + -7820;
 	// bl 0x82281f68
 	ctx.lr = 0x821AB58C;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821AB58C:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -26969,7 +26969,7 @@ loc_821AB5E4:
 	ctx.r5.s64 = ctx.r11.s64 + -7808;
 	// bl 0x822809f0
 	ctx.lr = 0x821AB608;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821ab628
 	goto loc_821AB628;
 loc_821AB60C:
@@ -26989,7 +26989,7 @@ loc_821AB60C:
 	ctx.r5.s64 = ctx.r11.s64 + -7808;
 	// bl 0x82281f68
 	ctx.lr = 0x821AB628;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821AB628:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -27049,7 +27049,7 @@ loc_821AB674:
 	ctx.r5.s64 = ctx.r11.s64 + -7792;
 	// bl 0x822805e0
 	ctx.lr = 0x821AB68C;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// li r3,1
 	ctx.r3.s64 = 1;
 	// addi r1,r1,96
@@ -27073,7 +27073,7 @@ loc_821AB6A0:
 	ctx.r5.s64 = ctx.r11.s64 + -7792;
 	// bl 0x82281d60
 	ctx.lr = 0x821AB6B8;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821AB6B8:
 	// li r3,1
 	ctx.r3.s64 = 1;
@@ -27144,7 +27144,7 @@ loc_821AB70C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x822809f0
 	ctx.lr = 0x821AB734;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821ab754
 	goto loc_821AB754;
 loc_821AB738:
@@ -27164,7 +27164,7 @@ loc_821AB738:
 	ctx.r5.s64 = ctx.r11.s64 + -7780;
 	// bl 0x82281f68
 	ctx.lr = 0x821AB754;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821AB754:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -27188,7 +27188,7 @@ loc_821AB758:
 	ctx.r5.s64 = ctx.r11.s64 + -7768;
 	// bl 0x822806b0
 	ctx.lr = 0x821AB780;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821ab7a0
 	goto loc_821AB7A0;
 loc_821AB784:
@@ -27206,7 +27206,7 @@ loc_821AB784:
 	ctx.r5.s64 = ctx.r11.s64 + -7768;
 	// bl 0x82281dc8
 	ctx.lr = 0x821AB7A0;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821AB7A0:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -27281,7 +27281,7 @@ loc_821AB7FC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x822805e0
 	ctx.lr = 0x821AB81C;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821ab83c
 	goto loc_821AB83C;
 loc_821AB820:
@@ -27299,7 +27299,7 @@ loc_821AB820:
 	ctx.r5.s64 = ctx.r11.s64 + -8040;
 	// bl 0x82281d60
 	ctx.lr = 0x821AB83C;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821AB83C:
 	// lwz r11,0(r31)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
@@ -27317,7 +27317,7 @@ loc_821AB83C:
 	ctx.r5.s64 = ctx.r11.s64 + -7752;
 	// bl 0x822805e0
 	ctx.lr = 0x821AB85C;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821ab87c
 	goto loc_821AB87C;
 loc_821AB860:
@@ -27335,7 +27335,7 @@ loc_821AB860:
 	ctx.r5.s64 = ctx.r11.s64 + -7752;
 	// bl 0x82281d60
 	ctx.lr = 0x821AB87C;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821AB87C:
 	// addi r4,r30,8
 	ctx.r4.s64 = ctx.r30.s64 + 8;
@@ -27356,7 +27356,7 @@ loc_821AB87C:
 	ctx.r5.s64 = ctx.r11.s64 + -7732;
 	// bl 0x822805e0
 	ctx.lr = 0x821AB8A4;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821ab8c4
 	goto loc_821AB8C4;
 loc_821AB8A8:
@@ -27374,7 +27374,7 @@ loc_821AB8A8:
 	ctx.r5.s64 = ctx.r11.s64 + -7732;
 	// bl 0x82281d60
 	ctx.lr = 0x821AB8C4;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821AB8C4:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -27398,7 +27398,7 @@ loc_821AB8C8:
 	ctx.r5.s64 = ctx.r11.s64 + -7720;
 	// bl 0x822809f0
 	ctx.lr = 0x821AB8F0;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821ab910
 	goto loc_821AB910;
 loc_821AB8F4:
@@ -27418,7 +27418,7 @@ loc_821AB8F4:
 	ctx.r5.s64 = ctx.r11.s64 + -7720;
 	// bl 0x82281f68
 	ctx.lr = 0x821AB910;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821AB910:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -27442,7 +27442,7 @@ loc_821AB914:
 	ctx.r5.s64 = ctx.r11.s64 + -7708;
 	// bl 0x822809f0
 	ctx.lr = 0x821AB93C;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821ab95c
 	goto loc_821AB95C;
 loc_821AB940:
@@ -27462,7 +27462,7 @@ loc_821AB940:
 	ctx.r5.s64 = ctx.r11.s64 + -7708;
 	// bl 0x82281f68
 	ctx.lr = 0x821AB95C;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821AB95C:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -27540,7 +27540,7 @@ loc_821AB9BC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x822809f0
 	ctx.lr = 0x821AB9E4;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821aba04
 	goto loc_821ABA04;
 loc_821AB9E8:
@@ -27560,7 +27560,7 @@ loc_821AB9E8:
 	ctx.r5.s64 = ctx.r11.s64 + -7696;
 	// bl 0x82281f68
 	ctx.lr = 0x821ABA04;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821ABA04:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -27584,7 +27584,7 @@ loc_821ABA08:
 	ctx.r5.s64 = ctx.r11.s64 + -7684;
 	// bl 0x822809f0
 	ctx.lr = 0x821ABA30;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821aba50
 	goto loc_821ABA50;
 loc_821ABA34:
@@ -27604,7 +27604,7 @@ loc_821ABA34:
 	ctx.r5.s64 = ctx.r11.s64 + -7684;
 	// bl 0x82281f68
 	ctx.lr = 0x821ABA50;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821ABA50:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -27628,7 +27628,7 @@ loc_821ABA54:
 	ctx.r5.s64 = ctx.r11.s64 + -7668;
 	// bl 0x822809f0
 	ctx.lr = 0x821ABA7C;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821aba9c
 	goto loc_821ABA9C;
 loc_821ABA80:
@@ -27648,7 +27648,7 @@ loc_821ABA80:
 	ctx.r5.s64 = ctx.r11.s64 + -7668;
 	// bl 0x82281f68
 	ctx.lr = 0x821ABA9C;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821ABA9C:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -27672,7 +27672,7 @@ loc_821ABAA0:
 	ctx.r5.s64 = ctx.r11.s64 + -7648;
 	// bl 0x822809f0
 	ctx.lr = 0x821ABAC8;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821abae8
 	goto loc_821ABAE8;
 loc_821ABACC:
@@ -27692,7 +27692,7 @@ loc_821ABACC:
 	ctx.r5.s64 = ctx.r11.s64 + -7648;
 	// bl 0x82281f68
 	ctx.lr = 0x821ABAE8;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821ABAE8:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -27716,7 +27716,7 @@ loc_821ABAEC:
 	ctx.r5.s64 = ctx.r11.s64 + -7632;
 	// bl 0x822805e0
 	ctx.lr = 0x821ABB14;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821abb34
 	goto loc_821ABB34;
 loc_821ABB18:
@@ -27734,7 +27734,7 @@ loc_821ABB18:
 	ctx.r5.s64 = ctx.r11.s64 + -7632;
 	// bl 0x82281d60
 	ctx.lr = 0x821ABB34;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821ABB34:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -27758,7 +27758,7 @@ loc_821ABB38:
 	ctx.r5.s64 = ctx.r11.s64 + -7612;
 	// bl 0x822806b0
 	ctx.lr = 0x821ABB60;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821abb80
 	goto loc_821ABB80;
 loc_821ABB64:
@@ -27776,7 +27776,7 @@ loc_821ABB64:
 	ctx.r5.s64 = ctx.r11.s64 + -7612;
 	// bl 0x82281dc8
 	ctx.lr = 0x821ABB80;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821ABB80:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -27854,7 +27854,7 @@ loc_821ABBDC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x822809f0
 	ctx.lr = 0x821ABC04;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821abc24
 	goto loc_821ABC24;
 loc_821ABC08:
@@ -27874,7 +27874,7 @@ loc_821ABC08:
 	ctx.r5.s64 = ctx.r11.s64 + -7596;
 	// bl 0x82281f68
 	ctx.lr = 0x821ABC24;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821ABC24:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -27898,7 +27898,7 @@ loc_821ABC28:
 	ctx.r5.s64 = ctx.r11.s64 + -7580;
 	// bl 0x822809f0
 	ctx.lr = 0x821ABC50;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821abc70
 	goto loc_821ABC70;
 loc_821ABC54:
@@ -27918,7 +27918,7 @@ loc_821ABC54:
 	ctx.r5.s64 = ctx.r11.s64 + -7580;
 	// bl 0x82281f68
 	ctx.lr = 0x821ABC70;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821ABC70:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -27942,7 +27942,7 @@ loc_821ABC74:
 	ctx.r5.s64 = ctx.r11.s64 + -7564;
 	// bl 0x822809f0
 	ctx.lr = 0x821ABC9C;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821abcbc
 	goto loc_821ABCBC;
 loc_821ABCA0:
@@ -27962,7 +27962,7 @@ loc_821ABCA0:
 	ctx.r5.s64 = ctx.r11.s64 + -7564;
 	// bl 0x82281f68
 	ctx.lr = 0x821ABCBC;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821ABCBC:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -27986,7 +27986,7 @@ loc_821ABCC0:
 	ctx.r5.s64 = ctx.r11.s64 + -7548;
 	// bl 0x822809f0
 	ctx.lr = 0x821ABCE8;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821abd08
 	goto loc_821ABD08;
 loc_821ABCEC:
@@ -28006,7 +28006,7 @@ loc_821ABCEC:
 	ctx.r5.s64 = ctx.r11.s64 + -7548;
 	// bl 0x82281f68
 	ctx.lr = 0x821ABD08;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821ABD08:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -28030,7 +28030,7 @@ loc_821ABD0C:
 	ctx.r5.s64 = ctx.r11.s64 + -7532;
 	// bl 0x822809f0
 	ctx.lr = 0x821ABD34;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821abd54
 	goto loc_821ABD54;
 loc_821ABD38:
@@ -28050,7 +28050,7 @@ loc_821ABD38:
 	ctx.r5.s64 = ctx.r11.s64 + -7532;
 	// bl 0x82281f68
 	ctx.lr = 0x821ABD54;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821ABD54:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -28123,7 +28123,7 @@ loc_821ABDB4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821ABDD0;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821abdf8
@@ -28141,7 +28141,7 @@ loc_821ABDB4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821ABDF0;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821abe24
@@ -28165,7 +28165,7 @@ loc_821ABDF8:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821ABE1C;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821ABE1C:
 	// li r11,0
 	ctx.r11.s64 = 0;
@@ -28191,7 +28191,7 @@ loc_821ABE24:
 	ctx.r5.s64 = ctx.r11.s64 + -7508;
 	// bl 0x822809f0
 	ctx.lr = 0x821ABE4C;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821abe6c
 	goto loc_821ABE6C;
 loc_821ABE50:
@@ -28211,7 +28211,7 @@ loc_821ABE50:
 	ctx.r5.s64 = ctx.r11.s64 + -7508;
 	// bl 0x82281f68
 	ctx.lr = 0x821ABE6C;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821ABE6C:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -28235,7 +28235,7 @@ loc_821ABE70:
 	ctx.r5.s64 = ctx.r11.s64 + -7492;
 	// bl 0x822809f0
 	ctx.lr = 0x821ABE98;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821abeb8
 	goto loc_821ABEB8;
 loc_821ABE9C:
@@ -28255,7 +28255,7 @@ loc_821ABE9C:
 	ctx.r5.s64 = ctx.r11.s64 + -7492;
 	// bl 0x82281f68
 	ctx.lr = 0x821ABEB8;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821ABEB8:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -28279,7 +28279,7 @@ loc_821ABEBC:
 	ctx.r5.s64 = ctx.r11.s64 + -8752;
 	// bl 0x822809f0
 	ctx.lr = 0x821ABEE4;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821abf04
 	goto loc_821ABF04;
 loc_821ABEE8:
@@ -28299,7 +28299,7 @@ loc_821ABEE8:
 	ctx.r5.s64 = ctx.r11.s64 + -8752;
 	// bl 0x82281f68
 	ctx.lr = 0x821ABF04;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821ABF04:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -28377,7 +28377,7 @@ loc_821ABF64:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x822809f0
 	ctx.lr = 0x821ABF8C;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821abfac
 	goto loc_821ABFAC;
 loc_821ABF90:
@@ -28397,7 +28397,7 @@ loc_821ABF90:
 	ctx.r5.s64 = ctx.r11.s64 + -8920;
 	// bl 0x82281f68
 	ctx.lr = 0x821ABFAC;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821ABFAC:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -28421,7 +28421,7 @@ loc_821ABFB0:
 	ctx.r5.s64 = ctx.r11.s64 + -8900;
 	// bl 0x822809f0
 	ctx.lr = 0x821ABFD8;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821abff8
 	goto loc_821ABFF8;
 loc_821ABFDC:
@@ -28441,7 +28441,7 @@ loc_821ABFDC:
 	ctx.r5.s64 = ctx.r11.s64 + -8900;
 	// bl 0x82281f68
 	ctx.lr = 0x821ABFF8;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821ABFF8:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -28465,7 +28465,7 @@ loc_821ABFFC:
 	ctx.r5.s64 = ctx.r11.s64 + -7596;
 	// bl 0x822809f0
 	ctx.lr = 0x821AC024;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821ac044
 	goto loc_821AC044;
 loc_821AC028:
@@ -28485,7 +28485,7 @@ loc_821AC028:
 	ctx.r5.s64 = ctx.r11.s64 + -7596;
 	// bl 0x82281f68
 	ctx.lr = 0x821AC044;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821AC044:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -28509,7 +28509,7 @@ loc_821AC048:
 	ctx.r5.s64 = ctx.r11.s64 + -7580;
 	// bl 0x822809f0
 	ctx.lr = 0x821AC070;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821ac090
 	goto loc_821AC090;
 loc_821AC074:
@@ -28529,7 +28529,7 @@ loc_821AC074:
 	ctx.r5.s64 = ctx.r11.s64 + -7580;
 	// bl 0x82281f68
 	ctx.lr = 0x821AC090;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821AC090:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -28553,7 +28553,7 @@ loc_821AC094:
 	ctx.r5.s64 = ctx.r11.s64 + -7564;
 	// bl 0x822809f0
 	ctx.lr = 0x821AC0BC;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821ac0dc
 	goto loc_821AC0DC;
 loc_821AC0C0:
@@ -28573,7 +28573,7 @@ loc_821AC0C0:
 	ctx.r5.s64 = ctx.r11.s64 + -7564;
 	// bl 0x82281f68
 	ctx.lr = 0x821AC0DC;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821AC0DC:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -28597,7 +28597,7 @@ loc_821AC0E0:
 	ctx.r5.s64 = ctx.r11.s64 + -7548;
 	// bl 0x822809f0
 	ctx.lr = 0x821AC108;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821ac128
 	goto loc_821AC128;
 loc_821AC10C:
@@ -28617,7 +28617,7 @@ loc_821AC10C:
 	ctx.r5.s64 = ctx.r11.s64 + -7548;
 	// bl 0x82281f68
 	ctx.lr = 0x821AC128;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821AC128:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -28641,7 +28641,7 @@ loc_821AC12C:
 	ctx.r5.s64 = ctx.r11.s64 + -7532;
 	// bl 0x822809f0
 	ctx.lr = 0x821AC154;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821ac174
 	goto loc_821AC174;
 loc_821AC158:
@@ -28661,7 +28661,7 @@ loc_821AC158:
 	ctx.r5.s64 = ctx.r11.s64 + -7532;
 	// bl 0x82281f68
 	ctx.lr = 0x821AC174;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821AC174:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -28685,7 +28685,7 @@ loc_821AC178:
 	ctx.r5.s64 = ctx.r11.s64 + -8808;
 	// bl 0x822809f0
 	ctx.lr = 0x821AC1A0;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821ac1c0
 	goto loc_821AC1C0;
 loc_821AC1A4:
@@ -28705,7 +28705,7 @@ loc_821AC1A4:
 	ctx.r5.s64 = ctx.r11.s64 + -8808;
 	// bl 0x82281f68
 	ctx.lr = 0x821AC1C0;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821AC1C0:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -28778,7 +28778,7 @@ loc_821AC21C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821AC238;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821ac260
@@ -28796,7 +28796,7 @@ loc_821AC21C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821AC258;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821ac28c
@@ -28820,7 +28820,7 @@ loc_821AC260:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821AC284;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821AC284:
 	// li r11,0
 	ctx.r11.s64 = 0;
@@ -28846,7 +28846,7 @@ loc_821AC28C:
 	ctx.r5.s64 = ctx.r11.s64 + -7508;
 	// bl 0x822809f0
 	ctx.lr = 0x821AC2B4;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821ac2d4
 	goto loc_821AC2D4;
 loc_821AC2B8:
@@ -28866,7 +28866,7 @@ loc_821AC2B8:
 	ctx.r5.s64 = ctx.r11.s64 + -7508;
 	// bl 0x82281f68
 	ctx.lr = 0x821AC2D4;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821AC2D4:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -28890,7 +28890,7 @@ loc_821AC2D8:
 	ctx.r5.s64 = ctx.r11.s64 + -7492;
 	// bl 0x822809f0
 	ctx.lr = 0x821AC300;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821ac320
 	goto loc_821AC320;
 loc_821AC304:
@@ -28910,7 +28910,7 @@ loc_821AC304:
 	ctx.r5.s64 = ctx.r11.s64 + -7492;
 	// bl 0x82281f68
 	ctx.lr = 0x821AC320;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821AC320:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -28934,7 +28934,7 @@ loc_821AC324:
 	ctx.r5.s64 = ctx.r11.s64 + -8752;
 	// bl 0x822809f0
 	ctx.lr = 0x821AC34C;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821ac36c
 	goto loc_821AC36C;
 loc_821AC350:
@@ -28954,7 +28954,7 @@ loc_821AC350:
 	ctx.r5.s64 = ctx.r11.s64 + -8752;
 	// bl 0x82281f68
 	ctx.lr = 0x821AC36C;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821AC36C:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -29026,7 +29026,7 @@ loc_821AC3CC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821AC3E8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821ac410
@@ -29044,7 +29044,7 @@ loc_821AC3CC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821AC408;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821ac430
@@ -29084,7 +29084,7 @@ loc_821AC430:
 	ctx.r5.s64 = ctx.r11.s64 + -12860;
 	// bl 0x822805e0
 	ctx.lr = 0x821AC450;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821ac470
 	goto loc_821AC470;
 loc_821AC454:
@@ -29102,7 +29102,7 @@ loc_821AC454:
 	ctx.r5.s64 = ctx.r11.s64 + -12860;
 	// bl 0x82281d60
 	ctx.lr = 0x821AC470;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821AC470:
 	// lwz r11,0(r31)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
@@ -29120,7 +29120,7 @@ loc_821AC470:
 	ctx.r5.s64 = ctx.r11.s64 + -7464;
 	// bl 0x822805e0
 	ctx.lr = 0x821AC490;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821ac4b0
 	goto loc_821AC4B0;
 loc_821AC494:
@@ -29138,7 +29138,7 @@ loc_821AC494:
 	ctx.r5.s64 = ctx.r11.s64 + -7464;
 	// bl 0x82281d60
 	ctx.lr = 0x821AC4B0;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821AC4B0:
 	// li r3,1
 	ctx.r3.s64 = 1;
@@ -29207,7 +29207,7 @@ loc_821AC508:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821AC524;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,0
 	ctx.r27.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -29227,7 +29227,7 @@ loc_821AC508:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821AC548;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821ac578
@@ -29251,7 +29251,7 @@ loc_821AC550:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821AC574;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821AC574:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -29272,7 +29272,7 @@ loc_821AC578:
 	ctx.r5.s64 = ctx.r11.s64 + -12860;
 	// bl 0x822805e0
 	ctx.lr = 0x821AC598;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821ac5b8
 	goto loc_821AC5B8;
 loc_821AC59C:
@@ -29290,7 +29290,7 @@ loc_821AC59C:
 	ctx.r5.s64 = ctx.r11.s64 + -12860;
 	// bl 0x82281d60
 	ctx.lr = 0x821AC5B8;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821AC5B8:
 	// addi r4,r30,72
 	ctx.r4.s64 = ctx.r30.s64 + 72;
@@ -29311,7 +29311,7 @@ loc_821AC5B8:
 	ctx.r5.s64 = ctx.r11.s64 + -8944;
 	// bl 0x822806b0
 	ctx.lr = 0x821AC5E0;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821ac600
 	goto loc_821AC600;
 loc_821AC5E4:
@@ -29329,7 +29329,7 @@ loc_821AC5E4:
 	ctx.r5.s64 = ctx.r11.s64 + -8944;
 	// bl 0x82281dc8
 	ctx.lr = 0x821AC600;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821AC600:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -29353,7 +29353,7 @@ loc_821AC604:
 	ctx.r5.s64 = ctx.r11.s64 + -7464;
 	// bl 0x822805e0
 	ctx.lr = 0x821AC62C;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821ac64c
 	goto loc_821AC64C;
 loc_821AC630:
@@ -29371,7 +29371,7 @@ loc_821AC630:
 	ctx.r5.s64 = ctx.r11.s64 + -7464;
 	// bl 0x82281d60
 	ctx.lr = 0x821AC64C;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821AC64C:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -29392,7 +29392,7 @@ loc_821AC650:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821AC670;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821ac7ac
@@ -29433,7 +29433,7 @@ loc_821AC698:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x822809f0
 	ctx.lr = 0x821AC6C0;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821ac6e0
 	goto loc_821AC6E0;
 loc_821AC6C4:
@@ -29453,7 +29453,7 @@ loc_821AC6C4:
 	ctx.r5.s64 = ctx.r11.s64 + -7420;
 	// bl 0x82281f68
 	ctx.lr = 0x821AC6E0;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821AC6E0:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -29477,7 +29477,7 @@ loc_821AC6E4:
 	ctx.r5.s64 = ctx.r11.s64 + -7392;
 	// bl 0x822809f0
 	ctx.lr = 0x821AC70C;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821ac72c
 	goto loc_821AC72C;
 loc_821AC710:
@@ -29497,7 +29497,7 @@ loc_821AC710:
 	ctx.r5.s64 = ctx.r11.s64 + -7392;
 	// bl 0x82281f68
 	ctx.lr = 0x821AC72C;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821AC72C:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -29521,7 +29521,7 @@ loc_821AC730:
 	ctx.r5.s64 = ctx.r11.s64 + -7376;
 	// bl 0x822805e0
 	ctx.lr = 0x821AC758;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
 	// mr r4,r29
@@ -29530,7 +29530,7 @@ loc_821AC730:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821AC768;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// li r3,1
 	ctx.r3.s64 = 1;
 	// addi r1,r1,128
@@ -29553,7 +29553,7 @@ loc_821AC774:
 	ctx.r5.s64 = ctx.r11.s64 + -7376;
 	// bl 0x82281d60
 	ctx.lr = 0x821AC790;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
 loc_821AC794:
@@ -29563,7 +29563,7 @@ loc_821AC794:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821AC7A0;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// li r3,1
 	ctx.r3.s64 = 1;
 	// addi r1,r1,128
@@ -29590,7 +29590,7 @@ loc_821AC7AC:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821AC7D0;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821AC7D0:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -29654,7 +29654,7 @@ loc_821AC81C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821AC838;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821ac860
@@ -29672,7 +29672,7 @@ loc_821AC81C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821AC858;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821ac88c
@@ -29696,7 +29696,7 @@ loc_821AC860:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821AC884;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821AC884:
 	// li r11,0
 	ctx.r11.s64 = 0;
@@ -29770,7 +29770,7 @@ loc_821AC8E4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821AC900;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821ac928
@@ -29788,7 +29788,7 @@ loc_821AC8E4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821AC920;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821ac954
@@ -29812,7 +29812,7 @@ loc_821AC928:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821AC94C;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821AC94C:
 	// li r11,0
 	ctx.r11.s64 = 0;
@@ -29838,7 +29838,7 @@ loc_821AC954:
 	ctx.r5.s64 = ctx.r11.s64 + -7340;
 	// bl 0x822805e0
 	ctx.lr = 0x821AC97C;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821ac99c
 	goto loc_821AC99C;
 loc_821AC980:
@@ -29856,7 +29856,7 @@ loc_821AC980:
 	ctx.r5.s64 = ctx.r11.s64 + -7340;
 	// bl 0x82281d60
 	ctx.lr = 0x821AC99C;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821AC99C:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -29928,7 +29928,7 @@ loc_821AC9FC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821ACA18;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821aca40
@@ -29946,7 +29946,7 @@ loc_821AC9FC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821ACA38;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821aca6c
@@ -29970,7 +29970,7 @@ loc_821ACA40:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821ACA64;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821ACA64:
 	// li r11,0
 	ctx.r11.s64 = 0;
@@ -30041,7 +30041,7 @@ loc_821ACABC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821ACAD8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,0
 	ctx.r28.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -30061,7 +30061,7 @@ loc_821ACABC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821ACAFC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821acb2c
@@ -30085,7 +30085,7 @@ loc_821ACB04:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821ACB28;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821ACB28:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -30106,7 +30106,7 @@ loc_821ACB2C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821ACB4C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821acb74
@@ -30117,14 +30117,14 @@ loc_821ACB2C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821ACB60;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r30
 	ctx.r4.u64 = ctx.r30.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821ACB6C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821acb9c
@@ -30148,7 +30148,7 @@ loc_821ACB74:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821ACB98;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821ACB98:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -30169,7 +30169,7 @@ loc_821ACB9C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821ACBBC;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821acbe4
@@ -30180,14 +30180,14 @@ loc_821ACB9C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821ACBD0;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r30
 	ctx.r4.u64 = ctx.r30.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821ACBDC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821acc0c
@@ -30211,7 +30211,7 @@ loc_821ACBE4:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821ACC08;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821ACC08:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -30235,7 +30235,7 @@ loc_821ACC0C:
 	ctx.r5.s64 = ctx.r11.s64 + -7300;
 	// bl 0x822806b0
 	ctx.lr = 0x821ACC34;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
 	// li r3,1
@@ -30260,7 +30260,7 @@ loc_821ACC44:
 	ctx.r5.s64 = ctx.r11.s64 + -7300;
 	// bl 0x82281dc8
 	ctx.lr = 0x821ACC60;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
 loc_821ACC64:
@@ -30321,7 +30321,7 @@ loc_821ACCA4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821ACCC0;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r29,0
 	ctx.r29.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -30334,14 +30334,14 @@ loc_821ACCA4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821ACCD8;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r30
 	ctx.r4.u64 = ctx.r30.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821ACCE4;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821acd14
@@ -30365,7 +30365,7 @@ loc_821ACCEC:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821ACD10;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821ACD10:
 	// stw r29,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r29.u32);
@@ -30386,7 +30386,7 @@ loc_821ACD14:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821ACD34;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821acd5c
@@ -30404,7 +30404,7 @@ loc_821ACD14:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821ACD54;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821acd84
@@ -30428,7 +30428,7 @@ loc_821ACD5C:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821ACD80;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821ACD80:
 	// stw r29,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r29.u32);
@@ -30490,7 +30490,7 @@ loc_821ACDC4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821ACDE0;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,0
 	ctx.r28.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -30503,14 +30503,14 @@ loc_821ACDC4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821ACDF8;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r29
 	ctx.r4.u64 = ctx.r29.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821ACE04;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821ace34
@@ -30534,7 +30534,7 @@ loc_821ACE0C:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821ACE30;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821ACE30:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -30555,7 +30555,7 @@ loc_821ACE34:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821ACE54;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821ace7c
@@ -30566,14 +30566,14 @@ loc_821ACE34:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821ACE68;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r30
 	ctx.r4.u64 = ctx.r30.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821ACE74;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821acea4
@@ -30597,7 +30597,7 @@ loc_821ACE7C:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821ACEA0;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821ACEA0:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -30618,7 +30618,7 @@ loc_821ACEA4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821ACEC4;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821aceec
@@ -30636,7 +30636,7 @@ loc_821ACEA4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821ACEE4;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821acf14
@@ -30660,7 +30660,7 @@ loc_821ACEEC:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821ACF10;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821ACF10:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -30723,7 +30723,7 @@ loc_821ACF54:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821ACF70;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r26,0
 	ctx.r26.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -30743,7 +30743,7 @@ loc_821ACF54:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821ACF94;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821acfc4
@@ -30767,7 +30767,7 @@ loc_821ACF9C:
 	ctx.r3.u64 = ctx.r27.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821ACFC0;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821ACFC0:
 	// stw r26,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r26.u32);
@@ -30791,7 +30791,7 @@ loc_821ACFC4:
 	ctx.r5.s64 = ctx.r11.s64 + -18792;
 	// bl 0x822809f0
 	ctx.lr = 0x821ACFEC;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821ad00c
 	goto loc_821AD00C;
 loc_821ACFF0:
@@ -30811,7 +30811,7 @@ loc_821ACFF0:
 	ctx.r5.s64 = ctx.r11.s64 + -18792;
 	// bl 0x82281f68
 	ctx.lr = 0x821AD00C;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821AD00C:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -30841,7 +30841,7 @@ loc_821AD028:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821AD040;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821ad068
@@ -30852,14 +30852,14 @@ loc_821AD028:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821AD054;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r30
 	ctx.r4.u64 = ctx.r30.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821AD060;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821ad090
@@ -30883,7 +30883,7 @@ loc_821AD068:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821AD08C;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821AD08C:
 	// stw r26,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r26.u32);
@@ -30914,7 +30914,7 @@ loc_821AD090:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821AD0C0;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821ad0e8
@@ -30925,14 +30925,14 @@ loc_821AD090:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821AD0D4;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r30
 	ctx.r4.u64 = ctx.r30.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821AD0E0;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821ad110
@@ -30956,7 +30956,7 @@ loc_821AD0E8:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821AD10C;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821AD10C:
 	// stw r26,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r26.u32);
@@ -30980,7 +30980,7 @@ loc_821AD110:
 	ctx.r5.s64 = ctx.r11.s64 + -8860;
 	// bl 0x822809f0
 	ctx.lr = 0x821AD138;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
 	// li r3,1
@@ -31007,7 +31007,7 @@ loc_821AD148:
 	ctx.r5.s64 = ctx.r11.s64 + -8860;
 	// bl 0x82281f68
 	ctx.lr = 0x821AD164;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
 loc_821AD168:
@@ -31072,7 +31072,7 @@ loc_821AD1B4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821AD1D0;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821ad1f8
@@ -31090,7 +31090,7 @@ loc_821AD1B4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821AD1F0;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821ad224
@@ -31114,7 +31114,7 @@ loc_821AD1F8:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821AD21C;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821AD21C:
 	// li r11,0
 	ctx.r11.s64 = 0;
@@ -31140,7 +31140,7 @@ loc_821AD224:
 	ctx.r5.s64 = ctx.r11.s64 + -7240;
 	// bl 0x822809f0
 	ctx.lr = 0x821AD24C;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821ad26c
 	goto loc_821AD26C;
 loc_821AD250:
@@ -31160,7 +31160,7 @@ loc_821AD250:
 	ctx.r5.s64 = ctx.r11.s64 + -7240;
 	// bl 0x82281f68
 	ctx.lr = 0x821AD26C;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821AD26C:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -31184,7 +31184,7 @@ loc_821AD270:
 	ctx.r5.s64 = ctx.r11.s64 + -7220;
 	// bl 0x822806b0
 	ctx.lr = 0x821AD298;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821ad2b8
 	goto loc_821AD2B8;
 loc_821AD29C:
@@ -31202,7 +31202,7 @@ loc_821AD29C:
 	ctx.r5.s64 = ctx.r11.s64 + -7220;
 	// bl 0x82281dc8
 	ctx.lr = 0x821AD2B8;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821AD2B8:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -31226,7 +31226,7 @@ loc_821AD2BC:
 	ctx.r5.s64 = ctx.r11.s64 + -7196;
 	// bl 0x822806b0
 	ctx.lr = 0x821AD2E4;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821ad304
 	goto loc_821AD304;
 loc_821AD2E8:
@@ -31244,7 +31244,7 @@ loc_821AD2E8:
 	ctx.r5.s64 = ctx.r11.s64 + -7196;
 	// bl 0x82281dc8
 	ctx.lr = 0x821AD304;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821AD304:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -31316,7 +31316,7 @@ loc_821AD364:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821AD380;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821ad3a8
@@ -31334,7 +31334,7 @@ loc_821AD364:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821AD3A0;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821ad3d4
@@ -31358,7 +31358,7 @@ loc_821AD3A8:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821AD3CC;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821AD3CC:
 	// li r11,0
 	ctx.r11.s64 = 0;
@@ -31431,7 +31431,7 @@ loc_821AD424:
 	ctx.r5.s64 = ctx.r11.s64 + -7172;
 	// bl 0x822806b0
 	ctx.lr = 0x821AD448;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821ad468
 	goto loc_821AD468;
 loc_821AD44C:
@@ -31449,7 +31449,7 @@ loc_821AD44C:
 	ctx.r5.s64 = ctx.r11.s64 + -7172;
 	// bl 0x82281dc8
 	ctx.lr = 0x821AD468;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821AD468:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -31525,7 +31525,7 @@ loc_821AD4C4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x822809f0
 	ctx.lr = 0x821AD4EC;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821ad50c
 	goto loc_821AD50C;
 loc_821AD4F0:
@@ -31545,7 +31545,7 @@ loc_821AD4F0:
 	ctx.r5.s64 = ctx.r11.s64 + -7160;
 	// bl 0x82281f68
 	ctx.lr = 0x821AD50C;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821AD50C:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -31569,7 +31569,7 @@ loc_821AD510:
 	ctx.r5.s64 = ctx.r11.s64 + -7596;
 	// bl 0x822809f0
 	ctx.lr = 0x821AD538;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821ad558
 	goto loc_821AD558;
 loc_821AD53C:
@@ -31589,7 +31589,7 @@ loc_821AD53C:
 	ctx.r5.s64 = ctx.r11.s64 + -7596;
 	// bl 0x82281f68
 	ctx.lr = 0x821AD558;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821AD558:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -31613,7 +31613,7 @@ loc_821AD55C:
 	ctx.r5.s64 = ctx.r11.s64 + -7580;
 	// bl 0x822809f0
 	ctx.lr = 0x821AD584;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821ad5a4
 	goto loc_821AD5A4;
 loc_821AD588:
@@ -31633,7 +31633,7 @@ loc_821AD588:
 	ctx.r5.s64 = ctx.r11.s64 + -7580;
 	// bl 0x82281f68
 	ctx.lr = 0x821AD5A4;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821AD5A4:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -31657,7 +31657,7 @@ loc_821AD5A8:
 	ctx.r5.s64 = ctx.r11.s64 + -7144;
 	// bl 0x822809f0
 	ctx.lr = 0x821AD5D0;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821ad5f0
 	goto loc_821AD5F0;
 loc_821AD5D4:
@@ -31677,7 +31677,7 @@ loc_821AD5D4:
 	ctx.r5.s64 = ctx.r11.s64 + -7144;
 	// bl 0x82281f68
 	ctx.lr = 0x821AD5F0;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821AD5F0:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -31755,7 +31755,7 @@ loc_821AD64C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x822809f0
 	ctx.lr = 0x821AD674;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821ad694
 	goto loc_821AD694;
 loc_821AD678:
@@ -31775,7 +31775,7 @@ loc_821AD678:
 	ctx.r5.s64 = ctx.r11.s64 + -7132;
 	// bl 0x82281f68
 	ctx.lr = 0x821AD694;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821AD694:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -31786,7 +31786,7 @@ loc_821AD698:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8220ad68
 	ctx.lr = 0x821AD6A4;
-	rex_dsHandleRefSerialise_8220AD68(ctx, base);
+	sub_8220AD68(ctx, base);
 	// lwz r11,0(r31)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
 	// addi r4,r30,8
@@ -31803,7 +31803,7 @@ loc_821AD698:
 	ctx.r5.s64 = ctx.r11.s64 + -7120;
 	// bl 0x822805e0
 	ctx.lr = 0x821AD6C4;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821ad6e4
 	goto loc_821AD6E4;
 loc_821AD6C8:
@@ -31821,7 +31821,7 @@ loc_821AD6C8:
 	ctx.r5.s64 = ctx.r11.s64 + -7120;
 	// bl 0x82281d60
 	ctx.lr = 0x821AD6E4;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821AD6E4:
 	// addi r4,r30,12
 	ctx.r4.s64 = ctx.r30.s64 + 12;
@@ -31842,7 +31842,7 @@ loc_821AD6E4:
 	ctx.r5.s64 = ctx.r11.s64 + -7108;
 	// bl 0x822809f0
 	ctx.lr = 0x821AD70C;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821ad72c
 	goto loc_821AD72C;
 loc_821AD710:
@@ -31862,7 +31862,7 @@ loc_821AD710:
 	ctx.r5.s64 = ctx.r11.s64 + -7108;
 	// bl 0x82281f68
 	ctx.lr = 0x821AD72C;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821AD72C:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -31933,7 +31933,7 @@ loc_821AD784:
 	ctx.r5.s64 = ctx.r11.s64 + -7088;
 	// bl 0x822805e0
 	ctx.lr = 0x821AD7A8;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821ad7c8
 	goto loc_821AD7C8;
 loc_821AD7AC:
@@ -31951,7 +31951,7 @@ loc_821AD7AC:
 	ctx.r5.s64 = ctx.r11.s64 + -7088;
 	// bl 0x82281d60
 	ctx.lr = 0x821AD7C8;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821AD7C8:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -32027,7 +32027,7 @@ loc_821AD824:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x822809f0
 	ctx.lr = 0x821AD84C;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821ad86c
 	goto loc_821AD86C;
 loc_821AD850:
@@ -32047,7 +32047,7 @@ loc_821AD850:
 	ctx.r5.s64 = ctx.r11.s64 + -7080;
 	// bl 0x82281f68
 	ctx.lr = 0x821AD86C;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821AD86C:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -32071,7 +32071,7 @@ loc_821AD870:
 	ctx.r5.s64 = ctx.r11.s64 + -7072;
 	// bl 0x822809f0
 	ctx.lr = 0x821AD898;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821ad8b8
 	goto loc_821AD8B8;
 loc_821AD89C:
@@ -32091,7 +32091,7 @@ loc_821AD89C:
 	ctx.r5.s64 = ctx.r11.s64 + -7072;
 	// bl 0x82281f68
 	ctx.lr = 0x821AD8B8;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821AD8B8:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -32115,7 +32115,7 @@ loc_821AD8BC:
 	ctx.r5.s64 = ctx.r11.s64 + -7064;
 	// bl 0x822806b0
 	ctx.lr = 0x821AD8E4;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821ad904
 	goto loc_821AD904;
 loc_821AD8E8:
@@ -32133,7 +32133,7 @@ loc_821AD8E8:
 	ctx.r5.s64 = ctx.r11.s64 + -7064;
 	// bl 0x82281dc8
 	ctx.lr = 0x821AD904;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821AD904:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -32204,7 +32204,7 @@ loc_821AD95C:
 	ctx.r5.s64 = ctx.r11.s64 + -7040;
 	// bl 0x822806b0
 	ctx.lr = 0x821AD980;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821ad9a0
 	goto loc_821AD9A0;
 loc_821AD984:
@@ -32222,7 +32222,7 @@ loc_821AD984:
 	ctx.r5.s64 = ctx.r11.s64 + -7040;
 	// bl 0x82281dc8
 	ctx.lr = 0x821AD9A0;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821AD9A0:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -32297,7 +32297,7 @@ loc_821AD9FC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x822805e0
 	ctx.lr = 0x821ADA24;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821ada44
 	goto loc_821ADA44;
 loc_821ADA28:
@@ -32315,7 +32315,7 @@ loc_821ADA28:
 	ctx.r5.s64 = ctx.r11.s64 + -8784;
 	// bl 0x82281d60
 	ctx.lr = 0x821ADA44;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821ADA44:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -32339,7 +32339,7 @@ loc_821ADA48:
 	ctx.r5.s64 = ctx.r11.s64 + -7024;
 	// bl 0x822806b0
 	ctx.lr = 0x821ADA70;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821ada90
 	goto loc_821ADA90;
 loc_821ADA74:
@@ -32357,7 +32357,7 @@ loc_821ADA74:
 	ctx.r5.s64 = ctx.r11.s64 + -7024;
 	// bl 0x82281dc8
 	ctx.lr = 0x821ADA90;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821ADA90:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -32429,7 +32429,7 @@ loc_821ADAEC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821ADB08;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821adb30
@@ -32447,7 +32447,7 @@ loc_821ADAEC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821ADB28;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821adb50
@@ -32543,7 +32543,7 @@ loc_821ADBAC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x822806b0
 	ctx.lr = 0x821ADBD4;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821adbf4
 	goto loc_821ADBF4;
 loc_821ADBD8:
@@ -32561,7 +32561,7 @@ loc_821ADBD8:
 	ctx.r5.s64 = ctx.r11.s64 + -7004;
 	// bl 0x82281dc8
 	ctx.lr = 0x821ADBF4;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821ADBF4:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -32585,7 +32585,7 @@ loc_821ADBF8:
 	ctx.r5.s64 = ctx.r11.s64 + -6992;
 	// bl 0x822806b0
 	ctx.lr = 0x821ADC20;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821adc40
 	goto loc_821ADC40;
 loc_821ADC24:
@@ -32603,7 +32603,7 @@ loc_821ADC24:
 	ctx.r5.s64 = ctx.r11.s64 + -6992;
 	// bl 0x82281dc8
 	ctx.lr = 0x821ADC40;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821ADC40:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -32675,7 +32675,7 @@ loc_821ADC9C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821ADCB8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821adce0
@@ -32693,7 +32693,7 @@ loc_821ADC9C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821ADCD8;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821add0c
@@ -32717,7 +32717,7 @@ loc_821ADCE0:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821ADD04;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821ADD04:
 	// li r11,0
 	ctx.r11.s64 = 0;
@@ -32791,7 +32791,7 @@ loc_821ADD64:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821ADD80;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821adda8
@@ -32809,7 +32809,7 @@ loc_821ADD64:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821ADDA0;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821addd4
@@ -32833,7 +32833,7 @@ loc_821ADDA8:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821ADDCC;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821ADDCC:
 	// li r11,0
 	ctx.r11.s64 = 0;
@@ -32907,7 +32907,7 @@ loc_821ADE2C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821ADE48;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821ade70
@@ -32925,7 +32925,7 @@ loc_821ADE2C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821ADE68;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821ade9c
@@ -32949,7 +32949,7 @@ loc_821ADE70:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821ADE94;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821ADE94:
 	// li r11,0
 	ctx.r11.s64 = 0;
@@ -33020,7 +33020,7 @@ loc_821ADEEC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821ADF08;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r29,0
 	ctx.r29.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -33040,7 +33040,7 @@ loc_821ADEEC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821ADF2C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821adf5c
@@ -33064,7 +33064,7 @@ loc_821ADF34:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821ADF58;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821ADF58:
 	// stw r29,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r29.u32);
@@ -33085,7 +33085,7 @@ loc_821ADF5C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821ADF7C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821adfa4
@@ -33096,14 +33096,14 @@ loc_821ADF5C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821ADF90;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r30
 	ctx.r4.u64 = ctx.r30.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821ADF9C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821adfcc
@@ -33127,7 +33127,7 @@ loc_821ADFA4:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821ADFC8;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821ADFC8:
 	// stw r29,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r29.u32);
@@ -33193,7 +33193,7 @@ loc_821AE014:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821AE030;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821ae058
@@ -33211,7 +33211,7 @@ loc_821AE014:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821AE050;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821ae084
@@ -33235,7 +33235,7 @@ loc_821AE058:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821AE07C;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821AE07C:
 	// li r11,0
 	ctx.r11.s64 = 0;
@@ -33261,7 +33261,7 @@ loc_821AE084:
 	ctx.r5.s64 = ctx.r11.s64 + -6944;
 	// bl 0x822809f0
 	ctx.lr = 0x821AE0AC;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821ae0cc
 	goto loc_821AE0CC;
 loc_821AE0B0:
@@ -33281,7 +33281,7 @@ loc_821AE0B0:
 	ctx.r5.s64 = ctx.r11.s64 + -6944;
 	// bl 0x82281f68
 	ctx.lr = 0x821AE0CC;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821AE0CC:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -33305,7 +33305,7 @@ loc_821AE0D0:
 	ctx.r5.s64 = ctx.r11.s64 + -6928;
 	// bl 0x822806b0
 	ctx.lr = 0x821AE0F8;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821ae118
 	goto loc_821AE118;
 loc_821AE0FC:
@@ -33323,7 +33323,7 @@ loc_821AE0FC:
 	ctx.r5.s64 = ctx.r11.s64 + -6928;
 	// bl 0x82281dc8
 	ctx.lr = 0x821AE118;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821AE118:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -33347,7 +33347,7 @@ loc_821AE11C:
 	ctx.r5.s64 = ctx.r11.s64 + -6904;
 	// bl 0x822806b0
 	ctx.lr = 0x821AE144;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821ae164
 	goto loc_821AE164;
 loc_821AE148:
@@ -33365,7 +33365,7 @@ loc_821AE148:
 	ctx.r5.s64 = ctx.r11.s64 + -6904;
 	// bl 0x82281dc8
 	ctx.lr = 0x821AE164;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821AE164:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -33438,7 +33438,7 @@ loc_821AE1C4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821AE1E0;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821ae208
@@ -33456,7 +33456,7 @@ loc_821AE1C4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821AE200;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821ae234
@@ -33480,7 +33480,7 @@ loc_821AE208:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821AE22C;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821AE22C:
 	// li r11,0
 	ctx.r11.s64 = 0;
@@ -33506,7 +33506,7 @@ loc_821AE234:
 	ctx.r5.s64 = ctx.r11.s64 + -6944;
 	// bl 0x822809f0
 	ctx.lr = 0x821AE25C;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821ae27c
 	goto loc_821AE27C;
 loc_821AE260:
@@ -33526,7 +33526,7 @@ loc_821AE260:
 	ctx.r5.s64 = ctx.r11.s64 + -6944;
 	// bl 0x82281f68
 	ctx.lr = 0x821AE27C;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821AE27C:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -33550,7 +33550,7 @@ loc_821AE280:
 	ctx.r5.s64 = ctx.r11.s64 + -6876;
 	// bl 0x822806b0
 	ctx.lr = 0x821AE2A8;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821ae2c8
 	goto loc_821AE2C8;
 loc_821AE2AC:
@@ -33568,7 +33568,7 @@ loc_821AE2AC:
 	ctx.r5.s64 = ctx.r11.s64 + -6876;
 	// bl 0x82281dc8
 	ctx.lr = 0x821AE2C8;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821AE2C8:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -33592,7 +33592,7 @@ loc_821AE2CC:
 	ctx.r5.s64 = ctx.r11.s64 + -6848;
 	// bl 0x822806b0
 	ctx.lr = 0x821AE2F4;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821ae314
 	goto loc_821AE314;
 loc_821AE2F8:
@@ -33610,7 +33610,7 @@ loc_821AE2F8:
 	ctx.r5.s64 = ctx.r11.s64 + -6848;
 	// bl 0x82281dc8
 	ctx.lr = 0x821AE314;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821AE314:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -33679,7 +33679,7 @@ loc_821AE36C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821AE388;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,0
 	ctx.r28.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -33699,7 +33699,7 @@ loc_821AE36C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821AE3AC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821ae3dc
@@ -33723,7 +33723,7 @@ loc_821AE3B4:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821AE3D8;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821AE3D8:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -33744,7 +33744,7 @@ loc_821AE3DC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821AE3FC;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821ae424
@@ -33755,14 +33755,14 @@ loc_821AE3DC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821AE410;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r30
 	ctx.r4.u64 = ctx.r30.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821AE41C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821ae44c
@@ -33786,7 +33786,7 @@ loc_821AE424:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821AE448;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821AE448:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -33810,7 +33810,7 @@ loc_821AE44C:
 	ctx.r5.s64 = ctx.r11.s64 + -6816;
 	// bl 0x822806b0
 	ctx.lr = 0x821AE474;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
 	// li r3,1
@@ -33835,7 +33835,7 @@ loc_821AE484:
 	ctx.r5.s64 = ctx.r11.s64 + -6816;
 	// bl 0x82281dc8
 	ctx.lr = 0x821AE4A0;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
 loc_821AE4A4:
@@ -33900,7 +33900,7 @@ loc_821AE4EC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821AE508;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821ae530
@@ -33918,7 +33918,7 @@ loc_821AE4EC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821AE528;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821ae55c
@@ -33942,7 +33942,7 @@ loc_821AE530:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821AE554;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821AE554:
 	// li r11,0
 	ctx.r11.s64 = 0;
@@ -33955,7 +33955,7 @@ loc_821AE55C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8220ad68
 	ctx.lr = 0x821AE568;
-	rex_dsHandleRefSerialise_8220AD68(ctx, base);
+	sub_8220AD68(ctx, base);
 	// lwz r11,0(r31)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
 	// addi r4,r30,16
@@ -33972,7 +33972,7 @@ loc_821AE55C:
 	ctx.r5.s64 = ctx.r11.s64 + -7120;
 	// bl 0x822805e0
 	ctx.lr = 0x821AE588;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821ae5a8
 	goto loc_821AE5A8;
 loc_821AE58C:
@@ -33990,7 +33990,7 @@ loc_821AE58C:
 	ctx.r5.s64 = ctx.r11.s64 + -7120;
 	// bl 0x82281d60
 	ctx.lr = 0x821AE5A8;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821AE5A8:
 	// addi r4,r30,20
 	ctx.r4.s64 = ctx.r30.s64 + 20;
@@ -34011,7 +34011,7 @@ loc_821AE5A8:
 	ctx.r5.s64 = ctx.r11.s64 + -6944;
 	// bl 0x822809f0
 	ctx.lr = 0x821AE5D0;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821ae5f0
 	goto loc_821AE5F0;
 loc_821AE5D4:
@@ -34031,7 +34031,7 @@ loc_821AE5D4:
 	ctx.r5.s64 = ctx.r11.s64 + -6944;
 	// bl 0x82281f68
 	ctx.lr = 0x821AE5F0;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821AE5F0:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -34055,7 +34055,7 @@ loc_821AE5F4:
 	ctx.r5.s64 = ctx.r11.s64 + -7108;
 	// bl 0x822809f0
 	ctx.lr = 0x821AE61C;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821ae63c
 	goto loc_821AE63C;
 loc_821AE620:
@@ -34075,7 +34075,7 @@ loc_821AE620:
 	ctx.r5.s64 = ctx.r11.s64 + -7108;
 	// bl 0x82281f68
 	ctx.lr = 0x821AE63C;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821AE63C:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -34099,7 +34099,7 @@ loc_821AE640:
 	ctx.r5.s64 = ctx.r11.s64 + -6796;
 	// bl 0x822806b0
 	ctx.lr = 0x821AE668;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821ae688
 	goto loc_821AE688;
 loc_821AE66C:
@@ -34117,7 +34117,7 @@ loc_821AE66C:
 	ctx.r5.s64 = ctx.r11.s64 + -6796;
 	// bl 0x82281dc8
 	ctx.lr = 0x821AE688;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821AE688:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -34190,7 +34190,7 @@ loc_821AE6E4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821AE700;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821ae728
@@ -34208,7 +34208,7 @@ loc_821AE6E4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821AE720;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821ae754
@@ -34232,7 +34232,7 @@ loc_821AE728:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821AE74C;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821AE74C:
 	// li r11,0
 	ctx.r11.s64 = 0;
@@ -34258,7 +34258,7 @@ loc_821AE754:
 	ctx.r5.s64 = ctx.r11.s64 + -6944;
 	// bl 0x822809f0
 	ctx.lr = 0x821AE77C;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821ae79c
 	goto loc_821AE79C;
 loc_821AE780:
@@ -34278,7 +34278,7 @@ loc_821AE780:
 	ctx.r5.s64 = ctx.r11.s64 + -6944;
 	// bl 0x82281f68
 	ctx.lr = 0x821AE79C;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821AE79C:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -34352,7 +34352,7 @@ loc_821AE7FC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281390
 	ctx.lr = 0x821AE81C;
-	rex_serialiseStreamRW_StringX_82281390(ctx, base);
+	sub_82281390(ctx, base);
 	// addi r4,r30,48
 	ctx.r4.s64 = ctx.r30.s64 + 48;
 	// li r9,512
@@ -34368,7 +34368,7 @@ loc_821AE7FC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281390
 	ctx.lr = 0x821AE83C;
-	rex_serialiseStreamRW_StringX_82281390(ctx, base);
+	sub_82281390(ctx, base);
 	// addi r4,r30,96
 	ctx.r4.s64 = ctx.r30.s64 + 96;
 	// li r7,512
@@ -34388,7 +34388,7 @@ loc_821AE7FC:
 	ctx.r5.s64 = ctx.r11.s64 + -6756;
 	// bl 0x822809f0
 	ctx.lr = 0x821AE864;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821ae884
 	goto loc_821AE884;
 loc_821AE868:
@@ -34408,7 +34408,7 @@ loc_821AE868:
 	ctx.r5.s64 = ctx.r11.s64 + -6756;
 	// bl 0x82281f68
 	ctx.lr = 0x821AE884;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821AE884:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -34432,7 +34432,7 @@ loc_821AE888:
 	ctx.r5.s64 = ctx.r11.s64 + -6736;
 	// bl 0x822809f0
 	ctx.lr = 0x821AE8B0;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821ae8d0
 	goto loc_821AE8D0;
 loc_821AE8B4:
@@ -34452,7 +34452,7 @@ loc_821AE8B4:
 	ctx.r5.s64 = ctx.r11.s64 + -6736;
 	// bl 0x82281f68
 	ctx.lr = 0x821AE8D0;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821AE8D0:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -34476,7 +34476,7 @@ loc_821AE8D4:
 	ctx.r5.s64 = ctx.r11.s64 + -6716;
 	// bl 0x822809f0
 	ctx.lr = 0x821AE8FC;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821ae91c
 	goto loc_821AE91C;
 loc_821AE900:
@@ -34496,7 +34496,7 @@ loc_821AE900:
 	ctx.r5.s64 = ctx.r11.s64 + -6716;
 	// bl 0x82281f68
 	ctx.lr = 0x821AE91C;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821AE91C:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -34520,7 +34520,7 @@ loc_821AE920:
 	ctx.r5.s64 = ctx.r11.s64 + -6696;
 	// bl 0x822809f0
 	ctx.lr = 0x821AE948;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821ae968
 	goto loc_821AE968;
 loc_821AE94C:
@@ -34540,7 +34540,7 @@ loc_821AE94C:
 	ctx.r5.s64 = ctx.r11.s64 + -6696;
 	// bl 0x82281f68
 	ctx.lr = 0x821AE968;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821AE968:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -34564,7 +34564,7 @@ loc_821AE96C:
 	ctx.r5.s64 = ctx.r11.s64 + -8792;
 	// bl 0x822809f0
 	ctx.lr = 0x821AE994;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821ae9b4
 	goto loc_821AE9B4;
 loc_821AE998:
@@ -34584,7 +34584,7 @@ loc_821AE998:
 	ctx.r5.s64 = ctx.r11.s64 + -8792;
 	// bl 0x82281f68
 	ctx.lr = 0x821AE9B4;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821AE9B4:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -34605,7 +34605,7 @@ loc_821AE9B8:
 	ctx.r5.s64 = ctx.r11.s64 + -6676;
 	// bl 0x822805e0
 	ctx.lr = 0x821AE9D8;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821ae9f8
 	goto loc_821AE9F8;
 loc_821AE9DC:
@@ -34623,7 +34623,7 @@ loc_821AE9DC:
 	ctx.r5.s64 = ctx.r11.s64 + -6676;
 	// bl 0x82281d60
 	ctx.lr = 0x821AE9F8;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821AE9F8:
 	// li r3,1
 	ctx.r3.s64 = 1;
@@ -34705,7 +34705,7 @@ loc_821AEA54:
 	ctx.r5.s64 = ctx.r11.s64 + -6660;
 	// bl 0x822809f0
 	ctx.lr = 0x821AEA88;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821aeaa8
 	goto loc_821AEAA8;
 loc_821AEA8C:
@@ -34725,7 +34725,7 @@ loc_821AEA8C:
 	ctx.r5.s64 = ctx.r11.s64 + -6660;
 	// bl 0x82281f68
 	ctx.lr = 0x821AEAA8;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821AEAA8:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -34749,7 +34749,7 @@ loc_821AEAAC:
 	ctx.r5.s64 = ctx.r11.s64 + -6644;
 	// bl 0x822809f0
 	ctx.lr = 0x821AEAD4;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821aeaf4
 	goto loc_821AEAF4;
 loc_821AEAD8:
@@ -34769,7 +34769,7 @@ loc_821AEAD8:
 	ctx.r5.s64 = ctx.r11.s64 + -6644;
 	// bl 0x82281f68
 	ctx.lr = 0x821AEAF4;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821AEAF4:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -34793,7 +34793,7 @@ loc_821AEAF8:
 	ctx.r5.s64 = ctx.r11.s64 + -6624;
 	// bl 0x822806b0
 	ctx.lr = 0x821AEB20;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821aeb40
 	goto loc_821AEB40;
 loc_821AEB24:
@@ -34811,7 +34811,7 @@ loc_821AEB24:
 	ctx.r5.s64 = ctx.r11.s64 + -6624;
 	// bl 0x82281dc8
 	ctx.lr = 0x821AEB40;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821AEB40:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -34835,7 +34835,7 @@ loc_821AEB44:
 	ctx.r5.s64 = ctx.r11.s64 + -6596;
 	// bl 0x822806b0
 	ctx.lr = 0x821AEB6C;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821aeb8c
 	goto loc_821AEB8C;
 loc_821AEB70:
@@ -34853,7 +34853,7 @@ loc_821AEB70:
 	ctx.r5.s64 = ctx.r11.s64 + -6596;
 	// bl 0x82281dc8
 	ctx.lr = 0x821AEB8C;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821AEB8C:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -34877,7 +34877,7 @@ loc_821AEB90:
 	ctx.r5.s64 = ctx.r11.s64 + -6564;
 	// bl 0x822806b0
 	ctx.lr = 0x821AEBB8;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821aebd8
 	goto loc_821AEBD8;
 loc_821AEBBC:
@@ -34895,7 +34895,7 @@ loc_821AEBBC:
 	ctx.r5.s64 = ctx.r11.s64 + -6564;
 	// bl 0x82281dc8
 	ctx.lr = 0x821AEBD8;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821AEBD8:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -34919,7 +34919,7 @@ loc_821AEBDC:
 	ctx.r5.s64 = ctx.r11.s64 + -6536;
 	// bl 0x822806b0
 	ctx.lr = 0x821AEC04;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821aec24
 	goto loc_821AEC24;
 loc_821AEC08:
@@ -34937,7 +34937,7 @@ loc_821AEC08:
 	ctx.r5.s64 = ctx.r11.s64 + -6536;
 	// bl 0x82281dc8
 	ctx.lr = 0x821AEC24;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821AEC24:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -34961,7 +34961,7 @@ loc_821AEC28:
 	ctx.r5.s64 = ctx.r11.s64 + -6504;
 	// bl 0x822805e0
 	ctx.lr = 0x821AEC50;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821aec70
 	goto loc_821AEC70;
 loc_821AEC54:
@@ -34979,7 +34979,7 @@ loc_821AEC54:
 	ctx.r5.s64 = ctx.r11.s64 + -6504;
 	// bl 0x82281d60
 	ctx.lr = 0x821AEC70;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821AEC70:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -35051,7 +35051,7 @@ loc_821AECC4:
 	ctx.r5.s64 = ctx.r11.s64 + -6480;
 	// bl 0x822809f0
 	ctx.lr = 0x821AECE8;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821aed08
 	goto loc_821AED08;
 loc_821AECEC:
@@ -35071,7 +35071,7 @@ loc_821AECEC:
 	ctx.r5.s64 = ctx.r11.s64 + -6480;
 	// bl 0x82281f68
 	ctx.lr = 0x821AED08;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821AED08:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -35191,7 +35191,7 @@ loc_821AEDB4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821AEDD0;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821aedf8
@@ -35202,14 +35202,14 @@ loc_821AEDB4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821AEDE4;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r30
 	ctx.r4.u64 = ctx.r30.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821AEDF0;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821aee24
@@ -35233,7 +35233,7 @@ loc_821AEDF8:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821AEE1C;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821AEE1C:
 	// li r11,0
 	ctx.r11.s64 = 0;
@@ -35313,7 +35313,7 @@ loc_821AEE7C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x822809f0
 	ctx.lr = 0x821AEEA4;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821aeec4
 	goto loc_821AEEC4;
 loc_821AEEA8:
@@ -35333,7 +35333,7 @@ loc_821AEEA8:
 	ctx.r5.s64 = ctx.r11.s64 + -6464;
 	// bl 0x82281f68
 	ctx.lr = 0x821AEEC4;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821AEEC4:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -35357,7 +35357,7 @@ loc_821AEEC8:
 	ctx.r5.s64 = ctx.r11.s64 + -6456;
 	// bl 0x822809f0
 	ctx.lr = 0x821AEEF0;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821aef10
 	goto loc_821AEF10;
 loc_821AEEF4:
@@ -35377,7 +35377,7 @@ loc_821AEEF4:
 	ctx.r5.s64 = ctx.r11.s64 + -6456;
 	// bl 0x82281f68
 	ctx.lr = 0x821AEF10;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821AEF10:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -35398,7 +35398,7 @@ loc_821AEF14:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821AEF34;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821aef5c
@@ -35409,14 +35409,14 @@ loc_821AEF14:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821AEF48;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r30
 	ctx.r4.u64 = ctx.r30.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821AEF54;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821aef88
@@ -35440,7 +35440,7 @@ loc_821AEF5C:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821AEF80;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821AEF80:
 	// li r11,0
 	ctx.r11.s64 = 0;
@@ -35514,7 +35514,7 @@ loc_821AEFDC:
 	ctx.r5.s64 = ctx.r11.s64 + -6432;
 	// bl 0x822809f0
 	ctx.lr = 0x821AF000;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821af020
 	goto loc_821AF020;
 loc_821AF004:
@@ -35534,7 +35534,7 @@ loc_821AF004:
 	ctx.r5.s64 = ctx.r11.s64 + -6432;
 	// bl 0x82281f68
 	ctx.lr = 0x821AF020;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821AF020:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -35606,7 +35606,7 @@ loc_821AF074:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x822806b0
 	ctx.lr = 0x821AF09C;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821af0bc
 	goto loc_821AF0BC;
 loc_821AF0A0:
@@ -35624,7 +35624,7 @@ loc_821AF0A0:
 	ctx.r5.s64 = ctx.r11.s64 + -6424;
 	// bl 0x82281dc8
 	ctx.lr = 0x821AF0BC;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821AF0BC:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -35645,7 +35645,7 @@ loc_821AF0C0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821AF0E0;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,0
 	ctx.r28.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -35665,7 +35665,7 @@ loc_821AF0C0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821AF104;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821af134
@@ -35689,7 +35689,7 @@ loc_821AF10C:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821AF130;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821AF130:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -35713,7 +35713,7 @@ loc_821AF134:
 	ctx.r5.s64 = ctx.r11.s64 + -6396;
 	// bl 0x822806b0
 	ctx.lr = 0x821AF15C;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821af17c
 	goto loc_821AF17C;
 loc_821AF160:
@@ -35731,7 +35731,7 @@ loc_821AF160:
 	ctx.r5.s64 = ctx.r11.s64 + -6396;
 	// bl 0x82281dc8
 	ctx.lr = 0x821AF17C;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821AF17C:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -35752,7 +35752,7 @@ loc_821AF180:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821AF1A0;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821af1c8
@@ -35770,7 +35770,7 @@ loc_821AF180:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821AF1C0;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821af1f0
@@ -35794,7 +35794,7 @@ loc_821AF1C8:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821AF1EC;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821AF1EC:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -35848,7 +35848,7 @@ loc_821AF22C:
 	ctx.r5.s64 = ctx.r10.s64 + -12912;
 	// bl 0x82281390
 	ctx.lr = 0x821AF244;
-	rex_serialiseStreamRW_StringX_82281390(ctx, base);
+	sub_82281390(ctx, base);
 	// li r3,1
 	ctx.r3.s64 = 1;
 	// addi r1,r1,96
@@ -35901,7 +35901,7 @@ loc_821AF284:
 	ctx.r5.s64 = ctx.r10.s64 + -7828;
 	// bl 0x82281390
 	ctx.lr = 0x821AF29C;
-	rex_serialiseStreamRW_StringX_82281390(ctx, base);
+	sub_82281390(ctx, base);
 	// li r3,1
 	ctx.r3.s64 = 1;
 	// addi r1,r1,96
@@ -35965,7 +35965,7 @@ loc_821AF2EC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821AF308;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821af330
@@ -35976,14 +35976,14 @@ loc_821AF2EC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821AF31C;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r30
 	ctx.r4.u64 = ctx.r30.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821AF328;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821af35c
@@ -36007,7 +36007,7 @@ loc_821AF330:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821AF354;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821AF354:
 	// li r11,0
 	ctx.r11.s64 = 0;
@@ -36033,7 +36033,7 @@ loc_821AF35C:
 	ctx.r5.s64 = ctx.r11.s64 + -6372;
 	// bl 0x822806b0
 	ctx.lr = 0x821AF384;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821af3a4
 	goto loc_821AF3A4;
 loc_821AF388:
@@ -36051,7 +36051,7 @@ loc_821AF388:
 	ctx.r5.s64 = ctx.r11.s64 + -6372;
 	// bl 0x82281dc8
 	ctx.lr = 0x821AF3A4;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821AF3A4:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -36112,7 +36112,7 @@ loc_821AF3F4:
 	ctx.r5.s64 = ctx.r10.s64 + -6340;
 	// bl 0x82281390
 	ctx.lr = 0x821AF40C;
-	rex_serialiseStreamRW_StringX_82281390(ctx, base);
+	sub_82281390(ctx, base);
 	// li r3,1
 	ctx.r3.s64 = 1;
 	// addi r1,r1,96
@@ -36175,7 +36175,7 @@ loc_821AF454:
 	ctx.r5.s64 = ctx.r11.s64 + -6328;
 	// bl 0x822806b0
 	ctx.lr = 0x821AF478;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821af498
 	goto loc_821AF498;
 loc_821AF47C:
@@ -36193,7 +36193,7 @@ loc_821AF47C:
 	ctx.r5.s64 = ctx.r11.s64 + -6328;
 	// bl 0x82281dc8
 	ctx.lr = 0x821AF498;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821AF498:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -36256,7 +36256,7 @@ loc_821AF4F4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8220ad68
 	ctx.lr = 0x821AF500;
-	rex_dsHandleRefSerialise_8220AD68(ctx, base);
+	sub_8220AD68(ctx, base);
 	// addi r4,r30,4
 	ctx.r4.s64 = ctx.r30.s64 + 4;
 	// li r11,512
@@ -36276,7 +36276,7 @@ loc_821AF4F4:
 	ctx.r5.s64 = ctx.r11.s64 + -6300;
 	// bl 0x822805e0
 	ctx.lr = 0x821AF528;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821af548
 	goto loc_821AF548;
 loc_821AF52C:
@@ -36294,7 +36294,7 @@ loc_821AF52C:
 	ctx.r5.s64 = ctx.r11.s64 + -6300;
 	// bl 0x82281d60
 	ctx.lr = 0x821AF548;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821AF548:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -36318,7 +36318,7 @@ loc_821AF54C:
 	ctx.r5.s64 = ctx.r11.s64 + -6288;
 	// bl 0x822809f0
 	ctx.lr = 0x821AF574;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821af594
 	goto loc_821AF594;
 loc_821AF578:
@@ -36338,7 +36338,7 @@ loc_821AF578:
 	ctx.r5.s64 = ctx.r11.s64 + -6288;
 	// bl 0x82281f68
 	ctx.lr = 0x821AF594;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821AF594:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -36415,7 +36415,7 @@ loc_821AF5F4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x822805e0
 	ctx.lr = 0x821AF61C;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821af63c
 	goto loc_821AF63C;
 loc_821AF620:
@@ -36433,7 +36433,7 @@ loc_821AF620:
 	ctx.r5.s64 = ctx.r11.s64 + -6268;
 	// bl 0x82281d60
 	ctx.lr = 0x821AF63C;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821AF63C:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -36453,7 +36453,7 @@ loc_821AF640:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281390
 	ctx.lr = 0x821AF660;
-	rex_serialiseStreamRW_StringX_82281390(ctx, base);
+	sub_82281390(ctx, base);
 	// li r3,1
 	ctx.r3.s64 = 1;
 	// addi r1,r1,112
@@ -36522,7 +36522,7 @@ loc_821AF6BC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281390
 	ctx.lr = 0x821AF6DC;
-	rex_serialiseStreamRW_StringX_82281390(ctx, base);
+	sub_82281390(ctx, base);
 	// addi r4,r30,64
 	ctx.r4.s64 = ctx.r30.s64 + 64;
 	// li r9,512
@@ -36538,7 +36538,7 @@ loc_821AF6BC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281390
 	ctx.lr = 0x821AF6FC;
-	rex_serialiseStreamRW_StringX_82281390(ctx, base);
+	sub_82281390(ctx, base);
 	// addi r4,r30,112
 	ctx.r4.s64 = ctx.r30.s64 + 112;
 	// li r7,512
@@ -36558,7 +36558,7 @@ loc_821AF6BC:
 	ctx.r5.s64 = ctx.r11.s64 + -6256;
 	// bl 0x822805e0
 	ctx.lr = 0x821AF724;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821af744
 	goto loc_821AF744;
 loc_821AF728:
@@ -36576,7 +36576,7 @@ loc_821AF728:
 	ctx.r5.s64 = ctx.r11.s64 + -6256;
 	// bl 0x82281d60
 	ctx.lr = 0x821AF744;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821AF744:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -36600,7 +36600,7 @@ loc_821AF748:
 	ctx.r5.s64 = ctx.r11.s64 + -6248;
 	// bl 0x822806b0
 	ctx.lr = 0x821AF770;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821af790
 	goto loc_821AF790;
 loc_821AF774:
@@ -36618,7 +36618,7 @@ loc_821AF774:
 	ctx.r5.s64 = ctx.r11.s64 + -6248;
 	// bl 0x82281dc8
 	ctx.lr = 0x821AF790;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821AF790:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -36692,7 +36692,7 @@ loc_821AF7EC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281390
 	ctx.lr = 0x821AF80C;
-	rex_serialiseStreamRW_StringX_82281390(ctx, base);
+	sub_82281390(ctx, base);
 	// addi r4,r30,64
 	ctx.r4.s64 = ctx.r30.s64 + 64;
 	// li r9,512
@@ -36708,7 +36708,7 @@ loc_821AF7EC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281390
 	ctx.lr = 0x821AF82C;
-	rex_serialiseStreamRW_StringX_82281390(ctx, base);
+	sub_82281390(ctx, base);
 	// addi r4,r30,112
 	ctx.r4.s64 = ctx.r30.s64 + 112;
 	// li r7,512
@@ -36728,7 +36728,7 @@ loc_821AF7EC:
 	ctx.r5.s64 = ctx.r11.s64 + -6256;
 	// bl 0x822805e0
 	ctx.lr = 0x821AF854;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821af874
 	goto loc_821AF874;
 loc_821AF858:
@@ -36746,7 +36746,7 @@ loc_821AF858:
 	ctx.r5.s64 = ctx.r11.s64 + -6256;
 	// bl 0x82281d60
 	ctx.lr = 0x821AF874;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821AF874:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -36770,7 +36770,7 @@ loc_821AF878:
 	ctx.r5.s64 = ctx.r11.s64 + -7820;
 	// bl 0x822809f0
 	ctx.lr = 0x821AF8A0;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821af8c0
 	goto loc_821AF8C0;
 loc_821AF8A4:
@@ -36790,7 +36790,7 @@ loc_821AF8A4:
 	ctx.r5.s64 = ctx.r11.s64 + -7820;
 	// bl 0x82281f68
 	ctx.lr = 0x821AF8C0;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821AF8C0:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -36814,7 +36814,7 @@ loc_821AF8C4:
 	ctx.r5.s64 = ctx.r11.s64 + -6248;
 	// bl 0x822806b0
 	ctx.lr = 0x821AF8EC;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821af90c
 	goto loc_821AF90C;
 loc_821AF8F0:
@@ -36832,7 +36832,7 @@ loc_821AF8F0:
 	ctx.r5.s64 = ctx.r11.s64 + -6248;
 	// bl 0x82281dc8
 	ctx.lr = 0x821AF90C;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821AF90C:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -36903,7 +36903,7 @@ loc_821AF968:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821AF984;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821af9bc
@@ -36929,7 +36929,7 @@ loc_821AF9A8:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821AF9B4;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821af9dc
@@ -37003,7 +37003,7 @@ loc_821AFA14:
 	ctx.r5.s64 = ctx.r11.s64 + -6240;
 	// bl 0x822805e0
 	ctx.lr = 0x821AFA2C;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// li r3,1
 	ctx.r3.s64 = 1;
 	// addi r1,r1,96
@@ -37027,7 +37027,7 @@ loc_821AFA40:
 	ctx.r5.s64 = ctx.r11.s64 + -6240;
 	// bl 0x82281d60
 	ctx.lr = 0x821AFA58;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821AFA58:
 	// li r3,1
 	ctx.r3.s64 = 1;
@@ -37091,7 +37091,7 @@ loc_821AFAA8:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821AFAC4;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821afafc
@@ -37117,7 +37117,7 @@ loc_821AFAE8:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821AFAF4;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821afb1c
@@ -37207,7 +37207,7 @@ loc_821AFB64:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x822809f0
 	ctx.lr = 0x821AFB8C;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821afbac
 	goto loc_821AFBAC;
 loc_821AFB90:
@@ -37227,7 +37227,7 @@ loc_821AFB90:
 	ctx.r5.s64 = ctx.r11.s64 + -6232;
 	// bl 0x82281f68
 	ctx.lr = 0x821AFBAC;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821AFBAC:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -37251,7 +37251,7 @@ loc_821AFBB0:
 	ctx.r5.s64 = ctx.r11.s64 + -6228;
 	// bl 0x822809f0
 	ctx.lr = 0x821AFBD8;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821afbf8
 	goto loc_821AFBF8;
 loc_821AFBDC:
@@ -37271,7 +37271,7 @@ loc_821AFBDC:
 	ctx.r5.s64 = ctx.r11.s64 + -6228;
 	// bl 0x82281f68
 	ctx.lr = 0x821AFBF8;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821AFBF8:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -37295,7 +37295,7 @@ loc_821AFBFC:
 	ctx.r5.s64 = ctx.r11.s64 + -8984;
 	// bl 0x822809f0
 	ctx.lr = 0x821AFC24;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821afc44
 	goto loc_821AFC44;
 loc_821AFC28:
@@ -37315,7 +37315,7 @@ loc_821AFC28:
 	ctx.r5.s64 = ctx.r11.s64 + -8984;
 	// bl 0x82281f68
 	ctx.lr = 0x821AFC44;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821AFC44:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -37339,7 +37339,7 @@ loc_821AFC48:
 	ctx.r5.s64 = ctx.r11.s64 + -6216;
 	// bl 0x822809f0
 	ctx.lr = 0x821AFC70;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821afc90
 	goto loc_821AFC90;
 loc_821AFC74:
@@ -37359,7 +37359,7 @@ loc_821AFC74:
 	ctx.r5.s64 = ctx.r11.s64 + -6216;
 	// bl 0x82281f68
 	ctx.lr = 0x821AFC90;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821AFC90:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -37383,7 +37383,7 @@ loc_821AFC94:
 	ctx.r5.s64 = ctx.r11.s64 + -6196;
 	// bl 0x822806b0
 	ctx.lr = 0x821AFCBC;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821afcdc
 	goto loc_821AFCDC;
 loc_821AFCC0:
@@ -37401,7 +37401,7 @@ loc_821AFCC0:
 	ctx.r5.s64 = ctx.r11.s64 + -6196;
 	// bl 0x82281dc8
 	ctx.lr = 0x821AFCDC;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821AFCDC:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -37425,7 +37425,7 @@ loc_821AFCE0:
 	ctx.r5.s64 = ctx.r11.s64 + -6176;
 	// bl 0x822806b0
 	ctx.lr = 0x821AFD08;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821afd28
 	goto loc_821AFD28;
 loc_821AFD0C:
@@ -37443,7 +37443,7 @@ loc_821AFD0C:
 	ctx.r5.s64 = ctx.r11.s64 + -6176;
 	// bl 0x82281dc8
 	ctx.lr = 0x821AFD28;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821AFD28:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -37515,7 +37515,7 @@ loc_821AFD7C:
 	ctx.r5.s64 = ctx.r11.s64 + -6164;
 	// bl 0x822809f0
 	ctx.lr = 0x821AFDA0;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821afdc0
 	goto loc_821AFDC0;
 loc_821AFDA4:
@@ -37535,7 +37535,7 @@ loc_821AFDA4:
 	ctx.r5.s64 = ctx.r11.s64 + -6164;
 	// bl 0x82281f68
 	ctx.lr = 0x821AFDC0;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821AFDC0:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -37607,7 +37607,7 @@ loc_821AFE14:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x822805e0
 	ctx.lr = 0x821AFE3C;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821afe5c
 	goto loc_821AFE5C;
 loc_821AFE40:
@@ -37625,7 +37625,7 @@ loc_821AFE40:
 	ctx.r5.s64 = ctx.r11.s64 + -8784;
 	// bl 0x82281d60
 	ctx.lr = 0x821AFE5C;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821AFE5C:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -37649,7 +37649,7 @@ loc_821AFE60:
 	ctx.r5.s64 = ctx.r11.s64 + -6148;
 	// bl 0x822806b0
 	ctx.lr = 0x821AFE88;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821afea8
 	goto loc_821AFEA8;
 loc_821AFE8C:
@@ -37667,7 +37667,7 @@ loc_821AFE8C:
 	ctx.r5.s64 = ctx.r11.s64 + -6148;
 	// bl 0x82281dc8
 	ctx.lr = 0x821AFEA8;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821AFEA8:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -37691,7 +37691,7 @@ loc_821AFEAC:
 	ctx.r5.s64 = ctx.r11.s64 + -6132;
 	// bl 0x822806b0
 	ctx.lr = 0x821AFED4;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821afef4
 	goto loc_821AFEF4;
 loc_821AFED8:
@@ -37709,7 +37709,7 @@ loc_821AFED8:
 	ctx.r5.s64 = ctx.r11.s64 + -6132;
 	// bl 0x82281dc8
 	ctx.lr = 0x821AFEF4;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821AFEF4:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -37752,7 +37752,7 @@ loc_821AFF0C:
 	ctx.r3.s64 = 24;
 	// bl 0x82223d40
 	ctx.lr = 0x821AFF40;
-	rex_glMemAllocCleared_82223D40(ctx, base);
+	sub_82223D40(ctx, base);
 	// mr r27,r3
 	ctx.r27.u64 = ctx.r3.u64;
 	// mr r6,r30
@@ -37783,7 +37783,7 @@ loc_821AFF0C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821AFF78;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// li r3,1
 	ctx.r3.s64 = 1;
 	// addi r1,r1,128
@@ -37826,7 +37826,7 @@ loc_821AFF84:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821AFFC4;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 loc_821AFFC4:
 	// li r3,1
 	ctx.r3.s64 = 1;
@@ -37887,7 +37887,7 @@ loc_821B0004:
 	ctx.r5.s64 = ctx.r11.s64 + -6096;
 	// bl 0x822806b0
 	ctx.lr = 0x821B0028;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821b0048
 	goto loc_821B0048;
 loc_821B002C:
@@ -37905,7 +37905,7 @@ loc_821B002C:
 	ctx.r5.s64 = ctx.r11.s64 + -6096;
 	// bl 0x82281dc8
 	ctx.lr = 0x821B0048;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821B0048:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -37980,7 +37980,7 @@ loc_821B00A4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x822806b0
 	ctx.lr = 0x821B00CC;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821b00ec
 	goto loc_821B00EC;
 loc_821B00D0:
@@ -37998,7 +37998,7 @@ loc_821B00D0:
 	ctx.r5.s64 = ctx.r11.s64 + -6092;
 	// bl 0x82281dc8
 	ctx.lr = 0x821B00EC;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821B00EC:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -38019,7 +38019,7 @@ loc_821B00F0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B0110;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b0138
@@ -38030,14 +38030,14 @@ loc_821B00F0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821B0124;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r30
 	ctx.r4.u64 = ctx.r30.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B0130;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b0164
@@ -38061,7 +38061,7 @@ loc_821B0138:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B015C;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B015C:
 	// li r11,0
 	ctx.r11.s64 = 0;
@@ -38141,7 +38141,7 @@ loc_821B01BC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x822809f0
 	ctx.lr = 0x821B01E4;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821b0204
 	goto loc_821B0204;
 loc_821B01E8:
@@ -38161,7 +38161,7 @@ loc_821B01E8:
 	ctx.r5.s64 = ctx.r11.s64 + -6056;
 	// bl 0x82281f68
 	ctx.lr = 0x821B0204;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821B0204:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -38185,7 +38185,7 @@ loc_821B0208:
 	ctx.r5.s64 = ctx.r11.s64 + -6044;
 	// bl 0x822809f0
 	ctx.lr = 0x821B0230;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821b0250
 	goto loc_821B0250;
 loc_821B0234:
@@ -38205,7 +38205,7 @@ loc_821B0234:
 	ctx.r5.s64 = ctx.r11.s64 + -6044;
 	// bl 0x82281f68
 	ctx.lr = 0x821B0250;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821B0250:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -38283,7 +38283,7 @@ loc_821B02AC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x822809f0
 	ctx.lr = 0x821B02D4;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821b02f4
 	goto loc_821B02F4;
 loc_821B02D8:
@@ -38303,7 +38303,7 @@ loc_821B02D8:
 	ctx.r5.s64 = ctx.r11.s64 + -6056;
 	// bl 0x82281f68
 	ctx.lr = 0x821B02F4;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821B02F4:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -38327,7 +38327,7 @@ loc_821B02F8:
 	ctx.r5.s64 = ctx.r11.s64 + -6032;
 	// bl 0x822809f0
 	ctx.lr = 0x821B0320;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821b0340
 	goto loc_821B0340;
 loc_821B0324:
@@ -38347,7 +38347,7 @@ loc_821B0324:
 	ctx.r5.s64 = ctx.r11.s64 + -6032;
 	// bl 0x82281f68
 	ctx.lr = 0x821B0340;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821B0340:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -38419,7 +38419,7 @@ loc_821B039C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B03B8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b03e0
@@ -38437,7 +38437,7 @@ loc_821B039C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B03D8;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b040c
@@ -38461,7 +38461,7 @@ loc_821B03E0:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B0404;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B0404:
 	// li r11,0
 	ctx.r11.s64 = 0;
@@ -38536,7 +38536,7 @@ loc_821B0464:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B0480;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b04a8
@@ -38547,14 +38547,14 @@ loc_821B0464:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821B0494;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r30
 	ctx.r4.u64 = ctx.r30.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B04A0;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b04d4
@@ -38578,7 +38578,7 @@ loc_821B04A8:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B04CC;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B04CC:
 	// li r11,0
 	ctx.r11.s64 = 0;
@@ -38604,7 +38604,7 @@ loc_821B04D4:
 	ctx.r5.s64 = ctx.r11.s64 + -6056;
 	// bl 0x822809f0
 	ctx.lr = 0x821B04FC;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821b051c
 	goto loc_821B051C;
 loc_821B0500:
@@ -38624,7 +38624,7 @@ loc_821B0500:
 	ctx.r5.s64 = ctx.r11.s64 + -6056;
 	// bl 0x82281f68
 	ctx.lr = 0x821B051C;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821B051C:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -38696,7 +38696,7 @@ loc_821B0574:
 	ctx.r5.s64 = ctx.r11.s64 + -6056;
 	// bl 0x822809f0
 	ctx.lr = 0x821B0598;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821b05b8
 	goto loc_821B05B8;
 loc_821B059C:
@@ -38716,7 +38716,7 @@ loc_821B059C:
 	ctx.r5.s64 = ctx.r11.s64 + -6056;
 	// bl 0x82281f68
 	ctx.lr = 0x821B05B8;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821B05B8:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -38792,7 +38792,7 @@ loc_821B0614:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x822809f0
 	ctx.lr = 0x821B063C;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821b065c
 	goto loc_821B065C;
 loc_821B0640:
@@ -38812,7 +38812,7 @@ loc_821B0640:
 	ctx.r5.s64 = ctx.r11.s64 + -6316;
 	// bl 0x82281f68
 	ctx.lr = 0x821B065C;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821B065C:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -38836,7 +38836,7 @@ loc_821B0660:
 	ctx.r5.s64 = ctx.r11.s64 + -6308;
 	// bl 0x822809f0
 	ctx.lr = 0x821B0688;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821b06a8
 	goto loc_821B06A8;
 loc_821B068C:
@@ -38856,7 +38856,7 @@ loc_821B068C:
 	ctx.r5.s64 = ctx.r11.s64 + -6308;
 	// bl 0x82281f68
 	ctx.lr = 0x821B06A8;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821B06A8:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -38929,7 +38929,7 @@ loc_821B0704:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281390
 	ctx.lr = 0x821B0724;
-	rex_serialiseStreamRW_StringX_82281390(ctx, base);
+	sub_82281390(ctx, base);
 	// addi r4,r30,48
 	ctx.r4.s64 = ctx.r30.s64 + 48;
 	// li r9,512
@@ -38949,7 +38949,7 @@ loc_821B0704:
 	ctx.r5.s64 = ctx.r11.s64 + -6256;
 	// bl 0x822805e0
 	ctx.lr = 0x821B074C;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821b076c
 	goto loc_821B076C;
 loc_821B0750:
@@ -38967,7 +38967,7 @@ loc_821B0750:
 	ctx.r5.s64 = ctx.r11.s64 + -6256;
 	// bl 0x82281d60
 	ctx.lr = 0x821B076C;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821B076C:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -39042,7 +39042,7 @@ loc_821B07CC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x822805e0
 	ctx.lr = 0x821B07EC;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821b080c
 	goto loc_821B080C;
 loc_821B07F0:
@@ -39060,7 +39060,7 @@ loc_821B07F0:
 	ctx.r5.s64 = ctx.r11.s64 + -8040;
 	// bl 0x82281d60
 	ctx.lr = 0x821B080C;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821B080C:
 	// addi r4,r30,4
 	ctx.r4.s64 = ctx.r30.s64 + 4;
@@ -39081,7 +39081,7 @@ loc_821B080C:
 	ctx.r5.s64 = ctx.r11.s64 + -8984;
 	// bl 0x822809f0
 	ctx.lr = 0x821B0834;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821b0854
 	goto loc_821B0854;
 loc_821B0838:
@@ -39101,7 +39101,7 @@ loc_821B0838:
 	ctx.r5.s64 = ctx.r11.s64 + -8984;
 	// bl 0x82281f68
 	ctx.lr = 0x821B0854;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821B0854:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -39173,7 +39173,7 @@ loc_821B08AC:
 	ctx.r5.s64 = ctx.r11.s64 + -6016;
 	// bl 0x822809f0
 	ctx.lr = 0x821B08D0;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821b08f0
 	goto loc_821B08F0;
 loc_821B08D4:
@@ -39193,7 +39193,7 @@ loc_821B08D4:
 	ctx.r5.s64 = ctx.r11.s64 + -6016;
 	// bl 0x82281f68
 	ctx.lr = 0x821B08F0;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821B08F0:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -39265,7 +39265,7 @@ loc_821B094C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x822805e0
 	ctx.lr = 0x821B096C;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821b098c
 	goto loc_821B098C;
 loc_821B0970:
@@ -39283,7 +39283,7 @@ loc_821B0970:
 	ctx.r5.s64 = ctx.r11.s64 + -7828;
 	// bl 0x82281d60
 	ctx.lr = 0x821B098C;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821B098C:
 	// addi r4,r30,4
 	ctx.r4.s64 = ctx.r30.s64 + 4;
@@ -39304,7 +39304,7 @@ loc_821B098C:
 	ctx.r5.s64 = ctx.r11.s64 + -6256;
 	// bl 0x822806b0
 	ctx.lr = 0x821B09B4;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821b09d4
 	goto loc_821B09D4;
 loc_821B09B8:
@@ -39322,7 +39322,7 @@ loc_821B09B8:
 	ctx.r5.s64 = ctx.r11.s64 + -6256;
 	// bl 0x82281dc8
 	ctx.lr = 0x821B09D4;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821B09D4:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -39393,7 +39393,7 @@ loc_821B0A2C:
 	ctx.r5.s64 = ctx.r11.s64 + -6008;
 	// bl 0x822806b0
 	ctx.lr = 0x821B0A50;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821b0a70
 	goto loc_821B0A70;
 loc_821B0A54:
@@ -39411,7 +39411,7 @@ loc_821B0A54:
 	ctx.r5.s64 = ctx.r11.s64 + -6008;
 	// bl 0x82281dc8
 	ctx.lr = 0x821B0A70;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821B0A70:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -39481,7 +39481,7 @@ loc_821B0ACC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B0AE8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b0b10
@@ -39499,7 +39499,7 @@ loc_821B0ACC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B0B08;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b0b3c
@@ -39523,7 +39523,7 @@ loc_821B0B10:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B0B34;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B0B34:
 	// li r11,0
 	ctx.r11.s64 = 0;
@@ -39549,7 +39549,7 @@ loc_821B0B3C:
 	ctx.r5.s64 = ctx.r11.s64 + -5996;
 	// bl 0x822806b0
 	ctx.lr = 0x821B0B64;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821b0b84
 	goto loc_821B0B84;
 loc_821B0B68:
@@ -39567,7 +39567,7 @@ loc_821B0B68:
 	ctx.r5.s64 = ctx.r11.s64 + -5996;
 	// bl 0x82281dc8
 	ctx.lr = 0x821B0B84;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821B0B84:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -39639,7 +39639,7 @@ loc_821B0BE4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B0C00;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b0c28
@@ -39657,7 +39657,7 @@ loc_821B0BE4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B0C20;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b0c54
@@ -39681,7 +39681,7 @@ loc_821B0C28:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B0C4C;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B0C4C:
 	// li r11,0
 	ctx.r11.s64 = 0;
@@ -39756,7 +39756,7 @@ loc_821B0CAC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281390
 	ctx.lr = 0x821B0CCC;
-	rex_serialiseStreamRW_StringX_82281390(ctx, base);
+	sub_82281390(ctx, base);
 	// addi r4,r30,48
 	ctx.r4.s64 = ctx.r30.s64 + 48;
 	// li r9,512
@@ -39772,7 +39772,7 @@ loc_821B0CAC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281390
 	ctx.lr = 0x821B0CEC;
-	rex_serialiseStreamRW_StringX_82281390(ctx, base);
+	sub_82281390(ctx, base);
 	// addi r4,r30,96
 	ctx.r4.s64 = ctx.r30.s64 + 96;
 	// li r7,512
@@ -39788,7 +39788,7 @@ loc_821B0CAC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281390
 	ctx.lr = 0x821B0D0C;
-	rex_serialiseStreamRW_StringX_82281390(ctx, base);
+	sub_82281390(ctx, base);
 	// addi r4,r30,144
 	ctx.r4.s64 = ctx.r30.s64 + 144;
 	// li r3,512
@@ -39808,7 +39808,7 @@ loc_821B0CAC:
 	ctx.r5.s64 = ctx.r11.s64 + -5896;
 	// bl 0x822806b0
 	ctx.lr = 0x821B0D34;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821b0d54
 	goto loc_821B0D54;
 loc_821B0D38:
@@ -39826,7 +39826,7 @@ loc_821B0D38:
 	ctx.r5.s64 = ctx.r11.s64 + -5896;
 	// bl 0x82281dc8
 	ctx.lr = 0x821B0D54;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821B0D54:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -39850,7 +39850,7 @@ loc_821B0D58:
 	ctx.r5.s64 = ctx.r11.s64 + -5876;
 	// bl 0x822806b0
 	ctx.lr = 0x821B0D80;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821b0da0
 	goto loc_821B0DA0;
 loc_821B0D84:
@@ -39868,7 +39868,7 @@ loc_821B0D84:
 	ctx.r5.s64 = ctx.r11.s64 + -5876;
 	// bl 0x82281dc8
 	ctx.lr = 0x821B0DA0;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821B0DA0:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -39892,7 +39892,7 @@ loc_821B0DA4:
 	ctx.r5.s64 = ctx.r11.s64 + -5836;
 	// bl 0x822806b0
 	ctx.lr = 0x821B0DCC;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821b0dec
 	goto loc_821B0DEC;
 loc_821B0DD0:
@@ -39910,7 +39910,7 @@ loc_821B0DD0:
 	ctx.r5.s64 = ctx.r11.s64 + -5836;
 	// bl 0x82281dc8
 	ctx.lr = 0x821B0DEC;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821B0DEC:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -39934,7 +39934,7 @@ loc_821B0DF0:
 	ctx.r5.s64 = ctx.r11.s64 + -5808;
 	// bl 0x822806b0
 	ctx.lr = 0x821B0E18;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821b0e38
 	goto loc_821B0E38;
 loc_821B0E1C:
@@ -39952,7 +39952,7 @@ loc_821B0E1C:
 	ctx.r5.s64 = ctx.r11.s64 + -5808;
 	// bl 0x82281dc8
 	ctx.lr = 0x821B0E38;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821B0E38:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -39973,7 +39973,7 @@ loc_821B0E3C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B0E5C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b0e84
@@ -39991,7 +39991,7 @@ loc_821B0E3C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B0E7C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b0eb0
@@ -40015,7 +40015,7 @@ loc_821B0E84:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B0EA8;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B0EA8:
 	// li r11,0
 	ctx.r11.s64 = 0;
@@ -40094,7 +40094,7 @@ loc_821B0F0C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x822806b0
 	ctx.lr = 0x821B0F34;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821b0f54
 	goto loc_821B0F54;
 loc_821B0F38:
@@ -40112,7 +40112,7 @@ loc_821B0F38:
 	ctx.r5.s64 = ctx.r11.s64 + -5784;
 	// bl 0x82281dc8
 	ctx.lr = 0x821B0F54;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821B0F54:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -40133,7 +40133,7 @@ loc_821B0F58:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B0F78;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b0fa0
@@ -40151,7 +40151,7 @@ loc_821B0F58:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B0F98;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b0fcc
@@ -40175,7 +40175,7 @@ loc_821B0FA0:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B0FC4;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B0FC4:
 	// li r11,0
 	ctx.r11.s64 = 0;
@@ -40246,7 +40246,7 @@ loc_821B101C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B1038;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r29,0
 	ctx.r29.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -40259,14 +40259,14 @@ loc_821B101C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821B1050;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r30
 	ctx.r4.u64 = ctx.r30.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B105C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b108c
@@ -40290,7 +40290,7 @@ loc_821B1064:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B1088;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B1088:
 	// stw r29,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r29.u32);
@@ -40311,7 +40311,7 @@ loc_821B108C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B10AC;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b10d4
@@ -40329,7 +40329,7 @@ loc_821B108C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B10CC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b10fc
@@ -40353,7 +40353,7 @@ loc_821B10D4:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B10F8;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B10F8:
 	// stw r29,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r29.u32);
@@ -40419,7 +40419,7 @@ loc_821B1144:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B1160;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b1188
@@ -40437,7 +40437,7 @@ loc_821B1144:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B1180;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b11b4
@@ -40461,7 +40461,7 @@ loc_821B1188:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B11AC;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B11AC:
 	// li r11,0
 	ctx.r11.s64 = 0;
@@ -40487,7 +40487,7 @@ loc_821B11B4:
 	ctx.r5.s64 = ctx.r11.s64 + -7240;
 	// bl 0x822809f0
 	ctx.lr = 0x821B11DC;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821b11fc
 	goto loc_821B11FC;
 loc_821B11E0:
@@ -40507,7 +40507,7 @@ loc_821B11E0:
 	ctx.r5.s64 = ctx.r11.s64 + -7240;
 	// bl 0x82281f68
 	ctx.lr = 0x821B11FC;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821B11FC:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -40531,7 +40531,7 @@ loc_821B1200:
 	ctx.r5.s64 = ctx.r11.s64 + -7220;
 	// bl 0x822806b0
 	ctx.lr = 0x821B1228;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821b1248
 	goto loc_821B1248;
 loc_821B122C:
@@ -40549,7 +40549,7 @@ loc_821B122C:
 	ctx.r5.s64 = ctx.r11.s64 + -7220;
 	// bl 0x82281dc8
 	ctx.lr = 0x821B1248;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821B1248:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -40573,7 +40573,7 @@ loc_821B124C:
 	ctx.r5.s64 = ctx.r11.s64 + -7196;
 	// bl 0x822806b0
 	ctx.lr = 0x821B1274;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821b1294
 	goto loc_821B1294;
 loc_821B1278:
@@ -40591,7 +40591,7 @@ loc_821B1278:
 	ctx.r5.s64 = ctx.r11.s64 + -7196;
 	// bl 0x82281dc8
 	ctx.lr = 0x821B1294;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821B1294:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -40661,7 +40661,7 @@ loc_821B12EC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B1308;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,0
 	ctx.r28.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -40681,7 +40681,7 @@ loc_821B12EC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B132C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b135c
@@ -40705,7 +40705,7 @@ loc_821B1334:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B1358;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B1358:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -40726,7 +40726,7 @@ loc_821B135C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B137C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b13a4
@@ -40737,14 +40737,14 @@ loc_821B135C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821B1390;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r30
 	ctx.r4.u64 = ctx.r30.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B139C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b13cc
@@ -40768,7 +40768,7 @@ loc_821B13A4:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B13C8;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B13C8:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -40792,7 +40792,7 @@ loc_821B13CC:
 	ctx.r5.s64 = ctx.r11.s64 + -7240;
 	// bl 0x822809f0
 	ctx.lr = 0x821B13F4;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
 	// li r3,1
@@ -40819,7 +40819,7 @@ loc_821B1404:
 	ctx.r5.s64 = ctx.r11.s64 + -7240;
 	// bl 0x82281f68
 	ctx.lr = 0x821B1420;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
 loc_821B1424:
@@ -40883,7 +40883,7 @@ loc_821B146C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B1488;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b14b0
@@ -40901,7 +40901,7 @@ loc_821B146C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B14A8;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b14dc
@@ -40925,7 +40925,7 @@ loc_821B14B0:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B14D4;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B14D4:
 	// li r11,0
 	ctx.r11.s64 = 0;
@@ -40998,7 +40998,7 @@ loc_821B1530:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B154C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r26,0
 	ctx.r26.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -41018,7 +41018,7 @@ loc_821B1530:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B1570;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b15a0
@@ -41042,7 +41042,7 @@ loc_821B1578:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B159C;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B159C:
 	// stw r26,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r26.u32);
@@ -41063,7 +41063,7 @@ loc_821B15A0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B15C0;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,4
 	ctx.r27.s64 = 4;
 	// cmpwi cr6,r3,0
@@ -41091,7 +41091,7 @@ loc_821B15E8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B15F4;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b1618
@@ -41129,7 +41129,7 @@ loc_821B1618:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B1638;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b1670
@@ -41155,7 +41155,7 @@ loc_821B165C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B1668;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b168c
@@ -41236,7 +41236,7 @@ loc_821B16D0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B16EC;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,0
 	ctx.r27.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -41256,7 +41256,7 @@ loc_821B16D0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B1710;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b1740
@@ -41280,7 +41280,7 @@ loc_821B1718:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B173C;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B173C:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -41301,7 +41301,7 @@ loc_821B1740:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B1760;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b1788
@@ -41319,7 +41319,7 @@ loc_821B1740:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B1780;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b17b0
@@ -41343,7 +41343,7 @@ loc_821B1788:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B17AC;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B17AC:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -41364,7 +41364,7 @@ loc_821B17B0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B17D0;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b180c
@@ -41392,7 +41392,7 @@ loc_821B17F8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B1804;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b1828
@@ -41473,7 +41473,7 @@ loc_821B1870:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B188C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,0
 	ctx.r27.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -41493,7 +41493,7 @@ loc_821B1870:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B18B0;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b18e0
@@ -41517,7 +41517,7 @@ loc_821B18B8:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B18DC;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B18DC:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -41538,7 +41538,7 @@ loc_821B18E0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B1900;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b1928
@@ -41556,7 +41556,7 @@ loc_821B18E0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B1920;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b1950
@@ -41580,7 +41580,7 @@ loc_821B1928:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B194C;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B194C:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -41601,7 +41601,7 @@ loc_821B1950:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B1970;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b19ac
@@ -41629,7 +41629,7 @@ loc_821B1998:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B19A4;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b19c8
@@ -41708,7 +41708,7 @@ loc_821B1A0C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B1A28;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,0
 	ctx.r28.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -41728,7 +41728,7 @@ loc_821B1A0C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B1A4C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b1a7c
@@ -41752,7 +41752,7 @@ loc_821B1A54:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B1A78;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B1A78:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -41773,7 +41773,7 @@ loc_821B1A7C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B1A9C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b1ac4
@@ -41791,7 +41791,7 @@ loc_821B1A7C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B1ABC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b1aec
@@ -41815,7 +41815,7 @@ loc_821B1AC4:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B1AE8;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B1AE8:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -41836,7 +41836,7 @@ loc_821B1AEC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B1B0C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b1b34
@@ -41854,7 +41854,7 @@ loc_821B1AEC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B1B2C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b1b50
@@ -41935,7 +41935,7 @@ loc_821B1B98:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B1BB4;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,0
 	ctx.r27.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -41955,7 +41955,7 @@ loc_821B1B98:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B1BD8;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b1c08
@@ -41979,7 +41979,7 @@ loc_821B1BE0:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B1C04;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B1C04:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -42000,7 +42000,7 @@ loc_821B1C08:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B1C28;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b1c50
@@ -42018,7 +42018,7 @@ loc_821B1C08:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B1C48;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b1c78
@@ -42042,7 +42042,7 @@ loc_821B1C50:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B1C74;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B1C74:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -42063,7 +42063,7 @@ loc_821B1C78:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B1C98;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b1cd4
@@ -42091,7 +42091,7 @@ loc_821B1CC0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B1CCC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b1cf0
@@ -42172,7 +42172,7 @@ loc_821B1D38:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B1D54;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,0
 	ctx.r27.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -42192,7 +42192,7 @@ loc_821B1D38:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B1D78;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b1da8
@@ -42216,7 +42216,7 @@ loc_821B1D80:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B1DA4;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B1DA4:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -42237,7 +42237,7 @@ loc_821B1DA8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B1DC8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b1df0
@@ -42255,7 +42255,7 @@ loc_821B1DA8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B1DE8;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b1e18
@@ -42279,7 +42279,7 @@ loc_821B1DF0:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B1E14;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B1E14:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -42300,7 +42300,7 @@ loc_821B1E18:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B1E38;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b1e74
@@ -42328,7 +42328,7 @@ loc_821B1E60:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B1E6C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b1e90
@@ -42409,7 +42409,7 @@ loc_821B1ED8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B1EF4;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,0
 	ctx.r27.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -42429,7 +42429,7 @@ loc_821B1ED8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B1F18;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b1f48
@@ -42453,7 +42453,7 @@ loc_821B1F20:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B1F44;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B1F44:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -42474,7 +42474,7 @@ loc_821B1F48:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B1F68;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b1f90
@@ -42492,7 +42492,7 @@ loc_821B1F48:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B1F88;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b1fb8
@@ -42516,7 +42516,7 @@ loc_821B1F90:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B1FB4;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B1FB4:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -42537,7 +42537,7 @@ loc_821B1FB8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B1FD8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b2014
@@ -42565,7 +42565,7 @@ loc_821B2000:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B200C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b2030
@@ -42646,7 +42646,7 @@ loc_821B2078:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B2094;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,0
 	ctx.r27.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -42666,7 +42666,7 @@ loc_821B2078:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B20B8;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b20e8
@@ -42690,7 +42690,7 @@ loc_821B20C0:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B20E4;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B20E4:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -42711,7 +42711,7 @@ loc_821B20E8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B2108;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b2130
@@ -42729,7 +42729,7 @@ loc_821B20E8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B2128;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b2158
@@ -42753,7 +42753,7 @@ loc_821B2130:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B2154;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B2154:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -42774,7 +42774,7 @@ loc_821B2158:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B2178;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b21b4
@@ -42802,7 +42802,7 @@ loc_821B21A0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B21AC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b21d0
@@ -42883,7 +42883,7 @@ loc_821B2218:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B2234;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,0
 	ctx.r27.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -42903,7 +42903,7 @@ loc_821B2218:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B2258;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b2288
@@ -42927,7 +42927,7 @@ loc_821B2260:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B2284;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B2284:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -42948,7 +42948,7 @@ loc_821B2288:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B22A8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b22e4
@@ -42976,7 +42976,7 @@ loc_821B22D0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B22DC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b230c
@@ -43000,7 +43000,7 @@ loc_821B22E4:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B2308;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B2308:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -43021,7 +43021,7 @@ loc_821B230C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B232C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b2368
@@ -43049,7 +43049,7 @@ loc_821B2354:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B2360;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b2384
@@ -43130,7 +43130,7 @@ loc_821B23C8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B23E4;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,0
 	ctx.r27.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -43150,7 +43150,7 @@ loc_821B23C8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B2408;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b2438
@@ -43174,7 +43174,7 @@ loc_821B2410:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B2434;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B2434:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -43195,7 +43195,7 @@ loc_821B2438:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B2458;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b2480
@@ -43213,7 +43213,7 @@ loc_821B2438:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B2478;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b24a8
@@ -43237,7 +43237,7 @@ loc_821B2480:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B24A4;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B24A4:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -43258,7 +43258,7 @@ loc_821B24A8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B24C8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b2504
@@ -43286,7 +43286,7 @@ loc_821B24F0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B24FC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b2520
@@ -43367,7 +43367,7 @@ loc_821B2568:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B2584;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,0
 	ctx.r27.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -43387,7 +43387,7 @@ loc_821B2568:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B25A8;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b25d8
@@ -43411,7 +43411,7 @@ loc_821B25B0:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B25D4;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B25D4:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -43432,7 +43432,7 @@ loc_821B25D8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B25F8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b2634
@@ -43460,7 +43460,7 @@ loc_821B2620:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B262C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b265c
@@ -43484,7 +43484,7 @@ loc_821B2634:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B2658;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B2658:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -43505,7 +43505,7 @@ loc_821B265C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B267C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b26b8
@@ -43533,7 +43533,7 @@ loc_821B26A4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B26B0;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b26d4
@@ -43614,7 +43614,7 @@ loc_821B2718:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B2734;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,0
 	ctx.r27.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -43634,7 +43634,7 @@ loc_821B2718:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B2758;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b2788
@@ -43658,7 +43658,7 @@ loc_821B2760:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B2784;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B2784:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -43679,7 +43679,7 @@ loc_821B2788:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B27A8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b27d0
@@ -43697,7 +43697,7 @@ loc_821B2788:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B27C8;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b27f8
@@ -43721,7 +43721,7 @@ loc_821B27D0:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B27F4;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B27F4:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -43742,7 +43742,7 @@ loc_821B27F8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B2818;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b2854
@@ -43770,7 +43770,7 @@ loc_821B2840:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B284C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b2870
@@ -43851,7 +43851,7 @@ loc_821B28B8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B28D4;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,0
 	ctx.r27.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -43871,7 +43871,7 @@ loc_821B28B8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B28F8;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b2928
@@ -43895,7 +43895,7 @@ loc_821B2900:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B2924;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B2924:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -43916,7 +43916,7 @@ loc_821B2928:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B2948;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b2970
@@ -43934,7 +43934,7 @@ loc_821B2928:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B2968;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b2998
@@ -43958,7 +43958,7 @@ loc_821B2970:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B2994;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B2994:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -43979,7 +43979,7 @@ loc_821B2998:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B29B8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b29f4
@@ -44007,7 +44007,7 @@ loc_821B29E0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B29EC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b2a10
@@ -44088,7 +44088,7 @@ loc_821B2A58:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B2A74;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,0
 	ctx.r27.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -44108,7 +44108,7 @@ loc_821B2A58:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B2A98;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b2ac8
@@ -44132,7 +44132,7 @@ loc_821B2AA0:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B2AC4;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B2AC4:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -44153,7 +44153,7 @@ loc_821B2AC8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B2AE8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b2b10
@@ -44171,7 +44171,7 @@ loc_821B2AC8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B2B08;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b2b38
@@ -44195,7 +44195,7 @@ loc_821B2B10:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B2B34;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B2B34:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -44216,7 +44216,7 @@ loc_821B2B38:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B2B58;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b2b94
@@ -44244,7 +44244,7 @@ loc_821B2B80:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B2B8C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b2bb0
@@ -44323,7 +44323,7 @@ loc_821B2BF4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B2C10;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,0
 	ctx.r28.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -44343,7 +44343,7 @@ loc_821B2BF4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B2C34;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b2c64
@@ -44367,7 +44367,7 @@ loc_821B2C3C:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B2C60;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B2C60:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -44388,7 +44388,7 @@ loc_821B2C64:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B2C84;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b2cac
@@ -44406,7 +44406,7 @@ loc_821B2C64:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B2CA4;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b2cd4
@@ -44430,7 +44430,7 @@ loc_821B2CAC:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B2CD0;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B2CD0:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -44451,7 +44451,7 @@ loc_821B2CD4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B2CF4;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b2d1c
@@ -44469,7 +44469,7 @@ loc_821B2CD4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B2D14;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b2d38
@@ -44550,7 +44550,7 @@ loc_821B2D80:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B2D9C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r26,0
 	ctx.r26.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -44570,7 +44570,7 @@ loc_821B2D80:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B2DC0;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b2df0
@@ -44594,7 +44594,7 @@ loc_821B2DC8:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B2DEC;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B2DEC:
 	// stw r26,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r26.u32);
@@ -44615,7 +44615,7 @@ loc_821B2DF0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B2E10;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,4
 	ctx.r27.s64 = 4;
 	// cmpwi cr6,r3,0
@@ -44643,7 +44643,7 @@ loc_821B2E38:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B2E44;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b2e68
@@ -44681,7 +44681,7 @@ loc_821B2E68:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B2E88;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b2ec0
@@ -44707,7 +44707,7 @@ loc_821B2EAC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B2EB8;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b2edc
@@ -44788,7 +44788,7 @@ loc_821B2F20:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B2F3C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,0
 	ctx.r27.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -44808,7 +44808,7 @@ loc_821B2F20:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B2F60;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b2f90
@@ -44832,7 +44832,7 @@ loc_821B2F68:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B2F8C;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B2F8C:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -44853,7 +44853,7 @@ loc_821B2F90:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B2FB0;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b2fd8
@@ -44871,7 +44871,7 @@ loc_821B2F90:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B2FD0;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b3000
@@ -44895,7 +44895,7 @@ loc_821B2FD8:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B2FFC;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B2FFC:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -44916,7 +44916,7 @@ loc_821B3000:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B3020;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b305c
@@ -44944,7 +44944,7 @@ loc_821B3048:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B3054;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b3078
@@ -45025,7 +45025,7 @@ loc_821B30C0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B30DC;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,0
 	ctx.r27.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -45045,7 +45045,7 @@ loc_821B30C0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B3100;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b3130
@@ -45069,7 +45069,7 @@ loc_821B3108:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B312C;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B312C:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -45090,7 +45090,7 @@ loc_821B3130:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B3150;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b3178
@@ -45108,7 +45108,7 @@ loc_821B3130:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B3170;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b3194
@@ -45146,7 +45146,7 @@ loc_821B3194:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B31B4;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b31f0
@@ -45174,7 +45174,7 @@ loc_821B31DC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B31E8;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b320c
@@ -45255,7 +45255,7 @@ loc_821B3250:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B326C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,0
 	ctx.r27.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -45275,7 +45275,7 @@ loc_821B3250:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B3290;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b32c0
@@ -45299,7 +45299,7 @@ loc_821B3298:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B32BC;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B32BC:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -45320,7 +45320,7 @@ loc_821B32C0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B32E0;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b3308
@@ -45338,7 +45338,7 @@ loc_821B32C0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B3300;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b3324
@@ -45376,7 +45376,7 @@ loc_821B3324:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B3344;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b3380
@@ -45404,7 +45404,7 @@ loc_821B336C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B3378;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b339c
@@ -45485,7 +45485,7 @@ loc_821B33E0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B33FC;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,0
 	ctx.r27.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -45505,7 +45505,7 @@ loc_821B33E0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B3420;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b3450
@@ -45529,7 +45529,7 @@ loc_821B3428:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B344C;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B344C:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -45550,7 +45550,7 @@ loc_821B3450:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B3470;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b3498
@@ -45568,7 +45568,7 @@ loc_821B3450:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B3490;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b34c0
@@ -45592,7 +45592,7 @@ loc_821B3498:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B34BC;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B34BC:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -45613,7 +45613,7 @@ loc_821B34C0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B34E0;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b351c
@@ -45641,7 +45641,7 @@ loc_821B3508:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B3514;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b3538
@@ -45720,7 +45720,7 @@ loc_821B357C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B3598;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,0
 	ctx.r28.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -45740,7 +45740,7 @@ loc_821B357C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B35BC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b35ec
@@ -45764,7 +45764,7 @@ loc_821B35C4:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B35E8;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B35E8:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -45785,7 +45785,7 @@ loc_821B35EC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B360C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b3634
@@ -45803,7 +45803,7 @@ loc_821B35EC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B362C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b365c
@@ -45827,7 +45827,7 @@ loc_821B3634:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B3658;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B3658:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -45848,7 +45848,7 @@ loc_821B365C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B367C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b36a4
@@ -45866,7 +45866,7 @@ loc_821B365C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B369C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b36cc
@@ -45890,7 +45890,7 @@ loc_821B36A4:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B36C8;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B36C8:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -45952,7 +45952,7 @@ loc_821B370C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B3728;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,0
 	ctx.r28.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -45972,7 +45972,7 @@ loc_821B370C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B374C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b377c
@@ -45996,7 +45996,7 @@ loc_821B3754:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B3778;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B3778:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -46017,7 +46017,7 @@ loc_821B377C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B379C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b37c4
@@ -46035,7 +46035,7 @@ loc_821B377C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B37BC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b37ec
@@ -46059,7 +46059,7 @@ loc_821B37C4:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B37E8;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B37E8:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -46080,7 +46080,7 @@ loc_821B37EC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B380C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b3834
@@ -46098,7 +46098,7 @@ loc_821B37EC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B382C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b385c
@@ -46122,7 +46122,7 @@ loc_821B3834:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B3858;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B3858:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -46184,7 +46184,7 @@ loc_821B389C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B38B8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,0
 	ctx.r28.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -46204,7 +46204,7 @@ loc_821B389C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B38DC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b390c
@@ -46228,7 +46228,7 @@ loc_821B38E4:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B3908;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B3908:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -46249,7 +46249,7 @@ loc_821B390C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B392C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b3954
@@ -46267,7 +46267,7 @@ loc_821B390C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B394C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b397c
@@ -46291,7 +46291,7 @@ loc_821B3954:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B3978;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B3978:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -46312,7 +46312,7 @@ loc_821B397C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B399C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b39c4
@@ -46330,7 +46330,7 @@ loc_821B397C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B39BC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b39ec
@@ -46354,7 +46354,7 @@ loc_821B39C4:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B39E8;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B39E8:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -46416,7 +46416,7 @@ loc_821B3A2C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B3A48;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,0
 	ctx.r28.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -46436,7 +46436,7 @@ loc_821B3A2C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B3A6C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b3a9c
@@ -46460,7 +46460,7 @@ loc_821B3A74:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B3A98;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B3A98:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -46481,7 +46481,7 @@ loc_821B3A9C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B3ABC;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b3ae4
@@ -46499,7 +46499,7 @@ loc_821B3A9C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B3ADC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b3b0c
@@ -46523,7 +46523,7 @@ loc_821B3AE4:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B3B08;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B3B08:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -46544,7 +46544,7 @@ loc_821B3B0C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B3B2C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b3b54
@@ -46562,7 +46562,7 @@ loc_821B3B0C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B3B4C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b3b7c
@@ -46586,7 +46586,7 @@ loc_821B3B54:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B3B78;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B3B78:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -46648,7 +46648,7 @@ loc_821B3BBC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B3BD8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,0
 	ctx.r28.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -46668,7 +46668,7 @@ loc_821B3BBC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B3BFC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b3c2c
@@ -46692,7 +46692,7 @@ loc_821B3C04:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B3C28;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B3C28:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -46713,7 +46713,7 @@ loc_821B3C2C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B3C4C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b3c74
@@ -46731,7 +46731,7 @@ loc_821B3C2C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B3C6C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b3c9c
@@ -46755,7 +46755,7 @@ loc_821B3C74:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B3C98;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B3C98:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -46776,7 +46776,7 @@ loc_821B3C9C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B3CBC;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b3ce4
@@ -46794,7 +46794,7 @@ loc_821B3C9C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B3CDC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b3d0c
@@ -46818,7 +46818,7 @@ loc_821B3CE4:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B3D08;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B3D08:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -46880,7 +46880,7 @@ loc_821B3D4C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B3D68;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,0
 	ctx.r28.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -46900,7 +46900,7 @@ loc_821B3D4C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B3D8C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b3dbc
@@ -46924,7 +46924,7 @@ loc_821B3D94:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B3DB8;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B3DB8:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -46945,7 +46945,7 @@ loc_821B3DBC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B3DDC;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b3e04
@@ -46963,7 +46963,7 @@ loc_821B3DBC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B3DFC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b3e2c
@@ -46987,7 +46987,7 @@ loc_821B3E04:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B3E28;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B3E28:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -47008,7 +47008,7 @@ loc_821B3E2C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B3E4C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b3e74
@@ -47026,7 +47026,7 @@ loc_821B3E2C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B3E6C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b3e9c
@@ -47050,7 +47050,7 @@ loc_821B3E74:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B3E98;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B3E98:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -47112,7 +47112,7 @@ loc_821B3EDC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B3EF8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,0
 	ctx.r28.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -47132,7 +47132,7 @@ loc_821B3EDC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B3F1C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b3f4c
@@ -47156,7 +47156,7 @@ loc_821B3F24:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B3F48;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B3F48:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -47177,7 +47177,7 @@ loc_821B3F4C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B3F6C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b3f94
@@ -47195,7 +47195,7 @@ loc_821B3F4C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B3F8C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b3fbc
@@ -47219,7 +47219,7 @@ loc_821B3F94:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B3FB8;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B3FB8:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -47240,7 +47240,7 @@ loc_821B3FBC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B3FDC;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b4004
@@ -47258,7 +47258,7 @@ loc_821B3FBC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B3FFC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b402c
@@ -47282,7 +47282,7 @@ loc_821B4004:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B4028;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B4028:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -47344,7 +47344,7 @@ loc_821B406C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B4088;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,0
 	ctx.r28.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -47364,7 +47364,7 @@ loc_821B406C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B40AC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b40dc
@@ -47388,7 +47388,7 @@ loc_821B40B4:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B40D8;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B40D8:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -47409,7 +47409,7 @@ loc_821B40DC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B40FC;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b4124
@@ -47427,7 +47427,7 @@ loc_821B40DC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B411C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b414c
@@ -47451,7 +47451,7 @@ loc_821B4124:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B4148;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B4148:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -47472,7 +47472,7 @@ loc_821B414C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B416C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b4194
@@ -47490,7 +47490,7 @@ loc_821B414C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B418C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b41bc
@@ -47514,7 +47514,7 @@ loc_821B4194:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B41B8;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B41B8:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -47576,7 +47576,7 @@ loc_821B41FC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B4218;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,0
 	ctx.r28.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -47596,7 +47596,7 @@ loc_821B41FC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B423C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b426c
@@ -47620,7 +47620,7 @@ loc_821B4244:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B4268;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B4268:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -47641,7 +47641,7 @@ loc_821B426C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B428C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b42b4
@@ -47659,7 +47659,7 @@ loc_821B426C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B42AC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b42dc
@@ -47683,7 +47683,7 @@ loc_821B42B4:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B42D8;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B42D8:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -47704,7 +47704,7 @@ loc_821B42DC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B42FC;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b4324
@@ -47722,7 +47722,7 @@ loc_821B42DC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B431C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b434c
@@ -47746,7 +47746,7 @@ loc_821B4324:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B4348;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B4348:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -47810,7 +47810,7 @@ loc_821B4390:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B43AC;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,0
 	ctx.r27.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -47830,7 +47830,7 @@ loc_821B4390:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B43D0;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b4400
@@ -47854,7 +47854,7 @@ loc_821B43D8:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B43FC;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B43FC:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -47875,7 +47875,7 @@ loc_821B4400:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B4420;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b4448
@@ -47893,7 +47893,7 @@ loc_821B4400:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B4440;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b4464
@@ -47931,7 +47931,7 @@ loc_821B4464:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B4484;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b44c0
@@ -47959,7 +47959,7 @@ loc_821B44AC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B44B8;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b44dc
@@ -48040,7 +48040,7 @@ loc_821B4520:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B453C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,0
 	ctx.r27.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -48060,7 +48060,7 @@ loc_821B4520:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B4560;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b4590
@@ -48084,7 +48084,7 @@ loc_821B4568:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B458C;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B458C:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -48105,7 +48105,7 @@ loc_821B4590:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B45B0;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b45d8
@@ -48123,7 +48123,7 @@ loc_821B4590:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B45D0;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b4600
@@ -48147,7 +48147,7 @@ loc_821B45D8:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B45FC;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B45FC:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -48168,7 +48168,7 @@ loc_821B4600:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B4620;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b465c
@@ -48196,7 +48196,7 @@ loc_821B4648:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B4654;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b4678
@@ -48275,7 +48275,7 @@ loc_821B46BC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B46D8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,0
 	ctx.r28.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -48295,7 +48295,7 @@ loc_821B46BC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B46FC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b472c
@@ -48319,7 +48319,7 @@ loc_821B4704:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B4728;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B4728:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -48340,7 +48340,7 @@ loc_821B472C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B474C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b4774
@@ -48358,7 +48358,7 @@ loc_821B472C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B476C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b479c
@@ -48382,7 +48382,7 @@ loc_821B4774:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B4798;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B4798:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -48403,7 +48403,7 @@ loc_821B479C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B47BC;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b47e4
@@ -48421,7 +48421,7 @@ loc_821B479C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B47DC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b4800
@@ -48502,7 +48502,7 @@ loc_821B4848:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B4864;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,0
 	ctx.r27.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -48522,7 +48522,7 @@ loc_821B4848:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B4888;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b48b8
@@ -48546,7 +48546,7 @@ loc_821B4890:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B48B4;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B48B4:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -48567,7 +48567,7 @@ loc_821B48B8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B48D8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b4900
@@ -48585,7 +48585,7 @@ loc_821B48B8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B48F8;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b4928
@@ -48609,7 +48609,7 @@ loc_821B4900:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B4924;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B4924:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -48630,7 +48630,7 @@ loc_821B4928:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B4948;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b4984
@@ -48658,7 +48658,7 @@ loc_821B4970:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B497C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b49a0
@@ -48739,7 +48739,7 @@ loc_821B49E8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B4A04;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,0
 	ctx.r27.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -48759,7 +48759,7 @@ loc_821B49E8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B4A28;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b4a58
@@ -48783,7 +48783,7 @@ loc_821B4A30:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B4A54;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B4A54:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -48804,7 +48804,7 @@ loc_821B4A58:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B4A78;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b4aa0
@@ -48822,7 +48822,7 @@ loc_821B4A58:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B4A98;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b4ac8
@@ -48846,7 +48846,7 @@ loc_821B4AA0:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B4AC4;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B4AC4:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -48867,7 +48867,7 @@ loc_821B4AC8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B4AE8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b4b24
@@ -48895,7 +48895,7 @@ loc_821B4B10:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B4B1C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b4b40
@@ -48974,7 +48974,7 @@ loc_821B4B84:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B4BA0;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,0
 	ctx.r28.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -48994,7 +48994,7 @@ loc_821B4B84:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B4BC4;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b4bf4
@@ -49018,7 +49018,7 @@ loc_821B4BCC:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B4BF0;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B4BF0:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -49039,7 +49039,7 @@ loc_821B4BF4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B4C14;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b4c3c
@@ -49057,7 +49057,7 @@ loc_821B4BF4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B4C34;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b4c58
@@ -49095,7 +49095,7 @@ loc_821B4C58:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B4C78;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b4ca0
@@ -49113,7 +49113,7 @@ loc_821B4C58:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B4C98;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b4cc8
@@ -49137,7 +49137,7 @@ loc_821B4CA0:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B4CC4;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B4CC4:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -49201,7 +49201,7 @@ loc_821B4D10:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B4D2C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,0
 	ctx.r27.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -49221,7 +49221,7 @@ loc_821B4D10:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B4D50;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b4d80
@@ -49245,7 +49245,7 @@ loc_821B4D58:
 	ctx.r3.u64 = ctx.r28.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B4D7C;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B4D7C:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -49266,7 +49266,7 @@ loc_821B4D80:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B4DA0;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b4ddc
@@ -49294,7 +49294,7 @@ loc_821B4DC8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B4DD4;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b4df8
@@ -49332,7 +49332,7 @@ loc_821B4DF8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B4E18;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b4e40
@@ -49350,7 +49350,7 @@ loc_821B4DF8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B4E38;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b4e5c
@@ -49431,7 +49431,7 @@ loc_821B4EA0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B4EBC;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,0
 	ctx.r27.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -49451,7 +49451,7 @@ loc_821B4EA0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B4EE0;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b4f10
@@ -49475,7 +49475,7 @@ loc_821B4EE8:
 	ctx.r3.u64 = ctx.r28.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B4F0C;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B4F0C:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -49496,7 +49496,7 @@ loc_821B4F10:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B4F30;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b4f6c
@@ -49524,7 +49524,7 @@ loc_821B4F58:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B4F64;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b4f88
@@ -49562,7 +49562,7 @@ loc_821B4F88:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B4FA8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b4fd0
@@ -49580,7 +49580,7 @@ loc_821B4F88:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B4FC8;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b4fec
@@ -49659,7 +49659,7 @@ loc_821B502C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B5048;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,0
 	ctx.r28.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -49679,7 +49679,7 @@ loc_821B502C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B506C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b509c
@@ -49703,7 +49703,7 @@ loc_821B5074:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B5098;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B5098:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -49724,7 +49724,7 @@ loc_821B509C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B50BC;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b50e4
@@ -49742,7 +49742,7 @@ loc_821B509C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B50DC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b510c
@@ -49766,7 +49766,7 @@ loc_821B50E4:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B5108;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B5108:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -49787,7 +49787,7 @@ loc_821B510C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B512C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b5154
@@ -49805,7 +49805,7 @@ loc_821B510C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B514C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b5170
@@ -49886,7 +49886,7 @@ loc_821B51B8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B51D4;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,0
 	ctx.r27.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -49906,7 +49906,7 @@ loc_821B51B8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B51F8;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b5228
@@ -49930,7 +49930,7 @@ loc_821B5200:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B5224;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B5224:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -49951,7 +49951,7 @@ loc_821B5228:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B5248;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b5270
@@ -49969,7 +49969,7 @@ loc_821B5228:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B5268;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b5298
@@ -49993,7 +49993,7 @@ loc_821B5270:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B5294;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B5294:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -50014,7 +50014,7 @@ loc_821B5298:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B52B8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b52f4
@@ -50042,7 +50042,7 @@ loc_821B52E0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B52EC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b5310
@@ -50123,7 +50123,7 @@ loc_821B5358:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B5374;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r26,0
 	ctx.r26.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -50143,7 +50143,7 @@ loc_821B5358:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B5398;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b53c8
@@ -50167,7 +50167,7 @@ loc_821B53A0:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B53C4;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B53C4:
 	// stw r26,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r26.u32);
@@ -50188,7 +50188,7 @@ loc_821B53C8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B53E8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,4
 	ctx.r27.s64 = 4;
 	// cmpwi cr6,r3,0
@@ -50216,7 +50216,7 @@ loc_821B5410:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B541C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b5440
@@ -50254,7 +50254,7 @@ loc_821B5440:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B5460;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b5498
@@ -50280,7 +50280,7 @@ loc_821B5484:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B5490;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b54b4
@@ -50359,7 +50359,7 @@ loc_821B54F4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B5510;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,0
 	ctx.r28.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -50379,7 +50379,7 @@ loc_821B54F4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B5534;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b5564
@@ -50403,7 +50403,7 @@ loc_821B553C:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B5560;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B5560:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -50424,7 +50424,7 @@ loc_821B5564:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B5584;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b55ac
@@ -50442,7 +50442,7 @@ loc_821B5564:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B55A4;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b55d4
@@ -50466,7 +50466,7 @@ loc_821B55AC:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B55D0;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B55D0:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -50487,7 +50487,7 @@ loc_821B55D4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B55F4;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b561c
@@ -50505,7 +50505,7 @@ loc_821B55D4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B5614;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b5644
@@ -50529,7 +50529,7 @@ loc_821B561C:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B5640;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B5640:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -50593,7 +50593,7 @@ loc_821B5688:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B56A4;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r26,0
 	ctx.r26.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -50613,7 +50613,7 @@ loc_821B5688:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B56C8;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b56f8
@@ -50637,7 +50637,7 @@ loc_821B56D0:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B56F4;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B56F4:
 	// stw r26,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r26.u32);
@@ -50658,7 +50658,7 @@ loc_821B56F8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B5718;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,4
 	ctx.r27.s64 = 4;
 	// cmpwi cr6,r3,0
@@ -50686,7 +50686,7 @@ loc_821B5740:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B574C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b5770
@@ -50724,7 +50724,7 @@ loc_821B5770:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B5790;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b57c8
@@ -50750,7 +50750,7 @@ loc_821B57B4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B57C0;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b57e4
@@ -50829,7 +50829,7 @@ loc_821B5824:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B5840;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,0
 	ctx.r28.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -50849,7 +50849,7 @@ loc_821B5824:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B5864;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b5894
@@ -50873,7 +50873,7 @@ loc_821B586C:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B5890;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B5890:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -50894,7 +50894,7 @@ loc_821B5894:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B58B4;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b58dc
@@ -50912,7 +50912,7 @@ loc_821B5894:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B58D4;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b5904
@@ -50936,7 +50936,7 @@ loc_821B58DC:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B5900;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B5900:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -50957,7 +50957,7 @@ loc_821B5904:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B5924;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b594c
@@ -50975,7 +50975,7 @@ loc_821B5904:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B5944;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b5974
@@ -50999,7 +50999,7 @@ loc_821B594C:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B5970;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B5970:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -51061,7 +51061,7 @@ loc_821B59B4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B59D0;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,0
 	ctx.r28.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -51081,7 +51081,7 @@ loc_821B59B4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B59F4;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b5a24
@@ -51105,7 +51105,7 @@ loc_821B59FC:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B5A20;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B5A20:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -51126,7 +51126,7 @@ loc_821B5A24:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B5A44;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b5a6c
@@ -51144,7 +51144,7 @@ loc_821B5A24:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B5A64;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b5a94
@@ -51168,7 +51168,7 @@ loc_821B5A6C:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B5A90;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B5A90:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -51189,7 +51189,7 @@ loc_821B5A94:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B5AB4;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b5adc
@@ -51207,7 +51207,7 @@ loc_821B5A94:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B5AD4;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b5b04
@@ -51231,7 +51231,7 @@ loc_821B5ADC:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B5B00;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B5B00:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -51293,7 +51293,7 @@ loc_821B5B44:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B5B60;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,0
 	ctx.r28.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -51313,7 +51313,7 @@ loc_821B5B44:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B5B84;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b5bb4
@@ -51337,7 +51337,7 @@ loc_821B5B8C:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B5BB0;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B5BB0:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -51358,7 +51358,7 @@ loc_821B5BB4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B5BD4;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b5bfc
@@ -51376,7 +51376,7 @@ loc_821B5BB4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B5BF4;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b5c24
@@ -51400,7 +51400,7 @@ loc_821B5BFC:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B5C20;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B5C20:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -51421,7 +51421,7 @@ loc_821B5C24:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B5C44;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b5c6c
@@ -51439,7 +51439,7 @@ loc_821B5C24:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B5C64;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b5c94
@@ -51463,7 +51463,7 @@ loc_821B5C6C:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B5C90;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B5C90:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -51525,7 +51525,7 @@ loc_821B5CD4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B5CF0;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,0
 	ctx.r28.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -51545,7 +51545,7 @@ loc_821B5CD4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B5D14;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b5d44
@@ -51569,7 +51569,7 @@ loc_821B5D1C:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B5D40;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B5D40:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -51590,7 +51590,7 @@ loc_821B5D44:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B5D64;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b5d8c
@@ -51608,7 +51608,7 @@ loc_821B5D44:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B5D84;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b5db4
@@ -51632,7 +51632,7 @@ loc_821B5D8C:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B5DB0;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B5DB0:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -51653,7 +51653,7 @@ loc_821B5DB4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B5DD4;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b5dfc
@@ -51671,7 +51671,7 @@ loc_821B5DB4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B5DF4;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b5e24
@@ -51695,7 +51695,7 @@ loc_821B5DFC:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B5E20;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B5E20:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -51759,7 +51759,7 @@ loc_821B5E68:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B5E84;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r26,0
 	ctx.r26.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -51779,7 +51779,7 @@ loc_821B5E68:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B5EA8;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b5ed8
@@ -51803,7 +51803,7 @@ loc_821B5EB0:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B5ED4;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B5ED4:
 	// stw r26,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r26.u32);
@@ -51824,7 +51824,7 @@ loc_821B5ED8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B5EF8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,4
 	ctx.r27.s64 = 4;
 	// cmpwi cr6,r3,0
@@ -51852,7 +51852,7 @@ loc_821B5F20:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B5F2C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b5f50
@@ -51890,7 +51890,7 @@ loc_821B5F50:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B5F70;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b5fa8
@@ -51916,7 +51916,7 @@ loc_821B5F94:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B5FA0;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b5fc4
@@ -51995,7 +51995,7 @@ loc_821B6004:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B6020;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,0
 	ctx.r28.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -52015,7 +52015,7 @@ loc_821B6004:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B6044;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b6074
@@ -52039,7 +52039,7 @@ loc_821B604C:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B6070;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B6070:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -52060,7 +52060,7 @@ loc_821B6074:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B6094;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b60bc
@@ -52078,7 +52078,7 @@ loc_821B6074:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B60B4;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b60e4
@@ -52102,7 +52102,7 @@ loc_821B60BC:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B60E0;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B60E0:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -52123,7 +52123,7 @@ loc_821B60E4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B6104;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b612c
@@ -52141,7 +52141,7 @@ loc_821B60E4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B6124;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b6154
@@ -52165,7 +52165,7 @@ loc_821B612C:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B6150;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B6150:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -52229,7 +52229,7 @@ loc_821B6198:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B61B4;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,0
 	ctx.r27.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -52249,7 +52249,7 @@ loc_821B6198:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B61D8;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b6208
@@ -52273,7 +52273,7 @@ loc_821B61E0:
 	ctx.r3.u64 = ctx.r28.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B6204;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B6204:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -52294,7 +52294,7 @@ loc_821B6208:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B6228;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b6264
@@ -52322,7 +52322,7 @@ loc_821B6250:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B625C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b6280
@@ -52360,7 +52360,7 @@ loc_821B6280:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B62A0;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b62c8
@@ -52378,7 +52378,7 @@ loc_821B6280:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B62C0;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b62e4
@@ -52459,7 +52459,7 @@ loc_821B6328:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B6344;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,0
 	ctx.r27.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -52479,7 +52479,7 @@ loc_821B6328:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B6368;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b6398
@@ -52503,7 +52503,7 @@ loc_821B6370:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B6394;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B6394:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -52524,7 +52524,7 @@ loc_821B6398:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B63B8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b63f4
@@ -52552,7 +52552,7 @@ loc_821B63E0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B63EC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b641c
@@ -52576,7 +52576,7 @@ loc_821B63F4:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B6418;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B6418:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -52597,7 +52597,7 @@ loc_821B641C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B643C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b6478
@@ -52625,7 +52625,7 @@ loc_821B6464:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B6470;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b64a0
@@ -52649,7 +52649,7 @@ loc_821B6478:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B649C;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B649C:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -52713,7 +52713,7 @@ loc_821B64E8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B6504;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r26,0
 	ctx.r26.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -52733,7 +52733,7 @@ loc_821B64E8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B6528;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b6558
@@ -52757,7 +52757,7 @@ loc_821B6530:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B6554;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B6554:
 	// stw r26,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r26.u32);
@@ -52778,7 +52778,7 @@ loc_821B6558:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B6578;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,4
 	ctx.r27.s64 = 4;
 	// cmpwi cr6,r3,0
@@ -52806,7 +52806,7 @@ loc_821B65A0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B65AC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b65d0
@@ -52844,7 +52844,7 @@ loc_821B65D0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B65F0;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b6628
@@ -52870,7 +52870,7 @@ loc_821B6614:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B6620;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b6644
@@ -52951,7 +52951,7 @@ loc_821B6688:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B66A4;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r26,0
 	ctx.r26.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -52971,7 +52971,7 @@ loc_821B6688:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B66C8;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b66f8
@@ -52995,7 +52995,7 @@ loc_821B66D0:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B66F4;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B66F4:
 	// stw r26,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r26.u32);
@@ -53016,7 +53016,7 @@ loc_821B66F8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B6718;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,4
 	ctx.r27.s64 = 4;
 	// cmpwi cr6,r3,0
@@ -53044,7 +53044,7 @@ loc_821B6740:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B674C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b6770
@@ -53082,7 +53082,7 @@ loc_821B6770:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B6790;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b67c8
@@ -53108,7 +53108,7 @@ loc_821B67B4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B67C0;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b67e4
@@ -53189,7 +53189,7 @@ loc_821B6828:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B6844;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r26,0
 	ctx.r26.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -53209,7 +53209,7 @@ loc_821B6828:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B6868;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b6898
@@ -53233,7 +53233,7 @@ loc_821B6870:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B6894;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B6894:
 	// stw r26,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r26.u32);
@@ -53254,7 +53254,7 @@ loc_821B6898:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B68B8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,4
 	ctx.r27.s64 = 4;
 	// cmpwi cr6,r3,0
@@ -53282,7 +53282,7 @@ loc_821B68E0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B68EC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b6910
@@ -53320,7 +53320,7 @@ loc_821B6910:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B6930;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b6968
@@ -53346,7 +53346,7 @@ loc_821B6954:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B6960;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b6984
@@ -53427,7 +53427,7 @@ loc_821B69C8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B69E4;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,0
 	ctx.r27.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -53447,7 +53447,7 @@ loc_821B69C8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B6A08;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b6a38
@@ -53471,7 +53471,7 @@ loc_821B6A10:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B6A34;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B6A34:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -53492,7 +53492,7 @@ loc_821B6A38:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B6A58;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b6a94
@@ -53520,7 +53520,7 @@ loc_821B6A80:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B6A8C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b6abc
@@ -53544,7 +53544,7 @@ loc_821B6A94:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B6AB8;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B6AB8:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -53565,7 +53565,7 @@ loc_821B6ABC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B6ADC;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b6b18
@@ -53593,7 +53593,7 @@ loc_821B6B04:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B6B10;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b6b34
@@ -53674,7 +53674,7 @@ loc_821B6B78:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B6B94;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r26,0
 	ctx.r26.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -53694,7 +53694,7 @@ loc_821B6B78:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B6BB8;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b6be8
@@ -53718,7 +53718,7 @@ loc_821B6BC0:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B6BE4;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B6BE4:
 	// stw r26,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r26.u32);
@@ -53739,7 +53739,7 @@ loc_821B6BE8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B6C08;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,4
 	ctx.r27.s64 = 4;
 	// cmpwi cr6,r3,0
@@ -53767,7 +53767,7 @@ loc_821B6C30:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B6C3C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b6c60
@@ -53805,7 +53805,7 @@ loc_821B6C60:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B6C80;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b6cb8
@@ -53831,7 +53831,7 @@ loc_821B6CA4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B6CB0;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b6cd4
@@ -53912,7 +53912,7 @@ loc_821B6D18:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B6D34;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,0
 	ctx.r27.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -53932,7 +53932,7 @@ loc_821B6D18:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B6D58;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b6d88
@@ -53956,7 +53956,7 @@ loc_821B6D60:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B6D84;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B6D84:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -53977,7 +53977,7 @@ loc_821B6D88:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B6DA8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b6de4
@@ -54005,7 +54005,7 @@ loc_821B6DD0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B6DDC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b6e0c
@@ -54029,7 +54029,7 @@ loc_821B6DE4:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B6E08;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B6E08:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -54050,7 +54050,7 @@ loc_821B6E0C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B6E2C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b6e68
@@ -54078,7 +54078,7 @@ loc_821B6E54:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B6E60;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b6e84
@@ -54159,7 +54159,7 @@ loc_821B6EC8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B6EE4;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,0
 	ctx.r27.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -54179,7 +54179,7 @@ loc_821B6EC8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B6F08;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b6f38
@@ -54203,7 +54203,7 @@ loc_821B6F10:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B6F34;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B6F34:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -54224,7 +54224,7 @@ loc_821B6F38:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B6F58;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b6f94
@@ -54252,7 +54252,7 @@ loc_821B6F80:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B6F8C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b6fbc
@@ -54276,7 +54276,7 @@ loc_821B6F94:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B6FB8;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B6FB8:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -54297,7 +54297,7 @@ loc_821B6FBC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B6FDC;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b7018
@@ -54325,7 +54325,7 @@ loc_821B7004:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B7010;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b7034
@@ -54406,7 +54406,7 @@ loc_821B7078:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B7094;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r26,0
 	ctx.r26.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -54426,7 +54426,7 @@ loc_821B7078:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B70B8;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b70e8
@@ -54450,7 +54450,7 @@ loc_821B70C0:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B70E4;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B70E4:
 	// stw r26,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r26.u32);
@@ -54471,7 +54471,7 @@ loc_821B70E8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B7108;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,4
 	ctx.r27.s64 = 4;
 	// cmpwi cr6,r3,0
@@ -54499,7 +54499,7 @@ loc_821B7130:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B713C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b7160
@@ -54537,7 +54537,7 @@ loc_821B7160:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B7180;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b71b8
@@ -54563,7 +54563,7 @@ loc_821B71A4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B71B0;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b71d4
@@ -54644,7 +54644,7 @@ loc_821B7218:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B7234;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r26,0
 	ctx.r26.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -54664,7 +54664,7 @@ loc_821B7218:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B7258;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b7288
@@ -54688,7 +54688,7 @@ loc_821B7260:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B7284;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B7284:
 	// stw r26,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r26.u32);
@@ -54709,7 +54709,7 @@ loc_821B7288:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B72A8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,4
 	ctx.r27.s64 = 4;
 	// cmpwi cr6,r3,0
@@ -54737,7 +54737,7 @@ loc_821B72D0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B72DC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b7300
@@ -54775,7 +54775,7 @@ loc_821B7300:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B7320;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b7358
@@ -54801,7 +54801,7 @@ loc_821B7344:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B7350;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b7374
@@ -54880,7 +54880,7 @@ loc_821B73B4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B73D0;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,0
 	ctx.r28.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -54900,7 +54900,7 @@ loc_821B73B4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B73F4;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b7424
@@ -54924,7 +54924,7 @@ loc_821B73FC:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B7420;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B7420:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -54945,7 +54945,7 @@ loc_821B7424:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B7444;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b746c
@@ -54963,7 +54963,7 @@ loc_821B7424:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B7464;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b7494
@@ -54987,7 +54987,7 @@ loc_821B746C:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B7490;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B7490:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -55008,7 +55008,7 @@ loc_821B7494:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B74B4;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b74dc
@@ -55026,7 +55026,7 @@ loc_821B7494:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B74D4;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b7504
@@ -55050,7 +55050,7 @@ loc_821B74DC:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B7500;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B7500:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -55114,7 +55114,7 @@ loc_821B7548:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B7564;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r26,0
 	ctx.r26.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -55134,7 +55134,7 @@ loc_821B7548:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B7588;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b75b8
@@ -55158,7 +55158,7 @@ loc_821B7590:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B75B4;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B75B4:
 	// stw r26,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r26.u32);
@@ -55179,7 +55179,7 @@ loc_821B75B8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B75D8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,4
 	ctx.r27.s64 = 4;
 	// cmpwi cr6,r3,0
@@ -55207,7 +55207,7 @@ loc_821B7600:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B760C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b7630
@@ -55245,7 +55245,7 @@ loc_821B7630:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B7650;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b7688
@@ -55271,7 +55271,7 @@ loc_821B7674:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B7680;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b76a4
@@ -55352,7 +55352,7 @@ loc_821B76E8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B7704;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,0
 	ctx.r27.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -55372,7 +55372,7 @@ loc_821B76E8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B7728;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b7758
@@ -55396,7 +55396,7 @@ loc_821B7730:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B7754;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B7754:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -55417,7 +55417,7 @@ loc_821B7758:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B7778;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b77a0
@@ -55435,7 +55435,7 @@ loc_821B7758:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B7798;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b77bc
@@ -55473,7 +55473,7 @@ loc_821B77BC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B77DC;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b7818
@@ -55501,7 +55501,7 @@ loc_821B7804:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B7810;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b7834
@@ -55582,7 +55582,7 @@ loc_821B7878:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B7894;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,0
 	ctx.r27.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -55602,7 +55602,7 @@ loc_821B7878:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B78B8;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b78e8
@@ -55626,7 +55626,7 @@ loc_821B78C0:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B78E4;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B78E4:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -55647,7 +55647,7 @@ loc_821B78E8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B7908;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b7930
@@ -55665,7 +55665,7 @@ loc_821B78E8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B7928;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b7958
@@ -55689,7 +55689,7 @@ loc_821B7930:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B7954;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B7954:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -55710,7 +55710,7 @@ loc_821B7958:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B7978;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b79b4
@@ -55738,7 +55738,7 @@ loc_821B79A0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B79AC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b79d0
@@ -55819,7 +55819,7 @@ loc_821B7A18:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B7A34;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,0
 	ctx.r27.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -55839,7 +55839,7 @@ loc_821B7A18:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B7A58;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b7a88
@@ -55863,7 +55863,7 @@ loc_821B7A60:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B7A84;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B7A84:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -55884,7 +55884,7 @@ loc_821B7A88:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B7AA8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b7ad0
@@ -55902,7 +55902,7 @@ loc_821B7A88:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B7AC8;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b7af8
@@ -55926,7 +55926,7 @@ loc_821B7AD0:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B7AF4;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B7AF4:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -55947,7 +55947,7 @@ loc_821B7AF8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B7B18;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b7b54
@@ -55975,7 +55975,7 @@ loc_821B7B40:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B7B4C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b7b70
@@ -56056,7 +56056,7 @@ loc_821B7BB8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B7BD4;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,0
 	ctx.r27.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -56076,7 +56076,7 @@ loc_821B7BB8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B7BF8;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b7c28
@@ -56100,7 +56100,7 @@ loc_821B7C00:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B7C24;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B7C24:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -56121,7 +56121,7 @@ loc_821B7C28:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B7C48;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b7c70
@@ -56139,7 +56139,7 @@ loc_821B7C28:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B7C68;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b7c98
@@ -56163,7 +56163,7 @@ loc_821B7C70:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B7C94;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B7C94:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -56184,7 +56184,7 @@ loc_821B7C98:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B7CB8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b7cf4
@@ -56212,7 +56212,7 @@ loc_821B7CE0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B7CEC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b7d10
@@ -56291,7 +56291,7 @@ loc_821B7D54:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B7D70;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,0
 	ctx.r28.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -56311,7 +56311,7 @@ loc_821B7D54:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B7D94;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b7dc4
@@ -56335,7 +56335,7 @@ loc_821B7D9C:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B7DC0;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B7DC0:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -56356,7 +56356,7 @@ loc_821B7DC4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B7DE4;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b7e0c
@@ -56374,7 +56374,7 @@ loc_821B7DC4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B7E04;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b7e34
@@ -56398,7 +56398,7 @@ loc_821B7E0C:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B7E30;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B7E30:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -56419,7 +56419,7 @@ loc_821B7E34:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B7E54;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b7e7c
@@ -56437,7 +56437,7 @@ loc_821B7E34:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B7E74;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b7e98
@@ -56518,7 +56518,7 @@ loc_821B7EE0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B7EFC;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,0
 	ctx.r27.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -56538,7 +56538,7 @@ loc_821B7EE0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B7F20;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b7f50
@@ -56562,7 +56562,7 @@ loc_821B7F28:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B7F4C;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B7F4C:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -56583,7 +56583,7 @@ loc_821B7F50:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B7F70;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b7f98
@@ -56601,7 +56601,7 @@ loc_821B7F50:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B7F90;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b7fc0
@@ -56625,7 +56625,7 @@ loc_821B7F98:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B7FBC;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B7FBC:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -56646,7 +56646,7 @@ loc_821B7FC0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B7FE0;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b801c
@@ -56674,7 +56674,7 @@ loc_821B8008:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B8014;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b8038
@@ -56755,7 +56755,7 @@ loc_821B8080:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B809C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,0
 	ctx.r27.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -56775,7 +56775,7 @@ loc_821B8080:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B80C0;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b80f0
@@ -56799,7 +56799,7 @@ loc_821B80C8:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B80EC;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B80EC:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -56820,7 +56820,7 @@ loc_821B80F0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B8110;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b8138
@@ -56838,7 +56838,7 @@ loc_821B80F0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B8130;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b8154
@@ -56876,7 +56876,7 @@ loc_821B8154:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B8174;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b81b0
@@ -56904,7 +56904,7 @@ loc_821B819C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B81A8;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b81cc
@@ -56985,7 +56985,7 @@ loc_821B8210:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B822C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,0
 	ctx.r27.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -57005,7 +57005,7 @@ loc_821B8210:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B8250;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b8280
@@ -57029,7 +57029,7 @@ loc_821B8258:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B827C;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B827C:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -57050,7 +57050,7 @@ loc_821B8280:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B82A0;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b82c8
@@ -57068,7 +57068,7 @@ loc_821B8280:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B82C0;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b82f0
@@ -57092,7 +57092,7 @@ loc_821B82C8:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B82EC;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B82EC:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -57113,7 +57113,7 @@ loc_821B82F0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B8310;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b834c
@@ -57141,7 +57141,7 @@ loc_821B8338:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B8344;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b8368
@@ -57222,7 +57222,7 @@ loc_821B83B0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B83CC;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,0
 	ctx.r27.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -57242,7 +57242,7 @@ loc_821B83B0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B83F0;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b8420
@@ -57266,7 +57266,7 @@ loc_821B83F8:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B841C;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B841C:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -57287,7 +57287,7 @@ loc_821B8420:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B8440;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b8468
@@ -57305,7 +57305,7 @@ loc_821B8420:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B8460;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b8490
@@ -57329,7 +57329,7 @@ loc_821B8468:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B848C;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B848C:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -57350,7 +57350,7 @@ loc_821B8490:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B84B0;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b84ec
@@ -57378,7 +57378,7 @@ loc_821B84D8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B84E4;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b8508
@@ -57459,7 +57459,7 @@ loc_821B8550:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B856C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,0
 	ctx.r27.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -57479,7 +57479,7 @@ loc_821B8550:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B8590;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b85c0
@@ -57503,7 +57503,7 @@ loc_821B8598:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B85BC;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B85BC:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -57524,7 +57524,7 @@ loc_821B85C0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B85E0;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b8608
@@ -57542,7 +57542,7 @@ loc_821B85C0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B8600;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b8630
@@ -57566,7 +57566,7 @@ loc_821B8608:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B862C;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B862C:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -57587,7 +57587,7 @@ loc_821B8630:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B8650;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b868c
@@ -57615,7 +57615,7 @@ loc_821B8678:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B8684;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b86a8
@@ -57696,7 +57696,7 @@ loc_821B86F0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B870C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,0
 	ctx.r27.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -57716,7 +57716,7 @@ loc_821B86F0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B8730;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b8760
@@ -57740,7 +57740,7 @@ loc_821B8738:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B875C;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B875C:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -57761,7 +57761,7 @@ loc_821B8760:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B8780;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b87a8
@@ -57779,7 +57779,7 @@ loc_821B8760:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B87A0;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b87d0
@@ -57803,7 +57803,7 @@ loc_821B87A8:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B87CC;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B87CC:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -57824,7 +57824,7 @@ loc_821B87D0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B87F0;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b882c
@@ -57852,7 +57852,7 @@ loc_821B8818:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B8824;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b8848
@@ -57933,7 +57933,7 @@ loc_821B8890:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B88AC;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,0
 	ctx.r27.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -57953,7 +57953,7 @@ loc_821B8890:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B88D0;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b8900
@@ -57977,7 +57977,7 @@ loc_821B88D8:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B88FC;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B88FC:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -57998,7 +57998,7 @@ loc_821B8900:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B8920;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b8948
@@ -58016,7 +58016,7 @@ loc_821B8900:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B8940;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b8970
@@ -58040,7 +58040,7 @@ loc_821B8948:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B896C;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B896C:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -58061,7 +58061,7 @@ loc_821B8970:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B8990;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b89cc
@@ -58089,7 +58089,7 @@ loc_821B89B8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B89C4;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b89e8
@@ -58170,7 +58170,7 @@ loc_821B8A30:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B8A4C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,0
 	ctx.r27.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -58190,7 +58190,7 @@ loc_821B8A30:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B8A70;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b8aa0
@@ -58214,7 +58214,7 @@ loc_821B8A78:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B8A9C;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B8A9C:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -58235,7 +58235,7 @@ loc_821B8AA0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B8AC0;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b8ae8
@@ -58253,7 +58253,7 @@ loc_821B8AA0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B8AE0;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b8b10
@@ -58277,7 +58277,7 @@ loc_821B8AE8:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B8B0C;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B8B0C:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -58298,7 +58298,7 @@ loc_821B8B10:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B8B30;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b8b6c
@@ -58326,7 +58326,7 @@ loc_821B8B58:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B8B64;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b8b88
@@ -58407,7 +58407,7 @@ loc_821B8BD0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B8BEC;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,0
 	ctx.r27.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -58427,7 +58427,7 @@ loc_821B8BD0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B8C10;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b8c40
@@ -58451,7 +58451,7 @@ loc_821B8C18:
 	ctx.r3.u64 = ctx.r28.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B8C3C;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B8C3C:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -58472,7 +58472,7 @@ loc_821B8C40:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B8C60;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b8c9c
@@ -58500,7 +58500,7 @@ loc_821B8C88:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B8C94;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b8cb8
@@ -58538,7 +58538,7 @@ loc_821B8CB8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B8CD8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b8d00
@@ -58556,7 +58556,7 @@ loc_821B8CB8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B8CF8;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b8d1c
@@ -58635,7 +58635,7 @@ loc_821B8D5C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B8D78;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,0
 	ctx.r28.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -58655,7 +58655,7 @@ loc_821B8D5C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B8D9C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b8dcc
@@ -58679,7 +58679,7 @@ loc_821B8DA4:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B8DC8;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B8DC8:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -58700,7 +58700,7 @@ loc_821B8DCC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B8DEC;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b8e14
@@ -58718,7 +58718,7 @@ loc_821B8DCC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B8E0C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b8e30
@@ -58756,7 +58756,7 @@ loc_821B8E30:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B8E50;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b8e78
@@ -58774,7 +58774,7 @@ loc_821B8E30:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B8E70;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b8e94
@@ -58853,7 +58853,7 @@ loc_821B8ED4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B8EF0;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,0
 	ctx.r28.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -58873,7 +58873,7 @@ loc_821B8ED4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B8F14;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b8f44
@@ -58897,7 +58897,7 @@ loc_821B8F1C:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B8F40;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B8F40:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -58918,7 +58918,7 @@ loc_821B8F44:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B8F64;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b8f8c
@@ -58936,7 +58936,7 @@ loc_821B8F44:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B8F84;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b8fa8
@@ -58974,7 +58974,7 @@ loc_821B8FA8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B8FC8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b8ff0
@@ -58992,7 +58992,7 @@ loc_821B8FA8:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B8FE8;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b900c
@@ -59073,7 +59073,7 @@ loc_821B9050:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B906C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r26,0
 	ctx.r26.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -59093,7 +59093,7 @@ loc_821B9050:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B9090;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b90c0
@@ -59117,7 +59117,7 @@ loc_821B9098:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B90BC;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B90BC:
 	// stw r26,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r26.u32);
@@ -59138,7 +59138,7 @@ loc_821B90C0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B90E0;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,4
 	ctx.r27.s64 = 4;
 	// cmpwi cr6,r3,0
@@ -59166,7 +59166,7 @@ loc_821B9108:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B9114;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b9138
@@ -59204,7 +59204,7 @@ loc_821B9138:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B9158;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b9190
@@ -59230,7 +59230,7 @@ loc_821B917C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B9188;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b91ac
@@ -59309,7 +59309,7 @@ loc_821B91EC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B9208;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,0
 	ctx.r28.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -59329,7 +59329,7 @@ loc_821B91EC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B922C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b925c
@@ -59353,7 +59353,7 @@ loc_821B9234:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B9258;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B9258:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -59374,7 +59374,7 @@ loc_821B925C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B927C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b92a4
@@ -59392,7 +59392,7 @@ loc_821B925C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B929C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b92cc
@@ -59416,7 +59416,7 @@ loc_821B92A4:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B92C8;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B92C8:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -59437,7 +59437,7 @@ loc_821B92CC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B92EC;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b9314
@@ -59455,7 +59455,7 @@ loc_821B92CC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B930C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b9330
@@ -59534,7 +59534,7 @@ loc_821B9374:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B9390;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,0
 	ctx.r28.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -59554,7 +59554,7 @@ loc_821B9374:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B93B4;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b93e4
@@ -59578,7 +59578,7 @@ loc_821B93BC:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B93E0;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B93E0:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -59599,7 +59599,7 @@ loc_821B93E4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B9404;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b942c
@@ -59617,7 +59617,7 @@ loc_821B93E4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B9424;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b9448
@@ -59655,7 +59655,7 @@ loc_821B9448:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B9468;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b9490
@@ -59673,7 +59673,7 @@ loc_821B9448:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B9488;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b94b8
@@ -59697,7 +59697,7 @@ loc_821B9490:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B94B4;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B94B4:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -59759,7 +59759,7 @@ loc_821B94FC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B9518;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,0
 	ctx.r28.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -59779,7 +59779,7 @@ loc_821B94FC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B953C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b956c
@@ -59803,7 +59803,7 @@ loc_821B9544:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B9568;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B9568:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -59824,7 +59824,7 @@ loc_821B956C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B958C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b95b4
@@ -59842,7 +59842,7 @@ loc_821B956C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B95AC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b95d0
@@ -59880,7 +59880,7 @@ loc_821B95D0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B95F0;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b9618
@@ -59898,7 +59898,7 @@ loc_821B95D0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B9610;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b9640
@@ -59922,7 +59922,7 @@ loc_821B9618:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B963C;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B963C:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -59984,7 +59984,7 @@ loc_821B9684:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B96A0;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,0
 	ctx.r28.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -60004,7 +60004,7 @@ loc_821B9684:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B96C4;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b96f4
@@ -60028,7 +60028,7 @@ loc_821B96CC:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B96F0;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B96F0:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -60049,7 +60049,7 @@ loc_821B96F4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B9714;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b973c
@@ -60067,7 +60067,7 @@ loc_821B96F4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B9734;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b9764
@@ -60091,7 +60091,7 @@ loc_821B973C:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B9760;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B9760:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -60112,7 +60112,7 @@ loc_821B9764:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B9784;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b97ac
@@ -60130,7 +60130,7 @@ loc_821B9764:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B97A4;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b97d4
@@ -60154,7 +60154,7 @@ loc_821B97AC:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B97D0;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B97D0:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -60216,7 +60216,7 @@ loc_821B9814:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B9830;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,0
 	ctx.r28.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -60236,7 +60236,7 @@ loc_821B9814:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B9854;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b9884
@@ -60260,7 +60260,7 @@ loc_821B985C:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B9880;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B9880:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -60281,7 +60281,7 @@ loc_821B9884:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B98A4;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b98cc
@@ -60299,7 +60299,7 @@ loc_821B9884:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B98C4;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b98f4
@@ -60323,7 +60323,7 @@ loc_821B98CC:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B98F0;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B98F0:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -60344,7 +60344,7 @@ loc_821B98F4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B9914;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b993c
@@ -60362,7 +60362,7 @@ loc_821B98F4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B9934;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b9964
@@ -60386,7 +60386,7 @@ loc_821B993C:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B9960;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B9960:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -60448,7 +60448,7 @@ loc_821B99A4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B99C0;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,0
 	ctx.r28.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -60468,7 +60468,7 @@ loc_821B99A4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B99E4;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b9a14
@@ -60492,7 +60492,7 @@ loc_821B99EC:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B9A10;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B9A10:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -60513,7 +60513,7 @@ loc_821B9A14:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B9A34;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b9a5c
@@ -60531,7 +60531,7 @@ loc_821B9A14:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B9A54;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b9a84
@@ -60555,7 +60555,7 @@ loc_821B9A5C:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B9A80;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B9A80:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -60576,7 +60576,7 @@ loc_821B9A84:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B9AA4;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b9acc
@@ -60594,7 +60594,7 @@ loc_821B9A84:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B9AC4;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b9af4
@@ -60618,7 +60618,7 @@ loc_821B9ACC:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B9AF0;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B9AF0:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -60680,7 +60680,7 @@ loc_821B9B34:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B9B50;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,0
 	ctx.r28.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -60700,7 +60700,7 @@ loc_821B9B34:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B9B74;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b9ba4
@@ -60724,7 +60724,7 @@ loc_821B9B7C:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B9BA0;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B9BA0:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -60745,7 +60745,7 @@ loc_821B9BA4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B9BC4;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b9bec
@@ -60763,7 +60763,7 @@ loc_821B9BA4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B9BE4;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b9c08
@@ -60801,7 +60801,7 @@ loc_821B9C08:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B9C28;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b9c50
@@ -60819,7 +60819,7 @@ loc_821B9C08:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B9C48;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b9c78
@@ -60843,7 +60843,7 @@ loc_821B9C50:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B9C74;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B9C74:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -60905,7 +60905,7 @@ loc_821B9CBC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B9CD8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,0
 	ctx.r28.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -60925,7 +60925,7 @@ loc_821B9CBC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B9CFC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b9d2c
@@ -60949,7 +60949,7 @@ loc_821B9D04:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B9D28;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B9D28:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -60970,7 +60970,7 @@ loc_821B9D2C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B9D4C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b9d74
@@ -60988,7 +60988,7 @@ loc_821B9D2C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B9D6C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b9d9c
@@ -61012,7 +61012,7 @@ loc_821B9D74:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B9D98;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B9D98:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -61033,7 +61033,7 @@ loc_821B9D9C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B9DBC;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b9de4
@@ -61051,7 +61051,7 @@ loc_821B9D9C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B9DDC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b9e00
@@ -61130,7 +61130,7 @@ loc_821B9E44:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B9E60;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,0
 	ctx.r28.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -61150,7 +61150,7 @@ loc_821B9E44:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B9E84;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b9eb4
@@ -61174,7 +61174,7 @@ loc_821B9E8C:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B9EB0;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B9EB0:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -61195,7 +61195,7 @@ loc_821B9EB4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B9ED4;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b9efc
@@ -61213,7 +61213,7 @@ loc_821B9EB4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B9EF4;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b9f24
@@ -61237,7 +61237,7 @@ loc_821B9EFC:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821B9F20;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821B9F20:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -61258,7 +61258,7 @@ loc_821B9F24:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B9F44;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821b9f6c
@@ -61276,7 +61276,7 @@ loc_821B9F24:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821B9F64;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821b9f88
@@ -61355,7 +61355,7 @@ loc_821B9FCC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821B9FE8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,0
 	ctx.r28.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -61375,7 +61375,7 @@ loc_821B9FCC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821BA00C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821ba03c
@@ -61399,7 +61399,7 @@ loc_821BA014:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821BA038;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821BA038:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -61420,7 +61420,7 @@ loc_821BA03C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821BA05C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821ba084
@@ -61438,7 +61438,7 @@ loc_821BA03C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821BA07C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821ba0ac
@@ -61462,7 +61462,7 @@ loc_821BA084:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821BA0A8;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821BA0A8:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -61483,7 +61483,7 @@ loc_821BA0AC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821BA0CC;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821ba0f4
@@ -61501,7 +61501,7 @@ loc_821BA0AC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821BA0EC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821ba110
@@ -61580,7 +61580,7 @@ loc_821BA154:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821BA170;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,0
 	ctx.r28.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -61600,7 +61600,7 @@ loc_821BA154:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821BA194;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821ba1c4
@@ -61624,7 +61624,7 @@ loc_821BA19C:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821BA1C0;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821BA1C0:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -61645,7 +61645,7 @@ loc_821BA1C4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821BA1E4;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821ba20c
@@ -61663,7 +61663,7 @@ loc_821BA1C4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821BA204;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821ba234
@@ -61687,7 +61687,7 @@ loc_821BA20C:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821BA230;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821BA230:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -61708,7 +61708,7 @@ loc_821BA234:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821BA254;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821ba27c
@@ -61726,7 +61726,7 @@ loc_821BA234:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821BA274;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821ba298
@@ -61807,7 +61807,7 @@ loc_821BA2E0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821BA2FC;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,0
 	ctx.r27.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -61827,7 +61827,7 @@ loc_821BA2E0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821BA320;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821ba350
@@ -61851,7 +61851,7 @@ loc_821BA328:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821BA34C;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821BA34C:
 	// stw r27,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r27.u32);
@@ -61872,7 +61872,7 @@ loc_821BA350:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821BA370;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821ba398
@@ -61890,7 +61890,7 @@ loc_821BA350:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821BA390;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821ba3b4
@@ -61928,7 +61928,7 @@ loc_821BA3B4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821BA3D4;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821ba410
@@ -61956,7 +61956,7 @@ loc_821BA3FC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821BA408;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821ba42c
@@ -62037,7 +62037,7 @@ loc_821BA470:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821BA48C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r26,0
 	ctx.r26.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -62057,7 +62057,7 @@ loc_821BA470:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821BA4B0;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821ba4e0
@@ -62081,7 +62081,7 @@ loc_821BA4B8:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821BA4DC;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821BA4DC:
 	// stw r26,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r26.u32);
@@ -62102,7 +62102,7 @@ loc_821BA4E0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821BA500;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,4
 	ctx.r27.s64 = 4;
 	// cmpwi cr6,r3,0
@@ -62130,7 +62130,7 @@ loc_821BA528:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821BA534;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821ba558
@@ -62168,7 +62168,7 @@ loc_821BA558:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821BA578;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821ba5b0
@@ -62194,7 +62194,7 @@ loc_821BA59C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821BA5A8;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821ba5cc
@@ -62273,7 +62273,7 @@ loc_821BA60C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821BA628;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,0
 	ctx.r28.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -62293,7 +62293,7 @@ loc_821BA60C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821BA64C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821ba67c
@@ -62317,7 +62317,7 @@ loc_821BA654:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821BA678;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821BA678:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -62338,7 +62338,7 @@ loc_821BA67C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821BA69C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821ba6c4
@@ -62356,7 +62356,7 @@ loc_821BA67C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821BA6BC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821ba6ec
@@ -62380,7 +62380,7 @@ loc_821BA6C4:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821BA6E8;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821BA6E8:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -62401,7 +62401,7 @@ loc_821BA6EC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821BA70C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821ba734
@@ -62419,7 +62419,7 @@ loc_821BA6EC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821BA72C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821ba75c
@@ -62443,7 +62443,7 @@ loc_821BA734:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821BA758;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821BA758:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -62505,7 +62505,7 @@ loc_821BA79C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821BA7B8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,0
 	ctx.r28.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -62525,7 +62525,7 @@ loc_821BA79C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821BA7DC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821ba80c
@@ -62549,7 +62549,7 @@ loc_821BA7E4:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821BA808;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821BA808:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -62570,7 +62570,7 @@ loc_821BA80C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821BA82C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821ba854
@@ -62588,7 +62588,7 @@ loc_821BA80C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821BA84C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821ba87c
@@ -62612,7 +62612,7 @@ loc_821BA854:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821BA878;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821BA878:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -62633,7 +62633,7 @@ loc_821BA87C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821BA89C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821ba8c4
@@ -62651,7 +62651,7 @@ loc_821BA87C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821BA8BC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821ba8ec
@@ -62675,7 +62675,7 @@ loc_821BA8C4:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821BA8E8;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821BA8E8:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -62737,7 +62737,7 @@ loc_821BA92C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821BA948;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,0
 	ctx.r28.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -62757,7 +62757,7 @@ loc_821BA92C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821BA96C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821ba99c
@@ -62781,7 +62781,7 @@ loc_821BA974:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821BA998;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821BA998:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -62802,7 +62802,7 @@ loc_821BA99C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821BA9BC;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821ba9e4
@@ -62820,7 +62820,7 @@ loc_821BA99C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821BA9DC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821baa0c
@@ -62844,7 +62844,7 @@ loc_821BA9E4:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821BAA08;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821BAA08:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -62865,7 +62865,7 @@ loc_821BAA0C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821BAA2C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821baa54
@@ -62883,7 +62883,7 @@ loc_821BAA0C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821BAA4C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821baa7c
@@ -62907,7 +62907,7 @@ loc_821BAA54:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821BAA78;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821BAA78:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -62969,7 +62969,7 @@ loc_821BAABC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821BAAD8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,0
 	ctx.r28.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -62989,7 +62989,7 @@ loc_821BAABC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821BAAFC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821bab2c
@@ -63013,7 +63013,7 @@ loc_821BAB04:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821BAB28;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821BAB28:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -63034,7 +63034,7 @@ loc_821BAB2C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821BAB4C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821bab74
@@ -63052,7 +63052,7 @@ loc_821BAB2C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821BAB6C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821bab9c
@@ -63076,7 +63076,7 @@ loc_821BAB74:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821BAB98;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821BAB98:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -63097,7 +63097,7 @@ loc_821BAB9C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821BABBC;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821babe4
@@ -63115,7 +63115,7 @@ loc_821BAB9C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821BABDC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821bac0c
@@ -63139,7 +63139,7 @@ loc_821BABE4:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821BAC08;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821BAC08:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -63201,7 +63201,7 @@ loc_821BAC4C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821BAC68;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,0
 	ctx.r28.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -63221,7 +63221,7 @@ loc_821BAC4C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821BAC8C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821bacbc
@@ -63245,7 +63245,7 @@ loc_821BAC94:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821BACB8;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821BACB8:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -63266,7 +63266,7 @@ loc_821BACBC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821BACDC;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821bad04
@@ -63284,7 +63284,7 @@ loc_821BACBC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821BACFC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821bad2c
@@ -63308,7 +63308,7 @@ loc_821BAD04:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821BAD28;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821BAD28:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -63329,7 +63329,7 @@ loc_821BAD2C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821BAD4C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821bad74
@@ -63347,7 +63347,7 @@ loc_821BAD2C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821BAD6C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821bad9c
@@ -63371,7 +63371,7 @@ loc_821BAD74:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821BAD98;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821BAD98:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -63433,7 +63433,7 @@ loc_821BADDC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821BADF8;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,0
 	ctx.r28.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -63453,7 +63453,7 @@ loc_821BADDC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821BAE1C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821bae4c
@@ -63477,7 +63477,7 @@ loc_821BAE24:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821BAE48;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821BAE48:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -63498,7 +63498,7 @@ loc_821BAE4C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821BAE6C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821bae94
@@ -63516,7 +63516,7 @@ loc_821BAE4C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821BAE8C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821baebc
@@ -63540,7 +63540,7 @@ loc_821BAE94:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821BAEB8;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821BAEB8:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -63561,7 +63561,7 @@ loc_821BAEBC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821BAEDC;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821baf04
@@ -63579,7 +63579,7 @@ loc_821BAEBC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821BAEFC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821baf2c
@@ -63603,7 +63603,7 @@ loc_821BAF04:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821BAF28;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821BAF28:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -63667,7 +63667,7 @@ loc_821BAF70:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821BAF8C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r26,0
 	ctx.r26.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -63687,7 +63687,7 @@ loc_821BAF70:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821BAFB0;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821bafe0
@@ -63711,7 +63711,7 @@ loc_821BAFB8:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821BAFDC;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821BAFDC:
 	// stw r26,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r26.u32);
@@ -63732,7 +63732,7 @@ loc_821BAFE0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821BB000;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r27,4
 	ctx.r27.s64 = 4;
 	// cmpwi cr6,r3,0
@@ -63760,7 +63760,7 @@ loc_821BB028:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821BB034;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821bb058
@@ -63798,7 +63798,7 @@ loc_821BB058:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821BB078;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821bb0b0
@@ -63824,7 +63824,7 @@ loc_821BB09C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821BB0A8;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821bb0cc
@@ -64057,7 +64057,7 @@ loc_821BB218:
 	PPC_STORE_U32(ctx.r31.u32 + 4, ctx.r11.u32);
 	// bl 0x82223dc0
 	ctx.lr = 0x821BB230;
-	rex_glMemFree_82223DC0(ctx, base);
+	sub_82223DC0(ctx, base);
 	// addi r1,r1,96
 	ctx.r1.s64 = ctx.r1.s64 + 96;
 	// lwz r12,-8(r1)
@@ -64175,7 +64175,7 @@ PPC_FUNC_IMPL(__imp__sub_821BB2C8) {
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r10.u32 + ctx.r9.u32);
 	// bl 0x82223d40
 	ctx.lr = 0x821BB2F4;
-	rex_glMemAllocCleared_82223D40(ctx, base);
+	sub_82223D40(ctx, base);
 	// cmplwi cr6,r3,0
 	ctx.cr6.compare<uint32_t>(ctx.r3.u32, 0, ctx.xer);
 	// bne cr6,0x821bb310
@@ -64437,7 +64437,7 @@ loc_821BB41C:
 	if (!ctx.cr6.eq) goto loc_821BB4DC;
 	// bl 0x821d1c10
 	ctx.lr = 0x821BB4C0;
-	rex_assetManOpen_821D1C10(ctx, base);
+	sub_821D1C10(ctx, base);
 	// stw r3,184(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 184, ctx.r3.u32);
 	// cmplwi cr6,r3,0
@@ -64529,7 +64529,7 @@ loc_821BB548:
 	PPC_STORE_U32(ctx.r3.u32 + 4, ctx.r30.u32);
 	// bl 0x82223dc0
 	ctx.lr = 0x821BB558;
-	rex_glMemFree_82223DC0(ctx, base);
+	sub_82223DC0(ctx, base);
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// cmplwi cr6,r31,0
@@ -64545,10 +64545,10 @@ loc_821BB564:
 	if (ctx.cr6.eq) goto loc_821BB580;
 	// bl 0x821d26f8
 	ctx.lr = 0x821BB574;
-	rex_meFindUnitByData_821D26F8(ctx, base);
+	sub_821D26F8(ctx, base);
 	// bl 0x821d1e80
 	ctx.lr = 0x821BB578;
-	rex_assetManCloseUnitX_821D1E80(ctx, base);
+	sub_821D1E80(ctx, base);
 	// stw r30,184(r29)
 	PPC_STORE_U32(ctx.r29.u32 + 184, ctx.r30.u32);
 	// stw r30,180(r29)
@@ -64611,7 +64611,7 @@ loc_821BB5C0:
 	ctx.r5.s64 = ctx.r10.s64 + -5712;
 	// bl 0x82281618
 	ctx.lr = 0x821BB5DC;
-	rex_serialiseStreamRW_PointerX_82281618(ctx, base);
+	sub_82281618(ctx, base);
 	// addi r4,r24,108
 	ctx.r4.s64 = ctx.r24.s64 + 108;
 	// li r9,512
@@ -64625,7 +64625,7 @@ loc_821BB5C0:
 	ctx.r5.s64 = ctx.r8.s64 + -5704;
 	// bl 0x82281618
 	ctx.lr = 0x821BB5F8;
-	rex_serialiseStreamRW_PointerX_82281618(ctx, base);
+	sub_82281618(ctx, base);
 	// addi r4,r24,112
 	ctx.r4.s64 = ctx.r24.s64 + 112;
 	// li r7,512
@@ -64684,7 +64684,7 @@ loc_821BB644:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821BB664;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r22,0
 	ctx.r22.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -64704,7 +64704,7 @@ loc_821BB644:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821BB688;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821bb6b8
@@ -64728,7 +64728,7 @@ loc_821BB690:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821BB6B4;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821BB6B4:
 	// stw r22,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r22.u32);
@@ -64752,7 +64752,7 @@ loc_821BB6D0:
 	ctx.r29.u64 = PPC_LOAD_U32(ctx.r24.u32 + 120);
 	// bl 0x82281a60
 	ctx.lr = 0x821BB6DC;
-	rex_serialiseStreamRW_Push_82281A60(ctx, base);
+	sub_82281A60(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821bb898
@@ -64800,7 +64800,7 @@ loc_821BB6F8:
 	ctx.r3.s64 = 60;
 	// bl 0x82223d40
 	ctx.lr = 0x821BB734;
-	rex_glMemAllocCleared_82223D40(ctx, base);
+	sub_82223D40(ctx, base);
 	// mr r26,r3
 	ctx.r26.u64 = ctx.r3.u64;
 	// mr r6,r28
@@ -64859,7 +64859,7 @@ loc_821BB794:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821BB79C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 loc_821BB79C:
 	// lwz r29,4(r29)
 	ctx.r29.u64 = PPC_LOAD_U32(ctx.r29.u32 + 4);
@@ -64876,7 +64876,7 @@ loc_821BB7AC:
 	ctx.r30.u64 = ctx.r22.u64;
 	// bl 0x82281a60
 	ctx.lr = 0x821BB7B8;
-	rex_serialiseStreamRW_Push_82281A60(ctx, base);
+	sub_82281A60(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821bb898
@@ -64931,7 +64931,7 @@ loc_821BB7E0:
 	ctx.r3.s64 = 60;
 	// bl 0x82223d40
 	ctx.lr = 0x821BB81C;
-	rex_glMemAllocCleared_82223D40(ctx, base);
+	sub_82223D40(ctx, base);
 	// mr r30,r3
 	ctx.r30.u64 = ctx.r3.u64;
 	// mr r6,r28
@@ -64981,7 +64981,7 @@ loc_821BB85C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821BB874;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 loc_821BB874:
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
@@ -65003,7 +65003,7 @@ loc_821BB888:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821BB898;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 loc_821BB898:
 	// addi r4,r24,124
 	ctx.r4.s64 = ctx.r24.s64 + 124;
@@ -65024,7 +65024,7 @@ loc_821BB898:
 	ctx.r5.s64 = ctx.r11.s64 + -5620;
 	// bl 0x822809f0
 	ctx.lr = 0x821BB8C0;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821bb8e0
 	goto loc_821BB8E0;
 loc_821BB8C4:
@@ -65044,7 +65044,7 @@ loc_821BB8C4:
 	ctx.r5.s64 = ctx.r11.s64 + -5620;
 	// bl 0x82281f68
 	ctx.lr = 0x821BB8E0;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821BB8E0:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -65065,7 +65065,7 @@ loc_821BB8E4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821BB904;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821bb92c
@@ -65083,7 +65083,7 @@ loc_821BB8E4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821BB924;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821bb954
@@ -65107,7 +65107,7 @@ loc_821BB92C:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821BB950;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821BB950:
 	// stw r22,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r22.u32);
@@ -65128,7 +65128,7 @@ loc_821BB954:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821BB974;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821bb99c
@@ -65146,7 +65146,7 @@ loc_821BB954:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821BB994;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821bb9c4
@@ -65170,7 +65170,7 @@ loc_821BB99C:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821BB9C0;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821BB9C0:
 	// stw r22,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r22.u32);
@@ -65191,7 +65191,7 @@ loc_821BB9C4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821BB9E4;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821bbc00
@@ -65230,7 +65230,7 @@ loc_821BBA20:
 	ctx.r30.u64 = PPC_LOAD_U32(ctx.r24.u32 + 168);
 	// bl 0x82281a60
 	ctx.lr = 0x821BBA2C;
-	rex_serialiseStreamRW_Push_82281A60(ctx, base);
+	sub_82281A60(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821bbba4
@@ -65271,7 +65271,7 @@ loc_821BBA48:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821BBA78;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821bbaa4
@@ -65291,7 +65291,7 @@ loc_821BBA48:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821BBA9C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821bbac4
@@ -65311,7 +65311,7 @@ loc_821BBAA4:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821BBAC0;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821BBAC0:
 	// stw r22,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r22.u32);
@@ -65329,7 +65329,7 @@ loc_821BBAD4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281a60
 	ctx.lr = 0x821BBADC;
-	rex_serialiseStreamRW_Push_82281A60(ctx, base);
+	sub_82281A60(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821bbba4
@@ -65380,7 +65380,7 @@ loc_821BBAF0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821BBB38;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821bbb64
@@ -65400,7 +65400,7 @@ loc_821BBAF0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821BBB5C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821bbb8c
@@ -65424,7 +65424,7 @@ loc_821BBB64:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821BBB88;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821BBB88:
 	// stw r22,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r22.u32);
@@ -65442,7 +65442,7 @@ loc_821BBB94:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821BBBA4;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 loc_821BBBA4:
 	// lwz r11,0(r31)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
@@ -65460,14 +65460,14 @@ loc_821BBBA4:
 	ctx.r5.s64 = ctx.r11.s64 + -5580;
 	// bl 0x822805e0
 	ctx.lr = 0x821BBBC4;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// mr r4,r25
 	ctx.r4.u64 = ctx.r25.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821BBBD0;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// b 0x821bbc28
 	goto loc_821BBC28;
 loc_821BBBD4:
@@ -65485,7 +65485,7 @@ loc_821BBBD4:
 	ctx.r5.s64 = ctx.r11.s64 + -5580;
 	// bl 0x82281d60
 	ctx.lr = 0x821BBBF0;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821BBBF0:
 	// mr r4,r25
 	ctx.r4.u64 = ctx.r25.u64;
@@ -65493,7 +65493,7 @@ loc_821BBBF0:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821BBBFC;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// b 0x821bbc28
 	goto loc_821BBC28;
 loc_821BBC00:
@@ -65515,7 +65515,7 @@ loc_821BBC00:
 	ctx.r3.u64 = ctx.r25.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821BBC24;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821BBC24:
 	// stw r22,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r22.u32);
@@ -65539,7 +65539,7 @@ loc_821BBC28:
 	ctx.r5.s64 = ctx.r11.s64 + -5564;
 	// bl 0x822805e0
 	ctx.lr = 0x821BBC50;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821bbc70
 	goto loc_821BBC70;
 loc_821BBC54:
@@ -65557,7 +65557,7 @@ loc_821BBC54:
 	ctx.r5.s64 = ctx.r11.s64 + -5564;
 	// bl 0x82281d60
 	ctx.lr = 0x821BBC70;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821BBC70:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -65585,7 +65585,7 @@ loc_821BBC88:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821BBCA0;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821bbcc8
@@ -65596,14 +65596,14 @@ loc_821BBC88:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821BBCB4;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r30
 	ctx.r4.u64 = ctx.r30.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821BBCC0;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821bbcf0
@@ -65627,7 +65627,7 @@ loc_821BBCC8:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821BBCEC;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821BBCEC:
 	// stw r22,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r22.u32);
@@ -65702,7 +65702,7 @@ loc_821BBD4C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281618
 	ctx.lr = 0x821BBD68;
-	rex_serialiseStreamRW_PointerX_82281618(ctx, base);
+	sub_82281618(ctx, base);
 	// addi r4,r30,4
 	ctx.r4.s64 = ctx.r30.s64 + 4;
 	// li r9,512
@@ -65722,7 +65722,7 @@ loc_821BBD4C:
 	ctx.r5.s64 = ctx.r11.s64 + -8984;
 	// bl 0x822809f0
 	ctx.lr = 0x821BBD90;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821bbdb0
 	goto loc_821BBDB0;
 loc_821BBD94:
@@ -65742,7 +65742,7 @@ loc_821BBD94:
 	ctx.r5.s64 = ctx.r11.s64 + -8984;
 	// bl 0x82281f68
 	ctx.lr = 0x821BBDB0;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821BBDB0:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -65766,7 +65766,7 @@ loc_821BBDB4:
 	ctx.r5.s64 = ctx.r11.s64 + -5500;
 	// bl 0x822809f0
 	ctx.lr = 0x821BBDDC;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821bbdfc
 	goto loc_821BBDFC;
 loc_821BBDE0:
@@ -65786,7 +65786,7 @@ loc_821BBDE0:
 	ctx.r5.s64 = ctx.r11.s64 + -5500;
 	// bl 0x82281f68
 	ctx.lr = 0x821BBDFC;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821BBDFC:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -65810,7 +65810,7 @@ loc_821BBE00:
 	ctx.r5.s64 = ctx.r11.s64 + -5488;
 	// bl 0x822806b0
 	ctx.lr = 0x821BBE28;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// b 0x821bbe48
 	goto loc_821BBE48;
 loc_821BBE2C:
@@ -65828,7 +65828,7 @@ loc_821BBE2C:
 	ctx.r5.s64 = ctx.r11.s64 + -5488;
 	// bl 0x82281dc8
 	ctx.lr = 0x821BBE48;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 loc_821BBE48:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -65849,7 +65849,7 @@ loc_821BBE4C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821BBE6C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821bbe94
@@ -65860,14 +65860,14 @@ loc_821BBE4C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821BBE80;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r30
 	ctx.r4.u64 = ctx.r30.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821BBE8C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821bbec0
@@ -65891,7 +65891,7 @@ loc_821BBE94:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821BBEB8;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821BBEB8:
 	// li r11,0
 	ctx.r11.s64 = 0;
@@ -65966,7 +65966,7 @@ loc_821BBF1C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821BBF38;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821bbf60
@@ -65984,7 +65984,7 @@ loc_821BBF1C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821BBF58;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821bbf8c
@@ -66008,7 +66008,7 @@ loc_821BBF60:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821BBF84;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821BBF84:
 	// li r11,0
 	ctx.r11.s64 = 0;
@@ -66112,7 +66112,7 @@ loc_821BC018:
 	ctx.r5.s64 = ctx.r11.s64 + -8984;
 	// bl 0x822809f0
 	ctx.lr = 0x821BC040;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821bc060
 	goto loc_821BC060;
 loc_821BC044:
@@ -66132,7 +66132,7 @@ loc_821BC044:
 	ctx.r5.s64 = ctx.r11.s64 + -8984;
 	// bl 0x82281f68
 	ctx.lr = 0x821BC060;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821BC060:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -66156,7 +66156,7 @@ loc_821BC064:
 	ctx.r5.s64 = ctx.r11.s64 + -4844;
 	// bl 0x822809f0
 	ctx.lr = 0x821BC08C;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821bc0ac
 	goto loc_821BC0AC;
 loc_821BC090:
@@ -66176,7 +66176,7 @@ loc_821BC090:
 	ctx.r5.s64 = ctx.r11.s64 + -4844;
 	// bl 0x82281f68
 	ctx.lr = 0x821BC0AC;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821BC0AC:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -66200,7 +66200,7 @@ loc_821BC0B0:
 	ctx.r5.s64 = ctx.r11.s64 + -5620;
 	// bl 0x822809f0
 	ctx.lr = 0x821BC0D8;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821bc0f8
 	goto loc_821BC0F8;
 loc_821BC0DC:
@@ -66220,7 +66220,7 @@ loc_821BC0DC:
 	ctx.r5.s64 = ctx.r11.s64 + -5620;
 	// bl 0x82281f68
 	ctx.lr = 0x821BC0F8;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821BC0F8:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -66244,7 +66244,7 @@ loc_821BC0FC:
 	ctx.r5.s64 = ctx.r11.s64 + -4832;
 	// bl 0x822809f0
 	ctx.lr = 0x821BC124;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821bc144
 	goto loc_821BC144;
 loc_821BC128:
@@ -66264,7 +66264,7 @@ loc_821BC128:
 	ctx.r5.s64 = ctx.r11.s64 + -4832;
 	// bl 0x82281f68
 	ctx.lr = 0x821BC144;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821BC144:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -66288,7 +66288,7 @@ loc_821BC148:
 	ctx.r5.s64 = ctx.r11.s64 + -4820;
 	// bl 0x822809f0
 	ctx.lr = 0x821BC170;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821bc190
 	goto loc_821BC190;
 loc_821BC174:
@@ -66308,7 +66308,7 @@ loc_821BC174:
 	ctx.r5.s64 = ctx.r11.s64 + -4820;
 	// bl 0x82281f68
 	ctx.lr = 0x821BC190;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821BC190:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -66377,7 +66377,7 @@ loc_821BC1E4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821BC200;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// li r28,0
 	ctx.r28.s64 = 0;
 	// cmpwi cr6,r3,0
@@ -66397,7 +66397,7 @@ loc_821BC1E4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821BC224;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821bc254
@@ -66421,7 +66421,7 @@ loc_821BC22C:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821BC250;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821BC250:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -66445,7 +66445,7 @@ loc_821BC254:
 	ctx.r5.s64 = ctx.r11.s64 + -4792;
 	// bl 0x822805e0
 	ctx.lr = 0x821BC27C;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821bc29c
 	goto loc_821BC29C;
 loc_821BC280:
@@ -66463,7 +66463,7 @@ loc_821BC280:
 	ctx.r5.s64 = ctx.r11.s64 + -4792;
 	// bl 0x82281d60
 	ctx.lr = 0x821BC29C;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821BC29C:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -66526,7 +66526,7 @@ loc_821BC2EC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821BC30C;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821bc334
@@ -66537,14 +66537,14 @@ loc_821BC2EC:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821BC320;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r30
 	ctx.r4.u64 = ctx.r30.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821BC32C;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821bc35c
@@ -66568,7 +66568,7 @@ loc_821BC334:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821BC358;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821BC358:
 	// stw r28,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
@@ -66592,7 +66592,7 @@ loc_821BC35C:
 	ctx.r5.s64 = ctx.r11.s64 + -5728;
 	// bl 0x822805e0
 	ctx.lr = 0x821BC384;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821bc3a4
 	goto loc_821BC3A4;
 loc_821BC388:
@@ -66610,7 +66610,7 @@ loc_821BC388:
 	ctx.r5.s64 = ctx.r11.s64 + -5728;
 	// bl 0x82281d60
 	ctx.lr = 0x821BC3A4;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821BC3A4:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -66628,7 +66628,7 @@ loc_821BC3A8:
 	ctx.r5.s64 = ctx.r10.s64 + -19284;
 	// bl 0x82281618
 	ctx.lr = 0x821BC3C4;
-	rex_serialiseStreamRW_PointerX_82281618(ctx, base);
+	sub_82281618(ctx, base);
 	// li r3,1
 	ctx.r3.s64 = 1;
 	// addi r1,r1,128
@@ -66752,7 +66752,7 @@ loc_821BC46C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x822805e0
 	ctx.lr = 0x821BC494;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821bc4b4
 	goto loc_821BC4B4;
 loc_821BC498:
@@ -66770,7 +66770,7 @@ loc_821BC498:
 	ctx.r5.s64 = ctx.r11.s64 + -12988;
 	// bl 0x82281d60
 	ctx.lr = 0x821BC4B4;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821BC4B4:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -66794,7 +66794,7 @@ loc_821BC4B8:
 	ctx.r5.s64 = ctx.r11.s64 + -4776;
 	// bl 0x822809f0
 	ctx.lr = 0x821BC4E0;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821bc500
 	goto loc_821BC500;
 loc_821BC4E4:
@@ -66814,7 +66814,7 @@ loc_821BC4E4:
 	ctx.r5.s64 = ctx.r11.s64 + -4776;
 	// bl 0x82281f68
 	ctx.lr = 0x821BC500;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821BC500:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -67039,7 +67039,7 @@ PPC_FUNC_IMPL(__imp__sub_821BC638) {
 	ctx.r4.s64 = 2048;
 	// bl 0x82ade340
 	ctx.lr = 0x821BC66C;
-	rex_TIP_strncpy_s_82ADE340(ctx, base);
+	sub_82ADE340(ctx, base);
 	// subf r11,r30,r28
 	ctx.r11.u64 = ctx.r28.u64 - ctx.r30.u64;
 	// li r29,0
@@ -67273,7 +67273,7 @@ loc_821BC7EC:
 loc_821BC7F8:
 	// bl 0x821d1c10
 	ctx.lr = 0x821BC7FC;
-	rex_assetManOpen_821D1C10(ctx, base);
+	sub_821D1C10(ctx, base);
 	// mr r26,r3
 	ctx.r26.u64 = ctx.r3.u64;
 	// cmplwi cr6,r26,0
@@ -67366,10 +67366,10 @@ loc_821BC898:
 	ctx.r3.u64 = ctx.r26.u64;
 	// bl 0x821d26f8
 	ctx.lr = 0x821BC8A0;
-	rex_meFindUnitByData_821D26F8(ctx, base);
+	sub_821D26F8(ctx, base);
 	// bl 0x821d1e80
 	ctx.lr = 0x821BC8A4;
-	rex_assetManCloseUnitX_821D1E80(ctx, base);
+	sub_821D1E80(ctx, base);
 	// li r3,1
 	ctx.r3.s64 = 1;
 	// addi r1,r1,144
@@ -67412,7 +67412,7 @@ loc_821BC8CC:
 loc_821BC8D8:
 	// bl 0x821d1c10
 	ctx.lr = 0x821BC8DC;
-	rex_assetManOpen_821D1C10(ctx, base);
+	sub_821D1C10(ctx, base);
 	// mr r26,r3
 	ctx.r26.u64 = ctx.r3.u64;
 	// cmplwi cr6,r26,0
@@ -67516,10 +67516,10 @@ loc_821BC98C:
 	ctx.r3.u64 = ctx.r26.u64;
 	// bl 0x821d26f8
 	ctx.lr = 0x821BC994;
-	rex_meFindUnitByData_821D26F8(ctx, base);
+	sub_821D26F8(ctx, base);
 	// bl 0x821d1e80
 	ctx.lr = 0x821BC998;
-	rex_assetManCloseUnitX_821D1E80(ctx, base);
+	sub_821D1E80(ctx, base);
 	// li r3,1
 	ctx.r3.s64 = 1;
 	// addi r1,r1,160
@@ -67971,7 +67971,7 @@ loc_821BCC70:
 	PPC_STORE_U32(ctx.r3.u32 + 4, ctx.r30.u32);
 	// bl 0x82223dc0
 	ctx.lr = 0x821BCC80;
-	rex_glMemFree_82223DC0(ctx, base);
+	sub_82223DC0(ctx, base);
 loc_821BCC80:
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
@@ -68742,7 +68742,7 @@ loc_821BD134:
 	ctx.r5.s64 = ctx.r10.s64 + -21688;
 	// bl 0x82281618
 	ctx.lr = 0x821BD150;
-	rex_serialiseStreamRW_PointerX_82281618(ctx, base);
+	sub_82281618(ctx, base);
 	// addi r4,r30,108
 	ctx.r4.s64 = ctx.r30.s64 + 108;
 	// li r9,512
@@ -68762,7 +68762,7 @@ loc_821BD134:
 	ctx.r5.s64 = ctx.r11.s64 + -8984;
 	// bl 0x822809f0
 	ctx.lr = 0x821BD178;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821bd198
 	goto loc_821BD198;
 loc_821BD17C:
@@ -68782,7 +68782,7 @@ loc_821BD17C:
 	ctx.r5.s64 = ctx.r11.s64 + -8984;
 	// bl 0x82281f68
 	ctx.lr = 0x821BD198;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821BD198:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -69727,7 +69727,7 @@ PPC_FUNC_IMPL(__imp__sub_821BD7D0) {
 	ctx.r30.u64 = PPC_LOAD_U32(ctx.r31.u32 + 2416);
 	// bl 0x821ebc08
 	ctx.lr = 0x821BD804;
-	rex_avatarPosGet_821EBC08(ctx, base);
+	sub_821EBC08(ctx, base);
 	// lis r11,-32234
 	ctx.r11.s64 = -2112487424;
 	// addi r5,r1,88
@@ -69938,7 +69938,7 @@ loc_821BD950:
 	ctx.r4.s64 = ctx.r1.s64 + 88;
 	// bl 0x821ebc08
 	ctx.lr = 0x821BD958;
-	rex_avatarPosGet_821EBC08(ctx, base);
+	sub_821EBC08(ctx, base);
 loc_821BD958:
 	// lis r10,-32234
 	ctx.r10.s64 = -2112487424;
@@ -70256,7 +70256,7 @@ loc_821BDB70:
 	ctx.r3.u64 = ctx.r27.u64;
 	// bl 0x821ebc08
 	ctx.lr = 0x821BDB7C;
-	rex_avatarPosGet_821EBC08(ctx, base);
+	sub_821EBC08(ctx, base);
 loc_821BDB7C:
 	// lis r7,-32234
 	ctx.r7.s64 = -2112487424;
@@ -70857,7 +70857,7 @@ PPC_FUNC_IMPL(__imp__sub_821BDF88) {
 	ctx.r30.u64 = PPC_LOAD_U32(ctx.r11.u32 + 956);
 	// bl 0x821ebc08
 	ctx.lr = 0x821BDFAC;
-	rex_avatarPosGet_821EBC08(ctx, base);
+	sub_821EBC08(ctx, base);
 	// addi r6,r7,28
 	ctx.r6.s64 = ctx.r7.s64 + 28;
 	// addi r5,r1,80
@@ -71138,7 +71138,7 @@ PPC_FUNC_IMPL(__imp__sub_821BE170) {
 	ctx.r6.u64 = ctx.r3.u64;
 	// bl 0x821ebe28
 	ctx.lr = 0x821BE184;
-	rex_meCursorCamCalculatePos_821EBE28(ctx, base);
+	sub_821EBE28(ctx, base);
 	// lwz r11,2416(r6)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r6.u32 + 2416);
 	// cmplwi cr6,r11,0
@@ -71153,7 +71153,7 @@ PPC_FUNC_IMPL(__imp__sub_821BE170) {
 	ctx.r3.u64 = ctx.r9.u64;
 	// bl 0x821ebc08
 	ctx.lr = 0x821BE1A0;
-	rex_avatarPosGet_821EBC08(ctx, base);
+	sub_821EBC08(ctx, base);
 	// lwz r11,2416(r9)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r9.u32 + 2416);
 	// cmplwi cr6,r11,0
@@ -71220,7 +71220,7 @@ PPC_FUNC_IMPL(__imp__sub_821BE1E0) {
 	ctx.r30.s64 = ctx.r31.s64 + 2428;
 	// bl 0x821ebc08
 	ctx.lr = 0x821BE204;
-	rex_avatarPosGet_821EBC08(ctx, base);
+	sub_821EBC08(ctx, base);
 	// lwz r11,248(r31)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 248);
 	// li r5,4
@@ -71416,7 +71416,7 @@ loc_821BE33C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281618
 	ctx.lr = 0x821BE358;
-	rex_serialiseStreamRW_PointerX_82281618(ctx, base);
+	sub_82281618(ctx, base);
 	// addi r4,r30,4
 	ctx.r4.s64 = ctx.r30.s64 + 4;
 	// li r9,512
@@ -71430,7 +71430,7 @@ loc_821BE33C:
 	ctx.r5.s64 = ctx.r8.s64 + -4712;
 	// bl 0x82281618
 	ctx.lr = 0x821BE374;
-	rex_serialiseStreamRW_PointerX_82281618(ctx, base);
+	sub_82281618(ctx, base);
 	// addi r4,r30,8
 	ctx.r4.s64 = ctx.r30.s64 + 8;
 	// li r7,512
@@ -71444,7 +71444,7 @@ loc_821BE33C:
 	ctx.r5.s64 = ctx.r6.s64 + -4688;
 	// bl 0x82281618
 	ctx.lr = 0x821BE390;
-	rex_serialiseStreamRW_PointerX_82281618(ctx, base);
+	sub_82281618(ctx, base);
 	// addi r29,r30,12
 	ctx.r29.s64 = ctx.r30.s64 + 12;
 	// lis r5,-32239
@@ -71461,7 +71461,7 @@ loc_821BE33C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82280fc8
 	ctx.lr = 0x821BE3B0;
-	rex_serialiseStreamRW_BeginStructureX_82280FC8(ctx, base);
+	sub_82280FC8(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x821be3d8
@@ -71472,14 +71472,14 @@ loc_821BE33C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x8224c6b8
 	ctx.lr = 0x821BE3C4;
-	rex_mlVec_Serialise_8224C6B8(ctx, base);
+	sub_8224C6B8(ctx, base);
 	// mr r4,r29
 	ctx.r4.u64 = ctx.r29.u64;
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82281098
 	ctx.lr = 0x821BE3D0;
-	rex_serialiseStreamRW_EndStructureX2_82281098(ctx, base);
+	sub_82281098(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x821be404
@@ -71503,7 +71503,7 @@ loc_821BE3D8:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821BE3FC;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 loc_821BE3FC:
 	// li r11,0
 	ctx.r11.s64 = 0;
@@ -71529,7 +71529,7 @@ loc_821BE404:
 	ctx.r5.s64 = ctx.r11.s64 + -4644;
 	// bl 0x822806b0
 	ctx.lr = 0x821BE42C;
-	rex_serialiseStreamWriteBoolX_822806B0(ctx, base);
+	sub_822806B0(ctx, base);
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
 	// li r3,1
@@ -71554,7 +71554,7 @@ loc_821BE43C:
 	ctx.r5.s64 = ctx.r11.s64 + -4644;
 	// bl 0x82281dc8
 	ctx.lr = 0x821BE458;
-	rex_serialiseStreamReadBoolX_82281DC8(ctx, base);
+	sub_82281DC8(ctx, base);
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
 loc_821BE45C:
@@ -71853,7 +71853,7 @@ loc_821BE63C:
 	ctx.r5.s64 = ctx.r10.s64 + -21688;
 	// bl 0x82281618
 	ctx.lr = 0x821BE658;
-	rex_serialiseStreamRW_PointerX_82281618(ctx, base);
+	sub_82281618(ctx, base);
 	// lwz r11,0(r31)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
 	// addi r4,r30,108
@@ -71870,7 +71870,7 @@ loc_821BE63C:
 	ctx.r5.s64 = ctx.r11.s64 + -4744;
 	// bl 0x822805e0
 	ctx.lr = 0x821BE678;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821be698
 	goto loc_821BE698;
 loc_821BE67C:
@@ -71888,7 +71888,7 @@ loc_821BE67C:
 	ctx.r5.s64 = ctx.r11.s64 + -4744;
 	// bl 0x82281d60
 	ctx.lr = 0x821BE698;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821BE698:
 	// addi r4,r30,112
 	ctx.r4.s64 = ctx.r30.s64 + 112;
@@ -71909,7 +71909,7 @@ loc_821BE698:
 	ctx.r5.s64 = ctx.r11.s64 + -8984;
 	// bl 0x822809f0
 	ctx.lr = 0x821BE6C0;
-	rex_serialiseStreamReadFloatX_822809F0(ctx, base);
+	sub_822809F0(ctx, base);
 	// b 0x821be6e0
 	goto loc_821BE6E0;
 loc_821BE6C4:
@@ -71929,7 +71929,7 @@ loc_821BE6C4:
 	ctx.r5.s64 = ctx.r11.s64 + -8984;
 	// bl 0x82281f68
 	ctx.lr = 0x821BE6E0;
-	rex_serialiseStreamWriteFloatX_82281F68(ctx, base);
+	sub_82281F68(ctx, base);
 loc_821BE6E0:
 	// stw r3,20(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
@@ -73019,7 +73019,7 @@ loc_821BEDFC:
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r9.u32 + ctx.r10.u32);
 	// bl 0x822276d0
 	ctx.lr = 0x821BEE14;
-	rex_glStringCompare_822276D0(ctx, base);
+	sub_822276D0(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bge cr6,0x821bee24
@@ -73254,7 +73254,7 @@ loc_821BEF84:
 	ctx.r5.s64 = ctx.r10.s64 + -5712;
 	// bl 0x82281618
 	ctx.lr = 0x821BEFA0;
-	rex_serialiseStreamRW_PointerX_82281618(ctx, base);
+	sub_82281618(ctx, base);
 	// lwz r11,0(r31)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
 	// addi r4,r30,108
@@ -73271,7 +73271,7 @@ loc_821BEF84:
 	ctx.r5.s64 = ctx.r11.s64 + 4292;
 	// bl 0x822805e0
 	ctx.lr = 0x821BEFC0;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821befe0
 	goto loc_821BEFE0;
 loc_821BEFC4:
@@ -73289,7 +73289,7 @@ loc_821BEFC4:
 	ctx.r5.s64 = ctx.r11.s64 + 4292;
 	// bl 0x82281d60
 	ctx.lr = 0x821BEFE0;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821BEFE0:
 	// lwz r11,0(r31)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
@@ -73307,7 +73307,7 @@ loc_821BEFE0:
 	ctx.r5.s64 = ctx.r11.s64 + 4312;
 	// bl 0x822805e0
 	ctx.lr = 0x821BF000;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821bf020
 	goto loc_821BF020;
 loc_821BF004:
@@ -73325,7 +73325,7 @@ loc_821BF004:
 	ctx.r5.s64 = ctx.r11.s64 + 4312;
 	// bl 0x82281d60
 	ctx.lr = 0x821BF020;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821BF020:
 	// lwz r11,0(r31)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
@@ -73343,7 +73343,7 @@ loc_821BF020:
 	ctx.r5.s64 = ctx.r11.s64 + 4332;
 	// bl 0x822805e0
 	ctx.lr = 0x821BF040;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821bf060
 	goto loc_821BF060;
 loc_821BF044:
@@ -73361,7 +73361,7 @@ loc_821BF044:
 	ctx.r5.s64 = ctx.r11.s64 + 4332;
 	// bl 0x82281d60
 	ctx.lr = 0x821BF060;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821BF060:
 	// lwz r11,0(r31)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
@@ -73379,7 +73379,7 @@ loc_821BF060:
 	ctx.r5.s64 = ctx.r11.s64 + 4344;
 	// bl 0x822805e0
 	ctx.lr = 0x821BF080;
-	rex_serialiseStreamReadIntX_822805E0(ctx, base);
+	sub_822805E0(ctx, base);
 	// b 0x821bf0a0
 	goto loc_821BF0A0;
 loc_821BF084:
@@ -73397,7 +73397,7 @@ loc_821BF084:
 	ctx.r5.s64 = ctx.r11.s64 + 4344;
 	// bl 0x82281d60
 	ctx.lr = 0x821BF0A0;
-	rex_serialiseStreamWriteIntX_82281D60(ctx, base);
+	sub_82281D60(ctx, base);
 loc_821BF0A0:
 	// addi r4,r30,124
 	ctx.r4.s64 = ctx.r30.s64 + 124;
@@ -74043,7 +74043,7 @@ loc_821BF50C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x821ebc08
 	ctx.lr = 0x821BF56C;
-	rex_avatarPosGet_821EBC08(ctx, base);
+	sub_821EBC08(ctx, base);
 	// li r7,8
 	ctx.r7.s64 = 8;
 	// li r6,0
@@ -74394,7 +74394,7 @@ loc_821BF730:
 	ctx.r30.s64 = ctx.r31.s64 + 368;
 	// bl 0x821ebc08
 	ctx.lr = 0x821BF7D0;
-	rex_avatarPosGet_821EBC08(ctx, base);
+	sub_821EBC08(ctx, base);
 	// lwz r11,2416(r31)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 2416);
 	// lfs f0,88(r1)
@@ -74543,7 +74543,7 @@ loc_821BF8B0:
 	ctx.r3.u64 = ctx.r9.u64;
 	// bl 0x821ebc08
 	ctx.lr = 0x821BF8CC;
-	rex_avatarPosGet_821EBC08(ctx, base);
+	sub_821EBC08(ctx, base);
 	// lwz r11,2416(r9)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r9.u32 + 2416);
 	// cmplwi cr6,r11,0
@@ -74610,7 +74610,7 @@ loc_821BF8F0:
 	ctx.r3.u64 = ctx.r6.u64;
 	// bl 0x821ebc08
 	ctx.lr = 0x821BF934;
-	rex_avatarPosGet_821EBC08(ctx, base);
+	sub_821EBC08(ctx, base);
 	// addi r30,r7,840
 	ctx.r30.s64 = ctx.r7.s64 + 840;
 	// addi r4,r1,88
@@ -74749,7 +74749,7 @@ loc_821BFA14:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x821ebc08
 	ctx.lr = 0x821BFA20;
-	rex_avatarPosGet_821EBC08(ctx, base);
+	sub_821EBC08(ctx, base);
 	// lwz r11,248(r31)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 248);
 	// lbz r10,280(r11)
@@ -75169,7 +75169,7 @@ loc_821BFCAC:
 	ctx.r4.s64 = ctx.r11.s64 + 4404;
 	// bl 0x82254690
 	ctx.lr = 0x821BFCCC;
-	rex_padManagerPush_82254690(ctx, base);
+	sub_82254690(ctx, base);
 loc_821BFCCC:
 	// addi r1,r1,112
 	ctx.r1.s64 = ctx.r1.s64 + 112;
@@ -75204,7 +75204,7 @@ PPC_FUNC_IMPL(__imp__sub_821BFCD8) {
 	ctx.r3.u64 = __builtin_rotateleft64(ctx.r11.u32 | (ctx.r11.u64 << 32), 2) & 0xFFFFFFFC;
 	// bl 0x82223d40
 	ctx.lr = 0x821BFD00;
-	rex_glMemAllocCleared_82223D40(ctx, base);
+	sub_82223D40(ctx, base);
 	// cmplwi cr6,r31,0
 	ctx.cr6.compare<uint32_t>(ctx.r31.u32, 0, ctx.xer);
 	// beq cr6,0x821bfd54
@@ -75551,7 +75551,7 @@ PPC_FUNC_IMPL(__imp__sub_821BFEE8) {
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x821d1cd0
 	ctx.lr = 0x821BFF34;
-	rex_assetManOpen_821D1CD0(ctx, base);
+	sub_821D1CD0(ctx, base);
 	// mr r4,r3
 	ctx.r4.u64 = ctx.r3.u64;
 	// b 0x821bff70
@@ -75580,7 +75580,7 @@ loc_821BFF5C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x821d1cd0
 	ctx.lr = 0x821BFF64;
-	rex_assetManOpen_821D1CD0(ctx, base);
+	sub_821D1CD0(ctx, base);
 	// mr r4,r3
 	ctx.r4.u64 = ctx.r3.u64;
 	// b 0x821bff70
@@ -75605,7 +75605,7 @@ loc_821BFF70:
 	ctx.r4.s64 = 0;
 	// bl 0x82223cc0
 	ctx.lr = 0x821BFF8C;
-	rex_glMemAlloc_82223CC0(ctx, base);
+	sub_82223CC0(ctx, base);
 	// stw r3,152(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 152, ctx.r3.u32);
 	// mr r3,r30
@@ -75678,7 +75678,7 @@ PPC_FUNC_IMPL(__imp__sub_821BFFC8) {
 	ctx.r4.s64 = 0;
 	// bl 0x82223dc0
 	ctx.lr = 0x821C0004;
-	rex_glMemFree_82223DC0(ctx, base);
+	sub_82223DC0(ctx, base);
 	// stw r30,152(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 152, ctx.r30.u32);
 loc_821C0008:
@@ -75696,10 +75696,10 @@ loc_821C0008:
 	if (ctx.cr6.eq) goto loc_821C002C;
 	// bl 0x821d26f8
 	ctx.lr = 0x821C0024;
-	rex_meFindUnitByData_821D26F8(ctx, base);
+	sub_821D26F8(ctx, base);
 	// bl 0x821d1e80
 	ctx.lr = 0x821C0028;
-	rex_assetManCloseUnitX_821D1E80(ctx, base);
+	sub_821D1E80(ctx, base);
 	// std r30,0(r31)
 	PPC_STORE_U64(ctx.r31.u32 + 0, ctx.r30.u64);
 loc_821C002C:
@@ -75719,7 +75719,7 @@ loc_821C002C:
 	ctx.r4.s64 = 0;
 	// bl 0x82223dc0
 	ctx.lr = 0x821C004C;
-	rex_glMemFree_82223DC0(ctx, base);
+	sub_82223DC0(ctx, base);
 	// stw r30,156(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 156, ctx.r30.u32);
 loc_821C0050:
@@ -75787,7 +75787,7 @@ loc_821C00A4:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x821d1cd0
 	ctx.lr = 0x821C00B8;
-	rex_assetManOpen_821D1CD0(ctx, base);
+	sub_821D1CD0(ctx, base);
 loc_821C00B8:
 	// addi r11,r31,12
 	ctx.r11.s64 = ctx.r31.s64 + 12;
@@ -75826,7 +75826,7 @@ PPC_FUNC_IMPL(__imp__sub_821C00D8) {
 	ctx.r3.s64 = 632;
 	// bl 0x82223cc0
 	ctx.lr = 0x821C00F4;
-	rex_glMemAlloc_82223CC0(ctx, base);
+	sub_82223CC0(ctx, base);
 	// li r5,632
 	ctx.r5.s64 = 632;
 	// li r4,0
@@ -75835,7 +75835,7 @@ PPC_FUNC_IMPL(__imp__sub_821C00D8) {
 	ctx.r31.u64 = ctx.r3.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821C0104;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 	// lis r10,-32234
 	ctx.r10.s64 = -2112487424;
 	// lis r9,-32237
@@ -75914,7 +75914,7 @@ PPC_FUNC_IMPL(__imp__sub_821C0150) {
 	ctx.r4.s64 = 0;
 	// bl 0x82223dc0
 	ctx.lr = 0x821C0184;
-	rex_glMemFree_82223DC0(ctx, base);
+	sub_82223DC0(ctx, base);
 	// li r11,0
 	ctx.r11.s64 = 0;
 	// stw r11,588(r31)
@@ -75926,7 +75926,7 @@ loc_821C018C:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x82223dc0
 	ctx.lr = 0x821C0198;
-	rex_glMemFree_82223DC0(ctx, base);
+	sub_82223DC0(ctx, base);
 	// li r3,0
 	ctx.r3.s64 = 0;
 	// addi r1,r1,96
@@ -75998,7 +75998,7 @@ PPC_FUNC_IMPL(__imp__sub_821C01B0) {
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821C0210;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 	// lis r11,-32234
 	ctx.r11.s64 = -2112487424;
 	// lfs f0,-14556(r11)
@@ -76278,7 +76278,7 @@ loc_821C03BC:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x82b0a290
 	ctx.lr = 0x821C03D8;
-	rex_glMemClear1_82B0A290(ctx, base);
+	sub_82B0A290(ctx, base);
 	// stfs f31,600(r31)
 	ctx.fpscr.disableFlushMode();
 	temp.f32 = float(ctx.f31.f64);
@@ -76358,7 +76358,7 @@ PPC_FUNC_IMPL(__imp__sub_821C0408) {
 	ctx.r3.u64 = ctx.r28.u64;
 	// bl 0x82225890
 	ctx.lr = 0x821C0454;
-	rex_glModelGetPose_82225890(ctx, base);
+	sub_82225890(ctx, base);
 	// lwz r11,584(r30)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r30.u32 + 584);
 	// mr r29,r3
@@ -77964,7 +77964,7 @@ PPC_FUNC_IMPL(__imp__sub_821C0E78) {
 	ctx.r4.s64 = 0;
 	// bl 0x82223dc0
 	ctx.lr = 0x821C0EA8;
-	rex_glMemFree_82223DC0(ctx, base);
+	sub_82223DC0(ctx, base);
 	// stw r30,0(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 0, ctx.r30.u32);
 loc_821C0EAC:
@@ -77978,7 +77978,7 @@ loc_821C0EAC:
 	ctx.r4.s64 = 0;
 	// bl 0x82223dc0
 	ctx.lr = 0x821C0EC0;
-	rex_glMemFree_82223DC0(ctx, base);
+	sub_82223DC0(ctx, base);
 	// stw r30,4(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 4, ctx.r30.u32);
 loc_821C0EC4:
@@ -77992,7 +77992,7 @@ loc_821C0EC4:
 	ctx.r4.s64 = 0;
 	// bl 0x82223dc0
 	ctx.lr = 0x821C0ED8;
-	rex_glMemFree_82223DC0(ctx, base);
+	sub_82223DC0(ctx, base);
 	// stw r30,8(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 8, ctx.r30.u32);
 loc_821C0EDC:
@@ -78254,7 +78254,7 @@ loc_821C1068:
 	ctx.r4.s64 = ctx.r29.s64 + 20;
 	// bl 0x82223e98
 	ctx.lr = 0x821C10A0;
-	rex_glMemRealloc_82223E98(ctx, base);
+	sub_82223E98(ctx, base);
 	// addi r11,r3,20
 	ctx.r11.s64 = ctx.r3.s64 + 20;
 	// add r7,r11,r28
@@ -78344,7 +78344,7 @@ loc_821C1110:
 	ctx.r4.s64 = ctx.r29.s64 + 20;
 	// bl 0x82223e98
 	ctx.lr = 0x821C114C;
-	rex_glMemRealloc_82223E98(ctx, base);
+	sub_82223E98(ctx, base);
 	// addi r11,r3,20
 	ctx.r11.s64 = ctx.r3.s64 + 20;
 	// add r7,r11,r28
@@ -78434,7 +78434,7 @@ loc_821C11BC:
 	ctx.r4.s64 = ctx.r29.s64 + 20;
 	// bl 0x82223e98
 	ctx.lr = 0x821C11F8;
-	rex_glMemRealloc_82223E98(ctx, base);
+	sub_82223E98(ctx, base);
 	// addi r11,r3,20
 	ctx.r11.s64 = ctx.r3.s64 + 20;
 	// add r7,r11,r28
@@ -78513,6 +78513,3105 @@ loc_821C1280:
 	ctx.r1.s64 = ctx.r1.s64 + 128;
 	// b 0x82ae1674
 	__restgprlr_27(ctx, base);
+	return;
+}
+
+__attribute__((alias("__imp__sub_821C1290"))) PPC_WEAK_FUNC(sub_821C1290);
+PPC_FUNC_IMPL(__imp__sub_821C1290) {
+	PPC_FUNC_PROLOGUE();
+	PPCRegister temp{};
+	uint32_t ea{};
+	// mflr r12
+	ctx.r12.u64 = ctx.lr;
+	// bl 0x82ae1610
+	ctx.lr = 0x821C1298;
+	__savegprlr_22(ctx, base);
+	// stfd f31,-96(r1)
+	ctx.fpscr.disableFlushMode();
+	PPC_STORE_U64(ctx.r1.u32 + -96, ctx.f31.u64);
+	// stwu r1,-352(r1)
+	ea = -352 + ctx.r1.u32;
+	PPC_STORE_U32(ea, ctx.r1.u32);
+	ctx.r1.u32 = ea;
+	// addi r10,r1,84
+	ctx.r10.s64 = ctx.r1.s64 + 84;
+	// mr r26,r3
+	ctx.r26.u64 = ctx.r3.u64;
+	// li r23,0
+	ctx.r23.s64 = 0;
+	// mr r22,r4
+	ctx.r22.u64 = ctx.r4.u64;
+	// stw r23,80(r1)
+	PPC_STORE_U32(ctx.r1.u32 + 80, ctx.r23.u32);
+	// mr r27,r23
+	ctx.r27.u64 = ctx.r23.u64;
+	// stw r23,0(r10)
+	PPC_STORE_U32(ctx.r10.u32 + 0, ctx.r23.u32);
+	// lwz r11,0(r26)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r26.u32 + 0);
+	// stw r23,4(r10)
+	PPC_STORE_U32(ctx.r10.u32 + 4, ctx.r23.u32);
+	// stw r23,8(r10)
+	PPC_STORE_U32(ctx.r10.u32 + 8, ctx.r23.u32);
+	// cmpwi cr6,r11,2
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 2, ctx.xer);
+	// stw r23,12(r10)
+	PPC_STORE_U32(ctx.r10.u32 + 12, ctx.r23.u32);
+	// bne cr6,0x821c168c
+	if (!ctx.cr6.eq) goto loc_821C168C;
+	// lis r11,-32239
+	ctx.r11.s64 = -2112815104;
+	// li r7,0
+	ctx.r7.s64 = 0;
+	// addi r5,r11,7796
+	ctx.r5.s64 = ctx.r11.s64 + 7796;
+	// li r6,18
+	ctx.r6.s64 = 18;
+	// addi r4,r1,80
+	ctx.r4.s64 = ctx.r1.s64 + 80;
+	// bl 0x82280fc8
+	ctx.lr = 0x821C12EC;
+	sub_82280FC8(ctx, base);
+	// cmpwi cr6,r3,0
+	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
+	// beq cr6,0x821c1484
+	if (ctx.cr6.eq) goto loc_821C1484;
+	// lhz r11,36(r26)
+	ctx.r11.u64 = PPC_LOAD_U16(ctx.r26.u32 + 36);
+	// lwz r10,28(r26)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r26.u32 + 28);
+	// subf r11,r11,r10
+	ctx.r11.u64 = ctx.r10.u64 - ctx.r11.u64;
+	// lwz r9,8(r11)
+	ctx.r9.u64 = PPC_LOAD_U32(ctx.r11.u32 + 8);
+	// cmpwi cr6,r9,-1
+	ctx.cr6.compare<int32_t>(ctx.r9.s32, -1, ctx.xer);
+	// bne cr6,0x821c1314
+	if (!ctx.cr6.eq) goto loc_821C1314;
+	// li r10,20
+	ctx.r10.s64 = 20;
+	// stw r10,8(r11)
+	PPC_STORE_U32(ctx.r11.u32 + 8, ctx.r10.u32);
+loc_821C1314:
+	// addi r11,r1,80
+	ctx.r11.s64 = ctx.r1.s64 + 80;
+	// li r10,512
+	ctx.r10.s64 = 512;
+	// dcbt r10,r11
+	// lwz r11,0(r26)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r26.u32 + 0);
+	// cmpwi cr6,r11,2
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 2, ctx.xer);
+	// bne cr6,0x821c1344
+	if (!ctx.cr6.eq) goto loc_821C1344;
+	// lis r11,-32239
+	ctx.r11.s64 = -2112815104;
+	// addi r4,r1,80
+	ctx.r4.s64 = ctx.r1.s64 + 80;
+	// addi r5,r11,7816
+	ctx.r5.s64 = ctx.r11.s64 + 7816;
+	// mr r3,r26
+	ctx.r3.u64 = ctx.r26.u64;
+	// bl 0x822805e0
+	ctx.lr = 0x821C1340;
+	sub_822805E0(ctx, base);
+	// b 0x821c1360
+	goto loc_821C1360;
+loc_821C1344:
+	// cmpwi cr6,r11,1
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 1, ctx.xer);
+	// bne cr6,0x821c1364
+	if (!ctx.cr6.eq) goto loc_821C1364;
+	// lis r11,-32239
+	ctx.r11.s64 = -2112815104;
+	// lwz r4,80(r1)
+	ctx.r4.u64 = PPC_LOAD_U32(ctx.r1.u32 + 80);
+	// mr r3,r26
+	ctx.r3.u64 = ctx.r26.u64;
+	// addi r5,r11,7816
+	ctx.r5.s64 = ctx.r11.s64 + 7816;
+	// bl 0x82281d60
+	ctx.lr = 0x821C1360;
+	sub_82281D60(ctx, base);
+loc_821C1360:
+	// stw r3,20(r26)
+	PPC_STORE_U32(ctx.r26.u32 + 20, ctx.r3.u32);
+loc_821C1364:
+	// addi r11,r1,84
+	ctx.r11.s64 = ctx.r1.s64 + 84;
+	// li r10,512
+	ctx.r10.s64 = 512;
+	// dcbt r10,r11
+	// lwz r11,0(r26)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r26.u32 + 0);
+	// cmpwi cr6,r11,2
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 2, ctx.xer);
+	// bne cr6,0x821c1394
+	if (!ctx.cr6.eq) goto loc_821C1394;
+	// lis r11,-32239
+	ctx.r11.s64 = -2112815104;
+	// addi r4,r1,84
+	ctx.r4.s64 = ctx.r1.s64 + 84;
+	// addi r5,r11,7828
+	ctx.r5.s64 = ctx.r11.s64 + 7828;
+	// mr r3,r26
+	ctx.r3.u64 = ctx.r26.u64;
+	// bl 0x822805e0
+	ctx.lr = 0x821C1390;
+	sub_822805E0(ctx, base);
+	// b 0x821c13b0
+	goto loc_821C13B0;
+loc_821C1394:
+	// cmpwi cr6,r11,1
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 1, ctx.xer);
+	// bne cr6,0x821c13b4
+	if (!ctx.cr6.eq) goto loc_821C13B4;
+	// lis r11,-32239
+	ctx.r11.s64 = -2112815104;
+	// lwz r4,84(r1)
+	ctx.r4.u64 = PPC_LOAD_U32(ctx.r1.u32 + 84);
+	// mr r3,r26
+	ctx.r3.u64 = ctx.r26.u64;
+	// addi r5,r11,7828
+	ctx.r5.s64 = ctx.r11.s64 + 7828;
+	// bl 0x82281d60
+	ctx.lr = 0x821C13B0;
+	sub_82281D60(ctx, base);
+loc_821C13B0:
+	// stw r3,20(r26)
+	PPC_STORE_U32(ctx.r26.u32 + 20, ctx.r3.u32);
+loc_821C13B4:
+	// addi r11,r1,88
+	ctx.r11.s64 = ctx.r1.s64 + 88;
+	// li r10,512
+	ctx.r10.s64 = 512;
+	// dcbt r10,r11
+	// lwz r11,0(r26)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r26.u32 + 0);
+	// cmpwi cr6,r11,2
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 2, ctx.xer);
+	// bne cr6,0x821c13e4
+	if (!ctx.cr6.eq) goto loc_821C13E4;
+	// lis r11,-32239
+	ctx.r11.s64 = -2112815104;
+	// addi r4,r1,88
+	ctx.r4.s64 = ctx.r1.s64 + 88;
+	// addi r5,r11,7840
+	ctx.r5.s64 = ctx.r11.s64 + 7840;
+	// mr r3,r26
+	ctx.r3.u64 = ctx.r26.u64;
+	// bl 0x822806b0
+	ctx.lr = 0x821C13E0;
+	sub_822806B0(ctx, base);
+	// b 0x821c1400
+	goto loc_821C1400;
+loc_821C13E4:
+	// cmpwi cr6,r11,1
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 1, ctx.xer);
+	// bne cr6,0x821c1404
+	if (!ctx.cr6.eq) goto loc_821C1404;
+	// lis r11,-32239
+	ctx.r11.s64 = -2112815104;
+	// lwz r4,88(r1)
+	ctx.r4.u64 = PPC_LOAD_U32(ctx.r1.u32 + 88);
+	// mr r3,r26
+	ctx.r3.u64 = ctx.r26.u64;
+	// addi r5,r11,7840
+	ctx.r5.s64 = ctx.r11.s64 + 7840;
+	// bl 0x82281dc8
+	ctx.lr = 0x821C1400;
+	sub_82281DC8(ctx, base);
+loc_821C1400:
+	// stw r3,20(r26)
+	PPC_STORE_U32(ctx.r26.u32 + 20, ctx.r3.u32);
+loc_821C1404:
+	// addi r11,r1,92
+	ctx.r11.s64 = ctx.r1.s64 + 92;
+	// li r10,512
+	ctx.r10.s64 = 512;
+	// dcbt r10,r11
+	// lwz r11,0(r26)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r26.u32 + 0);
+	// cmpwi cr6,r11,2
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 2, ctx.xer);
+	// bne cr6,0x821c1434
+	if (!ctx.cr6.eq) goto loc_821C1434;
+	// lis r11,-32239
+	ctx.r11.s64 = -2112815104;
+	// addi r4,r1,92
+	ctx.r4.s64 = ctx.r1.s64 + 92;
+	// addi r5,r11,7860
+	ctx.r5.s64 = ctx.r11.s64 + 7860;
+	// mr r3,r26
+	ctx.r3.u64 = ctx.r26.u64;
+	// bl 0x82280850
+	ctx.lr = 0x821C1430;
+	sub_82280850(ctx, base);
+	// b 0x821c1450
+	goto loc_821C1450;
+loc_821C1434:
+	// cmpwi cr6,r11,1
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 1, ctx.xer);
+	// bne cr6,0x821c1454
+	if (!ctx.cr6.eq) goto loc_821C1454;
+	// lis r11,-32239
+	ctx.r11.s64 = -2112815104;
+	// lbz r4,92(r1)
+	ctx.r4.u64 = PPC_LOAD_U8(ctx.r1.u32 + 92);
+	// mr r3,r26
+	ctx.r3.u64 = ctx.r26.u64;
+	// addi r5,r11,7860
+	ctx.r5.s64 = ctx.r11.s64 + 7860;
+	// bl 0x82281f00
+	ctx.lr = 0x821C1450;
+	sub_82281F00(ctx, base);
+loc_821C1450:
+	// stw r3,20(r26)
+	PPC_STORE_U32(ctx.r26.u32 + 20, ctx.r3.u32);
+loc_821C1454:
+	// addi r11,r1,96
+	ctx.r11.s64 = ctx.r1.s64 + 96;
+	// li r10,512
+	ctx.r10.s64 = 512;
+	// dcbt r10,r11
+	// lis r9,-32239
+	ctx.r9.s64 = -2112815104;
+	// addi r4,r1,96
+	ctx.r4.s64 = ctx.r1.s64 + 96;
+	// addi r5,r9,7864
+	ctx.r5.s64 = ctx.r9.s64 + 7864;
+	// mr r3,r26
+	ctx.r3.u64 = ctx.r26.u64;
+	// bl 0x82281618
+	ctx.lr = 0x821C1474;
+	sub_82281618(ctx, base);
+	// addi r4,r1,80
+	ctx.r4.s64 = ctx.r1.s64 + 80;
+	// mr r3,r26
+	ctx.r3.u64 = ctx.r26.u64;
+	// bl 0x82281098
+	ctx.lr = 0x821C1480;
+	sub_82281098(ctx, base);
+	// b 0x821c14a4
+	goto loc_821C14A4;
+loc_821C1484:
+	// lwz r11,0(r26)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r26.u32 + 0);
+	// cmpwi cr6,r11,2
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 2, ctx.xer);
+	// bne cr6,0x821c14a0
+	if (!ctx.cr6.eq) goto loc_821C14A0;
+	// li r5,20
+	ctx.r5.s64 = 20;
+	// li r4,0
+	ctx.r4.s64 = 0;
+	// addi r3,r1,80
+	ctx.r3.s64 = ctx.r1.s64 + 80;
+	// bl 0x82b0a290
+	ctx.lr = 0x821C14A0;
+	sub_82B0A290(ctx, base);
+loc_821C14A0:
+	// stw r23,20(r26)
+	PPC_STORE_U32(ctx.r26.u32 + 20, ctx.r23.u32);
+loc_821C14A4:
+	// lwz r3,80(r1)
+	ctx.r3.u64 = PPC_LOAD_U32(ctx.r1.u32 + 80);
+	// cmpwi cr6,r3,0
+	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
+	// bne cr6,0x821c14bc
+	if (!ctx.cr6.eq) goto loc_821C14BC;
+	// stw r23,80(r1)
+	PPC_STORE_U32(ctx.r1.u32 + 80, ctx.r23.u32);
+	// stw r23,0(r22)
+	PPC_STORE_U32(ctx.r22.u32 + 0, ctx.r23.u32);
+	// b 0x821c14e8
+	goto loc_821C14E8;
+loc_821C14BC:
+	// bl 0x821c2328
+	ctx.lr = 0x821C14C0;
+	sub_821C2328(ctx, base);
+	// lwz r11,84(r1)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r1.u32 + 84);
+	// mr r27,r3
+	ctx.r27.u64 = ctx.r3.u64;
+	// stw r27,0(r22)
+	PPC_STORE_U32(ctx.r22.u32 + 0, ctx.r27.u32);
+	// stw r11,352(r27)
+	PPC_STORE_U32(ctx.r27.u32 + 352, ctx.r11.u32);
+	// lwz r10,88(r1)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r1.u32 + 88);
+	// stw r10,364(r27)
+	PPC_STORE_U32(ctx.r27.u32 + 364, ctx.r10.u32);
+	// lbz r9,92(r1)
+	ctx.r9.u64 = PPC_LOAD_U8(ctx.r1.u32 + 92);
+	// stb r9,368(r27)
+	PPC_STORE_U8(ctx.r27.u32 + 368, ctx.r9.u8);
+	// lwz r8,96(r1)
+	ctx.r8.u64 = PPC_LOAD_U32(ctx.r1.u32 + 96);
+	// stw r8,372(r27)
+	PPC_STORE_U32(ctx.r27.u32 + 372, ctx.r8.u32);
+loc_821C14E8:
+	// lwz r11,80(r1)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r1.u32 + 80);
+	// li r10,1
+	ctx.r10.s64 = 1;
+	// mr r31,r23
+	ctx.r31.u64 = ctx.r23.u64;
+	// cmpwi cr6,r11,0
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 0, ctx.xer);
+	// stw r10,12(r26)
+	PPC_STORE_U32(ctx.r26.u32 + 12, ctx.r10.u32);
+	// ble cr6,0x821c1aac
+	if (!ctx.cr6.gt) goto loc_821C1AAC;
+	// lis r10,-32065
+	ctx.r10.s64 = -2101411840;
+	// lis r9,32767
+	ctx.r9.s64 = 2147418112;
+	// lis r11,-32239
+	ctx.r11.s64 = -2112815104;
+	// mr r30,r23
+	ctx.r30.u64 = ctx.r23.u64;
+	// ori r28,r9,65535
+	ctx.r28.u64 = ctx.r9.u64 | 65535;
+	// lfs f31,31740(r10)
+	ctx.fpscr.disableFlushMode();
+	temp.u32 = PPC_LOAD_U32(ctx.r10.u32 + 31740);
+	ctx.f31.f64 = double(temp.f32);
+	// addi r29,r11,7872
+	ctx.r29.s64 = ctx.r11.s64 + 7872;
+loc_821C151C:
+	// mr r5,r29
+	ctx.r5.u64 = ctx.r29.u64;
+	// li r7,0
+	ctx.r7.s64 = 0;
+	// li r6,5002
+	ctx.r6.s64 = 5002;
+	// addi r4,r1,112
+	ctx.r4.s64 = ctx.r1.s64 + 112;
+	// mr r3,r26
+	ctx.r3.u64 = ctx.r26.u64;
+	// bl 0x82280fc8
+	ctx.lr = 0x821C1534;
+	sub_82280FC8(ctx, base);
+	// cmpwi cr6,r3,0
+	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
+	// beq cr6,0x821c155c
+	if (ctx.cr6.eq) goto loc_821C155C;
+	// addi r4,r1,112
+	ctx.r4.s64 = ctx.r1.s64 + 112;
+	// mr r3,r26
+	ctx.r3.u64 = ctx.r26.u64;
+	// bl 0x821c1ad8
+	ctx.lr = 0x821C1548;
+	sub_821C1AD8(ctx, base);
+	// addi r4,r1,112
+	ctx.r4.s64 = ctx.r1.s64 + 112;
+	// mr r3,r26
+	ctx.r3.u64 = ctx.r26.u64;
+	// bl 0x82281098
+	ctx.lr = 0x821C1554;
+	sub_82281098(ctx, base);
+	// cmpwi cr6,r3,0
+	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
+	// bne cr6,0x821c157c
+	if (!ctx.cr6.eq) goto loc_821C157C;
+loc_821C155C:
+	// lwz r11,0(r26)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r26.u32 + 0);
+	// cmpwi cr6,r11,2
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 2, ctx.xer);
+	// bne cr6,0x821c1578
+	if (!ctx.cr6.eq) goto loc_821C1578;
+	// li r5,72
+	ctx.r5.s64 = 72;
+	// li r4,0
+	ctx.r4.s64 = 0;
+	// addi r3,r1,112
+	ctx.r3.s64 = ctx.r1.s64 + 112;
+	// bl 0x82b0a290
+	ctx.lr = 0x821C1578;
+	sub_82B0A290(ctx, base);
+loc_821C1578:
+	// stw r23,20(r26)
+	PPC_STORE_U32(ctx.r26.u32 + 20, ctx.r23.u32);
+loc_821C157C:
+	// lwz r11,136(r1)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r1.u32 + 136);
+	// addi r10,r1,192
+	ctx.r10.s64 = ctx.r1.s64 + 192;
+	// lwz r9,148(r1)
+	ctx.r9.u64 = PPC_LOAD_U32(ctx.r1.u32 + 148);
+	// lfs f0,132(r1)
+	ctx.fpscr.disableFlushMode();
+	temp.u32 = PPC_LOAD_U32(ctx.r1.u32 + 132);
+	ctx.f0.f64 = double(temp.f32);
+	// lwz r8,152(r1)
+	ctx.r8.u64 = PPC_LOAD_U32(ctx.r1.u32 + 152);
+	// lfs f13,140(r1)
+	temp.u32 = PPC_LOAD_U32(ctx.r1.u32 + 140);
+	ctx.f13.f64 = double(temp.f32);
+	// lfs f12,144(r1)
+	temp.u32 = PPC_LOAD_U32(ctx.r1.u32 + 144);
+	ctx.f12.f64 = double(temp.f32);
+	// std r23,192(r1)
+	PPC_STORE_U64(ctx.r1.u32 + 192, ctx.r23.u64);
+	// lfs f11,156(r1)
+	temp.u32 = PPC_LOAD_U32(ctx.r1.u32 + 156);
+	ctx.f11.f64 = double(temp.f32);
+	// stw r23,240(r1)
+	PPC_STORE_U32(ctx.r1.u32 + 240, ctx.r23.u32);
+	// stfs f31,204(r1)
+	temp.f32 = float(ctx.f31.f64);
+	PPC_STORE_U32(ctx.r1.u32 + 204, temp.u32);
+	// stw r23,232(r1)
+	PPC_STORE_U32(ctx.r1.u32 + 232, ctx.r23.u32);
+	// stfs f0,200(r1)
+	temp.f32 = float(ctx.f0.f64);
+	PPC_STORE_U32(ctx.r1.u32 + 200, temp.u32);
+	// stw r23,236(r1)
+	PPC_STORE_U32(ctx.r1.u32 + 236, ctx.r23.u32);
+	// stfs f13,212(r1)
+	temp.f32 = float(ctx.f13.f64);
+	PPC_STORE_U32(ctx.r1.u32 + 212, temp.u32);
+	// stw r11,208(r1)
+	PPC_STORE_U32(ctx.r1.u32 + 208, ctx.r11.u32);
+	// stfs f12,216(r1)
+	temp.f32 = float(ctx.f12.f64);
+	PPC_STORE_U32(ctx.r1.u32 + 216, temp.u32);
+	// stw r9,220(r1)
+	PPC_STORE_U32(ctx.r1.u32 + 220, ctx.r9.u32);
+	// stfs f11,228(r1)
+	temp.f32 = float(ctx.f11.f64);
+	PPC_STORE_U32(ctx.r1.u32 + 228, temp.u32);
+	// stw r8,224(r1)
+	PPC_STORE_U32(ctx.r1.u32 + 224, ctx.r8.u32);
+	// cmplw cr6,r10,r28
+	ctx.cr6.compare<uint32_t>(ctx.r10.u32, ctx.r28.u32, ctx.xer);
+	// bgt cr6,0x821c15e8
+	if (ctx.cr6.gt) goto loc_821C15E8;
+	// li r5,8
+	ctx.r5.s64 = 8;
+	// addi r4,r1,120
+	ctx.r4.s64 = ctx.r1.s64 + 120;
+	// addi r3,r1,192
+	ctx.r3.s64 = ctx.r1.s64 + 192;
+	// bl 0x82b09fb0
+	ctx.lr = 0x821C15E4;
+	sub_82B09FB0(ctx, base);
+	// b 0x821c160c
+	goto loc_821C160C;
+loc_821C15E8:
+	// addi r11,r1,120
+	ctx.r11.s64 = ctx.r1.s64 + 120;
+	// addi r10,r1,192
+	ctx.r10.s64 = ctx.r1.s64 + 192;
+	// li r9,8
+	ctx.r9.s64 = 8;
+	// mtctr r9
+	ctx.ctr.u64 = ctx.r9.u64;
+loc_821C15F8:
+	// lbz r9,0(r11)
+	ctx.r9.u64 = PPC_LOAD_U8(ctx.r11.u32 + 0);
+	// addi r11,r11,1
+	ctx.r11.s64 = ctx.r11.s64 + 1;
+	// stb r9,0(r10)
+	PPC_STORE_U8(ctx.r10.u32 + 0, ctx.r9.u8);
+	// addi r10,r10,1
+	ctx.r10.s64 = ctx.r10.s64 + 1;
+	// bdnz 0x821c15f8
+	--ctx.ctr.u64;
+	if (ctx.ctr.u32 != 0) goto loc_821C15F8;
+loc_821C160C:
+	// lwz r11,128(r1)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r1.u32 + 128);
+	// cmpwi cr6,r11,0
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 0, ctx.xer);
+	// beq cr6,0x821c1674
+	if (ctx.cr6.eq) goto loc_821C1674;
+	// lwz r7,232(r1)
+	ctx.r7.u64 = PPC_LOAD_U32(ctx.r1.u32 + 232);
+	// addi r5,r1,192
+	ctx.r5.s64 = ctx.r1.s64 + 192;
+	// mr r4,r31
+	ctx.r4.u64 = ctx.r31.u64;
+	// cmplwi cr6,r7,0
+	ctx.cr6.compare<uint32_t>(ctx.r7.u32, 0, ctx.xer);
+	// mr r3,r27
+	ctx.r3.u64 = ctx.r27.u64;
+	// beq cr6,0x821c1638
+	if (ctx.cr6.eq) goto loc_821C1638;
+	// li r6,0
+	ctx.r6.s64 = 0;
+	// b 0x821c1640
+	goto loc_821C1640;
+loc_821C1638:
+	// li r7,0
+	ctx.r7.s64 = 0;
+	// addi r6,r1,112
+	ctx.r6.s64 = ctx.r1.s64 + 112;
+loc_821C1640:
+	// bl 0x821c24c0
+	ctx.lr = 0x821C1644;
+	sub_821C24C0(ctx, base);
+	// lwz r11,312(r27)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r27.u32 + 312);
+	// lwz r10,160(r1)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r1.u32 + 160);
+	// lwzx r8,r11,r30
+	ctx.r8.u64 = PPC_LOAD_U32(ctx.r11.u32 + ctx.r30.u32);
+	// stb r10,625(r8)
+	PPC_STORE_U8(ctx.r8.u32 + 625, ctx.r10.u8);
+	// lfs f0,164(r1)
+	ctx.fpscr.disableFlushMode();
+	temp.u32 = PPC_LOAD_U32(ctx.r1.u32 + 164);
+	ctx.f0.f64 = double(temp.f32);
+	// stfs f0,596(r8)
+	temp.f32 = float(ctx.f0.f64);
+	PPC_STORE_U32(ctx.r8.u32 + 596, temp.u32);
+	// lfs f13,168(r1)
+	temp.u32 = PPC_LOAD_U32(ctx.r1.u32 + 168);
+	ctx.f13.f64 = double(temp.f32);
+	// stfs f13,600(r8)
+	temp.f32 = float(ctx.f13.f64);
+	PPC_STORE_U32(ctx.r8.u32 + 600, temp.u32);
+	// lfs f12,172(r1)
+	temp.u32 = PPC_LOAD_U32(ctx.r1.u32 + 172);
+	ctx.f12.f64 = double(temp.f32);
+	// stfs f12,608(r8)
+	temp.f32 = float(ctx.f12.f64);
+	PPC_STORE_U32(ctx.r8.u32 + 608, temp.u32);
+	// lwz r7,176(r1)
+	ctx.r7.u64 = PPC_LOAD_U32(ctx.r1.u32 + 176);
+	// stw r7,612(r8)
+	PPC_STORE_U32(ctx.r8.u32 + 612, ctx.r7.u32);
+loc_821C1674:
+	// lwz r11,80(r1)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r1.u32 + 80);
+	// addi r31,r31,1
+	ctx.r31.s64 = ctx.r31.s64 + 1;
+	// addi r30,r30,40
+	ctx.r30.s64 = ctx.r30.s64 + 40;
+	// cmpw cr6,r31,r11
+	ctx.cr6.compare<int32_t>(ctx.r31.s32, ctx.r11.s32, ctx.xer);
+	// blt cr6,0x821c151c
+	if (ctx.cr6.lt) goto loc_821C151C;
+	// b 0x821c1aac
+	goto loc_821C1AAC;
+loc_821C168C:
+	// cmpwi cr6,r11,1
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 1, ctx.xer);
+	// beq cr6,0x821c169c
+	if (ctx.cr6.eq) goto loc_821C169C;
+	// cmpwi cr6,r11,3
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 3, ctx.xer);
+	// bne cr6,0x821c1ab0
+	if (!ctx.cr6.eq) goto loc_821C1AB0;
+loc_821C169C:
+	// lwz r30,0(r22)
+	ctx.r30.u64 = PPC_LOAD_U32(ctx.r22.u32 + 0);
+	// cmplwi cr6,r30,0
+	ctx.cr6.compare<uint32_t>(ctx.r30.u32, 0, ctx.xer);
+	// beq cr6,0x821c16bc
+	if (ctx.cr6.eq) goto loc_821C16BC;
+	// lhz r11,328(r30)
+	ctx.r11.u64 = PPC_LOAD_U16(ctx.r30.u32 + 328);
+	// stw r11,80(r1)
+	PPC_STORE_U32(ctx.r1.u32 + 80, ctx.r11.u32);
+	// lwz r10,352(r30)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r30.u32 + 352);
+	// stw r10,84(r1)
+	PPC_STORE_U32(ctx.r1.u32 + 84, ctx.r10.u32);
+	// b 0x821c16c4
+	goto loc_821C16C4;
+loc_821C16BC:
+	// stw r23,80(r1)
+	PPC_STORE_U32(ctx.r1.u32 + 80, ctx.r23.u32);
+	// stw r23,84(r1)
+	PPC_STORE_U32(ctx.r1.u32 + 84, ctx.r23.u32);
+loc_821C16C4:
+	// lis r11,-32239
+	ctx.r11.s64 = -2112815104;
+	// li r7,0
+	ctx.r7.s64 = 0;
+	// addi r5,r11,7796
+	ctx.r5.s64 = ctx.r11.s64 + 7796;
+	// li r6,18
+	ctx.r6.s64 = 18;
+	// addi r4,r1,80
+	ctx.r4.s64 = ctx.r1.s64 + 80;
+	// mr r3,r26
+	ctx.r3.u64 = ctx.r26.u64;
+	// bl 0x82280fc8
+	ctx.lr = 0x821C16E0;
+	sub_82280FC8(ctx, base);
+	// cmpwi cr6,r3,0
+	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
+	// beq cr6,0x821c1878
+	if (ctx.cr6.eq) goto loc_821C1878;
+	// lhz r11,36(r26)
+	ctx.r11.u64 = PPC_LOAD_U16(ctx.r26.u32 + 36);
+	// lwz r10,28(r26)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r26.u32 + 28);
+	// subf r11,r11,r10
+	ctx.r11.u64 = ctx.r10.u64 - ctx.r11.u64;
+	// lwz r9,8(r11)
+	ctx.r9.u64 = PPC_LOAD_U32(ctx.r11.u32 + 8);
+	// cmpwi cr6,r9,-1
+	ctx.cr6.compare<int32_t>(ctx.r9.s32, -1, ctx.xer);
+	// bne cr6,0x821c1708
+	if (!ctx.cr6.eq) goto loc_821C1708;
+	// li r10,20
+	ctx.r10.s64 = 20;
+	// stw r10,8(r11)
+	PPC_STORE_U32(ctx.r11.u32 + 8, ctx.r10.u32);
+loc_821C1708:
+	// addi r11,r1,80
+	ctx.r11.s64 = ctx.r1.s64 + 80;
+	// li r10,512
+	ctx.r10.s64 = 512;
+	// dcbt r10,r11
+	// lwz r11,0(r26)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r26.u32 + 0);
+	// cmpwi cr6,r11,2
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 2, ctx.xer);
+	// bne cr6,0x821c1738
+	if (!ctx.cr6.eq) goto loc_821C1738;
+	// lis r11,-32239
+	ctx.r11.s64 = -2112815104;
+	// addi r4,r1,80
+	ctx.r4.s64 = ctx.r1.s64 + 80;
+	// addi r5,r11,7816
+	ctx.r5.s64 = ctx.r11.s64 + 7816;
+	// mr r3,r26
+	ctx.r3.u64 = ctx.r26.u64;
+	// bl 0x822805e0
+	ctx.lr = 0x821C1734;
+	sub_822805E0(ctx, base);
+	// b 0x821c1754
+	goto loc_821C1754;
+loc_821C1738:
+	// cmpwi cr6,r11,1
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 1, ctx.xer);
+	// bne cr6,0x821c1758
+	if (!ctx.cr6.eq) goto loc_821C1758;
+	// lis r11,-32239
+	ctx.r11.s64 = -2112815104;
+	// lwz r4,80(r1)
+	ctx.r4.u64 = PPC_LOAD_U32(ctx.r1.u32 + 80);
+	// mr r3,r26
+	ctx.r3.u64 = ctx.r26.u64;
+	// addi r5,r11,7816
+	ctx.r5.s64 = ctx.r11.s64 + 7816;
+	// bl 0x82281d60
+	ctx.lr = 0x821C1754;
+	sub_82281D60(ctx, base);
+loc_821C1754:
+	// stw r3,20(r26)
+	PPC_STORE_U32(ctx.r26.u32 + 20, ctx.r3.u32);
+loc_821C1758:
+	// addi r11,r1,84
+	ctx.r11.s64 = ctx.r1.s64 + 84;
+	// li r10,512
+	ctx.r10.s64 = 512;
+	// dcbt r10,r11
+	// lwz r11,0(r26)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r26.u32 + 0);
+	// cmpwi cr6,r11,2
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 2, ctx.xer);
+	// bne cr6,0x821c1788
+	if (!ctx.cr6.eq) goto loc_821C1788;
+	// lis r11,-32239
+	ctx.r11.s64 = -2112815104;
+	// addi r4,r1,84
+	ctx.r4.s64 = ctx.r1.s64 + 84;
+	// addi r5,r11,7828
+	ctx.r5.s64 = ctx.r11.s64 + 7828;
+	// mr r3,r26
+	ctx.r3.u64 = ctx.r26.u64;
+	// bl 0x822805e0
+	ctx.lr = 0x821C1784;
+	sub_822805E0(ctx, base);
+	// b 0x821c17a4
+	goto loc_821C17A4;
+loc_821C1788:
+	// cmpwi cr6,r11,1
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 1, ctx.xer);
+	// bne cr6,0x821c17a8
+	if (!ctx.cr6.eq) goto loc_821C17A8;
+	// lis r11,-32239
+	ctx.r11.s64 = -2112815104;
+	// lwz r4,84(r1)
+	ctx.r4.u64 = PPC_LOAD_U32(ctx.r1.u32 + 84);
+	// mr r3,r26
+	ctx.r3.u64 = ctx.r26.u64;
+	// addi r5,r11,7828
+	ctx.r5.s64 = ctx.r11.s64 + 7828;
+	// bl 0x82281d60
+	ctx.lr = 0x821C17A4;
+	sub_82281D60(ctx, base);
+loc_821C17A4:
+	// stw r3,20(r26)
+	PPC_STORE_U32(ctx.r26.u32 + 20, ctx.r3.u32);
+loc_821C17A8:
+	// addi r11,r1,88
+	ctx.r11.s64 = ctx.r1.s64 + 88;
+	// li r10,512
+	ctx.r10.s64 = 512;
+	// dcbt r10,r11
+	// lwz r11,0(r26)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r26.u32 + 0);
+	// cmpwi cr6,r11,2
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 2, ctx.xer);
+	// bne cr6,0x821c17d8
+	if (!ctx.cr6.eq) goto loc_821C17D8;
+	// lis r11,-32239
+	ctx.r11.s64 = -2112815104;
+	// addi r4,r1,88
+	ctx.r4.s64 = ctx.r1.s64 + 88;
+	// addi r5,r11,7840
+	ctx.r5.s64 = ctx.r11.s64 + 7840;
+	// mr r3,r26
+	ctx.r3.u64 = ctx.r26.u64;
+	// bl 0x822806b0
+	ctx.lr = 0x821C17D4;
+	sub_822806B0(ctx, base);
+	// b 0x821c17f4
+	goto loc_821C17F4;
+loc_821C17D8:
+	// cmpwi cr6,r11,1
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 1, ctx.xer);
+	// bne cr6,0x821c17f8
+	if (!ctx.cr6.eq) goto loc_821C17F8;
+	// lis r11,-32239
+	ctx.r11.s64 = -2112815104;
+	// lwz r4,88(r1)
+	ctx.r4.u64 = PPC_LOAD_U32(ctx.r1.u32 + 88);
+	// mr r3,r26
+	ctx.r3.u64 = ctx.r26.u64;
+	// addi r5,r11,7840
+	ctx.r5.s64 = ctx.r11.s64 + 7840;
+	// bl 0x82281dc8
+	ctx.lr = 0x821C17F4;
+	sub_82281DC8(ctx, base);
+loc_821C17F4:
+	// stw r3,20(r26)
+	PPC_STORE_U32(ctx.r26.u32 + 20, ctx.r3.u32);
+loc_821C17F8:
+	// addi r11,r1,92
+	ctx.r11.s64 = ctx.r1.s64 + 92;
+	// li r10,512
+	ctx.r10.s64 = 512;
+	// dcbt r10,r11
+	// lwz r11,0(r26)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r26.u32 + 0);
+	// cmpwi cr6,r11,2
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 2, ctx.xer);
+	// bne cr6,0x821c1828
+	if (!ctx.cr6.eq) goto loc_821C1828;
+	// lis r11,-32239
+	ctx.r11.s64 = -2112815104;
+	// addi r4,r1,92
+	ctx.r4.s64 = ctx.r1.s64 + 92;
+	// addi r5,r11,7860
+	ctx.r5.s64 = ctx.r11.s64 + 7860;
+	// mr r3,r26
+	ctx.r3.u64 = ctx.r26.u64;
+	// bl 0x82280850
+	ctx.lr = 0x821C1824;
+	sub_82280850(ctx, base);
+	// b 0x821c1844
+	goto loc_821C1844;
+loc_821C1828:
+	// cmpwi cr6,r11,1
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 1, ctx.xer);
+	// bne cr6,0x821c1848
+	if (!ctx.cr6.eq) goto loc_821C1848;
+	// lis r11,-32239
+	ctx.r11.s64 = -2112815104;
+	// lbz r4,92(r1)
+	ctx.r4.u64 = PPC_LOAD_U8(ctx.r1.u32 + 92);
+	// mr r3,r26
+	ctx.r3.u64 = ctx.r26.u64;
+	// addi r5,r11,7860
+	ctx.r5.s64 = ctx.r11.s64 + 7860;
+	// bl 0x82281f00
+	ctx.lr = 0x821C1844;
+	sub_82281F00(ctx, base);
+loc_821C1844:
+	// stw r3,20(r26)
+	PPC_STORE_U32(ctx.r26.u32 + 20, ctx.r3.u32);
+loc_821C1848:
+	// addi r11,r1,96
+	ctx.r11.s64 = ctx.r1.s64 + 96;
+	// li r10,512
+	ctx.r10.s64 = 512;
+	// dcbt r10,r11
+	// lis r9,-32239
+	ctx.r9.s64 = -2112815104;
+	// addi r4,r1,96
+	ctx.r4.s64 = ctx.r1.s64 + 96;
+	// addi r5,r9,7864
+	ctx.r5.s64 = ctx.r9.s64 + 7864;
+	// mr r3,r26
+	ctx.r3.u64 = ctx.r26.u64;
+	// bl 0x82281618
+	ctx.lr = 0x821C1868;
+	sub_82281618(ctx, base);
+	// addi r4,r1,80
+	ctx.r4.s64 = ctx.r1.s64 + 80;
+	// mr r3,r26
+	ctx.r3.u64 = ctx.r26.u64;
+	// bl 0x82281098
+	ctx.lr = 0x821C1874;
+	sub_82281098(ctx, base);
+	// b 0x821c1898
+	goto loc_821C1898;
+loc_821C1878:
+	// lwz r11,0(r26)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r26.u32 + 0);
+	// cmpwi cr6,r11,2
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 2, ctx.xer);
+	// bne cr6,0x821c1894
+	if (!ctx.cr6.eq) goto loc_821C1894;
+	// li r5,20
+	ctx.r5.s64 = 20;
+	// li r4,0
+	ctx.r4.s64 = 0;
+	// addi r3,r1,80
+	ctx.r3.s64 = ctx.r1.s64 + 80;
+	// bl 0x82b0a290
+	ctx.lr = 0x821C1894;
+	sub_82B0A290(ctx, base);
+loc_821C1894:
+	// stw r23,20(r26)
+	PPC_STORE_U32(ctx.r26.u32 + 20, ctx.r23.u32);
+loc_821C1898:
+	// lwz r11,80(r1)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r1.u32 + 80);
+	// li r10,1
+	ctx.r10.s64 = 1;
+	// mr r27,r23
+	ctx.r27.u64 = ctx.r23.u64;
+	// cmpwi cr6,r11,0
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 0, ctx.xer);
+	// stw r10,12(r26)
+	PPC_STORE_U32(ctx.r26.u32 + 12, ctx.r10.u32);
+	// ble cr6,0x821c1aac
+	if (!ctx.cr6.gt) goto loc_821C1AAC;
+	// lis r10,-32234
+	ctx.r10.s64 = -2112487424;
+	// lis r11,-32239
+	ctx.r11.s64 = -2112815104;
+	// mr r31,r23
+	ctx.r31.u64 = ctx.r23.u64;
+	// li r28,32
+	ctx.r28.s64 = 32;
+	// li r24,64
+	ctx.r24.s64 = 64;
+	// lfs f31,-14556(r10)
+	ctx.fpscr.disableFlushMode();
+	temp.u32 = PPC_LOAD_U32(ctx.r10.u32 + -14556);
+	ctx.f31.f64 = double(temp.f32);
+	// addi r25,r11,7872
+	ctx.r25.s64 = ctx.r11.s64 + 7872;
+loc_821C18CC:
+	// lwz r11,312(r30)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r30.u32 + 312);
+	// lwzx r29,r31,r11
+	ctx.r29.u64 = PPC_LOAD_U32(ctx.r31.u32 + ctx.r11.u32);
+	// cmplwi cr6,r29,0
+	ctx.cr6.compare<uint32_t>(ctx.r29.u32, 0, ctx.xer);
+	// beq cr6,0x821c18f0
+	if (ctx.cr6.eq) goto loc_821C18F0;
+	// rotlwi r11,r11,0
+	ctx.r11.u64 = __builtin_rotateleft32(ctx.r11.u32, 0);
+	// lwzx r11,r31,r11
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + ctx.r11.u32);
+	// addi r3,r11,8
+	ctx.r3.s64 = ctx.r11.s64 + 8;
+	// bl 0x829268c8
+	ctx.lr = 0x821C18EC;
+	sub_829268C8(ctx, base);
+	// b 0x821c18f4
+	goto loc_821C18F4;
+loc_821C18F0:
+	// fmr f1,f31
+	ctx.fpscr.disableFlushMode();
+	ctx.f1.f64 = ctx.f31.f64;
+loc_821C18F4:
+	// stfs f1,132(r1)
+	ctx.fpscr.disableFlushMode();
+	temp.f32 = float(ctx.f1.f64);
+	PPC_STORE_U32(ctx.r1.u32 + 132, temp.u32);
+	// lwz r11,312(r30)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r30.u32 + 312);
+	// add r11,r31,r11
+	ctx.r11.u64 = ctx.r31.u64 + ctx.r11.u64;
+	// lwz r10,0(r11)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r11.u32 + 0);
+	// cmplwi cr6,r10,0
+	ctx.cr6.compare<uint32_t>(ctx.r10.u32, 0, ctx.xer);
+	// beq cr6,0x821c1914
+	if (ctx.cr6.eq) goto loc_821C1914;
+	// lwz r11,16(r11)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r11.u32 + 16);
+	// b 0x821c1918
+	goto loc_821C1918;
+loc_821C1914:
+	// mr r11,r28
+	ctx.r11.u64 = ctx.r28.u64;
+loc_821C1918:
+	// stw r11,136(r1)
+	PPC_STORE_U32(ctx.r1.u32 + 136, ctx.r11.u32);
+	// lwz r11,312(r30)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r30.u32 + 312);
+	// add r11,r31,r11
+	ctx.r11.u64 = ctx.r31.u64 + ctx.r11.u64;
+	// lfs f0,28(r11)
+	ctx.fpscr.disableFlushMode();
+	temp.u32 = PPC_LOAD_U32(ctx.r11.u32 + 28);
+	ctx.f0.f64 = double(temp.f32);
+	// stfs f0,140(r1)
+	temp.f32 = float(ctx.f0.f64);
+	PPC_STORE_U32(ctx.r1.u32 + 140, temp.u32);
+	// lwz r10,312(r30)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r30.u32 + 312);
+	// lwzx r9,r31,r10
+	ctx.r9.u64 = PPC_LOAD_U32(ctx.r31.u32 + ctx.r10.u32);
+	// cmplwi cr6,r9,0
+	ctx.cr6.compare<uint32_t>(ctx.r9.u32, 0, ctx.xer);
+	// beq cr6,0x821c1950
+	if (ctx.cr6.eq) goto loc_821C1950;
+	// rotlwi r11,r10,0
+	ctx.r11.u64 = __builtin_rotateleft32(ctx.r10.u32, 0);
+	// lwzx r11,r31,r11
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + ctx.r11.u32);
+	// addi r3,r11,8
+	ctx.r3.s64 = ctx.r11.s64 + 8;
+	// bl 0x829266e8
+	ctx.lr = 0x821C194C;
+	sub_829266E8(ctx, base);
+	// b 0x821c1954
+	goto loc_821C1954;
+loc_821C1950:
+	// fmr f1,f31
+	ctx.fpscr.disableFlushMode();
+	ctx.f1.f64 = ctx.f31.f64;
+loc_821C1954:
+	// stfs f1,144(r1)
+	ctx.fpscr.disableFlushMode();
+	temp.f32 = float(ctx.f1.f64);
+	PPC_STORE_U32(ctx.r1.u32 + 144, temp.u32);
+	// lwz r11,312(r30)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r30.u32 + 312);
+	// lwzx r11,r31,r11
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + ctx.r11.u32);
+	// cmplwi cr6,r11,0
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, 0, ctx.xer);
+	// beq cr6,0x821c1974
+	if (ctx.cr6.eq) goto loc_821C1974;
+	// addi r3,r11,8
+	ctx.r3.s64 = ctx.r11.s64 + 8;
+	// bl 0x829266c0
+	ctx.lr = 0x821C1970;
+	sub_829266C0(ctx, base);
+	// b 0x821c1978
+	goto loc_821C1978;
+loc_821C1974:
+	// mr r3,r23
+	ctx.r3.u64 = ctx.r23.u64;
+loc_821C1978:
+	// stw r3,148(r1)
+	PPC_STORE_U32(ctx.r1.u32 + 148, ctx.r3.u32);
+	// lwz r11,312(r30)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r30.u32 + 312);
+	// add r11,r31,r11
+	ctx.r11.u64 = ctx.r31.u64 + ctx.r11.u64;
+	// lwz r10,12(r11)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r11.u32 + 12);
+	// stw r10,152(r1)
+	PPC_STORE_U32(ctx.r1.u32 + 152, ctx.r10.u32);
+	// lwz r11,312(r30)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r30.u32 + 312);
+	// add r9,r31,r11
+	ctx.r9.u64 = ctx.r31.u64 + ctx.r11.u64;
+	// lwz r8,4(r9)
+	ctx.r8.u64 = PPC_LOAD_U32(ctx.r9.u32 + 4);
+	// cmplwi cr6,r8,0
+	ctx.cr6.compare<uint32_t>(ctx.r8.u32, 0, ctx.xer);
+	// beq cr6,0x821c19b8
+	if (ctx.cr6.eq) goto loc_821C19B8;
+	// rotlwi r11,r11,0
+	ctx.r11.u64 = __builtin_rotateleft32(ctx.r11.u32, 0);
+	// addi r4,r1,120
+	ctx.r4.s64 = ctx.r1.s64 + 120;
+	// add r11,r31,r11
+	ctx.r11.u64 = ctx.r31.u64 + ctx.r11.u64;
+	// lwz r3,4(r11)
+	ctx.r3.u64 = PPC_LOAD_U32(ctx.r11.u32 + 4);
+	// bl 0x821d2070
+	ctx.lr = 0x821C19B4;
+	sub_821D2070(ctx, base);
+	// b 0x821c19bc
+	goto loc_821C19BC;
+loc_821C19B8:
+	// std r23,120(r1)
+	PPC_STORE_U64(ctx.r1.u32 + 120, ctx.r23.u64);
+loc_821C19BC:
+	// cmplwi cr6,r29,0
+	ctx.cr6.compare<uint32_t>(ctx.r29.u32, 0, ctx.xer);
+	// beq cr6,0x821c1a28
+	if (ctx.cr6.eq) goto loc_821C1A28;
+	// addi r4,r1,112
+	ctx.r4.s64 = ctx.r1.s64 + 112;
+	// lwz r3,8(r29)
+	ctx.r3.u64 = PPC_LOAD_U32(ctx.r29.u32 + 8);
+	// bl 0x821d2070
+	ctx.lr = 0x821C19D0;
+	sub_821D2070(ctx, base);
+	// lfs f0,604(r29)
+	ctx.fpscr.disableFlushMode();
+	temp.u32 = PPC_LOAD_U32(ctx.r29.u32 + 604);
+	ctx.f0.f64 = double(temp.f32);
+	// stfs f0,156(r1)
+	temp.f32 = float(ctx.f0.f64);
+	PPC_STORE_U32(ctx.r1.u32 + 156, temp.u32);
+	// ld r11,112(r1)
+	ctx.r11.u64 = PPC_LOAD_U64(ctx.r1.u32 + 112);
+	// cmpldi cr6,r11,0
+	ctx.cr6.compare<uint64_t>(ctx.r11.u64, 0, ctx.xer);
+	// li r11,1
+	ctx.r11.s64 = 1;
+	// lbz r10,625(r29)
+	ctx.r10.u64 = PPC_LOAD_U8(ctx.r29.u32 + 625);
+	// stw r10,160(r1)
+	PPC_STORE_U32(ctx.r1.u32 + 160, ctx.r10.u32);
+	// lfs f13,596(r29)
+	temp.u32 = PPC_LOAD_U32(ctx.r29.u32 + 596);
+	ctx.f13.f64 = double(temp.f32);
+	// stfs f13,164(r1)
+	temp.f32 = float(ctx.f13.f64);
+	PPC_STORE_U32(ctx.r1.u32 + 164, temp.u32);
+	// lfs f12,600(r29)
+	temp.u32 = PPC_LOAD_U32(ctx.r29.u32 + 600);
+	ctx.f12.f64 = double(temp.f32);
+	// stfs f12,168(r1)
+	temp.f32 = float(ctx.f12.f64);
+	PPC_STORE_U32(ctx.r1.u32 + 168, temp.u32);
+	// lfs f11,608(r29)
+	temp.u32 = PPC_LOAD_U32(ctx.r29.u32 + 608);
+	ctx.f11.f64 = double(temp.f32);
+	// stfs f11,172(r1)
+	temp.f32 = float(ctx.f11.f64);
+	PPC_STORE_U32(ctx.r1.u32 + 172, temp.u32);
+	// lwz r9,612(r29)
+	ctx.r9.u64 = PPC_LOAD_U32(ctx.r29.u32 + 612);
+	// stw r9,176(r1)
+	PPC_STORE_U32(ctx.r1.u32 + 176, ctx.r9.u32);
+	// bne cr6,0x821c1a14
+	if (!ctx.cr6.eq) goto loc_821C1A14;
+	// mr r11,r23
+	ctx.r11.u64 = ctx.r23.u64;
+loc_821C1A14:
+	// cntlzw r11,r11
+	ctx.r11.u64 = ctx.r11.u32 == 0 ? 32 : __builtin_clz(ctx.r11.u32);
+	// rlwinm r10,r11,27,31,31
+	ctx.r10.u64 = __builtin_rotateleft64(ctx.r11.u32 | (ctx.r11.u64 << 32), 27) & 0x1;
+	// xori r9,r10,1
+	ctx.r9.u64 = ctx.r10.u64 ^ 1;
+	// stw r9,128(r1)
+	PPC_STORE_U32(ctx.r1.u32 + 128, ctx.r9.u32);
+	// b 0x821c1a38
+	goto loc_821C1A38;
+loc_821C1A28:
+	// std r23,112(r1)
+	PPC_STORE_U64(ctx.r1.u32 + 112, ctx.r23.u64);
+	// stw r23,128(r1)
+	PPC_STORE_U32(ctx.r1.u32 + 128, ctx.r23.u32);
+	// stw r24,152(r1)
+	PPC_STORE_U32(ctx.r1.u32 + 152, ctx.r24.u32);
+	// stw r28,136(r1)
+	PPC_STORE_U32(ctx.r1.u32 + 136, ctx.r28.u32);
+loc_821C1A38:
+	// mr r5,r25
+	ctx.r5.u64 = ctx.r25.u64;
+	// li r7,0
+	ctx.r7.s64 = 0;
+	// li r6,5002
+	ctx.r6.s64 = 5002;
+	// addi r4,r1,112
+	ctx.r4.s64 = ctx.r1.s64 + 112;
+	// mr r3,r26
+	ctx.r3.u64 = ctx.r26.u64;
+	// bl 0x82280fc8
+	ctx.lr = 0x821C1A50;
+	sub_82280FC8(ctx, base);
+	// cmpwi cr6,r3,0
+	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
+	// beq cr6,0x821c1a78
+	if (ctx.cr6.eq) goto loc_821C1A78;
+	// addi r4,r1,112
+	ctx.r4.s64 = ctx.r1.s64 + 112;
+	// mr r3,r26
+	ctx.r3.u64 = ctx.r26.u64;
+	// bl 0x821c1ad8
+	ctx.lr = 0x821C1A64;
+	sub_821C1AD8(ctx, base);
+	// addi r4,r1,112
+	ctx.r4.s64 = ctx.r1.s64 + 112;
+	// mr r3,r26
+	ctx.r3.u64 = ctx.r26.u64;
+	// bl 0x82281098
+	ctx.lr = 0x821C1A70;
+	sub_82281098(ctx, base);
+	// cmpwi cr6,r3,0
+	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
+	// bne cr6,0x821c1a98
+	if (!ctx.cr6.eq) goto loc_821C1A98;
+loc_821C1A78:
+	// lwz r11,0(r26)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r26.u32 + 0);
+	// cmpwi cr6,r11,2
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 2, ctx.xer);
+	// bne cr6,0x821c1a94
+	if (!ctx.cr6.eq) goto loc_821C1A94;
+	// li r5,72
+	ctx.r5.s64 = 72;
+	// li r4,0
+	ctx.r4.s64 = 0;
+	// addi r3,r1,112
+	ctx.r3.s64 = ctx.r1.s64 + 112;
+	// bl 0x82b0a290
+	ctx.lr = 0x821C1A94;
+	sub_82B0A290(ctx, base);
+loc_821C1A94:
+	// stw r23,20(r26)
+	PPC_STORE_U32(ctx.r26.u32 + 20, ctx.r23.u32);
+loc_821C1A98:
+	// lwz r11,80(r1)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r1.u32 + 80);
+	// addi r27,r27,1
+	ctx.r27.s64 = ctx.r27.s64 + 1;
+	// addi r31,r31,40
+	ctx.r31.s64 = ctx.r31.s64 + 40;
+	// cmpw cr6,r27,r11
+	ctx.cr6.compare<int32_t>(ctx.r27.s32, ctx.r11.s32, ctx.xer);
+	// blt cr6,0x821c18cc
+	if (ctx.cr6.lt) goto loc_821C18CC;
+loc_821C1AAC:
+	// stw r23,12(r26)
+	PPC_STORE_U32(ctx.r26.u32 + 12, ctx.r23.u32);
+loc_821C1AB0:
+	// cmplwi cr6,r22,0
+	ctx.cr6.compare<uint32_t>(ctx.r22.u32, 0, ctx.xer);
+	// beq cr6,0x821c1acc
+	if (ctx.cr6.eq) goto loc_821C1ACC;
+	// lis r11,-32239
+	ctx.r11.s64 = -2112815104;
+	// lwz r4,0(r22)
+	ctx.r4.u64 = PPC_LOAD_U32(ctx.r22.u32 + 0);
+	// mr r3,r26
+	ctx.r3.u64 = ctx.r26.u64;
+	// addi r5,r11,7880
+	ctx.r5.s64 = ctx.r11.s64 + 7880;
+	// bl 0x822811d0
+	ctx.lr = 0x821C1ACC;
+	sub_822811D0(ctx, base);
+loc_821C1ACC:
+	// addi r1,r1,352
+	ctx.r1.s64 = ctx.r1.s64 + 352;
+	// lfd f31,-96(r1)
+	ctx.fpscr.disableFlushMode();
+	ctx.f31.u64 = PPC_LOAD_U64(ctx.r1.u32 + -96);
+	// b 0x82ae1660
+	__restgprlr_22(ctx, base);
+	return;
+}
+
+__attribute__((alias("__imp__sub_821C1AD8"))) PPC_WEAK_FUNC(sub_821C1AD8);
+PPC_FUNC_IMPL(__imp__sub_821C1AD8) {
+	PPC_FUNC_PROLOGUE();
+	PPCRegister temp{};
+	uint32_t ea{};
+	// mflr r12
+	ctx.r12.u64 = ctx.lr;
+	// bl 0x82ae1628
+	ctx.lr = 0x821C1AE0;
+	__savegprlr_28(ctx, base);
+	// stwu r1,-128(r1)
+	ea = -128 + ctx.r1.u32;
+	PPC_STORE_U32(ea, ctx.r1.u32);
+	ctx.r1.u32 = ea;
+	// mr r31,r3
+	ctx.r31.u64 = ctx.r3.u64;
+	// mr r29,r4
+	ctx.r29.u64 = ctx.r4.u64;
+	// lhz r11,36(r31)
+	ctx.r11.u64 = PPC_LOAD_U16(ctx.r31.u32 + 36);
+	// lwz r10,28(r31)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r31.u32 + 28);
+	// subf r11,r11,r10
+	ctx.r11.u64 = ctx.r10.u64 - ctx.r11.u64;
+	// lwz r9,8(r11)
+	ctx.r9.u64 = PPC_LOAD_U32(ctx.r11.u32 + 8);
+	// cmpwi cr6,r9,-1
+	ctx.cr6.compare<int32_t>(ctx.r9.s32, -1, ctx.xer);
+	// bne cr6,0x821c1b0c
+	if (!ctx.cr6.eq) goto loc_821C1B0C;
+	// li r10,72
+	ctx.r10.s64 = 72;
+	// stw r10,8(r11)
+	PPC_STORE_U32(ctx.r11.u32 + 8, ctx.r10.u32);
+loc_821C1B0C:
+	// lis r11,-32239
+	ctx.r11.s64 = -2112815104;
+	// li r7,1
+	ctx.r7.s64 = 1;
+	// addi r5,r11,7896
+	ctx.r5.s64 = ctx.r11.s64 + 7896;
+	// li r6,1002
+	ctx.r6.s64 = 1002;
+	// mr r4,r29
+	ctx.r4.u64 = ctx.r29.u64;
+	// mr r3,r31
+	ctx.r3.u64 = ctx.r31.u64;
+	// bl 0x82280fc8
+	ctx.lr = 0x821C1B28;
+	sub_82280FC8(ctx, base);
+	// li r28,0
+	ctx.r28.s64 = 0;
+	// cmpwi cr6,r3,0
+	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
+	// beq cr6,0x821c1b54
+	if (ctx.cr6.eq) goto loc_821C1B54;
+	// mr r4,r29
+	ctx.r4.u64 = ctx.r29.u64;
+	// mr r3,r31
+	ctx.r3.u64 = ctx.r31.u64;
+	// bl 0x821d1ab8
+	ctx.lr = 0x821C1B40;
+	sub_821D1AB8(ctx, base);
+	// mr r4,r29
+	ctx.r4.u64 = ctx.r29.u64;
+	// mr r3,r31
+	ctx.r3.u64 = ctx.r31.u64;
+	// bl 0x82281098
+	ctx.lr = 0x821C1B4C;
+	sub_82281098(ctx, base);
+	// cmpwi cr6,r3,0
+	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
+	// bne cr6,0x821c1b7c
+	if (!ctx.cr6.eq) goto loc_821C1B7C;
+loc_821C1B54:
+	// lwz r11,0(r31)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
+	// cmpwi cr6,r11,2
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 2, ctx.xer);
+	// bne cr6,0x821c1b78
+	if (!ctx.cr6.eq) goto loc_821C1B78;
+	// cmplwi cr6,r29,0
+	ctx.cr6.compare<uint32_t>(ctx.r29.u32, 0, ctx.xer);
+	// beq cr6,0x821c1b78
+	if (ctx.cr6.eq) goto loc_821C1B78;
+	// li r5,8
+	ctx.r5.s64 = 8;
+	// li r4,0
+	ctx.r4.s64 = 0;
+	// mr r3,r29
+	ctx.r3.u64 = ctx.r29.u64;
+	// bl 0x82b0a290
+	ctx.lr = 0x821C1B78;
+	sub_82B0A290(ctx, base);
+loc_821C1B78:
+	// stw r28,20(r31)
+	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
+loc_821C1B7C:
+	// lis r11,-32239
+	ctx.r11.s64 = -2112815104;
+	// addi r30,r29,8
+	ctx.r30.s64 = ctx.r29.s64 + 8;
+	// li r7,1
+	ctx.r7.s64 = 1;
+	// addi r5,r11,7916
+	ctx.r5.s64 = ctx.r11.s64 + 7916;
+	// li r6,1002
+	ctx.r6.s64 = 1002;
+	// mr r4,r30
+	ctx.r4.u64 = ctx.r30.u64;
+	// mr r3,r31
+	ctx.r3.u64 = ctx.r31.u64;
+	// bl 0x82280fc8
+	ctx.lr = 0x821C1B9C;
+	sub_82280FC8(ctx, base);
+	// cmpwi cr6,r3,0
+	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
+	// beq cr6,0x821c1bc4
+	if (ctx.cr6.eq) goto loc_821C1BC4;
+	// mr r4,r30
+	ctx.r4.u64 = ctx.r30.u64;
+	// mr r3,r31
+	ctx.r3.u64 = ctx.r31.u64;
+	// bl 0x821d1ab8
+	ctx.lr = 0x821C1BB0;
+	sub_821D1AB8(ctx, base);
+	// mr r4,r30
+	ctx.r4.u64 = ctx.r30.u64;
+	// mr r3,r31
+	ctx.r3.u64 = ctx.r31.u64;
+	// bl 0x82281098
+	ctx.lr = 0x821C1BBC;
+	sub_82281098(ctx, base);
+	// cmpwi cr6,r3,0
+	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
+	// bne cr6,0x821c1bec
+	if (!ctx.cr6.eq) goto loc_821C1BEC;
+loc_821C1BC4:
+	// lwz r11,0(r31)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
+	// cmpwi cr6,r11,2
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 2, ctx.xer);
+	// bne cr6,0x821c1be8
+	if (!ctx.cr6.eq) goto loc_821C1BE8;
+	// cmplwi cr6,r30,0
+	ctx.cr6.compare<uint32_t>(ctx.r30.u32, 0, ctx.xer);
+	// beq cr6,0x821c1be8
+	if (ctx.cr6.eq) goto loc_821C1BE8;
+	// li r5,8
+	ctx.r5.s64 = 8;
+	// li r4,0
+	ctx.r4.s64 = 0;
+	// mr r3,r30
+	ctx.r3.u64 = ctx.r30.u64;
+	// bl 0x82b0a290
+	ctx.lr = 0x821C1BE8;
+	sub_82B0A290(ctx, base);
+loc_821C1BE8:
+	// stw r28,20(r31)
+	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r28.u32);
+loc_821C1BEC:
+	// addi r4,r29,16
+	ctx.r4.s64 = ctx.r29.s64 + 16;
+	// li r11,512
+	ctx.r11.s64 = 512;
+	// dcbt r11,r4
+	// lwz r11,0(r31)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
+	// cmpwi cr6,r11,2
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 2, ctx.xer);
+	// bne cr6,0x821c1c18
+	if (!ctx.cr6.eq) goto loc_821C1C18;
+	// lis r11,-32239
+	ctx.r11.s64 = -2112815104;
+	// mr r3,r31
+	ctx.r3.u64 = ctx.r31.u64;
+	// addi r5,r11,7932
+	ctx.r5.s64 = ctx.r11.s64 + 7932;
+	// bl 0x822806b0
+	ctx.lr = 0x821C1C14;
+	sub_822806B0(ctx, base);
+	// b 0x821c1c34
+	goto loc_821C1C34;
+loc_821C1C18:
+	// cmpwi cr6,r11,1
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 1, ctx.xer);
+	// bne cr6,0x821c1c38
+	if (!ctx.cr6.eq) goto loc_821C1C38;
+	// lis r11,-32239
+	ctx.r11.s64 = -2112815104;
+	// lwz r4,0(r4)
+	ctx.r4.u64 = PPC_LOAD_U32(ctx.r4.u32 + 0);
+	// mr r3,r31
+	ctx.r3.u64 = ctx.r31.u64;
+	// addi r5,r11,7932
+	ctx.r5.s64 = ctx.r11.s64 + 7932;
+	// bl 0x82281dc8
+	ctx.lr = 0x821C1C34;
+	sub_82281DC8(ctx, base);
+loc_821C1C34:
+	// stw r3,20(r31)
+	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
+loc_821C1C38:
+	// addi r4,r29,20
+	ctx.r4.s64 = ctx.r29.s64 + 20;
+	// li r11,512
+	ctx.r11.s64 = 512;
+	// dcbt r11,r4
+	// lwz r11,0(r31)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
+	// cmpwi cr6,r11,2
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 2, ctx.xer);
+	// bne cr6,0x821c1c64
+	if (!ctx.cr6.eq) goto loc_821C1C64;
+	// lis r11,-32239
+	ctx.r11.s64 = -2112815104;
+	// mr r3,r31
+	ctx.r3.u64 = ctx.r31.u64;
+	// addi r5,r11,7948
+	ctx.r5.s64 = ctx.r11.s64 + 7948;
+	// bl 0x822809f0
+	ctx.lr = 0x821C1C60;
+	sub_822809F0(ctx, base);
+	// b 0x821c1c80
+	goto loc_821C1C80;
+loc_821C1C64:
+	// cmpwi cr6,r11,1
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 1, ctx.xer);
+	// bne cr6,0x821c1c84
+	if (!ctx.cr6.eq) goto loc_821C1C84;
+	// lis r11,-32239
+	ctx.r11.s64 = -2112815104;
+	// lfs f1,0(r4)
+	ctx.fpscr.disableFlushMode();
+	temp.u32 = PPC_LOAD_U32(ctx.r4.u32 + 0);
+	ctx.f1.f64 = double(temp.f32);
+	// mr r3,r31
+	ctx.r3.u64 = ctx.r31.u64;
+	// addi r5,r11,7948
+	ctx.r5.s64 = ctx.r11.s64 + 7948;
+	// bl 0x82281f68
+	ctx.lr = 0x821C1C80;
+	sub_82281F68(ctx, base);
+loc_821C1C80:
+	// stw r3,20(r31)
+	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
+loc_821C1C84:
+	// lwz r11,0(r31)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
+	// addi r4,r29,24
+	ctx.r4.s64 = ctx.r29.s64 + 24;
+	// cmpwi cr6,r11,2
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 2, ctx.xer);
+	// bne cr6,0x821c1ca8
+	if (!ctx.cr6.eq) goto loc_821C1CA8;
+	// lis r11,-32239
+	ctx.r11.s64 = -2112815104;
+	// mr r3,r31
+	ctx.r3.u64 = ctx.r31.u64;
+	// addi r5,r11,7960
+	ctx.r5.s64 = ctx.r11.s64 + 7960;
+	// bl 0x822805e0
+	ctx.lr = 0x821C1CA4;
+	sub_822805E0(ctx, base);
+	// b 0x821c1cc4
+	goto loc_821C1CC4;
+loc_821C1CA8:
+	// cmpwi cr6,r11,1
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 1, ctx.xer);
+	// bne cr6,0x821c1cc4
+	if (!ctx.cr6.eq) goto loc_821C1CC4;
+	// lis r11,-32239
+	ctx.r11.s64 = -2112815104;
+	// lwz r4,0(r4)
+	ctx.r4.u64 = PPC_LOAD_U32(ctx.r4.u32 + 0);
+	// mr r3,r31
+	ctx.r3.u64 = ctx.r31.u64;
+	// addi r5,r11,7960
+	ctx.r5.s64 = ctx.r11.s64 + 7960;
+	// bl 0x82281d60
+	ctx.lr = 0x821C1CC4;
+	sub_82281D60(ctx, base);
+loc_821C1CC4:
+	// addi r4,r29,28
+	ctx.r4.s64 = ctx.r29.s64 + 28;
+	// li r11,512
+	ctx.r11.s64 = 512;
+	// dcbt r11,r4
+	// lwz r11,0(r31)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
+	// cmpwi cr6,r11,2
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 2, ctx.xer);
+	// bne cr6,0x821c1cf0
+	if (!ctx.cr6.eq) goto loc_821C1CF0;
+	// lis r11,-32239
+	ctx.r11.s64 = -2112815104;
+	// mr r3,r31
+	ctx.r3.u64 = ctx.r31.u64;
+	// addi r5,r11,7972
+	ctx.r5.s64 = ctx.r11.s64 + 7972;
+	// bl 0x822809f0
+	ctx.lr = 0x821C1CEC;
+	sub_822809F0(ctx, base);
+	// b 0x821c1d0c
+	goto loc_821C1D0C;
+loc_821C1CF0:
+	// cmpwi cr6,r11,1
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 1, ctx.xer);
+	// bne cr6,0x821c1d10
+	if (!ctx.cr6.eq) goto loc_821C1D10;
+	// lis r11,-32239
+	ctx.r11.s64 = -2112815104;
+	// lfs f1,0(r4)
+	ctx.fpscr.disableFlushMode();
+	temp.u32 = PPC_LOAD_U32(ctx.r4.u32 + 0);
+	ctx.f1.f64 = double(temp.f32);
+	// mr r3,r31
+	ctx.r3.u64 = ctx.r31.u64;
+	// addi r5,r11,7972
+	ctx.r5.s64 = ctx.r11.s64 + 7972;
+	// bl 0x82281f68
+	ctx.lr = 0x821C1D0C;
+	sub_82281F68(ctx, base);
+loc_821C1D0C:
+	// stw r3,20(r31)
+	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
+loc_821C1D10:
+	// addi r4,r29,32
+	ctx.r4.s64 = ctx.r29.s64 + 32;
+	// li r11,512
+	ctx.r11.s64 = 512;
+	// dcbt r11,r4
+	// lwz r11,0(r31)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
+	// cmpwi cr6,r11,2
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 2, ctx.xer);
+	// bne cr6,0x821c1d3c
+	if (!ctx.cr6.eq) goto loc_821C1D3C;
+	// lis r11,-32239
+	ctx.r11.s64 = -2112815104;
+	// mr r3,r31
+	ctx.r3.u64 = ctx.r31.u64;
+	// addi r5,r11,7984
+	ctx.r5.s64 = ctx.r11.s64 + 7984;
+	// bl 0x822809f0
+	ctx.lr = 0x821C1D38;
+	sub_822809F0(ctx, base);
+	// b 0x821c1d58
+	goto loc_821C1D58;
+loc_821C1D3C:
+	// cmpwi cr6,r11,1
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 1, ctx.xer);
+	// bne cr6,0x821c1d5c
+	if (!ctx.cr6.eq) goto loc_821C1D5C;
+	// lis r11,-32239
+	ctx.r11.s64 = -2112815104;
+	// lfs f1,0(r4)
+	ctx.fpscr.disableFlushMode();
+	temp.u32 = PPC_LOAD_U32(ctx.r4.u32 + 0);
+	ctx.f1.f64 = double(temp.f32);
+	// mr r3,r31
+	ctx.r3.u64 = ctx.r31.u64;
+	// addi r5,r11,7984
+	ctx.r5.s64 = ctx.r11.s64 + 7984;
+	// bl 0x82281f68
+	ctx.lr = 0x821C1D58;
+	sub_82281F68(ctx, base);
+loc_821C1D58:
+	// stw r3,20(r31)
+	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
+loc_821C1D5C:
+	// addi r4,r29,36
+	ctx.r4.s64 = ctx.r29.s64 + 36;
+	// li r11,512
+	ctx.r11.s64 = 512;
+	// dcbt r11,r4
+	// lwz r11,0(r31)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
+	// cmpwi cr6,r11,2
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 2, ctx.xer);
+	// bne cr6,0x821c1d88
+	if (!ctx.cr6.eq) goto loc_821C1D88;
+	// lis r11,-32239
+	ctx.r11.s64 = -2112815104;
+	// mr r3,r31
+	ctx.r3.u64 = ctx.r31.u64;
+	// addi r5,r11,7996
+	ctx.r5.s64 = ctx.r11.s64 + 7996;
+	// bl 0x822805e0
+	ctx.lr = 0x821C1D84;
+	sub_822805E0(ctx, base);
+	// b 0x821c1da4
+	goto loc_821C1DA4;
+loc_821C1D88:
+	// cmpwi cr6,r11,1
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 1, ctx.xer);
+	// bne cr6,0x821c1da8
+	if (!ctx.cr6.eq) goto loc_821C1DA8;
+	// lis r11,-32239
+	ctx.r11.s64 = -2112815104;
+	// lwz r4,0(r4)
+	ctx.r4.u64 = PPC_LOAD_U32(ctx.r4.u32 + 0);
+	// mr r3,r31
+	ctx.r3.u64 = ctx.r31.u64;
+	// addi r5,r11,7996
+	ctx.r5.s64 = ctx.r11.s64 + 7996;
+	// bl 0x82281d60
+	ctx.lr = 0x821C1DA4;
+	sub_82281D60(ctx, base);
+loc_821C1DA4:
+	// stw r3,20(r31)
+	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
+loc_821C1DA8:
+	// lwz r11,0(r31)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
+	// addi r4,r29,40
+	ctx.r4.s64 = ctx.r29.s64 + 40;
+	// cmpwi cr6,r11,2
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 2, ctx.xer);
+	// bne cr6,0x821c1dcc
+	if (!ctx.cr6.eq) goto loc_821C1DCC;
+	// lis r11,-32239
+	ctx.r11.s64 = -2112815104;
+	// mr r3,r31
+	ctx.r3.u64 = ctx.r31.u64;
+	// addi r5,r11,8008
+	ctx.r5.s64 = ctx.r11.s64 + 8008;
+	// bl 0x822805e0
+	ctx.lr = 0x821C1DC8;
+	sub_822805E0(ctx, base);
+	// b 0x821c1de8
+	goto loc_821C1DE8;
+loc_821C1DCC:
+	// cmpwi cr6,r11,1
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 1, ctx.xer);
+	// bne cr6,0x821c1de8
+	if (!ctx.cr6.eq) goto loc_821C1DE8;
+	// lis r11,-32239
+	ctx.r11.s64 = -2112815104;
+	// lwz r4,0(r4)
+	ctx.r4.u64 = PPC_LOAD_U32(ctx.r4.u32 + 0);
+	// mr r3,r31
+	ctx.r3.u64 = ctx.r31.u64;
+	// addi r5,r11,8008
+	ctx.r5.s64 = ctx.r11.s64 + 8008;
+	// bl 0x82281d60
+	ctx.lr = 0x821C1DE8;
+	sub_82281D60(ctx, base);
+loc_821C1DE8:
+	// addi r4,r29,44
+	ctx.r4.s64 = ctx.r29.s64 + 44;
+	// li r11,512
+	ctx.r11.s64 = 512;
+	// dcbt r11,r4
+	// lwz r11,0(r31)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
+	// cmpwi cr6,r11,2
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 2, ctx.xer);
+	// bne cr6,0x821c1e14
+	if (!ctx.cr6.eq) goto loc_821C1E14;
+	// lis r11,-32239
+	ctx.r11.s64 = -2112815104;
+	// mr r3,r31
+	ctx.r3.u64 = ctx.r31.u64;
+	// addi r5,r11,8024
+	ctx.r5.s64 = ctx.r11.s64 + 8024;
+	// bl 0x822809f0
+	ctx.lr = 0x821C1E10;
+	sub_822809F0(ctx, base);
+	// b 0x821c1e30
+	goto loc_821C1E30;
+loc_821C1E14:
+	// cmpwi cr6,r11,1
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 1, ctx.xer);
+	// bne cr6,0x821c1e34
+	if (!ctx.cr6.eq) goto loc_821C1E34;
+	// lis r11,-32239
+	ctx.r11.s64 = -2112815104;
+	// lfs f1,0(r4)
+	ctx.fpscr.disableFlushMode();
+	temp.u32 = PPC_LOAD_U32(ctx.r4.u32 + 0);
+	ctx.f1.f64 = double(temp.f32);
+	// mr r3,r31
+	ctx.r3.u64 = ctx.r31.u64;
+	// addi r5,r11,8024
+	ctx.r5.s64 = ctx.r11.s64 + 8024;
+	// bl 0x82281f68
+	ctx.lr = 0x821C1E30;
+	sub_82281F68(ctx, base);
+loc_821C1E30:
+	// stw r3,20(r31)
+	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
+loc_821C1E34:
+	// addi r4,r29,48
+	ctx.r4.s64 = ctx.r29.s64 + 48;
+	// li r11,512
+	ctx.r11.s64 = 512;
+	// dcbt r11,r4
+	// lwz r11,0(r31)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
+	// cmpwi cr6,r11,2
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 2, ctx.xer);
+	// bne cr6,0x821c1e60
+	if (!ctx.cr6.eq) goto loc_821C1E60;
+	// lis r11,-32239
+	ctx.r11.s64 = -2112815104;
+	// mr r3,r31
+	ctx.r3.u64 = ctx.r31.u64;
+	// addi r5,r11,8040
+	ctx.r5.s64 = ctx.r11.s64 + 8040;
+	// bl 0x822805e0
+	ctx.lr = 0x821C1E5C;
+	sub_822805E0(ctx, base);
+	// b 0x821c1e7c
+	goto loc_821C1E7C;
+loc_821C1E60:
+	// cmpwi cr6,r11,1
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 1, ctx.xer);
+	// bne cr6,0x821c1e80
+	if (!ctx.cr6.eq) goto loc_821C1E80;
+	// lis r11,-32239
+	ctx.r11.s64 = -2112815104;
+	// lwz r4,0(r4)
+	ctx.r4.u64 = PPC_LOAD_U32(ctx.r4.u32 + 0);
+	// mr r3,r31
+	ctx.r3.u64 = ctx.r31.u64;
+	// addi r5,r11,8040
+	ctx.r5.s64 = ctx.r11.s64 + 8040;
+	// bl 0x82281d60
+	ctx.lr = 0x821C1E7C;
+	sub_82281D60(ctx, base);
+loc_821C1E7C:
+	// stw r3,20(r31)
+	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
+loc_821C1E80:
+	// addi r4,r29,52
+	ctx.r4.s64 = ctx.r29.s64 + 52;
+	// li r11,512
+	ctx.r11.s64 = 512;
+	// dcbt r11,r4
+	// lwz r11,0(r31)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
+	// cmpwi cr6,r11,2
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 2, ctx.xer);
+	// bne cr6,0x821c1eac
+	if (!ctx.cr6.eq) goto loc_821C1EAC;
+	// lis r11,-32239
+	ctx.r11.s64 = -2112815104;
+	// mr r3,r31
+	ctx.r3.u64 = ctx.r31.u64;
+	// addi r5,r11,8052
+	ctx.r5.s64 = ctx.r11.s64 + 8052;
+	// bl 0x822809f0
+	ctx.lr = 0x821C1EA8;
+	sub_822809F0(ctx, base);
+	// b 0x821c1ec8
+	goto loc_821C1EC8;
+loc_821C1EAC:
+	// cmpwi cr6,r11,1
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 1, ctx.xer);
+	// bne cr6,0x821c1ecc
+	if (!ctx.cr6.eq) goto loc_821C1ECC;
+	// lis r11,-32239
+	ctx.r11.s64 = -2112815104;
+	// lfs f1,0(r4)
+	ctx.fpscr.disableFlushMode();
+	temp.u32 = PPC_LOAD_U32(ctx.r4.u32 + 0);
+	ctx.f1.f64 = double(temp.f32);
+	// mr r3,r31
+	ctx.r3.u64 = ctx.r31.u64;
+	// addi r5,r11,8052
+	ctx.r5.s64 = ctx.r11.s64 + 8052;
+	// bl 0x82281f68
+	ctx.lr = 0x821C1EC8;
+	sub_82281F68(ctx, base);
+loc_821C1EC8:
+	// stw r3,20(r31)
+	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
+loc_821C1ECC:
+	// addi r4,r29,56
+	ctx.r4.s64 = ctx.r29.s64 + 56;
+	// li r11,512
+	ctx.r11.s64 = 512;
+	// dcbt r11,r4
+	// lwz r11,0(r31)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
+	// cmpwi cr6,r11,2
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 2, ctx.xer);
+	// bne cr6,0x821c1ef8
+	if (!ctx.cr6.eq) goto loc_821C1EF8;
+	// lis r11,-32239
+	ctx.r11.s64 = -2112815104;
+	// mr r3,r31
+	ctx.r3.u64 = ctx.r31.u64;
+	// addi r5,r11,8064
+	ctx.r5.s64 = ctx.r11.s64 + 8064;
+	// bl 0x822809f0
+	ctx.lr = 0x821C1EF4;
+	sub_822809F0(ctx, base);
+	// b 0x821c1f14
+	goto loc_821C1F14;
+loc_821C1EF8:
+	// cmpwi cr6,r11,1
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 1, ctx.xer);
+	// bne cr6,0x821c1f18
+	if (!ctx.cr6.eq) goto loc_821C1F18;
+	// lis r11,-32239
+	ctx.r11.s64 = -2112815104;
+	// lfs f1,0(r4)
+	ctx.fpscr.disableFlushMode();
+	temp.u32 = PPC_LOAD_U32(ctx.r4.u32 + 0);
+	ctx.f1.f64 = double(temp.f32);
+	// mr r3,r31
+	ctx.r3.u64 = ctx.r31.u64;
+	// addi r5,r11,8064
+	ctx.r5.s64 = ctx.r11.s64 + 8064;
+	// bl 0x82281f68
+	ctx.lr = 0x821C1F14;
+	sub_82281F68(ctx, base);
+loc_821C1F14:
+	// stw r3,20(r31)
+	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
+loc_821C1F18:
+	// addi r4,r29,60
+	ctx.r4.s64 = ctx.r29.s64 + 60;
+	// li r11,512
+	ctx.r11.s64 = 512;
+	// dcbt r11,r4
+	// lwz r11,0(r31)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
+	// cmpwi cr6,r11,2
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 2, ctx.xer);
+	// bne cr6,0x821c1f44
+	if (!ctx.cr6.eq) goto loc_821C1F44;
+	// lis r11,-32239
+	ctx.r11.s64 = -2112815104;
+	// mr r3,r31
+	ctx.r3.u64 = ctx.r31.u64;
+	// addi r5,r11,8076
+	ctx.r5.s64 = ctx.r11.s64 + 8076;
+	// bl 0x822809f0
+	ctx.lr = 0x821C1F40;
+	sub_822809F0(ctx, base);
+	// b 0x821c1f60
+	goto loc_821C1F60;
+loc_821C1F44:
+	// cmpwi cr6,r11,1
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 1, ctx.xer);
+	// bne cr6,0x821c1f64
+	if (!ctx.cr6.eq) goto loc_821C1F64;
+	// lis r11,-32239
+	ctx.r11.s64 = -2112815104;
+	// lfs f1,0(r4)
+	ctx.fpscr.disableFlushMode();
+	temp.u32 = PPC_LOAD_U32(ctx.r4.u32 + 0);
+	ctx.f1.f64 = double(temp.f32);
+	// mr r3,r31
+	ctx.r3.u64 = ctx.r31.u64;
+	// addi r5,r11,8076
+	ctx.r5.s64 = ctx.r11.s64 + 8076;
+	// bl 0x82281f68
+	ctx.lr = 0x821C1F60;
+	sub_82281F68(ctx, base);
+loc_821C1F60:
+	// stw r3,20(r31)
+	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
+loc_821C1F64:
+	// addi r4,r29,64
+	ctx.r4.s64 = ctx.r29.s64 + 64;
+	// li r11,512
+	ctx.r11.s64 = 512;
+	// dcbt r11,r4
+	// lwz r11,0(r31)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
+	// cmpwi cr6,r11,2
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 2, ctx.xer);
+	// bne cr6,0x821c1f9c
+	if (!ctx.cr6.eq) goto loc_821C1F9C;
+	// lis r11,-32239
+	ctx.r11.s64 = -2112815104;
+	// mr r3,r31
+	ctx.r3.u64 = ctx.r31.u64;
+	// addi r5,r11,7828
+	ctx.r5.s64 = ctx.r11.s64 + 7828;
+	// bl 0x822805e0
+	ctx.lr = 0x821C1F8C;
+	sub_822805E0(ctx, base);
+	// stw r3,20(r31)
+	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
+	// li r3,1
+	ctx.r3.s64 = 1;
+	// addi r1,r1,128
+	ctx.r1.s64 = ctx.r1.s64 + 128;
+	// b 0x82ae1678
+	__restgprlr_28(ctx, base);
+	return;
+loc_821C1F9C:
+	// cmpwi cr6,r11,1
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 1, ctx.xer);
+	// bne cr6,0x821c1fbc
+	if (!ctx.cr6.eq) goto loc_821C1FBC;
+	// lis r11,-32239
+	ctx.r11.s64 = -2112815104;
+	// lwz r4,0(r4)
+	ctx.r4.u64 = PPC_LOAD_U32(ctx.r4.u32 + 0);
+	// mr r3,r31
+	ctx.r3.u64 = ctx.r31.u64;
+	// addi r5,r11,7828
+	ctx.r5.s64 = ctx.r11.s64 + 7828;
+	// bl 0x82281d60
+	ctx.lr = 0x821C1FB8;
+	sub_82281D60(ctx, base);
+	// stw r3,20(r31)
+	PPC_STORE_U32(ctx.r31.u32 + 20, ctx.r3.u32);
+loc_821C1FBC:
+	// li r3,1
+	ctx.r3.s64 = 1;
+	// addi r1,r1,128
+	ctx.r1.s64 = ctx.r1.s64 + 128;
+	// b 0x82ae1678
+	__restgprlr_28(ctx, base);
+	return;
+}
+
+__attribute__((alias("__imp__sub_821C1FC8"))) PPC_WEAK_FUNC(sub_821C1FC8);
+PPC_FUNC_IMPL(__imp__sub_821C1FC8) {
+	PPC_FUNC_PROLOGUE();
+	uint32_t ea{};
+	// mflr r12
+	ctx.r12.u64 = ctx.lr;
+	// bl 0x82ae1624
+	ctx.lr = 0x821C1FD0;
+	__savegprlr_27(ctx, base);
+	// stwu r1,-272(r1)
+	ea = -272 + ctx.r1.u32;
+	PPC_STORE_U32(ea, ctx.r1.u32);
+	ctx.r1.u32 = ea;
+	// mr r30,r3
+	ctx.r30.u64 = ctx.r3.u64;
+	// mr r29,r4
+	ctx.r29.u64 = ctx.r4.u64;
+	// lhz r11,328(r30)
+	ctx.r11.u64 = PPC_LOAD_U16(ctx.r30.u32 + 328);
+	// cmpwi cr6,r11,0
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 0, ctx.xer);
+	// ble cr6,0x821c20b0
+	if (!ctx.cr6.gt) goto loc_821C20B0;
+	// mr r28,r11
+	ctx.r28.u64 = ctx.r11.u64;
+	// lis r11,-32243
+	ctx.r11.s64 = -2113077248;
+	// li r31,0
+	ctx.r31.s64 = 0;
+	// addi r27,r11,-14706
+	ctx.r27.s64 = ctx.r11.s64 + -14706;
+loc_821C1FF8:
+	// lwz r11,312(r30)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r30.u32 + 312);
+	// add r3,r31,r11
+	ctx.r3.u64 = ctx.r31.u64 + ctx.r11.u64;
+	// lwzx r11,r31,r11
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + ctx.r11.u32);
+	// cmplwi cr6,r11,0
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, 0, ctx.xer);
+	// beq cr6,0x821c2080
+	if (ctx.cr6.eq) goto loc_821C2080;
+	// bl 0x821c2dc0
+	ctx.lr = 0x821C2010;
+	sub_821C2DC0(ctx, base);
+	// mr r5,r3
+	ctx.r5.u64 = ctx.r3.u64;
+	// cmplwi cr6,r5,0
+	ctx.cr6.compare<uint32_t>(ctx.r5.u32, 0, ctx.xer);
+	// beq cr6,0x821c20a4
+	if (ctx.cr6.eq) goto loc_821C20A4;
+loc_821C201C:
+	// lbz r11,0(r5)
+	ctx.r11.u64 = PPC_LOAD_U8(ctx.r5.u32 + 0);
+	// cmplwi cr6,r11,0
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, 0, ctx.xer);
+	// beq cr6,0x821c20a4
+	if (ctx.cr6.eq) goto loc_821C20A4;
+	// li r6,127
+	ctx.r6.s64 = 127;
+	// li r4,128
+	ctx.r4.s64 = 128;
+	// addi r3,r1,96
+	ctx.r3.s64 = ctx.r1.s64 + 96;
+	// bl 0x82ade340
+	ctx.lr = 0x821C2038;
+	sub_82ADE340(ctx, base);
+	// addi r4,r1,80
+	ctx.r4.s64 = ctx.r1.s64 + 80;
+	// addi r3,r1,96
+	ctx.r3.s64 = ctx.r1.s64 + 96;
+	// bl 0x821d1890
+	ctx.lr = 0x821C2044;
+	sub_821D1890(ctx, base);
+	// lwz r9,0(r29)
+	ctx.r9.u64 = PPC_LOAD_U32(ctx.r29.u32 + 0);
+	// li r11,0
+	ctx.r11.s64 = 0;
+	// cmpwi cr6,r9,0
+	ctx.cr6.compare<int32_t>(ctx.r9.s32, 0, ctx.xer);
+	// ble cr6,0x821c20a4
+	if (!ctx.cr6.gt) goto loc_821C20A4;
+	// lwz r8,4(r29)
+	ctx.r8.u64 = PPC_LOAD_U32(ctx.r29.u32 + 4);
+	// ld r7,80(r1)
+	ctx.r7.u64 = PPC_LOAD_U64(ctx.r1.u32 + 80);
+	// addi r10,r8,64
+	ctx.r10.s64 = ctx.r8.s64 + 64;
+loc_821C2060:
+	// ld r6,0(r10)
+	ctx.r6.u64 = PPC_LOAD_U64(ctx.r10.u32 + 0);
+	// cmpld cr6,r6,r7
+	ctx.cr6.compare<uint64_t>(ctx.r6.u64, ctx.r7.u64, ctx.xer);
+	// beq cr6,0x821c2088
+	if (ctx.cr6.eq) goto loc_821C2088;
+	// addi r11,r11,1
+	ctx.r11.s64 = ctx.r11.s64 + 1;
+	// addi r10,r10,104
+	ctx.r10.s64 = ctx.r10.s64 + 104;
+	// cmpw cr6,r11,r9
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, ctx.r9.s32, ctx.xer);
+	// blt cr6,0x821c2060
+	if (ctx.cr6.lt) goto loc_821C2060;
+	// b 0x821c20a4
+	goto loc_821C20A4;
+loc_821C2080:
+	// mr r5,r27
+	ctx.r5.u64 = ctx.r27.u64;
+	// b 0x821c201c
+	goto loc_821C201C;
+loc_821C2088:
+	// mulli r11,r11,104
+	ctx.r11.s64 = static_cast<int64_t>(ctx.r11.u64 * static_cast<uint64_t>(104));
+	// add r11,r11,r8
+	ctx.r11.u64 = ctx.r11.u64 + ctx.r8.u64;
+	// cmplwi cr6,r11,0
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, 0, ctx.xer);
+	// beq cr6,0x821c20a4
+	if (ctx.cr6.eq) goto loc_821C20A4;
+	// lwz r10,312(r30)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r30.u32 + 312);
+	// add r10,r31,r10
+	ctx.r10.u64 = ctx.r31.u64 + ctx.r10.u64;
+	// stw r11,36(r10)
+	PPC_STORE_U32(ctx.r10.u32 + 36, ctx.r11.u32);
+loc_821C20A4:
+	// addic. r28,r28,-1
+	ctx.xer.ca = ctx.r28.u32 > 0;
+	ctx.r28.s64 = ctx.r28.s64 + -1;
+	ctx.cr0.compare<int32_t>(ctx.r28.s32, 0, ctx.xer);
+	// addi r31,r31,40
+	ctx.r31.s64 = ctx.r31.s64 + 40;
+	// bne 0x821c1ff8
+	if (!ctx.cr0.eq) goto loc_821C1FF8;
+loc_821C20B0:
+	// addi r1,r1,272
+	ctx.r1.s64 = ctx.r1.s64 + 272;
+	// b 0x82ae1674
+	__restgprlr_27(ctx, base);
+	return;
+}
+
+__attribute__((alias("__imp__sub_821C20B8"))) PPC_WEAK_FUNC(sub_821C20B8);
+PPC_FUNC_IMPL(__imp__sub_821C20B8) {
+	PPC_FUNC_PROLOGUE();
+	// cmplwi cr6,r3,0
+	ctx.cr6.compare<uint32_t>(ctx.r3.u32, 0, ctx.xer);
+	// bne cr6,0x821c20c8
+	if (!ctx.cr6.eq) goto loc_821C20C8;
+loc_821C20C0:
+	// li r3,1
+	ctx.r3.s64 = 1;
+	// blr 
+	return;
+loc_821C20C8:
+	// lwz r11,12(r3)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r3.u32 + 12);
+	// cmpwi cr6,r11,0
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 0, ctx.xer);
+	// beq cr6,0x821c20c0
+	if (ctx.cr6.eq) goto loc_821C20C0;
+	// lwz r3,484(r3)
+	ctx.r3.u64 = PPC_LOAD_U32(ctx.r3.u32 + 484);
+	// blr 
+	return;
+}
+
+__attribute__((alias("__imp__sub_821C20E0"))) PPC_WEAK_FUNC(sub_821C20E0);
+PPC_FUNC_IMPL(__imp__sub_821C20E0) {
+	PPC_FUNC_PROLOGUE();
+	// lwz r11,12(r3)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r3.u32 + 12);
+	// cmpwi cr6,r11,0
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 0, ctx.xer);
+	// bne cr6,0x821c20f4
+	if (!ctx.cr6.eq) goto loc_821C20F4;
+loc_821C20EC:
+	// li r3,0
+	ctx.r3.s64 = 0;
+	// blr 
+	return;
+loc_821C20F4:
+	// lwz r11,492(r3)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r3.u32 + 492);
+	// cmpwi cr6,r11,0
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 0, ctx.xer);
+	// beq cr6,0x821c20ec
+	if (ctx.cr6.eq) goto loc_821C20EC;
+	// lwz r11,484(r3)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r3.u32 + 484);
+	// cntlzw r10,r11
+	ctx.r10.u64 = ctx.r11.u32 == 0 ? 32 : __builtin_clz(ctx.r11.u32);
+	// rlwinm r3,r10,27,31,31
+	ctx.r3.u64 = __builtin_rotateleft64(ctx.r10.u32 | (ctx.r10.u64 << 32), 27) & 0x1;
+	// blr 
+	return;
+}
+
+__attribute__((alias("__imp__sub_821C2110"))) PPC_WEAK_FUNC(sub_821C2110);
+PPC_FUNC_IMPL(__imp__sub_821C2110) {
+	PPC_FUNC_PROLOGUE();
+	// clrlwi r11,r3,24
+	ctx.r11.u64 = ctx.r3.u32 & 0xFF;
+	// cmplwi cr6,r11,101
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, 101, ctx.xer);
+	// bne cr6,0x821c212c
+	if (!ctx.cr6.eq) goto loc_821C212C;
+	// lis r11,-32059
+	ctx.r11.s64 = -2101018624;
+	// addi r10,r11,-23336
+	ctx.r10.s64 = ctx.r11.s64 + -23336;
+	// lwz r11,28(r10)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r10.u32 + 28);
+	// b 0x821c2140
+	goto loc_821C2140;
+loc_821C212C:
+	// lis r10,-32059
+	ctx.r10.s64 = -2101018624;
+	// rlwinm r9,r11,2,0,29
+	ctx.r9.u64 = __builtin_rotateleft64(ctx.r11.u32 | (ctx.r11.u64 << 32), 2) & 0xFFFFFFFC;
+	// addi r11,r10,-23336
+	ctx.r11.s64 = ctx.r10.s64 + -23336;
+	// addi r8,r11,20
+	ctx.r8.s64 = ctx.r11.s64 + 20;
+	// lwzx r11,r9,r8
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r9.u32 + ctx.r8.u32);
+loc_821C2140:
+	// cmplwi cr6,r11,0
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, 0, ctx.xer);
+	// addi r3,r11,176
+	ctx.r3.s64 = ctx.r11.s64 + 176;
+	// bnelr cr6
+	if (!ctx.cr6.eq) return;
+	// li r3,0
+	ctx.r3.s64 = 0;
+	// blr 
+	return;
+}
+
+__attribute__((alias("__imp__sub_821C2158"))) PPC_WEAK_FUNC(sub_821C2158);
+PPC_FUNC_IMPL(__imp__sub_821C2158) {
+	PPC_FUNC_PROLOGUE();
+	// clrlwi r11,r3,24
+	ctx.r11.u64 = ctx.r3.u32 & 0xFF;
+	// cmplwi cr6,r11,101
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, 101, ctx.xer);
+	// bne cr6,0x821c2174
+	if (!ctx.cr6.eq) goto loc_821C2174;
+	// lis r11,-32059
+	ctx.r11.s64 = -2101018624;
+	// addi r10,r11,-23336
+	ctx.r10.s64 = ctx.r11.s64 + -23336;
+	// lwz r11,28(r10)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r10.u32 + 28);
+	// b 0x821c2188
+	goto loc_821C2188;
+loc_821C2174:
+	// lis r10,-32059
+	ctx.r10.s64 = -2101018624;
+	// rlwinm r9,r11,2,0,29
+	ctx.r9.u64 = __builtin_rotateleft64(ctx.r11.u32 | (ctx.r11.u64 << 32), 2) & 0xFFFFFFFC;
+	// addi r11,r10,-23336
+	ctx.r11.s64 = ctx.r10.s64 + -23336;
+	// addi r8,r11,20
+	ctx.r8.s64 = ctx.r11.s64 + 20;
+	// lwzx r11,r9,r8
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r9.u32 + ctx.r8.u32);
+loc_821C2188:
+	// cmplwi cr6,r11,0
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, 0, ctx.xer);
+	// li r3,1
+	ctx.r3.s64 = 1;
+	// beqlr cr6
+	if (ctx.cr6.eq) return;
+	// lwz r10,12(r11)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r11.u32 + 12);
+	// cmpwi cr6,r10,0
+	ctx.cr6.compare<int32_t>(ctx.r10.s32, 0, ctx.xer);
+	// beqlr cr6
+	if (ctx.cr6.eq) return;
+	// lwz r3,484(r11)
+	ctx.r3.u64 = PPC_LOAD_U32(ctx.r11.u32 + 484);
+	// blr 
+	return;
+}
+
+__attribute__((alias("__imp__sub_821C21A8"))) PPC_WEAK_FUNC(sub_821C21A8);
+PPC_FUNC_IMPL(__imp__sub_821C21A8) {
+	PPC_FUNC_PROLOGUE();
+	// clrlwi r11,r3,24
+	ctx.r11.u64 = ctx.r3.u32 & 0xFF;
+	// cmplwi cr6,r11,101
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, 101, ctx.xer);
+	// bne cr6,0x821c21c4
+	if (!ctx.cr6.eq) goto loc_821C21C4;
+	// lis r11,-32059
+	ctx.r11.s64 = -2101018624;
+	// addi r10,r11,-23336
+	ctx.r10.s64 = ctx.r11.s64 + -23336;
+	// lwz r11,28(r10)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r10.u32 + 28);
+	// b 0x821c21d8
+	goto loc_821C21D8;
+loc_821C21C4:
+	// lis r10,-32059
+	ctx.r10.s64 = -2101018624;
+	// rlwinm r9,r11,2,0,29
+	ctx.r9.u64 = __builtin_rotateleft64(ctx.r11.u32 | (ctx.r11.u64 << 32), 2) & 0xFFFFFFFC;
+	// addi r11,r10,-23336
+	ctx.r11.s64 = ctx.r10.s64 + -23336;
+	// addi r8,r11,20
+	ctx.r8.s64 = ctx.r11.s64 + 20;
+	// lwzx r11,r9,r8
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r9.u32 + ctx.r8.u32);
+loc_821C21D8:
+	// cmplwi cr6,r11,0
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, 0, ctx.xer);
+	// bne cr6,0x821c21e8
+	if (!ctx.cr6.eq) goto loc_821C21E8;
+loc_821C21E0:
+	// li r3,0
+	ctx.r3.s64 = 0;
+	// blr 
+	return;
+loc_821C21E8:
+	// lwz r10,12(r11)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r11.u32 + 12);
+	// cmpwi cr6,r10,0
+	ctx.cr6.compare<int32_t>(ctx.r10.s32, 0, ctx.xer);
+	// beq cr6,0x821c21e0
+	if (ctx.cr6.eq) goto loc_821C21E0;
+	// lwz r10,492(r11)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r11.u32 + 492);
+	// cmpwi cr6,r10,0
+	ctx.cr6.compare<int32_t>(ctx.r10.s32, 0, ctx.xer);
+	// beq cr6,0x821c21e0
+	if (ctx.cr6.eq) goto loc_821C21E0;
+	// lwz r11,484(r11)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r11.u32 + 484);
+	// cntlzw r10,r11
+	ctx.r10.u64 = ctx.r11.u32 == 0 ? 32 : __builtin_clz(ctx.r11.u32);
+	// rlwinm r3,r10,27,31,31
+	ctx.r3.u64 = __builtin_rotateleft64(ctx.r10.u32 | (ctx.r10.u64 << 32), 27) & 0x1;
+	// blr 
+	return;
+}
+
+__attribute__((alias("__imp__sub_821C2210"))) PPC_WEAK_FUNC(sub_821C2210);
+PPC_FUNC_IMPL(__imp__sub_821C2210) {
+	PPC_FUNC_PROLOGUE();
+	uint32_t ea{};
+	// mflr r12
+	ctx.r12.u64 = ctx.lr;
+	// stw r12,-8(r1)
+	PPC_STORE_U32(ctx.r1.u32 + -8, ctx.r12.u32);
+	// stwu r1,-96(r1)
+	ea = -96 + ctx.r1.u32;
+	PPC_STORE_U32(ea, ctx.r1.u32);
+	ctx.r1.u32 = ea;
+	// extsb r5,r4
+	ctx.r5.s64 = ctx.r4.s8;
+	// mr r6,r3
+	ctx.r6.u64 = ctx.r3.u64;
+	// cmpwi cr6,r5,-2
+	ctx.cr6.compare<int32_t>(ctx.r5.s32, -2, ctx.xer);
+	// bne cr6,0x821c2240
+	if (!ctx.cr6.eq) goto loc_821C2240;
+loc_821C222C:
+	// li r3,0
+	ctx.r3.s64 = 0;
+	// addi r1,r1,96
+	ctx.r1.s64 = ctx.r1.s64 + 96;
+	// lwz r12,-8(r1)
+	ctx.r12.u64 = PPC_LOAD_U32(ctx.r1.u32 + -8);
+	// mtlr r12
+	ctx.lr = ctx.r12.u64;
+	// blr 
+	return;
+loc_821C2240:
+	// cmpwi cr6,r5,-1
+	ctx.cr6.compare<int32_t>(ctx.r5.s32, -1, ctx.xer);
+	// beq cr6,0x821c2310
+	if (ctx.cr6.eq) goto loc_821C2310;
+	// li r3,101
+	ctx.r3.s64 = 101;
+	// bl 0x8223a0d0
+	ctx.lr = 0x821C2250;
+	sub_8223A0D0(ctx, base);
+	// cmpwi cr6,r3,0
+	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
+	// beq cr6,0x821c2310
+	if (ctx.cr6.eq) goto loc_821C2310;
+	// lis r10,-32059
+	ctx.r10.s64 = -2101018624;
+	// clrlwi r11,r6,24
+	ctx.r11.u64 = ctx.r6.u32 & 0xFF;
+	// addi r9,r10,-23336
+	ctx.r9.s64 = ctx.r10.s64 + -23336;
+	// cmplwi cr6,r11,101
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, 101, ctx.xer);
+	// lwz r8,28(r9)
+	ctx.r8.u64 = PPC_LOAD_U32(ctx.r9.u32 + 28);
+	// bne cr6,0x821c2278
+	if (!ctx.cr6.eq) goto loc_821C2278;
+	// mr r10,r8
+	ctx.r10.u64 = ctx.r8.u64;
+	// b 0x821c2284
+	goto loc_821C2284;
+loc_821C2278:
+	// rlwinm r10,r11,2,0,29
+	ctx.r10.u64 = __builtin_rotateleft64(ctx.r11.u32 | (ctx.r11.u64 << 32), 2) & 0xFFFFFFFC;
+	// addi r7,r9,20
+	ctx.r7.s64 = ctx.r9.s64 + 20;
+	// lwzx r10,r10,r7
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r10.u32 + ctx.r7.u32);
+loc_821C2284:
+	// cmplwi cr6,r10,0
+	ctx.cr6.compare<uint32_t>(ctx.r10.u32, 0, ctx.xer);
+	// beq cr6,0x821c2310
+	if (ctx.cr6.eq) goto loc_821C2310;
+	// mulli r7,r5,68
+	ctx.r7.s64 = static_cast<int64_t>(ctx.r5.u64 * static_cast<uint64_t>(68));
+	// add r10,r7,r10
+	ctx.r10.u64 = ctx.r7.u64 + ctx.r10.u64;
+	// lwz r6,180(r10)
+	ctx.r6.u64 = PPC_LOAD_U32(ctx.r10.u32 + 180);
+	// cmpwi cr6,r6,0
+	ctx.cr6.compare<int32_t>(ctx.r6.s32, 0, ctx.xer);
+	// beq cr6,0x821c222c
+	if (ctx.cr6.eq) goto loc_821C222C;
+	// cmplwi cr6,r11,101
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, 101, ctx.xer);
+	// bne cr6,0x821c22d4
+	if (!ctx.cr6.eq) goto loc_821C22D4;
+	// cmplwi cr6,r8,0
+	ctx.cr6.compare<uint32_t>(ctx.r8.u32, 0, ctx.xer);
+	// beq cr6,0x821c22ec
+	if (ctx.cr6.eq) goto loc_821C22EC;
+	// addi r11,r8,176
+	ctx.r11.s64 = ctx.r8.s64 + 176;
+	// add r11,r7,r11
+	ctx.r11.u64 = ctx.r7.u64 + ctx.r11.u64;
+	// lwz r10,4(r11)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r11.u32 + 4);
+	// lwz r9,12(r10)
+	ctx.r9.u64 = PPC_LOAD_U32(ctx.r10.u32 + 12);
+	// rlwinm r3,r9,0,30,30
+	ctx.r3.u64 = __builtin_rotateleft64(ctx.r9.u32 | (ctx.r9.u64 << 32), 0) & 0x2;
+	// addi r1,r1,96
+	ctx.r1.s64 = ctx.r1.s64 + 96;
+	// lwz r12,-8(r1)
+	ctx.r12.u64 = PPC_LOAD_U32(ctx.r1.u32 + -8);
+	// mtlr r12
+	ctx.lr = ctx.r12.u64;
+	// blr 
+	return;
+loc_821C22D4:
+	// rlwinm r11,r11,2,0,29
+	ctx.r11.u64 = __builtin_rotateleft64(ctx.r11.u32 | (ctx.r11.u64 << 32), 2) & 0xFFFFFFFC;
+	// addi r10,r9,20
+	ctx.r10.s64 = ctx.r9.s64 + 20;
+	// lwzx r11,r11,r10
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r11.u32 + ctx.r10.u32);
+	// cmplwi cr6,r11,0
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, 0, ctx.xer);
+	// addi r11,r11,176
+	ctx.r11.s64 = ctx.r11.s64 + 176;
+	// bne cr6,0x821c22f0
+	if (!ctx.cr6.eq) goto loc_821C22F0;
+loc_821C22EC:
+	// li r11,0
+	ctx.r11.s64 = 0;
+loc_821C22F0:
+	// add r11,r7,r11
+	ctx.r11.u64 = ctx.r7.u64 + ctx.r11.u64;
+	// lwz r10,4(r11)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r11.u32 + 4);
+	// lwz r9,12(r10)
+	ctx.r9.u64 = PPC_LOAD_U32(ctx.r10.u32 + 12);
+	// rlwinm r3,r9,0,30,30
+	ctx.r3.u64 = __builtin_rotateleft64(ctx.r9.u32 | (ctx.r9.u64 << 32), 0) & 0x2;
+	// addi r1,r1,96
+	ctx.r1.s64 = ctx.r1.s64 + 96;
+	// lwz r12,-8(r1)
+	ctx.r12.u64 = PPC_LOAD_U32(ctx.r1.u32 + -8);
+	// mtlr r12
+	ctx.lr = ctx.r12.u64;
+	// blr 
+	return;
+loc_821C2310:
+	// li r3,1
+	ctx.r3.s64 = 1;
+	// addi r1,r1,96
+	ctx.r1.s64 = ctx.r1.s64 + 96;
+	// lwz r12,-8(r1)
+	ctx.r12.u64 = PPC_LOAD_U32(ctx.r1.u32 + -8);
+	// mtlr r12
+	ctx.lr = ctx.r12.u64;
+	// blr 
+	return;
+}
+
+__attribute__((alias("__imp__sub_821C2328"))) PPC_WEAK_FUNC(sub_821C2328);
+PPC_FUNC_IMPL(__imp__sub_821C2328) {
+	PPC_FUNC_PROLOGUE();
+	PPCRegister temp{};
+	uint32_t ea{};
+	// mflr r12
+	ctx.r12.u64 = ctx.lr;
+	// bl 0x82ae1628
+	ctx.lr = 0x821C2330;
+	__savegprlr_28(ctx, base);
+	// stwu r1,-128(r1)
+	ea = -128 + ctx.r1.u32;
+	PPC_STORE_U32(ea, ctx.r1.u32);
+	ctx.r1.u32 = ea;
+	// mr r28,r3
+	ctx.r28.u64 = ctx.r3.u64;
+	// li r4,0
+	ctx.r4.s64 = 0;
+	// rlwinm r11,r28,2,0,29
+	ctx.r11.u64 = __builtin_rotateleft64(ctx.r28.u32 | (ctx.r28.u64 << 32), 2) & 0xFFFFFFFC;
+	// add r11,r28,r11
+	ctx.r11.u64 = ctx.r28.u64 + ctx.r11.u64;
+	// rlwinm r11,r11,3,0,28
+	ctx.r11.u64 = __builtin_rotateleft64(ctx.r11.u32 | (ctx.r11.u64 << 32), 3) & 0xFFFFFFF8;
+	// addi r30,r11,376
+	ctx.r30.s64 = ctx.r11.s64 + 376;
+	// mr r3,r30
+	ctx.r3.u64 = ctx.r30.u64;
+	// bl 0x82223cc0
+	ctx.lr = 0x821C2354;
+	sub_82223CC0(ctx, base);
+	// mr r31,r3
+	ctx.r31.u64 = ctx.r3.u64;
+	// li r29,0
+	ctx.r29.s64 = 0;
+	// cmplwi cr6,r30,1
+	ctx.cr6.compare<uint32_t>(ctx.r30.u32, 1, ctx.xer);
+	// beq cr6,0x821c2394
+	if (ctx.cr6.eq) goto loc_821C2394;
+	// cmplwi cr6,r30,2
+	ctx.cr6.compare<uint32_t>(ctx.r30.u32, 2, ctx.xer);
+	// beq cr6,0x821c238c
+	if (ctx.cr6.eq) goto loc_821C238C;
+	// cmplwi cr6,r30,4
+	ctx.cr6.compare<uint32_t>(ctx.r30.u32, 4, ctx.xer);
+	// beq cr6,0x821c2384
+	if (ctx.cr6.eq) goto loc_821C2384;
+	// mr r5,r30
+	ctx.r5.u64 = ctx.r30.u64;
+	// li r4,0
+	ctx.r4.s64 = 0;
+	// bl 0x82b0a290
+	ctx.lr = 0x821C2380;
+	sub_82B0A290(ctx, base);
+	// b 0x821c2398
+	goto loc_821C2398;
+loc_821C2384:
+	// stw r29,0(r31)
+	PPC_STORE_U32(ctx.r31.u32 + 0, ctx.r29.u32);
+	// b 0x821c2398
+	goto loc_821C2398;
+loc_821C238C:
+	// sth r29,0(r31)
+	PPC_STORE_U16(ctx.r31.u32 + 0, ctx.r29.u16);
+	// b 0x821c2398
+	goto loc_821C2398;
+loc_821C2394:
+	// stb r29,0(r31)
+	PPC_STORE_U8(ctx.r31.u32 + 0, ctx.r29.u8);
+loc_821C2398:
+	// lis r10,-32251
+	ctx.r10.s64 = -2113601536;
+	// stw r29,352(r31)
+	PPC_STORE_U32(ctx.r31.u32 + 352, ctx.r29.u32);
+	// lis r9,-32234
+	ctx.r9.s64 = -2112487424;
+	// stw r29,304(r31)
+	PPC_STORE_U32(ctx.r31.u32 + 304, ctx.r29.u32);
+	// li r11,1
+	ctx.r11.s64 = 1;
+	// stw r29,364(r31)
+	PPC_STORE_U32(ctx.r31.u32 + 364, ctx.r29.u32);
+	// addi r8,r31,376
+	ctx.r8.s64 = ctx.r31.s64 + 376;
+	// stb r29,368(r31)
+	PPC_STORE_U8(ctx.r31.u32 + 368, ctx.r29.u8);
+	// addi r6,r31,260
+	ctx.r6.s64 = ctx.r31.s64 + 260;
+	// stw r11,324(r31)
+	PPC_STORE_U32(ctx.r31.u32 + 324, ctx.r11.u32);
+	// lfs f0,-23392(r10)
+	ctx.fpscr.disableFlushMode();
+	temp.u32 = PPC_LOAD_U32(ctx.r10.u32 + -23392);
+	ctx.f0.f64 = double(temp.f32);
+	// stw r8,312(r31)
+	PPC_STORE_U32(ctx.r31.u32 + 312, ctx.r8.u32);
+	// lfs f13,-14556(r9)
+	temp.u32 = PPC_LOAD_U32(ctx.r9.u32 + -14556);
+	ctx.f13.f64 = double(temp.f32);
+	// sth r28,328(r31)
+	PPC_STORE_U16(ctx.r31.u32 + 328, ctx.r28.u16);
+	// stfs f0,344(r31)
+	temp.f32 = float(ctx.f0.f64);
+	PPC_STORE_U32(ctx.r31.u32 + 344, temp.u32);
+	// stw r6,308(r31)
+	PPC_STORE_U32(ctx.r31.u32 + 308, ctx.r6.u32);
+	// stfs f13,336(r31)
+	temp.f32 = float(ctx.f13.f64);
+	PPC_STORE_U32(ctx.r31.u32 + 336, temp.u32);
+	// stw r11,316(r31)
+	PPC_STORE_U32(ctx.r31.u32 + 316, ctx.r11.u32);
+	// mr r3,r31
+	ctx.r3.u64 = ctx.r31.u64;
+	// stw r11,348(r31)
+	PPC_STORE_U32(ctx.r31.u32 + 348, ctx.r11.u32);
+	// stw r11,360(r31)
+	PPC_STORE_U32(ctx.r31.u32 + 360, ctx.r11.u32);
+	// stw r29,372(r31)
+	PPC_STORE_U32(ctx.r31.u32 + 372, ctx.r29.u32);
+	// addi r1,r1,128
+	ctx.r1.s64 = ctx.r1.s64 + 128;
+	// b 0x82ae1678
+	__restgprlr_28(ctx, base);
+	return;
+}
+
+__attribute__((alias("__imp__sub_821C23F8"))) PPC_WEAK_FUNC(sub_821C23F8);
+PPC_FUNC_IMPL(__imp__sub_821C23F8) {
+	PPC_FUNC_PROLOGUE();
+	uint32_t ea{};
+	// mflr r12
+	ctx.r12.u64 = ctx.lr;
+	// bl 0x82ae162c
+	ctx.lr = 0x821C2400;
+	__savegprlr_29(ctx, base);
+	// stwu r1,-128(r1)
+	ea = -128 + ctx.r1.u32;
+	PPC_STORE_U32(ea, ctx.r1.u32);
+	ctx.r1.u32 = ea;
+	// mr r30,r3
+	ctx.r30.u64 = ctx.r3.u64;
+	// li r29,0
+	ctx.r29.s64 = 0;
+	// mr r31,r29
+	ctx.r31.u64 = ctx.r29.u64;
+	// lhz r11,328(r30)
+	ctx.r11.u64 = PPC_LOAD_U16(ctx.r30.u32 + 328);
+	// cmplwi cr6,r11,0
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, 0, ctx.xer);
+	// beq cr6,0x821c243c
+	if (ctx.cr6.eq) goto loc_821C243C;
+loc_821C241C:
+	// li r5,0
+	ctx.r5.s64 = 0;
+	// mr r4,r31
+	ctx.r4.u64 = ctx.r31.u64;
+	// mr r3,r30
+	ctx.r3.u64 = ctx.r30.u64;
+	// bl 0x821c34f8
+	ctx.lr = 0x821C242C;
+	sub_821C34F8(ctx, base);
+	// lhz r11,328(r30)
+	ctx.r11.u64 = PPC_LOAD_U16(ctx.r30.u32 + 328);
+	// addi r31,r31,1
+	ctx.r31.s64 = ctx.r31.s64 + 1;
+	// cmplw cr6,r31,r11
+	ctx.cr6.compare<uint32_t>(ctx.r31.u32, ctx.r11.u32, ctx.xer);
+	// blt cr6,0x821c241c
+	if (ctx.cr6.lt) goto loc_821C241C;
+loc_821C243C:
+	// lwz r11,12(r30)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r30.u32 + 12);
+	// addi r31,r30,12
+	ctx.r31.s64 = ctx.r30.s64 + 12;
+	// cmplwi cr6,r11,0
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, 0, ctx.xer);
+	// beq cr6,0x821c2494
+	if (ctx.cr6.eq) goto loc_821C2494;
+	// addi r4,r1,80
+	ctx.r4.s64 = ctx.r1.s64 + 80;
+	// mr r3,r31
+	ctx.r3.u64 = ctx.r31.u64;
+	// bl 0x82926748
+	ctx.lr = 0x821C2458;
+	sub_82926748(ctx, base);
+	// lwz r11,80(r1)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r1.u32 + 80);
+	// cmplwi cr6,r11,0
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, 0, ctx.xer);
+	// beq cr6,0x821c2494
+	if (ctx.cr6.eq) goto loc_821C2494;
+	// lwz r11,0(r31)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
+	// cmplwi cr6,r11,0
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, 0, ctx.xer);
+	// beq cr6,0x821c2484
+	if (ctx.cr6.eq) goto loc_821C2484;
+	// addi r4,r1,80
+	ctx.r4.s64 = ctx.r1.s64 + 80;
+	// mr r3,r31
+	ctx.r3.u64 = ctx.r31.u64;
+	// bl 0x82926748
+	ctx.lr = 0x821C247C;
+	sub_82926748(ctx, base);
+	// lwz r3,80(r1)
+	ctx.r3.u64 = PPC_LOAD_U32(ctx.r1.u32 + 80);
+	// b 0x821c2488
+	goto loc_821C2488;
+loc_821C2484:
+	// mr r3,r29
+	ctx.r3.u64 = ctx.r29.u64;
+loc_821C2488:
+	// li r4,0
+	ctx.r4.s64 = 0;
+	// bl 0x82223dc0
+	ctx.lr = 0x821C2490;
+	sub_82223DC0(ctx, base);
+	// stw r29,156(r30)
+	PPC_STORE_U32(ctx.r30.u32 + 156, ctx.r29.u32);
+loc_821C2494:
+	// lwz r3,160(r30)
+	ctx.r3.u64 = PPC_LOAD_U32(ctx.r30.u32 + 160);
+	// cmpwi cr6,r3,0
+	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
+	// beq cr6,0x821c24ac
+	if (ctx.cr6.eq) goto loc_821C24AC;
+	// li r4,0
+	ctx.r4.s64 = 0;
+	// bl 0x82223dc0
+	ctx.lr = 0x821C24A8;
+	sub_82223DC0(ctx, base);
+	// stw r29,160(r30)
+	PPC_STORE_U32(ctx.r30.u32 + 160, ctx.r29.u32);
+loc_821C24AC:
+	// li r4,0
+	ctx.r4.s64 = 0;
+	// mr r3,r30
+	ctx.r3.u64 = ctx.r30.u64;
+	// bl 0x82223dc0
+	ctx.lr = 0x821C24B8;
+	sub_82223DC0(ctx, base);
+	// addi r1,r1,128
+	ctx.r1.s64 = ctx.r1.s64 + 128;
+	// b 0x82ae167c
+	__restgprlr_29(ctx, base);
+	return;
+}
+
+__attribute__((alias("__imp__sub_821C24C0"))) PPC_WEAK_FUNC(sub_821C24C0);
+PPC_FUNC_IMPL(__imp__sub_821C24C0) {
+	PPC_FUNC_PROLOGUE();
+	PPCRegister temp{};
+	uint32_t ea{};
+	// mflr r12
+	ctx.r12.u64 = ctx.lr;
+	// bl 0x82ae1610
+	ctx.lr = 0x821C24C8;
+	__savegprlr_22(ctx, base);
+	// addi r12,r1,-88
+	ctx.r12.s64 = ctx.r1.s64 + -88;
+	// bl 0x82ae2378
+	ctx.lr = 0x821C24D0;
+	__savefpr_28(ctx, base);
+	// stwu r1,-208(r1)
+	ea = -208 + ctx.r1.u32;
+	PPC_STORE_U32(ea, ctx.r1.u32);
+	ctx.r1.u32 = ea;
+	// mr r30,r5
+	ctx.r30.u64 = ctx.r5.u64;
+	// lis r11,-32234
+	ctx.r11.s64 = -2112487424;
+	// li r23,1
+	ctx.r23.s64 = 1;
+	// mr r29,r3
+	ctx.r29.u64 = ctx.r3.u64;
+	// mr r28,r4
+	ctx.r28.u64 = ctx.r4.u64;
+	// lfs f30,8(r30)
+	ctx.fpscr.disableFlushMode();
+	temp.u32 = PPC_LOAD_U32(ctx.r30.u32 + 8);
+	ctx.f30.f64 = double(temp.f32);
+	// mr r25,r6
+	ctx.r25.u64 = ctx.r6.u64;
+	// lfs f28,-14556(r11)
+	temp.u32 = PPC_LOAD_U32(ctx.r11.u32 + -14556);
+	ctx.f28.f64 = double(temp.f32);
+	// mr r24,r7
+	ctx.r24.u64 = ctx.r7.u64;
+	// lfs f31,24(r30)
+	temp.u32 = PPC_LOAD_U32(ctx.r30.u32 + 24);
+	ctx.f31.f64 = double(temp.f32);
+	// li r22,0
+	ctx.r22.s64 = 0;
+	// fcmpu cr6,f30,f28
+	ctx.cr6.compare(ctx.f30.f64, ctx.f28.f64);
+	// mr r26,r23
+	ctx.r26.u64 = ctx.r23.u64;
+	// blt cr6,0x821c2510
+	if (ctx.cr6.lt) goto loc_821C2510;
+	// mr r26,r22
+	ctx.r26.u64 = ctx.r22.u64;
+loc_821C2510:
+	// rlwinm r11,r28,2,0,29
+	ctx.r11.u64 = __builtin_rotateleft64(ctx.r28.u32 | (ctx.r28.u64 << 32), 2) & 0xFFFFFFFC;
+	// lwz r10,312(r29)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r29.u32 + 312);
+	// lwz r27,28(r30)
+	ctx.r27.u64 = PPC_LOAD_U32(ctx.r30.u32 + 28);
+	// add r11,r28,r11
+	ctx.r11.u64 = ctx.r28.u64 + ctx.r11.u64;
+	// rlwinm r11,r11,3,0,28
+	ctx.r11.u64 = __builtin_rotateleft64(ctx.r11.u32 | (ctx.r11.u64 << 32), 3) & 0xFFFFFFF8;
+	// add r31,r10,r11
+	ctx.r31.u64 = ctx.r10.u64 + ctx.r11.u64;
+	// lwz r5,4(r31)
+	ctx.r5.u64 = PPC_LOAD_U32(ctx.r31.u32 + 4);
+	// cmplwi cr6,r5,0
+	ctx.cr6.compare<uint32_t>(ctx.r5.u32, 0, ctx.xer);
+	// beq cr6,0x821c2578
+	if (ctx.cr6.eq) goto loc_821C2578;
+	// lwz r3,0(r31)
+	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
+	// lwz r11,612(r3)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r3.u32 + 612);
+	// cmplwi cr6,r11,0
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, 0, ctx.xer);
+	// beq cr6,0x821c2558
+	if (ctx.cr6.eq) goto loc_821C2558;
+	// mr r4,r28
+	ctx.r4.u64 = ctx.r28.u64;
+	// lwz r8,8(r29)
+	ctx.r8.u64 = PPC_LOAD_U32(ctx.r29.u32 + 8);
+	// lwz r7,4(r29)
+	ctx.r7.u64 = PPC_LOAD_U32(ctx.r29.u32 + 4);
+	// lwz r6,0(r29)
+	ctx.r6.u64 = PPC_LOAD_U32(ctx.r29.u32 + 0);
+	// bl 0x821c0898
+	ctx.lr = 0x821C2558;
+	sub_821C0898(ctx, base);
+loc_821C2558:
+	// lwz r11,8(r31)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 8);
+	// cmpwi cr6,r11,0
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 0, ctx.xer);
+	// bne cr6,0x821c2570
+	if (!ctx.cr6.eq) goto loc_821C2570;
+	// lwz r3,4(r31)
+	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 4);
+	// bl 0x821d26f8
+	ctx.lr = 0x821C256C;
+	sub_821D26F8(ctx, base);
+	// bl 0x821d1e80
+	ctx.lr = 0x821C2570;
+	sub_821D1E80(ctx, base);
+loc_821C2570:
+	// stw r22,4(r31)
+	PPC_STORE_U32(ctx.r31.u32 + 4, ctx.r22.u32);
+	// stw r22,8(r31)
+	PPC_STORE_U32(ctx.r31.u32 + 8, ctx.r22.u32);
+loc_821C2578:
+	// lwz r11,0(r31)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
+	// cmplwi cr6,r11,0
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, 0, ctx.xer);
+	// bne cr6,0x821c2590
+	if (!ctx.cr6.eq) goto loc_821C2590;
+	// bl 0x821c00d8
+	ctx.lr = 0x821C2588;
+	sub_821C00D8(ctx, base);
+	// stfs f28,20(r31)
+	ctx.fpscr.disableFlushMode();
+	temp.f32 = float(ctx.f28.f64);
+	PPC_STORE_U32(ctx.r31.u32 + 20, temp.u32);
+	// stw r3,0(r31)
+	PPC_STORE_U32(ctx.r31.u32 + 0, ctx.r3.u32);
+loc_821C2590:
+	// lis r11,-32241
+	ctx.r11.s64 = -2112946176;
+	// stw r23,24(r31)
+	PPC_STORE_U32(ctx.r31.u32 + 24, ctx.r23.u32);
+	// lis r10,-32234
+	ctx.r10.s64 = -2112487424;
+	// addi r9,r11,23204
+	ctx.r9.s64 = ctx.r11.s64 + 23204;
+	// lfs f29,-14540(r10)
+	ctx.fpscr.disableFlushMode();
+	temp.u32 = PPC_LOAD_U32(ctx.r10.u32 + -14540);
+	ctx.f29.f64 = double(temp.f32);
+	// lfs f0,24(r9)
+	temp.u32 = PPC_LOAD_U32(ctx.r9.u32 + 24);
+	ctx.f0.f64 = double(temp.f32);
+	// fcmpu cr6,f31,f0
+	ctx.cr6.compare(ctx.f31.f64, ctx.f0.f64);
+	// bne cr6,0x821c25c4
+	if (!ctx.cr6.eq) goto loc_821C25C4;
+	// lwz r11,0(r31)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
+	// addi r3,r11,8
+	ctx.r3.s64 = ctx.r11.s64 + 8;
+	// bl 0x829266e8
+	ctx.lr = 0x821C25BC;
+	sub_829266E8(ctx, base);
+	// fmr f31,f1
+	ctx.fpscr.disableFlushMode();
+	ctx.f31.f64 = ctx.f1.f64;
+	// b 0x821c261c
+	goto loc_821C261C;
+loc_821C25C4:
+	// lis r11,-32234
+	ctx.r11.s64 = -2112487424;
+	// lfs f0,4356(r11)
+	ctx.fpscr.disableFlushMode();
+	temp.u32 = PPC_LOAD_U32(ctx.r11.u32 + 4356);
+	ctx.f0.f64 = double(temp.f32);
+	// fcmpu cr6,f31,f0
+	ctx.cr6.compare(ctx.f31.f64, ctx.f0.f64);
+	// bne cr6,0x821c261c
+	if (!ctx.cr6.eq) goto loc_821C261C;
+	// lis r11,-31835
+	ctx.r11.s64 = -2086338560;
+	// lwz r3,20160(r11)
+	ctx.r3.u64 = PPC_LOAD_U32(ctx.r11.u32 + 20160);
+	// bl 0x82b1cce4
+	ctx.lr = 0x821C25E0;
+	__imp__KeTlsGetValue(ctx, base);
+	// lis r9,-32059
+	ctx.r9.s64 = -2101018624;
+	// rlwinm r10,r3,2,0,29
+	ctx.r10.u64 = __builtin_rotateleft64(ctx.r3.u32 | (ctx.r3.u64 << 32), 2) & 0xFFFFFFFC;
+	// addi r11,r9,-6860
+	ctx.r11.s64 = ctx.r9.s64 + -6860;
+	// lis r8,25
+	ctx.r8.s64 = 1638400;
+	// ori r7,r8,26125
+	ctx.r7.u64 = ctx.r8.u64 | 26125;
+	// lwzx r6,r10,r11
+	ctx.r6.u64 = PPC_LOAD_U32(ctx.r10.u32 + ctx.r11.u32);
+	// mullw r5,r6,r7
+	ctx.r5.s64 = int64_t(ctx.r6.s32) * int64_t(ctx.r7.s32);
+	// addis r4,r5,15471
+	ctx.r4.s64 = ctx.r5.s64 + 1013907456;
+	// addi r4,r4,-3233
+	ctx.r4.s64 = ctx.r4.s64 + -3233;
+	// clrlwi r3,r4,9
+	ctx.r3.u64 = ctx.r4.u32 & 0x7FFFFF;
+	// stwx r4,r10,r11
+	PPC_STORE_U32(ctx.r10.u32 + ctx.r11.u32, ctx.r4.u32);
+	// oris r11,r3,16256
+	ctx.r11.u64 = ctx.r3.u64 | 1065353216;
+	// stw r11,80(r1)
+	PPC_STORE_U32(ctx.r1.u32 + 80, ctx.r11.u32);
+	// lfs f0,80(r1)
+	ctx.fpscr.disableFlushMode();
+	temp.u32 = PPC_LOAD_U32(ctx.r1.u32 + 80);
+	ctx.f0.f64 = double(temp.f32);
+	// fsubs f31,f0,f29
+	ctx.f31.f64 = double(float(ctx.f0.f64 - ctx.f29.f64));
+loc_821C261C:
+	// lwz r11,0(r31)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
+	// lfs f0,36(r30)
+	ctx.fpscr.disableFlushMode();
+	temp.u32 = PPC_LOAD_U32(ctx.r30.u32 + 36);
+	ctx.f0.f64 = double(temp.f32);
+	// cmplwi cr6,r25,0
+	ctx.cr6.compare<uint32_t>(ctx.r25.u32, 0, ctx.xer);
+	// fmr f1,f31
+	ctx.f1.f64 = ctx.f31.f64;
+	// mr r8,r26
+	ctx.r8.u64 = ctx.r26.u64;
+	// fabs f2,f30
+	ctx.f2.u64 = ctx.f30.u64 & ~0x8000000000000000;
+	// mr r7,r27
+	ctx.r7.u64 = ctx.r27.u64;
+	// stfs f0,604(r11)
+	temp.f32 = float(ctx.f0.f64);
+	PPC_STORE_U32(ctx.r11.u32 + 604, temp.u32);
+	// lwz r3,0(r31)
+	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
+	// beq cr6,0x821c2650
+	if (ctx.cr6.eq) goto loc_821C2650;
+	// mr r9,r25
+	ctx.r9.u64 = ctx.r25.u64;
+	// li r4,0
+	ctx.r4.s64 = 0;
+	// b 0x821c2658
+	goto loc_821C2658;
+loc_821C2650:
+	// li r9,0
+	ctx.r9.s64 = 0;
+	// mr r4,r24
+	ctx.r4.u64 = ctx.r24.u64;
+loc_821C2658:
+	// bl 0x821c0648
+	ctx.lr = 0x821C265C;
+	sub_821C0648(ctx, base);
+	// mr r27,r3
+	ctx.r27.u64 = ctx.r3.u64;
+	// cmpwi cr6,r27,0
+	ctx.cr6.compare<int32_t>(ctx.r27.s32, 0, ctx.xer);
+	// bne cr6,0x821c2694
+	if (!ctx.cr6.eq) goto loc_821C2694;
+	// cmplwi cr6,r28,0
+	ctx.cr6.compare<uint32_t>(ctx.r28.u32, 0, ctx.xer);
+	// beq cr6,0x821c2680
+	if (ctx.cr6.eq) goto loc_821C2680;
+	// li r5,0
+	ctx.r5.s64 = 0;
+	// mr r4,r28
+	ctx.r4.u64 = ctx.r28.u64;
+	// mr r3,r29
+	ctx.r3.u64 = ctx.r29.u64;
+	// bl 0x821c34f8
+	ctx.lr = 0x821C2680;
+	sub_821C34F8(ctx, base);
+loc_821C2680:
+	// li r3,0
+	ctx.r3.s64 = 0;
+	// addi r1,r1,208
+	ctx.r1.s64 = ctx.r1.s64 + 208;
+	// addi r12,r1,-88
+	ctx.r12.s64 = ctx.r1.s64 + -88;
+	// bl 0x82ae23c4
+	ctx.lr = 0x821C2690;
+	__restfpr_28(ctx, base);
+	// b 0x82ae1660
+	__restgprlr_22(ctx, base);
+	return;
+loc_821C2694:
+	// lis r11,-32065
+	ctx.r11.s64 = -2101411840;
+	// lfs f13,12(r30)
+	ctx.fpscr.disableFlushMode();
+	temp.u32 = PPC_LOAD_U32(ctx.r30.u32 + 12);
+	ctx.f13.f64 = double(temp.f32);
+	// lfs f0,31740(r11)
+	temp.u32 = PPC_LOAD_U32(ctx.r11.u32 + 31740);
+	ctx.f0.f64 = double(temp.f32);
+	// fcmpu cr6,f13,f0
+	ctx.cr6.compare(ctx.f13.f64, ctx.f0.f64);
+	// bne cr6,0x821c26c8
+	if (!ctx.cr6.eq) goto loc_821C26C8;
+	// lwz r11,16(r30)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r30.u32 + 16);
+	// cmpwi cr6,r11,32
+	ctx.cr6.compare<int32_t>(ctx.r11.s32, 32, ctx.xer);
+	// beq cr6,0x821c26bc
+	if (ctx.cr6.eq) goto loc_821C26BC;
+	// stfs f29,32(r31)
+	temp.f32 = float(ctx.f29.f64);
+	PPC_STORE_U32(ctx.r31.u32 + 32, temp.u32);
+	// b 0x821c26c8
+	goto loc_821C26C8;
+loc_821C26BC:
+	// lis r11,-32243
+	ctx.r11.s64 = -2113077248;
+	// lfs f0,-14580(r11)
+	ctx.fpscr.disableFlushMode();
+	temp.u32 = PPC_LOAD_U32(ctx.r11.u32 + -14580);
+	ctx.f0.f64 = double(temp.f32);
+	// stfs f0,32(r31)
+	temp.f32 = float(ctx.f0.f64);
+	PPC_STORE_U32(ctx.r31.u32 + 32, temp.u32);
+loc_821C26C8:
+	// lfs f0,20(r30)
+	ctx.fpscr.disableFlushMode();
+	temp.u32 = PPC_LOAD_U32(ctx.r30.u32 + 20);
+	ctx.f0.f64 = double(temp.f32);
+	// fcmpu cr6,f0,f28
+	ctx.cr6.compare(ctx.f0.f64, ctx.f28.f64);
+	// bne cr6,0x821c26dc
+	if (!ctx.cr6.eq) goto loc_821C26DC;
+	// stfs f29,20(r31)
+	temp.f32 = float(ctx.f29.f64);
+	PPC_STORE_U32(ctx.r31.u32 + 20, temp.u32);
+	// stw r22,24(r31)
+	PPC_STORE_U32(ctx.r31.u32 + 24, ctx.r22.u32);
+loc_821C26DC:
+	// lfs f0,20(r30)
+	ctx.fpscr.disableFlushMode();
+	temp.u32 = PPC_LOAD_U32(ctx.r30.u32 + 20);
+	ctx.f0.f64 = double(temp.f32);
+	// stfs f0,28(r31)
+	temp.f32 = float(ctx.f0.f64);
+	PPC_STORE_U32(ctx.r31.u32 + 28, temp.u32);
+	// lwz r11,16(r30)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r30.u32 + 16);
+	// stw r11,16(r31)
+	PPC_STORE_U32(ctx.r31.u32 + 16, ctx.r11.u32);
+	// lwz r10,32(r30)
+	ctx.r10.u64 = PPC_LOAD_U32(ctx.r30.u32 + 32);
+	// stw r10,12(r31)
+	PPC_STORE_U32(ctx.r31.u32 + 12, ctx.r10.u32);
+	// lwz r9,48(r30)
+	ctx.r9.u64 = PPC_LOAD_U32(ctx.r30.u32 + 48);
+	// stw r9,36(r31)
+	PPC_STORE_U32(ctx.r31.u32 + 36, ctx.r9.u32);
+	// lwz r11,44(r30)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r30.u32 + 44);
+	// cmplwi cr6,r11,0
+	ctx.cr6.compare<uint32_t>(ctx.r11.u32, 0, ctx.xer);
+	// beq cr6,0x821c2714
+	if (ctx.cr6.eq) goto loc_821C2714;
+	// stw r11,4(r31)
+	PPC_STORE_U32(ctx.r31.u32 + 4, ctx.r11.u32);
+	// stw r23,8(r31)
+	PPC_STORE_U32(ctx.r31.u32 + 8, ctx.r23.u32);
+	// b 0x821c272c
+	goto loc_821C272C;
+loc_821C2714:
+	// ld r11,0(r30)
+	ctx.r11.u64 = PPC_LOAD_U64(ctx.r30.u32 + 0);
+	// cmpldi cr6,r11,0
+	ctx.cr6.compare<uint64_t>(ctx.r11.u64, 0, ctx.xer);
+	// beq cr6,0x821c272c
+	if (ctx.cr6.eq) goto loc_821C272C;
+	// mr r3,r30
+	ctx.r3.u64 = ctx.r30.u64;
+	// bl 0x821d1cd0
+	ctx.lr = 0x821C2728;
+	sub_821D1CD0(ctx, base);
+	// stw r3,4(r31)
+	PPC_STORE_U32(ctx.r31.u32 + 4, ctx.r3.u32);
+loc_821C272C:
+	// stw r23,348(r29)
+	PPC_STORE_U32(ctx.r29.u32 + 348, ctx.r23.u32);
+	// stw r22,356(r29)
+	PPC_STORE_U32(ctx.r29.u32 + 356, ctx.r22.u32);
+	// stw r23,316(r29)
+	PPC_STORE_U32(ctx.r29.u32 + 316, ctx.r23.u32);
+	// stw r23,324(r29)
+	PPC_STORE_U32(ctx.r29.u32 + 324, ctx.r23.u32);
+	// lwz r11,0(r31)
+	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
+	// lbz r10,625(r11)
+	ctx.r10.u64 = PPC_LOAD_U8(ctx.r11.u32 + 625);
+	// cmplwi cr6,r10,0
+	ctx.cr6.compare<uint32_t>(ctx.r10.u32, 0, ctx.xer);
+	// beq cr6,0x821c2758
+	if (ctx.cr6.eq) goto loc_821C2758;
+	// clrlwi r10,r10,24
+	ctx.r10.u64 = ctx.r10.u32 & 0xFF;
+	// addi r10,r10,255
+	ctx.r10.s64 = ctx.r10.s64 + 255;
+	// stb r10,625(r11)
+	PPC_STORE_U8(ctx.r11.u32 + 625, ctx.r10.u8);
+loc_821C2758:
+	// mr r3,r27
+	ctx.r3.u64 = ctx.r27.u64;
+	// addi r1,r1,208
+	ctx.r1.s64 = ctx.r1.s64 + 208;
+	// addi r12,r1,-88
+	ctx.r12.s64 = ctx.r1.s64 + -88;
+	// bl 0x82ae23c4
+	ctx.lr = 0x821C2768;
+	__restfpr_28(ctx, base);
+	// b 0x82ae1660
+	__restgprlr_22(ctx, base);
 	return;
 }
 

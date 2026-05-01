@@ -16,10 +16,5 @@
 REX_DEFINE_APP(retip, RetipApp::Create)
 
 
-int gardenBudgetGetIsTagAvailable_824DC840_Hook(unsigned int tag, int *tagClass) {
-  return 1;
-}
-
-REX_PPC_HOOK(gardenBudgetGetIsTagAvailable_824DC840);
 
 

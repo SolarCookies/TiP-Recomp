@@ -10,9 +10,7 @@
 #include <vector>
 
 #include <rex/cvar.h>
-#include <rex/ppc/types.h>
 #include <rex/system/kernel_state.h>
-#include <rex/ppc/types.h>
 #include <rex/logging.h>
 
 namespace renut::log {

@@ -15,6 +15,7 @@ include(generated/rexglue.cmake)
 # Sources
 set(RETIP_SOURCES
     src/main.cpp
+    src/UsbCam.cpp
     src/tip_engine/hooks.cpp
     src/tip_engine/Overlays/Fps.cpp
     src/tip_engine/Overlays/TiPTools.cpp
@@ -24,6 +25,10 @@ set(RETIP_SOURCES
     src/ImPlot/implot.h
     src/ImPlot/implot_internal.h
     src/tip_engine/CursorHooks.cpp
+    src/tip_engine/GraphicsHooks.cpp
+    src/tip_engine/SpaceHooks.cpp
+    src/tip_engine/DiscordRPC.cpp
+    src/tip_engine/DiscordRPC.h
 
     # Custom Renderer
     src/tip_engine/CustomRenderer/OpenGL_Stuff.h
@@ -44,6 +49,12 @@ set(RETIP_SOURCES
     src/tip_engine/CustomRenderer/engine/Components/Meshes/DynamicMeshComponent.cpp
     src/tip_engine/CustomRenderer/engine/Components/Lights/LightComponent.cpp
     src/tip_engine/CustomRenderer/engine/Utils/Crypto/sha256.cpp
+    src/tip_engine/Overlays/TiPTools/SpawnMenu.cpp
+    src/tip_engine/Overlays/TiPTools/PlayerMenu.cpp
+    src/tip_engine/Overlays/TiPTools/GraphicsMenu.cpp
+    src/tip_engine/Overlays/TiPTools/SettingsMenu.cpp
+    src/tip_engine/Overlays/TiPTools/PinataMenu.cpp
+    src/tip_engine/SleepHooks.cpp
 
     # Vendor sources
     Vendors/glad.c
