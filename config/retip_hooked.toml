@@ -27,10 +27,10 @@
 #0x822C1E88 = {name = "rex_cursorCameraTick_822C1E88"}
 #0x822C4260 = {name = "rex_cursorInstLocksIsLockSet_822C4260"}
 0x822C1CE0 = {name = "rex_meCursorCamCalculateZoom_822C1CE0"}
-#0x822C1B18 = {name = "rex_meCursorCamCalculateYaw_822C1B18"}
+0x822C1B18 = {name = "rex_meCursorCamCalculateYaw_822C1B18"}
 #0x821EBE28 = {name = "rex_meCursorCamCalculatePos_821EBE28"}
-#0x822C1C00 = {name = "rex_meCursorCamCalculatePitch_822C1C00"}
+0x822C1C00 = {name = "rex_meCursorCamCalculatePitch_822C1C00"}
 0x821F0F30 = {name = "rex_meUpdateOutputViewport_821F0F30"}
-#0x82B0A740 = {name = "rex_XInputGetKeystroke_82B0A740"}
+0x82B0A740 = {name = "rex_XInputGetKeystroke_82B0A740"}
 0x826B2DE0 = {name = "rex_XuiProcessInput_826B2DE0"}
-#0x8229A968 = {name = "rex_CXuiModule__ProcessInput_8229A968"}
+0x8229A968 = {name = "rex_CXuiModule__ProcessInput_8229A968"}

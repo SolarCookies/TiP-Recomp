@@ -72414,7 +72414,7 @@ loc_82298D14:
 	ctx.r3.u64 = ctx.r27.u64;
 	// bl 0x82b0a740
 	ctx.lr = 0x82298D24;
-	sub_82B0A740(ctx, base);
+	rex_XInputGetKeystroke_82B0A740(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// bne cr6,0x82298e00
@@ -76602,8 +76602,8 @@ loc_8229A950:
 	return;
 }
 
-__attribute__((alias("__imp__sub_8229A968"))) PPC_WEAK_FUNC(sub_8229A968);
-PPC_FUNC_IMPL(__imp__sub_8229A968) {
+__attribute__((alias("__imp__rex_CXuiModule__ProcessInput_8229A968"))) PPC_WEAK_FUNC(rex_CXuiModule__ProcessInput_8229A968);
+PPC_FUNC_IMPL(__imp__rex_CXuiModule__ProcessInput_8229A968) {
 	PPC_FUNC_PROLOGUE();
 	uint32_t ea{};
 	// mflr r12
@@ -76622,7 +76622,7 @@ PPC_FUNC_IMPL(__imp__sub_8229A968) {
 	ctx.r3.s64 = 255;
 	// bl 0x82b0a740
 	ctx.lr = 0x8229A984;
-	sub_82B0A740(ctx, base);
+	rex_XInputGetKeystroke_82B0A740(ctx, base);
 	// cmplwi cr6,r3,0
 	ctx.cr6.compare<uint32_t>(ctx.r3.u32, 0, ctx.xer);
 	// bne cr6,0x8229a994

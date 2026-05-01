@@ -14925,8 +14925,8 @@ loc_822C19F4:
 	return;
 }
 
-__attribute__((alias("__imp__sub_822C1B18"))) PPC_WEAK_FUNC(sub_822C1B18);
-PPC_FUNC_IMPL(__imp__sub_822C1B18) {
+__attribute__((alias("__imp__rex_meCursorCamCalculateYaw_822C1B18"))) PPC_WEAK_FUNC(rex_meCursorCamCalculateYaw_822C1B18);
+PPC_FUNC_IMPL(__imp__rex_meCursorCamCalculateYaw_822C1B18) {
 	PPC_FUNC_PROLOGUE();
 	PPCRegister temp{};
 	uint32_t ea{};
@@ -15069,8 +15069,8 @@ loc_822C1BEC:
 	return;
 }
 
-__attribute__((alias("__imp__sub_822C1C00"))) PPC_WEAK_FUNC(sub_822C1C00);
-PPC_FUNC_IMPL(__imp__sub_822C1C00) {
+__attribute__((alias("__imp__rex_meCursorCamCalculatePitch_822C1C00"))) PPC_WEAK_FUNC(rex_meCursorCamCalculatePitch_822C1C00);
+PPC_FUNC_IMPL(__imp__rex_meCursorCamCalculatePitch_822C1C00) {
 	PPC_FUNC_PROLOGUE();
 	PPCRegister temp{};
 	uint32_t ea{};
@@ -15595,7 +15595,7 @@ loc_822C1F20:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x822c1b18
 	ctx.lr = 0x822C1F40;
-	sub_822C1B18(ctx, base);
+	rex_meCursorCamCalculateYaw_822C1B18(ctx, base);
 loc_822C1F40:
 	// li r4,64
 	ctx.r4.s64 = 64;
@@ -15614,7 +15614,7 @@ loc_822C1F40:
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x822c1c00
 	ctx.lr = 0x822C1F60;
-	sub_822C1C00(ctx, base);
+	rex_meCursorCamCalculatePitch_822C1C00(ctx, base);
 loc_822C1F60:
 	// li r4,128
 	ctx.r4.s64 = 128;
