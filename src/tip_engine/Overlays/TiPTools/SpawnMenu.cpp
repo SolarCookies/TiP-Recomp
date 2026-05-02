@@ -195,10 +195,10 @@ int spawn_supportPinataCreateGeneralEx_82575C30_Hook(int a1, int a2, int a3, int
     //a6 = 3.0f;
 
     // Get the guest address of the PPC function that called this hook
-    uint32_t callerAddr = rex::GetGuestCallerAddress();
+    //uint32_t callerAddr = rex::GetGuestCallerAddress();
     
-    char callerHex[32];
-    snprintf(callerHex, sizeof(callerHex), "0x%08X", callerAddr);
+    //char callerHex[32];
+    //snprintf(callerHex, sizeof(callerHex), "0x%08X", callerAddr);
 
 
     int item = rex::GuestToHostFunction<int>(__imp__rex_spawn_supportPinataCreateGeneralEx_82575C30, a1, a2, a3, a4, spawnScale, a6, tagID, a8, a9, a10, a11, a12, a13, a14, a15);
@@ -213,7 +213,7 @@ int spawn_supportPinataCreateGeneralEx_82575C30_Hook(int a1, int a2, int a3, int
 
     std::string logmsg;
     logmsg += "spawn_supportPinataCreateGeneralEx called from:";
-    logmsg += callerHex;
+    //logmsg += callerHex;
     logmsg += " with: ";
     //logmsg += "a1=" + std::to_string(a1) + " "; //ptr to scene
     //logmsg += "a3=" + std::to_string(a3) + " ";
