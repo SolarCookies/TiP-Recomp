@@ -64,7 +64,9 @@ jobs:
 
       # ── Download game executable for codegen ───────────────────────────────
       - name: Download default.xex
-        run: Invoke-WebRequest -Uri "http://64.225.52.239/default.xex" -OutFile "assets/default.xex"
+        run: |
+          New-Item -ItemType Directory -Force -Path assets | Out-Null
+          Invoke-WebRequest -Uri "https://goopie.xyz/default.xex" -OutFile "assets/default.xex"
         shell: pwsh
 
       # ── rexglue migrate (writes generated/ + .bak files) ──────────────────
