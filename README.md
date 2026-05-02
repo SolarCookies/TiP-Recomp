@@ -20,7 +20,7 @@ Currently only supports windows, Linux is planned though. This project is still 
 
 - If you run into any issues launching the game, third-party programs like "rivatuner" can cause the game to crash
 
-## Building from scratch (We are on Rexglue 0.7.4)
+## Building from scratch (We are on Rexglue 0.7.4 https://github.com/SolarCookies/rexglue-sdk/tree/VivaPinata)
 - 1 Clone and Build the Rexglue SDK 0.7.4 https://github.com/rexglue/rexglue-sdk/
 
 ```
