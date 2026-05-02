@@ -32,17 +32,16 @@ REXCVAR_DEFINE_BOOL(tip_mouse_invert_x, false, "_Trouble in Paradise/Input", "In
 REXCVAR_DEFINE_DOUBLE(tip_mouse_zoom_step, 100.0, "_Trouble in Paradise/Input", "Zoom units per wheel detent").range(10.0, 500.0);
 REXCVAR_DEFINE_BOOL(rgb_cursor, false, "_Trouble in Paradise", "Enables the Gursor"); // rainbow cursor
 
-//Forward decl - defined alongside the (gated) zoom hook below.
-static void ApplyMouseZoom(uint32_t camera);
-
 
 //rex_meCursorCamCalculateYaw_822C1B18
 REX_PPC_EXTERN_IMPORT(meCursorCamCalculateYaw_822C1B18);
 int meCursorCamCalculateYaw_822C1B18_Hook(int camera, int controls) {
+    Log(LogLevel::Info, "Yaw Hook Hit");
     float* YawPtr = reinterpret_cast<float*>(0x100000000ull + camera + 40);
     float yawBefore = to_byteswapped_float(*YawPtr);
 
     int result = rex::GuestToHostFunction<int>(__imp__rex_meCursorCamCalculateYaw_822C1B18, camera, controls);
+    Log(LogLevel::Info, "Called original yaw calculation");
 
     int32_t dx = 0;
     if (g_raw_mouse) dx = g_raw_mouse->ConsumeDx();
@@ -68,6 +67,7 @@ int meCursorCamCalculateYaw_822C1B18_Hook(int camera, int controls) {
             }
         }
     }
+    Log(LogLevel::Info, "Yaw Hook Exit");
 
     return result;
 }
@@ -77,6 +77,7 @@ REX_PPC_HOOK(meCursorCamCalculateYaw_822C1B18)
 //rex_meCursorCamCalculatePitch_822C1C00
 REX_PPC_EXTERN_IMPORT(meCursorCamCalculatePitch_822C1C00);
 int meCursorCamCalculatePitch_822C1C00_Hook(int camera, int controls) {
+    Log(LogLevel::Info, "Pitch Hook Hit");
     float* PitchPtr = reinterpret_cast<float*>(0x100000000ull + camera + 32);
     float pitchBefore = to_byteswapped_float(*PitchPtr);
 
@@ -103,7 +104,7 @@ int meCursorCamCalculatePitch_822C1C00_Hook(int camera, int controls) {
 
         PitchPtr[0] = to_byteswapped_float(targetPitch);
     }
-
+    Log(LogLevel::Info, "Pitch Hook Exit");
     return result;
 }
 REX_PPC_HOOK(meCursorCamCalculatePitch_822C1C00)
@@ -111,8 +112,11 @@ REX_PPC_HOOK(meCursorCamCalculatePitch_822C1C00)
 
 REX_PPC_EXTERN_IMPORT(meCursorCamCalculateZoom_822C1CE0);
 void meCursorCamCalculateZoom_822C1CE0_Hook(int camera, int controls) {
+    Log(LogLevel::Info, "Zoom Hook Hit");
 
     rex::GuestToHostFunction<int>(__imp__rex_meCursorCamCalculateZoom_822C1CE0, camera, controls);
+    Log(LogLevel::Info, "Called original zoom calculation");
+    
 
     // Sets the max and min values for zoom and pitch and also checks the memory to make sure that its valid before writing to it.
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -138,10 +142,11 @@ void meCursorCamCalculateZoom_822C1CE0_Hook(int camera, int controls) {
         PitchMinPtr[0] = to_byteswapped_float(-89.0f);
     }
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
+    Log(LogLevel::Info, "Zoom Hook Exit");
 }
 REX_PPC_HOOK(meCursorCamCalculateZoom_822C1CE0)
 
-
+/*
 //rex_CXuiModule__ProcessInput_8229A968
 REX_PPC_EXTERN_IMPORT(CXuiModule__ProcessInput_8229A968);
 int CXuiModule__ProcessInput_8229A968_Hook(int a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8)
@@ -165,6 +170,7 @@ int XInputGetKeystroke_82B0A740_Hook(int a1,int a2,int a3,int a4,int a5,int a6,i
     return result;
 }
 REX_PPC_HOOK(XInputGetKeystroke_82B0A740);
+*/
 
 //int rex_XuiProcessInput_826B2DE0(unsigned __int16 *a1)
 REX_PPC_EXTERN_IMPORT(XuiProcessInput_826B2DE0);

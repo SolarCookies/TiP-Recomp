@@ -22,6 +22,7 @@
 #include "tip_engine/Overlays/TiPTools/GraphicsMenu.h"
 #include "tip_engine/Overlays/TiPTools/SettingsMenu.h"
 #include "tip_engine/Overlays/TiPTools/PinataMenu.h"
+#include "tip_engine/Overlays/TiPTools/PlantMenu.h"
 #include "tip_engine/Overlays/StartupOverlay.h"
 #include "tip_engine/Input/TipMouseListener.h"
 #include "tip_engine/Input/TipRawMouse.h"
@@ -77,7 +78,10 @@ class RetipApp : public rex::ReXApp {
         timeBeginPeriod(1);
 
         //Force MnK driver on regardless of toml, since EXE may run from build dir without retip.toml
-        REXCVAR_SET(mnk_mode, true);
+        //Edit, this is not needed, goopie will download the toml from the release, and also some might want to use the mouse for the f4 menu
+        //Curently Im not sure if there is a button to disable the mouse lock like Alt but that might be worth looking into before
+        //forceing mouse locks
+        //REXCVAR_SET(mnk_mode, true);
 
         //Silence MnK's mouse->right-stick path; CursorHooks consumes mouse delta directly
         REXCVAR_SET(mnk_sensitivity, 0.0);
@@ -191,6 +195,7 @@ class RetipApp : public rex::ReXApp {
         
         tipToolsDialog->pages.push_back(std::make_unique<PlayerMenuPage>());
         tipToolsDialog->pages.push_back(std::make_unique<PinataMenuPage>());
+        tipToolsDialog->pages.push_back(std::make_unique<PlantMenuPage>());
         tipToolsDialog->pages.push_back(std::make_unique<SpawnMenuPage>());
         //tipToolsDialog->pages.push_back(std::make_unique<GraphicsMenuPage>());
         //tipToolsDialog->pages.push_back(std::make_unique<SettingsMenuPage>());

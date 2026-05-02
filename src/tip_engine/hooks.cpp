@@ -364,4 +364,19 @@ int spawn_egg_82334638_Hook(int a1, int a2, int a3) {
 REX_PPC_HOOK(spawn_egg_82334638);
 #endif
 
+REXCVAR_DEFINE_BOOL(disable_reality, false, "_Trouble in Paradise", "Fucks up the game, but fun to mess with (Will crash eventually)");
+
+REX_PPC_EXTERN_IMPORT(objMsgInit_82250578);
+int objMsgInit_82250578_Hook(int msg, int id) {
+  Log(LogLevel::Info, "objMsgInit Hook Hit");
+  if(REXCVAR_GET(disable_reality)) {
+    Log(LogLevel::Info, "Notification blocked: msg=" + std::to_string(msg) + " id=" + std::to_string(id));
+    return 0;
+  }
+  Log(LogLevel::Info, "objMsgInit Hook Finished");
+  return rex::GuestToHostFunction<int>(__imp__rex_objMsgInit_82250578, msg, id);
+};
+REX_PPC_HOOK(objMsgInit_82250578);
+
+// bifWatermeterSetLevel_822BEB40 hook moved to Overlays/TiPTools/PlantMenu.cpp
 

@@ -4,6 +4,7 @@
 #include "src/tip_engine/rex_macros.h"
 #include "src/tip_engine/Globals.h"
 #include "src/tip_engine/Log.h"
+#include <rex/cvar.h>
 #include <algorithm>
 #include <cstring>
 #include <cctype>
@@ -12,6 +13,10 @@
 
 //rex_supportPinataTagClassify_825A0818 (Used to verify a tag to see if it has a valid class) returns supportPinataTagClass_e
 REX_PPC_EXTERN_IMPORT(supportPinataTagClassify_825A0818);
+
+// Show all spawn-menu categories (including normally hidden ones).
+// Toggleable from the F4 recomp settings menu.
+REXCVAR_DEFINE_BOOL(SpawnMenuShowAllCategories, false, "_Trouble in Paradise", "Show all spawn menu categories (including normally hidden ones)");
 
 static constexpr float kSpawnListWidth = 300.0f;
 static constexpr float kSpawnListHeight = 400.0f;
@@ -73,18 +78,31 @@ static ImColor GetTypeColor(supportPinataTagClass_e type) {
 
 // Built dynamically from ItemTags on first use
 static std::vector<supportPinataTagClass_e> sCategories;
-static bool sCategoriesBuilt = false;
+static int sCategoriesBuildMode = -1; // 0 = filtered, 1 = show all
+
+static bool ShouldShowAllCategories() {
+    return REXCVAR_GET(SpawnMenuShowAllCategories);
+}
 
 static void BuildCategories() {
-    if (sCategoriesBuilt) return;
+    int mode = ShouldShowAllCategories() ? 1 : 0;
+    if (sCategoriesBuildMode == mode) return;
     std::set<supportPinataTagClass_e> seen;
     for (auto& [id, tag] : ItemTags) {
-        if (!(tag.uiFlags & UIFlag::Hide) && IsValidPinataTagClass(tag.type))
+        bool include;
+        if (mode == 1) {
+            // Show-all: include every tag with a known class, ignoring Hide flag
+            // and the IsValidPinataTagClass allow-list.
+            include = (tag.type != supportPinataTag_Class_UNKNOWN);
+        } else {
+            include = IsValidPinataTagClass(tag.type) && !(tag.uiFlags & UIFlag::Hide);
+        }
+        if (include)
             seen.insert(tag.type);
     }
     sCategories.assign(seen.begin(), seen.end());
     std::sort(sCategories.begin(), sCategories.end());
-    sCategoriesBuilt = true;
+    sCategoriesBuildMode = mode;
 }
 
 const char* GetTypeName(supportPinataTagClass_e type) {
@@ -226,17 +244,29 @@ void SpawnMenuPage::OnDraw() {
 
     auto input = TiPWidgets::PollInput(inputTimer, 0.12f);
 
-    // Build per-category sorted item lists once
+    // Build per-category sorted item lists once (rebuilt when "show all" cvar changes)
     static std::unordered_map<int, std::vector<const VivaTag*>> categoryItems;
-    if (categoryItems.empty()) {
+    static int categoryItemsBuildMode = -1;
+    int curBuildMode = ShouldShowAllCategories() ? 1 : 0;
+    if (categoryItems.empty() || categoryItemsBuildMode != curBuildMode) {
+        categoryItems.clear();
         for (auto& [id, tag] : ItemTags) {
-            if (!(tag.uiFlags & UIFlag::Hide) && IsValidPinataTagClass(tag.type))
+            bool include;
+            if (curBuildMode == 1) {
+                include = (tag.type != supportPinataTag_Class_UNKNOWN);
+            } else {
+                include = IsValidPinataTagClass(tag.type) && !(tag.uiFlags & UIFlag::Hide);
+            }
+            if (include)
                 categoryItems[(int)tag.type].push_back(&tag);
         }
         for (auto& [type, items] : categoryItems) {
             std::sort(items.begin(), items.end(),
                 [](const VivaTag* a, const VivaTag* b) { return a->ID < b->ID; });
         }
+        categoryItemsBuildMode = curBuildMode;
+        // Reset focus since the category list size may have changed.
+        if (categoryFocusIndex >= (int)sCategories.size()) categoryFocusIndex = 0;
     }
 
     const VivaTag* selectedTag = nullptr;

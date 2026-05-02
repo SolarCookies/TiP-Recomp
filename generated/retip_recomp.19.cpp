@@ -17616,7 +17616,7 @@ loc_82409FA4:
 	ctx.r3.s64 = ctx.r1.s64 + 88;
 	// bl 0x82250578
 	ctx.lr = 0x82409FF4;
-	sub_82250578(ctx, base);
+	rex_objMsgInit_82250578(ctx, base);
 	// lwz r11,0(r29)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r29.u32 + 0);
 	// addi r4,r1,88
@@ -18202,7 +18202,7 @@ loc_8240A3D8:
 	ctx.r3.s64 = ctx.r1.s64 + 88;
 	// bl 0x82250578
 	ctx.lr = 0x8240A3E4;
-	sub_82250578(ctx, base);
+	rex_objMsgInit_82250578(ctx, base);
 	// lwz r11,248(r28)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r28.u32 + 248);
 	// lwz r10,0(r28)
@@ -18230,7 +18230,7 @@ loc_8240A3D8:
 	ctx.r31.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
 	// bl 0x82250578
 	ctx.lr = 0x8240A418;
-	sub_82250578(ctx, base);
+	rex_objMsgInit_82250578(ctx, base);
 	// li r8,0
 	ctx.r8.s64 = 0;
 	// addi r4,r1,80
@@ -21908,7 +21908,7 @@ PPC_FUNC_IMPL(__imp__sub_8240BD08) {
 	ctx.r3.s64 = ctx.r1.s64 + 144;
 	// bl 0x82250578
 	ctx.lr = 0x8240BD58;
-	sub_82250578(ctx, base);
+	rex_objMsgInit_82250578(ctx, base);
 	// stw r28,148(r1)
 	PPC_STORE_U32(ctx.r1.u32 + 148, ctx.r28.u32);
 	// addi r3,r1,144
@@ -28072,7 +28072,7 @@ loc_8240E780:
 	ctx.r3.s64 = ctx.r1.s64 + 80;
 	// bl 0x82250578
 	ctx.lr = 0x8240E78C;
-	sub_82250578(ctx, base);
+	rex_objMsgInit_82250578(ctx, base);
 	// lbz r11,3644(r30)
 	ctx.r11.u64 = PPC_LOAD_U8(ctx.r30.u32 + 3644);
 	// addi r3,r1,80
@@ -30764,7 +30764,7 @@ loc_8240F988:
 	ctx.r3.s64 = ctx.r1.s64 + 80;
 	// bl 0x82250578
 	ctx.lr = 0x8240F998;
-	sub_82250578(ctx, base);
+	rex_objMsgInit_82250578(ctx, base);
 	// stw r28,84(r1)
 	PPC_STORE_U32(ctx.r1.u32 + 84, ctx.r28.u32);
 	// stw r30,88(r1)
@@ -60831,7 +60831,7 @@ loc_8241C118:
 	ctx.r3.s64 = ctx.r1.s64 + 96;
 	// bl 0x82250578
 	ctx.lr = 0x8241C13C;
-	sub_82250578(ctx, base);
+	rex_objMsgInit_82250578(ctx, base);
 	// lis r11,-32243
 	ctx.r11.s64 = -2113077248;
 	// addi r4,r1,96
@@ -72405,7 +72405,7 @@ PPC_FUNC_IMPL(__imp__sub_82420E38) {
 	ctx.r3.s64 = ctx.r1.s64 + 96;
 	// bl 0x82250578
 	ctx.lr = 0x82420E94;
-	sub_82250578(ctx, base);
+	rex_objMsgInit_82250578(ctx, base);
 	// li r27,0
 	ctx.r27.s64 = 0;
 	// addi r4,r1,96

@@ -31,6 +31,8 @@
 #0x821EBE28 = {name = "rex_meCursorCamCalculatePos_821EBE28"}
 0x822C1C00 = {name = "rex_meCursorCamCalculatePitch_822C1C00"}
 0x821F0F30 = {name = "rex_meUpdateOutputViewport_821F0F30"}
-0x82B0A740 = {name = "rex_XInputGetKeystroke_82B0A740"}
+#0x82B0A740 = {name = "rex_XInputGetKeystroke_82B0A740"}
 0x826B2DE0 = {name = "rex_XuiProcessInput_826B2DE0"}
-0x8229A968 = {name = "rex_CXuiModule__ProcessInput_8229A968"}
+#0x8229A968 = {name = "rex_CXuiModule__ProcessInput_8229A968"}
+0x82250578 = {name = "rex_objMsgInit_82250578"}
+0x822BEB40 = {name = "rex_bifWatermeterSetLevel_822BEB40"}
