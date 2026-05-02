@@ -110,6 +110,21 @@ int meCursorCamCalculatePitch_822C1C00_Hook(int camera, int controls) {
 REX_PPC_HOOK(meCursorCamCalculatePitch_822C1C00)
 
 
+//rex_cursorCameraTick_822C1E88
+//int rex_cursorCameraTick_822C1E88(int camera, int controls, int pos, int rot)
+REX_PPC_EXTERN_IMPORT(cursorCameraTick_822C1E88);
+int cursorCameraTick_822C1E88_Hook(int camera, int controls, int pos, int rot) {
+    if (pos) {
+        playerPos = pos;
+    }
+    if (rot) {
+        playerRot = rot;
+    }
+    return rex::GuestToHostFunction<int>(__imp__rex_cursorCameraTick_822C1E88, camera, controls, pos, rot);
+}
+REX_PPC_HOOK(cursorCameraTick_822C1E88)
+
+
 REX_PPC_EXTERN_IMPORT(meCursorCamCalculateZoom_822C1CE0);
 void meCursorCamCalculateZoom_822C1CE0_Hook(int camera, int controls) {
     Log(LogLevel::Info, "Zoom Hook Hit");

@@ -1927,7 +1927,7 @@ loc_822DC734:
 	PPC_STORE_U32(ctx.r1.u32 + 180, temp.u32);
 	// bl 0x821ebe28
 	ctx.lr = 0x822DC754;
-	sub_821EBE28(ctx, base);
+	rex_meCursorCamCalculatePos_821EBE28(ctx, base);
 	// mr r3,r30
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x821ea3d8

@@ -86629,7 +86629,7 @@ loc_8248FCBC:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x821ebe28
 	ctx.lr = 0x8248FD38;
-	sub_821EBE28(ctx, base);
+	rex_meCursorCamCalculatePos_821EBE28(ctx, base);
 	// mr r4,r26
 	ctx.r4.u64 = ctx.r26.u64;
 	// mr r3,r30

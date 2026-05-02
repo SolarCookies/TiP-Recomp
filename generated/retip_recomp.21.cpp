@@ -2369,7 +2369,7 @@ loc_824476B4:
 	PPC_STORE_U32(ctx.r1.u32 + 176, temp.u32);
 	// bl 0x821ebe28
 	ctx.lr = 0x82447774;
-	sub_821EBE28(ctx, base);
+	rex_meCursorCamCalculatePos_821EBE28(ctx, base);
 	// lwz r3,5876(r31)
 	ctx.r3.u64 = PPC_LOAD_U32(ctx.r31.u32 + 5876);
 	// bl 0x821ea3d8

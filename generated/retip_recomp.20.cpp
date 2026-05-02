@@ -70912,7 +70912,7 @@ loc_82441F50:
 	ctx.r4.s64 = ctx.r1.s64 + 88;
 	// bl 0x821ebe28
 	ctx.lr = 0x82441FC4;
-	sub_821EBE28(ctx, base);
+	rex_meCursorCamCalculatePos_821EBE28(ctx, base);
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x821ea3d8
@@ -71028,7 +71028,7 @@ loc_8244203C:
 	PPC_STORE_U32(ctx.r1.u32 + 112, temp.u32);
 	// bl 0x821ebe28
 	ctx.lr = 0x8244207C;
-	sub_821EBE28(ctx, base);
+	rex_meCursorCamCalculatePos_821EBE28(ctx, base);
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x821ea3d8
