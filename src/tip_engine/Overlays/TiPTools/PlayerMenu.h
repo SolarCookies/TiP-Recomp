@@ -5,7 +5,7 @@
 class PlayerMenuPage : public TipToolsPage {
 public:
     PlayerMenuPage() {
-        name = "Player Menu";
+        name = "Player Settings";
         description = "Manage player settings";
         color = ImColor(255, 0, 0); // Red
     }

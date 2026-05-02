@@ -26886,7 +26886,7 @@ loc_823059B0:
 	PPC_STORE_U32(ctx.r1.u32 + 88, temp.u32);
 	// bl 0x821ebe28
 	ctx.lr = 0x823059FC;
-	sub_821EBE28(ctx, base);
+	rex_meCursorCamCalculatePos_821EBE28(ctx, base);
 	// mr r4,r31
 	ctx.r4.u64 = ctx.r31.u64;
 	// mr r3,r30
@@ -30924,7 +30924,7 @@ loc_82307594:
 	if (ctx.cr6.eq) goto loc_823075D4;
 	// bl 0x821ebe28
 	ctx.lr = 0x823075C0;
-	sub_821EBE28(ctx, base);
+	rex_meCursorCamCalculatePos_821EBE28(ctx, base);
 	// mr r4,r6
 	ctx.r4.u64 = ctx.r6.u64;
 	// lwz r3,3868(r31)
@@ -33252,7 +33252,7 @@ loc_823084F8:
 	ctx.f1.f64 = double(temp.f32);
 	// bl 0x822beb40
 	ctx.lr = 0x82308570;
-	sub_822BEB40(ctx, base);
+	rex_bifWatermeterSetLevel_822BEB40(ctx, base);
 loc_82308570:
 	// lfs f0,312(r30)
 	ctx.fpscr.disableFlushMode();
@@ -34243,7 +34243,7 @@ loc_82308C28:
 	ctx.f1.f64 = double(temp.f32);
 	// bl 0x822beb40
 	ctx.lr = 0x82308C40;
-	sub_822BEB40(ctx, base);
+	rex_bifWatermeterSetLevel_822BEB40(ctx, base);
 loc_82308C40:
 	// lfs f0,240(r30)
 	ctx.fpscr.disableFlushMode();
@@ -41152,7 +41152,7 @@ loc_8230BB54:
 	ctx.f1.f64 = double(float(ctx.f11.f64 * ctx.f0.f64 + ctx.f13.f64));
 	// bl 0x822beb40
 	ctx.lr = 0x8230BB74;
-	sub_822BEB40(ctx, base);
+	rex_bifWatermeterSetLevel_822BEB40(ctx, base);
 	// li r3,0
 	ctx.r3.s64 = 0;
 	// bl 0x821c2158
@@ -41189,7 +41189,7 @@ loc_8230BB90:
 	ctx.f1.f64 = double(float(ctx.f11.f64 * ctx.f0.f64 + ctx.f13.f64));
 	// bl 0x822beb40
 	ctx.lr = 0x8230BBB0;
-	sub_822BEB40(ctx, base);
+	rex_bifWatermeterSetLevel_822BEB40(ctx, base);
 	// lwz r10,4232(r31)
 	ctx.r10.u64 = PPC_LOAD_U32(ctx.r31.u32 + 4232);
 	// stw r27,3848(r31)
@@ -41277,7 +41277,7 @@ loc_8230BC2C:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x822beb40
 	ctx.lr = 0x8230BC44;
-	sub_822BEB40(ctx, base);
+	rex_bifWatermeterSetLevel_822BEB40(ctx, base);
 	// li r3,0
 	ctx.r3.s64 = 0;
 	// bl 0x821c2158
@@ -41697,7 +41697,7 @@ loc_8230BF24:
 	ctx.r3.s64 = ctx.r1.s64 + 128;
 	// bl 0x82250578
 	ctx.lr = 0x8230BF34;
-	sub_82250578(ctx, base);
+	rex_objMsgInit_82250578(ctx, base);
 	// li r11,-1
 	ctx.r11.s64 = -1;
 	// li r10,1
@@ -41736,7 +41736,7 @@ loc_8230BF6C:
 	ctx.r3.s64 = ctx.r1.s64 + 160;
 	// bl 0x82250578
 	ctx.lr = 0x8230BF7C;
-	sub_82250578(ctx, base);
+	rex_objMsgInit_82250578(ctx, base);
 	// li r11,-1
 	ctx.r11.s64 = -1;
 	// li r10,1
@@ -41865,7 +41865,7 @@ loc_8230C054:
 	ctx.r3.s64 = ctx.r1.s64 + 92;
 	// bl 0x82250578
 	ctx.lr = 0x8230C064;
-	sub_82250578(ctx, base);
+	rex_objMsgInit_82250578(ctx, base);
 	// lwz r11,0(r29)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r29.u32 + 0);
 	// addi r4,r1,92
@@ -42042,7 +42042,7 @@ loc_8230C168:
 	ctx.r26.u64 = PPC_LOAD_U32(ctx.r28.u32 + 12);
 	// bl 0x82250578
 	ctx.lr = 0x8230C198;
-	sub_82250578(ctx, base);
+	rex_objMsgInit_82250578(ctx, base);
 	// mr r29,r27
 	ctx.r29.u64 = ctx.r27.u64;
 	// cmplw cr6,r27,r26
@@ -42484,7 +42484,7 @@ loc_8230C494:
 	ctx.f1.f64 = double(float(ctx.f11.f64 * ctx.f0.f64 + ctx.f12.f64));
 	// bl 0x822beb40
 	ctx.lr = 0x8230C4C8;
-	sub_822BEB40(ctx, base);
+	rex_bifWatermeterSetLevel_822BEB40(ctx, base);
 	// lwz r10,4232(r31)
 	ctx.r10.u64 = PPC_LOAD_U32(ctx.r31.u32 + 4232);
 	// cmpwi cr6,r10,0
@@ -42547,7 +42547,7 @@ loc_8230C51C:
 	ctx.f1.f64 = double(temp.f32);
 	// bl 0x822beb40
 	ctx.lr = 0x8230C534;
-	sub_822BEB40(ctx, base);
+	rex_bifWatermeterSetLevel_822BEB40(ctx, base);
 	// stw r27,4072(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 4072, ctx.r27.u32);
 	// b 0x8230cb40
@@ -42563,7 +42563,7 @@ loc_8230C53C:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x822beb40
 	ctx.lr = 0x8230C54C;
-	sub_822BEB40(ctx, base);
+	rex_bifWatermeterSetLevel_822BEB40(ctx, base);
 	// li r3,0
 	ctx.r3.s64 = 0;
 	// lbz r28,16(r30)
@@ -43086,7 +43086,7 @@ loc_8230C8C0:
 	ctx.f1.f64 = double(temp.f32);
 	// bl 0x822beb40
 	ctx.lr = 0x8230C8DC;
-	sub_822BEB40(ctx, base);
+	rex_bifWatermeterSetLevel_822BEB40(ctx, base);
 	// b 0x8230cb40
 	goto loc_8230CB40;
 loc_8230C8E0:
@@ -43342,7 +43342,7 @@ loc_8230CAA4:
 	ctx.r29.s64 = ctx.r30.s64 + 4;
 	// bl 0x82250578
 	ctx.lr = 0x8230CAB8;
-	sub_82250578(ctx, base);
+	rex_objMsgInit_82250578(ctx, base);
 	// li r11,-1
 	ctx.r11.s64 = -1;
 	// li r10,1
@@ -43547,7 +43547,7 @@ loc_8230CBF0:
 	ctx.r3.s64 = ctx.r1.s64 + 80;
 	// bl 0x82250578
 	ctx.lr = 0x8230CC14;
-	sub_82250578(ctx, base);
+	rex_objMsgInit_82250578(ctx, base);
 	// li r11,-1
 	ctx.r11.s64 = -1;
 	// li r10,1
@@ -43657,7 +43657,7 @@ loc_8230CCC4:
 	ctx.r3.s64 = ctx.r1.s64 + 112;
 	// bl 0x82250578
 	ctx.lr = 0x8230CCD4;
-	sub_82250578(ctx, base);
+	rex_objMsgInit_82250578(ctx, base);
 	// li r11,-1
 	ctx.r11.s64 = -1;
 	// li r10,1
@@ -43780,7 +43780,7 @@ PPC_FUNC_IMPL(__imp__sub_8230CD50) {
 	ctx.r27.u64 = PPC_LOAD_U32(ctx.r29.u32 + 12);
 	// bl 0x82250578
 	ctx.lr = 0x8230CDA0;
-	sub_82250578(ctx, base);
+	rex_objMsgInit_82250578(ctx, base);
 	// mr r31,r26
 	ctx.r31.u64 = ctx.r26.u64;
 	// cmplw cr6,r26,r27
@@ -46974,7 +46974,7 @@ loc_8230E2DC:
 	ctx.r30.u64 = PPC_LOAD_U32(ctx.r31.u32 + 3996);
 	// bl 0x82250578
 	ctx.lr = 0x8230E324;
-	sub_82250578(ctx, base);
+	rex_objMsgInit_82250578(ctx, base);
 	// lwz r10,0(r30)
 	ctx.r10.u64 = PPC_LOAD_U32(ctx.r30.u32 + 0);
 	// addi r4,r1,96
@@ -47639,7 +47639,7 @@ loc_8230E758:
 	PPC_STORE_U32(ctx.r1.u32 + 88, temp.u32);
 	// bl 0x821ebe28
 	ctx.lr = 0x8230E794;
-	sub_821EBE28(ctx, base);
+	rex_meCursorCamCalculatePos_821EBE28(ctx, base);
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x821ea3d8
@@ -47705,7 +47705,7 @@ loc_8230E7EC:
 	ctx.r30.u64 = PPC_LOAD_U32(ctx.r31.u32 + 3996);
 	// bl 0x82250578
 	ctx.lr = 0x8230E804;
-	sub_82250578(ctx, base);
+	rex_objMsgInit_82250578(ctx, base);
 	// li r11,-1
 	ctx.r11.s64 = -1;
 	// stw r25,136(r1)
@@ -48572,7 +48572,7 @@ loc_8230EDA4:
 	ctx.r3.s64 = ctx.r1.s64 + 92;
 	// bl 0x82250578
 	ctx.lr = 0x8230EDC0;
-	sub_82250578(ctx, base);
+	rex_objMsgInit_82250578(ctx, base);
 	// lwz r11,0(r30)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r30.u32 + 0);
 	// addi r4,r1,92
@@ -49976,7 +49976,7 @@ loc_8230F6E0:
 	ctx.f1.f64 = double(temp.f32);
 	// bl 0x822beb40
 	ctx.lr = 0x8230F774;
-	sub_822BEB40(ctx, base);
+	rex_bifWatermeterSetLevel_822BEB40(ctx, base);
 loc_8230F774:
 	// lfs f0,344(r28)
 	ctx.fpscr.disableFlushMode();
@@ -51220,7 +51220,7 @@ loc_8230FFC0:
 	ctx.r3.s64 = ctx.r1.s64 + 96;
 	// bl 0x82250578
 	ctx.lr = 0x8230FFF0;
-	sub_82250578(ctx, base);
+	rex_objMsgInit_82250578(ctx, base);
 	// lwz r11,0(r31)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
 	// addi r4,r1,96
@@ -54502,7 +54502,7 @@ PPC_FUNC_IMPL(__imp__sub_82311458) {
 	PPC_STORE_U32(ctx.r1.u32 + 88, temp.u32);
 	// bl 0x821ebe28
 	ctx.lr = 0x823115A0;
-	sub_821EBE28(ctx, base);
+	rex_meCursorCamCalculatePos_821EBE28(ctx, base);
 loc_823115A0:
 	// addi r1,r1,160
 	ctx.r1.s64 = ctx.r1.s64 + 160;
@@ -54584,7 +54584,7 @@ PPC_FUNC_IMPL(__imp__sub_823115B8) {
 	PPC_STORE_U32(ctx.r1.u32 + 100, temp.u32);
 	// bl 0x821ebe28
 	ctx.lr = 0x8231161C;
-	sub_821EBE28(ctx, base);
+	rex_meCursorCamCalculatePos_821EBE28(ctx, base);
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// bl 0x821ea3d8
@@ -56099,7 +56099,7 @@ loc_82311FC0:
 	ctx.r3.s64 = ctx.r1.s64 + 96;
 	// bl 0x82250578
 	ctx.lr = 0x82311FCC;
-	sub_82250578(ctx, base);
+	rex_objMsgInit_82250578(ctx, base);
 	// addi r4,r1,100
 	ctx.r4.s64 = ctx.r1.s64 + 100;
 	// mr r3,r31
@@ -56633,7 +56633,7 @@ PPC_FUNC_IMPL(__imp__sub_82312300) {
 	ctx.r3.s64 = ctx.r1.s64 + 80;
 	// bl 0x82250578
 	ctx.lr = 0x82312358;
-	sub_82250578(ctx, base);
+	rex_objMsgInit_82250578(ctx, base);
 	// mr r3,r30
 	ctx.r3.u64 = ctx.r30.u64;
 	// addi r4,r1,84
@@ -57279,7 +57279,7 @@ loc_82312798:
 	ctx.r3.s64 = ctx.r1.s64 + 136;
 	// bl 0x82250578
 	ctx.lr = 0x823127A8;
-	sub_82250578(ctx, base);
+	rex_objMsgInit_82250578(ctx, base);
 	// stw r26,140(r1)
 	PPC_STORE_U32(ctx.r1.u32 + 140, ctx.r26.u32);
 	// lwz r11,0(r29)
@@ -58159,7 +58159,7 @@ PPC_FUNC_IMPL(__imp__sub_82312CE8) {
 	ctx.r3.s64 = ctx.r1.s64 + 112;
 	// bl 0x82250578
 	ctx.lr = 0x82312D24;
-	sub_82250578(ctx, base);
+	rex_objMsgInit_82250578(ctx, base);
 	// lwz r11,0(r29)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r29.u32 + 0);
 	// lfs f0,88(r1)
@@ -60429,7 +60429,7 @@ loc_82313C20:
 	ctx.f1.f64 = double(temp.f32);
 	// bl 0x822beb40
 	ctx.lr = 0x82313CA0;
-	sub_822BEB40(ctx, base);
+	rex_bifWatermeterSetLevel_822BEB40(ctx, base);
 	// lfs f0,324(r30)
 	ctx.fpscr.disableFlushMode();
 	temp.u32 = PPC_LOAD_U32(ctx.r30.u32 + 324);
@@ -61418,7 +61418,7 @@ loc_82314364:
 	ctx.f1.f64 = double(temp.f32);
 	// bl 0x822beb40
 	ctx.lr = 0x82314370;
-	sub_822BEB40(ctx, base);
+	rex_bifWatermeterSetLevel_822BEB40(ctx, base);
 	// lfs f0,252(r30)
 	ctx.fpscr.disableFlushMode();
 	temp.u32 = PPC_LOAD_U32(ctx.r30.u32 + 252);
@@ -62928,7 +62928,7 @@ loc_82314D38:
 	ctx.r30.u64 = PPC_LOAD_U32(ctx.r31.u32 + 3984);
 	// bl 0x82250578
 	ctx.lr = 0x82314D64;
-	sub_82250578(ctx, base);
+	rex_objMsgInit_82250578(ctx, base);
 	// lwz r11,0(r30)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r30.u32 + 0);
 	// addi r4,r1,96
@@ -63671,7 +63671,7 @@ loc_8231524C:
 	ctx.r3.s64 = ctx.r1.s64 + 100;
 	// bl 0x82250578
 	ctx.lr = 0x82315268;
-	sub_82250578(ctx, base);
+	rex_objMsgInit_82250578(ctx, base);
 	// lwz r11,0(r30)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r30.u32 + 0);
 	// addi r4,r1,100
@@ -64320,7 +64320,7 @@ loc_82315694:
 	ctx.r3.s64 = ctx.r1.s64 + 80;
 	// bl 0x82250578
 	ctx.lr = 0x823156A4;
-	sub_82250578(ctx, base);
+	rex_objMsgInit_82250578(ctx, base);
 	// li r10,-1
 	ctx.r10.s64 = -1;
 	// li r11,0
@@ -67731,7 +67731,7 @@ loc_82316E18:
 	ctx.r26.u64 = PPC_LOAD_U32(ctx.r28.u32 + 12);
 	// bl 0x82250578
 	ctx.lr = 0x82316E38;
-	sub_82250578(ctx, base);
+	rex_objMsgInit_82250578(ctx, base);
 	// mr r29,r27
 	ctx.r29.u64 = ctx.r27.u64;
 	// cmplw cr6,r27,r26
@@ -68978,7 +68978,7 @@ loc_823176B0:
 	ctx.r3.s64 = ctx.r1.s64 + 88;
 	// bl 0x82250578
 	ctx.lr = 0x823176C0;
-	sub_82250578(ctx, base);
+	rex_objMsgInit_82250578(ctx, base);
 	// lwz r11,0(r29)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r29.u32 + 0);
 	// addi r4,r1,88
@@ -69081,7 +69081,7 @@ loc_82317748:
 	ctx.r26.u64 = PPC_LOAD_U32(ctx.r28.u32 + 12);
 	// bl 0x82250578
 	ctx.lr = 0x82317778;
-	sub_82250578(ctx, base);
+	rex_objMsgInit_82250578(ctx, base);
 	// mr r29,r27
 	ctx.r29.u64 = ctx.r27.u64;
 	// cmplw cr6,r27,r26
@@ -69456,7 +69456,7 @@ loc_823179E8:
 	ctx.f1.f64 = double(float(ctx.f11.f64 * ctx.f0.f64 + ctx.f13.f64));
 	// bl 0x822beb40
 	ctx.lr = 0x82317A1C;
-	sub_822BEB40(ctx, base);
+	rex_bifWatermeterSetLevel_822BEB40(ctx, base);
 	// lwz r10,4280(r31)
 	ctx.r10.u64 = PPC_LOAD_U32(ctx.r31.u32 + 4280);
 	// cmpwi cr6,r10,0
@@ -69519,7 +69519,7 @@ loc_82317A70:
 	ctx.f1.f64 = double(temp.f32);
 	// bl 0x822beb40
 	ctx.lr = 0x82317A88;
-	sub_822BEB40(ctx, base);
+	rex_bifWatermeterSetLevel_822BEB40(ctx, base);
 	// stw r27,4080(r31)
 	PPC_STORE_U32(ctx.r31.u32 + 4080, ctx.r27.u32);
 	// mr r4,r30
@@ -69545,7 +69545,7 @@ loc_82317AA0:
 	ctx.r3.u64 = ctx.r29.u64;
 	// bl 0x822beb40
 	ctx.lr = 0x82317AB0;
-	sub_822BEB40(ctx, base);
+	rex_bifWatermeterSetLevel_822BEB40(ctx, base);
 	// li r3,0
 	ctx.r3.s64 = 0;
 	// lbz r28,16(r30)
@@ -71717,7 +71717,7 @@ loc_82318978:
 	ctx.f1.f64 = double(float(ctx.f11.f64 * ctx.f0.f64 + ctx.f13.f64));
 	// bl 0x822beb40
 	ctx.lr = 0x82318998;
-	sub_822BEB40(ctx, base);
+	rex_bifWatermeterSetLevel_822BEB40(ctx, base);
 	// li r3,0
 	ctx.r3.s64 = 0;
 	// bl 0x821c2158
@@ -71754,7 +71754,7 @@ loc_823189B4:
 	ctx.f1.f64 = double(float(ctx.f11.f64 * ctx.f0.f64 + ctx.f13.f64));
 	// bl 0x822beb40
 	ctx.lr = 0x823189D4;
-	sub_822BEB40(ctx, base);
+	rex_bifWatermeterSetLevel_822BEB40(ctx, base);
 	// lwz r10,4280(r31)
 	ctx.r10.u64 = PPC_LOAD_U32(ctx.r31.u32 + 4280);
 	// stw r27,3836(r31)
@@ -71840,7 +71840,7 @@ loc_82318A4C:
 	ctx.r3.u64 = ctx.r30.u64;
 	// bl 0x822beb40
 	ctx.lr = 0x82318A64;
-	sub_822BEB40(ctx, base);
+	rex_bifWatermeterSetLevel_822BEB40(ctx, base);
 	// li r3,0
 	ctx.r3.s64 = 0;
 	// bl 0x821c2158
@@ -71944,7 +71944,7 @@ PPC_FUNC_IMPL(__imp__sub_82318AA8) {
 	ctx.r28.u64 = PPC_LOAD_U32(ctx.r29.u32 + 12);
 	// bl 0x82250578
 	ctx.lr = 0x82318B04;
-	sub_82250578(ctx, base);
+	rex_objMsgInit_82250578(ctx, base);
 	// mr r31,r27
 	ctx.r31.u64 = ctx.r27.u64;
 	// cmplw cr6,r27,r28
@@ -72087,7 +72087,7 @@ loc_82318BF4:
 	ctx.r3.s64 = ctx.r1.s64 + 96;
 	// bl 0x82250578
 	ctx.lr = 0x82318C04;
-	sub_82250578(ctx, base);
+	rex_objMsgInit_82250578(ctx, base);
 	// li r11,-1
 	ctx.r11.s64 = -1;
 	// stw r23,104(r1)
@@ -72204,7 +72204,7 @@ loc_82318CB0:
 	ctx.r31.u64 = ctx.r25.u64;
 	// bl 0x82250578
 	ctx.lr = 0x82318CD4;
-	sub_82250578(ctx, base);
+	rex_objMsgInit_82250578(ctx, base);
 	// li r11,-1
 	ctx.r11.s64 = -1;
 	// stw r25,148(r1)
@@ -72333,7 +72333,7 @@ loc_82318D94:
 	ctx.r3.s64 = ctx.r1.s64 + 160;
 	// bl 0x82250578
 	ctx.lr = 0x82318DBC;
-	sub_82250578(ctx, base);
+	rex_objMsgInit_82250578(ctx, base);
 	// stw r23,168(r1)
 	PPC_STORE_U32(ctx.r1.u32 + 168, ctx.r23.u32);
 	// li r11,-1
@@ -72728,7 +72728,7 @@ loc_82319054:
 	ctx.r31.u64 = PPC_LOAD_U32(ctx.r31.u32 + 3984);
 	// bl 0x82250578
 	ctx.lr = 0x82319078;
-	sub_82250578(ctx, base);
+	rex_objMsgInit_82250578(ctx, base);
 	// lis r10,-32243
 	ctx.r10.s64 = -2113077248;
 	// li r11,-1
@@ -74328,7 +74328,7 @@ loc_82319B0C:
 	ctx.f1.f64 = double(temp.f32);
 	// bl 0x822beb40
 	ctx.lr = 0x82319B90;
-	sub_822BEB40(ctx, base);
+	rex_bifWatermeterSetLevel_822BEB40(ctx, base);
 	// lfs f0,356(r30)
 	ctx.fpscr.disableFlushMode();
 	temp.u32 = PPC_LOAD_U32(ctx.r30.u32 + 356);
@@ -74806,7 +74806,7 @@ PPC_FUNC_IMPL(__imp__sub_82319E88) {
 	ctx.r3.s64 = ctx.r31.s64 + 4008;
 	// bl 0x822beb40
 	ctx.lr = 0x82319EA8;
-	sub_822BEB40(ctx, base);
+	rex_bifWatermeterSetLevel_822BEB40(ctx, base);
 	// mr r3,r31
 	ctx.r3.u64 = ctx.r31.u64;
 	// addi r1,r1,96

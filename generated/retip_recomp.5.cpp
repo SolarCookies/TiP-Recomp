@@ -1022,7 +1022,7 @@ loc_8223E684:
 	ctx.r3.s64 = ctx.r1.s64 + 80;
 	// bl 0x82250578
 	ctx.lr = 0x8223E69C;
-	sub_82250578(ctx, base);
+	rex_objMsgInit_82250578(ctx, base);
 	// li r11,0
 	ctx.r11.s64 = 0;
 	// addi r3,r1,80
@@ -1967,7 +1967,7 @@ PPC_FUNC_IMPL(__imp__sub_8223ECA0) {
 	ctx.r3.s64 = ctx.r1.s64 + 112;
 	// bl 0x82250578
 	ctx.lr = 0x8223ECB8;
-	sub_82250578(ctx, base);
+	rex_objMsgInit_82250578(ctx, base);
 	// li r3,0
 	ctx.r3.s64 = 0;
 	// bl 0x8223eba8
@@ -43587,7 +43587,7 @@ loc_8224FB3C:
 	ctx.r3.s64 = ctx.r1.s64 + 80;
 	// bl 0x82250578
 	ctx.lr = 0x8224FBF0;
-	sub_82250578(ctx, base);
+	rex_objMsgInit_82250578(ctx, base);
 	// lwz r11,0(r31)
 	ctx.r11.u64 = PPC_LOAD_U32(ctx.r31.u32 + 0);
 	// addi r4,r1,80
@@ -44981,8 +44981,8 @@ loc_82250568:
 	return;
 }
 
-__attribute__((alias("__imp__sub_82250578"))) PPC_WEAK_FUNC(sub_82250578);
-PPC_FUNC_IMPL(__imp__sub_82250578) {
+__attribute__((alias("__imp__rex_objMsgInit_82250578"))) PPC_WEAK_FUNC(rex_objMsgInit_82250578);
+PPC_FUNC_IMPL(__imp__rex_objMsgInit_82250578) {
 	PPC_FUNC_PROLOGUE();
 	uint32_t ea{};
 	// mflr r12
@@ -65923,7 +65923,7 @@ loc_82259204:
 	ctx.r3.s64 = ctx.r1.s64 + 80;
 	// bl 0x82250578
 	ctx.lr = 0x82259224;
-	sub_82250578(ctx, base);
+	rex_objMsgInit_82250578(ctx, base);
 	// lwz r31,1652(r28)
 	ctx.r31.u64 = PPC_LOAD_U32(ctx.r28.u32 + 1652);
 	// cmplwi cr6,r31,0
@@ -65972,7 +65972,7 @@ loc_82259270:
 	ctx.r3.s64 = ctx.r1.s64 + 84;
 	// bl 0x82250578
 	ctx.lr = 0x8225927C;
-	sub_82250578(ctx, base);
+	rex_objMsgInit_82250578(ctx, base);
 	// lwz r31,1652(r28)
 	ctx.r31.u64 = PPC_LOAD_U32(ctx.r28.u32 + 1652);
 	// cmplwi cr6,r31,0

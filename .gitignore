@@ -43,3 +43,4 @@ build_log.txt
 *.bak
 *.log1
 ReShade.ini
+*.png

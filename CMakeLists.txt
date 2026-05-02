@@ -54,6 +54,8 @@ set(RETIP_SOURCES
     src/tip_engine/Overlays/TiPTools/GraphicsMenu.cpp
     src/tip_engine/Overlays/TiPTools/SettingsMenu.cpp
     src/tip_engine/Overlays/TiPTools/PinataMenu.cpp
+    src/tip_engine/Overlays/TiPTools/PlantMenu.cpp
+    src/tip_engine/Overlays/TiPTools/RuffianMenu.cpp
     src/tip_engine/SleepHooks.cpp
 
     # Vendor sources

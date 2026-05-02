@@ -27,6 +27,7 @@
 #include <SDL3/SDL.h>
 #include <thread>
 #include <atomic>
+#include <winnt.h>
 #include "tip_engine/Globals.h"
 #include "tip_engine/CustomRenderer/engine/World/World.h"
 #include "tip_engine/CustomRenderer/engine/World/Camera.h"
@@ -310,17 +311,27 @@ PPC_EXTERN_FUNC(rex_gardenMainGetGardenScene_824E1120) {
 
       PPCContext saveCtx = ctx;
 
-      float* pos = reinterpret_cast<float*>(0x100000000ull + playerPos);
+      // Log player position for debugging
+      Log(LogLevel::Error, "Player position for spawn:");
+      Log(LogLevel::Error, "playerPos: 0x" + std::to_string(playerPos));
 
-      float poss[3] = { pos[0], pos[1], pos[2] };
+      float* pos = reinterpret_cast<float*>(0x100000000ull + playerPos);
+      float poss[3] = {pos[0], pos[1], pos[2]};
+
+
 
       ctx.r3.u64 = gardenScene;
       if(spawnWild) {
+          pos[0] = to_byteswapped_float(0.0);
+          pos[1] = to_byteswapped_float(0.0);
+          pos[2] = to_byteswapped_float(260.0);
           ctx.r4.u64 = reinterpret_cast<uint64_t>(pos);
+          //ctx.r4.u64 = playerPos;
+          ctx.r5.u64 = playerRot;
       } else {
-          ctx.r4.u64 = 0; //a2
+          ctx.r4.u64 = playerPos;
+          ctx.r5.u64 = playerRot;
       }
-      ctx.r5.u64 = 0; //a3
       ctx.r7.u64 = tagID; //a5
       ctx.r9.u64 = 0; //a7
       ctx.r10.u64 = 0; //a8
@@ -332,9 +343,13 @@ PPC_EXTERN_FUNC(rex_gardenMainGetGardenScene_824E1120) {
       g_LastSpawnedEntity = ctx.r3.u32;
 
       ctx = saveCtx;
+      pos[0] = poss[0];
+      pos[1] = poss[1];
+      pos[2] = poss[2];
       Log(LogLevel::Info, "Pending spawn request processed");
     }
     Log(LogLevel::Info, "Get Garden Scene Hook Finished");
+
 
 }
 
@@ -364,4 +379,18 @@ int spawn_egg_82334638_Hook(int a1, int a2, int a3) {
 REX_PPC_HOOK(spawn_egg_82334638);
 #endif
 
+REXCVAR_DEFINE_BOOL(disable_reality, false, "_Trouble in Paradise", "Fucks up the game, but fun to mess with (Will crash eventually)");
 
+REX_PPC_EXTERN_IMPORT(objMsgInit_82250578);
+int objMsgInit_82250578_Hook(int msg, int id) {
+  Log(LogLevel::Info, "objMsgInit Hook Hit");
+  if(REXCVAR_GET(disable_reality)) {
+    Log(LogLevel::Info, "Notification blocked: msg=" + std::to_string(msg) + " id=" + std::to_string(id));
+    return 0;
+  }
+  Log(LogLevel::Info, "objMsgInit Hook Finished");
+  return rex::GuestToHostFunction<int>(__imp__rex_objMsgInit_82250578, msg, id);
+};
+REX_PPC_HOOK(objMsgInit_82250578);
+
+// disable_ruffians cvar and meCreateRuffianActor hook moved to Overlays/TiPTools/RuffianMenu.cpp

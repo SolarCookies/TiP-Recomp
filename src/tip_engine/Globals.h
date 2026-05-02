@@ -55,4 +55,11 @@ struct SpawnRequest {
 inline SpawnRequest g_SpawnRequest;
 inline uint32_t g_LastSpawnedEntity = 0;
 
-inline float* playerPos;
+// Guest address (uint32_t) of the player position float[3]. Set elsewhere when
+// the player's position becomes known; used by the spawn hook to spawn wild
+// pinatas at the player's current location.
+inline uint32_t playerPos = 0;
+
+// Guest address (uint32_t) of the player rotation. Set alongside playerPos
+// from the cursor camera tick hook; used by the spawn hook.
+inline uint32_t playerRot = 0;

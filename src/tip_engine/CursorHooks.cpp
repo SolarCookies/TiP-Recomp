@@ -32,17 +32,16 @@ REXCVAR_DEFINE_BOOL(tip_mouse_invert_x, false, "_Trouble in Paradise/Input", "In
 REXCVAR_DEFINE_DOUBLE(tip_mouse_zoom_step, 100.0, "_Trouble in Paradise/Input", "Zoom units per wheel detent").range(10.0, 500.0);
 REXCVAR_DEFINE_BOOL(rgb_cursor, false, "_Trouble in Paradise", "Enables the Gursor"); // rainbow cursor
 
-//Forward decl - defined alongside the (gated) zoom hook below.
-static void ApplyMouseZoom(uint32_t camera);
-
 
 //rex_meCursorCamCalculateYaw_822C1B18
 REX_PPC_EXTERN_IMPORT(meCursorCamCalculateYaw_822C1B18);
 int meCursorCamCalculateYaw_822C1B18_Hook(int camera, int controls) {
+    Log(LogLevel::Info, "Yaw Hook Hit");
     float* YawPtr = reinterpret_cast<float*>(0x100000000ull + camera + 40);
     float yawBefore = to_byteswapped_float(*YawPtr);
 
     int result = rex::GuestToHostFunction<int>(__imp__rex_meCursorCamCalculateYaw_822C1B18, camera, controls);
+    Log(LogLevel::Info, "Called original yaw calculation");
 
     int32_t dx = 0;
     if (g_raw_mouse) dx = g_raw_mouse->ConsumeDx();
@@ -68,6 +67,7 @@ int meCursorCamCalculateYaw_822C1B18_Hook(int camera, int controls) {
             }
         }
     }
+    Log(LogLevel::Info, "Yaw Hook Exit");
 
     return result;
 }
@@ -77,6 +77,7 @@ REX_PPC_HOOK(meCursorCamCalculateYaw_822C1B18)
 //rex_meCursorCamCalculatePitch_822C1C00
 REX_PPC_EXTERN_IMPORT(meCursorCamCalculatePitch_822C1C00);
 int meCursorCamCalculatePitch_822C1C00_Hook(int camera, int controls) {
+    Log(LogLevel::Info, "Pitch Hook Hit");
     float* PitchPtr = reinterpret_cast<float*>(0x100000000ull + camera + 32);
     float pitchBefore = to_byteswapped_float(*PitchPtr);
 
@@ -103,16 +104,34 @@ int meCursorCamCalculatePitch_822C1C00_Hook(int camera, int controls) {
 
         PitchPtr[0] = to_byteswapped_float(targetPitch);
     }
-
+    Log(LogLevel::Info, "Pitch Hook Exit");
     return result;
 }
 REX_PPC_HOOK(meCursorCamCalculatePitch_822C1C00)
 
 
+//rex_cursorCameraTick_822C1E88
+//int rex_cursorCameraTick_822C1E88(int camera, int controls, int pos, int rot)
+REX_PPC_EXTERN_IMPORT(cursorCameraTick_822C1E88);
+int cursorCameraTick_822C1E88_Hook(int camera, int controls, int pos, int rot) {
+    if (pos) {
+        playerPos = pos;
+    }
+    if (rot) {
+        playerRot = rot;
+    }
+    return rex::GuestToHostFunction<int>(__imp__rex_cursorCameraTick_822C1E88, camera, controls, pos, rot);
+}
+REX_PPC_HOOK(cursorCameraTick_822C1E88)
+
+
 REX_PPC_EXTERN_IMPORT(meCursorCamCalculateZoom_822C1CE0);
 void meCursorCamCalculateZoom_822C1CE0_Hook(int camera, int controls) {
+    Log(LogLevel::Info, "Zoom Hook Hit");
 
     rex::GuestToHostFunction<int>(__imp__rex_meCursorCamCalculateZoom_822C1CE0, camera, controls);
+    Log(LogLevel::Info, "Called original zoom calculation");
+    
 
     // Sets the max and min values for zoom and pitch and also checks the memory to make sure that its valid before writing to it.
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -138,47 +157,49 @@ void meCursorCamCalculateZoom_822C1CE0_Hook(int camera, int controls) {
         PitchMinPtr[0] = to_byteswapped_float(-89.0f);
     }
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
+    Log(LogLevel::Info, "Zoom Hook Exit");
 }
 REX_PPC_HOOK(meCursorCamCalculateZoom_822C1CE0)
 
-
 //rex_CXuiModule__ProcessInput_8229A968
-REX_PPC_EXTERN_IMPORT(CXuiModule__ProcessInput_8229A968);
-int CXuiModule__ProcessInput_8229A968_Hook(int a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8)
-{
-    if(g_LockGameInput) {
-        return 0; // Block game input when the menu is open
+PPC_EXTERN_IMPORT(__imp__rex_CXuiModule__ProcessInput_8229A968);
+PPC_EXTERN_FUNC(rex_CXuiModule__ProcessInput_8229A968) {
+    Log(LogLevel::Info, "CXuiModule__ProcessInput Hook Hit");
+    if (g_LockGameInput) {
+        Log(LogLevel::Info, "Game input is locked, blocking input in CXuiModule__ProcessInput");
+        //ctx.r3.u64 = 0; // Block game input when the menu is open
+        return;
     }
-    int result = rex::GuestToHostFunction<int>(__imp__rex_CXuiModule__ProcessInput_8229A968, a1, a2, a3, a4, a5, a6, a7, a8);
-    return result;
+    __imp__rex_CXuiModule__ProcessInput_8229A968(ctx, base);
+    Log(LogLevel::Info, "CXuiModule__ProcessInput Hook Finished");
 }
-REX_PPC_HOOK(CXuiModule__ProcessInput_8229A968)
 
 //rex_XInputGetKeystroke_82B0A740
-REX_PPC_EXTERN_IMPORT(XInputGetKeystroke_82B0A740);
-int XInputGetKeystroke_82B0A740_Hook(int a1,int a2,int a3,int a4,int a5,int a6,int a7,int a8,int a9,int a10,int a11,int a12)
-{
-    if(g_LockGameInput) {
-        return 0; // Block game input when the menu is open
+PPC_EXTERN_IMPORT(__imp__rex_XInputGetKeystroke_82B0A740);
+PPC_EXTERN_FUNC(rex_XInputGetKeystroke_82B0A740) {
+    Log(LogLevel::Info, "XInputGetKeystroke Hook Hit");
+    if (g_LockGameInput) {
+        Log(LogLevel::Info, "Game input is locked, blocking input in XInputGetKeystroke");
+        //ctx.r3.u64 = 0; // Block game input when the menu is open
+        return;
     }
-    int result = rex::GuestToHostFunction<int>(__imp__rex_XInputGetKeystroke_82B0A740, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12);
-    return result;
+    __imp__rex_XInputGetKeystroke_82B0A740(ctx, base);
+    Log(LogLevel::Info, "XInputGetKeystroke Hook Finished");
 }
-REX_PPC_HOOK(XInputGetKeystroke_82B0A740);
+
 
 //int rex_XuiProcessInput_826B2DE0(unsigned __int16 *a1)
-REX_PPC_EXTERN_IMPORT(XuiProcessInput_826B2DE0);
-int XuiProcessInput_826B2DE0_Hook(unsigned __int16 *a1) {
+PPC_EXTERN_IMPORT(__imp__rex_XuiProcessInput_826B2DE0);
+PPC_EXTERN_FUNC(rex_XuiProcessInput_826B2DE0) {
     Log(LogLevel::Info, "XuiProcessInput Hook Hit");
-    if(g_LockGameInput) {
+    if (g_LockGameInput) {
         Log(LogLevel::Info, "Game input is locked, blocking input in XuiProcessInput");
-        return 0; // Block game input when the menu is open
+        //ctx.r3.u64 = 0; // Block game input when the menu is open
+        return;
     }
-    int result = rex::GuestToHostFunction<int>(__imp__rex_XuiProcessInput_826B2DE0, a1);
+    __imp__rex_XuiProcessInput_826B2DE0(ctx, base);
     Log(LogLevel::Info, "XuiProcessInput Hook Finished");
-    return result;
 }
-REX_PPC_HOOK(XuiProcessInput_826B2DE0);
 
 
 uint32_t HI(const std::string& hexColor) {
