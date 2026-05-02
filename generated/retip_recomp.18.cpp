@@ -55401,8 +55401,8 @@ loc_823F89CC:
 	return;
 }
 
-__attribute__((alias("__imp__sub_823F89E0"))) PPC_WEAK_FUNC(sub_823F89E0);
-PPC_FUNC_IMPL(__imp__sub_823F89E0) {
+__attribute__((alias("__imp__rex_meCreateRuffianActor_823F89E0"))) PPC_WEAK_FUNC(rex_meCreateRuffianActor_823F89E0);
+PPC_FUNC_IMPL(__imp__rex_meCreateRuffianActor_823F89E0) {
 	PPC_FUNC_PROLOGUE();
 	PPCRegister temp{};
 	uint32_t ea{};
@@ -58056,7 +58056,7 @@ loc_823F9C00:
 	ctx.r3.u64 = ctx.r27.u64;
 	// bl 0x823f89e0
 	ctx.lr = 0x823F9C14;
-	sub_823F89E0(ctx, base);
+	rex_meCreateRuffianActor_823F89E0(ctx, base);
 	// cmpwi cr6,r3,0
 	ctx.cr6.compare<int32_t>(ctx.r3.s32, 0, ctx.xer);
 	// beq cr6,0x823f9d44

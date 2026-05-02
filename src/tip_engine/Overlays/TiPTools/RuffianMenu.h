@@ -4,14 +4,14 @@
 #include "../TiPWidgets.h"
 #include <rex/cvar.h>
 
-REXCVAR_DECLARE(bool, disable_water);
+REXCVAR_DECLARE(bool, disable_ruffians);
 
-class PlantMenuPage : public TipToolsPage {
+class RuffianMenuPage : public TipToolsPage {
 public:
-    PlantMenuPage() {
-        name = "Plant Settings";
-        description = "Plant related options";
-        color = ImColor(120, 200, 80);
+    RuffianMenuPage() {
+        name = "Ruffian Settings";
+        description = "Ruffian related options";
+        color = ImColor(200, 80, 80);
     }
 
     void OnOpen() override {
@@ -32,5 +32,5 @@ public:
     int prevFocusIndex = -1;
 
     // Local state mirroring CVars
-    bool disable_water_ = false;
+    bool disable_ruffians_ = false;
 };

@@ -23,6 +23,7 @@
 #include "tip_engine/Overlays/TiPTools/SettingsMenu.h"
 #include "tip_engine/Overlays/TiPTools/PinataMenu.h"
 #include "tip_engine/Overlays/TiPTools/PlantMenu.h"
+#include "tip_engine/Overlays/TiPTools/RuffianMenu.h"
 #include "tip_engine/Overlays/StartupOverlay.h"
 #include "tip_engine/Input/TipMouseListener.h"
 #include "tip_engine/Input/TipRawMouse.h"
@@ -196,6 +197,7 @@ class RetipApp : public rex::ReXApp {
         tipToolsDialog->pages.push_back(std::make_unique<PlayerMenuPage>());
         tipToolsDialog->pages.push_back(std::make_unique<PinataMenuPage>());
         tipToolsDialog->pages.push_back(std::make_unique<PlantMenuPage>());
+        tipToolsDialog->pages.push_back(std::make_unique<RuffianMenuPage>());
         tipToolsDialog->pages.push_back(std::make_unique<SpawnMenuPage>());
         //tipToolsDialog->pages.push_back(std::make_unique<GraphicsMenuPage>());
         //tipToolsDialog->pages.push_back(std::make_unique<SettingsMenuPage>());

@@ -146,45 +146,45 @@ void meCursorCamCalculateZoom_822C1CE0_Hook(int camera, int controls) {
 }
 REX_PPC_HOOK(meCursorCamCalculateZoom_822C1CE0)
 
-/*
 //rex_CXuiModule__ProcessInput_8229A968
-REX_PPC_EXTERN_IMPORT(CXuiModule__ProcessInput_8229A968);
-int CXuiModule__ProcessInput_8229A968_Hook(int a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8)
-{
-    if(g_LockGameInput) {
-        return 0; // Block game input when the menu is open
+PPC_EXTERN_IMPORT(__imp__rex_CXuiModule__ProcessInput_8229A968);
+PPC_EXTERN_FUNC(rex_CXuiModule__ProcessInput_8229A968) {
+    Log(LogLevel::Info, "CXuiModule__ProcessInput Hook Hit");
+    if (g_LockGameInput) {
+        Log(LogLevel::Info, "Game input is locked, blocking input in CXuiModule__ProcessInput");
+        //ctx.r3.u64 = 0; // Block game input when the menu is open
+        return;
     }
-    int result = rex::GuestToHostFunction<int>(__imp__rex_CXuiModule__ProcessInput_8229A968, a1, a2, a3, a4, a5, a6, a7, a8);
-    return result;
+    __imp__rex_CXuiModule__ProcessInput_8229A968(ctx, base);
+    Log(LogLevel::Info, "CXuiModule__ProcessInput Hook Finished");
 }
-REX_PPC_HOOK(CXuiModule__ProcessInput_8229A968)
 
 //rex_XInputGetKeystroke_82B0A740
-REX_PPC_EXTERN_IMPORT(XInputGetKeystroke_82B0A740);
-int XInputGetKeystroke_82B0A740_Hook(int a1,int a2,int a3,int a4,int a5,int a6,int a7,int a8,int a9,int a10,int a11,int a12)
-{
-    if(g_LockGameInput) {
-        return 0; // Block game input when the menu is open
+PPC_EXTERN_IMPORT(__imp__rex_XInputGetKeystroke_82B0A740);
+PPC_EXTERN_FUNC(rex_XInputGetKeystroke_82B0A740) {
+    Log(LogLevel::Info, "XInputGetKeystroke Hook Hit");
+    if (g_LockGameInput) {
+        Log(LogLevel::Info, "Game input is locked, blocking input in XInputGetKeystroke");
+        //ctx.r3.u64 = 0; // Block game input when the menu is open
+        return;
     }
-    int result = rex::GuestToHostFunction<int>(__imp__rex_XInputGetKeystroke_82B0A740, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12);
-    return result;
+    __imp__rex_XInputGetKeystroke_82B0A740(ctx, base);
+    Log(LogLevel::Info, "XInputGetKeystroke Hook Finished");
 }
-REX_PPC_HOOK(XInputGetKeystroke_82B0A740);
-*/
+
 
 //int rex_XuiProcessInput_826B2DE0(unsigned __int16 *a1)
-REX_PPC_EXTERN_IMPORT(XuiProcessInput_826B2DE0);
-int XuiProcessInput_826B2DE0_Hook(unsigned __int16 *a1) {
+PPC_EXTERN_IMPORT(__imp__rex_XuiProcessInput_826B2DE0);
+PPC_EXTERN_FUNC(rex_XuiProcessInput_826B2DE0) {
     Log(LogLevel::Info, "XuiProcessInput Hook Hit");
-    if(g_LockGameInput) {
+    if (g_LockGameInput) {
         Log(LogLevel::Info, "Game input is locked, blocking input in XuiProcessInput");
-        return 0; // Block game input when the menu is open
+        //ctx.r3.u64 = 0; // Block game input when the menu is open
+        return;
     }
-    int result = rex::GuestToHostFunction<int>(__imp__rex_XuiProcessInput_826B2DE0, a1);
+    __imp__rex_XuiProcessInput_826B2DE0(ctx, base);
     Log(LogLevel::Info, "XuiProcessInput Hook Finished");
-    return result;
 }
-REX_PPC_HOOK(XuiProcessInput_826B2DE0);
 
 
 uint32_t HI(const std::string& hexColor) {

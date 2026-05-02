@@ -10,7 +10,7 @@ REXCVAR_DECLARE(bool, disableSurfacePreferences);
 class PinataMenuPage : public TipToolsPage {
 public:
 	PinataMenuPage() {
-		name = "Pinata";
+		name = "Pinata Settings";
 		description = "Pinata related options";
 		color = ImColor(255, 105, 180);
 	}

@@ -63748,8 +63748,8 @@ loc_82B0A70C:
 	return;
 }
 
-__attribute__((alias("__imp__sub_82B0A740"))) PPC_WEAK_FUNC(sub_82B0A740);
-PPC_FUNC_IMPL(__imp__sub_82B0A740) {
+__attribute__((alias("__imp__rex_XInputGetKeystroke_82B0A740"))) PPC_WEAK_FUNC(rex_XInputGetKeystroke_82B0A740);
+PPC_FUNC_IMPL(__imp__rex_XInputGetKeystroke_82B0A740) {
 	PPC_FUNC_PROLOGUE();
 	uint32_t ea{};
 	// mflr r12
