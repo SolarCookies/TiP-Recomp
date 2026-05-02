@@ -22,52 +22,76 @@ jobs:
             arch: x64
             runner: windows-latest
             preset: win-amd64-relwithdebinfo
+            sdk_configure_preset: win-amd64
+            sdk_build_preset: win-amd64-relwithdebinfo
+            sdk_install_dir: rexglue-sdk/out/install/win-amd64
             binary: out\build\win-amd64-relwithdebinfo\retip.exe
             artifact: retip-windows-x64.exe
 
-          - platform: linux
-            arch: x64
-            runner: ubuntu-latest
-            preset: linux-amd64-relwithdebinfo
-            binary: out/build/linux-amd64-relwithdebinfo/retip
-            artifact: retip-linux-x64_DoesNotWorkYet
+          - platform: windows
+            arch: arm64
+            runner: windows-11-arm
+            preset: win-arm64-relwithdebinfo
+            sdk_configure_preset: win-arm64
+            sdk_build_preset: win-arm64-relwithdebinfo
+            sdk_install_dir: rexglue-sdk/out/install/win-arm64
+            binary: out\build\win-arm64-relwithdebinfo\retip.exe
+            artifact: retip-windows-arm64.exe
 
     steps:
       - name: Checkout
         uses: actions/checkout@v6
 
-      # ── Linux x64 ──────────────────────────────────────────────────────────
-      - name: Install dependencies (Linux)
-        if: matrix.platform == 'linux'
-        run: |
-          wget -qO- https://apt.llvm.org/llvm.sh | sudo bash -s -- 20
-          sudo apt-get install -y ninja-build libgtk-3-dev libx11-xcb-dev
-
-      - name: Download rexglue SDK (Linux x64)
-        if: matrix.platform == 'linux' && matrix.arch == 'x64'
-        run: |
-          curl -L "https://github.com/rexglue/rexglue-sdk/releases/download/v0.7.4/rexglue-sdk-linux-amd64.zip" -o rexglue-sdk.zip
-          unzip rexglue-sdk.zip -d rexglue-install
-
-      - name: Configure CMake (Linux)
-        if: matrix.platform == 'linux'
-        run: cmake --preset ${{ matrix.preset }} -DCMAKE_PREFIX_PATH="${{ github.workspace }}/rexglue-install/linux-amd64"
-
       # ── Windows x64 ────────────────────────────────────────────────────────
       - name: Install Ninja (Windows)
-        if: matrix.platform == 'windows'
         uses: seanmiddleditch/gha-setup-ninja@v6
 
-      - name: Download rexglue SDK (Windows x64)
-        if: matrix.platform == 'windows' && matrix.arch == 'x64'
-        run: |
-          Invoke-WebRequest -Uri "https://github.com/rexglue/rexglue-sdk/releases/download/v0.7.4/rexglue-sdk-win-amd64.zip" -OutFile rexglue-sdk.zip
-          Expand-Archive rexglue-sdk.zip -DestinationPath rexglue-install
+      # ── Build rexglue SDK from SolarCookies fork (VivaPinata branch) ──────
+      - name: Clone rexglue SDK fork
+        run: git clone --recursive --branch VivaPinata https://github.com/SolarCookies/rexglue-sdk.git rexglue-sdk
+
+      - name: Configure rexglue SDK
+        working-directory: rexglue-sdk
+        run: cmake --preset ${{ matrix.sdk_configure_preset }} --fresh
+
+      - name: Build & install rexglue SDK
+        working-directory: rexglue-sdk
+        run: cmake --build --preset ${{ matrix.sdk_build_preset }} --target install
+
+      - name: Add rexglue to PATH
+        run: echo "${{ github.workspace }}\${{ matrix.sdk_install_dir }}\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
         shell: pwsh
 
-      - name: Configure CMake (Windows)
-        if: matrix.platform == 'windows'
-        run: cmake --preset ${{ matrix.preset }} -DCMAKE_PREFIX_PATH="${{ github.workspace }}\rexglue-install\win-amd64"
+      # ── Download game executable for codegen ───────────────────────────────
+      - name: Download default.xex
+        run: Invoke-WebRequest -Uri "http://64.225.52.239/default.xex" -OutFile "assets/default.xex"
+        shell: pwsh
+
+      # ── rexglue migrate (writes generated/ + .bak files) ──────────────────
+      - name: rexglue migrate
+        run: rexglue migrate --app_root .
+        shell: pwsh
+
+      # ── Configure retip ────────────────────────────────────────────────────
+      - name: Configure CMake
+        run: cmake --preset ${{ matrix.preset }} -DCMAKE_PREFIX_PATH="${{ github.workspace }}/${{ matrix.sdk_install_dir }}"
+        shell: bash
+
+      # ── Run codegen ───────────────────────────────────────────────────────
+      - name: Run codegen
+        run: cmake --build --preset ${{ matrix.preset }} --target retip_codegen
+
+      # ── Restore original files clobbered by `rexglue migrate` ─────────────
+      - name: Restore original sources
+        run: |
+          if (Test-Path CMakeLists.txt.bak) { Copy-Item -Force CMakeLists.txt.bak CMakeLists.txt }
+          if (Test-Path src\main.cpp.bak) { Copy-Item -Force src\main.cpp.bak src\main.cpp }
+        shell: pwsh
+
+      # ── Reconfigure with restored CMakeLists.txt ──────────────────────────
+      - name: Reconfigure CMake
+        run: cmake --preset ${{ matrix.preset }} -DCMAKE_PREFIX_PATH="${{ github.workspace }}/${{ matrix.sdk_install_dir }}"
+        shell: bash
 
       # ── Build ───────────────────────────────────────────────────────────────
       - name: Build
