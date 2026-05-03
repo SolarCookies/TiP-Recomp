@@ -67,6 +67,24 @@
             "displayName": "Linux AMD64 RelWithDebInfo",
             "inherits": "linux-base",
             "cacheVariables": { "CMAKE_BUILD_TYPE": "RelWithDebInfo" }
+        },
+        {
+            "name": "win-arm64-debug",
+            "displayName": "Windows ARM64 Debug",
+            "inherits": "windows-base",
+            "cacheVariables": { "CMAKE_BUILD_TYPE": "Debug" }
+        },
+        {
+            "name": "win-arm64-release",
+            "displayName": "Windows ARM64 Release",
+            "inherits": "windows-base",
+            "cacheVariables": { "CMAKE_BUILD_TYPE": "Release" }
+        },
+        {
+            "name": "win-arm64-relwithdebinfo",
+            "displayName": "Windows ARM64 RelWithDebInfo",
+            "inherits": "windows-base",
+            "cacheVariables": { "CMAKE_BUILD_TYPE": "RelWithDebInfo" }
         }
     ],
     "buildPresets": [
@@ -75,6 +93,9 @@
         { "name": "win-amd64-relwithdebinfo", "configurePreset": "win-amd64-relwithdebinfo" },
         { "name": "linux-amd64-debug", "configurePreset": "linux-amd64-debug" },
         { "name": "linux-amd64-release", "configurePreset": "linux-amd64-release" },
-        { "name": "linux-amd64-relwithdebinfo", "configurePreset": "linux-amd64-relwithdebinfo" }
+        { "name": "linux-amd64-relwithdebinfo", "configurePreset": "linux-amd64-relwithdebinfo" },
+        { "name": "win-arm64-debug", "configurePreset": "win-arm64-debug" },
+        { "name": "win-arm64-release", "configurePreset": "win-arm64-release" },
+        { "name": "win-arm64-relwithdebinfo", "configurePreset": "win-arm64-relwithdebinfo" }
     ]
 }
