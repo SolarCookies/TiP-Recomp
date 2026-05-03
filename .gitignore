@@ -44,4 +44,4 @@ build_log.txt
 *.log1
 ReShade.ini
 *.png
-/generated
+
