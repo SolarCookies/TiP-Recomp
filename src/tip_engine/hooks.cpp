@@ -269,6 +269,7 @@ void PlacingBuilding_hook(){
 
 char sceneNameBuffer[126];
 
+#ifndef RETIP_AWUGA_BUILD
 PPC_EXTERN_IMPORT(__imp__rex_gardenMainGetGardenScene_824E1120);
 PPC_EXTERN_FUNC(rex_spawn_supportPinataCreateGeneralEx_82575C30);
 PPC_EXTERN_FUNC(rex_gardenMainGetGardenScene_824E1120) {
@@ -352,6 +353,7 @@ PPC_EXTERN_FUNC(rex_gardenMainGetGardenScene_824E1120) {
 
 
 }
+#endif // !RETIP_AWUGA_BUILD
 
 
 #ifdef DEBUG_BUILD

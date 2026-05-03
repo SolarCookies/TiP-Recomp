@@ -12,31 +12,43 @@ permissions:
 
 jobs:
   build:
-    name: Build (${{ matrix.platform }}-${{ matrix.arch }})
+    name: Build (${{ matrix.platform }}-${{ matrix.arch }}-${{ matrix.config }}${{ matrix.variant_suffix }})
     runs-on: ${{ matrix.runner }}
     strategy:
       fail-fast: false
       matrix:
         include:
-          - platform: windows
-            arch: x64
-            runner: windows-latest
-            preset: win-amd64-relwithdebinfo
-            sdk_configure_preset: win-amd64
-            sdk_build_preset: win-amd64-relwithdebinfo
-            sdk_install_dir: rexglue-sdk/out/install/win-amd64
-            binary: out\build\win-amd64-relwithdebinfo\retip.exe
-            artifact: retip-windows-x64.exe
+          # ── Plain builds: all 3 configs × 2 archs ────────────────────────
+          - { platform: windows, arch: x64,   runner: windows-latest,  config: debug,           variant: plain, variant_suffix: "",        sdk_arch: win-amd64, preset_arch: win-amd64, build_type: Debug,          extra_cmake: "" }
+          - { platform: windows, arch: x64,   runner: windows-latest,  config: release,         variant: plain, variant_suffix: "",        sdk_arch: win-amd64, preset_arch: win-amd64, build_type: Release,        extra_cmake: "" }
+          - { platform: windows, arch: x64,   runner: windows-latest,  config: relwithdebinfo,  variant: plain, variant_suffix: "",        sdk_arch: win-amd64, preset_arch: win-amd64, build_type: RelWithDebInfo, extra_cmake: "" }
+          - { platform: windows, arch: arm64, runner: windows-11-arm,  config: debug,           variant: plain, variant_suffix: "",        sdk_arch: win-arm64, preset_arch: win-arm64, build_type: Debug,          extra_cmake: "" }
+          - { platform: windows, arch: arm64, runner: windows-11-arm,  config: release,         variant: plain, variant_suffix: "",        sdk_arch: win-arm64, preset_arch: win-arm64, build_type: Release,        extra_cmake: "" }
+          - { platform: windows, arch: arm64, runner: windows-11-arm,  config: relwithdebinfo,  variant: plain, variant_suffix: "",        sdk_arch: win-arm64, preset_arch: win-arm64, build_type: RelWithDebInfo, extra_cmake: "" }
 
-          - platform: windows
-            arch: arm64
-            runner: windows-11-arm
-            preset: win-arm64-relwithdebinfo
-            sdk_configure_preset: win-arm64
-            sdk_build_preset: win-arm64-relwithdebinfo
-            sdk_install_dir: rexglue-sdk/out/install/win-arm64
-            binary: out\build\win-arm64-relwithdebinfo\retip.exe
-            artifact: retip-windows-arm64.exe
+          # ── Tracy variants: RelWithDebInfo only ──────────────────────────
+          - { platform: windows, arch: x64,   runner: windows-latest,  config: relwithdebinfo,  variant: tracy, variant_suffix: "-tracy",  sdk_arch: win-amd64, preset_arch: win-amd64, build_type: RelWithDebInfo, extra_cmake: "-DREXGLUE_ENABLE_TRACY=ON" }
+          - { platform: windows, arch: arm64, runner: windows-11-arm,  config: relwithdebinfo,  variant: tracy, variant_suffix: "-tracy",  sdk_arch: win-arm64, preset_arch: win-arm64, build_type: RelWithDebInfo, extra_cmake: "-DREXGLUE_ENABLE_TRACY=ON" }
+
+          # ── FidelityFX variants: RelWithDebInfo only ─────────────────────
+          - { platform: windows, arch: x64,   runner: windows-latest,  config: relwithdebinfo,  variant: fx,    variant_suffix: "-fx",     sdk_arch: win-amd64, preset_arch: win-amd64, build_type: RelWithDebInfo, extra_cmake: "-DREXGLUE_ENABLE_FIDELITYFX=ON" }
+          - { platform: windows, arch: arm64, runner: windows-11-arm,  config: relwithdebinfo,  variant: fx,    variant_suffix: "-fx",     sdk_arch: win-arm64, preset_arch: win-arm64, build_type: RelWithDebInfo, extra_cmake: "-DREXGLUE_ENABLE_FIDELITYFX=ON" }
+
+          # ── Awuga variants: omit CursorHooks + SpawnMenu (RelWithDebInfo) ─
+          - { platform: windows, arch: x64,   runner: windows-latest,  config: relwithdebinfo,  variant: awuga,        variant_suffix: "-awuga",        sdk_arch: win-amd64, preset_arch: win-amd64, build_type: RelWithDebInfo, extra_cmake: "-DRETIP_AWUGA_BUILD=ON" }
+          - { platform: windows, arch: arm64, runner: windows-11-arm,  config: relwithdebinfo,  variant: awuga,        variant_suffix: "-awuga",        sdk_arch: win-arm64, preset_arch: win-arm64, build_type: RelWithDebInfo, extra_cmake: "-DRETIP_AWUGA_BUILD=ON" }
+
+          # ── Development variants: define DEBUG_BUILD (RelWithDebInfo) ────
+          - { platform: windows, arch: x64,   runner: windows-latest,  config: relwithdebinfo,  variant: development,  variant_suffix: "-development",  sdk_arch: win-amd64, preset_arch: win-amd64, build_type: RelWithDebInfo, extra_cmake: "-DRETIP_DEVELOPMENT_BUILD=ON" }
+          - { platform: windows, arch: arm64, runner: windows-11-arm,  config: relwithdebinfo,  variant: development,  variant_suffix: "-development",  sdk_arch: win-arm64, preset_arch: win-arm64, build_type: RelWithDebInfo, extra_cmake: "-DRETIP_DEVELOPMENT_BUILD=ON" }
+
+    env:
+      SDK_CONFIGURE_PRESET: ${{ matrix.sdk_arch }}
+      SDK_BUILD_PRESET: ${{ matrix.sdk_arch }}-${{ matrix.config }}
+      SDK_INSTALL_DIR: rexglue-sdk/out/install/${{ matrix.sdk_arch }}
+      RETIP_PRESET: ${{ matrix.preset_arch }}-${{ matrix.config }}
+      RETIP_BINARY: out/build/${{ matrix.preset_arch }}-${{ matrix.config }}/retip.exe
+      ARTIFACT_NAME: retip-${{ matrix.platform }}-${{ matrix.arch }}-${{ matrix.config }}${{ matrix.variant_suffix }}.exe
 
     steps:
       - name: Checkout
@@ -48,18 +60,18 @@ jobs:
 
       # ── Build rexglue SDK from SolarCookies fork (VivaPinata branch) ──────
       - name: Clone rexglue SDK fork
-        run: git clone --recursive --branch arm-windows-support https://github.com/SolarCookies/rexglue-sdk.git rexglue-sdk
+        run: git clone --recursive --branch VivaPinata https://github.com/SolarCookies/rexglue-sdk.git rexglue-sdk
 
       - name: Configure rexglue SDK
         working-directory: rexglue-sdk
-        run: cmake --preset ${{ matrix.sdk_configure_preset }} --fresh
+        run: cmake --preset ${{ env.SDK_CONFIGURE_PRESET }} --fresh ${{ matrix.extra_cmake }}
 
       - name: Build & install rexglue SDK
         working-directory: rexglue-sdk
-        run: cmake --build --preset ${{ matrix.sdk_build_preset }} --target install
+        run: cmake --build --preset ${{ env.SDK_BUILD_PRESET }} --target install
 
       - name: Add rexglue to PATH
-        run: echo "${{ github.workspace }}\${{ matrix.sdk_install_dir }}\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+        run: echo "${{ github.workspace }}\${{ env.SDK_INSTALL_DIR }}\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
         shell: pwsh
 
       # ── Download game executable for codegen ───────────────────────────────
@@ -76,12 +88,12 @@ jobs:
 
       # ── Configure retip ────────────────────────────────────────────────────
       - name: Configure CMake
-        run: cmake --preset ${{ matrix.preset }} -DCMAKE_PREFIX_PATH="${{ github.workspace }}/${{ matrix.sdk_install_dir }}"
+        run: cmake --preset ${{ env.RETIP_PRESET }} -DCMAKE_PREFIX_PATH="${{ github.workspace }}/${{ env.SDK_INSTALL_DIR }}" ${{ matrix.extra_cmake }}
         shell: bash
 
       # ── Run codegen ───────────────────────────────────────────────────────
       - name: Run codegen
-        run: cmake --build --preset ${{ matrix.preset }} --target retip_codegen
+        run: cmake --build --preset ${{ env.RETIP_PRESET }} --target retip_codegen
 
       # ── Restore original files clobbered by `rexglue migrate` ─────────────
       - name: Restore original sources
@@ -92,22 +104,22 @@ jobs:
 
       # ── Reconfigure with restored CMakeLists.txt ──────────────────────────
       - name: Reconfigure CMake
-        run: cmake --preset ${{ matrix.preset }} -DCMAKE_PREFIX_PATH="${{ github.workspace }}/${{ matrix.sdk_install_dir }}"
+        run: cmake --preset ${{ env.RETIP_PRESET }} -DCMAKE_PREFIX_PATH="${{ github.workspace }}/${{ env.SDK_INSTALL_DIR }}" ${{ matrix.extra_cmake }}
         shell: bash
 
       # ── Build ───────────────────────────────────────────────────────────────
       - name: Build
-        run: cmake --build --preset ${{ matrix.preset }}
+        run: cmake --build --preset ${{ env.RETIP_PRESET }}
 
       - name: Rename binary
-        run: cp "${{ matrix.binary }}" "${{ matrix.artifact }}"
+        run: cp "${{ env.RETIP_BINARY }}" "${{ env.ARTIFACT_NAME }}"
         shell: bash
 
       - name: Upload binary
         uses: actions/upload-artifact@v7
         with:
-          name: ${{ matrix.artifact }}
-          path: ${{ matrix.artifact }}
+          name: ${{ env.ARTIFACT_NAME }}
+          path: ${{ env.ARTIFACT_NAME }}
 
   release:
     name: Create Release
