@@ -215,16 +215,23 @@ jobs:
           fi
 
           header_stable=$'# Download and install through the https://goopie.xyz Launcher\n\n## Changelog Post:\nhttps://www.patreon.com/SolarCookies/'
-          header_nightly=$'# Nightly build from the `dev` branch\n\nAutomated prerelease — may be unstable.\n\n## Download and install through the https://goopie.xyz Launcher\n\n## Changelog Post:\nhttps://www.patreon.com/SolarCookies/'
-
-          if [[ "${RELEASE_IS_NIGHTLY}" == "true" ]]; then
-            notes="${header_nightly}"
-          else
-            notes="${header_stable}"
-          fi
+          header_nightly=$'# Nightly build from the `dev` branch\n\nAutomated prerelease — may be unstable.'
 
           if [[ -n "${previous_body}" && "${previous_body}" != "null" ]]; then
-            notes+=$'\n\n---\n\n## Notes carried over from '"${previous_tag}"$':\n\n'"${previous_body}"
+            # Reuse the previous release's notes verbatim so links and
+            # screenshots carry over. Add a small nightly banner on top.
+            if [[ "${RELEASE_IS_NIGHTLY}" == "true" ]]; then
+              notes="${header_nightly}"$'\n\n'"${previous_body}"
+            else
+              notes="${previous_body}"
+            fi
+          else
+            # No previous release to inherit from — fall back to the default header.
+            if [[ "${RELEASE_IS_NIGHTLY}" == "true" ]]; then
+              notes="${header_nightly}"$'\n\n'"${header_stable}"
+            else
+              notes="${header_stable}"
+            fi
           fi
 
           prerelease_flag=""
