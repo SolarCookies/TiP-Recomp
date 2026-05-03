@@ -269,7 +269,6 @@ void PlacingBuilding_hook(){
 
 char sceneNameBuffer[126];
 
-#ifndef RETIP_AWUGA_BUILD
 PPC_EXTERN_IMPORT(__imp__rex_gardenMainGetGardenScene_824E1120);
 PPC_EXTERN_FUNC(rex_spawn_supportPinataCreateGeneralEx_82575C30);
 PPC_EXTERN_FUNC(rex_gardenMainGetGardenScene_824E1120) {
@@ -353,16 +352,6 @@ PPC_EXTERN_FUNC(rex_gardenMainGetGardenScene_824E1120) {
 
 
 }
-#endif // !RETIP_AWUGA_BUILD
-
-#ifdef RETIP_AWUGA_BUILD
-// CursorHooks.cpp is excluded from the awuga build, but a few of its symbols
-// are still referenced — `rgb_cursor` by SettingsMenu.cpp and CursorColor_hook
-// by the codegen-generated midasm hook table. Provide minimal stubs.
-REXCVAR_DEFINE_BOOL(rgb_cursor, false, "_Trouble in Paradise", "Enables the Gursor (disabled in awuga build)");
-void CursorColor_hook(PPCRegister& /*r31*/, PPCRegister& /*r27*/) {
-}
-#endif
 
 
 #ifdef DEBUG_BUILD

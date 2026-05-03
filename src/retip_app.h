@@ -17,9 +17,7 @@
 #include "Webcam.h"
 #include "tip_engine/Globals.h"
 #include "tip_engine/Overlays/TiPTools.h"
-#ifndef RETIP_AWUGA_BUILD
 #include "tip_engine/Overlays/TiPTools/SpawnMenu.h"
-#endif
 #include "tip_engine/Overlays/TiPTools/PlayerMenu.h"
 #include "tip_engine/Overlays/TiPTools/GraphicsMenu.h"
 #include "tip_engine/Overlays/TiPTools/SettingsMenu.h"
@@ -200,9 +198,7 @@ class RetipApp : public rex::ReXApp {
         tipToolsDialog->pages.push_back(std::make_unique<PinataMenuPage>());
         tipToolsDialog->pages.push_back(std::make_unique<PlantMenuPage>());
         tipToolsDialog->pages.push_back(std::make_unique<RuffianMenuPage>());
-#ifndef RETIP_AWUGA_BUILD
         tipToolsDialog->pages.push_back(std::make_unique<SpawnMenuPage>());
-#endif
         //tipToolsDialog->pages.push_back(std::make_unique<GraphicsMenuPage>());
         //tipToolsDialog->pages.push_back(std::make_unique<SettingsMenuPage>());
         Log(LogLevel::Info, "UI Dialogs Created");

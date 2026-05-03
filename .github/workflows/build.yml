@@ -34,10 +34,6 @@ jobs:
           - { platform: windows, arch: x64,   runner: windows-latest,  config: relwithdebinfo,  variant: fx,    variant_suffix: "-fx",     sdk_arch: win-amd64, preset_arch: win-amd64, build_type: RelWithDebInfo, extra_cmake: "-DREXGLUE_ENABLE_FIDELITYFX=ON" }
           - { platform: windows, arch: arm64, runner: windows-11-arm,  config: relwithdebinfo,  variant: fx,    variant_suffix: "-fx",     sdk_arch: win-arm64, preset_arch: win-arm64, build_type: RelWithDebInfo, extra_cmake: "-DREXGLUE_ENABLE_FIDELITYFX=ON" }
 
-          # ── Awuga variants: omit CursorHooks + SpawnMenu (RelWithDebInfo) ─
-          - { platform: windows, arch: x64,   runner: windows-latest,  config: relwithdebinfo,  variant: awuga,        variant_suffix: "-awuga",        sdk_arch: win-amd64, preset_arch: win-amd64, build_type: RelWithDebInfo, extra_cmake: "-DRETIP_AWUGA_BUILD=ON" }
-          - { platform: windows, arch: arm64, runner: windows-11-arm,  config: relwithdebinfo,  variant: awuga,        variant_suffix: "-awuga",        sdk_arch: win-arm64, preset_arch: win-arm64, build_type: RelWithDebInfo, extra_cmake: "-DRETIP_AWUGA_BUILD=ON" }
-
           # ── Development variants: define DEBUG_BUILD (RelWithDebInfo) ────
           - { platform: windows, arch: x64,   runner: windows-latest,  config: relwithdebinfo,  variant: development,  variant_suffix: "-development",  sdk_arch: win-amd64, preset_arch: win-amd64, build_type: RelWithDebInfo, extra_cmake: "-DRETIP_DEVELOPMENT_BUILD=ON" }
           - { platform: windows, arch: arm64, runner: windows-11-arm,  config: relwithdebinfo,  variant: development,  variant_suffix: "-development",  sdk_arch: win-arm64, preset_arch: win-arm64, build_type: RelWithDebInfo, extra_cmake: "-DRETIP_DEVELOPMENT_BUILD=ON" }

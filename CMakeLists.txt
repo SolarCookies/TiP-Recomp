@@ -11,11 +11,8 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # ── Optional retip build variants ─────────────────────────────────────────
-# Awuga build: omits sources known to crash on certain user hardware
-# (CursorHooks + SpawnMenu) — see -awuga CI variant.
-option(RETIP_AWUGA_BUILD       "Build a stripped-down 'awuga' variant (no CursorHooks/SpawnMenu)" OFF)
 # Development build: enables DEBUG_BUILD-gated code paths in retip sources.
-option(RETIP_DEVELOPMENT_BUILD "Build a 'development' variant (defines DEBUG_BUILD)"              OFF)
+option(RETIP_DEVELOPMENT_BUILD "Build a 'development' variant (defines DEBUG_BUILD)" OFF)
 
 include(generated/rexglue.cmake)
 
@@ -31,11 +28,11 @@ set(RETIP_SOURCES
     src/ImPlot/implot_items.cpp
     src/ImPlot/implot.h
     src/ImPlot/implot_internal.h
+    src/tip_engine/CursorHooks.cpp
     src/tip_engine/GraphicsHooks.cpp
     src/tip_engine/SpaceHooks.cpp
     src/tip_engine/DiscordRPC.cpp
     src/tip_engine/DiscordRPC.h
-
     # Custom Renderer
     src/tip_engine/CustomRenderer/OpenGL_Stuff.h
     src/tip_engine/CustomRenderer/Window.cpp
@@ -61,6 +58,7 @@ set(RETIP_SOURCES
     src/tip_engine/Overlays/TiPTools/PinataMenu.cpp
     src/tip_engine/Overlays/TiPTools/PlantMenu.cpp
     src/tip_engine/Overlays/TiPTools/RuffianMenu.cpp
+    src/tip_engine/Overlays/TiPTools/SpawnMenu.cpp
     src/tip_engine/SleepHooks.cpp
 
     # Vendor sources
@@ -76,14 +74,6 @@ set(RETIP_SOURCES
     Vendors/imgui/imstb_truetype.h
 )
 
-# Awuga build: skip CursorHooks + SpawnMenu (they crash on certain hardware).
-if(NOT RETIP_AWUGA_BUILD)
-    list(APPEND RETIP_SOURCES
-        src/tip_engine/CursorHooks.cpp
-        src/tip_engine/Overlays/TiPTools/SpawnMenu.cpp
-    )
-endif()
-
 if(WIN32)
     list(APPEND RETIP_SOURCES icon/app.rc)
     add_executable(retip WIN32 ${RETIP_SOURCES})
@@ -91,9 +81,6 @@ else()
     add_executable(retip ${RETIP_SOURCES})
 endif()
 
-if(RETIP_AWUGA_BUILD)
-    target_compile_definitions(retip PRIVATE RETIP_AWUGA_BUILD)
-endif()
 if(RETIP_DEVELOPMENT_BUILD)
     target_compile_definitions(retip PRIVATE DEBUG_BUILD)
 endif()
