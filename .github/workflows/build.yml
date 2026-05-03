@@ -30,10 +30,6 @@ jobs:
           - { platform: windows, arch: x64,   runner: windows-latest,  config: relwithdebinfo,  variant: tracy, variant_suffix: "-tracy",  sdk_arch: win-amd64, preset_arch: win-amd64, build_type: RelWithDebInfo, extra_cmake: "-DREXGLUE_ENABLE_TRACY=ON" }
           - { platform: windows, arch: arm64, runner: windows-11-arm,  config: relwithdebinfo,  variant: tracy, variant_suffix: "-tracy",  sdk_arch: win-arm64, preset_arch: win-arm64, build_type: RelWithDebInfo, extra_cmake: "-DREXGLUE_ENABLE_TRACY=ON" }
 
-          # ── FidelityFX variants: RelWithDebInfo only ─────────────────────
-          - { platform: windows, arch: x64,   runner: windows-latest,  config: relwithdebinfo,  variant: fx,    variant_suffix: "-fx",     sdk_arch: win-amd64, preset_arch: win-amd64, build_type: RelWithDebInfo, extra_cmake: "-DREXGLUE_ENABLE_FIDELITYFX=ON" }
-          - { platform: windows, arch: arm64, runner: windows-11-arm,  config: relwithdebinfo,  variant: fx,    variant_suffix: "-fx",     sdk_arch: win-arm64, preset_arch: win-arm64, build_type: RelWithDebInfo, extra_cmake: "-DREXGLUE_ENABLE_FIDELITYFX=ON" }
-
           # ── Development variants: define DEBUG_BUILD (RelWithDebInfo) ────
           - { platform: windows, arch: x64,   runner: windows-latest,  config: relwithdebinfo,  variant: development,  variant_suffix: "-development",  sdk_arch: win-amd64, preset_arch: win-amd64, build_type: RelWithDebInfo, extra_cmake: "-DRETIP_DEVELOPMENT_BUILD=ON" }
           - { platform: windows, arch: arm64, runner: windows-11-arm,  config: relwithdebinfo,  variant: development,  variant_suffix: "-development",  sdk_arch: win-arm64, preset_arch: win-arm64, build_type: RelWithDebInfo, extra_cmake: "-DRETIP_DEVELOPMENT_BUILD=ON" }
