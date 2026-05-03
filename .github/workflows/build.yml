@@ -116,12 +116,15 @@ jobs:
   release:
     name: Create Release
     needs: build
-    if: ${{ !cancelled() && startsWith(github.ref, 'refs/tags/') }}
+    if: ${{ !cancelled() && needs.build.result == 'success' && (startsWith(github.ref, 'refs/tags/') || github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/main') }}
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          fetch-tags: true
 
       - name: Download all binaries
         uses: actions/download-artifact@v8
@@ -129,14 +132,113 @@ jobs:
           path: artifacts
           merge-multiple: true
 
+      - name: Compute release metadata
+        id: meta
+        run: |
+          if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
+            # Tag push -> stable release using the tag name as the version.
+            tag="${GITHUB_REF#refs/tags/}"
+            echo "tag=${tag}"            >> "$GITHUB_OUTPUT"
+            echo "title=ReTiP ${tag}"    >> "$GITHUB_OUTPUT"
+            echo "prerelease=false"      >> "$GITHUB_OUTPUT"
+            echo "is_nightly=false"      >> "$GITHUB_OUTPUT"
+          elif [[ "${GITHUB_REF}" == "refs/heads/dev" ]]; then
+            # `dev` branch push -> nightly prerelease.
+            # Auto-detect the base version from the highest numeric `MAJOR.MINOR[.PATCH]` git tag.
+            base_version=$(
+              git tag --list 'v[0-9]*.[0-9]*' '[0-9]*.[0-9]*' \
+                | sed -E 's/^v//' \
+                | grep -E '^[0-9]+\.[0-9]+(\.[0-9]+)?$' \
+                | sort -V \
+                | tail -n1
+            )
+            if [[ -z "${base_version}" ]]; then
+              echo "::error::No version tags found to derive nightly base version from."
+              exit 1
+            fi
+            # Normalize to MAJOR.MINOR.PATCH (append .0 if the tag was MAJOR.MINOR).
+            if [[ "${base_version}" != *.*.* ]]; then
+              base_version="${base_version}.0"
+            fi
+            tag="nightly_${base_version}.${GITHUB_RUN_NUMBER}"
+            echo "Detected nightly base version: ${base_version}"
+            echo "tag=${tag}"                       >> "$GITHUB_OUTPUT"
+            echo "title=ReTiP Nightly ${tag#nightly_}" >> "$GITHUB_OUTPUT"
+            echo "prerelease=true"                  >> "$GITHUB_OUTPUT"
+            echo "is_nightly=true"                  >> "$GITHUB_OUTPUT"
+          else
+            # `main` branch push without a tag -> no release.
+            echo "tag="              >> "$GITHUB_OUTPUT"
+            echo "title="            >> "$GITHUB_OUTPUT"
+            echo "prerelease=false"  >> "$GITHUB_OUTPUT"
+            echo "is_nightly=false"  >> "$GITHUB_OUTPUT"
+          fi
+        shell: bash
+
       - name: Create GitHub Release
+        if: ${{ steps.meta.outputs.tag != '' }}
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
+          RELEASE_TAG: ${{ steps.meta.outputs.tag }}
+          RELEASE_TITLE: ${{ steps.meta.outputs.title }}
+          RELEASE_IS_NIGHTLY: ${{ steps.meta.outputs.is_nightly }}
+          RELEASE_IS_PRERELEASE: ${{ steps.meta.outputs.prerelease }}
         run: |
           shopt -s globstar
-          gh release create "${{ github.ref_name }}" \
-            --title "ReTiP ${{ github.ref_name }}" \
-            --notes $'# Download and install through the https://goopie.xyz Launcher\n\n## Changelog Post:\nhttps://www.patreon.com/SolarCookies/' \
+
+          # Fetch the body of the previous release so its links and embedded
+          # screenshots carry over to nightlies and minor-version updates.
+          # We pick the most recent non-draft release that isn't this same tag,
+          # preferring stable releases over prereleases (so a stable's notes
+          # propagate forward through subsequent nightlies).
+          previous_body=""
+          previous_tag=""
+          if releases_json=$(gh api \
+              -H "Accept: application/vnd.github+json" \
+              "/repos/${GH_REPO}/releases?per_page=30" 2>/dev/null); then
+            previous_tag=$(printf '%s' "${releases_json}" | jq -r \
+              --arg current "${RELEASE_TAG}" '
+                [ .[]
+                  | select(.draft == false)
+                  | select(.tag_name != $current)
+                ]
+                | (map(select(.prerelease == false)) + map(select(.prerelease == true)))
+                | .[0].tag_name // ""
+              ')
+            if [[ -n "${previous_tag}" && "${previous_tag}" != "null" ]]; then
+              previous_body=$(printf '%s' "${releases_json}" | jq -r \
+                --arg t "${previous_tag}" '
+                  [ .[] | select(.tag_name == $t) ] | .[0].body // ""
+                ')
+            fi
+          fi
+
+          header_stable=$'# Download and install through the https://goopie.xyz Launcher\n\n## Changelog Post:\nhttps://www.patreon.com/SolarCookies/'
+          header_nightly=$'# Nightly build from the `dev` branch\n\nAutomated prerelease — may be unstable.\n\n## Download and install through the https://goopie.xyz Launcher\n\n## Changelog Post:\nhttps://www.patreon.com/SolarCookies/'
+
+          if [[ "${RELEASE_IS_NIGHTLY}" == "true" ]]; then
+            notes="${header_nightly}"
+          else
+            notes="${header_stable}"
+          fi
+
+          if [[ -n "${previous_body}" && "${previous_body}" != "null" ]]; then
+            notes+=$'\n\n---\n\n## Notes carried over from '"${previous_tag}"$':\n\n'"${previous_body}"
+          fi
+
+          prerelease_flag=""
+          if [[ "${RELEASE_IS_PRERELEASE}" == "true" ]]; then
+            prerelease_flag="--prerelease"
+          fi
+
+          # Pass notes via a file to safely handle multi-line content.
+          notes_file="$(mktemp)"
+          printf '%s' "${notes}" > "${notes_file}"
+
+          gh release create "${RELEASE_TAG}" \
+            --title "${RELEASE_TITLE}" \
+            --notes-file "${notes_file}" \
+            ${prerelease_flag} \
             artifacts/**/* \
             retip.toml
