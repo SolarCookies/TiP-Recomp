@@ -4,12 +4,33 @@
 #include "TiPWidgets.h"
 #include "tip_engine/Globals.h"
 
+#ifdef _WIN32
+#ifndef NOMINMAX
+#define NOMINMAX
+#endif
+#ifndef WIN32_LEAN_AND_MEAN
+#define WIN32_LEAN_AND_MEAN
+#endif
+#include <Windows.h>
+#endif
+
 static constexpr float kMenuWidth = 220.0f;
 static constexpr float kSubPanelWidth = 320.0f;
 static constexpr float kMenuPadding = 2.0f;
 static constexpr float kItemHeight = 32.0f;
 static constexpr float kHeaderHeight = 38.0f;
 static constexpr float kWarningHeight = 18.0f;
+
+static bool IsAltUnlockHeld(const ImGuiIO& io) {
+    if (io.KeyAlt || ImGui::IsKeyDown(ImGuiKey_LeftAlt) || ImGui::IsKeyDown(ImGuiKey_RightAlt)) {
+        return true;
+    }
+#ifdef _WIN32
+    return (GetAsyncKeyState(VK_MENU) & 0x8000) != 0;
+#else
+    return false;
+#endif
+}
 
 void TipToolsDialog::HandleInput() {
     // When a sub-page is open, don't poll — the sub-page handles its own input.
@@ -40,9 +61,6 @@ void TipToolsDialog::HandleInput() {
 }
 
 void TipToolsDialog::DrawMenu() {
-    // Lock game input while menu is visible
-    g_LockGameInput = true;
-
     HandleInput();
     SetUIColor(ImColor(0, 255, 150));
 
@@ -203,8 +221,9 @@ void TipToolsDialog::OnDraw(ImGuiIO& io) {
         selectHoldStart = -1.0f;
     }
 
+    SetRetipInputUiMode(visible_ || IsAltUnlockHeld(io));
+
     if (!visible_) {
-        g_LockGameInput = false;
         return;
     }
     DrawMenu();

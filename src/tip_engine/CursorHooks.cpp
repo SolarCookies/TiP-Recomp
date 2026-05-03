@@ -2,6 +2,7 @@
 #include "Log.h"
 #include "tip_engine/hooks.h"
 
+#include <algorithm>
 #include <cstdint>
 #include <cmath>
 #include <cstring>
@@ -29,7 +30,8 @@ REXCVAR_DEFINE_DOUBLE(tip_mouse_y_sensitivity, 0.05, "_Trouble in Paradise/Input
 REXCVAR_DEFINE_DOUBLE(tip_mouse_x_sensitivity, 0.05, "_Trouble in Paradise/Input", "Mouse X sensitivity (deg per pixel)").range(0.01, 5.0);
 REXCVAR_DEFINE_BOOL(tip_mouse_invert_y, false, "_Trouble in Paradise/Input", "Invert mouse Y");
 REXCVAR_DEFINE_BOOL(tip_mouse_invert_x, false, "_Trouble in Paradise/Input", "Invert mouse X");
-REXCVAR_DEFINE_DOUBLE(tip_mouse_zoom_step, 100.0, "_Trouble in Paradise/Input", "Zoom units per wheel detent").range(10.0, 500.0);
+REXCVAR_DEFINE_DOUBLE(tip_mouse_zoom_step, 25.0, "_Trouble in Paradise/Input", "Zoom units per wheel detent").range(10.0, 500.0);
+REXCVAR_DEFINE_DOUBLE(tip_mouse_zoom_max, 300.0, "_Trouble in Paradise/Input", "Maximum mouse wheel zoom-out distance").range(125.0, 600.0);
 REXCVAR_DEFINE_BOOL(rgb_cursor, false, "_Trouble in Paradise", "Enables the Gursor"); // rainbow cursor
 
 
@@ -46,6 +48,7 @@ int meCursorCamCalculateYaw_822C1B18_Hook(int camera, int controls) {
     int32_t dx = 0;
     if (g_raw_mouse) dx = g_raw_mouse->ConsumeDx();
     else if (g_mouse_listener) dx = g_mouse_listener->ConsumeDx();
+    if (!IsRetipGameInputActive()) dx = 0;
 
     if (dx != 0) {
         float sensitivity = static_cast<float>(REXCVAR_GET(tip_mouse_x_sensitivity));
@@ -86,6 +89,7 @@ int meCursorCamCalculatePitch_822C1C00_Hook(int camera, int controls) {
     int32_t dy = 0;
     if (g_raw_mouse) dy = g_raw_mouse->ConsumeDy();
     else if (g_mouse_listener) dy = g_mouse_listener->ConsumeDy();
+    if (!IsRetipGameInputActive()) dy = 0;
 
     if (dy != 0) {
         float sensitivity = static_cast<float>(REXCVAR_GET(tip_mouse_y_sensitivity));
@@ -135,14 +139,41 @@ void meCursorCamCalculateZoom_822C1CE0_Hook(int camera, int controls) {
 
     // Sets the max and min values for zoom and pitch and also checks the memory to make sure that its valid before writing to it.
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
+    constexpr float kVanillaZoomOut = 125.0f;
+    constexpr float kWheelDeltaPerDetent = 120.0f;
+
+    float* ZoomCurrentPtr = reinterpret_cast<float*>(0x100000000ull + camera + 36);
+    float* ZoomInPtr = reinterpret_cast<float*>(0x100000000ull + camera + 76);
     float* ZoomOutPtr = reinterpret_cast<float*>(0x100000000ull + camera + 84);
+    float zoomCurrent = to_byteswapped_float(*ZoomCurrentPtr);
+    float zoomIn = to_byteswapped_float(*ZoomInPtr);
     float zoomOut = to_byteswapped_float(*ZoomOutPtr);
-    if(zoomOut < 126.0f && zoomOut > 124.0f) {
-        if (g_IsPlacingBuilding) {
-            ZoomOutPtr[0] = to_byteswapped_float(300.0f);
-        } else {
-            ZoomOutPtr[0] = to_byteswapped_float(1000.0f);
+
+    int32_t wheel = 0;
+    if (g_raw_mouse) wheel = g_raw_mouse->ConsumeWheel();
+    else if (g_mouse_listener) wheel = g_mouse_listener->ConsumeWheel();
+    if (!IsRetipGameInputActive()) wheel = 0;
+
+    if (wheel != 0) {
+        float detents = static_cast<float>(wheel) / kWheelDeltaPerDetent;
+        float step = static_cast<float>(REXCVAR_GET(tip_mouse_zoom_step));
+        float mouseZoomOut = static_cast<float>(REXCVAR_GET(tip_mouse_zoom_max));
+        float zoomMax = g_IsPlacingBuilding ? 300.0f : mouseZoomOut;
+        float zoomMin = zoomIn;
+        if (zoomMin <= 0.0f || zoomMin > kVanillaZoomOut) {
+            zoomMin = kVanillaZoomOut;
         }
+
+        float targetZoom = std::clamp(zoomCurrent - (detents * step), zoomMin, zoomMax);
+        if ((zoomCurrent < kVanillaZoomOut && targetZoom > kVanillaZoomOut) ||
+            (zoomCurrent > kVanillaZoomOut && targetZoom < kVanillaZoomOut)) {
+            targetZoom = kVanillaZoomOut;
+        }
+
+        ZoomOutPtr[0] = to_byteswapped_float(zoomMax);
+        ZoomCurrentPtr[0] = to_byteswapped_float(targetZoom);
+    } else if (g_IsPlacingBuilding && zoomOut < 126.0f && zoomOut > 124.0f) {
+        ZoomOutPtr[0] = to_byteswapped_float(300.0f);
     }
 
     float* PitchMaxPtr = reinterpret_cast<float*>(0x100000000ull + static_cast<uint32_t>(camera) + 60);

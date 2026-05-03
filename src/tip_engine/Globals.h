@@ -38,9 +38,42 @@ inline std::unique_ptr<TipMouseListener> g_mouse_listener = nullptr;
 // when raw input setup fails (CursorHooks falls back to g_mouse_listener).
 inline std::unique_ptr<TipRawMouse> g_raw_mouse = nullptr;
 
+// ReXGlue input system. Used to hand mouse ownership to host overlays without
+// fighting the MnK driver's capture loop.
+inline rex::input::InputSystem* g_input_system = nullptr;
+
 // When true, game input (gamepad/keyboard to the guest) should be blocked.
-// Set by TiPTools when the mod menu is visible.
+// Set while host UI owns input, such as TiPTools or Alt-unlocked cursor mode.
 inline bool g_LockGameInput = false;
+inline bool g_RetipInputUiMode = false;
+
+inline bool IsRetipGameInputActive() {
+    if (g_LockGameInput) {
+        return false;
+    }
+    return !g_input_system || g_input_system->IsGameInputActive();
+}
+
+inline void SetRetipInputUiMode(bool ui_mode) {
+    if (g_RetipInputUiMode == ui_mode) {
+        return;
+    }
+
+    g_RetipInputUiMode = ui_mode;
+    g_LockGameInput = ui_mode;
+
+    if (g_raw_mouse) {
+        g_raw_mouse->SetClipEnabled(!ui_mode);
+    }
+
+    if (!g_input_system) {
+        return;
+    }
+
+    g_input_system->SetInputMode(ui_mode ? rex::input::InputMode::kUIOnly
+                                         : rex::input::InputMode::kGame);
+    g_input_system->SetShowMouseCursor(ui_mode);
+}
 
 inline uint32_t scene = 0;
 

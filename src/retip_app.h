@@ -78,6 +78,9 @@ class RetipApp : public rex::ReXApp {
         //g_raw_input = runtime()->input_system()->GetRawInput();
         timeBeginPeriod(1);
 
+        g_input_system = static_cast<rex::input::InputSystem*>(runtime()->input_system());
+        SetRetipInputUiMode(false);
+
         //Force MnK driver on regardless of toml, since EXE may run from build dir without retip.toml
         //Edit, this is not needed, goopie will download the toml from the release, and also some might want to use the mouse for the f4 menu
         //Curently Im not sure if there is a button to disable the mouse lock like Alt but that might be worth looking into before
@@ -137,6 +140,9 @@ class RetipApp : public rex::ReXApp {
    void OnShutdown() override {
         Log(LogLevel::Info, "Application Shutting Down");
      
+        SetRetipInputUiMode(false);
+        g_input_system = nullptr;
+
         if (g_raw_mouse) {
             g_raw_mouse->Teardown();
         }

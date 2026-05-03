@@ -105,6 +105,7 @@ target_compile_options(retip PRIVATE
 )
 
 target_link_libraries(retip PRIVATE
+    SDL3::SDL3
     glfw3.lib
     opengl32.lib
     zlib.lib

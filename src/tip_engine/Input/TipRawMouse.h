@@ -52,6 +52,17 @@ class TipRawMouse {
     return true;
   }
 
+  void SetClipEnabled(bool enabled) {
+    if (clip_enabled_ == enabled) return;
+    clip_enabled_ = enabled;
+    if (!active_) return;
+    if (clip_enabled_) {
+      ApplyClip();
+    } else {
+      ClipCursor(nullptr);
+    }
+  }
+
   void Teardown() {
     if (!active_) return;
     ClipCursor(nullptr);
@@ -67,7 +78,7 @@ class TipRawMouse {
 
   //Confine cursor to window client rect; OS releases on focus loss
   void ApplyClip() {
-    if (!hwnd_) return;
+    if (!clip_enabled_ || !hwnd_) return;
     RECT client;
     if (!GetClientRect(hwnd_, &client)) return;
     POINT tl = {client.left, client.top};
@@ -85,6 +96,7 @@ class TipRawMouse {
   //fall back to TipMouseListener, which is functional but limited.
   bool Setup(void*) { return false; }
   void Teardown() {}
+  void SetClipEnabled(bool) {}
 #endif
 
   std::pair<int32_t, int32_t> ConsumeDelta() {
@@ -123,6 +135,10 @@ class TipRawMouse {
     if (m == WM_ACTIVATEAPP && w && s_instance_) {
       s_instance_->ApplyClip();
     }
+    if (m == WM_MOUSEWHEEL && s_instance_) {
+      std::lock_guard lock(s_instance_->mtx_);
+      s_instance_->wheel_ += GET_WHEEL_DELTA_WPARAM(w);
+    }
     if (m == WM_INPUT && s_instance_) {
       UINT size = 0;
       if (GetRawInputData(reinterpret_cast<HRAWINPUT>(l), RID_INPUT, nullptr,
@@ -140,10 +156,6 @@ class TipRawMouse {
               s_instance_->dx_ += raw->data.mouse.lLastX;
               s_instance_->dy_ += raw->data.mouse.lLastY;
             }
-            if (raw->data.mouse.usButtonFlags & RI_MOUSE_WHEEL) {
-              s_instance_->wheel_ +=
-                  static_cast<int16_t>(raw->data.mouse.usButtonData);
-            }
           }
         }
       }
@@ -159,6 +171,7 @@ class TipRawMouse {
   HWND hwnd_ = nullptr;
   WNDPROC original_wnd_proc_ = nullptr;
   bool active_ = false;
+  bool clip_enabled_ = true;
 #endif
 
   std::mutex mtx_;
