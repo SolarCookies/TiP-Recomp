@@ -112,6 +112,14 @@ target_compile_options(retip PRIVATE
     -Wno-missing-template-arg-list-after-template-kw
 )
 
+<<<<<<< main
+target_link_libraries(retip PRIVATE
+    SDL3::SDL3
+    glfw3.lib
+    opengl32.lib
+    zlib.lib
+)
+=======
 if(RETIP_BUILD_DEPS_FROM_SOURCE)
     include(FetchContent)
 
@@ -163,3 +171,4 @@ else()
         zlib.lib
     )
 endif()
+>>>>>>> dev
