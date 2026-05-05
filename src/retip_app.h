@@ -7,6 +7,10 @@
 
 #include <memory>
 #include <rex/rex_app.h>
+#include <rex/graphics/graphics_system.h>
+#include <rex/graphics/command_processor.h>
+#include <rex/ui/overlay/shader_debugger_overlay.h>
+#include <rex/ui/imgui_dialog.h>
 #include "generated/retip_init.h"
 #include "tip_engine/hooks.h"
 #include <rex/ppc/function.h>
@@ -45,6 +49,7 @@
 #include <fstream>
 #include <thread>
 #include <atomic>
+#include <filesystem>
 
 #ifdef DEBUG_BUILD
 REXCVAR_DEFINE_BOOL(SolarRendererPreview, false, "_Trouble in Paradise/Graphics", "Enables the Solar Renderer").lifecycle(rex::cvar::Lifecycle::kRequiresRestart);
@@ -81,11 +86,9 @@ class RetipApp : public rex::ReXApp {
         g_input_system = static_cast<rex::input::InputSystem*>(runtime()->input_system());
         SetRetipInputUiMode(false);
 
+
         //Force MnK driver on regardless of toml, since EXE may run from build dir without retip.toml
-        //Edit, this is not needed, goopie will download the toml from the release, and also some might want to use the mouse for the f4 menu
-        //Curently Im not sure if there is a button to disable the mouse lock like Alt but that might be worth looking into before
-        //forceing mouse locks
-        //REXCVAR_SET(mnk_mode, true);
+        REXCVAR_SET(mnk_mode, true);
 
         //Silence MnK's mouse->right-stick path; CursorHooks consumes mouse delta directly
         REXCVAR_SET(mnk_sensitivity, 0.0);
@@ -207,6 +210,7 @@ class RetipApp : public rex::ReXApp {
         tipToolsDialog->pages.push_back(std::make_unique<SpawnMenuPage>());
         //tipToolsDialog->pages.push_back(std::make_unique<GraphicsMenuPage>());
         //tipToolsDialog->pages.push_back(std::make_unique<SettingsMenuPage>());
+
         Log(LogLevel::Info, "UI Dialogs Created");
     }
 };
