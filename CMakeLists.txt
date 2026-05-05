@@ -10,6 +10,10 @@ project(retip LANGUAGES CXX C)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# ── Optional retip build variants ─────────────────────────────────────────
+# Development build: enables DEBUG_BUILD-gated code paths in retip sources.
+option(RETIP_DEVELOPMENT_BUILD "Build a 'development' variant (defines DEBUG_BUILD)" OFF)
+
 include(generated/rexglue.cmake)
 
 # Sources
@@ -29,7 +33,6 @@ set(RETIP_SOURCES
     src/tip_engine/SpaceHooks.cpp
     src/tip_engine/DiscordRPC.cpp
     src/tip_engine/DiscordRPC.h
-
     # Custom Renderer
     src/tip_engine/CustomRenderer/OpenGL_Stuff.h
     src/tip_engine/CustomRenderer/Window.cpp
@@ -49,13 +52,13 @@ set(RETIP_SOURCES
     src/tip_engine/CustomRenderer/engine/Components/Meshes/DynamicMeshComponent.cpp
     src/tip_engine/CustomRenderer/engine/Components/Lights/LightComponent.cpp
     src/tip_engine/CustomRenderer/engine/Utils/Crypto/sha256.cpp
-    src/tip_engine/Overlays/TiPTools/SpawnMenu.cpp
     src/tip_engine/Overlays/TiPTools/PlayerMenu.cpp
     src/tip_engine/Overlays/TiPTools/GraphicsMenu.cpp
     src/tip_engine/Overlays/TiPTools/SettingsMenu.cpp
     src/tip_engine/Overlays/TiPTools/PinataMenu.cpp
     src/tip_engine/Overlays/TiPTools/PlantMenu.cpp
     src/tip_engine/Overlays/TiPTools/RuffianMenu.cpp
+    src/tip_engine/Overlays/TiPTools/SpawnMenu.cpp
     src/tip_engine/SleepHooks.cpp
 
     # Vendor sources
@@ -78,35 +81,94 @@ else()
     add_executable(retip ${RETIP_SOURCES})
 endif()
 
+if(RETIP_DEVELOPMENT_BUILD)
+    target_compile_definitions(retip PRIVATE DEBUG_BUILD)
+endif()
+
 rexglue_setup_target(retip)
+
+# The bundled GLFW (lib-vc2022) and zlib_x64-windows-static prebuilt libs are
+# x64-only. On ARM64 (e.g. windows-11-arm CI runner), build them from source.
+string(TOLOWER "${CMAKE_SYSTEM_PROCESSOR}" _retip_proc_lower)
+if(_retip_proc_lower MATCHES "arm64|aarch64")
+    set(RETIP_BUILD_DEPS_FROM_SOURCE ON)
+else()
+    set(RETIP_BUILD_DEPS_FROM_SOURCE OFF)
+endif()
 
 # Vendor include directories
 target_include_directories(retip PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/Vendors
     ${CMAKE_CURRENT_SOURCE_DIR}/Vendors/imgui
-    ${CMAKE_CURRENT_SOURCE_DIR}/Vendors/GLFW/include
     ${CMAKE_CURRENT_SOURCE_DIR}/Vendors/glad
     ${CMAKE_CURRENT_SOURCE_DIR}/Vendors/glm
     ${CMAKE_CURRENT_SOURCE_DIR}/Vendors/gli
     ${CMAKE_CURRENT_SOURCE_DIR}/Vendors/half
     ${CMAKE_CURRENT_SOURCE_DIR}/Vendors/KHR
     ${CMAKE_CURRENT_SOURCE_DIR}/Vendors/stb_image
-    ${CMAKE_CURRENT_SOURCE_DIR}/Vendors/zlib_x64-windows-static/include
-)
-
-# Vendor libraries
-target_link_directories(retip PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}/Vendors/GLFW/lib-vc2022
-    ${CMAKE_CURRENT_SOURCE_DIR}/Vendors/zlib_x64-windows-static/lib
 )
 
 target_compile_options(retip PRIVATE
     -Wno-missing-template-arg-list-after-template-kw
 )
 
+<<<<<<< main
 target_link_libraries(retip PRIVATE
     SDL3::SDL3
     glfw3.lib
     opengl32.lib
     zlib.lib
 )
+=======
+if(RETIP_BUILD_DEPS_FROM_SOURCE)
+    include(FetchContent)
+
+    # GLFW from source
+    set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+    set(GLFW_BUILD_TESTS    OFF CACHE BOOL "" FORCE)
+    set(GLFW_BUILD_DOCS     OFF CACHE BOOL "" FORCE)
+    set(GLFW_INSTALL        OFF CACHE BOOL "" FORCE)
+    FetchContent_Declare(
+        glfw
+        GIT_REPOSITORY https://github.com/glfw/glfw.git
+        GIT_TAG        3.4
+        GIT_SHALLOW    TRUE
+    )
+    FetchContent_MakeAvailable(glfw)
+
+    # zlib from source
+    FetchContent_Declare(
+        zlib
+        GIT_REPOSITORY https://github.com/madler/zlib.git
+        GIT_TAG        v1.3.1
+        GIT_SHALLOW    TRUE
+    )
+    FetchContent_MakeAvailable(zlib)
+    # zlib's CMake exposes the static target as `zlibstatic` and exports its
+    # public headers (including the generated zconf.h) on that target.
+    target_include_directories(retip PRIVATE
+        ${zlib_SOURCE_DIR}
+        ${zlib_BINARY_DIR}
+    )
+
+    target_link_libraries(retip PRIVATE
+        glfw
+        opengl32
+        zlibstatic
+    )
+else()
+    target_include_directories(retip PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/Vendors/GLFW/include
+        ${CMAKE_CURRENT_SOURCE_DIR}/Vendors/zlib_x64-windows-static/include
+    )
+    target_link_directories(retip PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/Vendors/GLFW/lib-vc2022
+        ${CMAKE_CURRENT_SOURCE_DIR}/Vendors/zlib_x64-windows-static/lib
+    )
+    target_link_libraries(retip PRIVATE
+        glfw3.lib
+        opengl32.lib
+        zlib.lib
+    )
+endif()
+>>>>>>> dev

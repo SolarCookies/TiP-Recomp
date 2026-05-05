@@ -367,7 +367,7 @@ bool SkipIntroVideosTwo_hook() {
   return REXCVAR_GET(SkipIntros);
 }
 
-#ifdef _DEBUG
+#ifdef DEBUG_BUILD
 // Hook for sub_826645F8 - DrawVerticesUP (non-indexed immediate vertex draw)
 // Captures vertex positions and forwards them to the VertexPreviewActor
 
