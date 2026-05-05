@@ -112,14 +112,7 @@ target_compile_options(retip PRIVATE
     -Wno-missing-template-arg-list-after-template-kw
 )
 
-<<<<<<< main
-target_link_libraries(retip PRIVATE
-    SDL3::SDL3
-    glfw3.lib
-    opengl32.lib
-    zlib.lib
-)
-=======
+
 if(RETIP_BUILD_DEPS_FROM_SOURCE)
     include(FetchContent)
 
@@ -152,6 +145,7 @@ if(RETIP_BUILD_DEPS_FROM_SOURCE)
     )
 
     target_link_libraries(retip PRIVATE
+        SDL3::SDL3
         glfw
         opengl32
         zlibstatic
@@ -166,9 +160,9 @@ else()
         ${CMAKE_CURRENT_SOURCE_DIR}/Vendors/zlib_x64-windows-static/lib
     )
     target_link_libraries(retip PRIVATE
+        SDL3::SDL3
         glfw3.lib
         opengl32.lib
         zlib.lib
     )
 endif()
->>>>>>> dev
