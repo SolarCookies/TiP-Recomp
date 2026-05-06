@@ -22,12 +22,12 @@ static constexpr float kHeaderHeight = 38.0f;
 static constexpr float kWarningHeight = 18.0f;
 
 static bool IsAltUnlockHeld(const ImGuiIO& io) {
-    if (io.KeyAlt || ImGui::IsKeyDown(ImGuiKey_LeftAlt) || ImGui::IsKeyDown(ImGuiKey_RightAlt)) {
-        return true;
-    }
 #ifdef _WIN32
     return (GetAsyncKeyState(VK_MENU) & 0x8000) != 0;
 #else
+    if (io.KeyAlt || ImGui::IsKeyDown(ImGuiKey_LeftAlt) || ImGui::IsKeyDown(ImGuiKey_RightAlt)) {
+        return true;
+    }
     return false;
 #endif
 }

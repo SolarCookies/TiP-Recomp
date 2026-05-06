@@ -46,6 +46,7 @@ inline rex::input::InputSystem* g_input_system = nullptr;
 // Set while host UI owns input, such as TiPTools or Alt-unlocked cursor mode.
 inline bool g_LockGameInput = false;
 inline bool g_RetipInputUiMode = false;
+inline bool g_InRomanceMinigame = false;
 
 inline bool IsRetipGameInputActive() {
     if (g_LockGameInput) {
@@ -73,6 +74,27 @@ inline void SetRetipInputUiMode(bool ui_mode) {
     g_input_system->SetInputMode(ui_mode ? rex::input::InputMode::kUIOnly
                                          : rex::input::InputMode::kGame);
     g_input_system->SetShowMouseCursor(ui_mode);
+}
+
+inline void FlushRetipMouseInput() {
+    if (g_raw_mouse) {
+        g_raw_mouse->ConsumeDelta();
+        g_raw_mouse->ConsumeWheel();
+    }
+
+    if (g_mouse_listener) {
+        g_mouse_listener->ConsumeDelta();
+        g_mouse_listener->ConsumeWheel();
+    }
+}
+
+inline void SetRetipRomanceMinigame(bool active) {
+    if (g_InRomanceMinigame == active) {
+        return;
+    }
+
+    g_InRomanceMinigame = active;
+    FlushRetipMouseInput();
 }
 
 inline uint32_t scene = 0;
