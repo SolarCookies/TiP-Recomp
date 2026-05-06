@@ -233,15 +233,16 @@ void vsync_hook(PPCRegister& r10) {
 
 inline bool VSyncBefore;
 inline bool lockFPSBefore;
-inline bool InRomanceMinigame = false;
+inline bool SavedRomanceVideoState = false;
 
 void InRomanceMinigame_hook(){
   Log(LogLevel::Info, "In Romance Minigame Hook Hit");
-  if(!InRomanceMinigame) {
+  if(!g_InRomanceMinigame) {
     VSyncBefore = REXCVAR_GET(vsync);
     lockFPSBefore = REXCVAR_GET(lock_fps);
+    SavedRomanceVideoState = true;
   }
-  InRomanceMinigame = true;
+  SetRetipRomanceMinigame(true);
   REXCVAR_SET(vsync, true);
   REXCVAR_SET(lock_fps, true);
   Log(LogLevel::Info, "In Romance Minigame Hook Finished");
@@ -249,9 +250,12 @@ void InRomanceMinigame_hook(){
 
 void NotInRomanceMinigame_hook(){
   Log(LogLevel::Info, "Not In Romance Minigame Hook Hit");
-  REXCVAR_SET(vsync, VSyncBefore);
-  REXCVAR_SET(lock_fps, lockFPSBefore);
-  InRomanceMinigame = false;
+  if(g_InRomanceMinigame && SavedRomanceVideoState) {
+    REXCVAR_SET(vsync, VSyncBefore);
+    REXCVAR_SET(lock_fps, lockFPSBefore);
+  }
+  SavedRomanceVideoState = false;
+  SetRetipRomanceMinigame(false);
   Log(LogLevel::Info, "Not In Romance Minigame Hook Finished");
 }
 
