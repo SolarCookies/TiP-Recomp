@@ -6,6 +6,7 @@
 #pragma once
 
 #include <memory>
+#include <rex/filesystem.h>
 #include <rex/rex_app.h>
 #include "generated/retip_init.h"
 #include "tip_engine/hooks.h"
@@ -198,7 +199,8 @@ class RetipApp : public rex::ReXApp {
         fpsDialog->fpsManager = &fpsManager;
         drawer->AddDialog(fpsDialog);
 
-        auto tipToolsDialog = new TipToolsDialog(drawer);
+        auto tipToolsDialog = new TipToolsDialog(
+            drawer, rex::filesystem::GetExecutableFolder() / (std::string(GetName()) + ".toml"));
         drawer->AddDialog(tipToolsDialog);
         
         tipToolsDialog->pages.push_back(std::make_unique<PlayerMenuPage>());

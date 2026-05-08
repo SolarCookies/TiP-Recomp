@@ -3,6 +3,7 @@
 #include "SmartStyles.h"
 #include "TiPWidgets.h"
 #include "tip_engine/Globals.h"
+#include <rex/cvar.h>
 
 #ifdef _WIN32
 #ifndef NOMINMAX
@@ -20,6 +21,7 @@ static constexpr float kMenuPadding = 2.0f;
 static constexpr float kItemHeight = 32.0f;
 static constexpr float kHeaderHeight = 38.0f;
 static constexpr float kWarningHeight = 18.0f;
+static constexpr float kSaveFeedbackTime = 2.0f;
 
 static bool IsAltUnlockHeld(const ImGuiIO& io) {
 #ifdef _WIN32
@@ -32,6 +34,11 @@ static bool IsAltUnlockHeld(const ImGuiIO& io) {
 #endif
 }
 
+void TipToolsDialog::SaveSettings() {
+    rex::cvar::SaveConfig(configPath_);
+    lastSaveTime = (float)ImGui::GetTime();
+}
+
 void TipToolsDialog::HandleInput() {
     // When a sub-page is open, don't poll — the sub-page handles its own input.
     // The sub-page sets wantsClose=true when the user presses B at the top level.
@@ -40,16 +47,23 @@ void TipToolsDialog::HandleInput() {
     auto input = TiPWidgets::PollInput(lastInputTime, 0.18f);
 
     int pageCount = static_cast<int>(pages.size());
-    if (pageCount == 0) return;
+    int itemCount = pageCount + 1;
+    if (itemCount <= 0) return;
+    if (highlightedIndex >= itemCount) highlightedIndex = itemCount - 1;
 
     // Accelerated up/down navigation
     int vertDir = TiPWidgets::GetHeldDir(SDL_GAMEPAD_BUTTON_DPAD_UP, SDL_GAMEPAD_BUTTON_DPAD_DOWN,
                                           ImGuiKey_UpArrow, ImGuiKey_DownArrow);
     int vertDelta = TiPWidgets::AccelTick(vertAccel, vertDir, 15.0f, 1.0f);
     if (vertDelta != 0) {
-        highlightedIndex = ((highlightedIndex + vertDelta) % pageCount + pageCount) % pageCount;
+        highlightedIndex = ((highlightedIndex + vertDelta) % itemCount + itemCount) % itemCount;
     }
     if (input.confirm) {
+        if (highlightedIndex == pageCount) {
+            SaveSettings();
+            TiPWidgets::SetInputCooldown(0.25f);
+            return;
+        }
         selectedPage = highlightedIndex;
         pages[selectedPage]->OnOpen();
         TiPWidgets::SetInputCooldown(0.25f);
@@ -68,7 +82,7 @@ void TipToolsDialog::DrawMenu() {
         ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoNav;
 
     // Calculate total window height: header + items (no extra padding since WindowPadding is 0 for the item area)
-    float totalHeight = kHeaderHeight + kWarningHeight + (kItemHeight * pages.size());
+    float totalHeight = kHeaderHeight + kWarningHeight + (kItemHeight * (pages.size() + 1));
     ImGui::SetNextWindowSize(ImVec2(kMenuWidth, totalHeight), ImGuiCond_Always);
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
     ImGui::Begin("TiP Tools###TiPMainMenu", nullptr, menuFlags);
@@ -160,6 +174,21 @@ void TipToolsDialog::DrawMenu() {
             highlightedIndex = static_cast<int>(i);
             ImGui::SetTooltip("%s", pages[i]->description.c_str());
         }
+    }
+
+    int saveIndex = static_cast<int>(pages.size());
+    bool saveHighlighted = (highlightedIndex == saveIndex && selectedPage < 0);
+    bool savedRecently = lastSaveTime >= 0.0f &&
+        ((float)ImGui::GetTime() - lastSaveTime) < kSaveFeedbackTime;
+    const char* saveLabel = savedRecently ? "Saved TiPTools Settings" : "Save TiPTools Settings";
+    if (TiPWidgets::ListButton(saveLabel, saveHighlighted, false, kMenuWidth, kItemHeight, false)) {
+        highlightedIndex = saveIndex;
+        SaveSettings();
+    }
+
+    if (ImGui::IsItemHovered()) {
+        highlightedIndex = saveIndex;
+        ImGui::SetTooltip("Save modified settings to %s", configPath_.filename().string().c_str());
     }
 
     TiPWidgets::PopListStyle();
