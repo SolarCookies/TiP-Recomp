@@ -1,4 +1,6 @@
 #pragma once
+#include <filesystem>
+#include <utility>
 #include <string>
 #include <rex/ui/imgui_dialog.h>
 #include <rex/ui/keybinds.h>
@@ -23,8 +25,8 @@ public:
 class TipToolsDialog : public rex::ui::ImGuiDialog {
 public:
     bool visible_ = false;
-    explicit TipToolsDialog(rex::ui::ImGuiDrawer* drawer)
-        : rex::ui::ImGuiDialog(drawer) {
+    explicit TipToolsDialog(rex::ui::ImGuiDrawer* drawer, std::filesystem::path configPath)
+        : rex::ui::ImGuiDialog(drawer), configPath_(std::move(configPath)) {
             rex::ui::RegisterBind("bind_tool_overlay", "F1", "Toggle Tools overlay", [this] {
             visible_ = !visible_;
             });
@@ -35,6 +37,7 @@ public:
 
     void DrawMenu();
     void HandleInput();
+    void SaveSettings();
 
     void OnDraw(ImGuiIO& io) override;
 
@@ -43,4 +46,6 @@ public:
     int highlightedIndex = 0; // Currently focused item (controller/keyboard)
     float lastInputTime = 0.0f; // Input debounce timer
     TiPWidgets::AccelState vertAccel;
+    std::filesystem::path configPath_;
+    float lastSaveTime = -1.0f;
 };

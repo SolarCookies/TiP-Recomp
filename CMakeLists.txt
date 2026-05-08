@@ -57,6 +57,7 @@ set(RETIP_SOURCES
     src/tip_engine/Overlays/TiPTools/SettingsMenu.cpp
     src/tip_engine/Overlays/TiPTools/PinataMenu.cpp
     src/tip_engine/Overlays/TiPTools/PlantMenu.cpp
+    src/tip_engine/Overlays/TiPTools/ShovelMenu.cpp
     src/tip_engine/Overlays/TiPTools/RuffianMenu.cpp
     src/tip_engine/Overlays/TiPTools/SpawnMenu.cpp
     src/tip_engine/SleepHooks.cpp

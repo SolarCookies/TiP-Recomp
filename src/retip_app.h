@@ -6,6 +6,7 @@
 #pragma once
 
 #include <memory>
+#include <rex/filesystem.h>
 #include <rex/rex_app.h>
 #include <rex/graphics/graphics_system.h>
 #include <rex/graphics/command_processor.h>
@@ -27,6 +28,7 @@
 #include "tip_engine/Overlays/TiPTools/SettingsMenu.h"
 #include "tip_engine/Overlays/TiPTools/PinataMenu.h"
 #include "tip_engine/Overlays/TiPTools/PlantMenu.h"
+#include "tip_engine/Overlays/TiPTools/ShovelMenu.h"
 #include "tip_engine/Overlays/TiPTools/RuffianMenu.h"
 #include "tip_engine/Overlays/StartupOverlay.h"
 #include "tip_engine/Input/TipMouseListener.h"
@@ -200,12 +202,14 @@ class RetipApp : public rex::ReXApp {
         fpsDialog->fpsManager = &fpsManager;
         drawer->AddDialog(fpsDialog);
 
-        auto tipToolsDialog = new TipToolsDialog(drawer);
+        auto tipToolsDialog = new TipToolsDialog(
+            drawer, rex::filesystem::GetExecutableFolder() / (std::string(GetName()) + ".toml"));
         drawer->AddDialog(tipToolsDialog);
         
         tipToolsDialog->pages.push_back(std::make_unique<PlayerMenuPage>());
         tipToolsDialog->pages.push_back(std::make_unique<PinataMenuPage>());
         tipToolsDialog->pages.push_back(std::make_unique<PlantMenuPage>());
+        tipToolsDialog->pages.push_back(std::make_unique<ShovelMenuPage>());
         tipToolsDialog->pages.push_back(std::make_unique<RuffianMenuPage>());
         tipToolsDialog->pages.push_back(std::make_unique<SpawnMenuPage>());
         //tipToolsDialog->pages.push_back(std::make_unique<GraphicsMenuPage>());
