@@ -32,9 +32,9 @@ int bifWatermeterSetLevel_822BEB40_Hook(int result, double a2) {
         Log(LogLevel::Info,
             "Water level overridden from " + std::to_string(a2) +
             " to optimal " + std::to_string(optimal));
-        return rex::GuestToHostFunction<int>(__imp__rex_bifWatermeterSetLevel_822BEB40, result, optimal);
+        return rex::ppc::GuestToHostFunction<int>(__imp__rex_bifWatermeterSetLevel_822BEB40, result, optimal);
     }
-    return rex::GuestToHostFunction<int>(__imp__rex_bifWatermeterSetLevel_822BEB40, result, a2);
+    return rex::ppc::GuestToHostFunction<int>(__imp__rex_bifWatermeterSetLevel_822BEB40, result, a2);
 };
 REX_PPC_HOOK(bifWatermeterSetLevel_822BEB40);
 

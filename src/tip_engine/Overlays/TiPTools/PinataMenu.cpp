@@ -14,7 +14,7 @@ int supportPinataActorIsOnSurfaceWithPreference_82558D28_Hook(int a1, int wanted
         return 0;
     } else {
         Log(LogLevel::Info, "Surface preferences for pinatas are enabled, performing normal check");
-        int result = rex::GuestToHostFunction<int>(__imp__rex_supportPinataActorIsOnSurfaceWithPreference_82558D28, a1, wantedPreference);
+        int result = rex::ppc::GuestToHostFunction<int>(__imp__rex_supportPinataActorIsOnSurfaceWithPreference_82558D28, a1, wantedPreference);
         Log(LogLevel::Info, "supportPinataActorIsOnSurfaceWithPreference Hook Finished");
         return result;
     }

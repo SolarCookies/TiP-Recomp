@@ -12,7 +12,7 @@ inline int playerMainPtr = 0;
 REX_PPC_EXTERN_IMPORT(player_playerMainUpdateHighestAndLowestCredits_8252EDA0);
 int player_playerMainUpdateHighestAndLowestCredits_8252EDA0_Hook(int playerMain) {
     Log(LogLevel::Info, "playerMainUpdateHighestAndLowestCredits Hook Hit");
-    int result = rex::GuestToHostFunction<int>(__imp__rex_player_playerMainUpdateHighestAndLowestCredits_8252EDA0, playerMain);
+    int result = rex::ppc::GuestToHostFunction<int>(__imp__rex_player_playerMainUpdateHighestAndLowestCredits_8252EDA0, playerMain);
 
     playerMainPtr = playerMain;
 

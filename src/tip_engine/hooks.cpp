@@ -77,9 +77,9 @@ float * camMainGetPos_821F07E0_Hook(float *result){
     // *(float *)(virtCam + 8) = result[0];
     // *(float *)(virtCam + 12) = result[1];
     // *(float *)(virtCam + 16) = result[2];
-    return rex ::GuestToHostFunction<float *>(__imp__rex_camMainGetPos_821F07E0, result);
+    return rex::ppc::GuestToHostFunction<float *>(__imp__rex_camMainGetPos_821F07E0, result);
   }
-  return rex ::GuestToHostFunction<float *>(__imp__rex_camMainGetPos_821F07E0, result);
+  return rex::ppc::GuestToHostFunction<float *>(__imp__rex_camMainGetPos_821F07E0, result);
 }
 REX_PPC_HOOK(camMainGetPos_821F07E0);
 */
@@ -357,7 +357,7 @@ PPC_EXTERN_FUNC(rex_gardenMainGetGardenScene_824E1120) {
 #ifdef DEBUG_BUILD
 REX_PPC_EXTERN_IMPORT(entityBodyPinataAnimalSetIsWildcard_82383538);
 int entityBodyPinataAnimalSetIsWildcard_82383538_Hook(int a1, int a2) {
-    return rex::GuestToHostFunction<int>(__imp__rex_entityBodyPinataAnimalSetIsWildcard_82383538, a1, a2);
+    return rex::ppc::GuestToHostFunction<int>(__imp__rex_entityBodyPinataAnimalSetIsWildcard_82383538, a1, a2);
 };
 REX_PPC_HOOK(entityBodyPinataAnimalSetIsWildcard_82383538);
 
@@ -372,7 +372,7 @@ int spawn_egg_82334638_Hook(int a1, int a2, int a3) {
   //isWildcardPtr[0] = std::byteswap(1); // Force wildcard
   //isWildcardPtr[1] = std::byteswap(1); // Force wildcard ID
 
-  int result = rex::GuestToHostFunction<int>(__imp__rex_spawn_egg_82334638, a1, a2, a3);
+  int result = rex::ppc::GuestToHostFunction<int>(__imp__rex_spawn_egg_82334638, a1, a2, a3);
 
   return result;
 };
@@ -389,7 +389,7 @@ int objMsgInit_82250578_Hook(int msg, int id) {
     return 0;
   }
   Log(LogLevel::Info, "objMsgInit Hook Finished");
-  return rex::GuestToHostFunction<int>(__imp__rex_objMsgInit_82250578, msg, id);
+  return rex::ppc::GuestToHostFunction<int>(__imp__rex_objMsgInit_82250578, msg, id);
 };
 REX_PPC_HOOK(objMsgInit_82250578);
 

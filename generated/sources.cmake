@@ -6,8 +6,8 @@
 #   target_compile_options(your_target PRIVATE $<$<CXX_COMPILER_ID:MSVC>:/EHa>)
 #
 set(GENERATED_SOURCES
-    ${CMAKE_CURRENT_LIST_DIR}/retip_config.cpp
     ${CMAKE_CURRENT_LIST_DIR}/retip_init.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/retip_register.cpp
     ${CMAKE_CURRENT_LIST_DIR}/retip_recomp.0.cpp
     ${CMAKE_CURRENT_LIST_DIR}/retip_recomp.1.cpp
     ${CMAKE_CURRENT_LIST_DIR}/retip_recomp.2.cpp
@@ -91,5 +91,4 @@ set(GENERATED_SOURCES
     ${CMAKE_CURRENT_LIST_DIR}/retip_recomp.80.cpp
     ${CMAKE_CURRENT_LIST_DIR}/retip_recomp.81.cpp
     ${CMAKE_CURRENT_LIST_DIR}/retip_recomp.82.cpp
-    ${CMAKE_CURRENT_LIST_DIR}/retip_recomp.83.cpp
 )

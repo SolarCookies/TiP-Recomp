@@ -40,7 +40,7 @@ int meCursorCamCalculateYaw_822C1B18_Hook(int camera, int controls) {
     float* YawPtr = reinterpret_cast<float*>(0x100000000ull + camera + 40);
     float yawBefore = to_byteswapped_float(*YawPtr);
 
-    int result = rex::GuestToHostFunction<int>(__imp__rex_meCursorCamCalculateYaw_822C1B18, camera, controls);
+    int result = rex::ppc::GuestToHostFunction<int>(__imp__rex_meCursorCamCalculateYaw_822C1B18, camera, controls);
     Log(LogLevel::Info, "Called original yaw calculation");
 
     int32_t dx = 0;
@@ -81,7 +81,7 @@ int meCursorCamCalculatePitch_822C1C00_Hook(int camera, int controls) {
     float* PitchPtr = reinterpret_cast<float*>(0x100000000ull + camera + 32);
     float pitchBefore = to_byteswapped_float(*PitchPtr);
 
-    int result = rex::GuestToHostFunction<int>(__imp__rex_meCursorCamCalculatePitch_822C1C00, camera, controls);
+    int result = rex::ppc::GuestToHostFunction<int>(__imp__rex_meCursorCamCalculatePitch_822C1C00, camera, controls);
 
     int32_t dy = 0;
     if (g_raw_mouse) dy = g_raw_mouse->ConsumeDy();
@@ -120,7 +120,7 @@ int cursorCameraTick_822C1E88_Hook(int camera, int controls, int pos, int rot) {
     if (rot) {
         playerRot = rot;
     }
-    return rex::GuestToHostFunction<int>(__imp__rex_cursorCameraTick_822C1E88, camera, controls, pos, rot);
+    return rex::ppc::GuestToHostFunction<int>(__imp__rex_cursorCameraTick_822C1E88, camera, controls, pos, rot);
 }
 REX_PPC_HOOK(cursorCameraTick_822C1E88)
 
@@ -129,7 +129,7 @@ REX_PPC_EXTERN_IMPORT(meCursorCamCalculateZoom_822C1CE0);
 void meCursorCamCalculateZoom_822C1CE0_Hook(int camera, int controls) {
     Log(LogLevel::Info, "Zoom Hook Hit");
 
-    rex::GuestToHostFunction<int>(__imp__rex_meCursorCamCalculateZoom_822C1CE0, camera, controls);
+    rex::ppc::GuestToHostFunction<int>(__imp__rex_meCursorCamCalculateZoom_822C1CE0, camera, controls);
     Log(LogLevel::Info, "Called original zoom calculation");
     
 

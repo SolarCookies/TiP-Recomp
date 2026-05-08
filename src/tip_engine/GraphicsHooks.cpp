@@ -87,7 +87,7 @@ int render_D3DDevice_BeginIndexedVertices_82664640_Hook(
     uint32_t a27,
     uint32_t a28)
 {
-    int result = rex::GuestToHostFunction<int>(
+    int result = rex::ppc::GuestToHostFunction<int>(
         __imp__rex_render_D3DDevice_BeginIndexedVertices_82664640, pDevice, PrimitiveType, BaseVertexIndex, NumVertices,
         IndexCount, IndexDataFormat, VertexStreamZeroStride, ppIndexDataint, ppVertexData, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28);
 
@@ -147,7 +147,7 @@ void render_D3DDevice_DrawIndexedVertices_82664FF0_Hook(
   int a27,
   int a28)
   {
-    rex::GuestToHostFunction<void>(
+    rex::ppc::GuestToHostFunction<void>(
         __imp__rex_render_D3DDevice_DrawIndexedVertices_82664FF0, pDevice, PrimitiveType, BaseVertexIndex, StartIndex,
         IndexCount, IndexDataFormat, VertexStreamZeroStride, ppIndexData, ppVertexData, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28);
 
@@ -270,7 +270,7 @@ void supportFrustumConstructClippingFrustum_8228BE08_Hook(double a1,double a2,do
     if(REXCVAR_GET(UseAspectRatioFromConfig)) {
       a2 = customAR;
     }
-    rex::GuestToHostFunction<void>(__imp__rex_supportFrustumConstructClippingFrustum_8228BE08, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10);
+    rex::ppc::GuestToHostFunction<void>(__imp__rex_supportFrustumConstructClippingFrustum_8228BE08, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10);
     Log(LogLevel::Info, "supportFrustumConstructClippingFrustum Hook Finished");
 }
 REX_PPC_HOOK(supportFrustumConstructClippingFrustum_8228BE08);
@@ -293,7 +293,7 @@ void mlMtxPerspective_82247408_Hook(float* outMtx, float fov, float aspectRatio,
     if(REXCVAR_GET(UseAspectRatioFromConfig)) {
       customAR = static_cast<float>(REXCVAR_GET(AspectRatio));
     }
-    rex::GuestToHostFunction<void>(__imp__rex_mlMtxPerspective_82247408, outMtx, fov, customAR, nearZ, farZ);
+    rex::ppc::GuestToHostFunction<void>(__imp__rex_mlMtxPerspective_82247408, outMtx, fov, customAR, nearZ, farZ);
     Log(LogLevel::Info, "mlMtxPerspective Hook Finished");
 }
 REX_PPC_HOOK(mlMtxPerspective_82247408);
@@ -302,7 +302,7 @@ REX_PPC_HOOK(mlMtxPerspective_82247408);
 REX_PPC_EXTERN_IMPORT(meUpdateOutputViewport_821F0F30);
 int meUpdateOutputViewport_821F0F30_Hook() {
     Log(LogLevel::Info, "meUpdateOutputViewport Hook Hit");
-    int result = rex::GuestToHostFunction<int>(__imp__rex_meUpdateOutputViewport_821F0F30);
+    int result = rex::ppc::GuestToHostFunction<int>(__imp__rex_meUpdateOutputViewport_821F0F30);
     if(REXCVAR_GET(UseAspectRatioFromConfig)) {
         Log(LogLevel::Info, "Updating Aspect Ratio in meUpdateOutputViewport");
         float customAR = static_cast<float>(REXCVAR_GET(AspectRatio));
@@ -380,7 +380,7 @@ uint32_t render_D3DDevice_DrawVerticesUP_826645F8_Hook(
     uint32_t VertexStreamZeroStride)
 {
     // Call the original function first - always forward regardless of preview state
-    uint32_t result = rex::GuestToHostFunction<uint32_t>(
+    uint32_t result = rex::ppc::GuestToHostFunction<uint32_t>(
         __imp__rex_render_D3DDevice_DrawVerticesUP_826645F8,
         pDevice, PrimitiveType, VertexCount, pVertexData, VertexStreamZeroStride);
 
@@ -434,7 +434,7 @@ int ui_Xui_XuiDevice_DrawPrimitiveUP_826EC800_Hook(
     uint32_t a4,      // pVertexData (guest ptr)
     uint32_t a5)      // VertexStride
 {
-    int result = rex::GuestToHostFunction<int>(
+    int result = rex::ppc::GuestToHostFunction<int>(
         __imp__rex_ui_Xui_XuiDevice_DrawPrimitiveUP_826EC800,
         a1, a2, a3, a4, a5);
 
@@ -548,7 +548,7 @@ uint32_t render_DrawColoredQuad_82202EE0_Hook(
     uint32_t a5,
     uint32_t a6)
 {
-    uint32_t result = rex::GuestToHostFunction<uint32_t>(
+    uint32_t result = rex::ppc::GuestToHostFunction<uint32_t>(
         __imp__rex_render_DrawColoredQuad_82202EE0,
         a1, a2, a3, a4, a5, a6);
 
@@ -596,7 +596,7 @@ uint32_t render_DrawQuad2D_822015D8_Hook(
     uint32_t a4,
     uint32_t a5)
 {
-    uint32_t result = rex::GuestToHostFunction<uint32_t>(
+    uint32_t result = rex::ppc::GuestToHostFunction<uint32_t>(
         __imp__rex_render_DrawQuad2D_822015D8,
         a1, a2, a3, a4, a5);
 
@@ -645,7 +645,7 @@ uint32_t render_DrawTexturedQuad_82204AA0_Hook(
     double a7,
     double a8)
 {
-    uint32_t result = rex::GuestToHostFunction<uint32_t>(
+    uint32_t result = rex::ppc::GuestToHostFunction<uint32_t>(
         __imp__rex_render_DrawTexturedQuad_82204AA0,
         a1, a2, a3, a4, a5, a6, a7, a8);
 

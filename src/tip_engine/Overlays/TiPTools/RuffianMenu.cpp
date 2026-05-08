@@ -14,7 +14,7 @@ int meCreateRuffianActor_823F89E0_Hook(int ruffiansWS, int ruffianNode) {
         Log(LogLevel::Info, "Ruffian spawn blocked");
         return 0;
     }
-    int result = rex::GuestToHostFunction<int>(__imp__rex_meCreateRuffianActor_823F89E0, ruffiansWS, ruffianNode);
+    int result = rex::ppc::GuestToHostFunction<int>(__imp__rex_meCreateRuffianActor_823F89E0, ruffiansWS, ruffianNode);
     Log(LogLevel::Info, "meCreateRuffianActor Hook Finished");
     return result;
 };

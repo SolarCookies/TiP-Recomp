@@ -15,10 +15,10 @@
 	PPC_EXTERN_IMPORT(__imp__rex_##function)
 
 #define REX_PPC_INVOKE(function, ...) \
-	rex::GuestToHostFunction<function_return_t<decltype(function)>>(__imp__rex_##function, __VA_ARGS__)
+	rex::ppc::GuestToHostFunction<function_return_t<decltype(function)>>(__imp__rex_##function, __VA_ARGS__)
 
 #define REX_PPC_INVOKE2(return_type, function, ...) \
-	rex::GuestToHostFunction<return_type>(__imp__rex_##function, __VA_ARGS__)
+	rex::ppc::GuestToHostFunction<return_type>(__imp__rex_##function, __VA_ARGS__)
 
 #define REX_PPC_HOOK(function) \
     PPC_HOOK(rex_##function, function##_Hook)

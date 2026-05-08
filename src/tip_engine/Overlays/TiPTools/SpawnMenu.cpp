@@ -178,7 +178,7 @@ void SpawnPinata(){
 
   if (scene == 0) return;
 
-  int item = rex::GuestToHostFunction<int>(__imp__rex_spawn_supportPinataCreateGeneralEx_82575C30,scene, 0, 0, tagID, 0, wildcard, spawnScale, 1.0);
+  int item = rex::ppc::GuestToHostFunction<int>(__imp__rex_spawn_supportPinataCreateGeneralEx_82575C30,scene, 0, 0, tagID, 0, wildcard, spawnScale, 1.0);
 }
 
 PPC_EXTERN_IMPORT(__imp__rex_spawn_supportPinataCreateGeneral_82575AB8);
@@ -201,7 +201,7 @@ int spawn_supportPinataCreateGeneralEx_82575C30_Hook(int a1, int a2, int a3, int
     //snprintf(callerHex, sizeof(callerHex), "0x%08X", callerAddr);
 
 
-    int item = rex::GuestToHostFunction<int>(__imp__rex_spawn_supportPinataCreateGeneralEx_82575C30, a1, a2, a3, a4, spawnScale, a6, tagID, a8, a9, a10, a11, a12, a13, a14, a15);
+    int item = rex::ppc::GuestToHostFunction<int>(__imp__rex_spawn_supportPinataCreateGeneralEx_82575C30, a1, a2, a3, a4, spawnScale, a6, tagID, a8, a9, a10, a11, a12, a13, a14, a15);
     Log(LogLevel::Info, "spawn_supportPinataCreateGeneralEx called original function");
     
     std::string tagName = "Unknown";

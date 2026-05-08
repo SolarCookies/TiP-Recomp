@@ -15,7 +15,7 @@ else()
     if(REXSDK_VERSION)
         find_package(rexglue ${REXSDK_VERSION} EXACT QUIET CONFIG)
     else()
-        find_package(rexglue 0.7.4 QUIET CONFIG)
+        find_package(rexglue 0.7.7.45 QUIET CONFIG)
     endif()
     if(NOT rexglue_FOUND)
         message(FATAL_ERROR
@@ -25,20 +25,27 @@ else()
     endif()
 endif()
 
-# Include generated code if codegen has been run
-if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/generated/sources.cmake")
+# Include entrypoint generated code if codegen has been run.
+# Falls back to the legacy generated/ root for projects not yet re-codegenned.
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/generated/default_xex/sources.cmake")
+    include(generated/default_xex/sources.cmake)
+    set(REXGLUE_ENTRYPOINT_GENERATED_SOURCES ${GENERATED_SOURCES})
+    set(REXGLUE_ENTRYPOINT_INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/generated/default_xex")
+elseif(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/generated/sources.cmake")
     include(generated/sources.cmake)
+    set(REXGLUE_ENTRYPOINT_GENERATED_SOURCES ${GENERATED_SOURCES})
+    set(REXGLUE_ENTRYPOINT_INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/generated")
 endif()
 
 # Configure a rexglue target with SDK libraries and platform settings.
 # Call after add_executable() in your CMakeLists.txt.
 # Usage: rexglue_setup_target(<target>)
 macro(rexglue_setup_target target_name)
-    target_sources(${target_name} PRIVATE ${GENERATED_SOURCES})
+    target_sources(${target_name} PRIVATE ${REXGLUE_ENTRYPOINT_GENERATED_SOURCES})
     target_include_directories(${target_name} PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}
         ${CMAKE_CURRENT_SOURCE_DIR}/src
-        ${CMAKE_CURRENT_SOURCE_DIR}/generated
+        ${REXGLUE_ENTRYPOINT_INCLUDE_DIR}
     )
     target_link_libraries(${target_name} PRIVATE
         rex::core
@@ -50,9 +57,15 @@ macro(rexglue_setup_target target_name)
     rexglue_configure_target(${target_name})
 endmacro()
 
+# Include DLL module shared library targets if codegen has generated them
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/generated/default_xex/dll_targets.cmake")
+    include(generated/default_xex/dll_targets.cmake)
+endif()
+
 # Codegen target - run 'cmake --build . --target retip_codegen'
+# Uses the manifest to drive codegen for all modules (entrypoint + DLLs).
 add_custom_target(retip_codegen
-    COMMAND $<TARGET_FILE:rex::rexglue> codegen ${CMAKE_CURRENT_SOURCE_DIR}/retip_config.toml
+    COMMAND $<TARGET_FILE:rex::rexglue> codegen ${CMAKE_CURRENT_SOURCE_DIR}/retip_manifest.toml
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
     COMMENT "Generating recompiled code for retip"
     VERBATIM
