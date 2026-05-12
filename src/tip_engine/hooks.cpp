@@ -38,80 +38,10 @@ REXCVAR_DEFINE_BOOL(show_fps, false, "_Trouble in Paradise", "Show FPS Overlay")
 REXCVAR_DEFINE_BOOL(DisableFur, false, "_Trouble in Paradise", "Disables Fur Rendering");
 REXCVAR_DEFINE_BOOL(DiscordActivity, false, "_Trouble in Paradise", "Discord Activity");
 
-/*
-REX_PPC_EXTERN_IMPORT(camMainGetPos_821F07E0);
-
-float * camMainGetPos_821F07E0_Hook(float *result){
-  if(REXCVAR_GET(Freecam)) {
-    result[0] = to_byteswapped_float(static_cast<float>(REXCVAR_GET(Freecam_X)));
-    result[1] = to_byteswapped_float(static_cast<float>(REXCVAR_GET(Freecam_Y)));
-    result[2] = to_byteswapped_float(static_cast<float>(REXCVAR_GET(Freecam_Z)));
-
-    //.data:82C34E98 Me_36.virtCam
-    camVirt_s* virtCam = reinterpret_cast<camVirt_s*>(0x100000000ull + 0x82C34E98);
-    virtCam->pos.x = result[0];
-    virtCam->pos.y = result[1];
-    virtCam->pos.z = result[2];
-
-    camMainWorkspace_s* workspace = reinterpret_cast<camMainWorkspace_s*>(0x100000000ull + 0x82C34D48);
-
-    if(REXCVAR_GET(Custom_Viewport)) {
-      workspace->FullScreenViewport.X = std::byteswap(static_cast<uint32_t>(REXCVAR_GET(Viewport_X)));
-      workspace->FullScreenViewport.Y = std::byteswap(static_cast<uint32_t>(REXCVAR_GET(Viewport_Y)));
-      workspace->FullScreenViewport.Width = std::byteswap(static_cast<uint32_t>(REXCVAR_GET(Viewport_Width)));
-      workspace->FullScreenViewport.Height = std::byteswap(static_cast<uint32_t>(REXCVAR_GET(Viewport_Height)));
-      workspace->outputViewportIsDirty = 1;
-    }
-
-    //DebugLogInt32("CamPtr", uint32_t(workspace->virtCam));
-    //camVirt_s* virtCam1 = reinterpret_cast<camVirt_s*>(0x100000000ull + workspace->virtCam);
-    //DebugLogFloat("CamPosX", to_byteswapped_float(virtCam1->pos.x));
-    //DebugLogFloat("CamPosY", to_byteswapped_float(virtCam1->pos.y));
-    //DebugLogFloat("CamPosZ", to_byteswapped_float(virtCam1->pos.z));
-
-
-    return result;
-  }else{
-    //.data:82C34E98 Me_36.virtCam
-    //camVirt_s* virtCam = reinterpret_cast<camVirt_s*>(0x100000000ull + 0x82C34E98);
-    // *(float *)(virtCam + 8) = result[0];
-    // *(float *)(virtCam + 12) = result[1];
-    // *(float *)(virtCam + 16) = result[2];
-    return rex ::GuestToHostFunction<float *>(__imp__rex_camMainGetPos_821F07E0, result);
-  }
-  return rex ::GuestToHostFunction<float *>(__imp__rex_camMainGetPos_821F07E0, result);
-}
-REX_PPC_HOOK(camMainGetPos_821F07E0);
-*/
-
 
 #include <rex/input/input_system.h>
 #include <rex/ui/virtual_key.h>
 #include "Globals.h"
-
-using rex::ui::VirtualKey;
-
-bool processEvents()
-{
-  /*
-  if (!g_raw_input) return false;
-
-    float deltaX = 0, deltaY = 0;
-    auto [dx, dy] = g_raw_input->GetMouseDelta();
-    deltaX += dx;
-    deltaY += dy;
-
-    DebugLogFloat("MouseDeltaX", deltaX);
-    DebugLogFloat("MouseDeltaY", deltaY);
-    //Debug flt_8215C724
-    float* flt_8215C724 = reinterpret_cast<float*>(0x100000000ull + 0x8215C724);
-    DebugLogFloat("flt_8215C724", to_byteswapped_float(*flt_8215C724));
-
-    */
-    return true;
-}
-
-bool hasmouseinput = false;
 
 
 static auto lastFrameTime = std::chrono::high_resolution_clock::now();
@@ -124,8 +54,6 @@ void CPU_fps_hook() {
 }
 
 void GPU_fps_hook() {
-  //auto fpshook = fpsManager.GetCreateCounter("GPU");
-  //fpshook->Tick();
   Log(LogLevel::Info, "GPU Hook Hit");
 
   scenegraphDrawStaticWorkspace_s* drawStaticWorkspace = reinterpret_cast<scenegraphDrawStaticWorkspace_s*>(0x100000000ull + 0x82BEBC78);
@@ -219,16 +147,11 @@ void GPU_fps_hook() {
 void vsync_hook(PPCRegister& r10) {
   Log(LogLevel::Info, "VSync Hook Hit");
   if(!REXCVAR_GET(lock_fps)) {
-    r10.u32 = 0; // Force vsync off
-    //REXCVAR_SET(vsync, false);
+    r10.u32 = 0;
   }else{
     REXCVAR_SET(vsync, true);
   }
   Log(LogLevel::Info, "VSync Hook Finished");
-  //d3d12_submit_on_primary_buffer_end
-  //REXCVAR_SET(d3d12_submit_on_primary_buffer_end, false);
-  //REXCVAR_SET(scribble_heap, true);
-  
 }
 
 inline bool VSyncBefore;
@@ -354,9 +277,7 @@ PPC_EXTERN_FUNC(rex_gardenMainGetGardenScene_824E1120) {
     }
     Log(LogLevel::Info, "Get Garden Scene Hook Finished");
 
-
 }
-
 
 #ifdef DEBUG_BUILD
 REX_PPC_EXTERN_IMPORT(entityBodyPinataAnimalSetIsWildcard_82383538);
@@ -364,7 +285,6 @@ int entityBodyPinataAnimalSetIsWildcard_82383538_Hook(int a1, int a2) {
     return rex::GuestToHostFunction<int>(__imp__rex_entityBodyPinataAnimalSetIsWildcard_82383538, a1, a2);
 };
 REX_PPC_HOOK(entityBodyPinataAnimalSetIsWildcard_82383538);
-
 
 //int __fastcall rex_spawn_egg_82334638(int a1, int a2, int a3)
 REX_PPC_EXTERN_IMPORT(spawn_egg_82334638);
@@ -398,3 +318,17 @@ int objMsgInit_82250578_Hook(int msg, int id) {
 REX_PPC_HOOK(objMsgInit_82250578);
 
 // disable_ruffians cvar and meCreateRuffianActor hook moved to Overlays/TiPTools/RuffianMenu.cpp
+
+REXCVAR_DEFINE_BOOL(IgnoreAllRequirements, false, "_Trouble in Paradise", "Ignore all requirements (for testing and fun)");
+
+//rex_requirementsMet_82537810
+PPC_EXTERN_IMPORT(__imp__rex_requirementsMet_82537810);
+PPC_EXTERN_FUNC(rex_requirementsMet_82537810) {
+    Log(LogLevel::Info, "requirementsMet Hook Hit");
+    if(REXCVAR_GET(IgnoreAllRequirements)) {
+        ctx.r3.s32 = 1;
+        return;
+    }
+    __imp__rex_requirementsMet_82537810(ctx, base);
+    Log(LogLevel::Info, "requirementsMet Hook Finished");
+};

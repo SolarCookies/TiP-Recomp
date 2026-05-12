@@ -8,7 +8,7 @@
 60caa57a8a53985e = { name = "BackgroundSprites_vs", disabled = false }
 6c4d7159da895b70 = { name = "Dirt_ps", disabled = false }
 6c8d5adf0cdd54bb = { name = "PlayerLight_ps", disabled = false }
-6e6f29256dee8039 = { name = "GroundIce_ps", disabled = false }
+6e6f29256dee8039 = { name = "GroundIce_ps", disabled = true }
 8a9ef0085a086623 = { name = "BackgroundProps_vs", disabled = false }
 8eb70647b4b1f276 = { name = "grass_vs", disabled = false }
 9c02c5e187b6c4ed = { name = "PesterFaceOnBarral_ps", disabled = false }
