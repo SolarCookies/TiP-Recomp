@@ -3281,8 +3281,8 @@ struct assetDbAsset_s
 
 struct assetManUnit_s // sizeof=0xA0
 {
-     assetId_s aid;
-     uint64_t hash64;
+     assetId_s* aid;
+     unsigned int hash64;
      assetDbAsset_s* dbAsset;
      int releaseOnTick;
      dsLinkedListNode_s dumpNode;

@@ -38,3 +38,5 @@
 0x822BEB40 = {name = "rex_bifWatermeterSetLevel_822BEB40"}
 0x823F89E0 = {name = "rex_meCreateRuffianActor_823F89E0"}
 0x82537810 = {name = "rex_requirementsMet_82537810"}
+0x821D1C10 = {name = "rex_assetManOpen_821D1C10"}
+0x821D2120 = {name = "rex_meLoadAsset_821D2120"}
