@@ -23,6 +23,7 @@
 #include <fstream>
 #include <mutex>
 #include <filesystem>
+#include <unordered_map>
 #include "tip_engine/Types/CommonTypes.h"
 #include <SDL3/SDL.h>
 #include <thread>
@@ -37,6 +38,7 @@ REXCVAR_DEFINE_BOOL(lock_fps, false, "_Trouble in Paradise", "Lock to 30 FPS");
 REXCVAR_DEFINE_BOOL(show_fps, false, "_Trouble in Paradise", "Show FPS Overlay");
 REXCVAR_DEFINE_BOOL(DisableFur, false, "_Trouble in Paradise", "Disables Fur Rendering");
 REXCVAR_DEFINE_BOOL(DiscordActivity, false, "_Trouble in Paradise", "Discord Activity");
+REXCVAR_DEFINE_BOOL(vdat_host_redirect, false, "_Trouble in Paradise", "Allow larger .vdat mods by redirecting virtualData to host memory (may crash)");
 
 
 #include <rex/input/input_system.h>
@@ -332,3 +334,148 @@ PPC_EXTERN_FUNC(rex_requirementsMet_82537810) {
     __imp__rex_requirementsMet_82537810(ctx, base);
     Log(LogLevel::Info, "requirementsMet Hook Finished");
 };
+
+
+//void rex_meLoadAsset_821D2120(int aid, int assetUnit, int ayncContext, int callback)
+/*
+
+//crashes when enabled.
+
+REX_PPC_EXTERN_IMPORT(meLoadAsset_821D2120);
+void meLoadAsset_821D2120_Hook(int aid, int assetUnit, int asyncContext, int callback) {
+    rex::GuestToHostFunction<void>(__imp__rex_meLoadAsset_821D2120, aid, assetUnit, asyncContext, callback);
+};
+REX_PPC_HOOK(meLoadAsset_821D2120);
+*/
+
+// assetManOpen hook — reimplements the function to expose both virtualData and virtualSize.
+// After a successful (non-null) call, g_lastOpenedAssetVirtualSize holds the asset's byte size.
+PPC_EXTERN_IMPORT(__imp__sub_821D1890);      // statsCommonGetStatsAidFromTag (sub_ name in generated code)
+PPC_EXTERN_IMPORT(__imp__rex_meLoadAsset_821D2120);
+PPC_EXTERN_IMPORT(__imp__sub_821C4C48);      // appErrorReportDirtyDisk (sub_ name in generated code)
+
+thread_local uint32_t g_lastOpenedAssetVirtualSize = 0;
+// Persistent storage for host-redirected mod buffers — must outlive every game asset access.
+static std::unordered_map<std::string, std::vector<uint8_t>> g_modBuffers;
+
+PPC_EXTERN_FUNC(rex_assetManOpen_821D1C10) {
+    const uint32_t aidGuestAddr = ctx.r3.u32;
+
+    // assetIdIsSet: text must start with "aid_"
+    if (memcmp(base + aidGuestAddr, "aid_", 4) != 0) {
+        ctx.r3.u32 = 0;
+        return;
+    }
+
+    // Allocate a guest stack frame large enough for:
+    //   sp+0x00  back chain
+    //   sp+0x50  Unit (uint32_t guest pointer)
+    //   sp+0x58  aid_1 (assetId_s, 128 bytes)
+    constexpr uint32_t kFrameSize = 0xE0;
+    const uint32_t savedSP = ctx.r1.u32;
+    ctx.r1.u32 -= kFrameSize;
+    const uint32_t unitPtrAddr = ctx.r1.u32 + 0x50;
+    const uint32_t aid1Addr    = ctx.r1.u32 + 0x58;
+
+    *reinterpret_cast<uint32_t*>(base + ctx.r1.u32) = std::byteswap(savedSP); // back chain
+    *reinterpret_cast<uint32_t*>(base + unitPtrAddr) = 0;                      // Unit = null
+
+    // statsCommonGetStatsAidFromTag(aid, &aid_1)
+    ctx.r3.u32 = aidGuestAddr;
+    ctx.r4.u32 = aid1Addr;
+    __imp__sub_821D1890(ctx, base);
+
+    // meLoadAsset(&aid_1, &Unit, 0, 0)
+    ctx.r3.u32 = aid1Addr;
+    ctx.r4.u32 = unitPtrAddr;
+    ctx.r5.u32 = 0;
+    ctx.r6.u32 = 0;
+    __imp__rex_meLoadAsset_821D2120(ctx, base);
+
+    const uint32_t unitGuestAddr = std::byteswap(
+        *reinterpret_cast<uint32_t*>(base + unitPtrAddr));
+
+    ctx.r1.u32 = savedSP; // restore stack
+
+    if (!unitGuestAddr) {
+        Log(LogLevel::Error, "assetManOpen: failed to find asset");
+        ctx.r3.u32 = 2;
+        __imp__sub_821C4C48(ctx, base);
+        ctx.r3.u32 = 0;
+        return;
+    }
+
+    // dbAsset is at offset 8: assetId_s* aid (4 bytes) + unsigned int hash64 (4 bytes)
+    const uint32_t dbAssetGuestAddr = std::byteswap(
+        *reinterpret_cast<uint32_t*>(base + unitGuestAddr + 8));
+
+    // virtualData at +0, virtualSize at +4
+    const uint32_t virtualData = std::byteswap(
+        *reinterpret_cast<uint32_t*>(base + dbAssetGuestAddr + 0));
+    const uint32_t virtualSize = std::byteswap(
+        *reinterpret_cast<uint32_t*>(base + dbAssetGuestAddr + 4));
+
+    g_lastOpenedAssetVirtualSize = virtualSize;
+
+    const char* aidText = reinterpret_cast<const char*>(base + aidGuestAddr);
+    Log(LogLevel::Error, std::string("assetManOpen: aid=") + aidText
+        + " virtualData=0x" + [](uint32_t v){ char buf[16]; snprintf(buf, sizeof(buf), "%08X", v); return std::string(buf); }(virtualData)
+        + " virtualSize=0x" + [](uint32_t v){ char buf[16]; snprintf(buf, sizeof(buf), "%08X", v); return std::string(buf); }(virtualSize)
+        + " (" + std::to_string(virtualSize) + " bytes)");
+
+    const std::string aidStr(aidText);
+    static const std::filesystem::path kDumpDir = "dumps/data";
+    static const std::filesystem::path kModsDir = "mods/data";
+    static std::once_flag s_dumpDirCreated;
+    std::call_once(s_dumpDirCreated, []{ std::filesystem::create_directories("dumps/data"); });
+
+    // --- Dump (write once; skip if file already exists) ---
+    const std::filesystem::path dumpPath = kDumpDir / (aidStr + ".vdat");
+    if (!std::filesystem::exists(dumpPath)) {
+        if (std::ofstream ofs(dumpPath, std::ios::binary); ofs) {
+            ofs.write(reinterpret_cast<const char*>(base + virtualData), virtualSize);
+        }
+    }
+
+    // --- Mod injection ---
+    uint32_t outVirtualData = virtualData;
+    const std::filesystem::path modPath = kModsDir / (aidStr + ".vdat");
+    if (std::filesystem::exists(modPath)) {
+        const auto modFileSize = static_cast<uint32_t>(std::filesystem::file_size(modPath));
+        if (modFileSize <= virtualSize) {
+            // In-place: overwrite guest buffer and shrink virtualSize in guest dbAsset
+            if (std::ifstream ifs(modPath, std::ios::binary); ifs) {
+                ifs.read(reinterpret_cast<char*>(base + virtualData), modFileSize);
+                *reinterpret_cast<uint32_t*>(base + dbAssetGuestAddr + 4) = std::byteswap(modFileSize);
+                g_lastOpenedAssetVirtualSize = modFileSize;
+                Log(LogLevel::Error, std::string("assetManOpen: injected ") + modPath.string()
+                    + " (" + std::to_string(modFileSize) + " bytes, in-place)");
+            }
+        } else if (REXCVAR_GET(vdat_host_redirect)) {
+            // Risky: redirect virtualData pointer to a host-allocated buffer.
+            // The game will access base+guestAddr, so we compute a fake guest address
+            // such that base+fakeAddr == buf.data(). This breaks if the asset system
+            // tries to free or compare the pointer as a real guest address.
+            auto& buf = g_modBuffers[aidStr];
+            buf.resize(modFileSize);
+            if (std::ifstream ifs(modPath, std::ios::binary); ifs) {
+                ifs.read(reinterpret_cast<char*>(buf.data()), modFileSize);
+                const uint32_t fakeGuestAddr = static_cast<uint32_t>(
+                    reinterpret_cast<uint64_t>(buf.data()) - reinterpret_cast<uint64_t>(base));
+                *reinterpret_cast<uint32_t*>(base + dbAssetGuestAddr + 0) = std::byteswap(fakeGuestAddr);
+                *reinterpret_cast<uint32_t*>(base + dbAssetGuestAddr + 4) = std::byteswap(modFileSize);
+                g_lastOpenedAssetVirtualSize = modFileSize;
+                outVirtualData = fakeGuestAddr;
+                Log(LogLevel::Error, std::string("assetManOpen: injected ") + modPath.string()
+                    + " (" + std::to_string(modFileSize) + " bytes, HOST REDIRECT - may crash)");
+            }
+        } else {
+            Log(LogLevel::Error, std::string("assetManOpen: skipping mod ") + modPath.string()
+                + " — mod size (" + std::to_string(modFileSize) + ") > original ("
+                + std::to_string(virtualSize) + "). Enable vdat_host_redirect to force.");
+        }
+    }
+
+    ctx.r3.u32 = outVirtualData;
+}
+
