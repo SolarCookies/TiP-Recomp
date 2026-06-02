@@ -1,15 +1,35 @@
 # Per-shader settings.
 # Format: <ucode_hash_hex> = { name = "<name>", disabled = <bool> }
+014fb63c3b0b6aad = { name = "GoldenWaterCan", disabled = false }
 1c98c5fa29538181 = { name = "LongGrass_ps", disabled = false }
 1e6883fccde1f688 = { name = "WithoutWaterNormal_vs", disabled = false }
+2a3ea754ac7b44d7 = { name = "LottiHair", disabled = false }
+385c75be5d0dfb7c = { name = "StoreWoodBeams", disabled = false }
 3fd806422efd3aa1 = { name = "WaterShader_ps", disabled = false }
+4c81a44772569dc0 = { name = "WateringCanIron", disabled = false }
 4d4708c3440b276d = { name = "WaterOnScreen_ps", disabled = false }
 4f1712ffc87e1192 = { name = "WaterShader_vs", disabled = false }
+584d8dbe8bf8bca3 = { name = "LottisEyelids", disabled = false }
 60caa57a8a53985e = { name = "BackgroundSprites_vs", disabled = false }
+633fcbe987239119 = { name = "ShopWheelUI", disabled = false }
 6c4d7159da895b70 = { name = "Dirt_ps", disabled = false }
 6c8d5adf0cdd54bb = { name = "PlayerLight_ps", disabled = false }
 6e6f29256dee8039 = { name = "GroundIce_ps", disabled = true }
+7712cd829b428b43 = { name = "ShopProps2", disabled = false }
+7dffa5be63f436ae = { name = "LottiBody", disabled = false }
+84c7fb9633fc1caf = { name = "WateringCanGoldExtras", disabled = false }
+8826ab28590eff25 = { name = "ShopWheelBox", disabled = false }
 8a9ef0085a086623 = { name = "BackgroundProps_vs", disabled = false }
 8eb70647b4b1f276 = { name = "grass_vs", disabled = false }
 9c02c5e187b6c4ed = { name = "PesterFaceOnBarral_ps", disabled = false }
+a84bcb895109962e = { name = "ShopWheelSeperator2", disabled = false }
+b3be9b0284f2b139 = { name = "UIText", disabled = false }
+b86c5d6f9c37c6c6 = { name = "ShopShelfs", disabled = false }
+c18fd2def4485dc5 = { name = "ShopWheelItems", disabled = false }
+c244a6e5761cd9fd = { name = "ShopWheelTriangles", disabled = false }
+d0bb1a9fcca82260 = { name = "ShopProps", disabled = false }
+d462dd1097c5f439 = { name = "LottiesTeeth", disabled = false }
 e496143779662ce2 = { name = "Sky_ps", disabled = false }
+e8e7dc6d7f14063e = { name = "ShopWheelHandle", disabled = false }
+f3739bdb500c313f = { name = "ShopWheelBlueBlocks", disabled = false }
+f61c348a756ec218 = { name = "ShopWheelSeperator", disabled = false }
