@@ -1,10 +1,12 @@
 # Auto-generated cvar configuration
 video_mode_refresh_rate = 164.000000
+show_fps = false
 DiscordActivity = true
 tip_mouse_y_sensitivity = 0.090000
 tip_mouse_x_sensitivity = 0.090000
 tip_mouse_invert_x = true
 enable_console = false
+log_level = "off"
 log_file = "logs/retip.log"
 scribble_heap = true
 vsync = false
@@ -30,6 +32,8 @@ keybind_dpad_left = "3"
 keybind_dpad_right = "2"
 keybind_back = "MB4,Escape"
 gpu_allow_invalid_fetch_constants = true
+texture_dump_format = "png"
+texture_replace_enabled = false
 d3d12_tiled_shared_memory = false
 present_letterbox = false
 execute_unclipped_draw_vs_on_cpu = true
