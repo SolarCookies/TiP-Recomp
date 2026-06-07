@@ -175,6 +175,27 @@ jobs:
           fi
         shell: bash
 
+      - name: Package release zips
+        if: ${{ steps.meta.outputs.tag != '' }}
+        env:
+          RELEASE_TAG: ${{ steps.meta.outputs.tag }}
+        run: |
+          for exe in artifacts/*.exe; do
+            [ -f "${exe}" ] || continue
+            base=$(basename "${exe}" .exe)     # e.g. retip-windows-x64-relwithdebinfo
+            suffix="${base#retip-}"            # e.g. windows-x64-relwithdebinfo
+            zip_name="retip-${RELEASE_TAG}-${suffix}.zip"
+            staging="staging/${base}"
+            mkdir -p "${staging}"
+            cp "${exe}" "${staging}/retip.exe"
+            cp retip.toml "${staging}/"
+            cp shaders.toml "${staging}/"
+            cp -r mods/ "${staging}/mods"
+            (cd "${staging}" && zip -r "../../../${zip_name}" .)
+            echo "Packaged ${zip_name}"
+          done
+        shell: bash
+
       - name: Create GitHub Release
         if: ${{ steps.meta.outputs.tag != '' }}
         env:
@@ -247,5 +268,4 @@ jobs:
             --title "${RELEASE_TITLE}" \
             --notes-file "${notes_file}" \
             ${prerelease_flag} \
-            artifacts/**/* \
-            retip.toml
+            retip-*.zip

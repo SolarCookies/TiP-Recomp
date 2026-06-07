@@ -2,7 +2,8 @@
 #include <rex/ppc/function.h>
 #include "tip_engine/Log.h"
 #include "UsbCam.h"
-#include "UsbCam.h"
+
+/*
 
 // Use DirectShow (COM) directly so we can capture from DirectShow sources
 // such as OBS Virtual Camera, which does not appear via Media Foundation.
@@ -838,3 +839,4 @@ bool UsbCam_GetFrameRGBA(std::vector<uint8_t>& out,
     s_convSeq = seq;  // mark this frame as converted so next call skips re-conversion
     return true;
 }
+    */

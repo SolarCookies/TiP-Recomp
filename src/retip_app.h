@@ -63,6 +63,8 @@ REXCVAR_DEFINE_BOOL(ShowStartupOverlay, true, "_Trouble in Paradise", "Show star
 //Pulled from SDK's mnk_input_driver.cpp - no public header declares it
 REXCVAR_DECLARE(bool, mnk_mode);
 REXCVAR_DECLARE(double, mnk_sensitivity);
+REXCVAR_DECLARE(bool, texture_dump_enabled);
+REXCVAR_DECLARE(bool, texture_replace_enabled);
 
 
 class RetipApp : public rex::ReXApp {
@@ -76,8 +78,8 @@ class RetipApp : public rex::ReXApp {
   }
 
 
-  // Override virtual hooks for customization:
-  // void OnPreSetup(rex::RuntimeConfig& config) override {}
+    // Override virtual hooks for customization:
+    // void OnPreSetup(rex::RuntimeConfig& config) override {}
    void OnPostSetup() override {
         Log(LogLevel::Info, "Application Started");
 
@@ -141,7 +143,7 @@ class RetipApp : public rex::ReXApp {
         #endif
    }
 
-  // void OnCreateDialogs(rex::ui::ImGuiDrawer* drawer) override {}
+    // void OnCreateDialogs(rex::ui::ImGuiDrawer* drawer) override {}
    void OnShutdown() override {
         Log(LogLevel::Info, "Application Shutting Down");
      

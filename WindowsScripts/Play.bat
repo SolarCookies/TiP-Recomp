@@ -14,4 +14,4 @@ if not exist retip.exe (
 )
 
 echo Starting retip.exe with arguments...
-retip.exe --gpu_allow_invalid_fetch_constants=true --enable_console=true --scribble_heap=true --vsync=off --video_mode_refresh_rate=60
+retip.exe --gpu_allow_invalid_fetch_constants=true --scribble_heap=true --vsync=off --video_mode_refresh_rate=60

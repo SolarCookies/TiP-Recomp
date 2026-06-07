@@ -181,7 +181,7 @@
 0x82223DC0 = {name = "rex_glMemFree_82223DC0"}
 0x82223E98 = {name = "rex_glMemRealloc_82223E98"}
 0x82223FB8 = {name = "rex_glMemGetAllocSize_82223FB8"}
-0x82224020 = {name = "rex_threadSpinLockUnlock_82224020"}
+0x82224020 = {name = "rex_glMemRegionAlloc_82224020"}
 0x822241E0 = {name = "rex_glModelTexOverrideAlloc_822241E0"}
 0x82224328 = {name = "rex_glModelTexOverrideReplaceTexture_82224328"}
 0x82224558 = {name = "rex_glModelSetTargetDevice_82224558"}

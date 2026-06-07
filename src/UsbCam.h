@@ -8,8 +8,10 @@
 // outFrameSeq is incremented by the DirectShow callback on every new frame;
 //   callers can compare against their last value to skip redundant texture uploads.
 // Returns false if the camera is not open or no frame has arrived yet.
+/*
 bool UsbCam_GetFrameRGBA(std::vector<uint8_t>& out,
                           uint32_t& outW,
                           uint32_t& outH,
                           uint32_t& outFmtCC,
                           uint64_t& outFrameSeq);
+                          */
