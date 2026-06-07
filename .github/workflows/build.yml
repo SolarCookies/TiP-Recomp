@@ -191,7 +191,7 @@ jobs:
             cp retip.toml "${staging}/"
             cp shaders.toml "${staging}/"
             cp -r mods/ "${staging}/mods"
-            (cd "${staging}" && zip -r "../../../${zip_name}" .)
+            (cd "${staging}" && zip -r "../../${zip_name}" .)
             echo "Packaged ${zip_name}"
           done
         shell: bash
