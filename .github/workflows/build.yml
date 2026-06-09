@@ -18,12 +18,8 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          # ── Plain builds: all 3 configs × 2 archs ────────────────────────
-          - { platform: windows, arch: x64,   runner: windows-latest,  config: debug,           variant: plain, variant_suffix: "",        sdk_arch: win-amd64, preset_arch: win-amd64, build_type: Debug,          extra_cmake: "" }
-          - { platform: windows, arch: x64,   runner: windows-latest,  config: release,         variant: plain, variant_suffix: "",        sdk_arch: win-amd64, preset_arch: win-amd64, build_type: Release,        extra_cmake: "" }
+          # ── Plain builds: relwithdebinfo × 2 archs ────────────────────────
           - { platform: windows, arch: x64,   runner: windows-latest,  config: relwithdebinfo,  variant: plain, variant_suffix: "",        sdk_arch: win-amd64, preset_arch: win-amd64, build_type: RelWithDebInfo, extra_cmake: "" }
-          - { platform: windows, arch: arm64, runner: windows-11-arm,  config: debug,           variant: plain, variant_suffix: "",        sdk_arch: win-arm64, preset_arch: win-arm64, build_type: Debug,          extra_cmake: "" }
-          - { platform: windows, arch: arm64, runner: windows-11-arm,  config: release,         variant: plain, variant_suffix: "",        sdk_arch: win-arm64, preset_arch: win-arm64, build_type: Release,        extra_cmake: "" }
           - { platform: windows, arch: arm64, runner: windows-11-arm,  config: relwithdebinfo,  variant: plain, variant_suffix: "",        sdk_arch: win-arm64, preset_arch: win-arm64, build_type: RelWithDebInfo, extra_cmake: "" }
 
           # ── Tracy variants: RelWithDebInfo only ──────────────────────────
