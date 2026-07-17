@@ -1,0 +1,5 @@
+manifest_version = 1
+name = "Transparent Tag Border"
+description =  "Adds a fully transparent border on the tag editor"
+version = "1.0.0"
+author = "SolarCookies"

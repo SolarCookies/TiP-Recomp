@@ -1,0 +1,40 @@
+﻿skip_lr = true
+skip_msr = true
+ctr_as_local = true
+xer_as_local = true
+cr_as_local = true
+reserved_as_local = true
+non_argument_as_local = false
+non_volatile_as_local = false
+generate_exception_handlers = false
+
+[functions]
+#CTX.CTR.U32
+0x826878C0 = {}
+0x825F3008 = {}
+0x82A78878 = {}
+0x82AB5234 = {}
+0x82ABB414 = {}
+0x82915e88 = {}
+0x828d0040 = {}
+0x82688540 = {}
+0x826e4110 = {}
+0x82547290 = {}
+0x8268e990 = {}
+0x8268e948 = {}
+0x8268dd48 = {}
+0x825383b8 = {}
+0x827d4320 = {}
+0x826051f0 = {}
+0x824985f8 = {} #Weed crash fix
+0x8248dc60 = {} #Ruffian crash fix
+0x82365f98 = {} #Accessory pinata select crash fix
+0x82352120 = {} #Storing medicine in store building crash fix
+0x825d13f8 = {} #Deliver Trap crash Fix
+0x823331c8 = {} #Packing Eggs crash fix
+
+0x822a7f60 = {} #Multiplayer 1
+0x82a7d098 = {} #Multiplayer 2
+0x82a80808 = {} #Multiplayer 3
+0x82a92128 = {} #Multiplayer 4
+0x822a7fa0 = {} #Multiplayer 5

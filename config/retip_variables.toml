@@ -1,0 +1,6 @@
+#0x82BF4F38 = { name = "g_TestGlobal", type = "int32_t" }
+
+#sceneTimerWorkspace_s is at Scene + 3132 give or take 0x1C as seen in padHardwareRumbleTickAssets_82252A68
+
+[globals]
+0x83D26F68 = {name = "g_disableFramebufferClear", type = "int32_t" }

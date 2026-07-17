@@ -28,8 +28,9 @@ jobs:
       SDK_BUILD_PRESET: ${{ matrix.sdk_arch }}-${{ matrix.config }}
       SDK_INSTALL_DIR: rexglue-sdk/out/install/${{ matrix.sdk_arch }}
       RETIP_PRESET: ${{ matrix.preset_arch }}-${{ matrix.config }}
+      RETIP_BUILD_DIR: out/build/${{ matrix.preset_arch }}-${{ matrix.config }}
       RETIP_BINARY: out/build/${{ matrix.preset_arch }}-${{ matrix.config }}/retip.exe
-      ARTIFACT_NAME: retip-${{ matrix.platform }}-${{ matrix.arch }}-${{ matrix.config }}${{ matrix.variant_suffix }}.exe
+      ARTIFACT_NAME: retip-${{ matrix.platform }}-${{ matrix.arch }}-${{ matrix.config }}${{ matrix.variant_suffix }}
 
     steps:
       - name: Checkout
@@ -39,9 +40,9 @@ jobs:
       - name: Install Ninja (Windows)
         uses: seanmiddleditch/gha-setup-ninja@v6
 
-      # ── Build rexglue SDK from SolarCookies fork (VivaPinata branch) ──────
+      # ── Build rexglue SDK from the SolarRecomps fork (dev branch) ─────────
       - name: Clone rexglue SDK fork
-        run: git clone --recursive --branch VivaPinata https://github.com/SolarCookies/rexglue-sdk.git rexglue-sdk
+        run: git clone --recursive --branch dev https://github.com/SolarRecomps/rexglue-ostentation.git rexglue-sdk
 
       - name: Configure rexglue SDK
         working-directory: rexglue-sdk
@@ -62,45 +63,34 @@ jobs:
           Invoke-WebRequest -Uri "https://goopie.xyz/default.xex" -OutFile "assets/default.xex"
         shell: pwsh
 
-      # ── rexglue migrate (writes generated/ + .bak files) ──────────────────
-      - name: rexglue migrate
-        run: rexglue migrate --app_root .
-        shell: pwsh
-
       # ── Configure retip ────────────────────────────────────────────────────
       - name: Configure CMake
         run: cmake --preset ${{ env.RETIP_PRESET }} -DCMAKE_PREFIX_PATH="${{ github.workspace }}/${{ env.SDK_INSTALL_DIR }}" ${{ matrix.extra_cmake }}
         shell: bash
 
-      # ── Run codegen ───────────────────────────────────────────────────────
+      # ── Run codegen (manifest-driven; does not touch checked-in sources) ──
       - name: Run codegen
         run: cmake --build --preset ${{ env.RETIP_PRESET }} --target retip_codegen
-
-      # ── Restore original files clobbered by `rexglue migrate` ─────────────
-      - name: Restore original sources
-        run: |
-          if (Test-Path CMakeLists.txt.bak) { Copy-Item -Force CMakeLists.txt.bak CMakeLists.txt }
-          if (Test-Path src\main.cpp.bak) { Copy-Item -Force src\main.cpp.bak src\main.cpp }
-        shell: pwsh
-
-      # ── Reconfigure with restored CMakeLists.txt ──────────────────────────
-      - name: Reconfigure CMake
-        run: cmake --preset ${{ env.RETIP_PRESET }} -DCMAKE_PREFIX_PATH="${{ github.workspace }}/${{ env.SDK_INSTALL_DIR }}" ${{ matrix.extra_cmake }}
-        shell: bash
 
       # ── Build ───────────────────────────────────────────────────────────────
       - name: Build
         run: cmake --build --preset ${{ env.RETIP_PRESET }}
 
-      - name: Rename binary
-        run: cp "${{ env.RETIP_BINARY }}" "${{ env.ARTIFACT_NAME }}"
+      # ── Stage exe + runtime DLLs (rexruntimerd.dll / rexgpu-xenosrd.dll /
+      #    TracyClientrd.dll are runtime-loaded, so they must ship next to
+      #    the exe; .pdb debug symbols are intentionally left out) ──────────
+      - name: Stage build output
+        run: |
+          mkdir -p "staging/${ARTIFACT_NAME}"
+          cp "${RETIP_BINARY}" "staging/${ARTIFACT_NAME}/retip.exe"
+          cp "${RETIP_BUILD_DIR}"/*.dll "staging/${ARTIFACT_NAME}/" 2>/dev/null || true
         shell: bash
 
       - name: Upload binary
         uses: actions/upload-artifact@v7
         with:
           name: ${{ env.ARTIFACT_NAME }}
-          path: ${{ env.ARTIFACT_NAME }}
+          path: staging/${{ env.ARTIFACT_NAME }}
 
   release:
     name: Create Release
@@ -119,7 +109,6 @@ jobs:
         uses: actions/download-artifact@v8
         with:
           path: artifacts
-          merge-multiple: true
 
       - name: Compute release metadata
         id: meta
@@ -169,17 +158,17 @@ jobs:
         env:
           RELEASE_TAG: ${{ steps.meta.outputs.tag }}
         run: |
-          for exe in artifacts/*.exe; do
-            [ -f "${exe}" ] || continue
-            base=$(basename "${exe}" .exe)     # e.g. retip-windows-x64-relwithdebinfo
+          for dir in artifacts/*/; do
+            [ -d "${dir}" ] || continue
+            base=$(basename "${dir}")          # e.g. retip-windows-x64-relwithdebinfo
             suffix="${base#retip-}"            # e.g. windows-x64-relwithdebinfo
             zip_name="retip-${RELEASE_TAG}-${suffix}.zip"
             staging="staging/${base}"
             mkdir -p "${staging}"
-            cp "${exe}" "${staging}/retip.exe"
-            cp retip.toml "${staging}/"
-            cp shaders.toml "${staging}/"
-            cp -r mods/ "${staging}/mods"
+            cp -r "${dir}"/. "${staging}/"
+            # ./packaged/ holds retip.toml, mods/, and other assets that
+            # must ship next to the exe — layer it on top of the build output.
+            cp -r packaged/. "${staging}/"
             (cd "${staging}" && zip -r "../../${zip_name}" .)
             echo "Packaged ${zip_name}"
           done

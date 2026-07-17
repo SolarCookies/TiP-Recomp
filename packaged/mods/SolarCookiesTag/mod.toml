@@ -1,0 +1,5 @@
+manifest_version = 1
+name = "SolarCookies pfp Tag"
+description =  "Adds the SolarCookies pfp to the tag editor."
+version = "1.0.0"
+author = "SolarCookies"

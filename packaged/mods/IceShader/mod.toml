@@ -1,0 +1,5 @@
+manifest_version = 1
+name = "Ice Fix"
+description = "Removes the unnecessary clip function from the shader so that it fully draws rather then go blocky"
+version = "1.0.0"
+author = "SolarCookies"
