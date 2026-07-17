@@ -2,13 +2,13 @@
 
 Created with [Rexglue-SDK](https://github.com/rexglue/rexglue-sdk)
 
-This Recomp has a strict no AI rule, No Vibe Coding, No AI generated Assets, No AI assisted Disassembly/Analysis
+This Repo has a strict no AI rule, No Vibe Coding, No AI generated Assets, No AI assisted Disassembly/Analysis.
 
-The goal of this project is to move away from emulating the game on xenia, with this the game is now moddable the same way the PC Port of the first game is with function hooking. While right now the renderer is the same as Xenia's we plan on replacing it in the near future. If you have any issues with this Recomp please submit a bug report on the Issues page
+The priority of this project is not to be playable on low end hardware or to be fully optimized. I started this project as a means to mod Trouble in Paradise, Adding cheats, Reverse Engineering the asset formats, Texture Packs, and adding other cool shit. Im not a purest when it comes to making this recomp be fully native. Eventually I or someone else will add a native renderer that will lower the system requirements, But thats not my priority. It runs on my system (rtx 3050) at 200fps, and thats good enough for me. Thats over 6x the normal speed of the game on hardware that is arguably low end desktop specs with todays standards with unreal engine games. Ive added some optimizations and have decompiled some broken shaders so that the recomp doesnt have the same performance and issues as xenia.
 
 Showcase Video: https://youtu.be/Kih42KlocII?si=WeSh2FvBYrwQuNB-
 
-Currently only supports windows, Linux is planned though. This project is still very early on so you will run into issues, if you do please report them in the github issues tab, Just make sure before you do no one else as made that same issue.
+Currently only supports windows, Linux is planned though. This project is still very early on and personally I dont have a Steam Deck to work on compatibility.
 
 ## Setup
 - 1 Download the latest [Goopie](https://goopie.xyz) and install it, (Preferably at the defualt location, you can adjust the game location in the settings)
@@ -20,15 +20,9 @@ Currently only supports windows, Linux is planned though. This project is still 
 
 - If you run into any issues launching the game, third-party programs like "rivatuner" can cause the game to crash
 
-## Building from scratch (We are on Rexglue 0.7.4 https://github.com/SolarCookies/rexglue-sdk/tree/VivaPinata)
-- 1 Clone and Build the Rexglue SDK 0.7.4 https://github.com/rexglue/rexglue-sdk/
+## Building from scratch (We are on a Fork of Rexglue 0.8.1 https://github.com/SolarRecomps/rexglue-ostentation/tree/dev)
+- 1 Clone and Build the https://github.com/SolarRecomps/rexglue-ostentation/tree/dev
 
-```
-git clone --recursive --branch v0.7.4 https://github.com/rexglue/rexglue-sdk.git
-cd rexglue-sdk
-cmake --preset win-amd64
-cmake --build --preset win-amd64-relwithdebinfo --target install
-```
 - 2 Clone TiP-Recomp (The dev branch is what you should target for pull request)
 ```
 cd ../
@@ -36,8 +30,9 @@ git clone https://github.com/SolarCookies/TiP-Recomp.git
 ```
 - 3 Extract the (world) version of the iso to the ```assets/``` folder, the default xex sould be located here: ```assets/default.xex```
 
-- 4 Run ```RegenAndRebuild.bat``` to run the recompile process and build
-- 5 Run ```Play.bat``` to move the exe to the root and run it with the default arguments
+- 4 Run ```rexglue codegen``` to recompile the code from the xex
+- 5 Run cmake build
+- 6 Move the dlls for rexglue to the build dir then run the exe
 
 ## Credits
 - [Franksy32](https://https://github.com/Franksy32) For providing the unlimited garden space patches
