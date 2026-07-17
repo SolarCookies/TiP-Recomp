@@ -1,4 +1,5 @@
 #pragma once
+#include <rex/cvar.h>
 #include <rex/ui/imgui_dialog.h>
 #include "imgui.h"
 #include <chrono>
@@ -69,6 +70,17 @@ public:
             ImGui::TextColored(color, "%.0f FPS", fps);
             ImGui::TextColored(color,"cpu: %.1fms", cpuMS);
             ImGui::TextColored(color,"gpu: %.1fms", gpuMS);
+        }
+
+        float hostFps = static_cast<float>(rex::cvar::Query<double>("present_host_fps"));
+        if (hostFps > 0.5f) {
+            ImGui::TextColored(ImVec4(0.65f, 0.4f, 1.0f, 1.0f), "%.0f FPS (host)", hostFps);
+        }
+
+        float generatedFps = static_cast<float>(rex::cvar::Query<double>("present_fsr3_generated_fps"));
+        if (generatedFps > 0.5f) {
+            ImGui::TextColored(ImVec4(1.0f, 0.45f, 0.85f, 1.0f), "%.0f FPS (generated)",
+                               generatedFps);
         }
 
         ImGui::End();

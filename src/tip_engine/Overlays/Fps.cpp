@@ -3,7 +3,6 @@
 #include <tip_engine/Timer.h>
 #include <rex/hook.h>
 
-//CPU Time
 REX_EXTERN(__imp__rex_appMainTickPreDraw_821C91C0);
 REX_HOOK_RAW(rex_appMainTickPreDraw_821C91C0){
     Timer timer;
@@ -13,7 +12,6 @@ REX_HOOK_RAW(rex_appMainTickPreDraw_821C91C0){
     cpuMS = timer.elapsedMilliseconds();
 }
 
-//GPU Time
 REX_EXTERN(__imp__rex_appMainDraw_821C8E78);
 REX_HOOK_RAW(rex_appMainDraw_821C8E78){
     Timer timer;

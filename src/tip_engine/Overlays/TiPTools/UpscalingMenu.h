@@ -32,6 +32,7 @@ public:
     float fsrSharpnessReduction = 0.2f;
     float casAdditionalSharpness = 0.0f;
     bool dither = false;
+    bool frameGeneration = false;
 
     float sliderHoldTime = 0.0f;
     float sliderAccumulator = 0.0f;
