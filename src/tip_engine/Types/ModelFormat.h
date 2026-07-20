@@ -43,7 +43,6 @@ struct dbModelTextureUnit_s
 	assetId_s** textureAssetId;
 };
 
-
 /* 11766 */
 struct dbMoldGeometryVertex_s
 {
@@ -174,7 +173,6 @@ struct dbModelSwitch_s
 	unsigned char pad_2;
 };
 
-
 /* 11782 */
 struct dbScenegraph_s
 {
@@ -276,8 +274,6 @@ struct dbModelUnit_s
 	void* data;
 };
 
-
-
 /* 11786 */
 struct dbModel_s
 {
@@ -310,8 +306,6 @@ struct scenegraphDrawContextLookup_s
 {
 	int mapping[10];
 };
-
-
 
 /* 11788 */
 struct scenegraphInstBlendShapeUnitElement_s
@@ -443,5 +437,3 @@ struct glModel_s
 	assetId_s modelAid;
 	int isPoseDirty;
 };
-
-

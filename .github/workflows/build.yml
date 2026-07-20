@@ -12,101 +12,238 @@ permissions:
 
 jobs:
   build:
-    name: Build (${{ matrix.platform }}-${{ matrix.arch }})
+    name: Build (${{ matrix.platform }}-${{ matrix.arch }}-${{ matrix.config }}${{ matrix.variant_suffix }})
     runs-on: ${{ matrix.runner }}
     strategy:
       fail-fast: false
       matrix:
         include:
-          - platform: windows
-            arch: x64
-            runner: windows-latest
-            preset: win-amd64-relwithdebinfo
-            binary: out\build\win-amd64-relwithdebinfo\retip.exe
-            artifact: retip-windows-x64.exe
+          # ── Plain builds: relwithdebinfo × 2 archs ────────────────────────
+          - { platform: windows, arch: x64,   runner: windows-latest,  config: relwithdebinfo,  variant: plain, variant_suffix: "",        sdk_arch: win-amd64, preset_arch: win-amd64, build_type: RelWithDebInfo, extra_cmake: "" }
+          - { platform: windows, arch: arm64, runner: windows-11-arm,  config: relwithdebinfo,  variant: plain, variant_suffix: "",        sdk_arch: win-arm64, preset_arch: win-arm64, build_type: RelWithDebInfo, extra_cmake: "" }
 
-          - platform: linux
-            arch: x64
-            runner: ubuntu-latest
-            preset: linux-amd64-relwithdebinfo
-            binary: out/build/linux-amd64-relwithdebinfo/retip
-            artifact: retip-linux-x64_DoesNotWorkYet
+
+    env:
+      SDK_CONFIGURE_PRESET: ${{ matrix.sdk_arch }}
+      SDK_BUILD_PRESET: ${{ matrix.sdk_arch }}-${{ matrix.config }}
+      SDK_INSTALL_DIR: rexglue-sdk/out/install/${{ matrix.sdk_arch }}
+      RETIP_PRESET: ${{ matrix.preset_arch }}-${{ matrix.config }}
+      RETIP_BUILD_DIR: out/build/${{ matrix.preset_arch }}-${{ matrix.config }}
+      RETIP_BINARY: out/build/${{ matrix.preset_arch }}-${{ matrix.config }}/retip.exe
+      ARTIFACT_NAME: retip-${{ matrix.platform }}-${{ matrix.arch }}-${{ matrix.config }}${{ matrix.variant_suffix }}
 
     steps:
       - name: Checkout
         uses: actions/checkout@v6
 
-      # ── Linux x64 ──────────────────────────────────────────────────────────
-      - name: Install dependencies (Linux)
-        if: matrix.platform == 'linux'
-        run: |
-          wget -qO- https://apt.llvm.org/llvm.sh | sudo bash -s -- 20
-          sudo apt-get install -y ninja-build libgtk-3-dev libx11-xcb-dev
-
-      - name: Download rexglue SDK (Linux x64)
-        if: matrix.platform == 'linux' && matrix.arch == 'x64'
-        run: |
-          curl -L "https://github.com/rexglue/rexglue-sdk/releases/download/v0.7.4/rexglue-sdk-linux-amd64.zip" -o rexglue-sdk.zip
-          unzip rexglue-sdk.zip -d rexglue-install
-
-      - name: Configure CMake (Linux)
-        if: matrix.platform == 'linux'
-        run: cmake --preset ${{ matrix.preset }} -DCMAKE_PREFIX_PATH="${{ github.workspace }}/rexglue-install/linux-amd64"
-
       # ── Windows x64 ────────────────────────────────────────────────────────
       - name: Install Ninja (Windows)
-        if: matrix.platform == 'windows'
         uses: seanmiddleditch/gha-setup-ninja@v6
 
-      - name: Download rexglue SDK (Windows x64)
-        if: matrix.platform == 'windows' && matrix.arch == 'x64'
-        run: |
-          Invoke-WebRequest -Uri "https://github.com/rexglue/rexglue-sdk/releases/download/v0.7.4/rexglue-sdk-win-amd64.zip" -OutFile rexglue-sdk.zip
-          Expand-Archive rexglue-sdk.zip -DestinationPath rexglue-install
+      # ── Build rexglue SDK from the SolarRecomps fork (dev branch) ─────────
+      - name: Clone rexglue SDK fork
+        run: git clone --recursive --branch dev https://github.com/SolarRecomps/rexglue-ostentation.git rexglue-sdk
+
+      - name: Configure rexglue SDK
+        working-directory: rexglue-sdk
+        run: cmake --preset ${{ env.SDK_CONFIGURE_PRESET }} --fresh ${{ matrix.extra_cmake }}
+
+      - name: Build & install rexglue SDK
+        working-directory: rexglue-sdk
+        run: cmake --build --preset ${{ env.SDK_BUILD_PRESET }} --target install
+
+      - name: Add rexglue to PATH
+        run: echo "${{ github.workspace }}\${{ env.SDK_INSTALL_DIR }}\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
         shell: pwsh
 
-      - name: Configure CMake (Windows)
-        if: matrix.platform == 'windows'
-        run: cmake --preset ${{ matrix.preset }} -DCMAKE_PREFIX_PATH="${{ github.workspace }}\rexglue-install\win-amd64"
+      # ── Download game executable for codegen ───────────────────────────────
+      - name: Download default.xex
+        run: |
+          New-Item -ItemType Directory -Force -Path assets | Out-Null
+          Invoke-WebRequest -Uri "https://goopie.xyz/default.xex" -OutFile "assets/default.xex"
+        shell: pwsh
+
+      # ── Configure retip ────────────────────────────────────────────────────
+      - name: Configure CMake
+        run: cmake --preset ${{ env.RETIP_PRESET }} -DCMAKE_PREFIX_PATH="${{ github.workspace }}/${{ env.SDK_INSTALL_DIR }}" ${{ matrix.extra_cmake }}
+        shell: bash
+
+      # ── Run codegen (manifest-driven; does not touch checked-in sources) ──
+      - name: Run codegen
+        run: cmake --build --preset ${{ env.RETIP_PRESET }} --target retip_codegen
 
       # ── Build ───────────────────────────────────────────────────────────────
       - name: Build
-        run: cmake --build --preset ${{ matrix.preset }}
+        run: cmake --build --preset ${{ env.RETIP_PRESET }}
 
-      - name: Rename binary
-        run: cp "${{ matrix.binary }}" "${{ matrix.artifact }}"
+      # ── Stage exe + runtime DLLs (rexruntimerd.dll / rexgpu-xenosrd.dll /
+      #    TracyClientrd.dll are runtime-loaded, so they must ship next to
+      #    the exe; .pdb debug symbols are intentionally left out) ──────────
+      - name: Stage build output
+        run: |
+          mkdir -p "staging/${ARTIFACT_NAME}"
+          cp "${RETIP_BINARY}" "staging/${ARTIFACT_NAME}/retip.exe"
+          cp "${RETIP_BUILD_DIR}"/*.dll "staging/${ARTIFACT_NAME}/" 2>/dev/null || true
         shell: bash
 
       - name: Upload binary
         uses: actions/upload-artifact@v7
         with:
-          name: ${{ matrix.artifact }}
-          path: ${{ matrix.artifact }}
+          name: ${{ env.ARTIFACT_NAME }}
+          path: staging/${{ env.ARTIFACT_NAME }}
 
   release:
     name: Create Release
     needs: build
-    if: ${{ !cancelled() && startsWith(github.ref, 'refs/tags/') }}
+    if: ${{ !cancelled() && needs.build.result == 'success' && (startsWith(github.ref, 'refs/tags/') || github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/main') }}
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          fetch-tags: true
 
       - name: Download all binaries
         uses: actions/download-artifact@v8
         with:
           path: artifacts
-          merge-multiple: true
+
+      - name: Compute release metadata
+        id: meta
+        run: |
+          if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
+            # Tag push -> stable release using the tag name as the version.
+            tag="${GITHUB_REF#refs/tags/}"
+            echo "tag=${tag}"            >> "$GITHUB_OUTPUT"
+            echo "title=ReTiP ${tag}"    >> "$GITHUB_OUTPUT"
+            echo "prerelease=false"      >> "$GITHUB_OUTPUT"
+            echo "is_nightly=false"      >> "$GITHUB_OUTPUT"
+          elif [[ "${GITHUB_REF}" == "refs/heads/dev" ]]; then
+            # `dev` branch push -> nightly prerelease.
+            # Auto-detect the base version from the highest numeric `MAJOR.MINOR[.PATCH]` git tag.
+            base_version=$(
+              git tag --list 'v[0-9]*.[0-9]*' '[0-9]*.[0-9]*' \
+                | sed -E 's/^v//' \
+                | grep -E '^[0-9]+\.[0-9]+(\.[0-9]+)?$' \
+                | sort -V \
+                | tail -n1
+            )
+            if [[ -z "${base_version}" ]]; then
+              echo "::error::No version tags found to derive nightly base version from."
+              exit 1
+            fi
+            # Normalize to MAJOR.MINOR.PATCH (append .0 if the tag was MAJOR.MINOR).
+            if [[ "${base_version}" != *.*.* ]]; then
+              base_version="${base_version}.0"
+            fi
+            tag="nightly_${base_version}.${GITHUB_RUN_NUMBER}"
+            echo "Detected nightly base version: ${base_version}"
+            echo "tag=${tag}"                       >> "$GITHUB_OUTPUT"
+            echo "title=ReTiP Nightly ${tag#nightly_}" >> "$GITHUB_OUTPUT"
+            echo "prerelease=true"                  >> "$GITHUB_OUTPUT"
+            echo "is_nightly=true"                  >> "$GITHUB_OUTPUT"
+          else
+            # `main` branch push without a tag -> no release.
+            echo "tag="              >> "$GITHUB_OUTPUT"
+            echo "title="            >> "$GITHUB_OUTPUT"
+            echo "prerelease=false"  >> "$GITHUB_OUTPUT"
+            echo "is_nightly=false"  >> "$GITHUB_OUTPUT"
+          fi
+        shell: bash
+
+      - name: Package release zips
+        if: ${{ steps.meta.outputs.tag != '' }}
+        env:
+          RELEASE_TAG: ${{ steps.meta.outputs.tag }}
+        run: |
+          for dir in artifacts/*/; do
+            [ -d "${dir}" ] || continue
+            base=$(basename "${dir}")          # e.g. retip-windows-x64-relwithdebinfo
+            suffix="${base#retip-}"            # e.g. windows-x64-relwithdebinfo
+            zip_name="retip-${RELEASE_TAG}-${suffix}.zip"
+            staging="staging/${base}"
+            mkdir -p "${staging}"
+            cp -r "${dir}"/. "${staging}/"
+            # ./packaged/ holds retip.toml, mods/, and other assets that
+            # must ship next to the exe — layer it on top of the build output.
+            cp -r packaged/. "${staging}/"
+            (cd "${staging}" && zip -r "../../${zip_name}" .)
+            echo "Packaged ${zip_name}"
+          done
+        shell: bash
 
       - name: Create GitHub Release
+        if: ${{ steps.meta.outputs.tag != '' }}
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
+          RELEASE_TAG: ${{ steps.meta.outputs.tag }}
+          RELEASE_TITLE: ${{ steps.meta.outputs.title }}
+          RELEASE_IS_NIGHTLY: ${{ steps.meta.outputs.is_nightly }}
+          RELEASE_IS_PRERELEASE: ${{ steps.meta.outputs.prerelease }}
         run: |
           shopt -s globstar
-          gh release create "${{ github.ref_name }}" \
-            --title "ReTiP ${{ github.ref_name }}" \
-            --notes $'# Download and install through the https://goopie.xyz Launcher\n\n## Changelog Post:\nhttps://www.patreon.com/SolarCookies/' \
-            artifacts/**/* \
-            retip.toml
+
+          # Fetch the body of the previous release so its links and embedded
+          # screenshots carry over to nightlies and minor-version updates.
+          # We pick the most recent non-draft release that isn't this same tag,
+          # preferring stable releases over prereleases (so a stable's notes
+          # propagate forward through subsequent nightlies).
+          previous_body=""
+          previous_tag=""
+          if releases_json=$(gh api \
+              -H "Accept: application/vnd.github+json" \
+              "/repos/${GH_REPO}/releases?per_page=30" 2>/dev/null); then
+            previous_tag=$(printf '%s' "${releases_json}" | jq -r \
+              --arg current "${RELEASE_TAG}" '
+                [ .[]
+                  | select(.draft == false)
+                  | select(.tag_name != $current)
+                ]
+                | (map(select(.prerelease == false)) + map(select(.prerelease == true)))
+                | .[0].tag_name // ""
+              ')
+            if [[ -n "${previous_tag}" && "${previous_tag}" != "null" ]]; then
+              previous_body=$(printf '%s' "${releases_json}" | jq -r \
+                --arg t "${previous_tag}" '
+                  [ .[] | select(.tag_name == $t) ] | .[0].body // ""
+                ')
+            fi
+          fi
+
+          header_stable=$'# Download and install through the https://goopie.xyz Launcher\n\n## Changelog Post:\nhttps://www.patreon.com/SolarCookies/'
+          header_nightly=$'# Nightly build from the `dev` branch\n\nAutomated prerelease — may be unstable.'
+
+          if [[ -n "${previous_body}" && "${previous_body}" != "null" ]]; then
+            # Reuse the previous release's notes verbatim so links and
+            # screenshots carry over. Add a small nightly banner on top.
+            if [[ "${RELEASE_IS_NIGHTLY}" == "true" ]]; then
+              notes="${header_nightly}"$'\n\n'"${previous_body}"
+            else
+              notes="${previous_body}"
+            fi
+          else
+            # No previous release to inherit from — fall back to the default header.
+            if [[ "${RELEASE_IS_NIGHTLY}" == "true" ]]; then
+              notes="${header_nightly}"$'\n\n'"${header_stable}"
+            else
+              notes="${header_stable}"
+            fi
+          fi
+
+          prerelease_flag=""
+          if [[ "${RELEASE_IS_PRERELEASE}" == "true" ]]; then
+            prerelease_flag="--prerelease"
+          fi
+
+          # Pass notes via a file to safely handle multi-line content.
+          notes_file="$(mktemp)"
+          printf '%s' "${notes}" > "${notes_file}"
+
+          gh release create "${RELEASE_TAG}" \
+            --title "${RELEASE_TITLE}" \
+            --notes-file "${notes_file}" \
+            ${prerelease_flag} \
+            retip-*.zip

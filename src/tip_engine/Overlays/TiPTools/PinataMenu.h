@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include "../TiPTools.h"
 #include "../TiPWidgets.h"
 #include <rex/cvar.h>
@@ -32,6 +31,5 @@ public:
 	TiPWidgets::AccelState vertAccel;
 	int prevFocusIndex = -1;
 
-	// Local state mirroring CVars
 	bool disableSurfacePreferences_ = false;
 };

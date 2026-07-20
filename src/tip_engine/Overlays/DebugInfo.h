@@ -4,7 +4,6 @@
 #include <vector>
 #include "imgui.h"
 
-//Probably overkill but eh..
 inline void strncpy_s_MultiPlatform(char* dest, size_t destSize, const char* src, size_t count) {
 #if defined(_WIN32)
     strncpy_s(dest, destSize, src, count);
@@ -12,7 +11,6 @@ inline void strncpy_s_MultiPlatform(char* dest, size_t destSize, const char* src
     snprintf(dest, destSize, "%.*s", static_cast<int>(count), src);
 #endif
 }
-
 
 enum DebugInfoType_e : uint32_t
 {

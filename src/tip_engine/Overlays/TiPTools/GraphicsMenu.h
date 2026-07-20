@@ -9,15 +9,13 @@ REXCVAR_DECLARE(bool, DisableUIDraw);
 REXCVAR_DECLARE(bool, UseAspectRatioFromConfig);
 REXCVAR_DECLARE(double, AspectRatio);
 REXCVAR_DECLARE(bool, SkipIntros);
-
-#ifdef DEBUG_BUILD
-REXCVAR_DECLARE(bool, PreviewDrawVerticesUP);
-REXCVAR_DECLARE(bool, PreviewBeginIndexedVertices);
-REXCVAR_DECLARE(bool, PreviewXuiDraw);
-REXCVAR_DECLARE(bool, PreviewDrawColoredQuad);
-REXCVAR_DECLARE(bool, PreviewDrawQuad2D);
-REXCVAR_DECLARE(bool, PreviewDrawTexturedQuad);
-#endif
+REXCVAR_DECLARE(bool, EnableShadows);
+REXCVAR_DECLARE(bool, EnableReflections);
+REXCVAR_DECLARE(bool, EnableOcclusions);
+REXCVAR_DECLARE(bool, EnableTransparency);
+REXCVAR_DECLARE(bool, EnableModels);
+REXCVAR_DECLARE(bool, EnableSceneEffects);
+REXCVAR_DECLARE(bool, EnableBloom);
 
 class GraphicsMenuPage : public TipToolsPage {
 public:
@@ -44,22 +42,19 @@ public:
     TiPWidgets::AccelState vertAccel;
     int prevFocusIndex = -1;
 
-    // Local state mirroring CVars
     bool disableFur = false;
     bool disableMainDraw = false;
     bool disableUIDraw = false;
     bool useAspectRatio = false;
     float aspectRatio = 1.7777778f;
     bool skipIntros = false;
-
-    #ifdef DEBUG_BUILD
-    bool previewDrawVerticesUP = false;
-    bool previewBeginIndexedVertices = false;
-    bool previewXuiDraw = false;
-    bool previewDrawColoredQuad = false;
-    bool previewDrawQuad2D = false;
-    bool previewDrawTexturedQuad = false;
-    #endif
+    bool enableShadows = true;
+    bool enableReflections = true;
+    bool enableOcclusions = true;
+    bool enableTransparency = true;
+    bool enableModels = true;
+    bool enableSceneEffects = true;
+    bool enableBloom = true;
 
     float sliderHoldTime = 0.0f;
     float sliderAccumulator = 0.0f;

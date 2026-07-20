@@ -1,9 +1,9 @@
 [rexcrt]
 #Heap Functions (Hangs)
-#RtlFreeHeap = 0x82AE2F00
-#RtlAllocateHeap = 0x82B089F0
-#RtlReAllocateHeap = 0x82B095D0
-#RtlSizeHeap = 0x82B07C90
+RtlFreeHeap = 0x82B092E0
+RtlAllocateHeap = 0x82B089F0
+RtlReAllocateHeap = 0x82B095D0
+RtlSizeHeap = 0x82B07C90
 
 #file io
 CreateFileA = 0x82B04388

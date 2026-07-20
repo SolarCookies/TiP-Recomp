@@ -1,0 +1,5 @@
+manifest_version = 1
+name = "Fixed Water Shader"
+description =  "Fixes the black flickering on the water shader"
+version = "1.0.0"
+author = "SolarCookies"

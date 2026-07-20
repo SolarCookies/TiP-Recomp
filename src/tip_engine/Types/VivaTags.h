@@ -1,7 +1,6 @@
 #pragma once
 #include <unordered_map>
 
-
 /* 903 */
 enum supportPinataTagClass_e : uint32_t
 {
@@ -94,7 +93,6 @@ inline bool IsValidPinataTagClass(supportPinataTagClass_e tagClass) {
             return false;
     }
 }
-
 
 static std::unordered_map<uint32_t, VivaTag> ItemTags = {
     { 0, { 0, "Null", "Null", supportPinataTag_Class_UNKNOWN, UIFlag::None } },

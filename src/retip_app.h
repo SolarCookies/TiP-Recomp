@@ -1,62 +1,38 @@
 // retip - ReXGlue Recompiled Project
 //
-// This file is yours to edit. 'rexglue migrate' will NOT overwrite it.
 // Customize your app by overriding virtual hooks from rex::ReXApp.
 
 #pragma once
 
+#include <filesystem>
+#include <functional>
 #include <memory>
+#include <optional>
+
 #include <rex/rex_app.h>
-#include "generated/retip_init.h"
-#include "tip_engine/hooks.h"
-#include <rex/ppc/function.h>
-#include "tip_engine/Log.h"
-#include "tip_engine/Overlays/Fps.h"
-#include "tip_engine/Overlays/DebugInfo.h"
-#include "ImPlot/implot.h"
-#include "Webcam.h"
+
+#ifdef _WIN32
+#include <timeapi.h>
+#pragma comment(lib, "winmm.lib")
+#endif
 #include "tip_engine/Globals.h"
+#include <rex/discord_rpc.h>
+#include <rex/filesystem.h>
+
+#include "tip_engine/hooks.h"
+#include "tip_engine/Overlays/Fps.h"
+#include "tip_engine/Overlays/LaunchMenu.h"
+#include "tip_engine/Overlays/QuitMenu.h"
 #include "tip_engine/Overlays/TiPTools.h"
 #include "tip_engine/Overlays/TiPTools/SpawnMenu.h"
-#include "tip_engine/Overlays/TiPTools/PlayerMenu.h"
 #include "tip_engine/Overlays/TiPTools/GraphicsMenu.h"
+#include "tip_engine/Overlays/TiPTools/UpscalingMenu.h"
 #include "tip_engine/Overlays/TiPTools/SettingsMenu.h"
 #include "tip_engine/Overlays/TiPTools/PinataMenu.h"
 #include "tip_engine/Overlays/TiPTools/PlantMenu.h"
+#include "tip_engine/Overlays/TiPTools/PlayerMenu.h"
 #include "tip_engine/Overlays/TiPTools/RuffianMenu.h"
-#include "tip_engine/Overlays/StartupOverlay.h"
-#include "tip_engine/Input/TipMouseListener.h"
-#include "tip_engine/Input/TipRawMouse.h"
-#include "tip_engine/CustomRenderer/Window.h"
-#include "tip_engine/CustomRenderer/engine/World/World.h"
-#include "tip_engine/CustomRenderer/engine/World/Camera.h"
-
-#include "tip_engine/CustomRenderer/engine/Actors/SkyboxActor.h"
-#include "tip_engine/CustomRenderer/engine/Actors/DebugGridActor.h"
-#include "tip_engine/CustomRenderer/engine/Actors/VertexPreviewActor.h"
-#include "tip_engine/DiscordRPC.h"
-
-#ifndef NOMINMAX
-#define NOMINMAX
-#endif
-#include <Windows.h>
-#include <cstdint>
-#include <timeapi.h>
-#include <fstream>
-#include <thread>
-#include <atomic>
-
-#ifdef DEBUG_BUILD
-REXCVAR_DEFINE_BOOL(SolarRendererPreview, false, "_Trouble in Paradise/Graphics", "Enables the Solar Renderer").lifecycle(rex::cvar::Lifecycle::kRequiresRestart);
-REXCVAR_DEFINE_BOOL(OverlaySolarRenderer, false, "_Trouble in Paradise/Graphics", "Overlay Solar Renderer on main window").lifecycle(rex::cvar::Lifecycle::kRequiresRestart);
-#endif
-
-REXCVAR_DEFINE_BOOL(ShowStartupOverlay, true, "_Trouble in Paradise", "Show startup overlay popup");
-
-//Pulled from SDK's mnk_input_driver.cpp - no public header declares it
-REXCVAR_DECLARE(bool, mnk_mode);
-REXCVAR_DECLARE(double, mnk_sensitivity);
-
+#include "tip_engine/Overlays/TiPTools/ShovelMenu.h"
 
 class RetipApp : public rex::ReXApp {
  public:
@@ -64,151 +40,124 @@ class RetipApp : public rex::ReXApp {
 
   static std::unique_ptr<rex::ui::WindowedApp> Create(
       rex::ui::WindowedAppContext& ctx) {
-    return std::unique_ptr<RetipApp>(new RetipApp(ctx, "retip",
-        PPCImageConfig));
+    return std::unique_ptr<RetipApp>(new RetipApp(ctx, "retip", PPCImageConfig));
   }
 
+  void OnPostSetup() override {
+    rex::discord_rpc::Presence rpc;
 
-  // Override virtual hooks for customization:
-  // void OnPreSetup(rex::RuntimeConfig& config) override {}
-   void OnPostSetup() override {
-        Log(LogLevel::Info, "Application Started");
+    rpc.details_ = "";
+    rpc.state_ = "";
+    rpc.large_image_key_ = "10979_viva_piata_trouble_in_paradise";
+    rpc.large_image_text_ = "ReTiP";
 
-        ImPlot::CreateContext();
-        //g_raw_input = runtime()->input_system()->GetRawInput();
-        timeBeginPeriod(1);
+    rex::discord_rpc::Start("1497091207132876860", rpc);
 
-        //Force MnK driver on regardless of toml, since EXE may run from build dir without retip.toml
-        //Edit, this is not needed, goopie will download the toml from the release, and also some might want to use the mouse for the f4 menu
-        //Curently Im not sure if there is a button to disable the mouse lock like Alt but that might be worth looking into before
-        //forceing mouse locks
-        //REXCVAR_SET(mnk_mode, true);
+    //optimization tom suggested
+    timeBeginPeriod(1);
 
-        //Silence MnK's mouse->right-stick path; CursorHooks consumes mouse delta directly
-        REXCVAR_SET(mnk_sensitivity, 0.0);
+    //Force MnK driver on regardless of toml, since EXE may run from build dir without retip.toml
+    rex::cvar::SetFlagByName("mnk_mode", "true");
 
-        //timeBeginPeriod(1);
+    //Silence MnK's mouse->right-stick path; CursorHooks consumes mouse delta directly
+    rex::cvar::SetFlagByName("mnk_sensitivity", "0");
 
-        Log(LogLevel::Info, "Initializing Discord RPC");
-        retip::discord_rpc::Presence rpc;
-        rpc.details        = "";
-        rpc.state          = "";
-        rpc.largeImageKey  = "10979_viva_piata_trouble_in_paradise";
-        rpc.largeImageText = "ReTiP";
-        retip::discord_rpc::Start(rpc);
-        Log(LogLevel::Info, "Discord RPC Initialized");
+    g_input_system = static_cast<rex::input::InputSystem*>(runtime()->input_system());
 
-#ifdef DEBUG_BUILD
-        if(REXCVAR_GET(SolarRendererPreview)) {
+    auto* w = window();
+    if (!w) return;
+    auto listener = std::make_unique<TipMouseListener>(w);
+    w->AddInputListener(listener.get(), 1);
+    g_mouse_listener = std::move(listener);
 
-            windowPtr = std::make_unique<VinceWindow>(1280, 720, "Solar Renderer", REXCVAR_GET(OverlaySolarRenderer));
-            windowPtr->SetupImGuiIO();
-            windowPtr->InitFrameBuffer();
-
-            glEnable(GL_DEPTH_TEST);
-            glfwSwapInterval(0);
-
-            g_world = new World();
-
-            // Add a skybox actor to the world
-            auto skyboxActor = std::make_unique<Skybox>();
-            g_world->AddActor(std::move(skyboxActor));
-
-            // Debug grid: 10x10 cubes on the XZ plane for camera testing
-            auto debugGrid = std::make_unique<DebugGrid>();
-            g_world->AddActor(std::move(debugGrid));
-
-            // Vertex preview: renders DrawVerticesUP captured verts as points
-            auto vertexPreview = std::make_unique<VertexPreviewActor>();
-            g_world->AddActor(std::move(vertexPreview));
-
-            g_world->ConstructWorld();
-
-            g_camera = std::make_unique<class Camera>(1280.0f, 720.0f, glm::vec3(0.0f, 0.0f, 2.0f));
-
-            // Release the GL context so CPU_fps_hook can acquire it on its thread
-            glfwMakeContextCurrent(nullptr);
-            
-        }
-        #endif
-   }
-
-  // void OnCreateDialogs(rex::ui::ImGuiDrawer* drawer) override {}
-   void OnShutdown() override {
-        Log(LogLevel::Info, "Application Shutting Down");
-     
-        if (g_raw_mouse) {
-            g_raw_mouse->Teardown();
-        }
-        g_raw_mouse.reset();
-        if (g_mouse_listener && window()) {
-            window()->RemoveInputListener(g_mouse_listener.get());
-        }
-        g_mouse_listener.reset();
-
-        Log(LogLevel::Info, "Shutting down Discord RPC");
-        retip::discord_rpc::Stop();
-
-        Log(LogLevel::Info, "Cleaning up resources");
-        ImPlot::DestroyContext();
-
-        Log(LogLevel::Info, "Cleaning up world and renderer");
-        //timeEndPeriod(1);
-        delete g_world;
-        g_world = nullptr;
-    }
-
-  // void OnConfigurePaths(rex::PathConfig& paths) override {}
-  void OnCreateDialogs(rex::ui::ImGuiDrawer* drawer) override {
-    Log(LogLevel::Info, "Creating UI Dialogs");
-    #ifdef DEBUG_BUILD
-        if (windowPtr && windowPtr->isOverlay() && window()) {
-            g_mainWindowHandle = window()->GetNativeWindowHandle();
-        }
-    #endif
-
-        //Mouse delta source for native mouse-look. Try Win32 raw input first
-        //(bypasses MnK's cursor centering -> no contamination from SetCursorPos
-        //events). Fall back to the WindowInputListener path if raw input setup
-        //fails (non-Win32 builds, or if RegisterRawInputDevices refuses).
-        if (window()) {
-            g_raw_mouse = std::make_unique<TipRawMouse>();
-            bool raw_active = false;
 #ifdef _WIN32
-            HWND hwnd = static_cast<HWND>(window()->GetNativeWindowHandle());
-            raw_active = g_raw_mouse->Setup(hwnd);
-#endif
-            if (!raw_active) {
-                g_raw_mouse.reset();
-                g_mouse_listener = std::make_unique<TipMouseListener>(window());
-                window()->AddInputListener(g_mouse_listener.get(), 0);
-            }
-        }
-
-        drawer->AddDialog(new StartupOverlayDialog(drawer));
-        //drawer->AddDialog(new DebugOverlayDialog(drawer));
-        auto fpsDialog = new FpsOverlayDialog(drawer);
-        fpsDialog->fpsManager = &fpsManager;
-        drawer->AddDialog(fpsDialog);
-
-        auto tipToolsDialog = new TipToolsDialog(drawer);
-        drawer->AddDialog(tipToolsDialog);
-        
-        tipToolsDialog->pages.push_back(std::make_unique<PlayerMenuPage>());
-        tipToolsDialog->pages.push_back(std::make_unique<PinataMenuPage>());
-        tipToolsDialog->pages.push_back(std::make_unique<PlantMenuPage>());
-        tipToolsDialog->pages.push_back(std::make_unique<RuffianMenuPage>());
-        tipToolsDialog->pages.push_back(std::make_unique<SpawnMenuPage>());
-        //tipToolsDialog->pages.push_back(std::make_unique<GraphicsMenuPage>());
-        //tipToolsDialog->pages.push_back(std::make_unique<SettingsMenuPage>());
-        Log(LogLevel::Info, "UI Dialogs Created");
+    HWND hwnd = reinterpret_cast<HWND>(w->GetNativeWindowHandle());
+    auto raw = std::make_unique<TipRawMouse>();
+    if (raw->Setup(hwnd)) {
+      g_raw_mouse = std::move(raw);
     }
+#endif
+  }
+
+  void OnCreateDialogs(rex::ui::ImGuiDrawer* drawer) override {
+
+    fps_dialog_ = std::make_unique<FpsOverlayDialog>(drawer);
+    fps_dialog_->fpsManager = &fpsManager;
+    drawer->AddDialog(fps_dialog_.get());
+
+    gameInstalled_ = !game_data_root().empty() && std::filesystem::exists(game_data_root() / "default.xex");
+    launch_dialog_ = std::make_unique<LaunchMenuDialog>(drawer, window(), "retip.toml", gameInstalled_);
+    drawer->AddDialog(launch_dialog_.get());
+
+    quit_dialog_ = std::make_unique<QuitMenuDialog>(drawer, window());
+    drawer->AddDialog(quit_dialog_.get());
+
+    tools_dialog_ = std::make_unique<TipToolsDialog>(drawer, "retip.toml");
+    tools_dialog_->pages.push_back(std::make_unique<SpawnMenuPage>());
+    tools_dialog_->pages.push_back(std::make_unique<PlayerMenuPage>());
+    tools_dialog_->pages.push_back(std::make_unique<PinataMenuPage>());
+    tools_dialog_->pages.push_back(std::make_unique<PlantMenuPage>());
+    tools_dialog_->pages.push_back(std::make_unique<RuffianMenuPage>());
+    tools_dialog_->pages.push_back(std::make_unique<ShovelMenuPage>());
+    tools_dialog_->pages.push_back(std::make_unique<GraphicsMenuPage>());
+    tools_dialog_->pages.push_back(std::make_unique<UpscalingMenuPage>());
+    tools_dialog_->pages.push_back(std::make_unique<SettingsMenuPage>());
+    drawer->AddDialog(tools_dialog_.get());
+  }
+
+  void LaunchModule() override {
+    if (launch_dialog_ && (LaunchMenuDialog::WillShowOnStartup() || !gameInstalled_)) {
+      launch_dialog_->SetOnClosed([this] { rex::ReXApp::LaunchModule(); });
+      return;
+    }
+    rex::ReXApp::LaunchModule();
+  }
+
+  void OnShutdown() override {
+    if (launch_dialog_) launch_dialog_->ReleaseWallpaper();
+  }
+
+  std::optional<rex::PathConfig> OnFinalizePaths(
+      const rex::PathConfig& defaults,
+      std::function<void(rex::PathConfig)> resume) override {
+    (void)resume;
+    if (!gameInstalled_) {
+      return std::nullopt;
+    }
+    return defaults;
+  }
+
+  // std::unique_ptr<rex::ui::ImGuiDialog> CreateAchievementsOverlay() override;
+  // std::unique_ptr<rex::ui::AchievementNotificationDialog>
+  // CreateAchievementNotificationDialog() override;
+
+  void OnConfigurePaths(rex::PathConfig &paths) override {
+    if (paths.game_data_root.empty()) {
+      wchar_t exe_path[MAX_PATH] = {};
+      GetModuleFileNameW(nullptr, exe_path, MAX_PATH);
+      auto exe_dir = std::filesystem::path(exe_path).parent_path();
+      auto assets_next_to_exe = exe_dir / "assets";
+      auto assets_in_build = std::filesystem::current_path() / "../../../assets"; // TiP-Recomp/assets/ TiP-Recomp/out/build/win-amd64-relwithdebinfo/retip.exe
+      if (std::filesystem::exists(assets_next_to_exe)) {
+        paths.game_data_root = assets_next_to_exe;
+      } else if (std::filesystem::exists(assets_in_build)) {
+        paths.game_data_root = assets_in_build;
+      }
+    }
+  }
+
+ private:
+  bool gameInstalled_ = true;
+  std::unique_ptr<FpsOverlayDialog> fps_dialog_;
+  std::unique_ptr<LaunchMenuDialog> launch_dialog_;
+  std::unique_ptr<QuitMenuDialog> quit_dialog_;
+  std::unique_ptr<TipToolsDialog> tools_dialog_;
 };
 
-PPC_STUB(__imp__XUsbcamSetView)
-PPC_STUB(__imp__XUsbcamSetCaptureMode)
-PPC_STUB(__imp__XUsbcamSetConfig)
-PPC_STUB(__imp__XUsbcamReadFrame)
-PPC_STUB(__imp__XUsbcamDestroy)
-PPC_STUB(__imp__XUsbcamCreate)
-PPC_STUB(__imp__XUsbcamGetState)
+REX_STUB(__imp__XUsbcamSetView)
+REX_STUB(__imp__XUsbcamSetCaptureMode)
+REX_STUB(__imp__XUsbcamSetConfig)
+REX_STUB(__imp__XUsbcamReadFrame)
+REX_STUB(__imp__XUsbcamDestroy)
+REX_STUB(__imp__XUsbcamCreate)
+//REX_STUB(__imp__XUsbcamGetState) in main.cpp I have a empty hook that silences the log that there is a stub

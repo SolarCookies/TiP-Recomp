@@ -1,0 +1,5 @@
+manifest_version = 1
+name = "Dither Fix"
+description = "Fixes Various Shaders that had Dithering due to bad ambient lighting in small scenes like shops"
+version = "1.0.0"
+author = "SolarCookies"

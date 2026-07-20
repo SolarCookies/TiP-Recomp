@@ -14,7 +14,7 @@ class SettingsMenuPage : public TipToolsPage {
 public:
     SettingsMenuPage() {
         name = "Settings";
-        description = "General application settings";
+        description = "General settings";
         color = ImColor(255, 200, 50);
     }
 
@@ -35,13 +35,7 @@ public:
     TiPWidgets::AccelState vertAccel;
     int prevFocusIndex = -1;
 
-    // Local state mirroring CVars
     bool lockFps = false;
     bool showFps = false;
     bool showStartupOverlay = true;
-    bool rgbCursor = false;
-
-    // Read-only (require restart)
-    bool solarRendererPreview = false;
-    bool overlaySolarRenderer = false;
 };

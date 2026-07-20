@@ -32,6 +32,7 @@ enum class LogLevel {
 };
 
 inline void Log(LogLevel level, const std::string& message) {
+    return;
     switch (level) {
         case LogLevel::Trace:
             RETIP_TRACE(message.c_str());

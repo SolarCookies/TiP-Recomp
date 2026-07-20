@@ -9,13 +9,10 @@ REXCVAR_DECLARE(bool, ShowStartupOverlay);
 
 class StartupOverlayDialog : public rex::ui::ImGuiDialog {
 public:
-    explicit StartupOverlayDialog(rex::ui::ImGuiDrawer* drawer)
-        : rex::ui::ImGuiDialog(drawer),
-          startTime_(std::chrono::steady_clock::now()) {}
+    explicit StartupOverlayDialog(rex::ui::ImGuiDrawer* drawer) : rex::ui::ImGuiDialog(drawer), startTime_(std::chrono::steady_clock::now()) {}
 
     void OnDraw(ImGuiIO& io) override {
-        if (!REXCVAR_GET(ShowStartupOverlay) || finished_)
-            return;
+        if (!REXCVAR_GET(ShowStartupOverlay) || finished_) return;
 
         auto now = std::chrono::steady_clock::now();
         float elapsed = std::chrono::duration<float>(now - startTime_).count();
@@ -46,16 +43,11 @@ public:
 
         ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 8.0f);
         ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0.0f);
-        ImGui::Begin("##StartupOverlay", nullptr,
-            ImGuiWindowFlags_NoDecoration |
-            ImGuiWindowFlags_NoInputs |
-            ImGuiWindowFlags_NoNav |
-            ImGuiWindowFlags_NoMove |
-            ImGuiWindowFlags_NoSavedSettings |
-            ImGuiWindowFlags_AlwaysAutoResize);
+
+        ImGui::Begin("##StartupOverlay", nullptr, ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoInputs | ImGuiWindowFlags_NoNav | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_AlwaysAutoResize);
 
         ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 1.0f, 1.0f, alpha));
-        const char* text = "ReTiP 1.10 - Press F4 to open up the recomp settings";
+        const char* text = std::string("ReTiP " + retipversion).c_str();
         float textWidth = ImGui::CalcTextSize(text).x;
         ImGui::SetCursorPosX((windowWidth - textWidth) * 0.5f);
         ImGui::SetCursorPosY((windowHeight - ImGui::GetTextLineHeight()) * 0.5f);

@@ -14,13 +14,6 @@
 #include <Windows.h>
 #endif
 
-//Win32 raw input mouse delta accumulator. Bypasses cursor positioning
-//entirely so MnK's SetCursorPos centering does not contaminate motion. Uses
-//RegisterRawInputDevices + a subclassed WndProc on the rex window's HWND to
-//intercept WM_INPUT and read raw hardware deltas.
-//
-//Setup is best-effort; if it fails (non-Win32, RegisterRawInputDevices
-//returns FALSE, etc) the caller should fall back to TipMouseListener.
 class TipRawMouse {
  public:
 #ifdef _WIN32
@@ -30,9 +23,9 @@ class TipRawMouse {
     hwnd_ = hwnd;
 
     RAWINPUTDEVICE rid = {};
-    rid.usUsagePage = 0x01;  //Generic desktop
-    rid.usUsage = 0x02;      //Mouse
-    rid.dwFlags = 0;         //Input only when window has focus
+    rid.usUsagePage = 0x01; //Generic desktop
+    rid.usUsage = 0x02; //Mouse
+    rid.dwFlags = 0; //Input only when window has focus
     rid.hwndTarget = hwnd;
     if (!RegisterRawInputDevices(&rid, 1, sizeof(rid))) {
       return false;
@@ -56,8 +49,7 @@ class TipRawMouse {
     if (!active_) return;
     ClipCursor(nullptr);
     if (original_wnd_proc_ && hwnd_) {
-      SetWindowLongPtrW(hwnd_, GWLP_WNDPROC,
-                        reinterpret_cast<LONG_PTR>(original_wnd_proc_));
+      SetWindowLongPtrW(hwnd_, GWLP_WNDPROC, reinterpret_cast<LONG_PTR>(original_wnd_proc_));
     }
     RAWINPUTDEVICE remove = {0x01, 0x02, RIDEV_REMOVE, nullptr};
     RegisterRawInputDevices(&remove, 1, sizeof(remove));
@@ -65,9 +57,21 @@ class TipRawMouse {
     if (s_instance_ == this) s_instance_ = nullptr;
   }
 
-  //Confine cursor to window client rect; OS releases on focus loss
+  void SetClipEnabled(bool enabled) {
+    clip_enabled_ = enabled;
+    if (enabled) {
+      ApplyClip();
+    } else {
+      ClipCursor(nullptr);
+    }
+  }
+
   void ApplyClip() {
-    if (!hwnd_) return;
+    if (!hwnd_ || !clip_enabled_) return;
+    // Never confine the cursor unless our window is the foreground window. If
+    // the user has clicked away to another app/monitor we must leave the cursor
+    // free.
+    if (GetForegroundWindow() != hwnd_) return;
     RECT client;
     if (!GetClientRect(hwnd_, &client)) return;
     POINT tl = {client.left, client.top};
@@ -75,17 +79,16 @@ class TipRawMouse {
     ClientToScreen(hwnd_, &tl);
     ClientToScreen(hwnd_, &br);
     RECT screen = {tl.x, tl.y, br.x, br.y};
+    // Don't snap an outside cursor back into the window. This is the Alt-release
+    // case: the user held Alt to free the pointer, moved it onto another
+    // monitor, and let go while still hovering that other window. Re-clipping
+    // here is what teleports the pointer to the edge of the game window and
+    // traps it. Skip the clip; it will be re-established via WM_MOUSEMOVE the
+    // moment the pointer re-enters our (focused) window.
+    POINT cursor;
+    if (GetCursorPos(&cursor) && !PtInRect(&screen, cursor)) return;
     ClipCursor(&screen);
   }
-#else
-  //TODO Linux: raw input via XInput2 / wayland-relative-pointer, plus a
-  //GrabPointer / pointer-confinement equivalent of ClipCursor. SDK MnK also
-  //skips its cursor centering on non-Win32, so on Linux the listener path
-  //stalls at screen edges. Setup returning false here makes OnCreateDialogs
-  //fall back to TipMouseListener, which is functional but limited.
-  bool Setup(void*) { return false; }
-  void Teardown() {}
-#endif
 
   std::pair<int32_t, int32_t> ConsumeDelta() {
     std::lock_guard lock(mtx_);
@@ -115,34 +118,42 @@ class TipRawMouse {
     wheel_ = 0;
     return v;
   }
+#endif
 
  private:
 #ifdef _WIN32
   static LRESULT CALLBACK SubclassedProc(HWND h, UINT m, WPARAM w, LPARAM l) {
-    //Re-clip on focus regain (OS auto-releases ClipCursor when window deactivates)
-    if (m == WM_ACTIVATEAPP && w && s_instance_) {
+    if (m == WM_ACTIVATEAPP && s_instance_) {
+      if (w) {
+        s_instance_->ApplyClip();
+      } else {
+        // Lost focus (Alt-Tab, clicked another app/monitor): free the cursor so
+        // it can leave. It re-clips on WM_MOUSEMOVE once we're focused again.
+        ClipCursor(nullptr);
+      }
+    }
+    // Re-establish the clip as soon as the pointer re-enters the focused game
+    // window. WM_MOUSEMOVE is only delivered while the cursor is over us, and
+    // ApplyClip's own guards keep this a no-op unless we're foreground and the
+    // pointer is genuinely inside the client rect.
+    if (m == WM_MOUSEMOVE && s_instance_) {
       s_instance_->ApplyClip();
     }
     if (m == WM_INPUT && s_instance_) {
       UINT size = 0;
-      if (GetRawInputData(reinterpret_cast<HRAWINPUT>(l), RID_INPUT, nullptr,
-                          &size, sizeof(RAWINPUTHEADER)) == 0 &&
+      if (GetRawInputData(reinterpret_cast<HRAWINPUT>(l), RID_INPUT, nullptr, &size, sizeof(RAWINPUTHEADER)) == 0 &&
           size > 0 && size <= sizeof(RAWINPUT) * 2) {
         BYTE buffer[sizeof(RAWINPUT) * 2];
-        if (GetRawInputData(reinterpret_cast<HRAWINPUT>(l), RID_INPUT, buffer,
-                            &size, sizeof(RAWINPUTHEADER)) == size) {
+        if (GetRawInputData(reinterpret_cast<HRAWINPUT>(l), RID_INPUT, buffer, &size, sizeof(RAWINPUTHEADER)) == size) {
           RAWINPUT* raw = reinterpret_cast<RAWINPUT*>(buffer);
           if (raw->header.dwType == RIM_TYPEMOUSE) {
             std::lock_guard lock(s_instance_->mtx_);
-            //MOUSE_MOVE_ABSOLUTE indicates a tablet/RDP-style absolute device.
-            //Skip those - we want relative-only deltas for camera control.
             if ((raw->data.mouse.usFlags & MOUSE_MOVE_ABSOLUTE) == 0) {
               s_instance_->dx_ += raw->data.mouse.lLastX;
               s_instance_->dy_ += raw->data.mouse.lLastY;
             }
             if (raw->data.mouse.usButtonFlags & RI_MOUSE_WHEEL) {
-              s_instance_->wheel_ +=
-                  static_cast<int16_t>(raw->data.mouse.usButtonData);
+              s_instance_->wheel_ += static_cast<int16_t>(raw->data.mouse.usButtonData);
             }
           }
         }
@@ -159,6 +170,7 @@ class TipRawMouse {
   HWND hwnd_ = nullptr;
   WNDPROC original_wnd_proc_ = nullptr;
   bool active_ = false;
+  bool clip_enabled_ = true;
 #endif
 
   std::mutex mtx_;

@@ -6,6 +6,4 @@
 #include "imgui.h"
 #include "tip_engine/Overlays/Fps.h"
 
-
-
 inline FPSManager fpsManager;

@@ -1,0 +1,5 @@
+manifest_version = 1
+name = "Pure Tag Colors"
+description =  "Adds pure colors like pure red #FF0000 to the tag editor"
+version = "1.0.0"
+author = "SolarCookies"

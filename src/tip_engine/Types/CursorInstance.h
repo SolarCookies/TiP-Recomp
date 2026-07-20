@@ -206,7 +206,6 @@ struct cursorMarker_s
   entitySceneControlPinataFrontendInst_s *frontend;
 };
 
-
 ////////////////////////////////////////
 struct cursorSurfaceMonitorInst_s;
 struct cursorCookieCutterInst_s;
@@ -443,6 +442,3 @@ struct re_cursorInst_s
   unsigned char unk1[224];
   cursorMarker_s *marker;
 };
-
-
-

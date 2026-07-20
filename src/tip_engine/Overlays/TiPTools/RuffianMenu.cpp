@@ -4,21 +4,17 @@
 #include "src/tip_engine/Log.h"
 #include <imgui.h>
 
-REXCVAR_DEFINE_BOOL(disable_ruffians, false, "_Trouble in Paradise/Ruffian Settings", "Prevents ruffians from spawning");
+REXCVAR_DEFINE_BOOL(disable_ruffians, false, "TiP/Ruffian Settings", "Prevents ruffians from spawning");
 
-//int rex_meCreateRuffianActor_823F89E0(int ruffiansWS, int ruffianNode)
 REX_PPC_EXTERN_IMPORT(meCreateRuffianActor_823F89E0);
-int meCreateRuffianActor_823F89E0_Hook(int ruffiansWS, int ruffianNode) {
-    Log(LogLevel::Info, "meCreateRuffianActor Hook Hit");
+REX_HOOK_RAW(meCreateRuffianActor_823F89E0){
     if (REXCVAR_GET(disable_ruffians)) {
-        Log(LogLevel::Info, "Ruffian spawn blocked");
-        return 0;
+        ctx.r3.u32 = 0;
+        return;
+    }else{
+        __imp__rex_meCreateRuffianActor_823F89E0(ctx, base);
     }
-    int result = rex::GuestToHostFunction<int>(__imp__rex_meCreateRuffianActor_823F89E0, ruffiansWS, ruffianNode);
-    Log(LogLevel::Info, "meCreateRuffianActor Hook Finished");
-    return result;
 };
-REX_PPC_HOOK(meCreateRuffianActor_823F89E0);
 
 void RuffianMenuPage::SyncFromCVars() {
     disable_ruffians_ = REXCVAR_GET(disable_ruffians);
@@ -36,8 +32,7 @@ void RuffianMenuPage::OnDraw() {
         return;
     }
 
-    int vertDir = TiPWidgets::GetHeldDir(SDL_GAMEPAD_BUTTON_DPAD_UP, SDL_GAMEPAD_BUTTON_DPAD_DOWN,
-                                         ImGuiKey_UpArrow, ImGuiKey_DownArrow);
+    int vertDir = TiPWidgets::GetHeldDir(SDL_GAMEPAD_BUTTON_DPAD_UP, SDL_GAMEPAD_BUTTON_DPAD_DOWN, ImGuiKey_UpArrow, ImGuiKey_DownArrow);
     int vertDelta = TiPWidgets::AccelTick(vertAccel, vertDir, 15.0f, 1.0f);
     focusIndex += vertDelta;
     if (focusIndex < 0) focusIndex = 0;

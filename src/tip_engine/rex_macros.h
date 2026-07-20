@@ -9,19 +9,17 @@
 
 #include <type_traits>
 
-/* ---------- constants */
-
 #define REX_PPC_EXTERN_IMPORT(function) \
-	PPC_EXTERN_IMPORT(__imp__rex_##function)
+	REX_EXTERN(__imp__rex_##function)
 
 #define REX_PPC_INVOKE(function, ...) \
-	rex::GuestToHostFunction<function_return_t<decltype(function)>>(__imp__rex_##function, __VA_ARGS__)
+	rex::ppc::GuestToHostFunction<function_return_t<decltype(function)>>(__imp__rex_##function, __VA_ARGS__)
 
 #define REX_PPC_INVOKE2(return_type, function, ...) \
-	rex::GuestToHostFunction<return_type>(__imp__rex_##function, __VA_ARGS__)
+	rex::ppc::GuestToHostFunction<return_type>(__imp__rex_##function, __VA_ARGS__)
 
 #define REX_PPC_HOOK(function) \
-    PPC_HOOK(rex_##function, function##_Hook)
+    REX_HOOK(rex_##function, function##_Hook)
 
 #define REX_DATA_REFERENCE_DECLARE(address, type, name) \
 	type& name = *reinterpret_cast<type*>(0x100000000 + address)
@@ -40,10 +38,6 @@
 auto* runtime = rex::Runtime::instance(); \
 auto* memory = runtime->memory(); \
 uint8_t* name = memory->virtual_membase()
-
-
-
-/* ---------- definitions */
 
 template <typename t_type>
 struct function_t;
@@ -75,11 +69,3 @@ struct function_t<t_return_type(t_class::*)(t_args...) const>
 template <typename t_function>
 using function_return_t =
 typename function_t<std::remove_cvref_t<t_function>>::return_type;
-
-/* ---------- prototypes */
-
-/* ---------- globals */
-
-/* ---------- public code */
-
-/* ---------- private code */

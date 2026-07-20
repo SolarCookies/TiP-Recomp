@@ -31,6 +31,5 @@ public:
     TiPWidgets::AccelState vertAccel;
     int prevFocusIndex = -1;
 
-    // Local state mirroring CVars
     bool disable_water_ = false;
 };

@@ -43,4 +43,9 @@ build_log.txt
 *.bak
 *.log1
 ReShade.ini
-*.png
+
+/generated
+/textures
+/dumps
+/assets/B13EBABEBABEBABE
+/src/tip_engine/Shaders

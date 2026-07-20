@@ -841,8 +841,6 @@ struct statsCommon_Loctext_s {
     assetId_s filter21;
 };
 
-
-
 /* 12567 */
 struct statsActorCommon_AssetFilters_s
 {
@@ -1236,7 +1234,6 @@ struct statsActorCommonHitTriangle_s
     float rollMaxRange;
 };
 
-
 /* 12606 */
 struct statsActorCommon_SpecialAbility_s
 {
@@ -1337,4 +1334,3 @@ struct statsAccessory_BonusEffect_s
     statsAccessory_BonusEffectOffset_s mateRequirement;
     statsAccessory_BonusEffectValue_s healthcare;
 };
-

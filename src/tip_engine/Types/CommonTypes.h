@@ -428,8 +428,6 @@ struct assetDPackageManagerBundleData_s
 	dsList2_s memoryList;
 };
 
-
-
 /* 785 */
 struct assetDbPackageManagerLoadUnit_s
 {
@@ -453,7 +451,6 @@ struct assetDbPackageManagerLoadUnit_s
 	int serialiseLoad;
 	assetDbPackageManagerLoadUnit_sl netsync;
 };
-
 
 //////////////////////////////////////////////////////////////////////////////////////
 
@@ -801,8 +798,6 @@ enum objTag_e : uint32_t
 	objTag_MAX = 0x7A,
 };
 
-
-
 /* 11879 */
 struct gameIdComplete_s
 {
@@ -940,7 +935,6 @@ struct avatarAnim_s
 	int forceNoTween;
 	int applyMoveData;
 };
-
 
 /* 11907 */
 struct avatarCallout_s
@@ -1271,7 +1265,6 @@ struct avatarTarget_s
 {
 	dsLinkedListNode_s listSentinel;
 };
-
 
 /* 11941 */
 struct avatarVolume_s
@@ -1736,7 +1729,6 @@ struct sceneLightWorkspace_s
 	int mainPointLight;
 };
 
-
 ////////////
 
 /* 11737 */
@@ -1850,7 +1842,6 @@ struct sceneObjHitWorkspace_s
 	unsigned int layerMask;
 };
 
-
 /* 11752 */
 struct sceneObjHitWorkspaceMain_s
 {
@@ -1895,7 +1886,6 @@ struct scenePartitionCubeWorkspace_s
 	int lastPartitionSearchId;
 	dsPageList_s cubeList;
 };
-
 
 ////////////
 
@@ -2047,7 +2037,6 @@ struct cutsceneStackNode_s_unnamed_tag
 	void* ptr;
 };
 
-
 /* 11847 */
 struct cutsceneStackNode_s
 {
@@ -2075,8 +2064,6 @@ struct cutsceneStackNode_s
 	glModelTexOverride_s* texOverride;
 	int isFakeCutscene;
 };
-
-
 
 /* 11836 */
 struct cutsceneMainWorkspace_s_unnamed_tag
@@ -2198,7 +2185,7 @@ struct sceneSfxWorkspace_s
 	int isPaused;
 };
 ////////////
-// 
+//
 /* 11859 */
 struct threadSpinLock_s
 {
@@ -2338,7 +2325,6 @@ union $3F5BD159CB39977520C06306145A6051
 {
 	unsigned int RawEvent[4];
 };
-
 
 /* 11871 */
 struct rendermanagerSystemCommonInst_s
@@ -2485,7 +2471,6 @@ struct entitySceneControlPinataTinkerInst_s;
 struct entitySceneControlPinataHunterInst_s;
 struct entitySceneControlPinataStoreInst_s;
 struct supportPinataAnimalEvolveButterfly_s;
-
 
 /* 11972 */
 struct gardenMainWorkspace_s_unnamed_tag
@@ -2715,7 +2700,6 @@ struct entitySceneControlPinataSeedosWorkspace_s
 {
 	entitySceneControlPinataSeedosInst_s* seedosControllerInst;
 };
-
 
 /* 12095 */
 struct entitySceneControlPinataDastardosObstruction_s
@@ -3277,7 +3261,6 @@ struct assetDbAsset_s
 	assetFile* assetSection;
 	assetSectionFileLoadUnit_s* unit;
 };
-
 
 struct assetManUnit_s // sizeof=0xA0
 {
