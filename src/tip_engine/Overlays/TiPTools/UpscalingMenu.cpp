@@ -6,9 +6,9 @@
 
 static constexpr int kOptionCount = 6;
 
-static const char* const kEffectLabels[] = {"Bilinear", "CAS", "FSR 1", "FSR 2", "FSR 3"};
-static const char* const kEffectValues[] = {"bilinear", "cas", "fsr", "fsr2", "fsr3"};
-static constexpr int kEffectCount = 5;
+static const char* const kEffectLabels[] = {"Bilinear", "Unfiltered", "CAS", "FSR 1", "FSR 2", "FSR 3"};
+static const char* const kEffectValues[] = {"bilinear", "nearest", "cas", "fsr", "fsr2", "fsr3"};
+static constexpr int kEffectCount = 6;
 
 static const char* const kQualityLabels[] = {"Auto", "Native AA", "Quality",
                                              "Balanced", "Performance", "Ultra Perf"};
@@ -75,15 +75,11 @@ void UpscalingMenuPage::OnDraw() {
     ImGui::Separator();
 
     TiPWidgets::PushListStyle();
-    if (TiPWidgets::FloatSlider("FSR Sharpness Reduction", fsrSharpnessReduction, 0.0f, 2.0f, 0.05f,
-                                focusIndex == 2, width, sliderHoldTime, sliderAccumulator)) {
-        rex::cvar::SetFlagByName("present_fsr_sharpness_reduction",
-                                 std::to_string(fsrSharpnessReduction));
+    if (TiPWidgets::FloatSlider("FSR Sharpness Reduction", fsrSharpnessReduction, 0.0f, 2.0f, 0.05f,focusIndex == 2, width, sliderHoldTime, sliderAccumulator)) {
+        rex::cvar::SetFlagByName("present_fsr_sharpness_reduction", std::to_string(fsrSharpnessReduction));
     }
-    if (TiPWidgets::FloatSlider("CAS Extra Sharpness", casAdditionalSharpness, 0.0f, 1.0f, 0.05f,
-                                focusIndex == 3, width, sliderHoldTime, sliderAccumulator)) {
-        rex::cvar::SetFlagByName("present_cas_additional_sharpness",
-                                 std::to_string(casAdditionalSharpness));
+    if (TiPWidgets::FloatSlider("CAS Extra Sharpness", casAdditionalSharpness, 0.0f, 1.0f, 0.05f, focusIndex == 3, width, sliderHoldTime, sliderAccumulator)) {
+        rex::cvar::SetFlagByName("present_cas_additional_sharpness", std::to_string(casAdditionalSharpness));
     }
     if (TiPWidgets::Toggle("Output Dither", dither, focusIndex == 4, width, input)) {
         rex::cvar::SetFlagByName("present_dither", dither ? "true" : "false");
@@ -96,23 +92,22 @@ void UpscalingMenuPage::OnDraw() {
     ImGui::Separator();
 
     TiPWidgets::PushListStyle();
-    if (TiPWidgets::Toggle("FSR 3 Frame Generation", frameGeneration, focusIndex == 5, width,
-                           input)) {
-        rex::cvar::SetFlagByName("present_fsr3_frame_generation",
-                                 frameGeneration ? "true" : "false");
+    if (TiPWidgets::Toggle("FSR 3 Frame Generation", frameGeneration, focusIndex == 5, width, input)) {
+        rex::cvar::SetFlagByName("present_fsr3_frame_generation", frameGeneration ? "true" : "false");
     }
     TiPWidgets::PopListStyle();
 
     ImGui::Spacing();
 
     if (focusIndex == 5) {
-        ImGui::TextWrapped("FSR 3 Frame Gen: Interpolates an extra frame between rendered "
-                           "frames (D3D12 only). Works with any Effect above.");
+        ImGui::TextWrapped("FSR 3 Frame Gen: Interpolates an extra frame between rendered frames D3D12 only.");
     } else if (effectIndex == 0) {
         ImGui::TextWrapped("Bilinear: Normal filtering");
     } else if (effectIndex == 1) {
-        ImGui::TextWrapped("CAS: Contrast adaptive sharpening.");
+        ImGui::TextWrapped("Unfiltered: Nearest neighbor point sampling. Ideal for low guest resolutions.");
     } else if (effectIndex == 2) {
+        ImGui::TextWrapped("CAS: Contrast adaptive sharpening.");
+    } else if (effectIndex == 3) {
         ImGui::TextWrapped("FSR 1: Spatial upscale.");
     } else {
         ImGui::TextWrapped("FSR 2/3: Temporal upscaler.");

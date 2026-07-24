@@ -38,3 +38,6 @@ generate_exception_handlers = false
 0x82a80808 = {} #Multiplayer 3
 0x82a92128 = {} #Multiplayer 4
 0x822a7fa0 = {} #Multiplayer 5
+0x823522d8 = {} #Multiplayer 6
+0x82333618 = {} #Multiplayer 7
+0x822a8680 = {} #Multiplayer 8

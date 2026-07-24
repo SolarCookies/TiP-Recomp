@@ -49,6 +49,18 @@ void CPU_fps_hook() {
   fpshook->Tick();
 }
 
+
+REXCVAR_DEFINE_BOOL(UseCustomLighting, false, "TiP/Lighting", "");
+REXCVAR_DEFINE_INT32(directionalColor, 0x00000000, "TiP/Lighting", "").color();
+REXCVAR_DEFINE_INT32(ambientColor, 0xFFFFFFFF, "TiP/Lighting", "").color();
+REXCVAR_DEFINE_INT32(ambientModelColor, 0xFFFFFFFF, "TiP/Lighting", "").color();
+REXCVAR_DEFINE_INT32(fogColor, 0, "TiP/Lighting", "").color();
+REXCVAR_DEFINE_INT32(fogOpacity, 0, "TiP/Lighting", "");
+REXCVAR_DEFINE_INT32(blueShiftScalar, 0, "TiP/Lighting", "");
+REXCVAR_DEFINE_BOOL(cubeFogEnabled, 0, "TiP/Lighting", "");
+REXCVAR_DEFINE_DOUBLE(fogNearDist, 0.0, "TiP/Lighting", "");
+REXCVAR_DEFINE_DOUBLE(fogFarDist, 0.0, "TiP/Lighting", "");
+
 void GPU_fps_hook() {
 /*
   scenegraphDrawStaticWorkspace_s* drawStaticWorkspace = reinterpret_cast<scenegraphDrawStaticWorkspace_s*>(0x100000000ull + 0x82BEBC78);
@@ -66,7 +78,43 @@ void GPU_fps_hook() {
   }
   Log(LogLevel::Info, "GPU Hook Finished");
 */
+  if(REXCVAR_GET(UseCustomLighting)){
+    lightMainWorkspace_s* workspace = reinterpret_cast<lightMainWorkspace_s*>(0x100000000ull + 0x82C3C010);
+    workspace->dirLight.col = {
+        to_byteswapped_float(static_cast<float>((REXCVAR_GET(directionalColor) >> 24) & 0xFF) / 255.0f),
+        to_byteswapped_float(static_cast<float>((REXCVAR_GET(directionalColor) >> 16) & 0xFF) / 255.0f),
+        to_byteswapped_float(static_cast<float>((REXCVAR_GET(directionalColor) >> 8) & 0xFF) / 255.0f),
+        to_byteswapped_float(static_cast<float>((REXCVAR_GET(directionalColor)) & 0xFF) / 255.0f)
+    };
+    workspace->ambientCol = {
+        to_byteswapped_float(static_cast<float>((REXCVAR_GET(ambientColor) >> 24) & 0xFF) / 255.0f),
+        to_byteswapped_float(static_cast<float>((REXCVAR_GET(ambientColor) >> 16) & 0xFF) / 255.0f),
+        to_byteswapped_float(static_cast<float>((REXCVAR_GET(ambientColor) >> 8) & 0xFF) / 255.0f),
+        to_byteswapped_float(static_cast<float>((REXCVAR_GET(ambientColor)) & 0xFF) / 255.0f)
+    };
+    workspace->modelAmbientCol = {
+        to_byteswapped_float(static_cast<float>((REXCVAR_GET(ambientModelColor) >> 24) & 0xFF) / 255.0f),
+        to_byteswapped_float(static_cast<float>((REXCVAR_GET(ambientModelColor) >> 16) & 0xFF) / 255.0f),
+        to_byteswapped_float(static_cast<float>((REXCVAR_GET(ambientModelColor) >> 8) & 0xFF) / 255.0f),
+        to_byteswapped_float(static_cast<float>((REXCVAR_GET(ambientModelColor)) & 0xFF) / 255.0f)
+    };
+
+    workspace->fogCol = {
+        to_byteswapped_float(static_cast<float>((REXCVAR_GET(fogColor) >> 24) & 0xFF) / 255.0f),
+        to_byteswapped_float(static_cast<float>((REXCVAR_GET(fogColor) >> 16) & 0xFF) / 255.0f),
+        to_byteswapped_float(static_cast<float>((REXCVAR_GET(fogColor) >> 8) & 0xFF) / 255.0f),
+        to_byteswapped_float(static_cast<float>((REXCVAR_GET(fogColor)) & 0xFF) / 255.0f)
+    };
+    workspace->fogOpacity = to_byteswapped_float(static_cast<float>(REXCVAR_GET(fogOpacity)));
+    workspace->blueShiftScalar = to_byteswapped_float(static_cast<float>(REXCVAR_GET(blueShiftScalar)));
+    workspace->cubeFogEnabled = REXCVAR_GET(cubeFogEnabled) ? 1 : 0;
+    workspace->fogFarDist = to_byteswapped_float(static_cast<float>((REXCVAR_GET(fogFarDist))));
+    workspace->fogNearDist = to_byteswapped_float(static_cast<float>((REXCVAR_GET(fogNearDist))));
+  }
 }
+
+
+
 
 void vsync_hook(PPCRegister& r10) {
   if(!REXCVAR_GET(lock_fps)) {
@@ -190,4 +238,103 @@ REX_HOOK_RAW(rex_requirementsMet_82537810) {
     __imp__rex_requirementsMet_82537810(ctx, base);
 };
 */
+/* 347 */
 
+/* 18 */
+struct __declspec(align(2)) videoParams_s
+{
+  int resolutionType;
+  unsigned int width;
+  unsigned int height;
+  unsigned char progressiveScan;
+  unsigned int pbSize;
+  unsigned int pbKickOff;
+  unsigned int backBufferCount;
+  unsigned char presentInterval;
+  unsigned char presentImmediately;
+  unsigned char enableAutoDepthStencil;
+  unsigned char wideScreen;
+  unsigned char pixelAspect10x11;
+  unsigned char antiAliasType;
+  unsigned char refreshRateHZ;
+};
+
+REXCVAR_DEFINE_INT32(tip_backbuffer_width, 0, "TiP/Graphics", "Override the guest backbuffer width (0 = default)").lifecycle(rex::cvar::Lifecycle::kRequiresRestart);
+REXCVAR_DEFINE_INT32(tip_backbuffer_height, 0, "TiP/Graphics", "Override the guest backbuffer height (0 = default)").lifecycle(rex::cvar::Lifecycle::kRequiresRestart);
+
+//meCreatePresentParams_8229BF20
+REX_EXTERN(__imp__sub_8229BF20);
+REX_HOOK_RAW(sub_8229BF20) {
+    uint32_t presentParamsAddr = ctx.r4.u32;
+    __imp__sub_8229BF20(ctx, base);
+    int32_t width = REXCVAR_GET(tip_backbuffer_width);
+    int32_t height = REXCVAR_GET(tip_backbuffer_height);
+    if (width <= 0 || height <= 0 || !presentParamsAddr) return;
+    uint32_t* backBufferWidth = reinterpret_cast<uint32_t*>(0x100000000ull + presentParamsAddr);
+    uint32_t* backBufferHeight = reinterpret_cast<uint32_t*>(0x100000000ull + presentParamsAddr + 4);
+    *backBufferWidth = std::byteswap(static_cast<uint32_t>(width));
+    *backBufferHeight = std::byteswap(static_cast<uint32_t>(height));
+};
+
+//meVideoInit_8229BA80
+REX_EXTERN(__imp__sub_8229BA80);
+REX_HOOK_RAW(sub_8229BA80) {
+    int32_t width = REXCVAR_GET(tip_backbuffer_width);
+    int32_t height = REXCVAR_GET(tip_backbuffer_height);
+    if (width > 0 && height > 0) {
+        videoParams_s* videoParams = reinterpret_cast<videoParams_s*>(0x100000000ull + ctx.r3.u32);
+        videoParams->width = std::byteswap(static_cast<unsigned int>(width));
+        videoParams->height = std::byteswap(static_cast<unsigned int>(height));
+    }
+    __imp__sub_8229BA80(ctx, base);
+};
+
+//rex_camMainReset_821F0570
+REX_EXTERN(__imp__sub_821F0570);
+REX_HOOK_RAW(sub_821F0570) {
+    __imp__sub_821F0570(ctx, base);
+    int32_t width = REXCVAR_GET(tip_backbuffer_width);
+    int32_t height = REXCVAR_GET(tip_backbuffer_height);
+    if (width <= 0 || height <= 0) return;
+    camMainWorkspace_s* me_36 = reinterpret_cast<camMainWorkspace_s*>(0x100000000ull + 0x82C34D48);
+    me_36->viewport.w = std::byteswap(width);
+    me_36->viewport.h = std::byteswap(height);
+    me_36->outputViewport.w = std::byteswap(width);
+    me_36->outputViewport.h = std::byteswap(height);
+
+    videoParams_s* videoParams = reinterpret_cast<videoParams_s*>(0x100000000ull + 0x83A56158);
+    videoParams->width = std::byteswap(width);
+    videoParams->height = std::byteswap(height);
+};
+
+REX_EXTERN(__imp__sub_8229AF50);
+REX_HOOK_RAW(sub_8229AF50) {
+    __imp__sub_8229AF50(ctx, base);
+    int32_t width = REXCVAR_GET(tip_backbuffer_width);
+    int32_t height = REXCVAR_GET(tip_backbuffer_height);
+    if (width <= 0 || height <= 0) return;
+    camMainWorkspace_s* me_36 = reinterpret_cast<camMainWorkspace_s*>(0x100000000ull + 0x82C34D48);
+    me_36->viewport.w = std::byteswap(width);
+    me_36->viewport.h = std::byteswap(height);
+    me_36->outputViewport.w = std::byteswap(width);
+    me_36->outputViewport.h = std::byteswap(height);
+
+    videoParams_s* videoParams = reinterpret_cast<videoParams_s*>(0x100000000ull + 0x83A56158);
+    videoParams->width = std::byteswap(width);
+    videoParams->height = std::byteswap(height);
+};
+
+bool skip_cutscenes_hook(){
+  return true;
+}
+
+//rex_XuiClass_Scene_Pinata_ModifyAbility_825C5838 (Controls what actions you can do, r5 is the bool value if you can do it, and r4 is the ID for the action)
+REX_EXTERN(__imp__sub_825C5838);
+REX_HOOK_RAW(sub_825C5838) {
+
+  //81 is "actionCommand_Back" which allows you to press "Done" on the cutscenes
+    if(ctx.r4.u32 == 81){
+      ctx.r5.u32 = 1;
+    }
+    __imp__sub_825C5838(ctx, base);
+};

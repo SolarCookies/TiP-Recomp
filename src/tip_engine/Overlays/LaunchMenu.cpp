@@ -40,7 +40,12 @@ REXCVAR_DECLARE(bool, lock_fps);
 
 enum AspectChoice { kAspect16x9 = 0, kAspect16x10, kAspect21x9, kAspect32x9, kAspectNative, kAspectCustom, kAspectCount };
 static constexpr const char* kAspectNames[kAspectCount] = {
-    "16:9 Widescreen", "16:10 Widescreen", "21:9 Widescreen", "32:9 Widescreen", "Native", "Custom"
+    "16:9 Widescreen", 
+    "16:10 Widescreen", 
+    "21:9 Widescreen", 
+    "32:9 Widescreen", 
+    "Native", 
+    "Custom"
 };
 static double AspectRatioForChoice(int choice) {
     switch (choice) {
@@ -100,7 +105,7 @@ static constexpr const char* kGoopieUrl  = "https://goopie.xyz/#/library";
 
 static constexpr float kPad = 24.0f;
 static constexpr float kBarHeight = 116.0f;
-static constexpr float kWallpaperVerticalShift = 160.0f;
+static constexpr float kWallpaperVerticalShift = 260.0f;
 static constexpr float kBtnHeight = 46.0f;
 static constexpr float kBtnGap = 10.0f;
 static constexpr float kRowBottomPad = 22.0f;

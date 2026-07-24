@@ -138,7 +138,7 @@ void GraphicsMenuPage::OnDraw() {
     TiPWidgets::Toggle("Enable Reflections", enableReflections, focusIndex == 4, width, input);
     TiPWidgets::Toggle("Enable Occlusions", enableOcclusions, focusIndex == 5, width, input);
     TiPWidgets::Toggle("Enable Transparency", enableTransparency, focusIndex == 6, width, input);
-    TiPWidgets::Toggle("Enable Depth Of Field", enableModels, focusIndex == 7, width, input);
+    TiPWidgets::Toggle("Enable Models", enableModels, focusIndex == 7, width, input);
     TiPWidgets::Toggle("Enable Scene Effects", enableSceneEffects, focusIndex == 8, width, input);
     TiPWidgets::Toggle("Enable Bloom", enableBloom, focusIndex == 9, width, input);
     TiPWidgets::PopListStyle();

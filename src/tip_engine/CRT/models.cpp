@@ -93,9 +93,10 @@ struct dbModel_s
   unsigned int headerSize;
   dbModelRuntime_s *runtime;
 };
-
+/*
 //int __fastcall meInitModel(const dbModel_s *asset)
 REX_HOOK_RAW(rex_meInitModel_821FB518){
     dbModel_s asset = reinterpret_cast<dbModel_s*>(0x100000000ull + ctx.r3.u32);
     __imp__rex_meInitModel_821FB518(ctx,base);
 }
+    */

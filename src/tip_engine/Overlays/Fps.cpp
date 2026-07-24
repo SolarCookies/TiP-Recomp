@@ -3,6 +3,23 @@
 #include <tip_engine/Timer.h>
 #include <rex/hook.h>
 
+#define WIN32_LEAN_AND_MEAN
+#define NOMINMAX
+#define PSAPI_VERSION 2
+#include <windows.h>
+#include <psapi.h>
+
+REXCVAR_DEFINE_BOOL(stat_unit, false, "TiP/Fps", "Show the detailed stats in the FPS overlay");
+
+double GetHostProcessMemoryMB() {
+    PROCESS_MEMORY_COUNTERS_EX info{};
+    info.cb = sizeof(info);
+    if (!GetProcessMemoryInfo(GetCurrentProcess(), reinterpret_cast<PROCESS_MEMORY_COUNTERS*>(&info), sizeof(info))) {
+        return 0.0;
+    }
+    return double(info.WorkingSetSize) / (1024.0 * 1024.0);
+}
+
 REX_EXTERN(__imp__rex_appMainTickPreDraw_821C91C0);
 REX_HOOK_RAW(rex_appMainTickPreDraw_821C91C0){
     Timer timer;

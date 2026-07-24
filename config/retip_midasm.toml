@@ -173,3 +173,11 @@ name = "skip_entityAvatarPinataSeedBigBrotherSaysYes_hook"
 registers = []
 after_instruction = false
 jump_address_on_true = 0x8235DEEC
+
+#821F8BF4
+[[midasm_hook]]
+address = 0x821F8BF4
+name = "skip_cutscenes_hook"
+registers = []
+after_instruction = false
+jump_address_on_true = 0x821F8C00
