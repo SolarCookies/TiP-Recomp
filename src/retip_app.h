@@ -114,6 +114,7 @@ class RetipApp : public rex::ReXApp {
   }
 
   void OnShutdown() override {
+    rex::discord_rpc::Stop();
     if (launch_dialog_) launch_dialog_->ReleaseWallpaper();
   }
 
