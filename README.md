@@ -21,6 +21,7 @@ Currently only supports windows, Linux is planned though. This project is still 
 - If you run into any issues launching the game, third-party programs like "rivatuner" can cause the game to crash
 
 ## Building from scratch (We are on a Fork of Rexglue 0.8.1 https://github.com/SolarRecomps/rexglue-ostentation/tree/dev)
+- 0 Request access to the repo on the discord, Ive set the repo to private because I dont feel comfortable with other projects using ostentation. Its optimized for TiP and will likely break other games.
 - 1 Clone and Build the https://github.com/SolarRecomps/rexglue-ostentation/tree/dev
 
 - 2 Clone TiP-Recomp (The dev branch is what you should target for pull request)
