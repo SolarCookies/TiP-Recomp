@@ -22,7 +22,7 @@
 * this codebase is written by hand. We manually decompile functions,
 * reverse engineer structs, and write hooks to ensure accuracy and maintainability.
 *
-* The core goal of ReTiP is not only to get the software running, but to 
+* The core goal of ReTiP is not only to get the game running, but to 
 * research, document, and learn exactly how the game operates under the hood so that 
 * we can provide modding support. We do not support using AI for creative 
 * task or problem solving. i.e asking an AI agent to "find a way to 
