@@ -49,3 +49,7 @@ ReShade.ini
 /dumps
 /assets/B13EBABEBABEBABE
 /src/tip_engine/Shaders
+
+/src/gamejolt_keys.h
+/achievements
+/packaged

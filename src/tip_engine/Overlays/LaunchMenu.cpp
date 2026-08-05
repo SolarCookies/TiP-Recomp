@@ -1,13 +1,63 @@
+/** 
+******************************************************************************
+* ReTiP: Viva Pinata Recompiled                                              *
+******************************************************************************
+* Copyright (c) 2026 SolarCookies. Licensed under custom noncommercial terms.
+*
+* This software is licensed for non-commercial, private, and educational use 
+* only. You may modify, rewrite, and optimize this code provided that full 
+* attribution is given to the original authors listed on the project repository. 
+* Commercial use is prohibited.
+*
+* DISCLAIMER: This software is provided "as-is" without warranty of any kind. 
+* This project is an unofficial fan translation layer and does NOT provide, 
+* distribute, or package any copyrighted game assets, binaries, or media belonging 
+* to Microsoft or Rare. Users must provide their own legally obtained game assets. 
+* This software must not be used in any manner that violates Microsoft's copyrights.
+* DO NOT REDISTRIBUTE GAME ASSETS OR PROMOTE PIRACY.
+*
+* AI USE GUIDELINES:
+* This project is built with minimal AI usage. We may utilize basic inline code 
+* suggestions or rely on AI assistance for debugging, but the vast majority of 
+* this codebase is written by hand. We manually decompile functions,
+* reverse engineer structs, and write hooks to ensure accuracy and maintainability.
+*
+* The core goal of ReTiP is not only to get the software running, but to 
+* research, document, and learn exactly how the game operates under the hood so that 
+* we can provide modding support. We do not support using AI for creative 
+* task or problem solving. i.e asking an AI agent to "find a way to 
+* make freecam work". Instead, AI should only be used for small, boilerplate tasks or
+* parsing a 1000 line crash log to isolate an error. We actively encourage all project 
+* contributors to avoid the use of AI agents entirely when writing code or decompiling functions.
+*
+* The truth of the matter is that AI when used currectly by people who understand the output
+* can be incredibly useful just like intelisense, being able to press Tab to autocomplete a
+* for loop can save time. However, AI is not a replacement for human understanding and
+* should not be used to replace the process of learning and understanding how the game works.
+*
+* We strongly prefer the use of local models that do not harm the environment and 
+* can run entirely on your own local hardware over cloud based AI services. Ultimately, 
+* all pull requests and code contributions will be strictly reviewed by people who 
+* understand the codebase and the game. If you list Claude or any other AI as a coauthor 
+* or contributor, your PR will be rejected regardless of whether it works.
+******************************************************************************
+*/
+
 #include "LaunchMenu.h"
 #include "tip_engine/Globals.h"
 #include "tip_engine/version.h"
 #include <rex/cvar.h>
 #include <rex/filesystem.h>
+#include <rex/gamejolt.h>
 #include <rex/ui/image_decode.h>
+#include "tip_engine/FilePicker.h"
 #include <SDL3/SDL.h>
 #include <algorithm>
 #include <cmath>
+#include <cstdio>
+#include <cstring>
 #include <fstream>
+#include <string>
 
 #ifdef _WIN32
 #ifndef NOMINMAX
@@ -40,11 +90,11 @@ REXCVAR_DECLARE(bool, lock_fps);
 
 enum AspectChoice { kAspect16x9 = 0, kAspect16x10, kAspect21x9, kAspect32x9, kAspectNative, kAspectCustom, kAspectCount };
 static constexpr const char* kAspectNames[kAspectCount] = {
-    "16:9 Widescreen", 
-    "16:10 Widescreen", 
-    "21:9 Widescreen", 
-    "32:9 Widescreen", 
-    "Native", 
+    "16:9 Widescreen",
+    "16:10 Widescreen",
+    "21:9 Widescreen",
+    "32:9 Widescreen",
+    "Native",
     "Custom"
 };
 static double AspectRatioForChoice(int choice) {
@@ -101,7 +151,15 @@ static constexpr const char* kDiscordUrl = "https://discord.gg/39AtUkYr7s";
 static constexpr const char* kPatreonUrl = "https://www.patreon.com/cw/SolarCookies";
 static constexpr const char* kKofiUrl    = "https://ko-fi.com/solarcookies";
 static constexpr const char* kGithubUrl  = "https://github.com/SolarCookies/TiP-Recomp";
-static constexpr const char* kGoopieUrl  = "https://goopie.xyz/#/library";
+static constexpr const char* kGameJoltTokenUrl = "https://gamejolt.com/help/tokens";
+static constexpr const char* kGameJoltPopupId = "##retip_gamejolt";
+static constexpr float kGjSize = 40.0f;
+
+static constexpr const char* kAssetsWizardId = "Game Assets Required##retip_assets";
+static constexpr const char* kAssetsWizardText =
+    "We cant legally provide the game assets for this recomp, Obtain a .iso file of the game and "
+    "select it to start the extraction process, Once complete the play button will appear";
+static constexpr float kAssetsWizardWidth = 720.0f;
 
 static constexpr float kPad = 24.0f;
 static constexpr float kBarHeight = 116.0f;
@@ -119,6 +177,7 @@ void LaunchMenuDialog::ReleaseWallpaper() {
     wallpaper_.reset();
     wallpaperPixels_.clear();
     wallpaperPixels_.shrink_to_fit();
+    gjIcon_.reset();
 }
 
 void LaunchMenuDialog::EnsureWallpaper() {
@@ -149,6 +208,152 @@ void LaunchMenuDialog::EnsureWallpaper() {
         wallpaperPixels_.clear();
         wallpaperPixels_.shrink_to_fit();
     }
+}
+
+void LaunchMenuDialog::EnsureGameJoltIcon() {
+    if (gjIcon_ || gjIconLoadFailed_) return;
+
+    auto path = rex::filesystem::GetExecutableFolder() / "retip" / "gamejolt.png";
+    std::ifstream file(path, std::ios::binary | std::ios::ate);
+    if (!file) {
+        gjIconLoadFailed_ = true;
+        return;
+    }
+    std::vector<uint8_t> bytes(static_cast<size_t>(file.tellg()));
+    file.seekg(0);
+    file.read(reinterpret_cast<char*>(bytes.data()), bytes.size());
+
+    auto pixels = rex::ui::DecodeImageRGBA(bytes.data(), bytes.size(), gjIconW_, gjIconH_);
+    if (pixels.empty()) {
+        gjIconLoadFailed_ = true;
+        return;
+    }
+    auto* immediate = imgui_drawer()->immediate_drawer();
+    if (!immediate) return;
+    gjIcon_ = immediate->CreateTexture(gjIconW_, gjIconH_, rex::ui::ImmediateTextureFilter::kLinear, false, pixels.data());
+    if (!gjIcon_) gjIconLoadFailed_ = true;
+}
+
+void LaunchMenuDialog::DrawGameJoltButton(float left, float top) {
+    if (!rex::gamejolt::IsStarted()) return;
+
+    EnsureGameJoltIcon();
+
+    ImGui::SetCursorPos(ImVec2(left, top));
+    ImGui::InvisibleButton("##gj_account", ImVec2(kGjSize, kGjSize));
+    const bool hovered = ImGui::IsItemHovered();
+    const bool clicked = ImGui::IsItemClicked();
+
+    ImDrawList* dl = ImGui::GetWindowDrawList();
+    const ImVec2 tl = ImGui::GetItemRectMin();
+    const ImVec2 br = ImGui::GetItemRectMax();
+    const ImVec2 center((tl.x + br.x) * 0.5f, (tl.y + br.y) * 0.5f);
+    const float radius = kGjSize * 0.5f;
+
+    const auto state = rex::gamejolt::GetSignInState();
+    ImU32 ring = IM_COL32(128, 128, 140, 255);
+    const char* status = "Not signed in";
+    switch (state) {
+        case rex::gamejolt::SignInState::kSignedIn:
+            ring = IM_COL32(51, 204, 102, 255); status = "Signed in"; break;
+        case rex::gamejolt::SignInState::kPending:
+            ring = IM_COL32(255, 190, 51, 255); status = "Signing in..."; break;
+        case rex::gamejolt::SignInState::kFailed:
+            ring = IM_COL32(229, 77, 77, 255); status = "Sign-in failed"; break;
+        case rex::gamejolt::SignInState::kSignedOut:
+            break;
+    }
+
+    dl->AddCircleFilled(center, radius, IM_COL32(0, 0, 0, hovered ? 205 : 140));
+    if (gjIcon_) {
+        const float inset = 4.0f;
+        dl->AddImageRounded(reinterpret_cast<ImTextureID>(gjIcon_.get()),
+                            ImVec2(tl.x + inset, tl.y + inset), ImVec2(br.x - inset, br.y - inset),
+                            ImVec2(0, 0), ImVec2(1, 1), IM_COL32_WHITE, radius - inset);
+    } else {
+        constexpr float kPi = 3.14159265f;
+        const ImU32 fg = IM_COL32(225, 228, 235, 255);
+        dl->AddCircleFilled(ImVec2(center.x, center.y - radius * 0.22f), radius * 0.27f, fg);
+        dl->PathClear();
+        dl->PathArcTo(ImVec2(center.x, center.y + radius * 0.60f), radius * 0.48f, kPi, kPi * 2.0f);
+        dl->PathFillConvex(fg);
+    }
+    dl->AddCircle(center, radius - 1.0f, ring, 0, 2.5f);
+
+    if (hovered) {
+        const std::string user = rex::gamejolt::GetUsername();
+        ImGui::BeginTooltip();
+        if (state == rex::gamejolt::SignInState::kSignedIn && !user.empty()) {
+            ImGui::Text("Game Jolt: %s", user.c_str());
+        } else {
+            ImGui::Text("Game Jolt: %s", status);
+        }
+        ImGui::TextDisabled("Click to manage your account");
+        ImGui::EndTooltip();
+    }
+
+    if (clicked) {
+        const std::string user = rex::gamejolt::GetUsername();
+        if (!user.empty()) std::snprintf(gjUsername_, sizeof(gjUsername_), "%s", user.c_str());
+        std::memset(gjToken_, 0, sizeof(gjToken_));
+        gjPopupQueued_ = true;
+    }
+}
+
+void LaunchMenuDialog::DrawGameJoltPopup() {
+    if (!rex::gamejolt::IsStarted()) return;
+    if (gjPopupQueued_) {
+        ImGui::OpenPopup(kGameJoltPopupId);
+        gjPopupQueued_ = false;
+    }
+
+    ImGui::SetNextWindowSize(ImVec2(390.0f, 0.0f), ImGuiCond_Always);
+    if (!ImGui::BeginPopup(kGameJoltPopupId)) return;
+
+    const auto state = rex::gamejolt::GetSignInState();
+    ImGui::SeparatorText("Game Jolt");
+
+    if (state == rex::gamejolt::SignInState::kSignedIn) {
+        ImGui::Text("Signed in as %s", rex::gamejolt::GetUsername().c_str());
+        ImGui::TextDisabled("Trophies are awarded automatically as you play.");
+        ImGui::Spacing();
+        if (ImGui::Button("Sign Out", ImVec2(120.0f, 0.0f))) rex::gamejolt::SignOut();
+        ImGui::SameLine();
+        if (ImGui::Button("Sync Trophies", ImVec2(140.0f, 0.0f))) rex::gamejolt::SyncTrophies();
+    } else if (state == rex::gamejolt::SignInState::kPending) {
+        ImGui::TextDisabled("Signing in...");
+    } else {
+        ImGui::TextWrapped(
+            "Sign in to earn Game Jolt trophies for your achievements. Your user token is not your "
+            "password - grab it from your Game Jolt account page.");
+        ImGui::Spacing();
+        ImGui::SetNextItemWidth(-1.0f);
+        ImGui::InputTextWithHint("##gj_user", "Username", gjUsername_, sizeof(gjUsername_));
+        ImGui::SetNextItemWidth(-1.0f);
+        ImGui::InputTextWithHint("##gj_token", "User token", gjToken_, sizeof(gjToken_),
+                                 ImGuiInputTextFlags_Password);
+        ImGui::Spacing();
+
+        const bool canSubmit = gjUsername_[0] != '\0' && gjToken_[0] != '\0';
+        ImGui::BeginDisabled(!canSubmit);
+        if (ImGui::Button("Sign In", ImVec2(120.0f, 0.0f))) {
+            rex::gamejolt::SignIn(gjUsername_, gjToken_);
+            std::memset(gjToken_, 0, sizeof(gjToken_));
+        }
+        ImGui::EndDisabled();
+        ImGui::SameLine();
+        if (ImGui::Button("Get my token", ImVec2(140.0f, 0.0f))) SDL_OpenURL(kGameJoltTokenUrl);
+
+        if (state == rex::gamejolt::SignInState::kFailed) {
+            const std::string error = rex::gamejolt::GetLastError();
+            ImGui::Spacing();
+            ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 0.45f, 0.45f, 1.0f));
+            ImGui::TextWrapped("%s", error.empty() ? "Sign-in failed." : error.c_str());
+            ImGui::PopStyleColor();
+        }
+    }
+
+    ImGui::EndPopup();
 }
 
 void LaunchMenuDialog::SyncOptionsFromCVars() {
@@ -214,8 +419,8 @@ static bool BrandButton(const char* label, ImVec4 color, ImVec2 size) {
 void LaunchMenuDialog::OnDraw(ImGuiIO& io) {
     if (!initialized_) {
         initialized_ = true;
-        visible_ = REXCVAR_GET(ShowLaunchMenu);
-        showOnStartup = visible_;
+        showOnStartup = REXCVAR_GET(ShowLaunchMenu);
+        visible_ = showOnStartup || !gameInstalled_;
     }
 
     g_LaunchMenuOpen = visible_;
@@ -248,6 +453,8 @@ void LaunchMenuDialog::OnDraw(ImGuiIO& io) {
         dl->AddRectFilled(ImVec2(0, 0), disp, ImColor(14, 16, 20, 255));
     }
 
+    DrawGameJoltButton(kPad, kPad);
+
     if (window_) {
         const ImVec2 fsSize(120.0f, 34.0f);
         const char* fsLabel = window_->IsFullscreen() ? "Windowed" : "Fullscreen";
@@ -275,20 +482,22 @@ void LaunchMenuDialog::OnDraw(ImGuiIO& io) {
     const float kGroupGap = 30.0f;
     const float kOptionsGap = 16.0f;
     float rowWidth = btnSize.x * 4.0f + kBtnGap * 3.0f;
-    const ImVec2 playSize(gameInstalled_ ? 170.0f : 260.0f, kBtnHeight);
+    const ImVec2 playSize(gameInstalled_ ? 170.0f : 0.0f, kBtnHeight);
     const ImVec2 optionsSize(170.0f, kBtnHeight);
     float playX = disp.x - kPad - playSize.x;
-    float optionsX = playX - kOptionsGap - optionsSize.x;
+    float optionsX = playX - (gameInstalled_ ? kOptionsGap : 0.0f) - optionsSize.x;
 
     float rowX = (disp.x - rowWidth) * 0.5f;
     rowX = std::max(rowX, kPad + titleWidth + kBtnGap * 2.0f);
     rowX = std::min(rowX, optionsX - kGroupGap - rowWidth);
 
-    ImGui::SetCursorPos(ImVec2(playX, rowY));
-    ImGui::SetWindowFontScale(gameInstalled_ ? 1.15f : 1.0f);
-    ImVec4 playColor = gameInstalled_ ? ImVec4(0.0f, 0.62f, 0.36f, 1.0f) : ImVec4(0.85f, 0.55f, 0.0f, 1.0f);
-    bool play = BrandButton(gameInstalled_ ? "PLAY" : "Install with Goopie", playColor, playSize);
-    ImGui::SetWindowFontScale(1.0f);
+    bool play = false;
+    if (gameInstalled_) {
+        ImGui::SetCursorPos(ImVec2(playX, rowY));
+        ImGui::SetWindowFontScale(1.15f);
+        play = BrandButton("PLAY", ImVec4(0.0f, 0.62f, 0.36f, 1.0f), playSize);
+        ImGui::SetWindowFontScale(1.0f);
+    }
 
     ImGui::SetCursorPos(ImVec2(optionsX, rowY));
     ImGui::SetWindowFontScale(1.15f);
@@ -316,17 +525,146 @@ void LaunchMenuDialog::OnDraw(ImGuiIO& io) {
     ImGui::SameLine(0.0f, kBtnGap);
     if (BrandButton("GitHub", ImVec4(0.25f, 0.28f, 0.33f, 1.0f), btnSize)) SDL_OpenURL(kGithubUrl);
 
+    DrawGameJoltPopup();
+
     ImGui::End();
 
     DrawOptionsWindow(io);
+    DrawAssetsWizard(io);
 
-    if (play || (gameInstalled_ && ImGui::IsKeyPressed(ImGuiKey_Enter))) {
-        if (gameInstalled_) {
-            StartGame();
-        } else {
-            SDL_OpenURL(kGoopieUrl);
+    if (assetsJustInstalled_) {
+        assetsJustInstalled_ = false;
+        if (onAssetsInstalled_) {
+            auto cb = std::move(onAssetsInstalled_);
+            onAssetsInstalled_ = nullptr;
+            cb(assetsDir_);
         }
     }
+
+    const bool enterToPlay = ImGui::IsKeyPressed(ImGuiKey_Enter) && !ImGui::IsAnyItemActive() &&
+                             !ImGui::IsPopupOpen(kGameJoltPopupId);
+    if (gameInstalled_ && (play || enterToPlay)) {
+        StartGame();
+    }
+}
+
+void LaunchMenuDialog::OpenIsoPicker() {
+    if (isoPickerBusy_) return;
+    isoPickerBusy_ = true;
+    isoError_.clear();
+
+    isoPick_ = std::make_shared<IsoPickResult>();
+    auto shared = isoPick_;
+    tip::ShowOpenFileDialog("Select the game disc image", "Xbox 360 disc image", "*.iso",
+                            [shared](tip::FilePickResult result) {
+                                std::lock_guard<std::mutex> lock(shared->mutex);
+                                shared->path = std::move(result.path);
+                                shared->error = std::move(result.error);
+                                shared->ready = true;
+                            });
+}
+
+void LaunchMenuDialog::PollIsoPicker() {
+    if (!isoPick_) return;
+
+    std::string chosen;
+    std::string failure;
+    {
+        std::lock_guard<std::mutex> lock(isoPick_->mutex);
+        if (!isoPick_->ready) return;
+        chosen = isoPick_->path;
+        failure = isoPick_->error;
+    }
+    isoPick_.reset();
+    isoPickerBusy_ = false;
+
+    if (!failure.empty()) {
+        isoError_ = std::move(failure);
+        return;
+    }
+    if (chosen.empty()) return;
+    if (!extractor_.Start(std::filesystem::path(chosen), assetsDir_)) {
+        isoError_ = extractor_.error();
+    }
+}
+
+void LaunchMenuDialog::DrawAssetsWizard(ImGuiIO& io) {
+    if (gameInstalled_) return;
+
+    PollIsoPicker();
+
+    if (!ImGui::IsPopupOpen(kAssetsWizardId)) ImGui::OpenPopup(kAssetsWizardId);
+
+    ImGui::SetNextWindowPos(ImVec2(io.DisplaySize.x * 0.5f, io.DisplaySize.y * 0.5f), ImGuiCond_Always, ImVec2(0.5f, 0.5f));
+    ImGui::SetNextWindowSize(ImVec2(kAssetsWizardWidth, 0.0f), ImGuiCond_Always);
+    ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(22.0f, 20.0f));
+    const bool open = ImGui::BeginPopupModal(kAssetsWizardId, nullptr,
+                                             ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize |
+                                             ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoSavedSettings);
+    ImGui::PopStyleVar();
+    if (!open) return;
+
+    const float contentWidth = ImGui::GetContentRegionAvail().x;
+    const float wrapPos = ImGui::GetCursorPosX() + contentWidth;
+
+    ImGui::SetWindowFontScale(1.2f);
+    ImGui::PushTextWrapPos(wrapPos);
+    ImGui::TextUnformatted(kAssetsWizardText);
+    ImGui::PopTextWrapPos();
+    ImGui::SetWindowFontScale(1.0f);
+
+    ImGui::Spacing();
+    ImGui::PushTextWrapPos(wrapPos);
+    ImGui::TextDisabled("Destination: %s", assetsDir_.string().c_str());
+    ImGui::PopTextWrapPos();
+    ImGui::Spacing();
+    ImGui::Separator();
+    ImGui::Spacing();
+
+    const tip::IsoExtractState state = extractor_.state();
+    if (state == tip::IsoExtractState::kScanning || state == tip::IsoExtractState::kExtracting) {
+        char overlay[64];
+        if (state == tip::IsoExtractState::kScanning) {
+            std::snprintf(overlay, sizeof(overlay), "Reading image...");
+        } else {
+            std::snprintf(overlay, sizeof(overlay), "%.0f%%  (%u / %u files)",
+                          extractor_.progress() * 100.0f, extractor_.files_done(),
+                          extractor_.files_total());
+        }
+        ImGui::ProgressBar(extractor_.progress(), ImVec2(contentWidth, 32.0f), overlay);
+
+        ImGui::Spacing();
+        ImGui::PushTextWrapPos(ImGui::GetCursorPosX() + contentWidth);
+        ImGui::TextDisabled("%s", extractor_.current_file().c_str());
+        ImGui::PopTextWrapPos();
+    } else {
+        const char* label = isoPickerBusy_ ? "Waiting for file picker..." : "Select Iso";
+        const ImVec2 buttonSize(220.0f, 44.0f);
+        ImGui::SetCursorPosX(ImGui::GetCursorPosX() + (contentWidth - buttonSize.x) * 0.5f);
+        ImGui::BeginDisabled(isoPickerBusy_);
+        if (BrandButton(label, ImVec4(0.85f, 0.55f, 0.0f, 1.0f), buttonSize)) {
+            OpenIsoPicker();
+        }
+        ImGui::EndDisabled();
+
+        const std::string message = !isoError_.empty() ? isoError_
+                                  : state == tip::IsoExtractState::kFailed ? extractor_.error()
+                                  : std::string();
+        if (!message.empty()) {
+            ImGui::Spacing();
+            ImGui::PushTextWrapPos(ImGui::GetCursorPosX() + contentWidth);
+            ImGui::TextColored(ImVec4(1.0f, 0.42f, 0.38f, 1.0f), "%s", message.c_str());
+            ImGui::PopTextWrapPos();
+        }
+    }
+
+    if (state == tip::IsoExtractState::kDone) {
+        gameInstalled_ = true;
+        assetsJustInstalled_ = true;
+        ImGui::CloseCurrentPopup();
+    }
+
+    ImGui::EndPopup();
 }
 
 void LaunchMenuDialog::DrawOptionsWindow(ImGuiIO& io) {

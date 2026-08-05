@@ -181,3 +181,17 @@ name = "skip_cutscenes_hook"
 registers = []
 after_instruction = false
 jump_address_on_true = 0x821F8C00
+
+#8240D630
+[[midasm_hook]]
+address = 0x8240D630
+name = "time_hook"
+registers = ["r3"]
+after_instruction = true
+
+#8240D4B4
+[[midasm_hook]]
+address = 0x8240D4B4
+name = "time_hook2"
+registers = ["r3"]
+after_instruction = true

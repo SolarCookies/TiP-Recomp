@@ -41,3 +41,6 @@ generate_exception_handlers = false
 0x823522d8 = {} #Multiplayer 6
 0x82333618 = {} #Multiplayer 7
 0x822a8680 = {} #Multiplayer 8
+
+0x82A920E0 = {} #Happens when mailing someone a gift 
+0x823CAAE0 = {} #Happens when beating the shit out of a ruffian 

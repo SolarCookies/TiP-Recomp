@@ -16,9 +16,12 @@ include(generated/rexglue.cmake)
 # Sources
 set(RETIP_SOURCES
     src/main.cpp
+    src/tip_engine/CameraHooks.cpp
     src/tip_engine/CursorHooks.cpp
     src/tip_engine/hooks.cpp
     src/tip_engine/GraphicsHooks.cpp
+    src/tip_engine/FilePicker.cpp
+    src/tip_engine/IsoExtract.cpp
     src/tip_engine/Overlays/Fps.cpp
     src/tip_engine/Overlays/LaunchMenu.cpp
     src/tip_engine/Overlays/QuitMenu.cpp
@@ -27,10 +30,9 @@ set(RETIP_SOURCES
     src/tip_engine/Overlays/TiPTools/GraphicsMenu.cpp
     src/tip_engine/Overlays/TiPTools/UpscalingMenu.cpp
     src/tip_engine/Overlays/TiPTools/SettingsMenu.cpp
-    src/tip_engine/Overlays/TiPTools/PinataMenu.cpp
     src/tip_engine/Overlays/TiPTools/PlantMenu.cpp
     src/tip_engine/Overlays/TiPTools/PlayerMenu.cpp
-    src/tip_engine/Overlays/TiPTools/RuffianMenu.cpp
+    src/tip_engine/Overlays/TiPTools/CvarMenu.cpp
     src/tip_engine/Overlays/TiPTools/ShovelMenu.cpp
     src/tip_engine/CRT/math.cpp
     src/tip_engine/CRT/assetman.cpp
@@ -39,6 +41,7 @@ set(RETIP_SOURCES
 if(WIN32)
     list(APPEND RETIP_SOURCES icon/app.rc)
     add_executable(retip WIN32 ${RETIP_SOURCES})
+    target_link_libraries(retip PRIVATE ole32 shell32)
 else()
     add_executable(retip ${RETIP_SOURCES})
 endif()

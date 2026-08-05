@@ -1,0 +1,4 @@
+#pragma once
+
+#define RETIP_GAMEJOLT_GAME_ID "000000"
+#define RETIP_GAMEJOLT_KEY "put-private-key-here"
